@@ -13,7 +13,7 @@ export default class AddNewBookForm extends Component {
   }
   render() {
     return (
-      <View >
+      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
         <Text>title:</Text>
         <TextInput
           style={{ height: 34, width: 320, borderColor: 'gray', borderWidth: 1, padding: 2 }}
