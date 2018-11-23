@@ -1,25 +1,12 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import BookForm from './components/BookForm';
-import Banner from './components/Banner';
+import ScreenAddNewBook from './screens/add_new_book_screen';
+import AddNewBookScreen from './screens/add_new_book_screen';
 
 export default class App extends React.Component {
   render() {
     return (
-      <View>
-         <Banner/>
-         <BookForm/>
-      </View>
-     
+      <AddNewBookScreen />
     );
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
