@@ -1,13 +1,18 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet } from 'react-native'
+import { View, Text, StyleSheet, Button } from 'react-native'
+import AddNewBookScreen from '../screens/add_new_book_screen';
+import ShowAllBooksScreen from '../screens/show_all_books_screen';
 
 export default class Banner extends Component {
     render() {
+        const { callback } = this.props;
         return (
             <View style={styles.app}>
                 <View style={styles.appHeader}>
                     <Text style={styles.appTitle}> ⚛️ </Text>
                 </View>
+                <Button title="Search" onPress={()=>callback('search')} />
+                <Button title="Add Book" onPress={()=>callback('add')} />
             </View>
         )
     }

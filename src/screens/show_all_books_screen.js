@@ -4,13 +4,11 @@ import { View, Text, FlatList } from 'react-native'
 export default class ShowAllBooksScreen extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            apiData: [{title:'some title1', author:'author1'},
-            {title:'some title2', author:'author2'}]
-        };
     }
-
     render() {
+        const { navigation } = this.props;
+        const apiData = navigation.getParam('apiData', '[{}]');
+       
         return (
             <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
                 <FlatList

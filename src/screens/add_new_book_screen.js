@@ -7,7 +7,6 @@ export default class AddNewBookScreen extends React.Component {
     render() {
         return (
             <View>
-                <Banner />
                 <AddNewBookForm />
             </View>
 
