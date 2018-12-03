@@ -8,18 +8,26 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = { screen: '' };
+    this.books = [{}];
     this.onBannerButtonClicked = this.onBannerButtonClicked.bind(this);
+  }
+  shouldComponentUpdate() { 
+    return true;
   }
 
   onBannerButtonClicked(selection) {
-    this.setState({ screen: { selection } });
+    if (selection == 'search') {
+      this.books = [{title:'title1', author:'author1'}, {title:'title2', author:'author2'}];
+    }
+   
+    this.setState({ screen: selection  });
   }
 
   showAllBooks() {
     return (
       <View>
-        <Banner callback={this.onBannerButtonClicked} />
-        <ShowAllBooksScreen />
+        <Banner callback={this.onBannerButtonClicked}/>
+        <ShowAllBooksScreen apiData={this.books}/>
       </View>
     );
   }
@@ -42,9 +50,9 @@ export default class App extends React.Component {
   }
 
   render() {
-    if (this.state.selection == 'search')
+    if (this.state.screen == 'search')
       return this.showAllBooks();
-    else if (this.state.selection == 'add')
+    else if (this.state.screen == 'add')
       return this.addNewBooks();
     else
       return this.showBlankPage();
