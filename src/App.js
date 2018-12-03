@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Button } from 'react-native';
+import { View } from 'react-native';
 import Banner from './components/banner';
 import ShowAllBooksScreen from './screens/show_all_books_screen';
 import AddNewBookScreen from './screens/add_new_book_screen';
@@ -11,12 +11,13 @@ export default class App extends React.Component {
     this.books = [{}];
     this.onBannerButtonClicked = this.onBannerButtonClicked.bind(this);
   }
+
   shouldComponentUpdate() { 
     return true;
   }
 
   onBannerButtonClicked(selection) {
-    if (selection == 'search') {
+    if (selection === ShowAllBooksScreen.screenId) {
       this.books = [{title:'title1', author:'author1'}, {title:'title2', author:'author2'}];
     }
    
@@ -50,9 +51,9 @@ export default class App extends React.Component {
   }
 
   render() {
-    if (this.state.screen == 'search')
+    if (this.state.screen === ShowAllBooksScreen.screenId)
       return this.showAllBooks();
-    else if (this.state.screen == 'add')
+    else if (this.state.screen === AddNewBookScreen.screenId)
       return this.addNewBooks();
     else
       return this.showBlankPage();

@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
 import { View, Text, StyleSheet, Button } from 'react-native'
-import AddNewBookScreen from '../screens/add_new_book_screen';
-import ShowAllBooksScreen from '../screens/show_all_books_screen';
 
 export default class Banner extends Component {
     render() {
@@ -9,7 +7,7 @@ export default class Banner extends Component {
         return (
             <View style={styles.app}>
                 <View style={styles.appHeader}>
-                    <Text style={styles.appTitle}> ⚛️ </Text>
+                    <Text style={styles.appTitle}> <span aria-labelledby='jsx-a11y/accessible-emoji' role='img'>⚛️ </span></Text>
                 </View>
                 <Button title="Search" onPress={()=>callback('search')} />
                 <Button title="Add Book" onPress={()=>callback('add')} />
