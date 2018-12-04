@@ -20,8 +20,7 @@ export default class App extends React.Component {
     if (selection === ShowAllBooksScreen.screenId) {
       this.books = [{title:'title1', author:'author1'}, {title:'title2', author:'author2'}];
     }
-   
-    this.setState({ screen: selection  });
+    this.setState({ screen: selection });
   }
 
   showAllBooks() {
