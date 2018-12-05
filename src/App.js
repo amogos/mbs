@@ -12,13 +12,10 @@ export default class App extends React.Component {
     this.onBannerButtonClicked = this.onBannerButtonClicked.bind(this);
   }
 
-  shouldComponentUpdate() { 
-    return true;
-  }
-
   onBannerButtonClicked(selection) {
     if (selection === ShowAllBooksScreen.screenId) {
-      this.books = [{title:'title1', author:'author1'}, {title:'title2', author:'author2'}];
+      this.books = [{ title: 'The Secret Language of Cats: How to Understand Your Cat for a Better, Happier Relationship', language: 'English', author: 'Susanne Schotz' },
+      { title: 'Game Programming Patterns', language: 'English', author: 'Robert Nystrom' }];
     }
     this.setState({ screen: selection });
   }
@@ -26,8 +23,8 @@ export default class App extends React.Component {
   showAllBooks() {
     return (
       <View>
-        <Banner callback={this.onBannerButtonClicked}/>
-        <ShowAllBooksScreen apiData={this.books}/>
+        <Banner callback={this.onBannerButtonClicked} />
+        <ShowAllBooksScreen apiData={this.books} />
       </View>
     );
   }
