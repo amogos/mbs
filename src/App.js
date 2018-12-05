@@ -14,8 +14,14 @@ export default class App extends React.Component {
 
   onBannerButtonClicked(selection) {
     if (selection === ShowAllBooksScreen.screenId) {
-      this.books = [{ title: 'The Secret Language of Cats: How to Understand Your Cat for a Better, Happier Relationship', language: 'English', author: 'Susanne Schotz' },
-      { title: 'Game Programming Patterns', language: 'English', author: 'Robert Nystrom' }];
+      this.books = [{
+        title: 'The Secret Language of Cats: How to Understand Your Cat for a Better, Happier Relationship', language: 'English', author: 'Susanne Schotz',
+        image: 'https://images-eu.ssl-images-amazon.com/images/I/51UkIlAOwEL._SY90_.jpg'
+      },
+      {
+        title: 'Game Programming Patterns', language: 'English', author: 'Robert Nystrom',
+        image: 'https://images-eu.ssl-images-amazon.com/images/I/51Pes1Vls5L._SY90_.jpg'
+      }];
     }
     this.setState({ screen: selection });
   }
