@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, StyleSheet } from 'react-native'
+import { Text, View, StyleSheet } from 'react-native'
 
 export default class Book extends Component {
     render() {
@@ -8,15 +8,17 @@ export default class Book extends Component {
                 <td>
                     <img
                         src={this.props.image}
-                        alt="new" width={64} height={64} mode='fit' alignItems='center'
+                        alt="new" width={64} height={64} mode='fit' allign='center'
                     />
+
                 </td>
                 <td>
-                    <Text style={styles.title}>
-                        {this.props.title}
-                        <Text style={styles.language}> ({this.props.language}) </Text>
-                        <Text style={styles.author}><br />{this.props.author}</Text>
-                    </Text>
+                    <View style={styles.description}>
+                        <Text style={styles.title}> {this.props.title}</Text>
+                        <Text style={styles.language}> ({this.props.language})</Text>
+                        <Text style={styles.author}> {this.props.author}</Text>
+                    </View>
+
                 </td>
             </tr>
 
@@ -26,23 +28,34 @@ export default class Book extends Component {
 }
 
 const styles = StyleSheet.create({
+    description:
+    {
+        flex: 5,
+        height: 64,
+        justifyContent: 'center',
+        alignItems: 'center',
+        flexDirection:'row'
+    },
     title: {
-        flex: 1,
-        height: 70,
+
         fontSize: 14,
         color: 'black',
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+
     },
     author: {
         fontSize: 13,
         color: 'gray',
-        fontWeight: 'normal'
+        fontWeight: 'normal',
+
     },
 
     language: {
         fontSize: 13,
         color: 'black',
-        fontStyle: 'italic'
+        fontStyle: 'italic',
+
+
     },
 
 })

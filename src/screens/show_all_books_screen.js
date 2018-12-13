@@ -6,12 +6,12 @@ export default class ShowAllBooksScreen extends Component {
     static screenId = 'search';
     render() {
         return (
-            <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-            <table>
-                <FlatList 
-                    data={this.props.apiData}
-                    renderItem={({ item }) => <Book title={item.title} language={item.language} author={item.author} image={item.image}/>}
-                />
+            <View style={{ flex: 0, alignItems: 'center', justifyContent: 'center' }}>
+                <table border="0px">
+                    <FlatList
+                        data={this.props.apiData}
+                        renderItem={({ item }) => <Book title={item.title} language={item.language} author={item.author} image={item.image} />}
+                    />
                 </table>
             </View>
         )

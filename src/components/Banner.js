@@ -8,23 +8,24 @@ export default class Banner extends Component {
             <View style={styles.app}>
                 <View style={styles.appHeader}>
                     <Text style={styles.appTitle}> <span aria-labelledby='jsx-a11y/accessible-emoji' role='img'>⚛️ </span></Text>
+                <Button title="Search" color="#00000000" onPress={() => callback('search')} />
+                <Button title="Add Book" color="#00000000" onPress={() => callback('add')} />
                 </View>
-                <Button title="Search" onPress={()=>callback('search')} />
-                <Button title="Add Book" onPress={()=>callback('add')} />
             </View>
         )
     }
 }
 const styles = StyleSheet.create({
     app: {
-        flex: 1
+        flex: 0
     },
     appHeader: {
         flex: 1,
         backgroundColor: '#222',
         padding: 20,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        flexDirection:'row'
     },
     appTitle: {
         fontSize: 16,
