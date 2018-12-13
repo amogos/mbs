@@ -37,7 +37,7 @@ export default class App extends React.Component {
 
   addNewBooks() {
     return (
-      <View>
+      <View >
         <Banner callback={this.onBannerButtonClicked} />
         <AddNewBookScreen />
       </View>

@@ -6,7 +6,7 @@ export default class AddNewBookScreen extends React.Component {
     static screenId = "add";
     render() {
         return (
-            <View>
+            <View style={{alignItems: 'center',  justifyContent: 'space-between'}}>
                 <AddNewBookForm />
             </View>
 
