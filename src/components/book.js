@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
         height: 64,
         justifyContent: 'center',
         alignItems: 'center',
-        flexDirection:'row'
+        flexDirection: 'row'
     },
     title: {
 
@@ -54,8 +54,6 @@ const styles = StyleSheet.create({
         fontSize: 13,
         color: 'black',
         fontStyle: 'italic',
-
-
     },
 
 })
