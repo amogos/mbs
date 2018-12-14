@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { View, Text, StyleSheet, Button } from 'react-native'
+import FacebookConnect from './facebook_connect'
 
 export default class Banner extends Component {
     render() {
@@ -8,13 +9,15 @@ export default class Banner extends Component {
             <View style={styles.app}>
                 <View style={styles.appHeader}>
                     <Text style={styles.appTitle}> <span aria-labelledby='jsx-a11y/accessible-emoji' role='img'>⚛️ </span></Text>
-                <Button title="Search" color="#00000000" onPress={() => callback('search')} />
-                <Button title="Add Book" color="#00000000" onPress={() => callback('add')} />
+                    <Button title="Search" color="#00000000" onPress={() => callback('search')} />
+                    <Button title="Add Book" color="#00000000" onPress={() => callback('add')} />
+                    <FacebookConnect />
                 </View>
             </View>
         )
     }
 }
+
 const styles = StyleSheet.create({
     app: {
         flex: 0
@@ -25,7 +28,7 @@ const styles = StyleSheet.create({
         padding: 20,
         justifyContent: 'center',
         alignItems: 'center',
-        flexDirection:'row'
+        flexDirection: 'row'
     },
     appTitle: {
         fontSize: 16,
