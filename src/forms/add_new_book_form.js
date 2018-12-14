@@ -5,14 +5,12 @@ export default class AddNewBookForm extends Component {
     super(props);
     this.title = { title: 'title' };
     this.author = { author: 'author' };
-    this.image={image:'https://vignette.wikia.nocookie.net/superfriends/images/a/a5/No_Photo_Available.jpg/revision/latest?cb=20090329133959'};
+    this.image = { image: 'https://vignette.wikia.nocookie.net/superfriends/images/a/a5/No_Photo_Available.jpg/revision/latest?cb=20090329133959' };
     this.state = { text: 'error...' };
   }
   onSaveButtonPressed() {
 
   }
-
-
 
   render() {
     return (
@@ -33,13 +31,13 @@ export default class AddNewBookForm extends Component {
         <Text> image: </Text>
         <TextInput
           style={styles.inputField}
-          onChangeText={(text) => { this.setState({ text }); this.image.image = text;}}
+          onChangeText={(text) => { this.setState({ text }); this.image.image = text; }}
           value={this.image.text} />
 
         <img src={this.image.image} alt="new" width={64} height={64} mode='fit' allign='center' />
         <Button color="#000000"
           onPress={this.onSaveButtonPressed}
-          style={{ height: 34, width: 320, padding: 2 }}i
+          style={{ height: 34, width: 320, padding: 2 }} i
           title="Save"
           accessibilityLabel="Save book"
         />
