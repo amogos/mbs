@@ -2,32 +2,42 @@ import React, { Component } from 'react'
 import { Text, View, StyleSheet } from 'react-native'
 import BookPlacement from './book_placement';
 
+var onBookAssignedToMe = () => {
+}
+
+function BookImage(props) {
+    return (
+        <td>
+            <img
+                src={props.image}
+                alt="new" width={64} height={64} mode='fit' allign='center'
+            />
+
+        </td>)
+
+}
+
+function BookDescriptor(props) {
+    return (
+        <td>
+            <View style={styles.description}>
+                <Text style={styles.title}> {props.title}</Text>
+                <Text style={styles.language}> ({props.language})</Text>
+                <Text style={styles.grey_text}> {props.author}</Text>
+            </View>
+            <BookPlacement owner={props.owner} holder={props.holder} callback={onBookAssignedToMe} />
+
+        </td>);
+
+}
+
 export default class Book extends Component {
-    OnBookAssignedToMe = ()=>
-    {
-    }
     render() {
         return (
             <tr>
-                <td>
-                    <img
-                        src={this.props.image}
-                        alt="new" width={64} height={64} mode='fit' allign='center'
-                    />
-
-                </td>
-                <td>
-                    <View style={styles.description}>
-                        <Text style={styles.title}> {this.props.title}</Text>
-                        <Text style={styles.language}> ({this.props.language})</Text>
-                        <Text style={styles.grey_text}> {this.props.author}</Text>    
-                    </View>
-                    <BookPlacement owner={this.props.owner} holder={this.props.holder} callback={this.OnBookAssignedToMe}/>
-
-                </td>
+                <BookImage {...this.props}/>
+                <BookDescriptor {...this.props}/>
             </tr>
-
-
         );
     }
 }
