@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View } from 'react-native'
+import { Text } from 'react-native'
 import FacebookLogin from 'react-facebook-login';
 
 export default class FacebookConnect extends Component {
