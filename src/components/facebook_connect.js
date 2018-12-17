@@ -7,24 +7,19 @@ export default class FacebookConnect extends Component {
         super(props);
         this.state = {
             isLoggedIn: false,
-            userId: '',
-            name: '',
-            email: '',
-            picture: ''
+            name: ''
         }
     }
     responseFacebook = response => {
         this.setState({
             isLoggedIn: true,
-            userId: response.userId,
             name: response.name,
-            email: response.email,
-            picture: response.picture
         });
+        const {onConnect} = this.props;
+        onConnect(response);
     }
 
     componentClicked = () => {
-
     }
 
     render() {

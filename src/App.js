@@ -3,13 +3,20 @@ import { View } from 'react-native';
 import Banner from './components/banner';
 import ShowAllBooksScreen from './screens/show_all_books_screen';
 import AddNewBookScreen from './screens/add_new_book_screen';
-
+import UserData from './components/user_data';
 export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = { screen: '' };
     this.books = [{}];
     this.onBannerButtonClicked = this.onBannerButtonClicked.bind(this);
+    this.onFacebookConnect = this.onFacebookConnect.bind(this);
+    this.userData = null;
+  }
+   
+  onFacebookConnect(response)
+  {
+      this.userData = new UserData(0, response.name, response.email, response.image);
   }
 
   onBannerButtonClicked(selection) {
@@ -33,7 +40,7 @@ export default class App extends React.Component {
   showAllBooks() {
     return (
       <View>
-        <Banner callback={this.onBannerButtonClicked} />
+        <Banner onClicked={this.onBannerButtonClicked} onConnect={this.onFacebookConnect}/>
         <ShowAllBooksScreen apiData={this.books} />
       </View>
     );
@@ -42,7 +49,7 @@ export default class App extends React.Component {
   addNewBooks() {
     return (
       <View >
-        <Banner callback={this.onBannerButtonClicked} />
+        <Banner onClicked={this.onBannerButtonClicked} onConnect={this.onFacebookConnect} />
         <AddNewBookScreen />
       </View>
     );
@@ -51,7 +58,7 @@ export default class App extends React.Component {
   showBlankPage() {
     return (
       <View>
-        <Banner callback={this.onBannerButtonClicked} />
+        <Banner onClicked={this.onBannerButtonClicked} onConnect={this.onFacebookConnect} />
       </View>
     );
   }
@@ -65,6 +72,3 @@ export default class App extends React.Component {
       return this.showBlankPage();
   }
 }
-
-
-

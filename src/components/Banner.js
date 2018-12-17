@@ -4,14 +4,13 @@ import FacebookConnect from './facebook_connect'
 
 export default class Banner extends Component {
     render() {
-        const { callback } = this.props;
-        return (
+         return (
             <View style={styles.app}>
                 <View style={styles.appHeader}>
                     <Text style={styles.appTitle}> <span aria-labelledby='jsx-a11y/accessible-emoji' role='img'>⚛️ </span></Text>
-                    <Button title="Search" color="#00000000" onPress={() => callback('search')} />
-                    <Button title="Add Book" color="#00000000" onPress={() => callback('add')} />
-                    <FacebookConnect />
+                    <Button title="Search" color="#00000000" onPress={() => this.props.onClicked('search')} />
+                    <Button title="Add Book" color="#00000000" onPress={() => this.props.onClicked('add')} />
+                    <FacebookConnect {...this.props}/>
                 </View>
             </View>
         )
