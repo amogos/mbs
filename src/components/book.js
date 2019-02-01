@@ -25,7 +25,7 @@ function BookDescriptor(props) {
                 <Text style={styles.language}> ({props.language})</Text>
                 <Text style={styles.grey_text}> {props.author}</Text>
             </View>
-            <BookPlacement owner={props.owner} holder={props.holder} callback={onBookAssignedToMe} />
+            <BookPlacement owner={props.owner} holder={props.holder} callback={onBookAssignedToMe} userdata={props.userdata}/>
 
         </td>);
 

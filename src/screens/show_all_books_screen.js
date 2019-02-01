@@ -10,7 +10,7 @@ export default class ShowAllBooksScreen extends Component {
                 <table border="0px">
                     <FlatList
                         data={this.props.apiData}
-                        renderItem={({ item }) => <Book {...item}/>}
+                        renderItem={({ item }) => <Book {...item} userdata={this.props.userdata}/>}
                     />
                 </table>
             </View>

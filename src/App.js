@@ -1,9 +1,12 @@
 import React from 'react';
 import { View } from 'react-native';
+import md5 from "react-native-md5";
+
 import Banner from './components/banner';
 import ShowAllBooksScreen from './screens/show_all_books_screen';
 import AddNewBookScreen from './screens/add_new_book_screen';
 import UserData from './components/user_data';
+
 export default class App extends React.Component {
   constructor(props) {
     super(props);
@@ -13,10 +16,10 @@ export default class App extends React.Component {
     this.onFacebookConnect = this.onFacebookConnect.bind(this);
     this.userData = null;
   }
-   
-  onFacebookConnect(response)
-  {
-      this.userData = new UserData(0, response.name, response.email, response.image);
+
+  onFacebookConnect(response) {
+    let hex_md5v = md5.hex_md5(response.name + response.email);
+    this.userData = new UserData(response.name, response.email, response.image);
   }
 
   onBannerButtonClicked(selection) {
@@ -24,7 +27,7 @@ export default class App extends React.Component {
       this.books = [{
         title: 'The Secret Language of Cats: How to Understand Your Cat for a Better, Happier Relationship', language: 'English', author: 'Susanne Schotz',
         image: 'https://images-eu.ssl-images-amazon.com/images/I/51UkIlAOwEL._SY90_.jpg',
-        owner: 'Iulia Mogos',
+        owner: 'Florin Mogos',
         holder: ''
       },
       {
@@ -40,8 +43,8 @@ export default class App extends React.Component {
   showAllBooks() {
     return (
       <View>
-        <Banner onClicked={this.onBannerButtonClicked} onConnect={this.onFacebookConnect}/>
-        <ShowAllBooksScreen apiData={this.books} />
+        <Banner onClicked={this.onBannerButtonClicked} onConnect={this.onFacebookConnect} />
+        <ShowAllBooksScreen apiData={this.books} userdata={this.userData} />
       </View>
     );
   }

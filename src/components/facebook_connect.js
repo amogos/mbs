@@ -11,7 +11,6 @@ export default class FacebookConnect extends Component {
         }
     }
     responseFacebook = response => {
-        response.
         this.setState({
             isLoggedIn: true,
             name: response.name,
