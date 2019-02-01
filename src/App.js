@@ -53,7 +53,7 @@ export default class App extends React.Component {
     return (
       <View >
         <Banner onClicked={this.onBannerButtonClicked} onConnect={this.onFacebookConnect} />
-        <AddNewBookScreen />
+        <AddNewBookScreen userdata={this.userData} />
       </View>
     );
   }

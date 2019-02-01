@@ -25,7 +25,6 @@ export default class BookPlacement extends Component {
                   <br/><Button style={styles.button} title={holder} color="#808080" />
                  </Text>);
         }
-
         return (
             content
         );
