@@ -1,19 +1,11 @@
 import React, { Component } from 'react'
-import { View, FlatList } from 'react-native'
-import Book from '../components/book';
+import ShowAllBooksForm from '../forms/show_all_books_form.js'
 
 export default class ShowAllBooksScreen extends Component {
     static screenId = 'search';
     render() {
         return (
-            <View style={{ flex: 0, alignItems: 'center', justifyContent: 'center' }}>
-                <table border="0px">
-                    <FlatList
-                        data={this.props.apiData}
-                        renderItem={({ item }) => <Book {...item} userdata={this.props.userdata}/>}
-                    />
-                </table>
-            </View>
+           <ShowAllBooksForm {...this.props}/>
         )
     }
 }

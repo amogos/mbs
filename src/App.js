@@ -1,6 +1,5 @@
 import React from 'react';
 import { View } from 'react-native';
-import md5 from "react-native-md5";
 
 import Banner from './components/banner';
 import ShowAllBooksScreen from './screens/show_all_books_screen';
@@ -18,7 +17,6 @@ export default class App extends React.Component {
   }
 
   onFacebookConnect(response) {
-    let hex_md5v = md5.hex_md5(response.name + response.email);
     this.userData = new UserData(response.name, response.email, response.image);
   }
 
