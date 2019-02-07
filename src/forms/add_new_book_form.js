@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { View, Text, TextInput, Button, StyleSheet } from 'react-native'
+
 export default class AddNewBookForm extends Component {
   constructor(props) {
     super(props);
@@ -7,10 +8,19 @@ export default class AddNewBookForm extends Component {
     this.author = { author: 'author' };
     this.image = { image: 'https://vignette.wikia.nocookie.net/superfriends/images/a/a5/No_Photo_Available.jpg/revision/latest?cb=20090329133959' };
     this.state = { text: 'error...' };
+    this.onSaveButtonPressed = this.onSaveButtonPressed.bind(this);
   }
 
   onSaveButtonPressed() {
-
+    let { name } = this.props.userdata;
+    let bookObjectToStore = JSON.stringify({
+      title: this.title.title,
+      author: this.author.author,
+      image: this.image.image,
+      owner: name,
+      holder: ''
+    })
+    console.log(bookObjectToStore);
   }
 
   render() {
@@ -19,12 +29,12 @@ export default class AddNewBookForm extends Component {
         <Text> title: </Text>
         <TextInput
           style={styles.inputField}
-          onChangeText={(text) => this.setState({ text })}
-          value={this.title.text}/>
+          onChangeText={(text) => { this.setState({ text }); this.title.title = text; }}
+          value={this.title.text} />
         <Text> author: </Text>
         <TextInput
           style={styles.inputField}
-          onChangeText={(text) => this.setState({ text })}
+          onChangeText={(text) => { this.setState({ text }); this.author.author = text; }}
           value={this.author.text} />
         <Text> image: </Text>
         <TextInput
@@ -36,7 +46,7 @@ export default class AddNewBookForm extends Component {
           onPress={this.onSaveButtonPressed}
           style={{ height: 34, width: 320, padding: 2 }} i
           title="Save"
-          accessibilityLabel="Save book"/>
+          accessibilityLabel="Save book" />
       </View>
     )
   }

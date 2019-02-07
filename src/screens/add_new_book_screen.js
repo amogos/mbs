@@ -6,7 +6,7 @@ export default class AddNewBookScreen extends React.Component {
     
     render() {
         return (
-            <AddNewBookForm />
+            <AddNewBookForm {...this.props}/>
         );
     }
 }
