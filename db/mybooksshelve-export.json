@@ -1,0 +1,21 @@
+{
+  "books" : 
+    [{
+      "author" : "Susanne Schotz",
+      "holder" : "",
+      "image" : "https://images-eu.ssl-images-amazon.com/images/I/51UkIlAOwEL._SY90_.jpg",
+      "language" : "English",
+      "owner" : "Florin Mogos",
+      "title" : "The Secret Language of Cats: How to Understand Your Cat for a Better, Happier Relationship"
+    },
+    {
+      "author" : "Robert Nystrom",
+      "holder" : "",
+      "image" : "https://images-eu.ssl-images-amazon.com/images/I/51Pes1Vls5L._SY90_.jpg",
+      "language" : "English",
+      "owner" : "Iulia Mogos",
+      "title" : "Game Programming Patterns"
+    }]
+}
+  
+

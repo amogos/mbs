@@ -1,19 +1,31 @@
 import React from 'react';
 import { View } from 'react-native';
-
+import firebase from 'firebase'
 import Banner from './components/banner';
 import ShowAllBooksScreen from './screens/show_all_books_screen';
 import AddNewBookScreen from './screens/add_new_book_screen';
 import UserData from './components/user_data';
 
+var booksRef = [{}];
+
 export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = { screen: '' };
-    this.books = [{}];
     this.onBannerButtonClicked = this.onBannerButtonClicked.bind(this);
     this.onFacebookConnect = this.onFacebookConnect.bind(this);
     this.userData = null;
+    firebase.initializeApp({
+      apiKey: "AIzaSyB2MXouZ3ICc9kuyp9FszyA6hVV7SFRX1I",
+      authDomain: "mybooksshelve.firebaseapp.com",
+      databaseURL: "https://mybooksshelve.firebaseio.com",
+      projectId: "mybooksshelve",
+      storageBucket: "mybooksshelve.appspot.com",
+      messagingSenderId: "627289196388"
+    });
+    firebase.database().ref().child('books').once('value').then(function (snapshot) {
+      booksRef = snapshot.val();
+    });
   }
 
   onFacebookConnect(response) {
@@ -21,20 +33,6 @@ export default class App extends React.Component {
   }
 
   onBannerButtonClicked(selection) {
-    if (selection === ShowAllBooksScreen.screenId) {
-      this.books = [{
-        title: 'The Secret Language of Cats: How to Understand Your Cat for a Better, Happier Relationship', language: 'English', author: 'Susanne Schotz',
-        image: 'https://images-eu.ssl-images-amazon.com/images/I/51UkIlAOwEL._SY90_.jpg',
-        owner: 'Florin Mogos',
-        holder: ''
-      },
-      {
-        title: 'Game Programming Patterns', language: 'English', author: 'Robert Nystrom',
-        image: 'https://images-eu.ssl-images-amazon.com/images/I/51Pes1Vls5L._SY90_.jpg',
-        owner: 'Iulia Mogos',
-        holder: ''
-      }];
-    }
     this.setState({ screen: selection });
   }
 
@@ -42,7 +40,7 @@ export default class App extends React.Component {
     return (
       <View>
         <Banner onClicked={this.onBannerButtonClicked} onConnect={this.onFacebookConnect} />
-        <ShowAllBooksScreen apiData={this.books} userdata={this.userData} />
+        <ShowAllBooksScreen apiData={booksRef} userdata={this.userData} />
       </View>
     );
   }
