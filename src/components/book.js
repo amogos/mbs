@@ -1,42 +1,40 @@
 import React, { Component } from 'react'
 import { Text, View, StyleSheet } from 'react-native'
 import BookPlacement from './book_placement';
+import BookRemover from './book_remover';
 
-var onBookAssignedToMe = () => {
-}
-
-function BookImage(props) {
+function BookLeftSide(props) {
     return (
         <td>
             <img
                 src={props.image}
                 alt="new" width={64} height={64} mode='fit' allign='center'
             />
-
+            <BookRemover {...props} />
         </td>)
 
 }
 
-function BookDescriptor(props) {
+function BookRightSide(props) {
     return (
         <td>
             <View style={styles.description}>
                 <Text style={styles.title}> {props.title}</Text>
                 <Text style={styles.language}> ({props.language})</Text>
                 <Text style={styles.grey_text}> {props.author}</Text>
+
             </View>
-            <BookPlacement owner={props.owner} holder={props.holder} callback={onBookAssignedToMe} userdata={props.userdata} />
+            <BookPlacement {...props} />
 
         </td>);
-
 }
 
 export default class Book extends Component {
     render() {
         return (
             <tr>
-                <BookImage {...this.props} />
-                <BookDescriptor {...this.props} />
+                <BookLeftSide {...this.props} />
+                <BookRightSide {...this.props} />
             </tr>
         );
     }
