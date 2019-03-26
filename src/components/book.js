@@ -25,7 +25,7 @@ function BookDescriptor(props) {
                 <Text style={styles.language}> ({props.language})</Text>
                 <Text style={styles.grey_text}> {props.author}</Text>
             </View>
-            <BookPlacement owner={props.owner} holder={props.holder} callback={onBookAssignedToMe} userdata={props.userdata}/>
+            <BookPlacement owner={props.owner} holder={props.holder} callback={onBookAssignedToMe} userdata={props.userdata} />
 
         </td>);
 
@@ -35,8 +35,8 @@ export default class Book extends Component {
     render() {
         return (
             <tr>
-                <BookImage {...this.props}/>
-                <BookDescriptor {...this.props}/>
+                <BookImage {...this.props} />
+                <BookDescriptor {...this.props} />
             </tr>
         );
     }
