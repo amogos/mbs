@@ -12,15 +12,14 @@ export default class AddNewBookForm extends Component {
   }
 
   onSaveButtonPressed() {
-    let { name } = this.props.userdata;
     let bookObjectToStore = JSON.stringify({
       title: this.title.title,
       author: this.author.author,
       image: this.image.image,
-      owner: name,
-      holder: ''
+      owner: this.props.userdata,
+      holder: {"name":"", "email":""}
     })
-    console.log(bookObjectToStore);
+    this.props.callbacks.onNewBookAdded(bookObjectToStore);
   }
 
   render() {

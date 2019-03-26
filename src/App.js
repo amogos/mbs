@@ -17,7 +17,8 @@ export default class App extends React.Component {
       onBookAsignedToMe: this.onBookAsignedToMe.bind(this),
       onBookRemoved: this.onBookRemoved.bind(this),
       onFacebookConnect: this.onFacebookConnect.bind(this),
-      onBannerButtonClicked: this.onBannerButtonClicked.bind(this)
+      onBannerButtonClicked: this.onBannerButtonClicked.bind(this),
+      onNewBookAdded:this.onNewBookAdded.bind(this)
     };
     firebase.initializeApp({
       apiKey: "AIzaSyB2MXouZ3ICc9kuyp9FszyA6hVV7SFRX1I",
@@ -31,7 +32,6 @@ export default class App extends React.Component {
       booksRef = snapshot.val();
     });
   }
-
   showAllBooks() {
     return (
       <View>
@@ -40,16 +40,14 @@ export default class App extends React.Component {
       </View>
     );
   }
-
   addNewBooks() {
     return (
       <View >
         <Banner callbacks={this.callbacks} />
-        <AddNewBookScreen userdata={this.userData} />
+        <AddNewBookScreen userdata={this.userData} callbacks={this.callbacks} />
       </View>
     );
   }
-
   showBlankPage() {
     return (
       <View>
@@ -83,4 +81,7 @@ export default class App extends React.Component {
     this.setState({ screen: selection });
   }
 
+  onNewBookAdded(book) {
+     
+  }
 }
