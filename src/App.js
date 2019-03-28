@@ -6,7 +6,7 @@ import ShowAllBooksScreen from './screens/show_all_books_screen';
 import AddNewBookScreen from './screens/add_new_book_screen';
 import UserData from './components/user_data';
 
-var booksRef = [{}];
+var booksArray = [];
 
 export default class App extends React.Component {
   constructor(props) {
@@ -29,14 +29,16 @@ export default class App extends React.Component {
       messagingSenderId: "627289196388"
     });
     firebase.database().ref().child('books').once('value').then(function (snapshot) {
-      booksRef = snapshot.val();
+      snapshot.forEach(item => {
+        booksArray.push({ key: item.key, value: item.val() });
+      })
     });
   }
   showAllBooks() {
     return (
       <View>
         <Banner callbacks={this.callbacks} />
-        <ShowAllBooksScreen apiData={booksRef} userdata={this.userData} callbacks={this.callbacks} />
+        <ShowAllBooksScreen items={booksArray} userdata={this.userData} callbacks={this.callbacks} />
       </View>
     );
   }
@@ -69,8 +71,8 @@ export default class App extends React.Component {
 
   }
 
-  onBookRemoved() {
-
+  onBookRemoved(bookKey) {
+    alert(bookKey);
   }
 
   onFacebookConnect(response) {

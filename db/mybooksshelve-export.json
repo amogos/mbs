@@ -1,26 +1,62 @@
 {
-  "books": {
-    "ghdjfhkfgjfdfgdh":{
-      "author": "Susanne Schotz",
-      "holder": {"name":"", "email":""},
-      "image": "https://images-eu.ssl-images-amazon.com/images/I/51UkIlAOwEL._SY90_.jpg",
-      "language": "English",
-      "owner": {
-        "name": "Florin Mogos",
-        "email": "florin.mogos@gmail.com"
+  {
+    "books" : {
+      "-Lb2_zfQlKBdih9FsKQd" : {
+        "author" : "Susanne Schotz",
+        "holder" : {
+          "email" : "",
+          "name" : ""
+        },
+        "image" : "https://images-eu.ssl-images-amazon.com/images/I/51UkIlAOwEL._SY90_.jpg",
+        "language" : "English",
+        "owner" : {
+          "email" : "florin.mogos@gmail.com",
+          "name" : "Florin Mogos"
+        },
+        "title" : "The Secret Language of Cats: How to Understand Your Cat for a Better, Happier Relationship"
       },
-      "title": "The Secret Language of Cats: How to Understand Your Cat for a Better, Happier Relationship"
-    },
-    "uigjhfytders":{
-      "author": "Robert Nystrom",
-      "holder": {"name":"", "email":""},
-      "image": "https://images-eu.ssl-images-amazon.com/images/I/51Pes1Vls5L._SY90_.jpg",
-      "language": "English",
-      "owner": {
-        "name": "Iulia Mogos",
-        "email": "daosmistique@yahoo.com"
+      "-Lb2fXy3Z6edp87fkoSg" : {
+        "author" : "Eric Carle",
+        "holder" : {
+          "email" : "",
+          "name" : ""
+        },
+        "image" : "https://images-na.ssl-images-amazon.com/images/I/51lsugWtCvL._SY498_BO1,204,203,200_.jpg",
+        "language" : "English",
+        "owner" : {
+          "email" : "daosmistique@yahoo.com",
+          "name" : "Iulia Mogos"
+        },
+        "title" : "The Very Hungry Caterpillar's ABC"
       },
-      "title": "Game Programming Patterns"
+      "-Lb2jsH6cQLQhETGukLv" : {
+        "author" : "Julia Donaldson",
+        "holder" : {
+          "email" : "",
+          "name" : ""
+        },
+        "image" : "https://images-na.ssl-images-amazon.com/images/I/51Zm3fBs0PL._SY446_BO1,204,203,200_.jpg",
+        "language" : "English",
+        "owner" : {
+          "email" : "daosmistique@yahoo.com",
+          "name" : "Iulia Mogos"
+        },
+        "title" : "Room on the Broom Board Book"
+      },
+      "-Lb2kKM2YNIGyTau9Euw" : {
+        "author" : "Julia Donaldson",
+        "holder" : {
+          "email" : "",
+          "name" : ""
+        },
+        "image" : "https://images-na.ssl-images-amazon.com/images/I/61YDHV-%2B-VL._SY448_BO1,204,203,200_.jpg",
+        "language" : "English",
+        "owner" : {
+          "email" : "daosmistique@yahoo.com",
+          "name" : "Iulia Mogos"
+        },
+        "title" : "The Snail and the Whale"
+      }
     }
   }
-}
+  

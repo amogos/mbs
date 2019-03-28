@@ -7,7 +7,7 @@ function BookLeftSide(props) {
     return (
         <td>
             <img
-                src={props.image}
+                src={props.value.image}
                 alt="new" width={64} height={64} mode='fit' allign='center'
             />
             <BookRemover {...props} />
@@ -19,9 +19,9 @@ function BookRightSide(props) {
     return (
         <td>
             <View style={styles.description}>
-                <Text style={styles.title}> {props.title}</Text>
-                <Text style={styles.language}> ({props.language})</Text>
-                <Text style={styles.grey_text}> {props.author}</Text>
+                <Text style={styles.title}> {props.value.title}</Text>
+                <Text style={styles.language}> ({props.value.language})</Text>
+                <Text style={styles.grey_text}> {props.value.author}</Text>
 
             </View>
             <BookPlacement {...props} />

@@ -3,12 +3,12 @@ import { Text, StyleSheet, Button } from 'react-native'
 
 export default class BookPlacement extends Component {
     isBookAvailableForPlacement() {
-        const { userdata, holder, owner } = this.props;
-        return userdata.email !== owner.email && holder.email === "";
+        const { userdata, value} = this.props;
+        return userdata.email !== value.owner.email && value.holder.email === "";
     }
     render() {
         let content;
-        const { holder, owner } = this.props;
+        const { holder, owner } = this.props.value;
 
         if (this.isBookAvailableForPlacement()) {
             content = (<Text style={styles.description}> <br /> Owner: {owner.name}
