@@ -1,6 +1,6 @@
 {
-  "books": [
-    {
+  "books": {
+    "ghdjfhkfgjfdfgdh":{
       "author": "Susanne Schotz",
       "holder": {"name":"", "email":""},
       "image": "https://images-eu.ssl-images-amazon.com/images/I/51UkIlAOwEL._SY90_.jpg",
@@ -11,7 +11,7 @@
       },
       "title": "The Secret Language of Cats: How to Understand Your Cat for a Better, Happier Relationship"
     },
-    {
+    "uigjhfytders":{
       "author": "Robert Nystrom",
       "holder": {"name":"", "email":""},
       "image": "https://images-eu.ssl-images-amazon.com/images/I/51Pes1Vls5L._SY90_.jpg",
@@ -22,5 +22,5 @@
       },
       "title": "Game Programming Patterns"
     }
-  ]
+  }
 }

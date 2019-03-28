@@ -18,7 +18,7 @@ export default class App extends React.Component {
       onBookRemoved: this.onBookRemoved.bind(this),
       onFacebookConnect: this.onFacebookConnect.bind(this),
       onBannerButtonClicked: this.onBannerButtonClicked.bind(this),
-      onNewBookAdded:this.onNewBookAdded.bind(this)
+      onNewBookAdded: this.onNewBookAdded.bind(this)
     };
     firebase.initializeApp({
       apiKey: "AIzaSyB2MXouZ3ICc9kuyp9FszyA6hVV7SFRX1I",
@@ -81,7 +81,17 @@ export default class App extends React.Component {
     this.setState({ screen: selection });
   }
 
-  onNewBookAdded(book) {
-     
+  onNewBookAdded(bookFormData) {
+    firebase.database().ref().child('books').push().set({
+      author: bookFormData.author,
+      holder: { name: "", email: "" },
+      image: bookFormData.image,
+      language: bookFormData.language,
+      owner: {
+        name: this.userData.name,
+        email: this.userData.email
+      },
+      title: bookFormData.title
+    });
   }
 }
