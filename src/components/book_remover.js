@@ -6,16 +6,17 @@ export default class BookRemover extends Component {
         super(props);
         this.onDeletePressed = this.onDeletePressed.bind(this);
     }
+
     onDeletePressed() {
-        this.props.callbacks.onBookRemoved(this.props.key);
+        let { context } = this.props;
+        context.callbacks.onBookRemoved(this.props.key);
     }
+
     render() {
         let content = null;
-        const { userdata } = this.props;
-        const owner = this.props.value.owner;
-        const holder = this.props.value.holder;
-        
-        if (userdata.email === owner.email && holder.email === "")
+        const { context, value } = this.props;
+
+        if (context.userdata.email === value.owner.email && value.holder.email === "")
             content = (<Button title="delete" color="#000000ff"
                 onPress={this.onDeletePressed} />);
         return content;

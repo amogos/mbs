@@ -9,7 +9,7 @@ export default class ShowAllBooksForm extends Component {
                 <table border="0px">
                     <FlatList
                         data={this.props.items}
-                        renderItem={({ item }) => <Book {...item} userdata={this.props.userdata}
+                        renderItem={({ item }) => <Book {...item} context={this.props.context}
                             callbacks={this.props.callbacks} />}
                     />
                 </table>

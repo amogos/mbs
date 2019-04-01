@@ -12,14 +12,16 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = { screen: '' };
-    this.userData = null;
-    this.callbacks = {
-      onBookAsignedToMe: this.onBookAsignedToMe.bind(this),
-      onBookRemoved: this.onBookRemoved.bind(this),
-      onFacebookConnect: this.onFacebookConnect.bind(this),
-      onBannerButtonClicked: this.onBannerButtonClicked.bind(this),
-      onNewBookAdded: this.onNewBookAdded.bind(this)
-    };
+    this.context = {
+      userData: {},
+      callbacks: {
+        onBookAsignedToMe: this.onBookAsignedToMe.bind(this),
+        onBookRemoved: this.onBookRemoved.bind(this),
+        onFacebookConnect: this.onFacebookConnect.bind(this),
+        onBannerButtonClicked: this.onBannerButtonClicked.bind(this),
+        onNewBookAdded: this.onNewBookAdded.bind(this)
+      }
+    }
     firebase.initializeApp({
       apiKey: "AIzaSyB2MXouZ3ICc9kuyp9FszyA6hVV7SFRX1I",
       authDomain: "mybooksshelve.firebaseapp.com",
@@ -34,26 +36,29 @@ export default class App extends React.Component {
       })
     });
   }
+
   showAllBooks() {
     return (
       <View>
-        <Banner callbacks={this.callbacks} />
-        <ShowAllBooksScreen items={booksArray} userdata={this.userData} callbacks={this.callbacks} />
+        <Banner context={this.context} />
+        <ShowAllBooksScreen items={booksArray} context={this.context} />
       </View>
     );
   }
+
   addNewBooks() {
     return (
       <View >
-        <Banner callbacks={this.callbacks} />
-        <AddNewBookScreen userdata={this.userData} callbacks={this.callbacks} />
+        <Banner context={this.context} />
+        <AddNewBookScreen context={this.context} />
       </View>
     );
   }
+
   showBlankPage() {
     return (
       <View>
-        <Banner callbacks={this.callbacks} />
+        <Banner context={this.context} />
       </View>
     );
   }

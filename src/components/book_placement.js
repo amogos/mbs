@@ -3,23 +3,24 @@ import { Text, StyleSheet, Button } from 'react-native'
 
 export default class BookPlacement extends Component {
     isBookAvailableForPlacement() {
-        const { userdata, value} = this.props;
-        return userdata.email !== value.owner.email && value.holder.email === "";
+        let { context, value } = this.props;
+        return context.userdata.email !== value.owner.email && value.holder.email === "";
     }
+    
     render() {
         let content;
-        const { holder, owner } = this.props.value;
+        let { context, value } = this.props;
 
         if (this.isBookAvailableForPlacement()) {
-            content = (<Text style={styles.description}> <br /> Owner: {owner.name}
+            content = (<Text style={styles.description}> <br /> Owner: {value.owner.name}
                 <br /><Button style={styles.button} title="Assign to me" color="#000000ff"
-                    onPress={this.props.callbacks.onBookAsignedToMe} />
+                    onPress={context.callbacks.onBookAsignedToMe} />
             </Text>);
 
         } else {
-            content = (<Text style={styles.description}> <br /> Owner: {owner.name}
-                <br /><Button style={styles.button} title={holder.email === "" ?
-                    owner.name : holder.name} color="#808080" />
+            content = (<Text style={styles.description}> <br /> Owner: {value.owner.name}
+                <br /><Button style={styles.button} title={value.holder.email === "" ?
+                    value.owner.name : value.holder.name} color="#808080" />
             </Text>);
         }
         return (
