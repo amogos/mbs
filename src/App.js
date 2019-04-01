@@ -30,7 +30,7 @@ export default class App extends React.Component {
     });
     firebase.database().ref().child('books').once('value').then(function (snapshot) {
       snapshot.forEach(item => {
-        booksArray.push({ key: item.key, value: item.val() });
+        booksArray.push( { id: item.key, value: item.val() });
       })
     });
   }
@@ -67,12 +67,10 @@ export default class App extends React.Component {
       return this.showBlankPage();
   }
 
-  onBookAsignedToMe() {
-
+  onBookAsignedToMe(bookKey) {
   }
 
   onBookRemoved(bookKey) {
-    alert(bookKey);
   }
 
   onFacebookConnect(response) {
