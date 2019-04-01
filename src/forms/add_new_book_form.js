@@ -21,8 +21,7 @@ export default class AddNewBookForm extends Component {
   }
 
   onSaveButtonPressed() {
-    let { context } = this.props;
-    context.callbacks.onNewBookAdded(new BookFormData(this.title.title,
+    this.props.callbacks.onNewBookAdded(new BookFormData(this.title.title,
       this.author.author, this.language.language, this.image.image));
   }
 
