@@ -1,26 +1,28 @@
 import React, { Component } from 'react'
 import { View, Text, TextInput, Button, StyleSheet } from 'react-native'
 
+export class BookFormData {
+  constructor(title, author, language, image) {
+    this.title = title;
+    this.author = author;
+    this.language = language;
+    this.image = image;
+  }
+}
 export default class AddNewBookForm extends Component {
   constructor(props) {
     super(props);
     this.title = { title: 'title' };
     this.author = { author: 'author' };
     this.image = { image: 'https://vignette.wikia.nocookie.net/superfriends/images/a/a5/No_Photo_Available.jpg/revision/latest?cb=20090329133959' };
+    this.language = { language: '' }
     this.state = { text: 'error...' };
     this.onSaveButtonPressed = this.onSaveButtonPressed.bind(this);
   }
 
   onSaveButtonPressed() {
-    let { name } = this.props.userdata;
-    let bookObjectToStore = JSON.stringify({
-      title: this.title.title,
-      author: this.author.author,
-      image: this.image.image,
-      owner: name,
-      holder: ''
-    })
-    console.log(bookObjectToStore);
+    this.props.callbacks.onNewBookAdded(new BookFormData(this.title.title,
+      this.author.author, this.language.language, this.image.image));
   }
 
   render() {
@@ -31,6 +33,11 @@ export default class AddNewBookForm extends Component {
           style={styles.inputField}
           onChangeText={(text) => { this.setState({ text }); this.title.title = text; }}
           value={this.title.text} />
+        <Text> language: </Text>
+        <TextInput
+          style={styles.inputField}
+          onChangeText={(text) => { this.setState({ text }); this.language.language = text; }}
+          value={this.language.text} />
         <Text> author: </Text>
         <TextInput
           style={styles.inputField}

@@ -6,15 +6,20 @@ import ShowAllBooksScreen from './screens/show_all_books_screen';
 import AddNewBookScreen from './screens/add_new_book_screen';
 import UserData from './components/user_data';
 
-var booksRef = [{}];
+var booksArray = [];
 
 export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = { screen: '' };
-    this.onBannerButtonClicked = this.onBannerButtonClicked.bind(this);
-    this.onFacebookConnect = this.onFacebookConnect.bind(this);
     this.userData = null;
+    this.callbacks = {
+      onBookAsignedToMe: this.onBookAsignedToMe.bind(this),
+      onBookRemoved: this.onBookRemoved.bind(this),
+      onFacebookConnect: this.onFacebookConnect.bind(this),
+      onBannerButtonClicked: this.onBannerButtonClicked.bind(this),
+      onNewBookAdded: this.onNewBookAdded.bind(this)
+    };
     firebase.initializeApp({
       apiKey: "AIzaSyB2MXouZ3ICc9kuyp9FszyA6hVV7SFRX1I",
       authDomain: "mybooksshelve.firebaseapp.com",
@@ -24,40 +29,31 @@ export default class App extends React.Component {
       messagingSenderId: "627289196388"
     });
     firebase.database().ref().child('books').once('value').then(function (snapshot) {
-      booksRef = snapshot.val();
+      snapshot.forEach(item => {
+        booksArray.push( { id: item.key, value: item.val() });
+      })
     });
   }
-
-  onFacebookConnect(response) {
-    this.userData = new UserData(response.name, response.email, response.image);
-  }
-
-  onBannerButtonClicked(selection) {
-    this.setState({ screen: selection });
-  }
-
   showAllBooks() {
     return (
       <View>
-        <Banner onClicked={this.onBannerButtonClicked} onConnect={this.onFacebookConnect} />
-        <ShowAllBooksScreen apiData={booksRef} userdata={this.userData} />
+        <Banner callbacks={this.callbacks} />
+        <ShowAllBooksScreen items={booksArray} userdata={this.userData} callbacks={this.callbacks} />
       </View>
     );
   }
-
   addNewBooks() {
     return (
       <View >
-        <Banner onClicked={this.onBannerButtonClicked} onConnect={this.onFacebookConnect} />
-        <AddNewBookScreen userdata={this.userData} />
+        <Banner callbacks={this.callbacks} />
+        <AddNewBookScreen userdata={this.userData} callbacks={this.callbacks} />
       </View>
     );
   }
-
   showBlankPage() {
     return (
       <View>
-        <Banner onClicked={this.onBannerButtonClicked} onConnect={this.onFacebookConnect} />
+        <Banner callbacks={this.callbacks} />
       </View>
     );
   }
@@ -69,5 +65,33 @@ export default class App extends React.Component {
       return this.addNewBooks();
     else
       return this.showBlankPage();
+  }
+
+  onBookAsignedToMe(bookKey) {
+  }
+
+  onBookRemoved(bookKey) {
+  }
+
+  onFacebookConnect(response) {
+    this.userData = new UserData(response.name, response.email, response.image);
+  }
+
+  onBannerButtonClicked(selection) {
+    this.setState({ screen: selection });
+  }
+
+  onNewBookAdded(bookFormData) {
+    firebase.database().ref().child('books').push().set({
+      author: bookFormData.author,
+      holder: { name: "", email: "" },
+      image: bookFormData.image,
+      language: bookFormData.language,
+      owner: {
+        name: this.userData.name,
+        email: this.userData.email
+      },
+      title: bookFormData.title
+    });
   }
 }

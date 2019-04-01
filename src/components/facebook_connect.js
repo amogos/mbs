@@ -15,8 +15,8 @@ export default class FacebookConnect extends Component {
             isLoggedIn: true,
             name: response.name,
         });
-        const {onConnect} = this.props;
-        onConnect(response);
+        
+        this.props.callbacks.onFacebookConnect(response);
     }
 
     componentClicked = () => {
