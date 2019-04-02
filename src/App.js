@@ -4,7 +4,6 @@ import firebase from 'firebase'
 import Banner from './components/banner';
 import ShowAllBooksScreen from './screens/show_all_books_screen';
 import AddNewBookScreen from './screens/add_new_book_screen';
-import UserData from './components/user_data';
 
 var booksArray = [];
 
@@ -95,7 +94,7 @@ export default class App extends React.Component {
   }
 
   onFacebookConnect(response) {
-    this.userData = new UserData(response.name, response.email, response.image);
+    this.userData = response;
   }
 
   onBannerButtonClicked(selection) {

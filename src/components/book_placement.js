@@ -18,7 +18,6 @@ export default class BookPlacement extends Component {
     render() {
         let content;
         const { holder, owner } = this.props.value;
-
         if (this.isBookAvailableForPlacement()) {
             content = (<Text style={styles.description}> <br /> Owner: {owner.name}
                 <br /><Button style={styles.button} title="Assign to me" color="#000000ff"
