@@ -34,6 +34,7 @@ export default class App extends React.Component {
       })
     });
   }
+
   showAllBooks() {
     return (
       <View>
@@ -42,6 +43,7 @@ export default class App extends React.Component {
       </View>
     );
   }
+
   addNewBooks() {
     return (
       <View >
@@ -50,6 +52,7 @@ export default class App extends React.Component {
       </View>
     );
   }
+
   showBlankPage() {
     return (
       <View>
@@ -68,10 +71,18 @@ export default class App extends React.Component {
   }
 
   onContentChanged() {
-    this.setState(this.state);
+    this.setState(this.state)
   }
 
   onBookAsignedToMe(bookKey) {
+    let newHolder = { holder: { name: this.userData.name, email: this.userData.email } }
+    firebase.database().ref().child('books').child(bookKey).update(newHolder, () => {
+      var match = booksArray.find(function (item) {
+        return item.id === bookKey;
+      });
+      match.value.holder = newHolder.holder;
+      this.onContentChanged();
+    });
   }
 
   onBookRemoved(bookKey) {
