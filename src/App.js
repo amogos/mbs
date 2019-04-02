@@ -30,7 +30,7 @@ export default class App extends React.Component {
     });
     firebase.database().ref().child('books').once('value').then(function (snapshot) {
       snapshot.forEach(item => {
-        booksArray.push( { id: item.key, value: item.val() });
+        booksArray.push({ id: item.key, value: item.val() });
       })
     });
   }
@@ -67,10 +67,20 @@ export default class App extends React.Component {
       return this.showBlankPage();
   }
 
+  onContentChanged() {
+    this.setState(this.state);
+  }
+
   onBookAsignedToMe(bookKey) {
   }
 
   onBookRemoved(bookKey) {
+    firebase.database().ref().child('books').child(bookKey).remove(() => {
+      booksArray = booksArray.filter(function (item) {
+        return (item.id !== bookKey);
+      });
+      this.onContentChanged();
+    });
   }
 
   onFacebookConnect(response) {
