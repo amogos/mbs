@@ -112,7 +112,7 @@ export default class App extends React.Component {
   }
 
   onFacebookConnect(data) {
-    this.userData = data.param.response;
+    this.userData = data.param;
   }
 
   onBannerButtonClicked(data) {

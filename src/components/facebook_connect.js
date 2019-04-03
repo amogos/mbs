@@ -17,7 +17,7 @@ export default class FacebookConnect extends Component {
             name: response.name,
         });
 
-        EventBus.getInstance().fireEvent("onFacebookConnect", { param: { response } });
+        EventBus.getInstance().fireEvent("onFacebookConnect", { param: response });
     }
 
     componentClicked = () => {
