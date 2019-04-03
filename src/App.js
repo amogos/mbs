@@ -112,8 +112,7 @@ export default class App extends React.Component {
   }
 
   onFacebookConnect(data) {
-    this.userData = data.param;
-    alert(JSON.stringify(this.userData));
+    this.userData = data.param.response;
   }
 
   onBannerButtonClicked(data) {
