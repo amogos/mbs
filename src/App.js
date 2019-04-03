@@ -120,18 +120,16 @@ export default class App extends React.Component {
   }
 
   onNewBookAdded(data) {
-    let bookFormData = data.param;
-
     firebase.database().ref().child('books').push().set({
-      author: bookFormData.author,
+      author: data.param.author,
       holder: { name: "", email: "" },
-      image: bookFormData.image,
-      language: bookFormData.language,
+      image: data.param.image,
+      language: data.param.language,
       owner: {
         name: this.userData.name,
         email: this.userData.email
       },
-      title: bookFormData.title
+      title: data.param.title
     });
   }
 }
