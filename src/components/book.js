@@ -32,6 +32,7 @@ function BookRightSide(props) {
 export default class Book extends Component {
    
     render() {
+        alert(this.props.userdata.name);
         return (
             <tr>
                 <BookLeftSide {...this.props} />

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { View, Text, TextInput, Button, StyleSheet } from 'react-native'
+import EventBus from 'react-native-event-bus'
 
 export class BookFormData {
   constructor(title, author, language, image) {
@@ -21,8 +22,10 @@ export default class AddNewBookForm extends Component {
   }
 
   onSaveButtonPressed() {
-    this.props.callbacks.onNewBookAdded(new BookFormData(this.title.title,
-      this.author.author, this.language.language, this.image.image));
+    EventBus.getInstance().fireEvent("onNewBookAdded", {
+      param: new BookFormData(this.title.title,
+        this.author.author, this.language.language, this.image.image)
+    });
   }
 
   render() {

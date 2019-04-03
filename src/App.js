@@ -1,6 +1,7 @@
 import React from 'react';
 import { View } from 'react-native';
 import firebase from 'firebase'
+import EventBus from 'react-native-event-bus'
 import Banner from './components/banner';
 import ShowAllBooksScreen from './screens/show_all_books_screen';
 import AddNewBookScreen from './screens/add_new_book_screen';
@@ -12,13 +13,6 @@ export default class App extends React.Component {
     super(props);
     this.state = { screen: '' };
     this.userData = null;
-    this.callbacks = {
-      onBookAsignedToMe: this.onBookAsignedToMe.bind(this),
-      onBookRemoved: this.onBookRemoved.bind(this),
-      onFacebookConnect: this.onFacebookConnect.bind(this),
-      onBannerButtonClicked: this.onBannerButtonClicked.bind(this),
-      onNewBookAdded: this.onNewBookAdded.bind(this)
-    };
     firebase.initializeApp({
       apiKey: "AIzaSyB2MXouZ3ICc9kuyp9FszyA6hVV7SFRX1I",
       authDomain: "mybooksshelve.firebaseapp.com",
@@ -34,11 +28,33 @@ export default class App extends React.Component {
     });
   }
 
+  componentDidMount() {
+    EventBus.getInstance().addListener("onBookAsignedToMe", this.listener = data => {
+      this.onBookAsignedToMe(data);
+    });
+    EventBus.getInstance().addListener("onBookRemoved", this.listener = data => {
+      this.onBookRemoved(data);
+    });
+    EventBus.getInstance().addListener("onFacebookConnect", this.listener = data => {
+      this.onFacebookConnect(data);
+    });
+    EventBus.getInstance().addListener("onBannerButtonClicked", this.listener = data => {
+      this.onBannerButtonClicked(data);
+    });
+    EventBus.getInstance().addListener("onNewBookAdded", this.listener = data => {
+      this.onNewBookAdded(data);
+    });
+  }
+
+  componentWillUnmount() {
+    EventBus.getInstance().removeListener(this.listener);
+  }
+
   showAllBooks() {
     return (
       <View>
-        <Banner callbacks={this.callbacks} />
-        <ShowAllBooksScreen items={booksArray} userdata={this.userData} callbacks={this.callbacks} />
+        <Banner />
+        <ShowAllBooksScreen items={booksArray} userdata={this.userData} />
       </View>
     );
   }
@@ -46,8 +62,8 @@ export default class App extends React.Component {
   addNewBooks() {
     return (
       <View >
-        <Banner callbacks={this.callbacks} />
-        <AddNewBookScreen userdata={this.userData} callbacks={this.callbacks} />
+        <Banner />
+        <AddNewBookScreen userdata={this.userData} />
       </View>
     );
   }
@@ -55,7 +71,7 @@ export default class App extends React.Component {
   showBlankPage() {
     return (
       <View>
-        <Banner callbacks={this.callbacks} />
+        <Banner />
       </View>
     );
   }
@@ -73,7 +89,8 @@ export default class App extends React.Component {
     this.setState(this.state)
   }
 
-  onBookAsignedToMe(bookKey) {
+  onBookAsignedToMe(data) {
+    let bookKey = data.param;
     let newHolder = { holder: { name: this.userData.name, email: this.userData.email } }
     firebase.database().ref().child('books').child(bookKey).update(newHolder, () => {
       var match = booksArray.find(function (item) {
@@ -84,7 +101,8 @@ export default class App extends React.Component {
     });
   }
 
-  onBookRemoved(bookKey) {
+  onBookRemoved(data) {
+    let bookKey = data.param;
     firebase.database().ref().child('books').child(bookKey).remove(() => {
       booksArray = booksArray.filter(function (item) {
         return (item.id !== bookKey);
@@ -93,15 +111,18 @@ export default class App extends React.Component {
     });
   }
 
-  onFacebookConnect(response) {
-    this.userData = response;
+  onFacebookConnect(data) {
+    this.userData = data.param;
+    alert(JSON.stringify(this.userData));
   }
 
-  onBannerButtonClicked(selection) {
-    this.setState({ screen: selection });
+  onBannerButtonClicked(data) {
+    this.setState({ screen: data.param });
   }
 
-  onNewBookAdded(bookFormData) {
+  onNewBookAdded(data) {
+    let bookFormData = data.param;
+
     firebase.database().ref().child('books').push().set({
       author: bookFormData.author,
       holder: { name: "", email: "" },

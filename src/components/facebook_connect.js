@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Text } from 'react-native'
 import FacebookLogin from 'react-facebook-login';
+import EventBus from 'react-native-event-bus'
 
 export default class FacebookConnect extends Component {
     constructor(props) {
@@ -15,8 +16,8 @@ export default class FacebookConnect extends Component {
             isLoggedIn: true,
             name: response.name,
         });
-        
-        this.props.callbacks.onFacebookConnect(response);
+
+        EventBus.getInstance().fireEvent("onFacebookConnect", { param: { response } });
     }
 
     componentClicked = () => {

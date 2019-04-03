@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Button } from 'react-native'
+import EventBus from 'react-native-event-bus'
 
 export default class BookRemover extends Component {
     constructor(props) {
@@ -7,7 +8,7 @@ export default class BookRemover extends Component {
         this.onDeleteButtonPressed = this.onDeleteButtonPressed.bind(this);
     }
     onDeleteButtonPressed() {
-        this.props.callbacks.onBookRemoved(this.props.id);
+        EventBus.getInstance().fireEvent("onBookRemoved", { param: this.props.id })
     }
     render() {
         let content = null;
