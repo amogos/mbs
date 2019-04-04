@@ -1,16 +1,18 @@
 import React, { Component } from 'react'
 import { View, Text, StyleSheet, Button } from 'react-native'
+import EventBus from 'react-native-event-bus'
+
 import FacebookConnect from './facebook_connect'
 
 export default class Banner extends Component {
     render() {
-         return (
+        return (
             <View style={styles.app}>
                 <View style={styles.appHeader}>
                     <Text style={styles.appTitle}> <span aria-labelledby='jsx-a11y/accessible-emoji' role='img'>⚛️ </span></Text>
-                    <Button title="Search" color="#00000000" onPress={() => this.props.callbacks.onBannerButtonClicked('search')} />
-                    <Button title="Add Book" color="#00000000" onPress={() => this.props.callbacks.onBannerButtonClicked('add')} />
-                    <FacebookConnect {...this.props}/>
+                    <Button title="Search" color="#00000000" onPress={() => EventBus.getInstance().fireEvent("onBannerButtonClicked", { param: "search" })} />
+                    <Button title="Add Book" color="#00000000" onPress={() => EventBus.getInstance().fireEvent("onBannerButtonClicked", { param: "add" })} />
+                    <FacebookConnect {...this.props} />
                 </View>
             </View>
         )

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Text, StyleSheet, Button } from 'react-native'
+import EventBus from 'react-native-event-bus'
 
 export default class BookPlacement extends Component {
     constructor(props) {
@@ -8,7 +9,7 @@ export default class BookPlacement extends Component {
     }
 
     onAssignButtonPressed() {
-        this.props.callbacks.onBookAsignedToMe(this.props.id);
+        EventBus.getInstance().fireEvent("onBookAsignedToMe", { param: this.props.id });
     }
 
     isBookAvailableForPlacement() {

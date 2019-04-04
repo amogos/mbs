@@ -30,7 +30,7 @@ function BookRightSide(props) {
 }
 
 export default class Book extends Component {
-   
+
     render() {
         return (
             <tr>
