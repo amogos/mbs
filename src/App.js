@@ -138,11 +138,13 @@ export default class App extends React.Component {
       },
       title: data.param.title
     };
+    var ref = firebase.database().ref().child('books').push();
     var onCompleteCallback = () => {
       EventBus.getInstance().fireEvent("onOperationCompleted", {
         param: { message: strings.MYBOOKSHELVE_STRING_NEW_BOOK_ADDED, button1: strings.MYBOOKSHELVE_STRING_CONFIRM }
       })
+      booksArray.push({ id: ref.key, value: newEntry });
     }
-    firebase.database().ref().child('books').push().set(newEntry, onCompleteCallback);
+    ref.set(newEntry, onCompleteCallback);
   }
 }
