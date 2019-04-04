@@ -5,12 +5,21 @@ import EventBus from 'react-native-event-bus'
 export default class AddNewBookForm extends Component {
   constructor(props) {
     super(props);
+    this.defaultImage = 'https://vignette.wikia.nocookie.net/superfriends/images/a/a5/No_Photo_Available.jpg/revision/latest?cb=20090329133959';
     this.title = { title: 'title' };
     this.author = { author: 'author' };
-    this.image = { image: 'https://vignette.wikia.nocookie.net/superfriends/images/a/a5/No_Photo_Available.jpg/revision/latest?cb=20090329133959' };
+    this.image = { image: this.defaultImage };
     this.language = { language: '' }
     this.state = { text: 'error...' };
     this.onSaveButtonPressed = this.onSaveButtonPressed.bind(this);
+  }
+
+  resetFields() {
+    this.title.text = "";
+    this.author.text = "";
+    this.language.text = "";
+    this.image.image = this.defaultImage;
+    this.setState(this.state);
   }
 
   onSaveButtonPressed() {
@@ -22,6 +31,7 @@ export default class AddNewBookForm extends Component {
         image: this.image.image
       }
     });
+    this.resetFields();
   }
 
   render() {
@@ -53,6 +63,7 @@ export default class AddNewBookForm extends Component {
           style={{ height: 34, width: 320, padding: 2 }} i
           title="Save"
           accessibilityLabel="Save book" />
+
       </View>
     )
   }

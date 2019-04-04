@@ -5,6 +5,8 @@ import EventBus from 'react-native-event-bus'
 import Banner from './components/banner';
 import ShowAllBooksScreen from './screens/show_all_books_screen';
 import AddNewBookScreen from './screens/add_new_book_screen';
+import strings from './constants/strings';
+import ConfirmationDialog from './components/dialogs/confirmation_dialog';
 
 var booksArray = [];
 
@@ -55,6 +57,7 @@ export default class App extends React.Component {
       <View>
         <Banner />
         <ShowAllBooksScreen items={booksArray} userdata={this.userData} />
+        <ConfirmationDialog />
       </View>
     );
   }
@@ -64,6 +67,7 @@ export default class App extends React.Component {
       <View >
         <Banner />
         <AddNewBookScreen userdata={this.userData} />
+        <ConfirmationDialog />
       </View>
     );
   }
@@ -85,7 +89,7 @@ export default class App extends React.Component {
       return this.showBlankPage();
   }
 
-  onContentChanged() {
+  reload() {
     this.setState(this.state)
   }
 
@@ -97,7 +101,7 @@ export default class App extends React.Component {
         return item.id === bookKey;
       });
       match.value.holder = newHolder.holder;
-      this.onContentChanged();
+      this.reload();
     });
   }
 
@@ -107,7 +111,10 @@ export default class App extends React.Component {
       booksArray = booksArray.filter(function (item) {
         return (item.id !== bookKey);
       });
-      this.onContentChanged();
+      this.reload();
+      EventBus.getInstance().fireEvent("onOperationCompleted", {
+        param: { message: strings.MYBOOKSHELVE_STRING_BOOK_REMOVED, button1: strings.MYBOOKSHELVE_STRING_CONFIRM }
+      })
     });
   }
 
@@ -120,7 +127,7 @@ export default class App extends React.Component {
   }
 
   onNewBookAdded(data) {
-    firebase.database().ref().child('books').push().set({
+    let newEntry = {
       author: data.param.author,
       holder: { name: "", email: "" },
       image: data.param.image,
@@ -130,6 +137,14 @@ export default class App extends React.Component {
         email: this.userData.email
       },
       title: data.param.title
-    });
+    };
+    var ref = firebase.database().ref().child('books').push();
+    var onCompleteCallback = () => {
+      EventBus.getInstance().fireEvent("onOperationCompleted", {
+        param: { message: strings.MYBOOKSHELVE_STRING_NEW_BOOK_ADDED, button1: strings.MYBOOKSHELVE_STRING_CONFIRM }
+      })
+      booksArray.push({ id: ref.key, value: newEntry });
+    }
+    ref.set(newEntry, onCompleteCallback);
   }
 }
