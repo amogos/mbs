@@ -89,7 +89,7 @@ export default class App extends React.Component {
       match.value.holder = newHolder.holder;
       this.reload();
     }
-    this.dbConnector.assignBook(data, onCompleteCallback);
+    this.dbConnector.assignBook(data, this.userData, onCompleteCallback);
   }
 
   onBookRemoved(data) { 
