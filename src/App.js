@@ -11,7 +11,7 @@ import ConfirmationDialog from './components/dialogs/confirmation_dialog';
 export default class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { screen: '' };
+    this.state = { screen: '', counter: 0};
     this.userData = null;
     this.dbConnector = this.props.dbconnector;
     this.booksArray = [];
@@ -44,7 +44,7 @@ export default class App extends React.Component {
     return (
       <View>
         <Banner />
-        <ShowAllBooksScreen items={this.booksArray} userdata={this.userData} />
+        <ShowAllBooksScreen items={this.booksArray} userdata={this.userData} counter={this.state.counter}/>
         <ConfirmationDialog />
       </View>
     );
@@ -78,7 +78,7 @@ export default class App extends React.Component {
   }
 
   reload() {
-    this.setState(this.state)
+    this.setState( {counter:this.state.counter + 1} ); 
   }
 
   onBookAsignedToMe(data) {

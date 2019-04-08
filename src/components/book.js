@@ -30,6 +30,11 @@ function BookRightSide(props) {
 }
 
 export default class Book extends Component {
+    componentWillReceiveProps(props) {
+        if (props.counter !== this.props.counter) {
+            this.setState(this.state);
+        }
+    }
 
     render() {
         return (
