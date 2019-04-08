@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "MyBookShelve",
-    "description": "This project is really great.",
+    "description": "Book sharing for fun",
     "slug": "MyBookShelve",
     "privacy": "public",
     "sdkVersion": "31.0.0",

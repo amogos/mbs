@@ -1,6 +1,5 @@
 import React from 'react';
 import { View } from 'react-native';
-import firebase from 'firebase'
 import EventBus from 'react-native-event-bus'
 import Banner from './components/banner';
 import ShowAllBooksScreen from './screens/show_all_books_screen';
@@ -8,26 +7,14 @@ import AddNewBookScreen from './screens/add_new_book_screen';
 import strings from './constants/strings';
 import ConfirmationDialog from './components/dialogs/confirmation_dialog';
 
-var booksArray = [];
 
 export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = { screen: '' };
     this.userData = null;
-    firebase.initializeApp({
-      apiKey: "AIzaSyB2MXouZ3ICc9kuyp9FszyA6hVV7SFRX1I",
-      authDomain: "mybooksshelve.firebaseapp.com",
-      databaseURL: "https://mybooksshelve.firebaseio.com",
-      projectId: "mybooksshelve",
-      storageBucket: "mybooksshelve.appspot.com",
-      messagingSenderId: "627289196388"
-    });
-    firebase.database().ref().child('books').once('value').then(function (snapshot) {
-      snapshot.forEach(item => {
-        booksArray.push({ id: item.key, value: item.val() });
-      })
-    });
+    this.dbConnector = this.props.dbconnector;
+    this.booksArray = [];
   }
 
   componentDidMount() {
@@ -46,6 +33,7 @@ export default class App extends React.Component {
     EventBus.getInstance().addListener("onNewBookAdded", this.listener = data => {
       this.onNewBookAdded(data);
     });
+    this.dbConnector.getBooks((books) => this.booksArray = books);
   }
 
   componentWillUnmount() {
@@ -56,7 +44,7 @@ export default class App extends React.Component {
     return (
       <View>
         <Banner />
-        <ShowAllBooksScreen items={booksArray} userdata={this.userData} />
+        <ShowAllBooksScreen items={this.booksArray} userdata={this.userData} />
         <ConfirmationDialog />
       </View>
     );
@@ -94,28 +82,27 @@ export default class App extends React.Component {
   }
 
   onBookAsignedToMe(data) {
-    let bookKey = data.param;
-    let newHolder = { holder: { name: this.userData.name, email: this.userData.email } }
-    firebase.database().ref().child('books').child(bookKey).update(newHolder, () => {
-      var match = booksArray.find(function (item) {
-        return item.id === bookKey;
+     var onCompleteCallback = (bookKey, newHolder) => {
+      var match = this.booksArray.find(function (item) {
+        return item.id === data.param;
       });
       match.value.holder = newHolder.holder;
       this.reload();
-    });
+    }
+    this.dbConnector.assignBook(data, onCompleteCallback);
   }
 
-  onBookRemoved(data) {
-    let bookKey = data.param;
-    firebase.database().ref().child('books').child(bookKey).remove(() => {
-      booksArray = booksArray.filter(function (item) {
+  onBookRemoved(data) { 
+    var onCompleteCallback = (bookKey) => {
+      this.booksArray = this.booksArray.filter(function (item) {
         return (item.id !== bookKey);
       });
       this.reload();
       EventBus.getInstance().fireEvent("onOperationCompleted", {
         param: { message: strings.MYBOOKSHELVE_STRING_BOOK_REMOVED, button1: strings.MYBOOKSHELVE_STRING_CONFIRM }
       })
-    });
+    }
+    this.dbConnector.deleteBook(data, onCompleteCallback);
   }
 
   onFacebookConnect(data) {
@@ -127,24 +114,12 @@ export default class App extends React.Component {
   }
 
   onNewBookAdded(data) {
-    let newEntry = {
-      author: data.param.author,
-      holder: { name: "", email: "" },
-      image: data.param.image,
-      language: data.param.language,
-      owner: {
-        name: this.userData.name,
-        email: this.userData.email
-      },
-      title: data.param.title
-    };
-    var ref = firebase.database().ref().child('books').push();
-    var onCompleteCallback = () => {
+    var onCompleteCallback = (newEntry, bookKey) => {
       EventBus.getInstance().fireEvent("onOperationCompleted", {
         param: { message: strings.MYBOOKSHELVE_STRING_NEW_BOOK_ADDED, button1: strings.MYBOOKSHELVE_STRING_CONFIRM }
       })
-      booksArray.push({ id: ref.key, value: newEntry });
+      this.booksArray.push({ id: bookKey, value: newEntry });
     }
-    ref.set(newEntry, onCompleteCallback);
+    this.dbConnector.addBook(data, this.userData, onCompleteCallback);
   }
 }
