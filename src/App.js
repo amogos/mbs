@@ -24,8 +24,8 @@ export default class App extends React.Component {
     EventBus.getInstance().addListener("onBookRemoved", this.listener = data => {
       this.onBookRemoved(data);
     });
-    EventBus.getInstance().addListener("onFacebookConnect", this.listener = data => {
-      this.onFacebookConnect(data);
+    EventBus.getInstance().addListener("onSocialConnect", this.listener = data => {
+      this.onSocialConnect(data);
     });
     EventBus.getInstance().addListener("onBannerButtonClicked", this.listener = data => {
       this.onBannerButtonClicked(data);
@@ -43,7 +43,7 @@ export default class App extends React.Component {
   showAllBooks() {
     return (
       <View>
-        <Banner />
+        <Banner {...this.props }/>
         <ShowAllBooksScreen items={this.booksArray} userdata={this.userData} counter={this.state.counter}/>
         <ConfirmationDialog />
       </View>
@@ -53,7 +53,7 @@ export default class App extends React.Component {
   addNewBooks() {
     return (
       <View >
-        <Banner />
+        <Banner {...this.props }/>
         <AddNewBookScreen userdata={this.userData} />
         <ConfirmationDialog />
       </View>
@@ -63,7 +63,7 @@ export default class App extends React.Component {
   showBlankPage() {
     return (
       <View>
-        <Banner />
+        <Banner {...this.props }/>
       </View>
     );
   }
@@ -105,8 +105,9 @@ export default class App extends React.Component {
     this.dbConnector.deleteBook(data, onCompleteCallback);
   }
 
-  onFacebookConnect(data) {
+  onSocialConnect(data) {
     this.userData = data.param;
+    this.reload();
   }
 
   onBannerButtonClicked(data) {

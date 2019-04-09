@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { View, Text, StyleSheet, Button } from 'react-native'
 import EventBus from 'react-native-event-bus'
 
-import FacebookConnect from './facebook_connect'
+import SocialLogin from './social_login'
 
 export default class Banner extends Component {
     render() {
@@ -12,7 +12,7 @@ export default class Banner extends Component {
                     <Text style={styles.appTitle}> <span aria-labelledby='jsx-a11y/accessible-emoji' role='img'>⚛️ </span></Text>
                     <Button title="Search" color="#00000000" onPress={() => EventBus.getInstance().fireEvent("onBannerButtonClicked", { param: "search" })} />
                     <Button title="Add Book" color="#00000000" onPress={() => EventBus.getInstance().fireEvent("onBannerButtonClicked", { param: "add" })} />
-                    <FacebookConnect {...this.props} />
+                    <SocialLogin {...this.props} />
                 </View>
             </View>
         )
