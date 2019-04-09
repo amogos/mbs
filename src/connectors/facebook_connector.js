@@ -7,7 +7,7 @@ export default class FacebookConnector extends SocialConnector {
     init() {
     }
 
-     responseFacebook = response => {
+    responseFacebook = response => {
         this.setLoggedIn(true);
         this.setUserInfo(response);
         EventBus.getInstance().fireEvent("onSocialConnect", { param: response });

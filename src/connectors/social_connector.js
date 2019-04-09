@@ -8,6 +8,10 @@ export default class SocialConnector {
         throw new Error('__abstract_not_implemented__');
     }
 
+    getView() {
+         throw new Error('__abstract_not_implemented__');
+    }
+
     getLoggedIn() {
        return this.state.loggedIn;
     }
