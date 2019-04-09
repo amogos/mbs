@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Text, View, StyleSheet } from 'react-native'
-import BookPlacement from './book_placement';
-import BookRemover from './book_remover';
+import BookPlacement from './book_placement_component';
+import BookRemover from './book_remover_component';
 
 function BookLeftSide(props) {
     return (

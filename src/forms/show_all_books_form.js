@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { View, FlatList } from 'react-native'
-import Book from '../components/book'
+import Book from '../components/book_component'
 
 export default class ShowAllBooksForm extends Component {
     componentWillReceiveProps(props) {

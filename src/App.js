@@ -1,10 +1,10 @@
 import React from 'react';
 import { View } from 'react-native';
 import EventBus from 'react-native-event-bus'
-import Banner from './components/banner';
+import Banner from './components/banner_component';
 import ShowAllBooksScreen from './screens/show_all_books_screen';
 import AddNewBookScreen from './screens/add_new_book_screen';
-import strings from './constants/strings';
+import Strings from './constants/string_constant';
 import ConfirmationDialog from './components/dialogs/confirmation_dialog';
 
 
@@ -99,7 +99,7 @@ export default class App extends React.Component {
       });
       this.reload();
       EventBus.getInstance().fireEvent("onOperationCompleted", {
-        param: { message: strings.MYBOOKSHELVE_STRING_BOOK_REMOVED, button1: strings.MYBOOKSHELVE_STRING_CONFIRM }
+        param: { message: Strings.MYBOOKSHELVE_STRING_BOOK_REMOVED, button1: Strings.MYBOOKSHELVE_STRING_CONFIRM }
       })
     }
     this.dbConnector.deleteBook(data, onCompleteCallback);
@@ -117,7 +117,7 @@ export default class App extends React.Component {
   onNewBookAdded(data) {
     var onCompleteCallback = (newEntry, bookKey) => {
       EventBus.getInstance().fireEvent("onOperationCompleted", {
-        param: { message: strings.MYBOOKSHELVE_STRING_NEW_BOOK_ADDED, button1: strings.MYBOOKSHELVE_STRING_CONFIRM }
+        param: { message: Strings.MYBOOKSHELVE_STRING_NEW_BOOK_ADDED, button1: Strings.MYBOOKSHELVE_STRING_CONFIRM }
       })
       this.booksArray.push({ id: bookKey, value: newEntry });
     }
