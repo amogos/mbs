@@ -2,9 +2,8 @@ import React from 'react'
 import { Text } from 'react-native';
 import SocialConnector from './social_connector'
 
-export default class MockConnector extends SocialConnector {
+export default class MockSocialConnector extends SocialConnector {
     init() {
-
     }
 
     getView() {
