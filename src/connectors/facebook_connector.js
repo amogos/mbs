@@ -1,6 +1,6 @@
+import React from 'react'
 import SocialConnector from './social_connector'
 import EventBus from 'react-native-event-bus'
-import React from 'react'
 import FacebookLogin from 'react-facebook-login';
 
 export default class FacebookConnector extends SocialConnector {
