@@ -1,6 +1,6 @@
 export default class EventBus {
     static instance: EventBus;
-    eventListeners:any
+    eventListeners: any
 
     static getInstance() {
         if (typeof EventBus.instance === 'object') {
@@ -17,7 +17,7 @@ export default class EventBus {
         this.eventListeners = {};
     }
 
-    fireEvent(eventName:string, data:any) {
+    fireEvent(eventName: string, data: any) {
         let listeners = this.eventListeners[eventName];
         if (Array.isArray(listeners)) {
             listeners.map(listener => {
@@ -28,7 +28,7 @@ export default class EventBus {
         }
     }
 
-    addListener(eventName:string, listener:any) {
+    addListener(eventName: string, listener: any) {
         let listeners = this.eventListeners[eventName];
         if (Array.isArray(listeners)) {
             listeners.push(listener);
@@ -37,8 +37,8 @@ export default class EventBus {
         }
     }
 
-    
-    removeListener(listener:any) {
+
+    removeListener(listener: any) {
         Object.keys(this.eventListeners).map(eventName => {
             let listeners = this.eventListeners[eventName];
             this._remove(listeners, listener);
@@ -48,7 +48,7 @@ export default class EventBus {
         })
     }
 
-    _remove(array:any, item:any) {
+    _remove(array: any, item: any) {
         if (!array) return;
         for (let i = 0, l = array.length; i < l; i++) {
             if (item === array[i]) array.splice(i, 1);

@@ -11,7 +11,7 @@ import * as Types from "./types";
 export default class App extends React.Component<any, any> {
   userData: Types.UserType;
   dbConnector: any;
-  booksArray: Types.BookRecordType[];
+  booksArray: Array<Types.BookRecordType>;
   listener: (data: any) => void;
 
   constructor(props: any) {

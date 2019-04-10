@@ -20,7 +20,7 @@ export default class FirebaseConnector extends DatabaseConnector {
     }
 
     getBooks(onComplete: any) {
-        var booksArray: Types.BookRecordType[];
+        var booksArray: Array<Types.BookRecordType> = [];
         firebase.database().ref().child('books').once('value').then(function (snapshot) {
             snapshot.forEach(item => {
                 booksArray.push({ id: item.key, value: item.val() });
