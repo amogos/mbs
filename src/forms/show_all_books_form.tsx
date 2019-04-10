@@ -1,6 +1,7 @@
 import React from 'react'
 import { View, FlatList } from 'react-native'
 import Book from '../components/book_component'
+import * as Types from "./../types";
 
 export default class ShowAllBooksForm extends React.Component<any, any> {
     componentWillReceiveProps(props: any) {
@@ -11,8 +12,9 @@ export default class ShowAllBooksForm extends React.Component<any, any> {
     render() {
         return (
             <View style={{ flex: 0, alignItems: 'center', justifyContent: 'center' }}>
-                <table border="0px">
-                    <FlatList data={this.props.items} extraData={this.props.counter} renderItem={({ item }) => <Book id={item.id} value={item.value} userdata={this.props.userdata} counter={this.props.counter} />}
+                <table>
+                    <FlatList<Types.BookRecordType> data={this.props.items} extraData={this.props.counter} renderItem={(item ) => 
+                    <Book id={item.id} value={item.value} userdata={this.props.userdata} counter={this.props.counter} />}
                     />
                 </table>
             </View>

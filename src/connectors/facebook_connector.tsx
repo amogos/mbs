@@ -2,14 +2,15 @@ import React from 'react'
 import SocialConnector from './social_connector'
 import EventBus from 'react-native-event-bus'
 import FacebookLogin from 'react-facebook-login';
+import * as Types from "../types"
 
 export default class FacebookConnector extends SocialConnector {
     init() {
     }
 
-    responseFacebook = response => {
-        this.setLoggedIn(true);
-        this.setUserInfo(response);
+    responseFacebook = (response: Types.UserType) => {
+        super.setLoggedIn(true);
+        super.setUserInfo(response);
         EventBus.getInstance().fireEvent("onSocialConnect", { response });
     }
 

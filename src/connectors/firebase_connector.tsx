@@ -1,5 +1,6 @@
 import firebase from 'firebase'
 import DatabaseConnector from './database_connector'
+import * as Types from "../types"
 
 export default class FirebaseConnector extends DatabaseConnector {
     constructor() {
@@ -18,8 +19,8 @@ export default class FirebaseConnector extends DatabaseConnector {
         });
     }
 
-    getBooks(onComplete) {
-        var booksArray = [];
+    getBooks(onComplete: any) {
+        var booksArray: Types.BookRecordType[];
         firebase.database().ref().child('books').once('value').then(function (snapshot) {
             snapshot.forEach(item => {
                 booksArray.push({ id: item.key, value: item.val() });
@@ -28,28 +29,28 @@ export default class FirebaseConnector extends DatabaseConnector {
         });
     }
 
-    assignBook(data, user, onComplete) {
-        let bookKey = data.param;
+    assignBook(data: Types.BookKeyType, user: Types.UserType, onComplete: any) {
+        let bookKey = data;
         let newHolder = { holder: { name: user.name, email: user.email } }
-        firebase.database().ref().child('books').child(bookKey).update(newHolder, () => onComplete(bookKey, newHolder));
+        firebase.database().ref().child('books').child(bookKey.id as string).update(newHolder, () => onComplete(bookKey, newHolder));
     }
 
-    deleteBook(data, onComplete) {
-        let bookKey = data.param;
-        firebase.database().ref().child('books').child(bookKey).remove(() => onComplete(bookKey));
+    deleteBook(data: Types.BookKeyType, onComplete: any) {
+        let bookKey = data;
+        firebase.database().ref().child('books').child(bookKey.id as string).remove(() => onComplete(bookKey));
     }
 
-    addBook(data, user, onComplete) {
+    addBook(data: Types.BookValueType, user: Types.UserType, onComplete: any) {
         let newEntry = {
-            author: data.param.author,
+            author: data.author,
             holder: { name: "", email: "" },
-            image: data.param.image,
-            language: data.param.language,
+            image: data.image,
+            language: data.language,
             owner: {
                 name: user.name,
                 email: user.email
             },
-            title: data.param.title
+            title: data.title
         };
         var ref = firebase.database().ref().child('books').push();
         var key = ref.key;

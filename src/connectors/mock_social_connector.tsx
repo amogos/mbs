@@ -7,14 +7,14 @@ export default class MockSocialConnector extends SocialConnector {
     }
 
     getView() {
-         return (<Text> Mock Login </Text>);
+        return (<Text> Mock Login </Text>);
     }
 
     getLoggedIn() {
-       return true;
+        return true;
     }
 
     getUserInfo() {
-        return {name:"Mock User", email:"mock_email@gmail.com"};
+        return { name: "Mock User", email: "mock_email@gmail.com" };
     }
 }

@@ -25,18 +25,18 @@ export default class BookPlacement extends React.Component<any, any> {
         const { holder, owner } = this.props.value;
         if (this.assignable()) {
             content = (<Text style={styles.description}> <br /> {Strings.book_placement_component.MYBOOKSHELVE_STRING_OWNER}: {owner.name}
-                <br /><Button style={styles.button} title={Strings.book_placement_component.MYBOOKSHELVE_STRING_ASSIGN} color="#000000ff"
+                <br /><Button title={Strings.book_placement_component.MYBOOKSHELVE_STRING_ASSIGN} color="#000000ff"
                     onPress={this.onAssignButtonPressed} />
             </Text>);
 
         } else if (this.returnable()) {
             content = (<Text style={styles.description}> <br /> {Strings.book_placement_component.MYBOOKSHELVE_STRING_OWNER}: {owner.name}
-                <br /><Button style={styles.button} title={Strings.book_placement_component.MYBOOKSHELVE_STRING_RETURN} color="#33FF8A" onPress={this.onReturnButtonPressed} />
+                <br /><Button title={Strings.book_placement_component.MYBOOKSHELVE_STRING_RETURN} color="#33FF8A" onPress={this.onReturnButtonPressed} />
             </Text>);
         } else {
             content = (<Text style={styles.description}> <br /> {Strings.book_placement_component.MYBOOKSHELVE_STRING_OWNER}: {owner.name}
-                <br /><Button style={styles.button} title={holder.email === "" ?
-                    owner.name : holder.name} color="#808080" />
+                <br /><Button title={holder.email === "" ?
+                    owner.name : holder.name} color="#808080" onPress={() => { }} />
             </Text>);
         }
         return (

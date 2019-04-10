@@ -15,11 +15,11 @@ export interface BookValueType {
 }
 
 export interface BookKeyType {
-    id: KeyType
+    id: string | null;
 }
 
 export interface BookRecordType {
-    id: KeyType;
+    id: string | null;
     value: BookValueType;
 }
 

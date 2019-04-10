@@ -4,16 +4,16 @@ export default class DatabaseConnector {
             throw new TypeError("__abstract_construct_implementation_required__");
         }
     }
-    getBooks(onComplete) {
+    getBooks(onComplete:any) {
         throw new Error('__abstract_not_implemented__');
     }
-    assignBook(data, user, onComplete) {
+    assignBook(data:any, user:any, onComplete:any) {
         throw new Error('__abstract_not_implemented__');
     }
-    deleteBook(data, onComplete) {
+    deleteBook(data:any, onComplete:any) {
         throw new Error('__abstract_not_implemented__');
     }
-    addBook(data, user, onComplete) {
+    addBook(data:any, user:any, onComplete:any) {
         throw new Error('__abstract_not_implemented__');
     }
 
