@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Button } from 'react-native'
-import EventBus from 'react-native-event-bus'
+import EventBus from './../utils/event_bus'
 
 export default class BookRemover extends React.Component<any, any> {
     constructor(props: any) {

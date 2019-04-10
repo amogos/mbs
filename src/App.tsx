@@ -1,6 +1,6 @@
 import React from 'react';
 import { View } from 'react-native';
-import EventBus from 'react-native-event-bus'
+import EventBus from './utils/event_bus'
 import Banner from './components/banner_component';
 import ShowAllBooksScreen from './screens/show_all_books_screen';
 import AddNewBookScreen from './screens/add_new_book_screen';

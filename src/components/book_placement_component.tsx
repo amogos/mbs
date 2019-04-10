@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Text, StyleSheet, Button } from 'react-native'
-import EventBus from 'react-native-event-bus'
+import EventBus from './../utils/event_bus'
 import Strings from './../constants/string_constant'
 
 export default class BookPlacement extends React.Component<any, any> {

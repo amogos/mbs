@@ -1,6 +1,6 @@
 import React from 'react'
 import { View, Text, TextInput, Button, StyleSheet } from 'react-native'
-import EventBus from 'react-native-event-bus'
+import EventBus from '../utils/event_bus'
 
 export default class AddNewBookForm extends React.Component<any, any> {
   defaultImage: string;

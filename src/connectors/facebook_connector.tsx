@@ -1,6 +1,6 @@
 import React from 'react'
 import SocialConnector from './social_connector'
-import EventBus from 'react-native-event-bus'
+import EventBus from './../utils/event_bus'
 import FacebookLogin, { ReactFacebookLoginInfo } from 'react-facebook-login';
 import * as Types from "../types"
 

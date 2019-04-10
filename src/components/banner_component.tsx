@@ -1,6 +1,6 @@
 import React from 'react'
 import { View, Text, StyleSheet, Button } from 'react-native'
-import EventBus from 'react-native-event-bus'
+import EventBus from './../utils/event_bus'
 import SocialLogin from './social_login_component'
 
 export default class Banner extends React.Component<any, any> {
