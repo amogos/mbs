@@ -7,14 +7,42 @@ import AddNewBookScreen from './screens/add_new_book_screen';
 import Strings from './constants/string_constant';
 import ConfirmationDialog from './components/dialogs/confirmation_dialog';
 
+interface UserType {
+  name: string;
+  email: string;
+}
 
-export default class App extends React.Component {
-  constructor(props) {
+interface BookValueType {
+  title: string;
+  author: string;
+  language: string;
+  image: string;
+  owner: UserType;
+  holder: UserType;
+}
+
+interface BookKeyType {
+  id: KeyType
+}
+
+interface BookRecordType {
+  id: KeyType;
+  value: BookValueType;
+}
+
+export default class App extends React.Component<any, any> {
+  userData: null;
+  dbConnector: any;
+  booksArray: never[];
+  listener: (data: any) => void;
+
+  constructor(props: any) {
     super(props);
     this.state = { screen: '', counter: 0 };
     this.userData = null;
     this.dbConnector = this.props.dbconnector;
     this.booksArray = [];
+    this.listener = (data: any) => { };
   }
 
   componentDidMount() {
@@ -36,7 +64,7 @@ export default class App extends React.Component {
     EventBus.getInstance().addListener("onNewBookAdded", this.listener = data => {
       this.onNewBookAdded(data);
     });
-    this.dbConnector.getBooks((books) => this.booksArray = books);
+    this.dbConnector.getBooks((books: any) => this.booksArray = books);
   }
 
   componentWillUnmount() {
@@ -84,32 +112,33 @@ export default class App extends React.Component {
     this.setState({ counter: this.state.counter + 1 });
   }
 
-  onBookAsigned(data) {
-    var onCompleteCallback = (bookKey, newHolder) => {
-      var match = this.booksArray.find(function (item) {
-        return item.id === data.param;
-      });
-      match.value.holder = newHolder.holder;
+  onBookAsigned(data: BookKeyType) {
+    var onCompleteCallback = (bookKey: BookKeyType, newHolder: UserType) => {
+      var match = this.booksArray.find(function (item: BookRecordType) {
+        return item.id === data.id;
+      }) as unknown as BookRecordType;
+      match.value.holder = newHolder;
       this.reload();
     }
     this.dbConnector.assignBook(data, this.userData, onCompleteCallback);
   }
 
-  onBookReturned(data) {
-    var match = this.booksArray.find(function (item) {
-      return item.id === data.param;
-    });
-    var onCompleteCallback = (bookKey, newHolder) => {
-      match.value.holder = newHolder.holder;
+  onBookReturned(data: BookKeyType) {
+    var match = this.booksArray.find(function (item: BookRecordType) {
+      return item.id === data.id;
+    }) as unknown as BookRecordType;
+
+    var onCompleteCallback = (bookKey: BookKeyType, newHolder: UserType) => {
+      match.value.holder = newHolder;
       this.reload();
     }
     this.dbConnector.assignBook(data, match.value.owner, onCompleteCallback);
   }
 
-  onBookRemoved(data) {
-    var onCompleteCallback = (bookKey) => {
-      this.booksArray = this.booksArray.filter(function (item) {
-        return (item.id !== bookKey);
+  onBookRemoved(data: BookKeyType) {
+    var onCompleteCallback = (bookKey: BookKeyType) => {
+      this.booksArray = this.booksArray.filter(function (item: BookRecordType) {
+        return (item.id !== bookKey.id);
       });
       this.reload();
       EventBus.getInstance().fireEvent("onOperationCompleted", {
@@ -124,16 +153,16 @@ export default class App extends React.Component {
     this.reload();
   }
 
-  onBannerButtonClicked(data) {
+  onBannerButtonClicked(data: { param: string }) {
     this.setState({ screen: data.param });
   }
 
-  onNewBookAdded(data) {
-    var onCompleteCallback = (newEntry, bookKey) => {
+  onNewBookAdded(data: BookValueType) {
+    var onCompleteCallback = (newEntry: BookValueType, bookKey: BookKeyType) => {
       EventBus.getInstance().fireEvent("onOperationCompleted", {
         param: { message: Strings.MYBOOKSHELVE_STRING_NEW_BOOK_ADDED, button1: Strings.MYBOOKSHELVE_STRING_CONFIRM }
       })
-      this.booksArray.push({ id: bookKey, value: newEntry });
+      this.booksArray.push({ id: bookKey.id, value: newEntry } as never);
     }
     this.dbConnector.addBook(data, this.userData, onCompleteCallback);
   }
