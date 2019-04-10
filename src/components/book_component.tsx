@@ -6,10 +6,7 @@ import BookRemover from './book_remover_component'
 function BookLeftSide(props: any) {
     return (
         <td>
-            <img
-                src={props.value.image}
-                alt="new" width={64} height={64} mode='fit' allign='center'
-            />
+            <img src={props.value.image} alt="new" width={64} height={64} />
             <BookRemover {...props} />
         </td>)
 
