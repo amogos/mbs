@@ -1,9 +1,9 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Text, View, StyleSheet } from 'react-native'
-import BookPlacement from './book_placement_component';
-import BookRemover from './book_remover_component';
+import BookPlacement from './book_placement_component'
+import BookRemover from './book_remover_component'
 
-function BookLeftSide(props) {
+function BookLeftSide(props: any) {
     return (
         <td>
             <img
@@ -15,7 +15,7 @@ function BookLeftSide(props) {
 
 }
 
-function BookRightSide(props) {
+function BookRightSide(props: any) {
     return (
         <td>
             <View style={styles.description}>
@@ -29,8 +29,8 @@ function BookRightSide(props) {
         </td>);
 }
 
-export default class Book extends Component {
-    componentWillReceiveProps(props) {
+export default class Book extends React.Component<any, any> {
+    componentWillReceiveProps(props: any) {
         if (props.counter !== this.props.counter) {
             this.setState(this.state);
         }

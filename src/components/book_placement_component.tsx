@@ -3,8 +3,8 @@ import { Text, StyleSheet, Button } from 'react-native'
 import EventBus from 'react-native-event-bus'
 import Strings from './../constants/string_constant'
 
-export default class BookPlacement extends Component {
-    constructor(props) {
+export default class BookPlacement extends React.Component<any, any> {
+    constructor(props: any) {
         super(props);
         this.onAssignButtonPressed = this.onAssignButtonPressed.bind(this);
         this.onReturnButtonPressed = this.onReturnButtonPressed.bind(this);

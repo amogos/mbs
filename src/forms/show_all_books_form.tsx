@@ -1,9 +1,9 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { View, FlatList } from 'react-native'
 import Book from '../components/book_component'
 
-export default class ShowAllBooksForm extends Component {
-    componentWillReceiveProps(props) {
+export default class ShowAllBooksForm extends React.Component<any, any> {
+    componentWillReceiveProps(props: any) {
         if (props.counter !== this.props.counter) {
             this.setState(this.state);
         }
@@ -12,7 +12,7 @@ export default class ShowAllBooksForm extends Component {
         return (
             <View style={{ flex: 0, alignItems: 'center', justifyContent: 'center' }}>
                 <table border="0px">
-                    <FlatList data={this.props.items} extraData={this.props.counter} renderItem={({ item }) => <Book id={item.id} value={item.value} userdata={this.props.userdata} counter={this.props.counter}/>}
+                    <FlatList data={this.props.items} extraData={this.props.counter} renderItem={({ item }) => <Book id={item.id} value={item.value} userdata={this.props.userdata} counter={this.props.counter} />}
                     />
                 </table>
             </View>
