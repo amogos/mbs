@@ -1,32 +1,40 @@
 import React, { Component } from 'react'
 import { Text, StyleSheet, Button } from 'react-native'
 import EventBus from 'react-native-event-bus'
+import Strings from './../constants/string_constant'
 
 export default class BookPlacement extends Component {
     constructor(props) {
         super(props);
         this.onAssignButtonPressed = this.onAssignButtonPressed.bind(this);
+        this.onReturnButtonPressed = this.onReturnButtonPressed.bind(this);
     }
 
-    onAssignButtonPressed() {
-        EventBus.getInstance().fireEvent("onBookAsignedToMe", { param: this.props.id });
-    }
-
-    isBookAvailableForPlacement() {
+    returnable() {
         const { userdata, value } = this.props;
-        return userdata.email !== value.owner.email && value.holder.email === "";
+        return (value.owner.email !== value.holder.email && userdata.email === value.holder.email)
     }
+
+    assignable() {
+        const { userdata, value } = this.props;
+        return userdata.email !== value.owner.email && (value.holder.email === "" || value.holder.email === value.owner.email);
+    }
+
     render() {
         let content;
         const { holder, owner } = this.props.value;
-        if (this.isBookAvailableForPlacement()) {
-            content = (<Text style={styles.description}> <br /> Owner: {owner.name}
-                <br /><Button style={styles.button} title="Assign to me" color="#000000ff"
+        if (this.assignable()) {
+            content = (<Text style={styles.description}> <br /> {Strings.book_placement_component.MYBOOKSHELVE_STRING_OWNER}: {owner.name}
+                <br /><Button style={styles.button} title={Strings.book_placement_component.MYBOOKSHELVE_STRING_ASSIGN} color="#000000ff"
                     onPress={this.onAssignButtonPressed} />
             </Text>);
 
+        } else if (this.returnable()) {
+            content = (<Text style={styles.description}> <br /> {Strings.book_placement_component.MYBOOKSHELVE_STRING_OWNER}: {owner.name}
+                <br /><Button style={styles.button} title={Strings.book_placement_component.MYBOOKSHELVE_STRING_RETURN} color="#33FF8A" onPress={this.onReturnButtonPressed} />
+            </Text>);
         } else {
-            content = (<Text style={styles.description}> <br /> Owner: {owner.name}
+            content = (<Text style={styles.description}> <br /> {Strings.book_placement_component.MYBOOKSHELVE_STRING_OWNER}: {owner.name}
                 <br /><Button style={styles.button} title={holder.email === "" ?
                     owner.name : holder.name} color="#808080" />
             </Text>);
@@ -34,6 +42,14 @@ export default class BookPlacement extends Component {
         return (
             content
         );
+    }
+
+    onAssignButtonPressed() {
+        EventBus.getInstance().fireEvent("onBookAsigned", { param: this.props.id });
+    }
+
+    onReturnButtonPressed() {
+        EventBus.getInstance().fireEvent("onBookReturned", { param: this.props.id });
     }
 }
 

@@ -11,15 +11,18 @@ import ConfirmationDialog from './components/dialogs/confirmation_dialog';
 export default class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { screen: '', counter: 0};
+    this.state = { screen: '', counter: 0 };
     this.userData = null;
     this.dbConnector = this.props.dbconnector;
     this.booksArray = [];
   }
 
   componentDidMount() {
-    EventBus.getInstance().addListener("onBookAsignedToMe", this.listener = data => {
-      this.onBookAsignedToMe(data);
+    EventBus.getInstance().addListener("onBookAsigned", this.listener = data => {
+      this.onBookAsigned(data);
+    });
+    EventBus.getInstance().addListener("onBookReturned", this.listener = data => {
+      this.onBookReturned(data);
     });
     EventBus.getInstance().addListener("onBookRemoved", this.listener = data => {
       this.onBookRemoved(data);
@@ -43,8 +46,8 @@ export default class App extends React.Component {
   showAllBooks() {
     return (
       <View>
-        <Banner {...this.props }/>
-        <ShowAllBooksScreen items={this.booksArray} userdata={this.userData} counter={this.state.counter}/>
+        <Banner {...this.props} />
+        <ShowAllBooksScreen items={this.booksArray} userdata={this.userData} counter={this.state.counter} />
         <ConfirmationDialog />
       </View>
     );
@@ -53,7 +56,7 @@ export default class App extends React.Component {
   addNewBooks() {
     return (
       <View >
-        <Banner {...this.props }/>
+        <Banner {...this.props} />
         <AddNewBookScreen userdata={this.userData} />
         <ConfirmationDialog />
       </View>
@@ -63,7 +66,7 @@ export default class App extends React.Component {
   showBlankPage() {
     return (
       <View>
-        <Banner {...this.props }/>
+        <Banner {...this.props} />
       </View>
     );
   }
@@ -78,11 +81,11 @@ export default class App extends React.Component {
   }
 
   reload() {
-    this.setState( {counter:this.state.counter + 1} ); 
+    this.setState({ counter: this.state.counter + 1 });
   }
 
-  onBookAsignedToMe(data) {
-     var onCompleteCallback = (bookKey, newHolder) => {
+  onBookAsigned(data) {
+    var onCompleteCallback = (bookKey, newHolder) => {
       var match = this.booksArray.find(function (item) {
         return item.id === data.param;
       });
@@ -92,7 +95,18 @@ export default class App extends React.Component {
     this.dbConnector.assignBook(data, this.userData, onCompleteCallback);
   }
 
-  onBookRemoved(data) { 
+  onBookReturned(data) {
+    var match = this.booksArray.find(function (item) {
+      return item.id === data.param;
+    });
+    var onCompleteCallback = (bookKey, newHolder) => {
+      match.value.holder = newHolder.holder;
+      this.reload();
+    }
+    this.dbConnector.assignBook(data, match.value.owner, onCompleteCallback);
+  }
+
+  onBookRemoved(data) {
     var onCompleteCallback = (bookKey) => {
       this.booksArray = this.booksArray.filter(function (item) {
         return (item.id !== bookKey);
