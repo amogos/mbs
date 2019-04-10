@@ -1,8 +1,9 @@
 
 export interface UserType {
-    name: string;
-    email: string;
-    picture: string;
+    id: string;
+    accessToken: string;
+    name?: string;
+    email?: string;
 }
 
 export interface BookValueType {

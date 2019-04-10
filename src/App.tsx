@@ -6,7 +6,7 @@ import ShowAllBooksScreen from './screens/show_all_books_screen';
 import AddNewBookScreen from './screens/add_new_book_screen';
 import Strings from './constants/string_constant';
 import ConfirmationDialog from './components/dialogs/confirmation_dialog';
-import * as Types  from "./types";
+import * as Types from "./types";
 
 export default class App extends React.Component<any, any> {
   userData: Types.UserType;
@@ -17,7 +17,7 @@ export default class App extends React.Component<any, any> {
   constructor(props: any) {
     super(props);
     this.state = { screen: '', counter: 0 };
-    this.userData = { name: "", email: "", picture: "" };
+    this.userData = { name: "", email: "", id: "", accessToken: "" };
     this.dbConnector = this.props.dbconnector;
     this.booksArray = [];
     this.listener = (data: any) => { };

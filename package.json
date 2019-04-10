@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@babel/plugin-proposal-class-properties": "^7.4.0",
+    "@types/react-facebook-login": "^4.1.0",
     "expo": "^31.0.5",
     "firebase": "^5.9.2",
     "fs-ext": "^1.2.1",
