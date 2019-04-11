@@ -52,7 +52,7 @@ export default class App extends React.Component<any, any> {
   showAllBooks() {
     return (
       <View>
-        <Banner {...this.props} />
+        <Banner dbconnector={this.props.dbconnector} socialconnector={this.props.socialconnector} />
         <ShowAllBooksScreen items={this.booksArray} userdata={this.userData} counter={this.state.counter} />
         <ConfirmationDialog />
       </View>
@@ -62,7 +62,7 @@ export default class App extends React.Component<any, any> {
   addNewBooks() {
     return (
       <View >
-        <Banner {...this.props} />
+        <Banner dbconnector={this.props.dbconnector} socialconnector={this.props.socialconnector} />
         <AddNewBookScreen userdata={this.userData} />
         <ConfirmationDialog />
       </View>
@@ -72,7 +72,7 @@ export default class App extends React.Component<any, any> {
   showBlankPage() {
     return (
       <View>
-        <Banner {...this.props} />
+        <Banner dbconnector={this.props.dbconnector} socialconnector={this.props.socialconnector} />
       </View>
     );
   }
