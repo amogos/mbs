@@ -4,7 +4,16 @@ import EventBus from './../utils/event_bus'
 import Strings from './../constants/string_constant'
 import * as Types from "./../types";
 
-export default class BookPlacement extends React.Component<any, any> {
+interface Props {
+    id: string | null;
+    value: Types.BookValueType;
+    userdata: Types.UserType;
+}
+interface State {
+
+}
+
+export default class BookPlacement extends React.Component<Props, State> {
     constructor(props: any) {
         super(props);
         this.onAssignButtonPressed = this.onAssignButtonPressed.bind(this);
