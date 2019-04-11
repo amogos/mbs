@@ -30,14 +30,12 @@ export default class FirebaseConnector extends DatabaseConnector {
     }
 
     assignBook(data: Types.BookKeyType, user: Types.UserType, onComplete: any) {
-        let bookKey = data.id;
         let newHolder = { holder: { name: user.name, email: user.email } }
-        firebase.database().ref().child('books').child(bookKey as string).update(newHolder, () => onComplete(bookKey, newHolder)).catch((error) => { alert(error); });
+        firebase.database().ref().child('books').child(data.id as string).update(newHolder, () => onComplete(data, newHolder)).catch((error) => { alert(error); });
     }
 
     deleteBook(data: Types.BookKeyType, onComplete: any) {
-        let bookKey = data.id;
-        firebase.database().ref().child('books').child(bookKey as string).remove(() => onComplete(bookKey)).catch((error) => { alert(error); });
+        firebase.database().ref().child('books').child(data.id as string).remove(() => onComplete(data)).catch((error) => { alert(error); });
     }
 
     addBook(data: Types.BookValueType, onComplete: any) {
