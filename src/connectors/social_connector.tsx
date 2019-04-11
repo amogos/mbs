@@ -1,10 +1,10 @@
 import * as Types from "../types"
 
 export default class SocialConnector {
-    state: { loggedIn: boolean; userdata: {}; };
+    state: { loggedIn: boolean; userdata: Types.UserType; };
 
     constructor() {
-        this.state = { loggedIn: false, userdata: {} };
+        this.state = { loggedIn: false, userdata: { name:"", email:""} };
         this.init();
     }
 

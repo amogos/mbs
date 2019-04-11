@@ -1,9 +1,7 @@
 
 export interface UserType {
-    id: string;
-    accessToken: string;
-    name?: string;
-    email?: string;
+    name: string;
+    email: string;
 }
 
 export interface BookValueType {

@@ -5,13 +5,13 @@ import FacebookLogin, { ReactFacebookLoginInfo } from 'react-facebook-login';
 import * as Types from "../types"
 
 export default class FacebookConnector extends SocialConnector {
-    init() {
-    }
+    init() {}
 
     responseFacebook = (response: ReactFacebookLoginInfo) => {
         super.setLoggedIn(true);
-        super.setUserInfo(response );
-        EventBus.getInstance().fireEvent("onSocialConnect", { response });
+        var userInfo: Types.UserType = { name: response.name, email: response.email } as Types.UserType;
+        super.setUserInfo(userInfo);
+        EventBus.getInstance().fireEvent("onSocialConnect", userInfo);
     }
 
     componentClicked = () => {

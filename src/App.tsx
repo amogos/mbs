@@ -17,7 +17,7 @@ export default class App extends React.Component<any, any> {
   constructor(props: any) {
     super(props);
     this.state = { screen: '', counter: 0 };
-    this.userData = { name: "", email: "", id: "", accessToken: "" };
+    this.userData = { name: "", email: "" };
     this.dbConnector = this.props.dbconnector;
     this.booksArray = [];
     this.listener = (data: any) => { };
@@ -140,8 +140,8 @@ export default class App extends React.Component<any, any> {
       EventBus.getInstance().fireEvent("onOperationCompleted", {
         param: { message: Strings.MYBOOKSHELVE_STRING_NEW_BOOK_ADDED, button1: Strings.MYBOOKSHELVE_STRING_CONFIRM }
       })
-      this.booksArray.push({ id: bookKey.id, value: newEntry } as never);
+      this.booksArray.push({ id: bookKey.id, value: newEntry } as Types.BookRecordType);
     }
-    this.dbConnector.addBook(data, this.userData, onCompleteCallback);
+    this.dbConnector.addBook(data, onCompleteCallback);
   }
 }

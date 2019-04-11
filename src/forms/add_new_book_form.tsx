@@ -1,43 +1,31 @@
 import React from 'react'
 import { View, Text, TextInput, Button, StyleSheet } from 'react-native'
 import EventBus from '../utils/event_bus'
+import * as Types from "./../types";
 
 export default class AddNewBookForm extends React.Component<any, any> {
   defaultImage: string;
-  title: string;
-  author: string;
-  image: any;
-  language:string;
+  currentBook: Types.BookValueType;
 
   constructor(props: any) {
     super(props);
     this.defaultImage = 'https://vignette.wikia.nocookie.net/superfriends/images/a/a5/No_Photo_Available.jpg/revision/latest?cb=20090329133959';
-    this.title = 'title';
-    this.author ='author';
-    this.image = this.defaultImage;
-    this.language = '';
+    this.currentBook = {
+      title: "",
+      author: "",
+      language: "",
+      image: this.defaultImage,
+      owner: this.props.userdata,
+      holder: this.props.userdata
+    };
     this.state = { text: 'error...' };
     this.onSaveButtonPressed = this.onSaveButtonPressed.bind(this);
   }
 
-  resetFields() {
-    this.title = "";
-    this.author = "";
-    this.language = "";
-    this.image.image = this.defaultImage;
-    this.setState(this.state);
-  }
-
   onSaveButtonPressed() {
-    EventBus.getInstance().fireEvent("onNewBookAdded", {
-      param: {
-        title: this.title,
-        author: this.author,
-        language: this.language,
-        image: this.image.image
-      }
-    });
-    this.resetFields();
+    EventBus.getInstance().fireEvent("onNewBookAdded", this.currentBook);
+    this.currentBook.title = this.currentBook.author = this.currentBook.language = "";
+    this.setState(this.state);
   }
 
   render() {
@@ -46,24 +34,24 @@ export default class AddNewBookForm extends React.Component<any, any> {
         <Text> title: </Text>
         <TextInput
           style={styles.inputField}
-          onChangeText={(text) => { this.setState({ text }); this.title = text; }}
-          value={this.title} />
+          onChangeText={(text) => { this.setState({ text }); this.currentBook.title = text; }}
+          value={this.currentBook.title}  />
         <Text> language: </Text>
         <TextInput
           style={styles.inputField}
-          onChangeText={(text) => { this.setState({ text }); this.language = text; }}
-          value={this.language} />
+          onChangeText={(text) => { this.setState({ text }); this.currentBook.language = text; }}
+          value={this.currentBook.language} />
         <Text> author: </Text>
         <TextInput
           style={styles.inputField}
-          onChangeText={(text) => { this.setState({ text }); this.author = text; }}
-          value={this.author} />
+          onChangeText={(text) => { this.setState({ text }); this.currentBook.author = text; }}
+          value={this.currentBook.author} />
         <Text> image: </Text>
         <TextInput
           style={styles.inputField}
-          onChangeText={(text) => { this.setState({ text }); this.image.image = text; }}
-          value={this.image.text} />
-        <img src={this.image.image} alt="new" width={64} height={64}  />
+          onChangeText={(text) => { this.setState({ text }); this.currentBook.image = text; }}
+          value={this.currentBook.image} />
+        <img src={this.currentBook.image} alt="new" width={64} height={64} />
         <Button color="#000000"
           onPress={this.onSaveButtonPressed}
           title="Save"
