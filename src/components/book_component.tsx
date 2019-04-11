@@ -2,8 +2,19 @@ import React from 'react'
 import { Text, View, StyleSheet } from 'react-native'
 import BookPlacement from './book_placement_component'
 import BookRemover from './book_remover_component'
+import * as Types from "./../types";
 
-function BookLeftSide(props: any) {
+interface Props {
+    id: string | null;
+    value: Types.BookValueType;
+    userdata: Types.UserType;
+    counter: number
+}
+
+interface State {
+}
+
+function BookLeftSide(props: Props) {
     return (
         <td>
             <img src={props.value.image} alt="new" width={64} height={64} />
@@ -12,7 +23,7 @@ function BookLeftSide(props: any) {
 
 }
 
-function BookRightSide(props: any) {
+function BookRightSide(props: Props) {
     return (
         <td>
             <View style={styles.description}>
@@ -26,8 +37,8 @@ function BookRightSide(props: any) {
         </td>);
 }
 
-export default class Book extends React.Component<any, any> {
-    componentWillReceiveProps(props: any) {
+export default class Book extends React.Component<Props, State> {
+    componentWillReceiveProps(props: Props) {
         if (props.counter !== this.props.counter) {
             this.setState(this.state);
         }
