@@ -35,7 +35,7 @@ export default class FirebaseConnector extends DatabaseConnector {
     }
 
     deleteBook(data: Types.BookKeyType, onComplete: any) {
-        firebase.database().ref().child('books').child(data.id as string).remove(() => onComplete(data)).catch((error) => { alert(error); });
+        firebase.database().ref().child('books').child(data.id as string).remove(() => onComplete()).catch((error) => { alert(error); });
     }
 
     addBook(data: Types.BookValueType, onComplete: any) {

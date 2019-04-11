@@ -114,9 +114,9 @@ export default class App extends React.Component<any, any> {
   }
 
   onBookRemoved(data: Types.BookKeyType) {
-    var onCompleteCallback = (bookKey: Types.BookKeyType) => {
+    var onCompleteCallback = () => {
       this.booksArray = this.booksArray.filter(function (item: Types.BookRecordType) {
-        return (item.id !== bookKey.id);
+        return (item.id !== data.id);
       });
      
       EventBus.getInstance().fireEvent("onOperationCompleted", {
@@ -137,11 +137,11 @@ export default class App extends React.Component<any, any> {
   }
 
   onNewBookAdded(data: Types.BookValueType) {
-    var onCompleteCallback = (newEntry: Types.BookValueType, bookKey: Types.BookKeyType) => {
+    var onCompleteCallback = (newEntry: Types.BookValueType, bookKey: string) => {
       EventBus.getInstance().fireEvent("onOperationCompleted", {
         param: { message: Strings.MYBOOKSHELVE_STRING_NEW_BOOK_ADDED, button1: Strings.MYBOOKSHELVE_STRING_CONFIRM }
       })
-      this.booksArray.push({ id: bookKey.id, value: newEntry } as Types.BookRecordType);
+      this.booksArray.push({ id: bookKey, value: newEntry } as Types.BookRecordType);
     }
     this.dbConnector.addBook(data, onCompleteCallback);
   }
