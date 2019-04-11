@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Button } from 'react-native'
 import EventBus from './../utils/event_bus'
-import { stringify } from 'querystring';
+import * as Types from "./../types";
 
 export default class BookRemover extends React.Component<any, any> {
     constructor(props: any) {
@@ -9,15 +9,17 @@ export default class BookRemover extends React.Component<any, any> {
         this.onDeleteButtonPressed = this.onDeleteButtonPressed.bind(this);
     }
     onDeleteButtonPressed() {
-        EventBus.getInstance().fireEvent("onBookRemoved", { param: this.props.id })
+        var bookKey: Types.BookKeyType = { id: this.props.id };
+        EventBus.getInstance().fireEvent("onBookRemoved", bookKey)
     }
     render() {
         let content = null;
-        const { userdata } = this.props;
-        const owner = this.props.value.owner;
-        const holder = this.props.value.holder;
-    
-        if (userdata.email === owner.email && holder.email === "")
+        var me: Types.UserType = this.props.userdata;
+        var book: Types.BookValueType = this.props.value;
+        let isMeOwner: boolean = me.email === book.owner.email;
+        let isMeHolder: boolean = me.email === book.holder.email || book.holder.email === "";
+
+        if (isMeOwner && isMeHolder)
             content = (<Button title="delete" color="#000000ff"
                 onPress={this.onDeleteButtonPressed} />);
         return content;

@@ -118,10 +118,11 @@ export default class App extends React.Component<any, any> {
       this.booksArray = this.booksArray.filter(function (item: Types.BookRecordType) {
         return (item.id !== bookKey.id);
       });
-      this.reload();
+     
       EventBus.getInstance().fireEvent("onOperationCompleted", {
         param: { message: Strings.MYBOOKSHELVE_STRING_BOOK_REMOVED, button1: Strings.MYBOOKSHELVE_STRING_CONFIRM }
       })
+      this.reload();
     }
     this.dbConnector.deleteBook(data, onCompleteCallback);
   }
