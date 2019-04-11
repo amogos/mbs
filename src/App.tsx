@@ -7,8 +7,19 @@ import AddNewBookScreen from './screens/add_new_book_screen';
 import Strings from './constants/string_constant';
 import ConfirmationDialog from './components/dialogs/confirmation_dialog';
 import * as Types from "./types";
+import DatabaseConnector from './connectors/database_connector';
+import SocialConnector from './connectors/social_connector';
 
-export default class App extends React.Component<any, any> {
+interface Props {
+  dbconnector: DatabaseConnector;
+  socialconnector: SocialConnector
+}
+interface State {
+  screen: string;
+  counter: number;
+}
+
+export default class App extends React.Component<Props, State> {
   userData: Types.UserType;
   dbConnector: any;
   booksArray: Array<Types.BookRecordType>;
