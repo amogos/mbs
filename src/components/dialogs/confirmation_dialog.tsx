@@ -1,9 +1,17 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Button } from 'react-native'
 import Popup from "reactjs-popup";
 import EventBus from './../../utils/event_bus'
 
-export default class ConfirmationDialog extends React.Component<any, any> {
+interface Props {
+}
+
+interface State {
+    isDialogOpen: boolean,
+    params: { message: string, button1: string }
+}
+
+export default class ConfirmationDialog extends React.Component<Props, State> {
     state = {
         isDialogOpen: false,
         params: { message: "", button1: "" }

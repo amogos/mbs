@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Text, StyleSheet, Button } from 'react-native'
 import EventBus from './../utils/event_bus'
 import Strings from './../constants/string_constant'
