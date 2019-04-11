@@ -3,7 +3,16 @@ import { Button } from 'react-native'
 import EventBus from './../utils/event_bus'
 import * as Types from "./../types";
 
-export default class BookRemover extends React.Component<any, any> {
+interface Props {
+    id:string|null;
+    value:Types.BookValueType;
+    userdata:Types.UserType;
+}
+interface State {
+
+}
+
+export default class BookRemover extends React.Component<Props, State> {
     constructor(props: any) {
         super(props);
         this.onDeleteButtonPressed = this.onDeleteButtonPressed.bind(this);
