@@ -1,12 +1,19 @@
 import React from 'react';
 import AddNewBookForm from './../forms/add_new_book_form';
+import * as Types from "./../types";
 
-export default class AddNewBookScreen extends React.Component<any, any> {
+interface Props {
+    userdata: Types.UserType;
+}
+interface State {
+}
+
+export default class AddNewBookScreen extends React.Component<Props, State> {
     static screenId = "add";
-    
+
     render() {
         return (
-            <AddNewBookForm {...this.props}/>
+            <AddNewBookForm userdata={this.props.userdata} />
         );
     }
 }

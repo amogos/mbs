@@ -3,7 +3,14 @@ import { View, Text, TextInput, Button, StyleSheet } from 'react-native'
 import EventBus from '../utils/event_bus'
 import * as Types from "./../types";
 
-export default class AddNewBookForm extends React.Component<any, any> {
+interface Props {
+  userdata: Types.UserType;
+}
+interface State {
+
+}
+
+export default class AddNewBookForm extends React.Component<Props, State> {
   defaultImage: string;
   currentBook: Types.BookValueType;
 
@@ -35,7 +42,7 @@ export default class AddNewBookForm extends React.Component<any, any> {
         <TextInput
           style={styles.inputField}
           onChangeText={(text) => { this.setState({ text }); this.currentBook.title = text; }}
-          value={this.currentBook.title}  />
+          value={this.currentBook.title} />
         <Text> language: </Text>
         <TextInput
           style={styles.inputField}
