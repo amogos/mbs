@@ -1,6 +1,10 @@
+import * as Types from "../types"
+
 export default class SocialConnector {
-    constructor() {   
-        this.state = { loggedIn: false, userdata: {} };
+    state: { loggedIn: boolean; userdata: Types.UserType; };
+
+    constructor() {
+        this.state = { loggedIn: false, userdata: { name: "", email: "" } };
         this.init();
     }
 
@@ -9,14 +13,14 @@ export default class SocialConnector {
     }
 
     getView() {
-         throw new Error('__abstract_not_implemented__');
+        return (<div></div>);
     }
 
     getLoggedIn() {
-       return this.state.loggedIn;
+        return this.state.loggedIn;
     }
 
-    setLoggedIn(logged) {
+    setLoggedIn(logged: boolean) {
         this.state.loggedIn = logged;
     }
 
@@ -24,7 +28,7 @@ export default class SocialConnector {
         return this.state.userdata;
     }
 
-    setUserInfo(info) {
+    setUserInfo(info: Types.UserType) {
         this.state.userdata = info;
     }
 

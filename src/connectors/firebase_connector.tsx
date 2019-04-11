@@ -1,5 +1,6 @@
 import firebase from 'firebase'
 import DatabaseConnector from './database_connector'
+import * as Types from "../types"
 
 export default class FirebaseConnector extends DatabaseConnector {
     constructor() {
@@ -18,41 +19,27 @@ export default class FirebaseConnector extends DatabaseConnector {
         });
     }
 
-    getBooks(onComplete) {
-        var booksArray = [];
+    getBooks(onComplete: any) {
+        var booksArray: Array<Types.BookRecordType> = [];
         firebase.database().ref().child('books').once('value').then(function (snapshot) {
             snapshot.forEach(item => {
                 booksArray.push({ id: item.key, value: item.val() });
             })
             onComplete(booksArray);
-        });
+        }).catch((error) => { alert(error); });
     }
 
-    assignBook(data, user, onComplete) {
-        let bookKey = data.param;
-        let newHolder = { holder: { name: user.name, email: user.email } }
-        firebase.database().ref().child('books').child(bookKey).update(newHolder, () => onComplete(bookKey, newHolder));
+    assignBook(data: Types.BookKeyType, user: Types.UserType, onComplete: any) {
+        firebase.database().ref().child('books').child(data.id as string).update({ holder: user }, () => onComplete()).catch((error) => { alert(error); });
     }
 
-    deleteBook(data, onComplete) {
-        let bookKey = data.param;
-        firebase.database().ref().child('books').child(bookKey).remove(() => onComplete(bookKey));
+    deleteBook(data: Types.BookKeyType, onComplete: any) {
+        firebase.database().ref().child('books').child(data.id as string).remove(() => onComplete()).catch((error) => { alert(error); });
     }
 
-    addBook(data, user, onComplete) {
-        let newEntry = {
-            author: data.param.author,
-            holder: { name: "", email: "" },
-            image: data.param.image,
-            language: data.param.language,
-            owner: {
-                name: user.name,
-                email: user.email
-            },
-            title: data.param.title
-        };
+    addBook(data: Types.BookValueType, onComplete: any) {
         var ref = firebase.database().ref().child('books').push();
         var key = ref.key;
-        ref.set(newEntry, () => onComplete(newEntry, key));
+        ref.set(data, () => onComplete(data, key)).catch((error) => { alert(error); });
     }
 }
