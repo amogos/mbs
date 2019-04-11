@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Text, StyleSheet, Button } from 'react-native'
 import EventBus from './../utils/event_bus'
 import Strings from './../constants/string_constant'
+import * as Types from "./../types";
 
 export default class BookPlacement extends React.Component<any, any> {
     constructor(props: any) {
@@ -45,11 +46,11 @@ export default class BookPlacement extends React.Component<any, any> {
     }
 
     onAssignButtonPressed() {
-        EventBus.getInstance().fireEvent("onBookAsigned", { param: this.props.id });
+        EventBus.getInstance().fireEvent("onBookAsigned", { id: this.props.id } as Types.BookKeyType);
     }
 
     onReturnButtonPressed() {
-        EventBus.getInstance().fireEvent("onBookReturned", { param: this.props.id });
+        EventBus.getInstance().fireEvent("onBookReturned", { id: this.props.id } as Types.BookKeyType);
     }
 }
 

@@ -91,11 +91,11 @@ export default class App extends React.Component<any, any> {
   }
 
   onBookAsigned(data: Types.BookKeyType) {
-    var onCompleteCallback = (bookKey: Types.BookKeyType, newHolder: Types.UserType) => {
+    var onCompleteCallback = () => {
       var match = this.booksArray.find(function (item: Types.BookRecordType) {
         return item.id === data.id;
       }) as unknown as Types.BookRecordType;
-      match.value.holder = newHolder;
+      match.value.holder = this.userData;
       this.reload();
     }
     this.dbConnector.assignBook(data, this.userData, onCompleteCallback);
@@ -106,8 +106,8 @@ export default class App extends React.Component<any, any> {
       return item.id === data.id;
     }) as unknown as Types.BookRecordType;
 
-    var onCompleteCallback = (bookKey: Types.BookKeyType, newHolder: Types.UserType) => {
-      match.value.holder = newHolder;
+    var onCompleteCallback = () => {
+      match.value.holder = match.value.owner;
       this.reload();
     }
     this.dbConnector.assignBook(data, match.value.owner, onCompleteCallback);
@@ -118,7 +118,7 @@ export default class App extends React.Component<any, any> {
       this.booksArray = this.booksArray.filter(function (item: Types.BookRecordType) {
         return (item.id !== data.id);
       });
-     
+
       EventBus.getInstance().fireEvent("onOperationCompleted", {
         param: { message: Strings.MYBOOKSHELVE_STRING_BOOK_REMOVED, button1: Strings.MYBOOKSHELVE_STRING_CONFIRM }
       })
