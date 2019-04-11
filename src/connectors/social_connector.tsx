@@ -4,7 +4,7 @@ export default class SocialConnector {
     state: { loggedIn: boolean; userdata: Types.UserType; };
 
     constructor() {
-        this.state = { loggedIn: false, userdata: { name:"", email:""} };
+        this.state = { loggedIn: false, userdata: { name: "", email: "" } };
         this.init();
     }
 
@@ -13,7 +13,7 @@ export default class SocialConnector {
     }
 
     getView() {
-        throw new Error('__abstract_not_implemented__');
+        return (<div></div>);
     }
 
     getLoggedIn() {

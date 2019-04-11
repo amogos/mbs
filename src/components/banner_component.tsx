@@ -21,7 +21,7 @@ export default class Banner extends React.Component<Props, State> {
                     <Text style={styles.appTitle}> <span aria-labelledby='jsx-a11y/accessible-emoji' role='img'>⚛️ </span></Text>
                     <Button title="Search" color="#00000000" onPress={() => EventBus.getInstance().fireEvent("onBannerButtonClicked", { param: "search" })} />
                     <Button title="Add Book" color="#00000000" onPress={() => EventBus.getInstance().fireEvent("onBannerButtonClicked", { param: "add" })} />
-                    <SocialLogin dbconnector={this.props.dbconnector} socialconnector={this.props.socialconnector} />
+                    <SocialLogin socialconnector={this.props.socialconnector} />
                 </View>
             </View>
         )
