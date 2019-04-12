@@ -4,12 +4,12 @@ import EventBus from './utils/event_bus'
 import Banner from './components/banner_component';
 import ShowAllBooksScreen from './screens/show_all_books_screen';
 import AddNewBookScreen from './screens/add_new_book_screen';
-import Strings from './constants/string_constant';
 import ConfirmationDialog from './components/dialogs/confirmation_dialog';
 import * as Types from "./types";
 import DatabaseConnector from './connectors/database_connector';
 import SocialConnector from './connectors/social_connector';
 import AddNewBookCommand from './commands/add_newbook_command'
+import RemoveBookCommand from './commands/remove_book_command';
 
 interface Props {
   dbconnector: DatabaseConnector;
@@ -43,7 +43,10 @@ export default class App extends React.Component<Props, State> {
       this.onBookReturned(data);
     });
     EventBus.getInstance().addListener("onBookRemoved", this.listener = data => {
-      this.onBookRemoved(data);
+      const command = new RemoveBookCommand(data, this.booksArray).init({ dbconnector: this.props.dbconnector } as Types.Context);
+      command.execute(() => {
+        this.reload();
+      });
     });
     EventBus.getInstance().addListener("onSocialConnect", this.listener = data => {
       this.onSocialConnect(data);
@@ -124,19 +127,6 @@ export default class App extends React.Component<Props, State> {
       this.reload();
     }
     this.dbConnector.assignBook(data, match.value.owner, onCompleteCallback);
-  }
-
-  onBookRemoved(data: Types.BookKeyType) {
-    var onCompleteCallback = () => {
-      this.booksArray = this.booksArray.filter(function (item: Types.BookRecordType) {
-        return (item.id !== data.id);
-      });
-
-      EventBus.getInstance().fireEvent("onOperationCompleted",
-        { message: Strings.MYBOOKSHELVE_STRING_BOOK_REMOVED, button1: Strings.MYBOOKSHELVE_STRING_CONFIRM } as Types.ConfirmationDialogParams);
-      this.reload();
-    }
-    this.dbConnector.deleteBook(data, onCompleteCallback);
   }
 
   onSocialConnect(data: Types.UserType) {

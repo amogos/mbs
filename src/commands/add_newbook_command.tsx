@@ -1,5 +1,5 @@
-import Command from "./command";
-import * as Types from "./../types";
+import Command from './command';
+import * as Types from './../types';
 import EventBus from './../utils/event_bus'
 import Strings from './../constants/string_constant';
 
@@ -18,7 +18,7 @@ export default class AddNewBookCommand implements Command {
         return this;
     }
 
-    execute(onComplete?: Types.CommandCallbackType | undefined): void {
+    execute(onComplete?: () => void | undefined): void {
         var onCompleteCallback = (newEntry: Types.BookValueType, bookKey: string) => {
             EventBus.getInstance().fireEvent("onOperationCompleted",
                 { message: Strings.MYBOOKSHELVE_STRING_NEW_BOOK_ADDED, button1: Strings.MYBOOKSHELVE_STRING_CONFIRM } as Types.ConfirmationDialogParams)

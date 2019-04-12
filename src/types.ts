@@ -32,10 +32,5 @@ export interface Context {
     dbconnector: DatabaseConnector;
 }
 
-export interface CommandCallbackType {
-    (onComplete: () => void): void;
-}
-
-
 
 
