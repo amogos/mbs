@@ -7,7 +7,6 @@ interface Props {
   userdata: Types.UserType;
 }
 interface State {
-
 }
 
 export default class AddNewBookForm extends React.Component<Props, State> {
