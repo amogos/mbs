@@ -1,6 +1,6 @@
 import React from 'react';
 import AddNewBookForm from './../forms/add_new_book_form';
-import * as Types from "./../types";
+import * as Types from './../types';
 
 interface Props {
     userdata: Types.UserType;
