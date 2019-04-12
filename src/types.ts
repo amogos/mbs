@@ -22,6 +22,12 @@ export interface BookRecordType {
     value: BookValueType;
 }
 
+export interface ConfirmationDialogParams {
+    message: string;
+    button1: string;
+}
+
+
 
 
 

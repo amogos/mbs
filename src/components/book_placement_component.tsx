@@ -14,7 +14,7 @@ interface State {
 }
 
 export default class BookPlacement extends React.Component<Props, State> {
-    constructor(props: any) {
+    constructor(props: Props) {
         super(props);
         this.onAssignButtonPressed = this.onAssignButtonPressed.bind(this);
         this.onReturnButtonPressed = this.onReturnButtonPressed.bind(this);

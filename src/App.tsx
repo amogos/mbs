@@ -21,11 +21,11 @@ interface State {
 
 export default class App extends React.Component<Props, State> {
   userData: Types.UserType;
-  dbConnector: any;
+  dbConnector: DatabaseConnector;
   booksArray: Array<Types.BookRecordType>;
   listener: (data: any) => void;
 
-  constructor(props: any) {
+  constructor(props: Props) {
     super(props);
     this.state = { screen: '', counter: 0 };
     this.userData = { name: "", email: "" };
@@ -53,7 +53,7 @@ export default class App extends React.Component<Props, State> {
     EventBus.getInstance().addListener("onNewBookAdded", this.listener = data => {
       this.onNewBookAdded(data);
     });
-    this.dbConnector.getBooks((books: any) => this.booksArray = books);
+    this.dbConnector.getBooks((books: Array<Types.BookRecordType>) => this.booksArray = books);
   }
 
   componentWillUnmount() {
@@ -130,9 +130,8 @@ export default class App extends React.Component<Props, State> {
         return (item.id !== data.id);
       });
 
-      EventBus.getInstance().fireEvent("onOperationCompleted", {
-        param: { message: Strings.MYBOOKSHELVE_STRING_BOOK_REMOVED, button1: Strings.MYBOOKSHELVE_STRING_CONFIRM }
-      })
+      EventBus.getInstance().fireEvent("onOperationCompleted",
+        { message: Strings.MYBOOKSHELVE_STRING_BOOK_REMOVED, button1: Strings.MYBOOKSHELVE_STRING_CONFIRM } as Types.ConfirmationDialogParams);
       this.reload();
     }
     this.dbConnector.deleteBook(data, onCompleteCallback);
@@ -149,9 +148,8 @@ export default class App extends React.Component<Props, State> {
 
   onNewBookAdded(data: Types.BookValueType) {
     var onCompleteCallback = (newEntry: Types.BookValueType, bookKey: string) => {
-      EventBus.getInstance().fireEvent("onOperationCompleted", {
-        param: { message: Strings.MYBOOKSHELVE_STRING_NEW_BOOK_ADDED, button1: Strings.MYBOOKSHELVE_STRING_CONFIRM }
-      })
+      EventBus.getInstance().fireEvent("onOperationCompleted",
+        { message: Strings.MYBOOKSHELVE_STRING_NEW_BOOK_ADDED, button1: Strings.MYBOOKSHELVE_STRING_CONFIRM } as Types.ConfirmationDialogParams)
       this.booksArray.push({ id: bookKey, value: newEntry } as Types.BookRecordType);
     }
     this.dbConnector.addBook(data, onCompleteCallback);

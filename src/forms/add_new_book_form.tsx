@@ -14,7 +14,7 @@ export default class AddNewBookForm extends React.Component<Props, State> {
   defaultImage: string;
   currentBook: Types.BookValueType;
 
-  constructor(props: any) {
+  constructor(props: Props) {
     super(props);
     this.defaultImage = 'https://vignette.wikia.nocookie.net/superfriends/images/a/a5/No_Photo_Available.jpg/revision/latest?cb=20090329133959';
     this.currentBook = {
