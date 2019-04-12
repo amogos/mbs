@@ -1,22 +1,8 @@
 import * as Types from "../types"
 
-export default class DatabaseConnector {
-    constructor() {
-        if (new.target === DatabaseConnector) {
-            throw new TypeError("__abstract_construct_implementation_required__");
-        }
-    }
-    getBooks(onComplete: any) {
-        throw new Error('__abstract_not_implemented__');
-    }
-    assignBook(data: Types.BookKeyType, user: Types.UserType, onComplete: any) {
-        throw new Error('__abstract_not_implemented__');
-    }
-    deleteBook(data: Types.BookKeyType, onComplete: any) {
-        throw new Error('__abstract_not_implemented__');
-    }
-    addBook(data: Types.BookValueType, onComplete: any) {
-        throw new Error('__abstract_not_implemented__');
-    }
-
+export default interface DatabaseConnector {
+    getBooks(onComplete: (books: Array<Types.BookRecordType>) => void): void;
+    assignBook(data: Types.BookKeyType, user: Types.UserType, onComplete: () => void): void;
+    deleteBook(data: Types.BookKeyType, onComplete: () => void): void;
+    addBook(data: Types.BookValueType, onComplete: (data: Types.BookValueType, bookKey: string) => void): void;
 }
