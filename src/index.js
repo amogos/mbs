@@ -5,4 +5,9 @@ import App from './App';
 import FirebaseConnector from './connectors/firebase_connector'
 import FacebookConnector from './connectors/facebook_connector'
 
-ReactDom.render(<App  dbconnector = { new FirebaseConnector()} socialconnector = { new FacebookConnector() } />, document.getElementById("root"));
+var databaseConnector = new FirebaseConnector();
+var socialConnector = new FacebookConnector();
+
+ReactDom.render(<App dbconnector={databaseConnector}
+    socialconnector={socialConnector}
+/>, document.getElementById("root"));

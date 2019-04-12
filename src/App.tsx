@@ -9,10 +9,11 @@ import ConfirmationDialog from './components/dialogs/confirmation_dialog';
 import * as Types from "./types";
 import DatabaseConnector from './connectors/database_connector';
 import SocialConnector from './connectors/social_connector';
+import AddNewBookCommand from './commands/add_newbook_command'
 
 interface Props {
   dbconnector: DatabaseConnector;
-  socialconnector: SocialConnector
+  socialconnector: SocialConnector;
 }
 interface State {
   screen: string;
@@ -51,7 +52,8 @@ export default class App extends React.Component<Props, State> {
       this.onBannerButtonClicked(data);
     });
     EventBus.getInstance().addListener("onNewBookAdded", this.listener = data => {
-      this.onNewBookAdded(data);
+      const command = new AddNewBookCommand(data, this.booksArray).init({ dbconnector: this.props.dbconnector } as Types.Context);
+      command.execute();
     });
     this.dbConnector.getBooks((books: Array<Types.BookRecordType>) => this.booksArray = books);
   }
@@ -144,14 +146,5 @@ export default class App extends React.Component<Props, State> {
 
   onBannerButtonClicked(data: { param: string }) {
     this.setState({ screen: data.param });
-  }
-
-  onNewBookAdded(data: Types.BookValueType) {
-    var onCompleteCallback = (newEntry: Types.BookValueType, bookKey: string) => {
-      EventBus.getInstance().fireEvent("onOperationCompleted",
-        { message: Strings.MYBOOKSHELVE_STRING_NEW_BOOK_ADDED, button1: Strings.MYBOOKSHELVE_STRING_CONFIRM } as Types.ConfirmationDialogParams)
-      this.booksArray.push({ id: bookKey, value: newEntry } as Types.BookRecordType);
-    }
-    this.dbConnector.addBook(data, onCompleteCallback);
   }
 }

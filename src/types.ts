@@ -1,3 +1,4 @@
+import DatabaseConnector from "./connectors/database_connector";
 
 export interface UserType {
     name: string;
@@ -27,7 +28,13 @@ export interface ConfirmationDialogParams {
     button1: string;
 }
 
+export interface Context {
+    dbconnector: DatabaseConnector;
+}
 
+export interface CommandCallbackType {
+    (onComplete: () => void): void;
+}
 
 
 
