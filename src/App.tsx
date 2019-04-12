@@ -11,11 +11,13 @@ import SocialConnector from './connectors/social_connector';
 import AddNewBookCommand from './commands/add_newbook_command'
 import RemoveBookCommand from './commands/remove_book_command';
 import AssignBookCommand from './commands/assign_book_command';
+import ReturnBookCommand from './commands/return_book_command';
 
 interface Props {
   dbconnector: DatabaseConnector;
   socialconnector: SocialConnector;
 }
+
 interface State {
   screen: string;
   counter: number;
@@ -25,14 +27,17 @@ export default class App extends React.Component<Props, State> {
   booksArray: Array<Types.BookRecordType>;
   listener: (data: any) => void;
   appContext: Types.Context;
+  reloadCallback: () => void;
 
   constructor(props: Props) {
     super(props);
     this.state = { screen: '', counter: 0 };
     this.booksArray = [];
     this.listener = (data: any) => { };
+    this.reloadCallback = () => { this.setState({ counter: this.state.counter + 1 }); };
+
     const nullUser = { name: "", email: "" } as Types.UserType;
-    
+
     this.appContext = {
       dbconnector: props.dbconnector,
       userdata: nullUser,
@@ -43,18 +48,15 @@ export default class App extends React.Component<Props, State> {
   componentDidMount() {
     EventBus.getInstance().addListener("onBookAsigned", this.listener = data => {
       const command = new AssignBookCommand(data, this.booksArray).init(this.appContext);
-      command.execute(() => {
-        this.reload();
-      });
+      command.execute(this.reloadCallback);
     });
     EventBus.getInstance().addListener("onBookReturned", this.listener = data => {
-      this.onBookReturned(data);
+      const command = new ReturnBookCommand(data, this.booksArray).init(this.appContext);
+      command.execute(this.reloadCallback);
     });
     EventBus.getInstance().addListener("onBookRemoved", this.listener = data => {
       const command = new RemoveBookCommand(data, this.booksArray).init(this.appContext);
-      command.execute(() => {
-        this.reload();
-      });
+      command.execute(this.reloadCallback);
     });
     EventBus.getInstance().addListener("onSocialConnect", this.listener = data => {
       this.onSocialConnect(data);
@@ -110,25 +112,9 @@ export default class App extends React.Component<Props, State> {
       return this.showBlankPage();
   }
 
-  reload() {
-    this.setState({ counter: this.state.counter + 1 });
-  }
-
-  onBookReturned(data: Types.BookKeyType) {
-    var match = this.booksArray.find(function (item: Types.BookRecordType) {
-      return item.id === data.id;
-    }) as unknown as Types.BookRecordType;
-
-    var onCompleteCallback = () => {
-      match.value.holder = match.value.owner;
-      this.reload();
-    }
-    this.appContext.dbconnector.assignBook(data, match.value.owner, onCompleteCallback);
-  }
-
   onSocialConnect(data: Types.UserType) {
     this.appContext.userdata = data;
-    this.reload();
+    this.reloadCallback();
   }
 
   onBannerButtonClicked(data: { param: string }) {
