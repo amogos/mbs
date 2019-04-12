@@ -11,7 +11,7 @@ interface Props {
 interface State { }
 
 export default class ShowAllBooksForm extends React.Component<Props, State> {
-    componentWillReceiveProps(props: any) {
+    componentWillReceiveProps(props: Props) {
         if (props.counter !== this.props.counter) {
             this.setState(this.state);
         }

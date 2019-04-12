@@ -2,9 +2,8 @@ import firebase from 'firebase'
 import DatabaseConnector from './database_connector'
 import * as Types from "../types"
 
-export default class FirebaseConnector extends DatabaseConnector {
+export default class FirebaseConnector implements DatabaseConnector {
     constructor() {
-        super();
         this.init();
     }
 
@@ -19,7 +18,7 @@ export default class FirebaseConnector extends DatabaseConnector {
         });
     }
 
-    getBooks(onComplete: any) {
+    getBooks(onComplete: (books: Array<Types.BookRecordType>) => void): void {
         var booksArray: Array<Types.BookRecordType> = [];
         firebase.database().ref().child('books').once('value').then(function (snapshot) {
             snapshot.forEach(item => {
@@ -29,17 +28,17 @@ export default class FirebaseConnector extends DatabaseConnector {
         }).catch((error) => { alert(error); });
     }
 
-    assignBook(data: Types.BookKeyType, user: Types.UserType, onComplete: any) {
+    assignBook(data: Types.BookKeyType, user: Types.UserType, onComplete: () => void): void {
         firebase.database().ref().child('books').child(data.id as string).update({ holder: user }, () => onComplete()).catch((error) => { alert(error); });
     }
 
-    deleteBook(data: Types.BookKeyType, onComplete: any) {
+    deleteBook(data: Types.BookKeyType, onComplete: () => void): void {
         firebase.database().ref().child('books').child(data.id as string).remove(() => onComplete()).catch((error) => { alert(error); });
     }
 
-    addBook(data: Types.BookValueType, onComplete: any) {
+    addBook(data: Types.BookValueType, onComplete: (data: Types.BookValueType, bookKey: string) => void): void {
         var ref = firebase.database().ref().child('books').push();
-        var key = ref.key;
+        var key = ref.key as string;
         ref.set(data, () => onComplete(data, key)).catch((error) => { alert(error); });
     }
 }

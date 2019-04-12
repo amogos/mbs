@@ -2,13 +2,13 @@ import React from 'react'
 import { Button } from 'react-native'
 import Popup from "reactjs-popup";
 import EventBus from './../../utils/event_bus'
+import * as Types from './../../types'
 
-interface Props {
-}
+interface Props { }
 
 interface State {
     isDialogOpen: boolean,
-    params: { message: string, button1: string }
+    params: Types.ConfirmationDialogParams
 }
 
 export default class ConfirmationDialog extends React.Component<Props, State> {
@@ -17,11 +17,11 @@ export default class ConfirmationDialog extends React.Component<Props, State> {
         params: { message: "", button1: "" }
     };
 
-    listener: (data: any) => void;
+    listener: (data: Types.ConfirmationDialogParams) => void;
 
-    constructor(props: any) {
+    constructor(props: Props) {
         super(props);
-        this.listener = (data: any) => { }
+        this.listener = (data: Types.ConfirmationDialogParams) => { }
     }
 
     componentDidMount() {
@@ -34,7 +34,7 @@ export default class ConfirmationDialog extends React.Component<Props, State> {
         EventBus.getInstance().removeListener(this.listener);
     }
 
-    open = (data: any) => this.setState({ isDialogOpen: true, params: data.param })
+    open = (data: Types.ConfirmationDialogParams) => this.setState({ isDialogOpen: true, params: data })
 
     close = () => this.setState({ isDialogOpen: false })
 
