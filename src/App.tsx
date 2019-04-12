@@ -4,45 +4,59 @@ import EventBus from './utils/event_bus'
 import Banner from './components/banner_component';
 import ShowAllBooksScreen from './screens/show_all_books_screen';
 import AddNewBookScreen from './screens/add_new_book_screen';
-import Strings from './constants/string_constant';
 import ConfirmationDialog from './components/dialogs/confirmation_dialog';
 import * as Types from "./types";
 import DatabaseConnector from './connectors/database_connector';
 import SocialConnector from './connectors/social_connector';
+import AddNewBookCommand from './commands/add_newbook_command'
+import RemoveBookCommand from './commands/remove_book_command';
+import AssignBookCommand from './commands/assign_book_command';
+import ReturnBookCommand from './commands/return_book_command';
 
 interface Props {
   dbconnector: DatabaseConnector;
-  socialconnector: SocialConnector
+  socialconnector: SocialConnector;
 }
+
 interface State {
   screen: string;
   counter: number;
 }
 
 export default class App extends React.Component<Props, State> {
-  userData: Types.UserType;
-  dbConnector: DatabaseConnector;
   booksArray: Array<Types.BookRecordType>;
   listener: (data: any) => void;
+  appContext: Types.Context;
+  reloadCallback: () => void;
 
   constructor(props: Props) {
     super(props);
     this.state = { screen: '', counter: 0 };
-    this.userData = { name: "", email: "" };
-    this.dbConnector = this.props.dbconnector;
     this.booksArray = [];
     this.listener = (data: any) => { };
+    this.reloadCallback = () => { this.setState({ counter: this.state.counter + 1 }); };
+
+    const nullUser = { name: "", email: "" } as Types.UserType;
+
+    this.appContext = {
+      dbconnector: props.dbconnector,
+      userdata: nullUser,
+      socialconnector: props.socialconnector
+    };
   }
 
   componentDidMount() {
     EventBus.getInstance().addListener("onBookAsigned", this.listener = data => {
-      this.onBookAsigned(data);
+      const command = new AssignBookCommand(data, this.booksArray).init(this.appContext);
+      command.execute(this.reloadCallback);
     });
     EventBus.getInstance().addListener("onBookReturned", this.listener = data => {
-      this.onBookReturned(data);
+      const command = new ReturnBookCommand(data, this.booksArray).init(this.appContext);
+      command.execute(this.reloadCallback);
     });
     EventBus.getInstance().addListener("onBookRemoved", this.listener = data => {
-      this.onBookRemoved(data);
+      const command = new RemoveBookCommand(data, this.booksArray).init(this.appContext);
+      command.execute(this.reloadCallback);
     });
     EventBus.getInstance().addListener("onSocialConnect", this.listener = data => {
       this.onSocialConnect(data);
@@ -51,9 +65,10 @@ export default class App extends React.Component<Props, State> {
       this.onBannerButtonClicked(data);
     });
     EventBus.getInstance().addListener("onNewBookAdded", this.listener = data => {
-      this.onNewBookAdded(data);
+      const command = new AddNewBookCommand(data, this.booksArray).init(this.appContext);
+      command.execute();
     });
-    this.dbConnector.getBooks((books: Array<Types.BookRecordType>) => this.booksArray = books);
+    this.appContext.dbconnector.getBooks((books: Array<Types.BookRecordType>) => this.booksArray = books);
   }
 
   componentWillUnmount() {
@@ -64,7 +79,7 @@ export default class App extends React.Component<Props, State> {
     return (
       <View>
         <Banner dbconnector={this.props.dbconnector} socialconnector={this.props.socialconnector} />
-        <ShowAllBooksScreen items={this.booksArray} userdata={this.userData} counter={this.state.counter} />
+        <ShowAllBooksScreen items={this.booksArray} userdata={this.appContext.userdata} counter={this.state.counter} />
         <ConfirmationDialog />
       </View>
     );
@@ -74,7 +89,7 @@ export default class App extends React.Component<Props, State> {
     return (
       <View >
         <Banner dbconnector={this.props.dbconnector} socialconnector={this.props.socialconnector} />
-        <AddNewBookScreen userdata={this.userData} />
+        <AddNewBookScreen userdata={this.appContext.userdata} />
         <ConfirmationDialog />
       </View>
     );
@@ -97,61 +112,12 @@ export default class App extends React.Component<Props, State> {
       return this.showBlankPage();
   }
 
-  reload() {
-    this.setState({ counter: this.state.counter + 1 });
-  }
-
-  onBookAsigned(data: Types.BookKeyType) {
-    var onCompleteCallback = () => {
-      var match = this.booksArray.find(function (item: Types.BookRecordType) {
-        return item.id === data.id;
-      }) as unknown as Types.BookRecordType;
-      match.value.holder = this.userData;
-      this.reload();
-    }
-    this.dbConnector.assignBook(data, this.userData, onCompleteCallback);
-  }
-
-  onBookReturned(data: Types.BookKeyType) {
-    var match = this.booksArray.find(function (item: Types.BookRecordType) {
-      return item.id === data.id;
-    }) as unknown as Types.BookRecordType;
-
-    var onCompleteCallback = () => {
-      match.value.holder = match.value.owner;
-      this.reload();
-    }
-    this.dbConnector.assignBook(data, match.value.owner, onCompleteCallback);
-  }
-
-  onBookRemoved(data: Types.BookKeyType) {
-    var onCompleteCallback = () => {
-      this.booksArray = this.booksArray.filter(function (item: Types.BookRecordType) {
-        return (item.id !== data.id);
-      });
-
-      EventBus.getInstance().fireEvent("onOperationCompleted",
-        { message: Strings.MYBOOKSHELVE_STRING_BOOK_REMOVED, button1: Strings.MYBOOKSHELVE_STRING_CONFIRM } as Types.ConfirmationDialogParams);
-      this.reload();
-    }
-    this.dbConnector.deleteBook(data, onCompleteCallback);
-  }
-
   onSocialConnect(data: Types.UserType) {
-    this.userData = data;
-    this.reload();
+    this.appContext.userdata = data;
+    this.reloadCallback();
   }
 
   onBannerButtonClicked(data: { param: string }) {
     this.setState({ screen: data.param });
-  }
-
-  onNewBookAdded(data: Types.BookValueType) {
-    var onCompleteCallback = (newEntry: Types.BookValueType, bookKey: string) => {
-      EventBus.getInstance().fireEvent("onOperationCompleted",
-        { message: Strings.MYBOOKSHELVE_STRING_NEW_BOOK_ADDED, button1: Strings.MYBOOKSHELVE_STRING_CONFIRM } as Types.ConfirmationDialogParams)
-      this.booksArray.push({ id: bookKey, value: newEntry } as Types.BookRecordType);
-    }
-    this.dbConnector.addBook(data, onCompleteCallback);
   }
 }

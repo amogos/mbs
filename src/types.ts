@@ -1,3 +1,5 @@
+import DatabaseConnector from "./connectors/database_connector";
+import SocialConnector from "./connectors/social_connector";
 
 export interface UserType {
     name: string;
@@ -27,8 +29,11 @@ export interface ConfirmationDialogParams {
     button1: string;
 }
 
-
-
+export interface Context {
+    dbconnector: DatabaseConnector;
+    socialconnector:SocialConnector;
+    userdata: UserType;
+}
 
 
 

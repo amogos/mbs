@@ -4,12 +4,11 @@ import EventBus from './../utils/event_bus'
 import * as Types from "./../types";
 
 interface Props {
-    id:string|null;
-    value:Types.BookValueType;
-    userdata:Types.UserType;
+    id: string | null;
+    value: Types.BookValueType;
+    userdata: Types.UserType;
 }
 interface State {
-
 }
 
 export default class BookRemover extends React.Component<Props, State> {

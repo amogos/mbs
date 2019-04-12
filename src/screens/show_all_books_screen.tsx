@@ -13,7 +13,7 @@ export default class ShowAllBooksScreen extends React.Component<Props, State> {
     static screenId = 'search';
     render() {
         return (
-           <ShowAllBooksForm {...this.props}/>
+            <ShowAllBooksForm {...this.props} />
         )
     }
 }
