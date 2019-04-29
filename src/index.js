@@ -6,18 +6,12 @@ import { createStore } from 'redux'
 import rootReducer from './reducers'
 
 import App from './components/main_component';
-import FirebaseConnector from './connectors/firebase_connector'
-import FacebookConnector from './connectors/facebook_connector'
 
 const store = createStore(rootReducer)
 
-var databaseConnector = new FirebaseConnector()
-var socialConnector = new FacebookConnector()
 
 ReactDom.render(
     <Provider store={store}>
-        <App dbconnector={databaseConnector}
-            socialconnector={socialConnector}
-        />
+        <App />
     </Provider>
     , document.getElementById("root"));

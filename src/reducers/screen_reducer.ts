@@ -5,14 +5,22 @@ import {
     SHOW_BLANK
 } from '../constants/action_constant'
 
-const initialState = [
-    {
-        text: SHOW_BLANK,
-        completed: false,
-        id: 0,
-        counter: 0,
-        userdata: Types.nullUser
-    }
+import FirebaseConnector from '../connectors/firebase_connector'
+import FacebookConnector from '../connectors/facebook_connector'
+
+const databaseConnector = new FirebaseConnector()
+const socialConnector = new FacebookConnector()
+
+
+const initialState = [{
+    text: SHOW_BLANK,
+    completed: false,
+    id: 0,
+    counter: 0,
+    userdata: Types.nullUser,
+    dbconnector: databaseConnector,
+    socialconnector: socialConnector
+}
 ]
 
 export default function screens(state = initialState, action: any) {
