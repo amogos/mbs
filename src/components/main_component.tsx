@@ -1,17 +1,20 @@
 import React from 'react';
 import { View } from 'react-native';
-import EventBus from './utils/event_bus'
-import Banner from './components/banner_component';
-import ShowAllBooksScreen from './screens/show_all_books_screen';
-import AddNewBookScreen from './screens/add_new_book_screen';
-import ConfirmationDialog from './components/dialogs/confirmation_dialog';
-import * as Types from "./types";
-import DatabaseConnector from './connectors/database_connector';
-import SocialConnector from './connectors/social_connector';
-import AddNewBookCommand from './commands/add_newbook_command'
-import RemoveBookCommand from './commands/remove_book_command';
-import AssignBookCommand from './commands/assign_book_command';
-import ReturnBookCommand from './commands/return_book_command';
+
+import * as ActionTypes from '../constants/action_constant'
+
+import EventBus from '../utils/event_bus'
+import Banner from './banner_component';
+import ShowAllBooksScreen from '../screens/show_all_books_screen';
+import AddNewBookScreen from '../screens/add_new_book_screen';
+import ConfirmationDialog from './dialogs/confirmation_dialog';
+import * as Types from "../types";
+import DatabaseConnector from '../connectors/database_connector';
+import SocialConnector from '../connectors/social_connector';
+import AddNewBookCommand from '../commands/add_newbook_command'
+import RemoveBookCommand from '../commands/remove_book_command';
+import AssignBookCommand from '../commands/assign_book_command';
+import ReturnBookCommand from '../commands/return_book_command';
 
 interface Props {
   dbconnector: DatabaseConnector;
@@ -23,6 +26,51 @@ interface State {
   counter: number;
 }
 
+var booksArray: Array<Types.BookRecordType>;
+
+const MainComponent = (props: any) => {
+
+  const { screen, counter, userdata, dbconnector, socialconnector } = props;
+
+  if (screen === ActionTypes.LIST_BOOKS)
+    return showAllBooks(props);
+  else if (screen === ActionTypes.ADD_BOOK)
+    return addNewBooks(props);
+  else
+    return showBlankPage(props);
+}
+
+const showAllBooks = (props: any) => {
+  return (
+    <View>
+      <Banner dbconnector={props.dbconnector} socialconnector={props.socialconnector} />
+      <ShowAllBooksScreen items={booksArray} userdata={props.userdata} counter={props.counter} />
+      <ConfirmationDialog />
+    </View>
+  );
+}
+
+const addNewBooks = (props: any) => {
+  return (
+    <View >
+      <Banner dbconnector={props.dbconnector} socialconnector={props.socialconnector} />
+      <AddNewBookScreen userdata={props.userdata} />
+      <ConfirmationDialog />
+    </View>
+  );
+}
+
+const showBlankPage = (props: any) => {
+  return (
+    <View>
+      <Banner dbconnector={props.dbconnector} socialconnector={props.socialconnector} />
+    </View>
+  );
+}
+
+
+export default MainComponent;
+/*
 export default class App extends React.Component<Props, State> {
   booksArray: Array<Types.BookRecordType>;
   listener: (data: any) => void;
@@ -120,4 +168,4 @@ export default class App extends React.Component<Props, State> {
   onBannerButtonClicked(data: { param: string }) {
     this.setState({ screen: data.param });
   }
-}
+}*/

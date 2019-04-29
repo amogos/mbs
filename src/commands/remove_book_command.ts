@@ -1,6 +1,6 @@
-import * as Types from "./../types";
-import EventBus from './../utils/event_bus'
-import Strings from './../constants/string_constant';
+import * as Types from "../types";
+import EventBus from '../utils/event_bus'
+import Strings from '../constants/string_constant';
 import Command from "./command";
 
 

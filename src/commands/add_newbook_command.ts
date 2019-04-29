@@ -1,7 +1,7 @@
 import Command from './command';
-import * as Types from './../types';
-import EventBus from './../utils/event_bus'
-import Strings from './../constants/string_constant';
+import * as Types from '../types';
+import EventBus from '../utils/event_bus'
+import Strings from '../constants/string_constant';
 
 export default class AddNewBookCommand implements Command {
     context: Types.Context | undefined;

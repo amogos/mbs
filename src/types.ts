@@ -28,10 +28,10 @@ export interface ConfirmationDialogParams {
     message: string;
     button1: string;
 }
-
+export const nullUser = { name: "", email: "" } as UserType;
 export interface Context {
     dbconnector: DatabaseConnector;
-    socialconnector:SocialConnector;
+    socialconnector: SocialConnector;
     userdata: UserType;
 }
 
