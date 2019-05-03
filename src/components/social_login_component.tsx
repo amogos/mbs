@@ -4,9 +4,9 @@ import { Text } from 'react-native'
 
 const SocialLoginComponent = (props: any) => {
     let content;
-    let socialconnector = props.socialconnector;
-    if (socialconnector.getLoggedIn()) {
-        content = (<Text style={{ color: 'white' }} >Welcome: {socialconnector.getUserInfo().name} </Text>);
+    let userdata = props.userdata;
+    if (userdata) {
+        content = (<Text style={{ color: 'white' }} >Welcome: {userdata.name} </Text>);
 
     } else {
         content = props.socialconnector.getView();

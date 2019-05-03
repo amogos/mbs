@@ -8,9 +8,7 @@ export default class FacebookConnector extends SocialConnector {
     init() {}
 
     responseFacebook = (response: ReactFacebookLoginInfo) => {
-        super.setLoggedIn(true);
         var userInfo: Types.UserType = { name: response.name, email: response.email } as Types.UserType;
-        super.setUserInfo(userInfo);
         EventBus.getInstance().fireEvent("onSocialConnect", userInfo);
     }
 

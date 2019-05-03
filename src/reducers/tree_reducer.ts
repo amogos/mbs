@@ -2,7 +2,8 @@ import * as Types from "../types";
 import {
     ADD_BOOK,
     LIST_BOOKS,
-    SHOW_BLANK
+    SHOW_BLANK,
+    USER_DATA
 } from '../constants/action_constant'
 
 import FirebaseConnector from '../connectors/firebase_connector'
@@ -13,26 +14,28 @@ var databaseConnector = new FirebaseConnector()
 var socialConnector = new FacebookConnector()
 
 
-const initialState = [{
+const initialState = {
     screen: SHOW_BLANK,
     counter: 0,
     id: 0,
-    userdata: Types.nullUser,
     dbconnector: databaseConnector,
     socialconnector: socialConnector
 }
-]
+
 
 export default function tree(state = initialState, action: any) {
     switch (action.type) {
         case ADD_BOOK:
-            return state.map(stage =>
-                stage.id === action.id ?
-                    { ...stage, text: action.text } : stage);
+            return state;
         case LIST_BOOKS:
-            return state.map(stage =>
-                stage.id === action.id ?
-                    { ...stage, text: action.text } : stage);
+           return state;
+        case USER_DATA:
+            let test =  Object.assign({}, state, {
+                userdata: action.userdata
+            })
+            alert(JSON.stringify(test))
+            return test;
+
         default:
             return state;
     }

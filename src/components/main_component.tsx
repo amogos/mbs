@@ -16,13 +16,14 @@ import RemoveBookCommand from '../commands/remove_book_command';
 import AssignBookCommand from '../commands/assign_book_command';
 import ReturnBookCommand from '../commands/return_book_command';
 
-interface Props {
-  screen: string;
-}
 
 var booksArray: Array<Types.BookRecordType>;
 
-const MainComponent = (props: Props) => {
+const MainComponent = (props: any) => {
+  EventBus.getInstance().addListener("onSocialConnect", (data: Types.UserType) => {
+    props.addUserData(data);
+    
+  });
 
   if (props.screen === ActionTypes.LIST_BOOKS)
     return showAllBooks(props);
