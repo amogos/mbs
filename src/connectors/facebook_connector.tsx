@@ -5,7 +5,7 @@ import FacebookLogin, { ReactFacebookLoginInfo } from 'react-facebook-login';
 import * as Types from "../types"
 
 export default class FacebookConnector extends SocialConnector {
-    init() { }
+    init() {}
 
     responseFacebook = (response: ReactFacebookLoginInfo) => {
         super.setLoggedIn(true);

@@ -1,10 +1,10 @@
 import { connect } from 'react-redux'
 import * as Actions from '../actions'
 import { bindActionCreators } from 'redux'
-import MainComponent from '../components/main_component'
+import SocialLoginComponent from '../components/social_login_component'
 
 function mapStateToProps(state) {
-    return state;
+    return { socialconnector: state.tree[0].socialconnector };
 }
 
 const mapDispatchToProps = dispatch => ({
@@ -14,4 +14,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(MainComponent)
+)(SocialLoginComponent)

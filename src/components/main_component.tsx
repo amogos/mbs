@@ -17,24 +17,17 @@ import AssignBookCommand from '../commands/assign_book_command';
 import ReturnBookCommand from '../commands/return_book_command';
 
 interface Props {
-  dbconnector: DatabaseConnector;
-  socialconnector: SocialConnector;
-}
-
-interface State {
   screen: string;
   counter: number;
 }
 
 var booksArray: Array<Types.BookRecordType>;
 
-const MainComponent = (props: any) => {
+const MainComponent = (props: Props) => {
 
-  const { screen, counter, userdata, dbconnector, socialconnector } = props;
-
-  if (screen === ActionTypes.LIST_BOOKS)
+  if (props.screen === ActionTypes.LIST_BOOKS)
     return showAllBooks(props);
-  else if (screen === ActionTypes.ADD_BOOK)
+  else if (props.screen === ActionTypes.ADD_BOOK)
     return addNewBooks(props);
   else
     return showBlankPage(props);
@@ -43,7 +36,7 @@ const MainComponent = (props: any) => {
 const showAllBooks = (props: any) => {
   return (
     <View>
-      <Banner dbconnector={props.dbconnector} socialconnector={props.socialconnector} />
+      <Banner />
       <ShowAllBooksScreen items={booksArray} userdata={props.userdata} counter={props.counter} />
       <ConfirmationDialog />
     </View>
@@ -53,7 +46,7 @@ const showAllBooks = (props: any) => {
 const addNewBooks = (props: any) => {
   return (
     <View >
-      <Banner dbconnector={props.dbconnector} socialconnector={props.socialconnector} />
+      <Banner />
       <AddNewBookScreen userdata={props.userdata} />
       <ConfirmationDialog />
     </View>
@@ -63,7 +56,7 @@ const addNewBooks = (props: any) => {
 const showBlankPage = (props: any) => {
   return (
     <View>
-      <Banner dbconnector={props.dbconnector} socialconnector={props.socialconnector} />
+      <Banner />
     </View>
   );
 }
