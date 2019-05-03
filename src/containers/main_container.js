@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux'
 import MainComponent from '../components/main_component'
 
 function mapStateToProps(state) {
-    return state;
+    return { screen: state.tree[0].screen };
 }
 
 const mapDispatchToProps = dispatch => ({

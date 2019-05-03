@@ -18,7 +18,6 @@ import ReturnBookCommand from '../commands/return_book_command';
 
 interface Props {
   screen: string;
-  counter: number;
 }
 
 var booksArray: Array<Types.BookRecordType>;
