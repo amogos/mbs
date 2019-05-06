@@ -1,23 +1,21 @@
 import React from 'react'
 import { View, Text, StyleSheet, Button } from 'react-native'
-import EventBus from './../utils/event_bus'
 import SocialLoginContainer from './../containers/social_login_container'
 
-
-export default class Banner extends React.Component {
-    render() {
-        return (
-            <View style={styles.app}>
-                <View style={styles.appHeader}>
-                    <Text style={styles.appTitle}> <span aria-labelledby='jsx-a11y/accessible-emoji' role='img'>⚛️ </span></Text>
-                    <Button title="Search" color="#00000000" onPress={() => EventBus.getInstance().fireEvent("onBannerButtonClicked", { param: "search" })} />
-                    <Button title="Add Book" color="#00000000" onPress={() => EventBus.getInstance().fireEvent("onBannerButtonClicked", { param: "add" })} />
-                    <SocialLoginContainer />
-                </View>
+const BannerComponent = (props: any) => {
+    return (
+        <View style={styles.app}>
+            <View style={styles.appHeader}>
+                <Text style={styles.appTitle}> <span aria-labelledby='jsx-a11y/accessible-emoji' role='img'>⚛️ </span></Text>
+                <Button title="Search" color="#00000000" onPress={() => props.listBooks()} />
+                <Button title="Add Book" color="#00000000" onPress={() => props.addBook()} />
+                <SocialLoginContainer />
             </View>
-        )
-    }
+        </View>
+    )
 }
+
+export default BannerComponent;
 
 const styles = StyleSheet.create({
     app: {

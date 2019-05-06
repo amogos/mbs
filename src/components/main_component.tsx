@@ -4,7 +4,7 @@ import { View } from 'react-native';
 import * as ActionTypes from '../constants/action_constant'
 
 import EventBus from '../utils/event_bus'
-import Banner from './banner_component';
+import BannerContainer from '../containers/banner_container';
 import ShowAllBooksScreen from '../screens/show_all_books_screen';
 import AddNewBookScreen from '../screens/add_new_book_screen';
 import ConfirmationDialog from './dialogs/confirmation_dialog';
@@ -32,9 +32,10 @@ const MainComponent = (props: any) => {
 }
 
 const showAllBooks = (props: any) => {
+ // alert(JSON.stringify(props))
   return (
     <View>
-      <Banner />
+      <BannerContainer />
       <ShowAllBooksScreen items={booksArray} userdata={props.userdata} counter={props.counter} />
       <ConfirmationDialog />
     </View>
@@ -42,9 +43,10 @@ const showAllBooks = (props: any) => {
 }
 
 const addNewBooks = (props: any) => {
+  //alert(JSON.stringify(props))
   return (
     <View >
-      <Banner />
+      <BannerContainer />
       <AddNewBookScreen userdata={props.userdata} />
       <ConfirmationDialog />
     </View>
@@ -54,7 +56,7 @@ const addNewBooks = (props: any) => {
 const showBlankPage = (props: any) => {
   return (
     <View>
-      <Banner />
+      <BannerContainer />
     </View>
   );
 }

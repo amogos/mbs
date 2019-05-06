@@ -3,6 +3,7 @@ import * as Actions from '../actions/index'
 import MainComponent from '../components/main_component'
 
 function mapStateToProps(state) {
+    alert(JSON.stringify(state))
     return { screen: state.tree.screen };
 }
 

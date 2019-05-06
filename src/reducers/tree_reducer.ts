@@ -17,8 +17,14 @@ const initialState = {
 export default function tree(state = initialState, action: any) {
     switch (action.type) {
         case ADD_BOOK:
+            return Object.assign({}, state, {
+                screen: ADD_BOOK
+            })
             return state;
         case LIST_BOOKS:
+            return Object.assign({}, state, {
+                screen: LIST_BOOKS
+            })
             return state;
         case USER_DATA:
             return Object.assign({}, state, {
