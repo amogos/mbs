@@ -17,15 +17,17 @@ const assignable = (props: any) => {
 const BookPlacementComponent = (props: any) => {
     let content;
     const { holder, owner } = props.value;
+    const key = props.id;
+    
     if (assignable(props)) {
         content = (<Text style={styles.description}> <br /> {Strings.book_placement_component.MYBOOKSHELVE_STRING_OWNER}: {owner.name}
             <br /><Button title={Strings.book_placement_component.MYBOOKSHELVE_STRING_ASSIGN} color="#000000ff"
-                onPress={() => props.assignBook(props.id)} />
+                onPress={() => props.assignBook(key)} />
         </Text>);
 
     } else if (returnable(props)) {
         content = (<Text style={styles.description}> <br /> {Strings.book_placement_component.MYBOOKSHELVE_STRING_OWNER}: {owner.name}
-            <br /><Button title={Strings.book_placement_component.MYBOOKSHELVE_STRING_RETURN} color="#33FF8A" onPress={() => props.returnBook(props.id)} />
+            <br /><Button title={Strings.book_placement_component.MYBOOKSHELVE_STRING_RETURN} color="#33FF8A" onPress={() => props.returnBook(key)} />
         </Text>);
     } else {
         content = (<Text style={styles.description}> <br /> {Strings.book_placement_component.MYBOOKSHELVE_STRING_OWNER}: {owner.name}

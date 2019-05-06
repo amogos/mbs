@@ -28,6 +28,6 @@ export default class ReturnBookCommand implements Command {
                 onComplete();
             }
         }
-        this.context!.dbconnector.assignBook(this.data, this.books[index].value.holder, onCompleteCallback);
+        //this.context!.dbconnector.assignBook(this.data, this.books[index].value.holder, onCompleteCallback);
     }
 }

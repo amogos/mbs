@@ -28,8 +28,8 @@ export default class FirebaseConnector implements DatabaseConnector {
         }).catch((error) => { alert(error); });
     }
 
-    assignBook(data: DataTypes.BookKeyType, user: DataTypes.UserType, onComplete: (userdata: DataTypes.UserType) => void): void {
-        firebase.database().ref().child('books').child(data.id as string).update({ holder: user }, () => onComplete(user)).catch((error) => { alert(error); });
+    assignBook(key: string, user: DataTypes.UserType, onComplete: (userdata: DataTypes.UserType) => void): void {
+        firebase.database().ref().child('books').child(key).update({ holder: user }, () => onComplete(user)).catch((error) => { alert(error); });
     }
 
     deleteBook(data: DataTypes.BookKeyType, onComplete: () => void): void {

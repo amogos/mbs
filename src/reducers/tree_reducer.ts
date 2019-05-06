@@ -5,7 +5,8 @@ import {
     ACTION_USER_DATA,
     ACTION_QUERY_BOOKS_LISTING,
     ACTION_NONE,
-    ACTION_ASSIGN_BOOK
+    ACTION_ASSIGN_BOOK,
+    ACTION_RETURN_BOOK
 } from '../constants/action_constant'
 import * as DataTypes from "../types"
 
@@ -41,17 +42,29 @@ export default function tree(state = initialState, action: any) {
         case ACTION_QUERY_BOOKS_LISTING:
             state.dbconnector.getBooks((books: Array<DataTypes.BookRecordType>) => booksArray = books);
             return state;
-        case ACTION_ASSIGN_BOOK:
-            const key: DataTypes.BookKeyType = action.book_key;
+        case ACTION_ASSIGN_BOOK: {
+            const key: string = action.book_key;
             const userdata = state.userdata;
             var onCompleteCallback = (userdata: DataTypes.UserType) => {
                 var index = booksArray.findIndex(function (item: DataTypes.BookRecordType) {
-                    return item.id === key.id;
+                    return item.id === key;
                 });
                 booksArray[index].value.holder = userdata;
             }
-            state.dbconnector.assignBook(key, userdata, onCompleteCallback);
+            state.dbconnector.assignBook(key as string, userdata, onCompleteCallback);
             return state;
+        }
+        case ACTION_RETURN_BOOK: {
+            const key: string = action.book_key;
+            const userdata = state.userdata;
+            var index = booksArray.findIndex(function (item: DataTypes.BookRecordType) {
+                return item.id === key;
+            });
+            var onCompleteCallback = (userdata: DataTypes.UserType) => {
+                booksArray[index].value.holder = booksArray[index].value.owner;
+            }
+            state.dbconnector.assignBook(key, booksArray[index].value.holder, onCompleteCallback);
+        }
         default:
             return state;
     }

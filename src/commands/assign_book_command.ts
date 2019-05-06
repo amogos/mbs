@@ -33,6 +33,6 @@ export default class AssignBookCommand implements Command {
             }
 
         }
-        this.context!.dbconnector.assignBook(this.data, this.context!.userdata, onCompleteCallback);
+       // this.context!.dbconnector.assignBook(this.data, this.context!.userdata, onCompleteCallback);
     }
 }
