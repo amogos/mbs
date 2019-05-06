@@ -1,6 +1,6 @@
 import React from 'react'
 import { Text, View, StyleSheet } from 'react-native'
-import BookPlacement from './book_placement_component'
+import BookPlacementContainer from './../containers/book_placement_container'
 import BookRemover from './book_remover_component'
 import * as Types from "./../types";
 
@@ -32,7 +32,7 @@ function BookRightSide(props: Props) {
                 <Text style={styles.grey_text}> {props.value.author}</Text>
 
             </View>
-            <BookPlacement {...props} />
+            <BookPlacementContainer {...props} />
 
         </td>);
 }
