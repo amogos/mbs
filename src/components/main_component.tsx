@@ -8,7 +8,7 @@ import Banner from './banner_component';
 import ShowAllBooksScreen from '../screens/show_all_books_screen';
 import AddNewBookScreen from '../screens/add_new_book_screen';
 import ConfirmationDialog from './dialogs/confirmation_dialog';
-import * as Types from "../types";
+import * as DataTypes from "../types";
 import DatabaseConnector from '../connectors/database_connector';
 import SocialConnector from '../connectors/social_connector';
 import AddNewBookCommand from '../commands/add_newbook_command'
@@ -17,14 +17,12 @@ import AssignBookCommand from '../commands/assign_book_command';
 import ReturnBookCommand from '../commands/return_book_command';
 
 
-var booksArray: Array<Types.BookRecordType>;
+var booksArray: Array<DataTypes.BookRecordType>;
 
 const MainComponent = (props: any) => {
-  EventBus.getInstance().addListener("onSocialConnect", (data: Types.UserType) => {
+  EventBus.getInstance().addListener("onSocialConnect", (data: DataTypes.UserType) => {
     props.addUserData(data);
-    
   });
-
   if (props.screen === ActionTypes.LIST_BOOKS)
     return showAllBooks(props);
   else if (props.screen === ActionTypes.ADD_BOOK)

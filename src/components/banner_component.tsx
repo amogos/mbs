@@ -2,9 +2,6 @@ import React from 'react'
 import { View, Text, StyleSheet, Button } from 'react-native'
 import EventBus from './../utils/event_bus'
 import SocialLoginContainer from './../containers/social_login_container'
-import SocialConnector from '../connectors/social_connector';
-import DatabaseConnector from '../connectors/database_connector';
-
 
 
 export default class Banner extends React.Component {
