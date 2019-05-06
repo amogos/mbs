@@ -3,13 +3,13 @@ import * as Actions from '../actions/index'
 import MainComponent from '../components/main_component'
 
 function mapStateToProps(state) {
-    alert(JSON.stringify(state))
     return { screen: state.tree.screen };
 }
 
 const mapDispatchToProps = dispatch => {
     return {
         addUserData: (data) => dispatch(Actions.addUserData(data)),
+        querryBooksListing: () => dispatch(Actions.querryBooksListing()),
         dispatch
     }
 }

@@ -8,7 +8,7 @@ interface Props {
     id: string | null;
     value: Types.BookValueType;
     userdata: Types.UserType;
-    counter: number
+    extraData: string
 }
 
 interface State {
@@ -39,7 +39,7 @@ function BookRightSide(props: Props) {
 
 export default class Book extends React.Component<Props, State> {
     componentWillReceiveProps(props: Props) {
-        if (props.counter !== this.props.counter) {
+        if (props.extraData !== this.props.extraData) {
             this.setState(this.state);
         }
     }

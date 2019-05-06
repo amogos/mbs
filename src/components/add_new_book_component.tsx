@@ -1,7 +1,7 @@
 import React from 'react'
 import { View, Text, TextInput, Button, StyleSheet } from 'react-native'
 import EventBus from '../utils/event_bus'
-import * as Types from "./../types";
+import * as Types from "../types";
 
 interface Props {
   userdata: Types.UserType;
@@ -9,7 +9,7 @@ interface Props {
 interface State {
 }
 
-export default class AddNewBookForm extends React.Component<Props, State> {
+export default class AddNewBookComponent extends React.Component<Props, State> {
   defaultImage: string;
   currentBook: Types.BookValueType;
 

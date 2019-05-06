@@ -1,53 +1,42 @@
 import React from 'react';
 import { View } from 'react-native';
-
 import * as ActionTypes from '../constants/action_constant'
-
 import EventBus from '../utils/event_bus'
 import BannerContainer from '../containers/banner_container';
-import ShowAllBooksScreen from '../screens/show_all_books_screen';
-import AddNewBookScreen from '../screens/add_new_book_screen';
+import ListBooksContainer from '../containers/list_books_container';
+import AddNewBookComponent from './add_new_book_component';
 import ConfirmationDialog from './dialogs/confirmation_dialog';
 import * as DataTypes from "../types";
-import DatabaseConnector from '../connectors/database_connector';
-import SocialConnector from '../connectors/social_connector';
-import AddNewBookCommand from '../commands/add_newbook_command'
-import RemoveBookCommand from '../commands/remove_book_command';
-import AssignBookCommand from '../commands/assign_book_command';
-import ReturnBookCommand from '../commands/return_book_command';
 
-
-var booksArray: Array<DataTypes.BookRecordType>;
 
 const MainComponent = (props: any) => {
   EventBus.getInstance().addListener("onSocialConnect", (data: DataTypes.UserType) => {
     props.addUserData(data);
+    props.querryBooksListing();
   });
-  if (props.screen === ActionTypes.LIST_BOOKS)
+  if (props.screen === ActionTypes.ACTION_LIST_BOOKS)
     return showAllBooks(props);
-  else if (props.screen === ActionTypes.ADD_BOOK)
+  else if (props.screen === ActionTypes.ACTION_ADD_BOOK)
     return addNewBooks(props);
   else
     return showBlankPage(props);
 }
 
 const showAllBooks = (props: any) => {
- // alert(JSON.stringify(props))
   return (
     <View>
       <BannerContainer />
-      <ShowAllBooksScreen items={booksArray} userdata={props.userdata} counter={props.counter} />
+      <ListBooksContainer />
       <ConfirmationDialog />
     </View>
   );
 }
 
 const addNewBooks = (props: any) => {
-  //alert(JSON.stringify(props))
   return (
     <View >
       <BannerContainer />
-      <AddNewBookScreen userdata={props.userdata} />
+      <AddNewBookComponent userdata={props.userdata} />
       <ConfirmationDialog />
     </View>
   );
@@ -60,7 +49,6 @@ const showBlankPage = (props: any) => {
     </View>
   );
 }
-
 
 export default MainComponent;
 /*

@@ -1,35 +1,44 @@
 import {
-    ADD_BOOK,
-    LIST_BOOKS,
-    SHOW_BLANK,
-    USER_DATA
+    ACTION_ADD_BOOK,
+    ACTION_LIST_BOOKS,
+    ACTION_SHOW_BLANK,
+    ACTION_USER_DATA,
+    ACTION_QUERY_BOOKS_LISTING,
+    ACTION_NONE
 } from '../constants/action_constant'
+import * as DataTypes from "../types"
 
 import FirebaseConnector from '../connectors/firebase_connector'
 import FacebookConnector from '../connectors/facebook_connector'
 
+var booksArray: Array<DataTypes.BookRecordType>;
+
 const initialState = {
-    screen: SHOW_BLANK,
+    screen: ACTION_SHOW_BLANK,
+    action: ACTION_NONE,
+    books_array: [],
     dbconnector: new FirebaseConnector(),
     socialconnector: new FacebookConnector()
 }
 
 export default function tree(state = initialState, action: any) {
     switch (action.type) {
-        case ADD_BOOK:
+        case ACTION_ADD_BOOK:
             return Object.assign({}, state, {
-                screen: ADD_BOOK
+                screen: ACTION_ADD_BOOK
             })
-            return state;
-        case LIST_BOOKS:
+        case ACTION_LIST_BOOKS:
             return Object.assign({}, state, {
-                screen: LIST_BOOKS
+                screen: ACTION_LIST_BOOKS,
+                books_array: booksArray
             })
-            return state;
-        case USER_DATA:
+        case ACTION_USER_DATA:
             return Object.assign({}, state, {
                 userdata: action.userdata
             })
+        case ACTION_QUERY_BOOKS_LISTING:
+            state.dbconnector.getBooks((books: Array<DataTypes.BookRecordType>) => booksArray = books);
+            return state;
         default:
             return state;
     }
