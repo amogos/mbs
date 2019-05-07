@@ -4,7 +4,9 @@ import * as DataTypes from "../types"
 import Store from './../store'
 import * as Actions from '../actions/index'
 
-export default class FirebaseConnector implements DatabaseConnector {
+var booksArray: Array<DataTypes.BookRecordType> = [];
+
+class FirebaseConnector implements DatabaseConnector {
     constructor() {
         this.init();
     }
@@ -20,19 +22,21 @@ export default class FirebaseConnector implements DatabaseConnector {
         });
     }
 
-    getBooks(onComplete: (books: Array<DataTypes.BookRecordType>) => void): void {
-        var booksArray: Array<DataTypes.BookRecordType> = [];
+    getBooks(): Array<DataTypes.BookRecordType> {
+        if (booksArray.length > 0)
+            return booksArray;
         firebase.database().ref().child('books').once('value').then(function (snapshot) {
             snapshot.forEach(item => {
                 booksArray.push({ id: item.key, value: item.val() });
             })
-            onComplete(booksArray);
         }).catch((error) => { alert(error); });
+        return booksArray;
     }
 
-    assignBook(key: string, user: DataTypes.UserType, onComplete: (userdata: DataTypes.UserType) => void): void {
+    assignBook(index: number, user: DataTypes.UserType): void {
+        let key = booksArray[index].id as string;
         firebase.database().ref().child('books').child(key).update({ holder: user }, () => {
-            onComplete(user); 
+            booksArray[index].value.holder = user;
             Store.dispatch(Actions.listBooks());
         }).catch((error) => { alert(error); });
     }
@@ -47,3 +51,6 @@ export default class FirebaseConnector implements DatabaseConnector {
         ref.set(data, () => onComplete(data, key)).catch((error) => { alert(error); });
     }
 }
+const dbconnector = new FirebaseConnector();
+
+export default dbconnector;

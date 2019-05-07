@@ -8,7 +8,6 @@ import AddNewBookComponent from './add_new_book_component';
 import ConfirmationDialog from './dialogs/confirmation_dialog';
 import * as DataTypes from "../types";
 
-
 const MainComponent = (props: any) => {
   EventBus.getInstance().addListener("onSocialConnect", (data: DataTypes.UserType) => {
     props.addUserData(data);

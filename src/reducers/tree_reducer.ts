@@ -10,16 +10,13 @@ import {
 } from '../constants/action_constant'
 import * as DataTypes from "../types"
 
-import FirebaseConnector from '../connectors/firebase_connector'
+import dbconnector from '../connectors/firebase_connector'
 
-var booksArray: Array<DataTypes.BookRecordType>= [];
 
 const initialState = {
     screen: ACTION_SHOW_BLANK,
     action: ACTION_NONE,
-    books_array: booksArray,
     userdata: DataTypes.nullUser,
-    dbconnector: new FirebaseConnector(),
 }
 
 export default function tree(state = initialState, action: any) {
@@ -30,38 +27,32 @@ export default function tree(state = initialState, action: any) {
             })
         case ACTION_LIST_BOOKS:
             return Object.assign({}, state, {
-                screen: ACTION_LIST_BOOKS,
-                books_array: booksArray
+                screen: ACTION_LIST_BOOKS
             })
         case ACTION_USER_DATA:
             return Object.assign({}, state, {
                 userdata: action.userdata
             })
         case ACTION_QUERY_BOOKS_LISTING:
-            state.dbconnector.getBooks((books: Array<DataTypes.BookRecordType>) => booksArray = books);
+            dbconnector.getBooks();
             return state;
         case ACTION_ASSIGN_BOOK: {
             const key: string = action.book_key;
             const userdata = state.userdata;
-            var onCompleteCallback = (userdata: DataTypes.UserType) => {
-                var index = booksArray.findIndex(function (item: DataTypes.BookRecordType) {
-                    return item.id === key;
-                });
-                booksArray[index].value.holder = userdata;
-            }
-            state.dbconnector.assignBook(key as string, userdata, onCompleteCallback);
+            const booksArray = dbconnector.getBooks();
+            var index = booksArray.findIndex(function (item: DataTypes.BookRecordType) {
+                return item.id === key;
+            });
+            dbconnector.assignBook(index, userdata);
             return state;
         }
         case ACTION_RETURN_BOOK: {
             const key: string = action.book_key;
-            const userdata = state.userdata;
+            const booksArray = dbconnector.getBooks();
             var index = booksArray.findIndex(function (item: DataTypes.BookRecordType) {
                 return item.id === key;
             });
-            var onCompleteCallback = (userdata: DataTypes.UserType) => {
-                booksArray[index].value.holder = booksArray[index].value.owner;
-            }
-            state.dbconnector.assignBook(key, booksArray[index].value.holder, onCompleteCallback);
+            dbconnector.assignBook(index, booksArray[index].value.owner);
         }
         default:
             return state;
