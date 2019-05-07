@@ -13,9 +13,9 @@ const MainComponent = (props: any) => {
     props.addUserData(data);
     props.querryBooksListing();
   });
-  if (props.screen === ActionTypes.ACTION_LIST_BOOKS)
+  if (props.action === ActionTypes.ACTION_LIST_BOOKS)
     return showAllBooks(props);
-  else if (props.screen === ActionTypes.ACTION_ADD_BOOK)
+  else if (props.action === ActionTypes.ACTION_ADD_BOOK)
     return addNewBooks(props);
   else
     return showBlankPage(props);

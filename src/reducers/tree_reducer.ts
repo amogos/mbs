@@ -1,7 +1,6 @@
 import {
     ACTION_ADD_BOOK,
     ACTION_LIST_BOOKS,
-    ACTION_SHOW_BLANK,
     ACTION_USER_DATA,
     ACTION_QUERY_BOOKS_LISTING,
     ACTION_NONE,
@@ -14,7 +13,6 @@ import dbconnector from '../connectors/firebase_connector'
 
 
 const initialState = {
-    screen: ACTION_SHOW_BLANK,
     action: ACTION_NONE,
     userdata: DataTypes.nullUser,
 }
@@ -23,11 +21,11 @@ export default function tree(state = initialState, action: any) {
     switch (action.type) {
         case ACTION_ADD_BOOK:
             return Object.assign({}, state, {
-                screen: ACTION_ADD_BOOK
+                action: ACTION_ADD_BOOK
             })
         case ACTION_LIST_BOOKS:
             return Object.assign({}, state, {
-                screen: ACTION_LIST_BOOKS
+                action: ACTION_LIST_BOOKS
             })
         case ACTION_USER_DATA:
             return Object.assign({}, state, {
@@ -44,7 +42,9 @@ export default function tree(state = initialState, action: any) {
                 return item.id === key;
             });
             dbconnector.assignBook(index, userdata);
-            return state;
+            return Object.assign({}, state, {
+                action: ACTION_ASSIGN_BOOK
+            })
         }
         case ACTION_RETURN_BOOK: {
             const key: string = action.book_key;
@@ -53,6 +53,9 @@ export default function tree(state = initialState, action: any) {
                 return item.id === key;
             });
             dbconnector.assignBook(index, booksArray[index].value.owner);
+            return Object.assign({}, state, {
+                action: ACTION_RETURN_BOOK
+            })
         }
         default:
             return state;
