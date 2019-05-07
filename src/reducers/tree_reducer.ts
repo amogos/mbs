@@ -11,17 +11,15 @@ import {
 import * as DataTypes from "../types"
 
 import FirebaseConnector from '../connectors/firebase_connector'
-import FacebookConnector from '../connectors/facebook_connector'
 
-var booksArray: Array<DataTypes.BookRecordType>;
+var booksArray: Array<DataTypes.BookRecordType>= [];
 
 const initialState = {
     screen: ACTION_SHOW_BLANK,
     action: ACTION_NONE,
-    books_array: [],
+    books_array: booksArray,
     userdata: DataTypes.nullUser,
     dbconnector: new FirebaseConnector(),
-    socialconnector: new FacebookConnector()
 }
 
 export default function tree(state = initialState, action: any) {

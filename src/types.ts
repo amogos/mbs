@@ -1,5 +1,4 @@
 import DatabaseConnector from "./connectors/database_connector";
-import SocialConnector from "./connectors/social_connector";
 
 export interface UserType {
     name: string;
@@ -31,7 +30,6 @@ export interface ConfirmationDialogParams {
 export const nullUser = { name: "", email: "" } as UserType;
 export interface Context {
     dbconnector: DatabaseConnector;
-    socialconnector: SocialConnector;
     userdata: UserType;
 }
 
