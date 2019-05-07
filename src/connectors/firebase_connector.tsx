@@ -1,6 +1,8 @@
 import firebase from 'firebase'
 import DatabaseConnector from './database_connector'
 import * as DataTypes from "../types"
+import Store from './../store'
+import * as Actions from '../actions/index'
 
 export default class FirebaseConnector implements DatabaseConnector {
     constructor() {
@@ -29,7 +31,10 @@ export default class FirebaseConnector implements DatabaseConnector {
     }
 
     assignBook(key: string, user: DataTypes.UserType, onComplete: (userdata: DataTypes.UserType) => void): void {
-        firebase.database().ref().child('books').child(key).update({ holder: user }, () => onComplete(user)).catch((error) => { alert(error); });
+        firebase.database().ref().child('books').child(key).update({ holder: user }, () => {
+            onComplete(user); 
+            Store.dispatch(Actions.listBooks());
+        }).catch((error) => { alert(error); });
     }
 
     deleteBook(data: DataTypes.BookKeyType, onComplete: () => void): void {
