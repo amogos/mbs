@@ -7,8 +7,8 @@ const BannerComponent = (props: any) => {
         <View style={styles.app}>
             <View style={styles.appHeader}>
                 <Text style={styles.appTitle}> <span aria-labelledby='jsx-a11y/accessible-emoji' role='img'>⚛️ </span></Text>
-                <Button title="Search" color="#00000000" onPress={() => props.listBooks()} />
-                <Button title="Add Book" color="#00000000" onPress={() => props.addBook()} />
+                <Button title="Search" color="#00000000" onPress={() => props.gotoListBooks()} />
+                <Button title="Add Book" color="#00000000" onPress={() => props.gotoAddBook()} />
                 <SocialLoginContainer />
             </View>
         </View>

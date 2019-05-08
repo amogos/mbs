@@ -2,26 +2,39 @@ import {
     ACTION_ADD_BOOK,
     ACTION_LIST_BOOKS,
     ACTION_USER_DATA,
-    ACTION_QUERY_BOOKS_LISTING,
     ACTION_NONE,
     ACTION_ASSIGN_BOOK,
-    ACTION_RETURN_BOOK
+    ACTION_RETURN_BOOK,
+    ACTION_GOTO_ADD_BOOK,
+    ACTION_GOTO_LIST_BOOKS
 } from '../constants/action_constant'
 import * as DataTypes from "../types"
 
 import dbconnector from '../connectors/firebase_connector'
+import { string } from 'prop-types';
 
 
 const initialState = {
     action: ACTION_NONE,
     userdata: DataTypes.nullUser,
+    changingkey: string
 }
 
 export default function tree(state = initialState, action: any) {
     switch (action.type) {
+        case ACTION_GOTO_ADD_BOOK:
+            return Object.assign({}, state, {
+                action: ACTION_GOTO_ADD_BOOK
+            })
         case ACTION_ADD_BOOK:
+            dbconnector.addBook(action.data);
             return Object.assign({}, state, {
                 action: ACTION_ADD_BOOK
+            })
+        case ACTION_GOTO_LIST_BOOKS:
+            dbconnector.getBooks();
+            return Object.assign({}, state, {
+                action: ACTION_GOTO_LIST_BOOKS
             })
         case ACTION_LIST_BOOKS:
             return Object.assign({}, state, {
@@ -31,9 +44,6 @@ export default function tree(state = initialState, action: any) {
             return Object.assign({}, state, {
                 userdata: action.userdata
             })
-        case ACTION_QUERY_BOOKS_LISTING:
-            dbconnector.getBooks();
-            return state;
         case ACTION_ASSIGN_BOOK: {
             const key: string = action.book_key;
             const userdata = state.userdata;
@@ -43,7 +53,8 @@ export default function tree(state = initialState, action: any) {
             });
             dbconnector.assignBook(index, userdata);
             return Object.assign({}, state, {
-                action: ACTION_ASSIGN_BOOK
+                action: ACTION_ASSIGN_BOOK,
+                changingkey: key
             })
         }
         case ACTION_RETURN_BOOK: {
@@ -54,7 +65,8 @@ export default function tree(state = initialState, action: any) {
             });
             dbconnector.assignBook(index, booksArray[index].value.owner);
             return Object.assign({}, state, {
-                action: ACTION_RETURN_BOOK
+                action: ACTION_RETURN_BOOK,
+                changingkey: key
             })
         }
         default:
