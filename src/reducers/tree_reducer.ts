@@ -6,13 +6,14 @@ import {
     ACTION_ASSIGN_BOOK,
     ACTION_RETURN_BOOK,
     ACTION_GOTO_ADD_BOOK,
-    ACTION_GOTO_LIST_BOOKS
+    ACTION_GOTO_LIST_BOOKS,
+    ACTION_DELETE_BOOK
 } from '../constants/action_constant'
 import * as DataTypes from "../types"
-
+import * as Actions from '../actions/index'
 import dbconnector from '../connectors/firebase_connector'
 import { string } from 'prop-types';
-
+import Store from './../store'
 
 const initialState = {
     action: ACTION_NONE,
@@ -32,7 +33,7 @@ export default function tree(state = initialState, action: any) {
                 action: ACTION_ADD_BOOK
             })
         case ACTION_GOTO_LIST_BOOKS:
-            dbconnector.querryBooks();
+            dbconnector.querryBooks(() => Store.dispatch(Actions.listBooks()));
             return Object.assign({}, state, {
                 action: ACTION_GOTO_LIST_BOOKS
             })
@@ -51,7 +52,7 @@ export default function tree(state = initialState, action: any) {
             var index = booksArray.findIndex(function (item: DataTypes.BookRecordType) {
                 return item.id === key;
             });
-            dbconnector.assignBook(index, userdata);
+            dbconnector.assignBook(index, userdata, () => Store.dispatch(Actions.listBooks()));
             return Object.assign({}, state, {
                 action: ACTION_ASSIGN_BOOK,
                 changingkey: key
@@ -63,10 +64,17 @@ export default function tree(state = initialState, action: any) {
             var index = booksArray.findIndex(function (item: DataTypes.BookRecordType) {
                 return item.id === key;
             });
-            dbconnector.assignBook(index, booksArray[index].value.owner);
+            dbconnector.assignBook(index, booksArray[index].value.owner, () => Store.dispatch(Actions.listBooks()));
             return Object.assign({}, state, {
                 action: ACTION_RETURN_BOOK,
                 changingkey: key
+            })
+        }
+        case ACTION_DELETE_BOOK: {
+            dbconnector.deleteBook(action.book_key, () => Store.dispatch(Actions.listBooks()));
+            return Object.assign({}, state, {
+                action: ACTION_DELETE_BOOK,
+                changingkey: action.book_key
             })
         }
         default:

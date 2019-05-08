@@ -1,7 +1,7 @@
 import React from 'react'
 import { Text, View, StyleSheet } from 'react-native'
 import BookPlacementContainer from './../containers/book_placement_container'
-import BookRemover from './book_remover_component'
+import BookRemoverContainer from './../containers/book_remover_container'
 import * as Types from "./../types";
 
 interface Props {
@@ -18,7 +18,7 @@ function BookLeftSide(props: Props) {
     return (
         <td>
             <img src={props.value.image} alt="new" width={64} height={64} />
-            <BookRemover {...props} />
+            <BookRemoverContainer {...props} />
         </td>)
 
 }

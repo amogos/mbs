@@ -1,8 +1,7 @@
 import firebase from 'firebase'
 import DatabaseConnector from './database_connector'
 import * as DataTypes from "../types"
-import Store from './../store'
-import * as Actions from '../actions/index'
+
 
 var booksArray: Array<DataTypes.BookRecordType> = [];
 
@@ -26,13 +25,14 @@ class FirebaseConnector implements DatabaseConnector {
         return booksArray;
     }
 
-    querryBooks(): Array<DataTypes.BookRecordType> {
+    querryBooks(onComplete?: () => void): Array<DataTypes.BookRecordType> {
         booksArray = [];
         firebase.database().ref().child('books').once('value').then(function (snapshot) {
             snapshot.forEach(item => {
                 booksArray.push({ id: item.key, value: item.val() });
             })
-            Store.dispatch(Actions.listBooks());
+            if (onComplete)
+                onComplete();
         }).catch((error) => { alert(error); });
         return booksArray;
     }
@@ -41,14 +41,22 @@ class FirebaseConnector implements DatabaseConnector {
         let key = booksArray[index].id as string;
         firebase.database().ref().child('books').child(key).update({ holder: user }, () => {
             booksArray[index].value.holder = user;
-            Store.dispatch(Actions.listBooks());
             if (onComplete)
                 onComplete();
         }).catch((error) => { alert(error); });
     }
 
     deleteBook(data: DataTypes.BookKeyType, onComplete?: () => void): void {
-        firebase.database().ref().child('books').child(data.id as string).remove(() => { if (onComplete) onComplete(); }).catch((error) => { alert(error); });
+        firebase.database().ref().child('books').child(data.id as string).remove(() => {
+            booksArray.forEach((item, index) => {
+                if (item.id === data.id) {
+                    booksArray.splice(index, 1);
+                }
+            });
+            if (onComplete)
+                onComplete();
+
+        }).catch((error) => { alert(error); });
     }
 
     addBook(data: DataTypes.BookValueType, onComplete?: (data: DataTypes.BookValueType, bookKey: string) => void): void {
