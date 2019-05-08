@@ -16,7 +16,7 @@ const MainComponent = (props: any) => {
 
   if (props.action === ActionTypes.ACTION_LIST_BOOKS) {
     return showAllBooks(props);
-  } else if (props.action === ActionTypes.ACTION_GOTO_ADD_BOOK)
+  } else if (props.action === ActionTypes.ACTION_GOTO_ADD_BOOK || props.action === ActionTypes.ACTION_ADD_BOOK)
     return addNewBooks(props);
   else
     return showBlankPage(props);

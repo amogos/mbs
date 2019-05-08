@@ -43,7 +43,13 @@ const AddNewBookComponent = (props: any) => {
         value={image} />
       <img src={currentBook.image} alt="new" width={64} height={64} />
       <Button color="#000000"
-        onPress={() => onSaveButtonPressed(props)}
+        onPress={() => {
+          onSaveButtonPressed(props);
+          setTitle('');
+          setAuthor('');
+          setLanguage('');
+          setImage('');
+        }}
         title="Save"
         accessibilityLabel="Save book" />
     </View >
@@ -55,6 +61,7 @@ export default AddNewBookComponent;
 const onSaveButtonPressed = (props: any) => {
   props.addBook(currentBook);
   currentBook.title = currentBook.author = currentBook.language = "";
+
 }
 
 const styles = StyleSheet.create({
