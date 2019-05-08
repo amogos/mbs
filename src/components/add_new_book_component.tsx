@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { View, Text, TextInput, Button, StyleSheet } from 'react-native'
 import * as DataTypes from "../types";
 
@@ -14,28 +14,33 @@ var currentBook = {
 
 const AddNewBookComponent = (props: any) => {
   currentBook.holder = currentBook.owner = props.userdata;
+  const [title, setTitle] = useState('');
+  const [language, setLanguage] = useState('');
+  const [author, setAuthor] = useState('');
+  const [image, setImage] = useState('');
+
   return (
     <View style={{ flex: 10, alignItems: 'center', justifyContent: 'center' }} >
       <Text> title: </Text>
       <TextInput
         style={styles.inputField}
-        onChangeText={(text) => { currentBook.title = text; }}
-        value={currentBook.title} />
+        onChangeText={(text) => { currentBook.title = text; setTitle(text) }}
+        value={title} />
       <Text> language: </Text>
       <TextInput
         style={styles.inputField}
-        onChangeText={(text) => { currentBook.language = text; }}
-        value={currentBook.language} />
+        onChangeText={(text) => { currentBook.language = text; setLanguage(text) }}
+        value={language} />
       <Text> author: </Text>
       <TextInput
         style={styles.inputField}
-        onChangeText={(text) => { currentBook.author = text; }}
-        value={currentBook.author} />
+        onChangeText={(text) => { currentBook.author = text; setAuthor(text) }}
+        value={author} />
       <Text> image: </Text>
       <TextInput
         style={styles.inputField}
-        onChangeText={(text) => { currentBook.image = text; }}
-        value={currentBook.image} />
+        onChangeText={(text) => { currentBook.image = text; setImage(text) }}
+        value={image} />
       <img src={currentBook.image} alt="new" width={64} height={64} />
       <Button color="#000000"
         onPress={() => onSaveButtonPressed(props)}

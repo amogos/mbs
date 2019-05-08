@@ -4,7 +4,7 @@ import * as ActionTypes from '../constants/action_constant'
 import EventBus from '../utils/event_bus'
 import BannerContainer from '../containers/banner_container';
 import ListBooksContainer from '../containers/list_books_container';
-import AddNewBookComponent from './add_new_book_component';
+import AddNewBookContainer from '../containers/add_new_book_container';
 import ConfirmationDialog from './dialogs/confirmation_dialog';
 import * as DataTypes from "../types";
 
@@ -36,7 +36,7 @@ const addNewBooks = (props: any) => {
   return (
     <View >
       <BannerContainer />
-      <AddNewBookComponent userdata={props.userdata} />
+      <AddNewBookContainer />
       <ConfirmationDialog />
     </View>
   );

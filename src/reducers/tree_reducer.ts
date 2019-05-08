@@ -32,7 +32,7 @@ export default function tree(state = initialState, action: any) {
                 action: ACTION_ADD_BOOK
             })
         case ACTION_GOTO_LIST_BOOKS:
-            dbconnector.getBooks();
+            dbconnector.querryBooks();
             return Object.assign({}, state, {
                 action: ACTION_GOTO_LIST_BOOKS
             })

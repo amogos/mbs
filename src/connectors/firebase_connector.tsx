@@ -23,8 +23,11 @@ class FirebaseConnector implements DatabaseConnector {
     }
 
     getBooks(): Array<DataTypes.BookRecordType> {
-        if (booksArray.length > 0)
-            return booksArray;
+        return booksArray;
+    }
+
+    querryBooks(): Array<DataTypes.BookRecordType> {
+        booksArray = [];
         firebase.database().ref().child('books').once('value').then(function (snapshot) {
             snapshot.forEach(item => {
                 booksArray.push({ id: item.key, value: item.val() });
