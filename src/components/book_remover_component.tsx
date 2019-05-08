@@ -1,6 +1,5 @@
 import React from 'react'
 import { Button } from 'react-native'
-import EventBus from './../utils/event_bus'
 import * as DataTypes from "./../types";
 
 

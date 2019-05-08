@@ -14,11 +14,12 @@ import * as Actions from '../actions/index'
 import dbconnector from '../connectors/firebase_connector'
 import { string } from 'prop-types';
 import Store from './../store'
+import Strings from '../constants/string_constant';
 
 const initialState = {
     action: ACTION_NONE,
     userdata: DataTypes.nullUser,
-    changingkey: string
+    changingkey: string,
 }
 
 export default function tree(state = initialState, action: any) {
@@ -38,8 +39,10 @@ export default function tree(state = initialState, action: any) {
                 action: ACTION_GOTO_LIST_BOOKS
             })
         case ACTION_LIST_BOOKS:
+            if (action.message) alert(action.message.text)
             return Object.assign({}, state, {
-                action: ACTION_LIST_BOOKS
+                action: ACTION_LIST_BOOKS,
+                message: action.message ? action.message : ''
             })
         case ACTION_USER_DATA:
             return Object.assign({}, state, {
@@ -71,7 +74,10 @@ export default function tree(state = initialState, action: any) {
             })
         }
         case ACTION_DELETE_BOOK: {
-            dbconnector.deleteBook(action.book_key, () => Store.dispatch(Actions.listBooks()));
+            dbconnector.deleteBook(action.book_key, () => {
+                let message = { text: Strings.MYBOOKSHELVE_STRING_BOOK_REMOVED, button1: Strings.MYBOOKSHELVE_STRING_CONFIRM } as DataTypes.ConfirmationDialogParams;
+                Store.dispatch(Actions.listBooks(message));
+            });
             return Object.assign({}, state, {
                 action: ACTION_DELETE_BOOK,
                 changingkey: action.book_key

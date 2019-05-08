@@ -24,7 +24,7 @@ export interface BookRecordType {
 }
 
 export interface ConfirmationDialogParams {
-    message: string;
+    text: string;
     button1: string;
 }
 export const nullUser = { name: "", email: "" } as UserType;
