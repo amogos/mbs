@@ -4,7 +4,6 @@ import * as ActionTypes from '../constants/action_constant'
 import BannerContainer from '../containers/banner_container';
 import ListBooksContainer from '../containers/list_books_container';
 import AddNewBookContainer from '../containers/add_new_book_container';
-import ConfirmationDialogContainer from '../containers/confirmation_dialog_container';
 
 
 const MainComponent = (props: any) => {
@@ -21,7 +20,6 @@ const showAllBooks = (props: any) => {
     <View>
       <BannerContainer />
       <ListBooksContainer />
-      <ConfirmationDialogContainer />
     </View>
   );
 }
@@ -31,7 +29,6 @@ const addNewBooks = (props: any) => {
     <View >
       <BannerContainer />
       <AddNewBookContainer />
-      <ConfirmationDialogContainer />
     </View>
   );
 }

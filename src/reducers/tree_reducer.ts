@@ -39,10 +39,9 @@ export default function tree(state = initialState, action: any) {
                 action: ACTION_GOTO_LIST_BOOKS
             })
         case ACTION_LIST_BOOKS:
-            if (action.message) alert(action.message.text)
-            return Object.assign({}, state, {
+           return Object.assign({}, state, {
                 action: ACTION_LIST_BOOKS,
-                message: action.message ? action.message : ''
+                message: action.message
             })
         case ACTION_USER_DATA:
             return Object.assign({}, state, {

@@ -10,7 +10,6 @@ const ConfirmationDialogComponent = (props: any) => {
     let isMessgeValid = props.message.text && props.message.text !== '' && text != props.message.text;
 
     if (isMessgeValid) {
-        alert(props.message.text)
         setText(props.message.text);
         setIsDilogOpen(true);
     }
