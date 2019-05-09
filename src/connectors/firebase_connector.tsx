@@ -3,7 +3,7 @@ import DatabaseConnector from './database_connector'
 import * as DataTypes from "../types"
 
 
-var booksArray: Array<DataTypes.BookRecordType> = [];
+export var booksArray: Array<DataTypes.BookRecordType> = [];
 
 class FirebaseConnector implements DatabaseConnector {
     constructor() {
@@ -19,10 +19,6 @@ class FirebaseConnector implements DatabaseConnector {
             storageBucket: "mybooksshelve.appspot.com",
             messagingSenderId: "627289196388"
         });
-    }
-
-    getBooks(): Array<DataTypes.BookRecordType> {
-        return booksArray;
     }
 
     querryBooks(onComplete?: () => void): Array<DataTypes.BookRecordType> {

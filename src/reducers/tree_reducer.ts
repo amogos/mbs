@@ -11,7 +11,7 @@ import {
 } from '../constants/action_constant'
 import * as DataTypes from "../types"
 import * as Actions from '../actions/index'
-import dbconnector from '../connectors/firebase_connector'
+import dbconnector, { booksArray } from '../connectors/firebase_connector'
 import { string } from 'prop-types';
 import Store from './../store'
 import Strings from '../constants/string_constant';
@@ -39,7 +39,7 @@ export default function tree(state = initialState, action: any) {
                 action: ACTION_GOTO_LIST_BOOKS
             })
         case ACTION_LIST_BOOKS:
-           return Object.assign({}, state, {
+            return Object.assign({}, state, {
                 action: ACTION_LIST_BOOKS,
                 message: action.message
             })
@@ -50,7 +50,6 @@ export default function tree(state = initialState, action: any) {
         case ACTION_ASSIGN_BOOK: {
             const key: string = action.book_key;
             const userdata = state.userdata;
-            const booksArray = dbconnector.getBooks();
             var index = booksArray.findIndex(function (item: DataTypes.BookRecordType) {
                 return item.id === key;
             });
@@ -62,7 +61,6 @@ export default function tree(state = initialState, action: any) {
         }
         case ACTION_RETURN_BOOK: {
             const key: string = action.book_key;
-            const booksArray = dbconnector.getBooks();
             var index = booksArray.findIndex(function (item: DataTypes.BookRecordType) {
                 return item.id === key;
             });
