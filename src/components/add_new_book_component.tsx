@@ -49,12 +49,14 @@ const AddNewBookComponent = (props: any) => {
           setAuthor('');
           setLanguage('');
           setImage('');
+          currentBook.image = defaultImage;
         }}
         title="Save"
         accessibilityLabel="Save book" />
     </View >
   )
 }
+
 
 export default AddNewBookComponent;
 
