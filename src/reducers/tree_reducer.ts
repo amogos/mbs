@@ -7,7 +7,8 @@ import {
     ACTION_RETURN_BOOK,
     ACTION_GOTO_ADD_BOOK,
     ACTION_GOTO_LIST_BOOKS,
-    ACTION_DELETE_BOOK
+    ACTION_DELETE_BOOK,
+    ACTION_CONFIRM_MESSAGE
 } from '../constants/action_constant'
 import * as DataTypes from "../types"
 import * as Actions from '../actions/index'
@@ -15,6 +16,7 @@ import dbconnector, { booksArray } from '../connectors/firebase_connector'
 import { string } from 'prop-types';
 import Store from './../store'
 import Strings from '../constants/string_constant';
+
 
 const initialState = {
     action: ACTION_NONE,
@@ -79,6 +81,14 @@ export default function tree(state = initialState, action: any) {
                 action: ACTION_DELETE_BOOK,
                 changingkey: action.book_key
             })
+        }
+        case ACTION_CONFIRM_MESSAGE: {
+            let result = Object.assign(
+                {},
+                ...Object.entries(state)
+                    .filter(([k]) => k !== 'message')
+                    .map(([k, v]) => ({ [k]: v })));
+            return result;
         }
         default:
             return state;

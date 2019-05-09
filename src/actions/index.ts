@@ -12,3 +12,5 @@ export const addUserData = (userdata: DataTypes.UserType) => ({ type: ActionType
 export const assignBook = (book_key: DataTypes.BookKeyType) => ({ type: ActionTypes.ACTION_ASSIGN_BOOK, book_key })
 export const returnBook = (book_key: DataTypes.BookKeyType) => ({ type: ActionTypes.ACTION_RETURN_BOOK, book_key })
 export const deleteBook = (book_key: DataTypes.BookKeyType) => ({ type: ActionTypes.ACTION_DELETE_BOOK, book_key })
+
+export const confirmMessage = () => ({ type: ActionTypes.ACTION_CONFIRM_MESSAGE })

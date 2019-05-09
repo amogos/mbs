@@ -4,19 +4,25 @@ import Popup from "reactjs-popup";
 import * as DataTypes from '../types'
 
 const ConfirmationDialogComponent = (props: any) => {
-    const [isDialogOpen, setIsDilogOpen] = useState(false);
+    const [visible, setVisible] = useState(false);
     const [text, setText] = useState('');
-
-    let isMessgeValid = props.message.text && props.message.text !== '' && text != props.message.text;
+    const [button, setButton] = useState('');
+    let isMessgeValid = props.message && text != props.message.text;
 
     if (isMessgeValid) {
         setText(props.message.text);
-        setIsDilogOpen(true);
+        setVisible(true);
+        setButton(props.message.button1);
     }
 
     return (
-        <Popup open={isDialogOpen} position="top center"><div>{props.message}
-            <Button title={props.message.button1} onPress={() => setIsDilogOpen(false)} /></div>
+        <Popup open={visible} position="top center"><div>{text}
+            <Button title={button} onPress={() => {
+                setVisible(false);
+                setText('');
+                setButton('');
+                props.confirmMessage();
+            }} /></div>
         </Popup>
     );
 }
