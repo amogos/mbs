@@ -28,10 +28,14 @@ export default function tree(state = initialState, action: any) {
     switch (action.type) {
         case ACTION_GOTO_ADD_BOOK:
             return Object.assign({}, state, {
-                action: ACTION_GOTO_ADD_BOOK
+                action: ACTION_GOTO_ADD_BOOK,
+                message: action.message
             })
         case ACTION_ADD_BOOK:
-            dbconnector.addBook(action.data);
+            dbconnector.addBook(action.data, () => {
+                let message = { text: Strings.MYBOOKSHELVE_STRING_NEW_BOOK_ADDED, button1: Strings.MYBOOKSHELVE_STRING_CONFIRM } as DataTypes.ConfirmationDialogParams;
+                Store.dispatch(Actions.gotoAddBook(message));
+            });
             return Object.assign({}, state, {
                 action: ACTION_ADD_BOOK
             })

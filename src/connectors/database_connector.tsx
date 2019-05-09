@@ -4,5 +4,5 @@ export default interface DatabaseConnector {
     querryBooks(onComplete?: () => void): Array<DataTypes.BookRecordType>;
     assignBook(index: number, user: DataTypes.UserType, onComplete?: () => void): void;
     deleteBook(data: DataTypes.BookKeyType, onComplete?: () => void): void;
-    addBook(data: DataTypes.BookValueType, onComplete?: (data: DataTypes.BookValueType, bookKey: string) => void): void;
+    addBook(data: DataTypes.BookValueType, onComplete?: () => void): void;
 }

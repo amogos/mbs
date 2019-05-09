@@ -55,13 +55,13 @@ class FirebaseConnector implements DatabaseConnector {
         }).catch((error) => { alert(error); });
     }
 
-    addBook(data: DataTypes.BookValueType, onComplete?: (data: DataTypes.BookValueType, bookKey: string) => void): void {
+    addBook(data: DataTypes.BookValueType, onComplete?: () => void): void {
         var ref = firebase.database().ref().child('books').push();
         var key = ref.key as string;
         ref.set(data, () => {
             booksArray.push({ id: key, value: data });
             if (onComplete)
-                onComplete(data, key);
+                onComplete();
         }).catch((error) => { alert(error); });
     }
 }
