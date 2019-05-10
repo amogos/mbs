@@ -1,13 +1,16 @@
 // src/index.js
-import React from 'react';
-import ReactDom from 'react-dom';
-import App from './App';
-import FirebaseConnector from './connectors/firebase_connector'
-import FacebookConnector from './connectors/facebook_connector'
+import React from 'react'
+import ReactDom from 'react-dom'
+import { Provider } from 'react-redux'
+import Store from './store'
+import BannerContainer from './containers/banner_container';
+import MainContainer from './containers/main_container';
+import ConfirmationDialogContainer from './containers/confirmation_dialog_container';
 
-var databaseConnector = new FirebaseConnector();
-var socialConnector = new FacebookConnector();
-
-ReactDom.render(<App dbconnector={databaseConnector}
-    socialconnector={socialConnector}
-/>, document.getElementById("root"));
+ReactDom.render(
+    <Provider store={Store}>
+        <BannerContainer/>
+        <MainContainer />
+        <ConfirmationDialogContainer/>
+    </Provider>
+    , document.getElementById("root"));
