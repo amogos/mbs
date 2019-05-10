@@ -12,7 +12,12 @@ var currentBook = {
   holder: DataTypes.nullUser
 };
 
-const AddNewBookComponent = (props: any) => {
+interface Props {
+  userdata: DataTypes.UserType;
+  addBook(book: DataTypes.BookValueType): void
+}
+
+const AddNewBookComponent = (props: Props) => {
   currentBook.holder = currentBook.owner = props.userdata;
   const [title, setTitle] = useState('');
   const [language, setLanguage] = useState('');
@@ -60,10 +65,9 @@ const AddNewBookComponent = (props: any) => {
 
 export default AddNewBookComponent;
 
-const onSaveButtonPressed = (props: any) => {
+const onSaveButtonPressed = (props: Props) => {
   props.addBook(currentBook);
   currentBook.title = currentBook.author = currentBook.language = "";
-
 }
 
 const styles = StyleSheet.create({

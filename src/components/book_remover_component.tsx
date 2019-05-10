@@ -2,13 +2,14 @@ import React from 'react'
 import { Button } from 'react-native'
 import * as DataTypes from "./../types";
 
-
-const onDeleteButtonPressed = (props: any) => {
-    var bookKey: DataTypes.BookKeyType = { id: props.id };
-    props.deleteBook(bookKey);
+interface Props {
+    id: string;
+    value: DataTypes.BookValueType;
+    userdata: DataTypes.UserType;
+    deleteBook(key: DataTypes.BookKeyType): void;
 }
 
-const BookRemover = (props: any) => {
+const BookRemover = (props: Props) => {
     let content = null;
     var me: DataTypes.UserType = props.userdata;
     var book: DataTypes.BookValueType = props.value;
@@ -19,6 +20,11 @@ const BookRemover = (props: any) => {
         content = (<Button title="delete" color="#000000ff"
             onPress={() => onDeleteButtonPressed(props)} />);
     return content;
+}
+
+const onDeleteButtonPressed = (props: Props) => {
+    var bookKey: DataTypes.BookKeyType = { id: props.id };
+    props.deleteBook(bookKey);
 }
 
 export default BookRemover;

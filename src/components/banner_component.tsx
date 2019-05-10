@@ -2,7 +2,12 @@ import React from 'react'
 import { View, Text, StyleSheet, Button } from 'react-native'
 import SocialLoginContainer from './../containers/social_login_container'
 
-const BannerComponent = (props: any) => {
+interface Props {
+    gotoListBooks(): void;
+    gotoAddBook(): void;
+}
+
+const BannerComponent = (props: Props) => {
     return (
         <View style={styles.app}>
             <View style={styles.appHeader}>
