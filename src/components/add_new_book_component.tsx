@@ -62,7 +62,6 @@ const AddNewBookComponent = (props: Props) => {
   )
 }
 
-
 export default AddNewBookComponent;
 
 const onSaveButtonPressed = (props: Props) => {

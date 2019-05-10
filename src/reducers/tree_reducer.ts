@@ -24,7 +24,7 @@ const initialState = {
     changingkey: string,
 }
 
-export default function tree(state = initialState, action: any) {
+export default function treeReducer(state = initialState, action: any) {
     switch (action.type) {
         case ACTION_GOTO_ADD_BOOK:
             return Object.assign({}, state, {

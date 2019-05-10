@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux'
-import tree from './tree_reducer'
+import treeReducer from './tree_reducer'
 
 const rootReducer = combineReducers({
-    tree,
+    treeReducer,
     /* add other reducers here */
 })
 
