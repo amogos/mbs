@@ -3,7 +3,11 @@ import { Text } from 'react-native'
 import * as DataTypes from "../types";
 import FacebookContainer from './../containers/facebook_container'
 
-const SocialLoginComponent = (props: any) => {
+interface Props {
+    userdata: DataTypes.UserType
+}
+
+const SocialLoginComponent = (props: Props) => {
     let content;
     let userdata = props.userdata;
     if (userdata !== DataTypes.nullUser) {

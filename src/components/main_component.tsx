@@ -1,44 +1,19 @@
 import React from 'react';
-import { View } from 'react-native';
 import * as ActionTypes from '../constants/action_constant'
-import BannerContainer from '../containers/banner_container';
 import ListBooksContainer from '../containers/list_books_container';
 import AddNewBookContainer from '../containers/add_new_book_container';
 
+interface Props {
+  action: string
+}
 
-const MainComponent = (props: any) => {
+const MainComponent = (props: Props) => {
   if (props.action === ActionTypes.ACTION_LIST_BOOKS) {
-    return showAllBooks(props);
+    return <ListBooksContainer />;
   } else if (props.action === ActionTypes.ACTION_GOTO_ADD_BOOK || props.action === ActionTypes.ACTION_ADD_BOOK)
-    return addNewBooks(props);
+    return <AddNewBookContainer />;
   else
-    return showBlankPage(props);
-}
-
-const showAllBooks = (props: any) => {
-  return (
-    <View>
-      <BannerContainer />
-      <ListBooksContainer />
-    </View>
-  );
-}
-
-const addNewBooks = (props: any) => {
-  return (
-    <View >
-      <BannerContainer />
-      <AddNewBookContainer />
-    </View>
-  );
-}
-
-const showBlankPage = (props: any) => {
-  return (
-    <View>
-      <BannerContainer />
-    </View>
-  );
+    return null;
 }
 
 export default MainComponent;

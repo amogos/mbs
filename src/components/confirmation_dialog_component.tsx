@@ -3,7 +3,12 @@ import { Button } from 'react-native'
 import Popup from "reactjs-popup";
 import * as DataTypes from '../types'
 
-const ConfirmationDialogComponent = (props: any) => {
+interface Props {
+    message: DataTypes.ConfirmationDialogParams;
+    confirmMessage(): void;
+}
+
+const ConfirmationDialogComponent = (props: Props) => {
     const [visible, setVisible] = useState(false);
     const [text, setText] = useState('');
     const [button, setButton] = useState('');
