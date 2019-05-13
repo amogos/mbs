@@ -5,8 +5,7 @@ import SocialLoginComponent from '../components/social_login_component'
 
 function mapStateToProps(state) {
     return {
-        socialconnector: state.tree.socialconnector,
-        userdata: state.tree.userdata
+        userdata: state.treeReducer.userdata
     };
 }
 

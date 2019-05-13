@@ -3,7 +3,7 @@ import MainComponent from '../components/main_component'
 
 
 function mapStateToProps(state) {
-    return { action: state.tree.action };
+    return { action: state.treeReducer.action };
 }
 
 export default connect(

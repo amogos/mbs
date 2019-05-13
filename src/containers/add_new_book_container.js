@@ -4,8 +4,8 @@ import AddNewBookComponent from '../components/add_new_book_component'
 
 function mapStateToProps(state) {
     return {
-        userdata: state.tree.userdata,
-        action: state.tree.action
+        userdata: state.treeReducer.userdata,
+        action: state.treeReducer.action
     };
 }
 

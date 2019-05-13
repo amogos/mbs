@@ -1,6 +1,7 @@
 import firebase from 'firebase'
 import DatabaseConnector from './database_connector'
 import * as DataTypes from "../types"
+import { stringify } from 'qs';
 
 
 export var booksArray: Array<DataTypes.BookRecordType> = [];
