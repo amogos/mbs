@@ -1,5 +1,4 @@
 import React from 'react'
-import { Text } from 'react-native'
 import * as DataTypes from "../types";
 import FacebookContainer from './../containers/facebook_container'
 
@@ -11,7 +10,7 @@ const SocialLoginComponent = (props: Props) => {
     let content;
     let userdata = props.userdata;
     if (userdata !== DataTypes.nullUser) {
-        content = (<Text style={{ color: 'white' }}> Welcome: {userdata.name} </Text>);
+        content = (<div style={{ color: 'white' }}>Welcome: {userdata.name}</div>);
 
     } else {
         content = <FacebookContainer />

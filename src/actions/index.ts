@@ -9,8 +9,8 @@ export const listBooks = (message?: DataTypes.ConfirmationDialogParams) => ({ ty
 
 export const addUserData = (userdata: DataTypes.UserType) => ({ type: ActionTypes.ACTION_USER_DATA, userdata })
 
-export const assignBook = (bookKey: DataTypes.BookKeyType) => ({ type: ActionTypes.ACTION_ASSIGN_BOOK, bookKey })
-export const returnBook = (bookKey: DataTypes.BookKeyType) => ({ type: ActionTypes.ACTION_RETURN_BOOK, bookKey })
-export const deleteBook = (bookKey: DataTypes.BookKeyType) => ({ type: ActionTypes.ACTION_DELETE_BOOK, bookKey })
+export const assignBook = (bookKey: string | null) => ({ type: ActionTypes.ACTION_ASSIGN_BOOK, bookKey })
+export const returnBook = (bookKey: string | null) => ({ type: ActionTypes.ACTION_RETURN_BOOK, bookKey })
+export const deleteBook = (bookKey: string | null) => ({ type: ActionTypes.ACTION_DELETE_BOOK, bookKey })
 
 export const confirmMessage = () => ({ type: ActionTypes.ACTION_CONFIRM_MESSAGE })

@@ -3,7 +3,7 @@ import { Button } from 'react-native'
 import * as DataTypes from "./../types";
 
 interface Props {
-    id: string;
+    id: string | null;
     value: DataTypes.BookValueType;
     userdata: DataTypes.UserType;
     deleteBook(key: DataTypes.BookKeyType): void;

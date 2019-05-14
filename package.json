@@ -8,18 +8,20 @@
     "ios": "expo start --ios",
     "eject": "expo eject",
     "start-web": "react-scripts start",
-    "build-web": "react-scripts build"
+    "build-web": "react-scripts build",
+    "test": "jest",
+    "test:watch": "npm test -- --watch"
   },
   "dependencies": {
     "@babel/plugin-proposal-class-properties": "^7.4.0",
     "@types/react-facebook-login": "^4.1.0",
     "@types/react-redux": "^7.0.8",
+    "enzyme": "^3.9.0",
+    "enzyme-adapter-react-16": "^1.13.0",
     "expo": "^31.0.5",
     "firebase": "^5.9.2",
     "fs-ext": "^1.2.1",
-    "ipfs": "^0.33.1",
-    "orbit-db": "^0.19.9",
-    "orbit-db-feedstore": "^1.4.0",
+    "jest": "23.6.0",
     "react": "^16.5.0",
     "react-art": "^16.6.3",
     "react-dom": "^16.6.3",
@@ -53,5 +55,13 @@
   ],
   "transformIgnorePatterns": [
     "node_modules/(?!react-native|tcomb-form-native)"
-  ]
+  ],
+  "jest": {
+    "transformIgnorePatterns": [
+      "node_modules/(?!(jest-)?react-native|@react-native-community|react-native-elements)"
+    ],
+    "moduleNameMapper": {
+      "^react-native$": "react-native-web"
+    }
+  }
 }

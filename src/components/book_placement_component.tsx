@@ -5,11 +5,11 @@ import * as DataTypes from "./../types";
 
 
 interface Props {
-    id: DataTypes.BookKeyType;
+    id: string | null;
     value: DataTypes.BookValueType;
     userdata: DataTypes.UserType;
-    assignBook(key: DataTypes.BookKeyType): void;
-    returnBook(key: DataTypes.BookKeyType): void;
+    assignBook(key: string | null): void;
+    returnBook(key: string | null): void;
 }
 
 const BookPlacementComponent = (props: Props) => {
