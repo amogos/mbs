@@ -1,14 +1,17 @@
-import React from 'react'
 import Enzyme, { shallow } from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
 import SocialLoginComponent from './social_login_component'
+import * as DataTypes from '../types'
 
 Enzyme.configure({ adapter: new Adapter() })
 
-const setup = (userdata) => {
+const setup = (userdata: DataTypes.UserType) => {
 
+    const props = {
+        userdata: userdata
+    }
     const component = shallow(
-        <SocialLoginComponent userdata={userdata} />
+        SocialLoginComponent(props)
     )
 
     return {

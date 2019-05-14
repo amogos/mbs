@@ -56,7 +56,7 @@ export default function treeReducer(state = initialState, action: any) {
         case ACTION_ASSIGN_BOOK: {
             const key: string = action.bookKey;
             const userdata = state.userdata;
-            var index = booksArray.findIndex(function (item: DataTypes.BookRecordType) {
+            let index = booksArray.findIndex(function (item: DataTypes.BookRecordType) {
                 return item.id === key;
             });
             dbconnector.assignBook(index, userdata, () => Store.dispatch(Actions.listBooks()));
@@ -67,7 +67,7 @@ export default function treeReducer(state = initialState, action: any) {
         }
         case ACTION_RETURN_BOOK: {
             const key: string = action.bookKey;
-            var index = booksArray.findIndex(function (item: DataTypes.BookRecordType) {
+            let index = booksArray.findIndex(function (item: DataTypes.BookRecordType) {
                 return item.id === key;
             });
             dbconnector.assignBook(index, booksArray[index].value.owner, () => Store.dispatch(Actions.listBooks()));

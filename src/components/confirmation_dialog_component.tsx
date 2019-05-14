@@ -12,7 +12,7 @@ const ConfirmationDialogComponent = (props: Props) => {
     const [visible, setVisible] = useState(false);
     const [text, setText] = useState('');
     const [button, setButton] = useState('');
-    let isMessgeValid = props.message && text != props.message.text;
+    let isMessgeValid = props.message && text !== props.message.text;
 
     if (isMessgeValid) {
         setText(props.message.text);
