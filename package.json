@@ -66,6 +66,7 @@
     ],
     "moduleNameMapper": {
       "^react-native$": "react-native-web"
-    }
+    },
+    "verbose": true
   }
 }

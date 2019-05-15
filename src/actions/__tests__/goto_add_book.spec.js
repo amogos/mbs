@@ -1,6 +1,6 @@
-import * as ActionTypes from './../constants/action_constant'
-import * as Strings from './../constants/string_constant'
-import * as Actions from './index'
+import * as ActionTypes from '../../constants/action_constant'
+import * as Strings from '../../constants/string_constant'
+import * as Actions from '../index'
 
 describe('gotoAddBook(message)', () => {
     it('should go to add book page with message if set', () => {
