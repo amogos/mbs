@@ -54,9 +54,9 @@ export default function treeReducer(state = initialState, action: any) {
                 userdata: action.userdata
             })
         case ACTION_ASSIGN_BOOK: {
-            const key: string = action.book_key;
+            const key: string = action.bookKey;
             const userdata = state.userdata;
-            var index = booksArray.findIndex(function (item: DataTypes.BookRecordType) {
+            let index = booksArray.findIndex(function (item: DataTypes.BookRecordType) {
                 return item.id === key;
             });
             dbconnector.assignBook(index, userdata, () => Store.dispatch(Actions.listBooks()));
@@ -66,8 +66,8 @@ export default function treeReducer(state = initialState, action: any) {
             })
         }
         case ACTION_RETURN_BOOK: {
-            const key: string = action.book_key;
-            var index = booksArray.findIndex(function (item: DataTypes.BookRecordType) {
+            const key: string = action.bookKey;
+            let index = booksArray.findIndex(function (item: DataTypes.BookRecordType) {
                 return item.id === key;
             });
             dbconnector.assignBook(index, booksArray[index].value.owner, () => Store.dispatch(Actions.listBooks()));
@@ -77,7 +77,7 @@ export default function treeReducer(state = initialState, action: any) {
             })
         }
         case ACTION_DELETE_BOOK: {
-            dbconnector.deleteBook(action.book_key, () => {
+            dbconnector.deleteBook(action.bookKey, () => {
                 let message = { text: Strings.MYBOOKSHELVE_STRING_BOOK_REMOVED, button1: Strings.MYBOOKSHELVE_STRING_CONFIRM } as DataTypes.ConfirmationDialogParams;
                 Store.dispatch(Actions.listBooks(message));
             });

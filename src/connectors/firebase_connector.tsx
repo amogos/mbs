@@ -42,10 +42,10 @@ class FirebaseConnector implements DatabaseConnector {
         }).catch((error) => { alert(error); });
     }
 
-    deleteBook(data: DataTypes.BookKeyType, onComplete?: () => void): void {
-        firebase.database().ref().child('books').child(data.id as string).remove(() => {
+    deleteBook(bookKey: string, onComplete?: () => void): void {
+        firebase.database().ref().child('books').child(bookKey).remove(() => {
             booksArray.forEach((item, index) => {
-                if (item.id === data.id) {
+                if (item.id === bookKey) {
                     booksArray.splice(index, 1);
                 }
             });

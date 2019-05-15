@@ -3,10 +3,10 @@ import { Button } from 'react-native'
 import * as DataTypes from "./../types";
 
 interface Props {
-    id: string;
+    id: string | null;
     value: DataTypes.BookValueType;
     userdata: DataTypes.UserType;
-    deleteBook(key: DataTypes.BookKeyType): void;
+    deleteBook(key: string | null): void;
 }
 
 const BookRemover = (props: Props) => {
@@ -15,16 +15,12 @@ const BookRemover = (props: Props) => {
     var book: DataTypes.BookValueType = props.value;
     let isMeOwner: boolean = me.email === book.owner.email;
     let isMeHolder: boolean = me.email === book.holder.email || book.holder.email === "";
+    let bookKey = props.id;
 
     if (isMeOwner && isMeHolder)
         content = (<Button title="delete" color="#000000ff"
-            onPress={() => onDeleteButtonPressed(props)} />);
+            onPress={() => props.deleteBook(bookKey)} />);
     return content;
-}
-
-const onDeleteButtonPressed = (props: Props) => {
-    var bookKey: DataTypes.BookKeyType = { id: props.id };
-    props.deleteBook(bookKey);
 }
 
 export default BookRemover;

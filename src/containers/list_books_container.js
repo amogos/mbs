@@ -3,9 +3,9 @@ import ListBooksComponent from '../components/list_books_component'
 
 function mapStateToProps(state) {
     return {
-        userdata: state.tree.userdata,
-        changingkey: state.tree.changingkey,
-        action: state.tree.action
+        userdata: state.treeReducer.userdata,
+        changingkey: state.treeReducer.changingkey,
+        action: state.treeReducer.action
     };
 }
 

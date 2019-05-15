@@ -4,7 +4,7 @@ import ConfirmationDialogComponent from '../components/confirmation_dialog_compo
 
 function mapStateToProps(state) {
     return {
-        message: state.tree.message
+        message: state.treeReducer.message
     };
 }
 
