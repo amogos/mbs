@@ -59,14 +59,5 @@
   ],
   "transformIgnorePatterns": [
     "node_modules/(?!react-native|tcomb-form-native)"
-  ],
-  "jest": {
-    "transformIgnorePatterns": [
-      "node_modules/(?!(jest-)?react-native|@react-native-community|react-native-elements)"
-    ],
-    "moduleNameMapper": {
-      "^react-native$": "react-native-web"
-    },
-    "verbose": true
-  }
+  ]
 }

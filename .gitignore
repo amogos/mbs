@@ -7,3 +7,5 @@ npm-debug.*
 *.mobileprovision
 build
 *.cache
+report.*.json
+coverage-final.json
