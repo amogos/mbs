@@ -7,7 +7,7 @@ interface Props {
     id: string | null;
     value: Types.BookValueType;
     userdata: Types.UserType;
-    extraData: string
+    extradata: string
 }
 
 interface State {
@@ -38,7 +38,7 @@ function BookRightSide(props: Props) {
 
 export default class Book extends React.Component<Props, State> {
     componentWillReceiveProps(props: Props) {
-        if (props.extraData === this.props.extraData) {
+        if (props.extradata === this.props.extradata) {
             this.setState(this.state);
         }
     }
