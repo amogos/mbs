@@ -1,4 +1,4 @@
-import SocialLoginComponent from './../social_login_component'
+import SocialLoginComponent from '../social_login_component'
 import * as DataTypes from '../../types'
 import renderer from 'react-test-renderer';
 

@@ -1,5 +1,4 @@
 import React from 'react'
-import { Text, View, StyleSheet } from 'react-native'
 import BookPlacementContainer from './../containers/book_placement_container'
 import BookRemoverContainer from './../containers/book_remover_container'
 import * as Types from "./../types";
@@ -26,12 +25,12 @@ function BookLeftSide(props: Props) {
 function BookRightSide(props: Props) {
     return (
         <td>
-            <View style={styles.description}>
-                <Text style={styles.title}> {props.value.title}</Text>
-                <Text style={styles.language}> ({props.value.language})</Text>
-                <Text style={styles.grey_text}> {props.value.author}</Text>
+            <div>
+                <p> {props.value.title} </p>
+                <p> ({props.value.language}) </p>
+                <p> {props.value.author} </p>
 
-            </View>
+            </div>
             <BookPlacementContainer {...props} />
 
         </td>);
@@ -54,33 +53,3 @@ export default class Book extends React.Component<Props, State> {
     }
 }
 
-const styles = StyleSheet.create({
-    description:
-    {
-        flex: 1,
-        height: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        flexDirection: 'row'
-    },
-    title: {
-
-        fontSize: 14,
-        color: 'black',
-        fontWeight: 'bold',
-
-    },
-    grey_text: {
-        fontSize: 13,
-        color: 'gray',
-        fontWeight: 'normal',
-
-    },
-
-    language: {
-        fontSize: 13,
-        color: 'black',
-        fontStyle: 'italic',
-    },
-
-})

@@ -1,0 +1,85 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Check correct rendering 1`] = `
+<tr>
+  <td>
+    <img
+      alt="new"
+      height={64}
+      src="https://images-na.ssl-images-amazon.com/images/I/51lsugWtCvL._SY498_BO1,204,203,200_.jpg"
+      width={64}
+    />
+    <remover container
+      extradata="Lb2fXy3Z6edp87fkoSg"
+      id="Lb2fXy3Z6edp87fkoSg"
+      userdata={
+        Object {
+          "email": "daosmistique@yahoo.com",
+          "name": "Iulia Mogos",
+        }
+      }
+      value={
+        Object {
+          "author": "Eric Carle",
+          "holder": Object {
+            "email": "",
+            "name": "",
+          },
+          "image": "https://images-na.ssl-images-amazon.com/images/I/51lsugWtCvL._SY498_BO1,204,203,200_.jpg",
+          "language": "English",
+          "owner": Object {
+            "email": "daosmistique@yahoo.com",
+            "name": "Iulia Mogos",
+          },
+          "title": "The Very Hungry Caterpillar's ABC",
+        }
+      }
+    />
+  </td>
+  <td>
+    <div>
+      <p>
+         
+        The Very Hungry Caterpillar's ABC
+         
+      </p>
+      <p>
+         (
+        English
+        ) 
+      </p>
+      <p>
+         
+        Eric Carle
+         
+      </p>
+    </div>
+    <placement container
+      extradata="Lb2fXy3Z6edp87fkoSg"
+      id="Lb2fXy3Z6edp87fkoSg"
+      userdata={
+        Object {
+          "email": "daosmistique@yahoo.com",
+          "name": "Iulia Mogos",
+        }
+      }
+      value={
+        Object {
+          "author": "Eric Carle",
+          "holder": Object {
+            "email": "",
+            "name": "",
+          },
+          "image": "https://images-na.ssl-images-amazon.com/images/I/51lsugWtCvL._SY498_BO1,204,203,200_.jpg",
+          "language": "English",
+          "owner": Object {
+            "email": "daosmistique@yahoo.com",
+            "name": "Iulia Mogos",
+          },
+          "title": "The Very Hungry Caterpillar's ABC",
+        }
+      }
+    />
+  </td>
+</tr>
+`;
