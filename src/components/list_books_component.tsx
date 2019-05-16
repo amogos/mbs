@@ -15,7 +15,7 @@ const ListBooksComponent = (props: Props) => {
         <View style={{ flex: 0, alignItems: 'center', justifyContent: 'center' }}>
             <table>
                 <FlatList<DataTypes.BookRecordType> data={booksArray} extraData={props.action} renderItem={({ item }) => {
-                    return <Book id={item.id} value={item.value} userdata={props.userdata} extraData={props.changingkey} />;
+                    return <Book id={item.id} value={item.value} userdata={props.userdata} extradata={props.changingkey} />;
                 }} />
             </table>
         </View>

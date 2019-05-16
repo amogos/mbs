@@ -1,8 +1,7 @@
 import React from 'react'
-import { Text, StyleSheet, Button } from 'react-native'
+import { Text, Button } from 'react-native'
 import Strings from './../constants/string_constant'
 import * as DataTypes from "./../types";
-
 
 interface Props {
     id: string | null;
@@ -18,17 +17,17 @@ const BookPlacementComponent = (props: Props) => {
     const key = props.id;
 
     if (assignable(props)) {
-        content = (<Text style={styles.description}> <br /> {Strings.book_placement_component.MYBOOKSHELVE_STRING_OWNER}: {owner.name}
+        content = (<Text> <br /> {Strings.book_placement_component.MYBOOKSHELVE_STRING_OWNER}: {owner.name}
             <br /><Button title={Strings.book_placement_component.MYBOOKSHELVE_STRING_ASSIGN} color="#000000ff"
                 onPress={() => props.assignBook(key)} />
         </Text>);
 
     } else if (returnable(props)) {
-        content = (<Text style={styles.description}> <br /> {Strings.book_placement_component.MYBOOKSHELVE_STRING_OWNER}: {owner.name}
+        content = (<Text > <br /> {Strings.book_placement_component.MYBOOKSHELVE_STRING_OWNER}: {owner.name}
             <br /><Button title={Strings.book_placement_component.MYBOOKSHELVE_STRING_RETURN} color="#33FF8A" onPress={() => props.returnBook(key)} />
         </Text>);
     } else {
-        content = (<Text style={styles.description}> <br /> {Strings.book_placement_component.MYBOOKSHELVE_STRING_OWNER}: {owner.name}
+        content = (<Text > <br /> {Strings.book_placement_component.MYBOOKSHELVE_STRING_OWNER}: {owner.name}
             <br /><Button title={holder.email === "" ?
                 owner.name : holder.name} color="#808080" onPress={() => { }} />
         </Text>);
@@ -49,17 +48,3 @@ const assignable = (props: Props) => {
 
 export default BookPlacementComponent;
 
-const styles = StyleSheet.create({
-    button:
-    {
-        flex: 2,
-    },
-    description:
-    {
-        fontSize: 14,
-        color: 'gray',
-        fontWeight: 'normal',
-        flexDirection: 'column',
-        justifyContent: 'space-between'
-    }
-});
