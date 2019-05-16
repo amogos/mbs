@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { View, Text, TextInput, Button, StyleSheet } from 'react-native'
+import { View, Text, TextInput, Button } from 'react-native'
 import * as DataTypes from "../types";
 
 var defaultImage = 'https://vignette.wikia.nocookie.net/superfriends/images/a/a5/No_Photo_Available.jpg/revision/latest?cb=20090329133959';
@@ -11,6 +11,17 @@ var currentBook = {
   owner: DataTypes.nullUser,
   holder: DataTypes.nullUser
 };
+
+const styles = {
+  inputField: {
+    height: 34,
+    width: 320,
+    borderColor: 'gray',
+    borderWidth: 1,
+    padding: 2,
+    borderRadius: 6
+  },
+}
 
 interface Props {
   userdata: DataTypes.UserType;
@@ -69,13 +80,3 @@ const onSaveButtonPressed = (props: Props) => {
   currentBook.title = currentBook.author = currentBook.language = "";
 }
 
-const styles = StyleSheet.create({
-  inputField: {
-    height: 34,
-    width: 320,
-    borderColor: 'gray',
-    borderWidth: 1,
-    padding: 2,
-    borderRadius: 6
-  },
-})
