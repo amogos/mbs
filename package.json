@@ -10,10 +10,12 @@
     "start-web": "react-scripts start",
     "build-web": "react-scripts build",
     "test": "jest",
-    "test:watch": "npm test -- --watch"
+    "test:watch": "npm test -- --watch",
+    "lint": "node_modules/.bin/eslint ./src"
   },
   "pre-commit": [
-    "test"
+    "test",
+    "lint"
   ],
   "dependencies": {
     "@babel/plugin-proposal-class-properties": "^7.4.0",
