@@ -12,7 +12,8 @@ import {
 } from '../constants/action_constant'
 import * as DataTypes from "../types"
 import * as Actions from '../actions/index'
-import dbconnector, { booksArray } from '../connectors/firebase_connector'
+import databseInstance from '../connectors/database_instance'
+import { booksArray } from '../connectors/database_connector'
 import { string } from 'prop-types';
 import Store from './../store'
 import Strings from '../constants/string_constant';
@@ -32,7 +33,7 @@ export default function treeReducer(state = initialState, action: any) {
                 message: action.message
             })
         case ACTION_ADD_BOOK:
-            dbconnector.addBook(action.data, () => {
+            databseInstance.addBook(action.data, () => {
                 let message = { text: Strings.MYBOOKSHELVE_STRING_NEW_BOOK_ADDED, button1: Strings.MYBOOKSHELVE_STRING_CONFIRM } as DataTypes.ConfirmationDialogParams;
                 Store.dispatch(Actions.gotoAddBook(message));
             });
@@ -40,7 +41,7 @@ export default function treeReducer(state = initialState, action: any) {
                 action: ACTION_ADD_BOOK
             })
         case ACTION_GOTO_LIST_BOOKS:
-            dbconnector.querryBooks(() => Store.dispatch(Actions.listBooks()));
+            databseInstance.querryBooks(() => Store.dispatch(Actions.listBooks()));
             return Object.assign({}, state, {
                 action: ACTION_GOTO_LIST_BOOKS
             })
@@ -59,7 +60,7 @@ export default function treeReducer(state = initialState, action: any) {
             let index = booksArray.findIndex(function (item: DataTypes.BookRecordType) {
                 return item.id === key;
             });
-            dbconnector.assignBook(index, userdata, () => Store.dispatch(Actions.listBooks()));
+            databseInstance.assignBook(index, userdata, () => Store.dispatch(Actions.listBooks()));
             return Object.assign({}, state, {
                 action: ACTION_ASSIGN_BOOK,
                 changingkey: key
@@ -70,14 +71,14 @@ export default function treeReducer(state = initialState, action: any) {
             let index = booksArray.findIndex(function (item: DataTypes.BookRecordType) {
                 return item.id === key;
             });
-            dbconnector.assignBook(index, booksArray[index].value.owner, () => Store.dispatch(Actions.listBooks()));
+            databseInstance.assignBook(index, booksArray[index].value.owner, () => Store.dispatch(Actions.listBooks()));
             return Object.assign({}, state, {
                 action: ACTION_RETURN_BOOK,
                 changingkey: key
             })
         }
         case ACTION_DELETE_BOOK: {
-            dbconnector.deleteBook(action.bookKey, () => {
+            databseInstance.deleteBook(action.bookKey, () => {
                 let message = { text: Strings.MYBOOKSHELVE_STRING_BOOK_REMOVED, button1: Strings.MYBOOKSHELVE_STRING_CONFIRM } as DataTypes.ConfirmationDialogParams;
                 Store.dispatch(Actions.listBooks(message));
             });

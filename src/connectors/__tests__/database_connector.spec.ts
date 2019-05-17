@@ -1,5 +1,6 @@
 import waitForExpect from 'wait-for-expect'
-import databaseConnector, { booksArray } from './../firebase_connector'
+import databaseInstance from './../database_instance'
+import { booksArray } from './../database_connector'
 import * as DataTypes from './../../types'
 
 const callbacks = {
@@ -25,14 +26,14 @@ const bookValue: DataTypes.BookValueType = {
 describe('Running database flow', () => {
     it('Should querryBooks()', async () => {
         let spy = jest.spyOn(callbacks, 'one');
-        databaseConnector.querryBooks(callbacks.one);
+        databaseInstance.querryBooks(callbacks.one);
         await waitForExpect(() => {
             expect(spy).toBeCalled();
         });
     })
     it('Should addBook()', async () => {
         let spy = jest.spyOn(callbacks, 'one');
-        databaseConnector.addBook(bookValue, callbacks.one);
+        databaseInstance.addBook(bookValue, callbacks.one);
         await waitForExpect(() => {
             expect(spy).toBeCalled();
             expect(booksArray[booksArray.length - 1].value.title).toEqual(bookValue.title);
@@ -40,7 +41,7 @@ describe('Running database flow', () => {
     })
     it('Should assignBook()', async () => {
         let spy = jest.spyOn(callbacks, 'one');
-        databaseConnector.assignBook(booksArray.length - 1, userdata, callbacks.one);
+        databaseInstance.assignBook(booksArray.length - 1, userdata, callbacks.one);
         await waitForExpect(() => {
             expect(spy).toBeCalled();
             expect(booksArray[booksArray.length - 1].value.holder).toEqual(userdata);
@@ -49,7 +50,7 @@ describe('Running database flow', () => {
     it('Should deleteBook()', async () => {
         let spy = jest.spyOn(callbacks, 'one');
         let lastBookKey = booksArray[booksArray.length - 1].id as string;
-        databaseConnector.deleteBook(lastBookKey as string, callbacks.one);
+        databaseInstance.deleteBook(lastBookKey as string, callbacks.one);
         await waitForExpect(() => {
             expect(spy).toBeCalled(); booksArray.length
             let index = booksArray.findIndex(function (item: DataTypes.BookRecordType) {

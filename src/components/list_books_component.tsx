@@ -2,7 +2,7 @@ import React from 'react'
 import { View, FlatList } from 'react-native'
 import Book from '../components/book_component'
 import * as DataTypes from "./../types";
-import { booksArray } from '../connectors/firebase_connector'
+import { booksArray } from '../connectors/database_connector'
 
 interface Props {
     action: string;

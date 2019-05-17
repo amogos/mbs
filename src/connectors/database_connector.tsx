@@ -6,3 +6,5 @@ export default interface DatabaseConnector {
     deleteBook(bookKey: string, onComplete?: () => void): void;
     addBook(data: DataTypes.BookValueType, onComplete?: () => void): void;
 }
+
+export var booksArray: Array<DataTypes.BookRecordType> = [];

@@ -1,11 +1,9 @@
 import firebase from 'firebase'
-import DatabaseConnector from './database_connector'
+import DatabaseConnector, { booksArray } from './database_connector'
 import * as DataTypes from "../types"
 
 
-export var booksArray: Array<DataTypes.BookRecordType> = [];
-
-class FirebaseConnector implements DatabaseConnector {
+export default class FirebaseConnector implements DatabaseConnector {
     constructor() {
         this.init();
     }
@@ -22,7 +20,7 @@ class FirebaseConnector implements DatabaseConnector {
     }
 
     querryBooks(onComplete?: () => void): Array<DataTypes.BookRecordType> {
-        booksArray = [];
+        booksArray.splice(0, booksArray.length);
         firebase.database().ref().child('books').once('value').then(function (snapshot) {
             snapshot.forEach(item => {
                 booksArray.push({ id: item.key, value: item.val() });
@@ -65,5 +63,4 @@ class FirebaseConnector implements DatabaseConnector {
         }).catch((error) => { alert(error); });
     }
 }
-const dbconnector = new FirebaseConnector();
-export default dbconnector;
+
