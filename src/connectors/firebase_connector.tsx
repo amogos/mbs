@@ -25,6 +25,7 @@ export default class FirebaseConnector implements DatabaseConnector {
             snapshot.forEach(item => {
                 booksArray.push({ id: item.key, value: item.val() });
             })
+            alert(2)
             if (onComplete)
                 onComplete();
         }).catch((error) => { alert(error); });
