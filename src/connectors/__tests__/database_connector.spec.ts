@@ -1,6 +1,6 @@
 import waitForExpect from 'wait-for-expect'
 import databaseInstance from './../database_instance'
-import { booksArray } from './../database_connector'
+import { booksArray } from './../database_caches'
 import * as DataTypes from './../../types'
 
 const callbacks = {

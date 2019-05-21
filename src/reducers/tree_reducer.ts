@@ -13,7 +13,7 @@ import {
 import * as DataTypes from "../types"
 import * as Actions from '../actions/index'
 import databseInstance from '../connectors/database_instance'
-import { booksArray } from '../connectors/database_connector'
+import { booksArray } from '../connectors/database_caches'
 import { string } from 'prop-types';
 import Store from './../store'
 import Strings from '../constants/string_constant';
