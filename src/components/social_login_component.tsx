@@ -8,10 +8,8 @@ interface Props {
 
 const SocialLoginComponent = (props: Props) => {
     let content;
-    let userdata = props.userdata;
-    if (userdata !== DataTypes.nullUser) {
-        content = (<div style={{ color: 'white' }}>Welcome: {userdata.name}</div>);
-
+    if (props.userdata && props.userdata.name) {
+        content = (<div style={{ color: 'white' }}>Welcome: {props.userdata.name}</div>);
     } else {
         content = <FacebookContainer />
     }
