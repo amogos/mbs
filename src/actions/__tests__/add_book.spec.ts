@@ -19,7 +19,7 @@ const bookValue: DataTypes.BookValueType = {
 
 
 describe('addBook', () => {
-    it('should build well formatted action', () => {
+    it('should build action for adding a book', () => {
         const expectedAction = {
             type: ActionTypes.ACTION_ADD_BOOK,
             data: bookValue
