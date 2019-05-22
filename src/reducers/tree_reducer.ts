@@ -2,7 +2,6 @@ import {
     ACTION_ADD_BOOK,
     ACTION_LIST_BOOKS,
     ACTION_USER_DATA,
-    ACTION_NONE,
     ACTION_ASSIGN_BOOK,
     ACTION_RETURN_BOOK,
     ACTION_GOTO_ADD_BOOK,
@@ -13,19 +12,13 @@ import {
 import * as DataTypes from "../types"
 import * as Actions from '../actions/index'
 import databseInstance from '../connectors/database_instance'
-import { booksArray } from '../connectors/database_connector'
-import { string } from 'prop-types';
+import { booksArray } from '../connectors/database_caches'
 import Store from './../store'
 import Strings from '../constants/string_constant';
 
 
-const initialState = {
-    action: ACTION_NONE,
-    userdata: DataTypes.nullUser,
-    changingkey: string,
-}
 
-export default function treeReducer(state = initialState, action: any) {
+export default function treeReducer(state = {} as any, action: any) {
     switch (action.type) {
         case ACTION_GOTO_ADD_BOOK:
             return Object.assign({}, state, {

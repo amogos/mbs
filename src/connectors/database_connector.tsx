@@ -7,4 +7,3 @@ export default interface DatabaseConnector {
     addBook(data: DataTypes.BookValueType, onComplete?: () => void): void;
 }
 
-export var booksArray: Array<DataTypes.BookRecordType> = [];

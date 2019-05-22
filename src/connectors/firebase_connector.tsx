@@ -1,5 +1,6 @@
 import firebase from 'firebase'
-import DatabaseConnector, { booksArray } from './database_connector'
+import DatabaseConnector from './database_connector'
+import { booksArray } from './database_caches'
 import * as DataTypes from "../types"
 
 
