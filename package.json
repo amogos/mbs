@@ -10,7 +10,7 @@
     "start-web": "react-scripts start",
     "build-web": "react-scripts build",
     "test": "jest --coverage",
-    "lint": "node_modules/.bin/eslint ./src"
+    "lint": "node_modules/.bin/tsc --noEmit && node_modules/.bin/eslint ./src --fix"
   },
   "pre-commit": [
     "test",
@@ -50,12 +50,17 @@
   "devDependencies": {
     "@types/react": "^16.8.13",
     "@types/react-native": "^0.57.42",
+    "@typescript-eslint/eslint-plugin": "^1.9.0",
+    "@typescript-eslint/parser": "^1.9.0",
     "babel-preset-expo": "^5.0.0",
     "eslint": "^5.16.0",
+    "eslint-config-prettier": "^4.3.0",
     "eslint-plugin-jest": "^22.5.1",
+    "eslint-plugin-prettier": "^3.1.0",
     "eslint-plugin-react": "^7.13.0",
     "eslint-plugin-react-hooks": "^1.6.0",
     "pre-commit": "^1.2.2",
+    "prettier": "^1.17.1",
     "react-native-typescript-transformer": "^1.2.12",
     "react-test-renderer": "^16.8.6",
     "typescript": "^3.4.3",

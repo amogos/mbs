@@ -4,9 +4,11 @@ module.exports = {
         "es6": true,
         "jest/globals": true
     },
+    "parser": '@typescript-eslint/parser',
     "extends": [
-        "eslint:recommended",
-        "plugin:jest/recommended"
+        'plugin:@typescript-eslint/recommended',
+        'prettier/@typescript-eslint', 
+        'plugin:prettier/recommended'
     ],
     "globals": {
         "Atomics": "readonly",
@@ -29,5 +31,10 @@ module.exports = {
         "jest/no-identical-title": "error",
         "jest/prefer-to-have-length": "warn",
         "jest/valid-expect": "error"
-    }
+    },
+    "settings": {
+        "react": {
+            "version": 'detect',
+        },
+    },
 };
