@@ -9,8 +9,7 @@
     "eject": "expo eject",
     "start-web": "react-scripts start",
     "build-web": "react-scripts build",
-    "test": "jest",
-    "test:watch": "npm test -- --watch",
+    "test": "jest --coverage",
     "lint": "node_modules/.bin/eslint ./src"
   },
   "pre-commit": [
