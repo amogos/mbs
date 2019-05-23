@@ -10,11 +10,13 @@
     "start-web": "react-scripts start",
     "build-web": "react-scripts build",
     "test": "jest --coverage",
+    "compile": "node_modules/.bin/tsc --noEmit",
     "lint": "node_modules/.bin/eslint ./src --fix"
   },
   "pre-commit": [
-    "test",
-    "lint"
+    "compile",
+    "lint",
+    "test"
   ],
   "dependencies": {
     "@babel/plugin-proposal-class-properties": "^7.4.0",
