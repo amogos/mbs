@@ -10,7 +10,7 @@
     "start-web": "react-scripts start",
     "build-web": "react-scripts build",
     "test": "jest --coverage",
-    "lint": "node_modules/.bin/tsc --noEmit && node_modules/.bin/eslint ./src --fix"
+    "lint": "node_modules/.bin/eslint ./src --fix"
   },
   "pre-commit": [
     "test",
