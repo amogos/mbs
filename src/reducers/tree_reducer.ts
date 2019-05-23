@@ -15,7 +15,7 @@ import databseInstance from '../connectors/database_instance'
 import { booksArray } from '../connectors/database_caches'
 import Store from './../store'
 import Strings from '../constants/string_constant';
-
+import StateKeys from './state_keys'
 
 
 export default function treeReducer(state = {} as any, action: any) {
@@ -77,14 +77,14 @@ export default function treeReducer(state = {} as any, action: any) {
             });
             return Object.assign({}, state, {
                 action: ACTION_DELETE_BOOK,
-                changingkey: action.book_key
+                changingkey: action.bookKey
             })
         }
         case ACTION_CONFIRM_MESSAGE: {
             let result = Object.assign(
                 {},
                 ...Object.entries(state)
-                    .filter(([k]) => k !== 'message')
+                    .filter(([k]) => k !== StateKeys.STATE_KEY_MESSAGE)
                     .map(([k, v]) => ({ [k]: v })));
             return result;
         }
