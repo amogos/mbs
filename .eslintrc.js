@@ -26,6 +26,8 @@ module.exports = {
         "jest"
     ],
     "rules": {
+        "react/jsx-uses-vars": "error",
+        "react/jsx-uses-react": "error",
         "jest/no-disabled-tests": "warn",
         "jest/no-focused-tests": "error",
         "jest/no-identical-title": "error",
