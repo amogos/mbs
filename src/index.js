@@ -1,16 +1,17 @@
 // src/index.js
-import React from 'react'  // eslint-disable-line no-unused-vars
-import ReactDom from 'react-dom'// eslint-disable-line no-unused-vars
-import { Provider } from 'react-redux'// eslint-disable-line no-unused-vars
-import Store from './store'// eslint-disable-line no-unused-vars
-import BannerContainer from './containers/banner_container';// eslint-disable-line no-unused-vars
-import MainContainer from './containers/main_container';// eslint-disable-line no-unused-vars
-import ConfirmationDialogContainer from './containers/confirmation_dialog_container';// eslint-disable-line no-unused-vars
+import React from 'react'; // eslint-disable-line  
+import ReactDom from 'react-dom'; // eslint-disable-line
+import { Provider } from 'react-redux'; // eslint-disable-line
+import Store from './store'; // eslint-disable-line
+import BannerContainer from './containers/banner_container'; // eslint-disable-line
+import MainContainer from './containers/main_container'; // eslint-disable-line
+import ConfirmationDialogContainer from './containers/confirmation_dialog_container';  // eslint-disable-line
 
 ReactDom.render(
     <Provider store={Store}>
-        <BannerContainer/>
+        <BannerContainer />
         <MainContainer />
-        <ConfirmationDialogContainer/>
-    </Provider>
-    , document.getElementById("root"));
+        <ConfirmationDialogContainer />
+    </Provider>,
+    document.getElementById('root'),
+);
