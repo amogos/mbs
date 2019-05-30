@@ -16,6 +16,7 @@ import { booksArray } from '../connectors/database_caches';
 import Store from './../store';
 import Strings from '../constants/string_constant';
 import StateKeys from './state_keys';
+import { message } from 'antd';
 
 export default function treeReducer(state = {} as any, action: any): any {
     switch (action.type) {
@@ -26,11 +27,8 @@ export default function treeReducer(state = {} as any, action: any): any {
             });
         case ACTION_ADD_BOOK:
             databseInstance.addBook(action.data, () => {
-                let message: DataTypes.ConfirmationDialogParams = {
-                    text: Strings.MYBOOKSHELVE_STRING_NEW_BOOK_ADDED,
-                    button1: Strings.MYBOOKSHELVE_STRING_CONFIRM,
-                };
-                Store.dispatch(Actions.gotoAddBook(message));
+                message.success(Strings.MYBOOKSHELVE_STRING_NEW_BOOK_ADDED);
+                Store.dispatch(Actions.gotoAddBook());
             });
             return Object.assign({}, state, {
                 action: ACTION_ADD_BOOK,
