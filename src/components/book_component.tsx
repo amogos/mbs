@@ -1,16 +1,13 @@
-import React from 'react'
-import BookPlacementContainer from './../containers/book_placement_container'
-import BookRemoverContainer from './../containers/book_remover_container'
-import * as Types from "./../types";
+import React from 'react';
+import BookPlacementContainer from './../containers/book_placement_container';
+import BookRemoverContainer from './../containers/book_remover_container';
+import * as Types from './../types';
 
 interface Props {
     id: string | null;
     value: Types.BookValueType;
     userdata: Types.UserType;
-    extradata: string
-}
-
-interface State {
+    extradata: string;
 }
 
 function BookLeftSide(props: Props) {
@@ -18,8 +15,8 @@ function BookLeftSide(props: Props) {
         <td>
             <img src={props.value.image} alt="new" width={64} height={64} />
             <BookRemoverContainer {...props} />
-        </td>)
-
+        </td>
+    );
 }
 
 function BookRightSide(props: Props) {
@@ -29,21 +26,20 @@ function BookRightSide(props: Props) {
                 <p> {props.value.title} </p>
                 <p> ({props.value.language}) </p>
                 <p> {props.value.author} </p>
-
             </div>
             <BookPlacementContainer {...props} />
-
-        </td>);
+        </td>
+    );
 }
 
-export default class Book extends React.Component<Props, State> {
-    componentWillReceiveProps(props: Props) {
+export default class Book extends React.Component<Props, {}> {
+    public componentWillReceiveProps(props: Props) {
         if (props.extradata === this.props.extradata) {
             this.setState(this.state);
         }
     }
 
-    render() {
+    public render() {
         return (
             <tr>
                 <BookLeftSide {...this.props} />
@@ -52,4 +48,3 @@ export default class Book extends React.Component<Props, State> {
         );
     }
 }
-
