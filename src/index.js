@@ -1,6 +1,7 @@
 // src/index.js
 import React from 'react';
 import ReactDom from 'react-dom';
+import 'antd/dist/antd.css';
 import { Provider } from 'react-redux';
 import Store from './store';
 import BannerContainer from './containers/banner_container';
