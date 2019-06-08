@@ -60,7 +60,4 @@ describe('Testing tree reducer branching', () => {
             changingkey: bookKey,
         });
     });
-    it('Should return state with consumed message', () => {
-        expect(treeReducer({ message: 'some message' }, Actions.confirmMessage())).toEqual({});
-    });
 });

@@ -7,7 +7,6 @@ import {
     ACTION_GOTO_ADD_BOOK,
     ACTION_GOTO_LIST_BOOKS,
     ACTION_DELETE_BOOK,
-    ACTION_CONFIRM_MESSAGE,
 } from '../constants/action_constant';
 import * as DataTypes from '../types';
 import * as Actions from '../actions/index';
@@ -23,7 +22,6 @@ export default function treeReducer(state = {} as any, action: any): any {
         case ACTION_GOTO_ADD_BOOK:
             return Object.assign({}, state, {
                 action: ACTION_GOTO_ADD_BOOK,
-                message: action.message,
             });
         case ACTION_ADD_BOOK:
             databseInstance.addBook(action.data, () => {
@@ -41,7 +39,6 @@ export default function treeReducer(state = {} as any, action: any): any {
         case ACTION_LIST_BOOKS:
             return Object.assign({}, state, {
                 action: ACTION_LIST_BOOKS,
-                message: action.message,
             });
         case ACTION_USER_DATA:
             return Object.assign({}, state, {
@@ -72,25 +69,13 @@ export default function treeReducer(state = {} as any, action: any): any {
         }
         case ACTION_DELETE_BOOK: {
             databseInstance.deleteBook(action.bookKey, () => {
-                let message: DataTypes.ConfirmationDialogParams = {
-                    text: Strings.MYBOOKSHELVE_STRING_BOOK_REMOVED,
-                    button1: Strings.MYBOOKSHELVE_STRING_CONFIRM,
-                };
-                Store.dispatch(Actions.listBooks(message));
+                message.success(Strings.MYBOOKSHELVE_STRING_BOOK_REMOVED);
+                Store.dispatch(Actions.listBooks());
             });
             return Object.assign({}, state, {
                 action: ACTION_DELETE_BOOK,
                 changingkey: action.bookKey,
             });
-        }
-        case ACTION_CONFIRM_MESSAGE: {
-            let result = Object.assign(
-                {},
-                ...Object.entries(state)
-                    .filter(([k]) => k !== StateKeys.STATE_KEY_MESSAGE)
-                    .map(([k, v]) => ({ [k]: v })),
-            );
-            return result;
         }
         default:
             return state;
