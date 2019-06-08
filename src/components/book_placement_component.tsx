@@ -31,10 +31,10 @@ const BookPlacementComponent = (props: Props) => {
         content = (
             <Text>
                 {' '}
-                <br /> {Strings.book_placement_component.MYBOOKSHELVE_STRING_OWNER}: {owner.name}
+                <br /> {Strings.bookPlacementComponent.MYBOOKSHELVE_STRING_OWNER}: {owner.name}
                 <br />
                 <Button
-                    title={Strings.book_placement_component.MYBOOKSHELVE_STRING_ASSIGN}
+                    title={Strings.bookPlacementComponent.MYBOOKSHELVE_STRING_ASSIGN}
                     color="#000000ff"
                     onPress={() => props.assignBook(key)}
                 />
@@ -44,10 +44,10 @@ const BookPlacementComponent = (props: Props) => {
         content = (
             <Text>
                 {' '}
-                <br /> {Strings.book_placement_component.MYBOOKSHELVE_STRING_OWNER}: {owner.name}
+                <br /> {Strings.bookPlacementComponent.MYBOOKSHELVE_STRING_OWNER}: {owner.name}
                 <br />
                 <Button
-                    title={Strings.book_placement_component.MYBOOKSHELVE_STRING_RETURN}
+                    title={Strings.bookPlacementComponent.MYBOOKSHELVE_STRING_RETURN}
                     color="#33FF8A"
                     onPress={() => props.returnBook(key)}
                 />
@@ -57,7 +57,7 @@ const BookPlacementComponent = (props: Props) => {
         content = (
             <Text>
                 {' '}
-                <br /> {Strings.book_placement_component.MYBOOKSHELVE_STRING_OWNER}: {owner.name}
+                <br /> {Strings.bookPlacementComponent.MYBOOKSHELVE_STRING_OWNER}: {owner.name}
                 <br />
                 <Button title={holder.email === '' ? owner.name : holder.name} color="#808080" onPress={() => {}} />
             </Text>

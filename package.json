@@ -9,6 +9,7 @@
     "eject": "expo eject",
     "start-web": "react-scripts start",
     "build-web": "react-scripts build",
+    "test-no-coverage": "jest",
     "test": "jest --coverage",
     "compile": "node_modules/.bin/tsc --noEmit",
     "lint": "node_modules/.bin/eslint ./src --fix",
@@ -17,7 +18,7 @@
   "pre-commit": [
     "compile",
     "lint",
-    "test"
+    "test-no-coverage"
   ],
   "dependencies": {
     "@babel/core": "^7.4.5",

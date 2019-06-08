@@ -1,9 +1,8 @@
-import * as DataTypes from "../types"
+import * as DataTypes from '../types';
 
 export default interface DatabaseConnector {
-    querryBooks(onComplete?: () => void): Array<DataTypes.BookRecordType>;
-    assignBook(index: number, user: DataTypes.UserType, onComplete?: () => void): void;
-    deleteBook(bookKey: string, onComplete?: () => void): void;
-    addBook(data: DataTypes.BookValueType, onComplete?: () => void): void;
+    querryBooks(onComplete?: (resultCode: number) => void): DataTypes.BookRecordType[];
+    assignBook(index: number, user: DataTypes.UserType, onComplete?: (resultCode: number) => void): void;
+    deleteBook(bookKey: string, onComplete?: (resultCode: number) => void): void;
+    addBook(data: DataTypes.BookValueType, onComplete?: (resultCode: number) => void): void;
 }
-

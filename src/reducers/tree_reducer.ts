@@ -14,9 +14,9 @@ import databseInstance from '../connectors/database_instance';
 import { booksArray } from '../connectors/database_caches';
 import Store from './../store';
 import Strings from '../constants/string_constant';
-import StateKeys from './state_keys';
 import { message } from 'antd';
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default function treeReducer(state = {} as any, action: any): any {
     switch (action.type) {
         case ACTION_GOTO_ADD_BOOK:
@@ -24,15 +24,24 @@ export default function treeReducer(state = {} as any, action: any): any {
                 action: ACTION_GOTO_ADD_BOOK,
             });
         case ACTION_ADD_BOOK:
-            databseInstance.addBook(action.data, () => {
-                message.success(Strings.MYBOOKSHELVE_STRING_NEW_BOOK_ADDED);
-                Store.dispatch(Actions.gotoAddBook());
+            databseInstance.addBook(action.data, (resultCode: number) => {
+                if (resultCode !== 0) {
+                    message.error(Strings.MYBOOKSHELVE_OPERATION_FAILED);
+                } else {
+                    message.success(Strings.MYBOOKSHELVE_STRING_NEW_BOOK_ADDED);
+                    Store.dispatch(Actions.gotoAddBook());
+                }
             });
             return Object.assign({}, state, {
                 action: ACTION_ADD_BOOK,
             });
         case ACTION_GOTO_LIST_BOOKS:
-            databseInstance.querryBooks(() => Store.dispatch(Actions.listBooks()));
+            databseInstance.querryBooks((resultCode: number) => {
+                if (resultCode !== 0) {
+                    message.error(Strings.MYBOOKSHELVE_OPERATION_FAILED);
+                }
+                Store.dispatch(Actions.listBooks());
+            });
             return Object.assign({}, state, {
                 action: ACTION_GOTO_LIST_BOOKS,
             });
@@ -50,7 +59,12 @@ export default function treeReducer(state = {} as any, action: any): any {
             let index = booksArray.findIndex(function(item: DataTypes.BookRecordType) {
                 return item.id === key;
             });
-            databseInstance.assignBook(index, userdata, () => Store.dispatch(Actions.listBooks()));
+            databseInstance.assignBook(index, userdata, (resultCode: number) => {
+                if (resultCode !== 0) {
+                    message.error(Strings.MYBOOKSHELVE_OPERATION_FAILED);
+                }
+                Store.dispatch(Actions.listBooks());
+            });
             return Object.assign({}, state, {
                 action: ACTION_ASSIGN_BOOK,
                 changingkey: key,
@@ -68,9 +82,13 @@ export default function treeReducer(state = {} as any, action: any): any {
             });
         }
         case ACTION_DELETE_BOOK: {
-            databseInstance.deleteBook(action.bookKey, () => {
-                message.success(Strings.MYBOOKSHELVE_STRING_BOOK_REMOVED);
-                Store.dispatch(Actions.listBooks());
+            databseInstance.deleteBook(action.bookKey, (resultCode: number) => {
+                if (resultCode !== 0) {
+                    message.error(Strings.MYBOOKSHELVE_OPERATION_FAILED);
+                } else {
+                    message.success(Strings.MYBOOKSHELVE_STRING_BOOK_REMOVED);
+                    Store.dispatch(Actions.listBooks());
+                }
             });
             return Object.assign({}, state, {
                 action: ACTION_DELETE_BOOK,
