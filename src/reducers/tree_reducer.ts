@@ -36,10 +36,12 @@ export default function treeReducer(state = {} as any, action: any): any {
                 action: ACTION_ADD_BOOK,
             });
         case ACTION_GOTO_LIST_BOOKS:
+            const progressSpinner = message.loading(Strings.MYBOOKSHELVE_ACTION_IN_PROGRESS);
             databseInstance.querryBooks((resultCode: number) => {
                 if (resultCode !== 0) {
                     message.error(Strings.MYBOOKSHELVE_OPERATION_FAILED);
                 }
+                setTimeout(progressSpinner, 0);
                 Store.dispatch(Actions.listBooks());
             });
             return Object.assign({}, state, {
