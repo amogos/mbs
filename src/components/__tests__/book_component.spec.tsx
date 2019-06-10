@@ -10,9 +10,9 @@ test('Check correct rendering', () => {
     const userdata: DataTypes.UserType = { name: 'Iulia Mogos', email: 'daosmistique@yahoo.com' };
     const bookValue: DataTypes.BookValueType = {
         author: 'Eric Carle',
-        holder: {
-            email: '',
-            name: '',
+        state: {
+            state: 'state.book.idle',
+            accounts: [],
         },
         image: 'https://images-na.ssl-images-amazon.com/images/I/51lsugWtCvL._SY498_BO1,204,203,200_.jpg',
         language: 'English',

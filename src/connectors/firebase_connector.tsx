@@ -42,11 +42,9 @@ export default class FirebaseConnector implements DatabaseConnector {
         let key = booksArray[index].id as string;
         firebase
             .database()
-            .ref()
-            .child('books')
-            .child(key)
-            .update({ holder: user }, () => {
-                booksArray[index].value.holder = user;
+            .ref('books/' + key + '/state/accounts')
+            .push(user, () => {
+                booksArray[index].value.state.accounts.push(user);
                 if (onComplete) onComplete(0);
             })
             .catch(error => {

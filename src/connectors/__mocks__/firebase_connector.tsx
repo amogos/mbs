@@ -11,9 +11,9 @@ export default class FirebaseConnector implements DatabaseConnector {
     private init() {
         var bookValue = {
             author: 'Susanne Schotz',
-            holder: {
-                email: '',
-                name: '',
+            state: {
+                state: 'state.book.idle',
+                accounts: [],
             },
             image: 'https://images-eu.ssl-images-amazon.com/images/I/51UkIlAOwEL._SY90_.jpg',
             language: 'English',

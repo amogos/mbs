@@ -21,15 +21,15 @@ exports[`Check correct rendering 1`] = `
       value={
         Object {
           "author": "Eric Carle",
-          "holder": Object {
-            "email": "",
-            "name": "",
-          },
           "image": "https://images-na.ssl-images-amazon.com/images/I/51lsugWtCvL._SY498_BO1,204,203,200_.jpg",
           "language": "English",
           "owner": Object {
             "email": "daosmistique@yahoo.com",
             "name": "Iulia Mogos",
+          },
+          "state": Object {
+            "accounts": Array [],
+            "state": "state.book.idle",
           },
           "title": "The Very Hungry Caterpillar's ABC",
         }
@@ -66,15 +66,15 @@ exports[`Check correct rendering 1`] = `
       value={
         Object {
           "author": "Eric Carle",
-          "holder": Object {
-            "email": "",
-            "name": "",
-          },
           "image": "https://images-na.ssl-images-amazon.com/images/I/51lsugWtCvL._SY498_BO1,204,203,200_.jpg",
           "language": "English",
           "owner": Object {
             "email": "daosmistique@yahoo.com",
             "name": "Iulia Mogos",
+          },
+          "state": Object {
+            "accounts": Array [],
+            "state": "state.book.idle",
           },
           "title": "The Very Hungry Caterpillar's ABC",
         }

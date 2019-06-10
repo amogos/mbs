@@ -9,9 +9,9 @@ const callbacks = {
 const userdata: DataTypes.UserType = { name: 'Iulia Mogos', email: 'daosmistique@yahoo.com' };
 const bookValue: DataTypes.BookValueType = {
     author: 'Eric Carle',
-    holder: {
-        email: '',
-        name: '',
+    state: {
+        state: 'state.book.idle',
+        accounts: [],
     },
     image: 'https://images-na.ssl-images-amazon.com/images/I/51lsugWtCvL._SY498_BO1,204,203,200_.jpg',
     language: 'English',
@@ -43,7 +43,7 @@ describe('Running database flow', () => {
         databaseInstance.assignBook(booksArray.length - 1, userdata, callbacks.one);
         await waitForExpect(() => {
             expect(spy).toBeCalled();
-            expect(booksArray[booksArray.length - 1].value.holder).toEqual(userdata);
+            expect(booksArray[booksArray.length - 1].value.state.accounts).toContain(userdata);
         });
     });
     it('Should deleteBook()', async () => {

@@ -2,6 +2,7 @@ import React from 'react';
 import { Text, Button } from 'react-native';
 import Strings from './../constants/string_constant';
 import * as DataTypes from './../types';
+import * as BookStates from './../book_states';
 
 interface Props {
     id: string | null;
@@ -13,18 +14,21 @@ interface Props {
 
 const returnable = (props: Props) => {
     const { userdata, value } = props;
-    return value.owner.email !== value.holder.email && userdata.email === value.holder.email;
+    if (value.state.state !== BookStates.default.STATE_BOOK_ASSIGNED) return false;
+    return value.state.accounts[0].email === userdata.email;
 };
 
 const assignable = (props: Props) => {
     const { userdata, value } = props;
     return (
-        userdata.email !== value.owner.email && (value.holder.email === '' || value.holder.email === value.owner.email)
+        userdata.email !== value.owner.email &&
+        (value.state.state === BookStates.default.STATE_BOOK_IDLE ||
+            value.state.state === BookStates.default.STATE_BOOK_PENDING_ASSIGNMENT)
     );
 };
 const BookPlacementComponent = (props: Props) => {
     let content;
-    const { holder, owner } = props.value;
+    const { state, owner } = props.value;
     const key = props.id;
 
     if (assignable(props)) {
@@ -54,12 +58,15 @@ const BookPlacementComponent = (props: Props) => {
             </Text>
         );
     } else {
+        let title = owner.name;
+        if (state.state === BookStates.default.STATE_BOOK_ASSIGNED) title = state.accounts[0].name;
+
         content = (
             <Text>
                 {' '}
                 <br /> {Strings.bookPlacementComponent.MYBOOKSHELVE_STRING_OWNER}: {owner.name}
                 <br />
-                <Button title={holder.email === '' ? owner.name : holder.name} color="#808080" onPress={() => {}} />
+                <Button title={title} color="#808080" onPress={() => {}} />
             </Text>
         );
     }

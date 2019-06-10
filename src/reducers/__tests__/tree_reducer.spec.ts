@@ -7,9 +7,9 @@ jest.mock('./../../connectors/database_instance');
 
 const bookValue: DataTypes.BookValueType = {
     author: 'Eric Carle',
-    holder: {
-        email: '',
-        name: '',
+    state: {
+        state: 'state.book.idle',
+        accounts: [],
     },
     image: 'https://images-na.ssl-images-amazon.com/images/I/51lsugWtCvL._SY498_BO1,204,203,200_.jpg',
     language: 'English',

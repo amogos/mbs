@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button } from 'react-native';
 import * as DataTypes from './../types';
+import * as BookStates from './../book_states';
 
 interface Props {
     id: string | null;
@@ -13,9 +14,9 @@ const BookRemover: React.FunctionComponent<Props> = (props: Props) => {
     let content = null;
     var me: DataTypes.UserType = props.userdata;
     var book: DataTypes.BookValueType = props.value;
-    let isMeOwner: boolean = me.email === book.owner.email;
-    let isMeHolder: boolean = me.email === book.holder.email || book.holder.email === '';
     let bookKey: string | null = props.id;
+    let isMeOwner: boolean = me.email === book.owner.email;
+    let isMeHolder: boolean = book.state.state === BookStates.default.STATE_BOOK_IDLE;
 
     if (isMeOwner && isMeHolder)
         content = <Button title="delete" color="#000000ff" onPress={() => props.deleteBook(bookKey)} />;

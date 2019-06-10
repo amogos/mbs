@@ -1,9 +1,17 @@
-import DatabaseConnector from "./connectors/database_connector";
-
 export interface UserType {
     name: string;
     email: string;
 }
+
+export interface BookStateType {
+    state: string;
+    accounts: UserType[];
+}
+
+export const IdleBookState: BookStateType = {
+    state: 'state.book.idle',
+    accounts: [],
+};
 
 export interface BookValueType {
     title: string;
@@ -11,7 +19,7 @@ export interface BookValueType {
     language: string;
     image: string;
     owner: UserType;
-    holder: UserType;
+    state: BookStateType;
 }
 
 export interface BookKeyType {
@@ -23,15 +31,4 @@ export interface BookRecordType {
     value: BookValueType;
 }
 
-export interface ConfirmationDialogParams {
-    text: string;
-    button1: string;
-}
-export const nullUser = { name: "", email: "" } as UserType;
-export interface Context {
-    dbconnector: DatabaseConnector;
-    userdata: UserType;
-}
-
-
-
+export const nullUser: UserType = { name: '', email: '' };

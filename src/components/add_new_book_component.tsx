@@ -10,7 +10,7 @@ var currentBook = {
     language: '',
     image: defaultImage,
     owner: DataTypes.nullUser,
-    holder: DataTypes.nullUser,
+    state: DataTypes.IdleBookState,
 };
 
 const styles = {
@@ -35,7 +35,7 @@ const onSaveButtonPressed = (props: Props) => {
 };
 
 const AddNewBookComponent = (props: Props) => {
-    currentBook.holder = currentBook.owner = props.userdata;
+    currentBook.owner = props.userdata;
     const [title, setTitle] = useState('');
     const [language, setLanguage] = useState('');
     const [author, setAuthor] = useState('');
