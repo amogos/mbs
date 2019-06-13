@@ -14,21 +14,22 @@ interface Props {
 
 const returnable = (props: Props) => {
     const { userdata, value } = props;
-    if (value.state.state !== BookStates.default.STATE_BOOK_ASSIGNED) return false;
-    return value.state.accounts[0].email === userdata.email;
+    if (value.state !== BookStates.default.STATE_BOOK_ASSIGNED) return false;
+    return value.pending[0].email === userdata.email;
 };
 
 const assignable = (props: Props) => {
     const { userdata, value } = props;
-    return (
-        userdata.email !== value.owner.email &&
-        (value.state.state === BookStates.default.STATE_BOOK_IDLE ||
-            value.state.state === BookStates.default.STATE_BOOK_PENDING_ASSIGNMENT)
-    );
+    const stateAllowsAssignment: boolean =
+        value.state === BookStates.default.STATE_BOOK_IDLE ||
+        value.state === BookStates.default.STATE_BOOK_PENDING_ASSIGNMENT;
+    const bookNotMine: boolean = userdata.email !== value.owner.email;
+    let bookNotReserved = true;
+    return stateAllowsAssignment && bookNotMine && bookNotReserved;
 };
 const BookPlacementComponent = (props: Props) => {
     let content;
-    const { state, owner } = props.value;
+    const { state, owner, pending } = props.value;
     const key = props.id;
 
     if (assignable(props)) {
@@ -59,8 +60,9 @@ const BookPlacementComponent = (props: Props) => {
         );
     } else {
         let title = owner.name;
-        if (state.state === BookStates.default.STATE_BOOK_ASSIGNED) title = state.accounts[0].name;
-
+        if (state === BookStates.default.STATE_BOOK_ASSIGNED) title = pending[0].name;
+        else if (state === BookStates.default.STATE_BOOK_PENDING_ASSIGNMENT)
+            title = Strings.MYBOOKSHELVE_PENDING_ASSIGNMENT;
         content = (
             <Text>
                 {' '}

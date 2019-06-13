@@ -11,6 +11,7 @@ var currentBook = {
     image: defaultImage,
     owner: DataTypes.nullUser,
     state: DataTypes.IdleBookState,
+    pending: [],
 };
 
 const styles = {

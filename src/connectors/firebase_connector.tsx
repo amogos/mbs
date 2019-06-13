@@ -2,6 +2,7 @@ import firebase from 'firebase';
 import DatabaseConnector from './database_connector';
 import { booksArray } from './database_caches';
 import * as DataTypes from '../types';
+import * as BookStates from '../book_states';
 
 export default class FirebaseConnector implements DatabaseConnector {
     public constructor() {
@@ -28,7 +29,18 @@ export default class FirebaseConnector implements DatabaseConnector {
             .once('value')
             .then(function(snapshot) {
                 snapshot.forEach(item => {
-                    booksArray.push({ id: item.key, value: item.val() });
+                    let bookValue: DataTypes.BookValueType = {
+                        title: item.val().title,
+                        image: item.val().image,
+                        author: item.val().author,
+                        language: item.val().language,
+                        owner: item.val().owner,
+                        state: item.val().state,
+                        pending: Array.of(item.val().pending),
+                    };
+                    if (!bookValue.pending) bookValue.pending = new Array<DataTypes.UserType>();
+                    let bookRecord = { id: item.key, value: bookValue } as DataTypes.BookRecordType;
+                    booksArray.push(bookRecord);
                 });
                 if (onComplete) onComplete(0);
             })
@@ -40,12 +52,22 @@ export default class FirebaseConnector implements DatabaseConnector {
 
     public assignBook(index: number, user: DataTypes.UserType, onComplete?: (resultCode: number) => void): void {
         let key = booksArray[index].id as string;
-        firebase
-            .database()
-            .ref('books/' + key + '/state/accounts')
+        let accountsRef = firebase.database().ref('books/' + key + '/pending');
+        let stateRef = firebase.database().ref('books/' + key + '/state');
+
+        accountsRef
             .push(user, () => {
-                booksArray[index].value.state.accounts.push(user);
-                if (onComplete) onComplete(0);
+                stateRef
+                    .update({ state: BookStates.default.STATE_BOOK_PENDING_ASSIGNMENT }, () => {
+                        booksArray[index].value.state = BookStates.default.STATE_BOOK_PENDING_ASSIGNMENT;
+                        booksArray[index].value.pending.push(user);
+                        if (onComplete) {
+                            onComplete(0);
+                        }
+                    })
+                    .catch(error => {
+                        if (onComplete) onComplete(error);
+                    });
             })
             .catch(error => {
                 if (onComplete) onComplete(error);

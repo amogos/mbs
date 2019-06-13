@@ -3,15 +3,7 @@ export interface UserType {
     email: string;
 }
 
-export interface BookStateType {
-    state: string;
-    accounts: UserType[];
-}
-
-export const IdleBookState: BookStateType = {
-    state: 'state.book.idle',
-    accounts: [],
-};
+export const IdleBookState = 'state.book.idle';
 
 export interface BookValueType {
     title: string;
@@ -19,7 +11,8 @@ export interface BookValueType {
     language: string;
     image: string;
     owner: UserType;
-    state: BookStateType;
+    state: string;
+    pending: UserType[];
 }
 
 export interface BookKeyType {

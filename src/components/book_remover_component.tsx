@@ -16,7 +16,7 @@ const BookRemover: React.FunctionComponent<Props> = (props: Props) => {
     var book: DataTypes.BookValueType = props.value;
     let bookKey: string | null = props.id;
     let isMeOwner: boolean = me.email === book.owner.email;
-    let isMeHolder: boolean = book.state.state === BookStates.default.STATE_BOOK_IDLE;
+    let isMeHolder: boolean = book.state === BookStates.default.STATE_BOOK_IDLE;
 
     if (isMeOwner && isMeHolder)
         content = <Button title="delete" color="#000000ff" onPress={() => props.deleteBook(bookKey)} />;

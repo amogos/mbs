@@ -9,4 +9,5 @@ export default {
         MYBOOKSHELVE_STRING_ASSIGN: 'Assign to me',
         MYBOOKSHELVE_STRING_RETURN: 'Return',
     },
+    MYBOOKSHELVE_PENDING_ASSIGNMENT: 'Pending assignment',
 };
