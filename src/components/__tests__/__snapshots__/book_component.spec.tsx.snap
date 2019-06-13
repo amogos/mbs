@@ -27,10 +27,8 @@ exports[`Check correct rendering 1`] = `
             "email": "daosmistique@yahoo.com",
             "name": "Iulia Mogos",
           },
-          "state": Object {
-            "accounts": Array [],
-            "state": "state.book.idle",
-          },
+          "pending": Array [],
+          "state": "state.book.idle",
           "title": "The Very Hungry Caterpillar's ABC",
         }
       }
@@ -72,10 +70,8 @@ exports[`Check correct rendering 1`] = `
             "email": "daosmistique@yahoo.com",
             "name": "Iulia Mogos",
           },
-          "state": Object {
-            "accounts": Array [],
-            "state": "state.book.idle",
-          },
+          "pending": Array [],
+          "state": "state.book.idle",
           "title": "The Very Hungry Caterpillar's ABC",
         }
       }

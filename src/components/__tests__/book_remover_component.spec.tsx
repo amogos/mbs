@@ -8,10 +8,8 @@ describe('Should render correctly in both cases of ownership', () => {
         const userdata: DataTypes.UserType = { name: 'Iulia Mogos', email: 'daosmistique@yahoo.com' };
         const bookValue: DataTypes.BookValueType = {
             author: 'Eric Carle',
-            state: {
-                state: 'state.book.idle',
-                accounts: [],
-            },
+            state: 'state.book.idle',
+            pending: [],
             image: 'https://images-na.ssl-images-amazon.com/images/I/51lsugWtCvL._SY498_BO1,204,203,200_.jpg',
             language: 'English',
             owner: {
@@ -36,10 +34,8 @@ describe('Should render correctly in both cases of ownership', () => {
         const userdata: DataTypes.UserType = { name: 'PixyDixi', email: 'pixydixy@yahoo.com' };
         const bookValue: DataTypes.BookValueType = {
             author: 'Eric Carle',
-            state: {
-                state: 'state.book.idle',
-                accounts: [],
-            },
+            state: 'state.book.idle',
+            pending: [],
             image: 'https://images-na.ssl-images-amazon.com/images/I/51lsugWtCvL._SY498_BO1,204,203,200_.jpg',
             language: 'English',
             owner: {
