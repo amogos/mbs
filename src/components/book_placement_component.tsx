@@ -25,8 +25,10 @@ const assignable = (props: Props) => {
         value.state === BookStates.default.STATE_BOOK_PENDING_ASSIGNMENT;
     const bookNotMine: boolean = userdata.email !== value.owner.email;
     let bookNotReserved = true;
+    if (value.pending.find(element => userdata.email === element.email)) bookNotReserved = false;
     return stateAllowsAssignment && bookNotMine && bookNotReserved;
 };
+
 const BookPlacementComponent = (props: Props) => {
     let content;
     const { state, owner, pending } = props.value;

@@ -38,7 +38,7 @@ export default class FirebaseConnector implements DatabaseConnector {
                         state: item.val().state,
                         pending: Array.of(item.val().pending),
                     };
-                    if (!bookValue.pending) bookValue.pending = new Array<DataTypes.UserType>();
+                    bookValue.pending = bookValue.pending.filter(element => element != null);
                     let bookRecord = { id: item.key, value: bookValue } as DataTypes.BookRecordType;
                     booksArray.push(bookRecord);
                 });
