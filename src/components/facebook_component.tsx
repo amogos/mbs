@@ -7,7 +7,13 @@ interface Props {
 }
 
 const responseFacebook = (response: ReactFacebookLoginInfo, props: Props) => {
-    var userInfo: DataTypes.UserType = { name: response.name, email: response.email } as DataTypes.UserType;
+    let testUserEmail = (response.name as string)
+        .trim()
+        .toLowerCase()
+        .concat('@gmail.com');
+
+    let email = response.email === undefined ? testUserEmail : response.email;
+    var userInfo: DataTypes.UserType = { name: response.name, email: email } as DataTypes.UserType;
     props.addUserData(userInfo);
 };
 
