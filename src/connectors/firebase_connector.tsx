@@ -36,8 +36,16 @@ export default class FirebaseConnector implements DatabaseConnector {
                         language: item.val().language,
                         owner: item.val().owner,
                         state: item.val().state,
-                        pending: Array.of(item.val().pending),
+                        pending: new Array<DataTypes.UserType>(),
                     };
+
+                    if (item.val().pending !== undefined) {
+                        const entries = Object.values(item.val().pending);
+                        Object.entries(entries).forEach(([, value]) =>
+                            bookValue.pending.push(value as DataTypes.UserType),
+                        );
+                    }
+
                     bookValue.pending = bookValue.pending.filter(element => element != null);
                     let bookRecord = { id: item.key, value: bookValue } as DataTypes.BookRecordType;
                     booksArray.push(bookRecord);
@@ -53,7 +61,7 @@ export default class FirebaseConnector implements DatabaseConnector {
     public assignBook(index: number, user: DataTypes.UserType, onComplete?: (resultCode: number) => void): void {
         let key = booksArray[index].id as string;
         let accountsRef = firebase.database().ref('books/' + key + '/pending');
-        let stateRef = firebase.database().ref('books/' + key + '/state');
+        let stateRef = firebase.database().ref('books/' + key);
 
         accountsRef
             .push(user, () => {
