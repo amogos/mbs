@@ -10,7 +10,9 @@ const responseFacebook = (response: ReactFacebookLoginInfo, props: Props) => {
     let testUserEmail = (response.name as string)
         .trim()
         .toLowerCase()
-        .concat('@gmail.com');
+        .concat('@gmail.com')
+        .split(' ')
+        .join('');
 
     let email = response.email === undefined ? testUserEmail : response.email;
     var userInfo: DataTypes.UserType = { name: response.name, email: email } as DataTypes.UserType;
