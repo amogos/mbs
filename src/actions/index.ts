@@ -13,3 +13,8 @@ export const assignBook = (bookKey: string | null) => ({ type: ActionTypes.ACTIO
 export const returnBook = (bookKey: string | null) => ({ type: ActionTypes.ACTION_RETURN_BOOK, bookKey });
 
 export const deleteBook = (bookKey: string | null) => ({ type: ActionTypes.ACTION_DELETE_BOOK, bookKey });
+
+export const confirmNotification = (bookKey: string | null) => ({
+    type: ActionTypes.ACTION_CONFIRM_NOTIFICATION,
+    bookKey,
+});
