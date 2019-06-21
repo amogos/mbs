@@ -6,6 +6,7 @@ const mapDispatchToProps = dispatch => {
     return {
         gotoListBooks: () => dispatch(Actions.gotoListBooks()),
         gotoAddBook: () => dispatch(Actions.gotoAddBook()),
+        gotoNotifications: () => dispatch(Actions.gotoNotifications()),
         dispatch,
     };
 };

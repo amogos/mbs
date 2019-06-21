@@ -7,6 +7,7 @@ import {
     ACTION_GOTO_ADD_BOOK,
     ACTION_GOTO_LIST_BOOKS,
     ACTION_DELETE_BOOK,
+    ACTION_GOTO_NOTIFICATIONS,
 } from '../constants/action_constant';
 import * as DataTypes from '../types';
 import * as Actions from '../actions/index';
@@ -19,6 +20,10 @@ import { message } from 'antd';
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default function treeReducer(state = {} as any, action: any): any {
     switch (action.type) {
+        case ACTION_GOTO_NOTIFICATIONS:
+            return Object.assign({}, state, {
+                action: ACTION_GOTO_NOTIFICATIONS,
+            });
         case ACTION_GOTO_ADD_BOOK:
             return Object.assign({}, state, {
                 action: ACTION_GOTO_ADD_BOOK,

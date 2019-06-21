@@ -1,45 +1,48 @@
 import React from 'react';
-import { View, Text, StyleSheet, Button } from 'react-native';
 import SocialLoginContainer from './../containers/social_login_container';
-
-const styles = StyleSheet.create({
-    app: {
-        flex: 0,
-    },
-    appHeader: {
-        flex: 1,
-        backgroundColor: '#222',
-        padding: 20,
-        justifyContent: 'center',
-        alignItems: 'center',
-        flexDirection: 'row',
-    },
-    appTitle: {
-        fontSize: 16,
-        color: 'white',
-    },
-});
+import { PageHeader, Button } from 'antd';
 
 interface Props {
     gotoListBooks(): void;
     gotoAddBook(): void;
+    gotoNotifications(): void;
 }
 
 const BannerComponent = (props: Props) => {
     return (
-        <View style={styles.app}>
-            <View style={styles.appHeader}>
-                <Text style={styles.appTitle}>
-                    {' '}
-                    <span aria-labelledby="jsx-a11y/accessible-emoji" role="img">
-                        ⚛️{' '}
-                    </span>
-                </Text>
-                <Button title="Search" color="#00000000" onPress={() => props.gotoListBooks()} />
-                <Button title="Add Book" color="#00000000" onPress={() => props.gotoAddBook()} />
-                <SocialLoginContainer />
-            </View>
-        </View>
+        <PageHeader title="" breadcrumb={{}}>
+            <div className="wrap">
+                <div className="content">
+                    <p className="contentLink">
+                        <Button type="link" onClick={() => props.gotoListBooks()}>
+                            <img
+                                src="https://gw.alipayobjects.com/zos/rmsportal/MjEImQtenlyueSmVEfUD.svg"
+                                alt="start"
+                            />{' '}
+                            Search
+                        </Button>
+
+                        <Button type="link" onClick={() => props.gotoAddBook()}>
+                            <img
+                                src="https://gw.alipayobjects.com/zos/rmsportal/NbuDUAuBlIApFuDvWiND.svg"
+                                alt="start"
+                            />{' '}
+                            Add Book
+                        </Button>
+
+                        <Button type="link" onClick={() => props.gotoNotifications()}>
+                            <img
+                                src="https://gw.alipayobjects.com/zos/rmsportal/ohOEPSYdDTNnyMbGuyLb.svg"
+                                alt="start"
+                            />{' '}
+                            Notifications
+                        </Button>
+
+                        <SocialLoginContainer />
+                    </p>
+                </div>
+            </div>
+        </PageHeader>
     );
 };
 

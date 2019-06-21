@@ -13,7 +13,8 @@ const MainComponent = (props: Props) => {
         return <ListBooksContainer />;
     } else if (props.action === ActionTypes.ACTION_GOTO_ADD_BOOK || props.action === ActionTypes.ACTION_ADD_BOOK)
         return <AddNewBookContainer />;
-    else return <NotificationsContainer />;
+    else if (props.action === ActionTypes.ACTION_GOTO_NOTIFICATIONS) return <NotificationsContainer />;
+    else return null;
 };
 
 export default MainComponent;
