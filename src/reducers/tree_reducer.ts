@@ -12,7 +12,7 @@ import {
 import * as DataTypes from '../types';
 import * as Actions from '../actions/index';
 import databseInstance from '../connectors/database_instance';
-import { booksArray } from '../connectors/database_caches';
+import { booksArray, booksNotifications } from '../connectors/database_caches';
 import Store from './../store';
 import Strings from '../constants/string_constant';
 import { message } from 'antd';
@@ -23,6 +23,7 @@ export default function treeReducer(state = {} as any, action: any): any {
         case ACTION_GOTO_NOTIFICATIONS:
             return Object.assign({}, state, {
                 action: ACTION_GOTO_NOTIFICATIONS,
+                notifications: booksNotifications,
             });
         case ACTION_GOTO_ADD_BOOK:
             return Object.assign({}, state, {
@@ -49,6 +50,7 @@ export default function treeReducer(state = {} as any, action: any): any {
                 setTimeout(progressSpinner, 0);
                 Store.dispatch(Actions.listBooks());
             });
+
             return Object.assign({}, state, {
                 action: ACTION_GOTO_LIST_BOOKS,
             });
@@ -57,6 +59,11 @@ export default function treeReducer(state = {} as any, action: any): any {
                 action: ACTION_LIST_BOOKS,
             });
         case ACTION_USER_DATA:
+            databseInstance.querryNotifications(action.userdata, (resultCode: number) => {
+                if (resultCode !== 0) {
+                    message.error(Strings.MYBOOKSHELVE_OPERATION_FAILED);
+                }
+            });
             return Object.assign({}, state, {
                 userdata: action.userdata,
             });

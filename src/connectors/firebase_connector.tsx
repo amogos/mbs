@@ -1,6 +1,6 @@
 import firebase from 'firebase';
 import DatabaseConnector from './database_connector';
-import { booksArray } from './database_caches';
+import { booksArray, booksNotifications } from './database_caches';
 import * as DataTypes from '../types';
 import * as BookStates from '../book_states';
 
@@ -19,9 +19,41 @@ export default class FirebaseConnector implements DatabaseConnector {
             messagingSenderId: '627289196388',
         });
     }
+    public querryNotifications(
+        user: DataTypes.UserType,
+        onComplete?: (resultCode: number) => void,
+    ): DataTypes.BookPendingNotification[] {
+        booksNotifications.splice(0, booksNotifications.length);
+        firebase
+            .database()
+            .ref()
+            .child('books')
+            .orderByChild('owner/email')
+            .equalTo(user.email)
+            .once('value')
+            .then(function(snapshot) {
+                snapshot.forEach(item => {
+                    if (item.val().pending !== undefined) {
+                        const pending = Object.values(item.val().pending)[0] as DataTypes.UserType;
+                        let notification: DataTypes.BookPendingNotification = {
+                            user: pending.name,
+                            bookTitle: item.val().title,
+                            bookKey: item.key as string,
+                        };
+                        booksNotifications.push(notification);
+                    }
+                });
+                if (onComplete) onComplete(0);
+            })
+            .catch(error => {
+                if (onComplete) onComplete(error);
+            });
+        return booksNotifications;
+    }
 
     public querryBooks(onComplete?: (resultCode: number) => void): DataTypes.BookRecordType[] {
         booksArray.splice(0, booksArray.length);
+
         firebase
             .database()
             .ref()
