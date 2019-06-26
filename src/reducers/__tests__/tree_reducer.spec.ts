@@ -2,7 +2,7 @@ import treeReducer from './../tree_reducer';
 import * as ActionTypes from './../../constants/action_constant';
 import * as Actions from './../../actions/index';
 import * as DataTypes from './../../types';
-
+import { booksArray } from '../../connectors/database_caches';
 jest.mock('./../../connectors/database_instance');
 
 const bookValue: DataTypes.BookValueType = {
@@ -35,7 +35,10 @@ describe('Testing tree reducer branching', () => {
         expect(treeReducer({}, Actions.gotoListBooks())).toEqual({ action: ActionTypes.ACTION_GOTO_LIST_BOOKS });
     });
     it('Should return list books state', () => {
-        expect(treeReducer({}, Actions.listBooks())).toEqual({ action: ActionTypes.ACTION_LIST_BOOKS });
+        expect(treeReducer({}, Actions.listBooks())).toEqual({
+            action: ActionTypes.ACTION_LIST_BOOKS,
+            booksArray: booksArray,
+        });
     });
     it('Should add userdata once connected', () => {
         expect(treeReducer({}, Actions.addUserData(userdata))).toEqual({ userdata: userdata });
