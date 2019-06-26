@@ -2,12 +2,12 @@ import React from 'react';
 import { View, FlatList } from 'react-native';
 import Book from '../components/book_component';
 import * as DataTypes from './../types';
-import { booksArray } from '../connectors/database_caches';
 
 interface Props {
     action: string;
     userdata: DataTypes.UserType;
     changingkey: string;
+    booksArray: DataTypes.BookRecordType[];
 }
 
 const ListBooksComponent = (props: Props) => {
@@ -15,7 +15,7 @@ const ListBooksComponent = (props: Props) => {
         <View style={{ flex: 0, alignItems: 'center', justifyContent: 'center' }}>
             <table>
                 <FlatList<DataTypes.BookRecordType>
-                    data={booksArray}
+                    data={props.booksArray}
                     extraData={props.action}
                     renderItem={({ item }) => {
                         return (

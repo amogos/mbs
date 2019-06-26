@@ -57,6 +57,7 @@ export default function treeReducer(state = {} as any, action: any): any {
         case ACTION_LIST_BOOKS:
             return Object.assign({}, state, {
                 action: ACTION_LIST_BOOKS,
+                booksArray: booksArray,
             });
         case ACTION_USER_DATA:
             databseInstance.querryNotifications(action.userdata, (resultCode: number) => {

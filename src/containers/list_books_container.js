@@ -6,6 +6,7 @@ function mapStateToProps(state) {
         userdata: state.treeReducer.userdata,
         changingkey: state.treeReducer.changingkey,
         action: state.treeReducer.action,
+        booksArray: state.treeReducer.booksArray,
     };
 }
 

@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import DatabaseConnector from '../database_connector';
 import * as DataTypes from '../../types';
-import { booksArray } from './../../connectors/database_caches';
+import { booksArray, booksNotifications } from './../../connectors/database_caches';
 
 export default class FirebaseConnector implements DatabaseConnector {
     public constructor() {
@@ -23,10 +23,19 @@ export default class FirebaseConnector implements DatabaseConnector {
         } as DataTypes.BookValueType;
 
         booksArray.push({ id: '-Lb2_zfQlKBdih9FsKQd', value: bookValue });
+
+        booksNotifications.push({ user: 'PixieDust', bookTitle: 'Some book title', bookKey: '2174631984523' });
     }
 
     public querryBooks(_onComplete?: (resultCode: number) => void): DataTypes.BookRecordType[] {
         return booksArray;
+    }
+
+    public querryNotifications(
+        user: DataTypes.UserType,
+        onComplete?: (resultCode: number) => void,
+    ): DataTypes.BookPendingNotification[] {
+        return booksNotifications;
     }
 
     public assignBook(_index: number, _user: DataTypes.UserType, _onComplete?: (resultCode: number) => void): void {}
