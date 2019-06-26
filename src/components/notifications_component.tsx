@@ -4,6 +4,8 @@ import * as DataTypes from './../types';
 
 interface Props {
     notifications: DataTypes.BookPendingNotification[];
+    confirmRental(key: string | null): void;
+    rejectRental(key: string | null): void;
 }
 
 const NotificationComponent = (props: Props) => {
@@ -13,7 +15,12 @@ const NotificationComponent = (props: Props) => {
                 dataSource={props.notifications}
                 bordered
                 renderItem={item => (
-                    <List.Item actions={[<a onClick={() => {}}>confirm</a>, <a onClick={() => {}}>reject</a>]}>
+                    <List.Item
+                        actions={[
+                            <a onClick={() => props.confirmRental(item.bookKey)}>confirm</a>,
+                            <a onClick={() => props.rejectRental(item.bookKey)}>reject</a>,
+                        ]}
+                    >
                         <List.Item.Meta
                             avatar={
                                 <Avatar src="https://gw.alipayobjects.com/zos/rmsportal/BiazfanxmamNRoxxVxka.png" />

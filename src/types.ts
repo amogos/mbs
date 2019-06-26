@@ -25,7 +25,7 @@ export interface BookRecordType {
 }
 
 export interface BookPendingNotification {
-    user: string;
+    user: UserType;
     bookTitle: string;
     bookKey: string;
 }

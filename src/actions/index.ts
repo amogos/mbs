@@ -16,7 +16,12 @@ export const deleteBook = (bookKey: string | null) => ({ type: ActionTypes.ACTIO
 
 export const gotoNotifications = () => ({ type: ActionTypes.ACTION_GOTO_NOTIFICATIONS });
 
-export const confirmNotification = (bookKey: string | null) => ({
-    type: ActionTypes.ACTION_CONFIRM_NOTIFICATION,
+export const confirmRental = (bookKey: string | null) => ({
+    type: ActionTypes.ACTION_CONFIRM_RENTAL,
+    bookKey,
+});
+
+export const rejectRental = (bookKey: string | null) => ({
+    type: ActionTypes.ACTION_REJECT_RENTAL,
     bookKey,
 });

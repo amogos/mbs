@@ -24,7 +24,7 @@ export default class FirebaseConnector implements DatabaseConnector {
 
         booksArray.push({ id: '-Lb2_zfQlKBdih9FsKQd', value: bookValue });
 
-        booksNotifications.push({ user: 'PixieDust', bookTitle: 'Some book title', bookKey: '2174631984523' });
+        booksNotifications.push({ user: DataTypes.nullUser, bookTitle: 'Some book title', bookKey: '2174631984523' });
     }
 
     public querryBooks(_onComplete?: (resultCode: number) => void): DataTypes.BookRecordType[] {

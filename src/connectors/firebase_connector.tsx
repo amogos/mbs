@@ -36,7 +36,7 @@ export default class FirebaseConnector implements DatabaseConnector {
                     if (item.val().pending !== undefined) {
                         const pending = Object.values(item.val().pending)[0] as DataTypes.UserType;
                         let notification: DataTypes.BookPendingNotification = {
-                            user: pending.name,
+                            user: pending,
                             bookTitle: item.val().title,
                             bookKey: item.key as string,
                         };
