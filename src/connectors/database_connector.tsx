@@ -9,4 +9,6 @@ export default interface DatabaseConnector {
     assignBook(index: number, user: DataTypes.UserType, onComplete?: (resultCode: number) => void): void;
     deleteBook(bookKey: string, onComplete?: (resultCode: number) => void): void;
     addBook(data: DataTypes.BookValueType, onComplete?: (resultCode: number) => void): void;
+    confirmRental(bookKey: string, user: DataTypes.UserType, onComplete?: (resultCode: number) => void): void;
+    rejectRental(bookKey: string, user: DataTypes.UserType, onComplete?: (resultCode: number) => void): void;
 }

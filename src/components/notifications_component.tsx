@@ -4,8 +4,8 @@ import * as DataTypes from './../types';
 
 interface Props {
     notifications: DataTypes.BookPendingNotification[];
-    confirmRental(key: string | null): void;
-    rejectRental(key: string | null): void;
+    confirmRental(key: string | null, user: DataTypes.UserType): void;
+    rejectRental(key: string | null, user: DataTypes.UserType): void;
 }
 
 const NotificationComponent = (props: Props) => {
@@ -17,8 +17,8 @@ const NotificationComponent = (props: Props) => {
                 renderItem={item => (
                     <List.Item
                         actions={[
-                            <a onClick={() => props.confirmRental(item.bookKey)}>confirm</a>,
-                            <a onClick={() => props.rejectRental(item.bookKey)}>reject</a>,
+                            <a onClick={() => props.confirmRental(item.bookKey, item.user)}>confirm</a>,
+                            <a onClick={() => props.rejectRental(item.bookKey, item.user)}>reject</a>,
                         ]}
                     >
                         <List.Item.Meta

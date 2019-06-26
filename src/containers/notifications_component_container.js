@@ -10,8 +10,8 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = dispatch => {
     return {
-        confirmRental: bookKey => dispatch(Actions.confirmRental(bookKey)),
-        rejectRental: bookKey => dispatch(Actions.rejectRental(bookKey)),
+        confirmRental: (bookKey, user) => dispatch(Actions.confirmRental(bookKey, user)),
+        rejectRental: (bookKey, user) => dispatch(Actions.rejectRental(bookKey, user)),
         dispatch,
     };
 };

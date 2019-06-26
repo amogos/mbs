@@ -147,4 +147,15 @@ export default class FirebaseConnector implements DatabaseConnector {
             if (onComplete) onComplete(error);
         });
     }
+
+    public confirmRental(
+        bookKey: string,
+        user: DataTypes.UserType,
+        onComplete?: ((resultCode: number) => void) | undefined,
+    ): void {}
+    public rejectRental(
+        bookKey: string,
+        user: DataTypes.UserType,
+        onComplete?: ((resultCode: number) => void) | undefined,
+    ): void {}
 }

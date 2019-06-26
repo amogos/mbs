@@ -11,7 +11,7 @@ import { message } from 'antd';
 export default function treeReducer(state = {} as any, action: any): any {
     switch (action.type) {
         case ActionConstants.ACTION_CONFIRM_RENTAL:
-            databseInstance.confirmRental(action.bookKey, (resultCode: number) => {
+            databseInstance.confirmRental(action.bookKey, action.user, (resultCode: number) => {
                 if (resultCode !== 0) {
                     message.error(Strings.MYBOOKSHELVE_OPERATION_FAILED);
                 }
@@ -21,7 +21,7 @@ export default function treeReducer(state = {} as any, action: any): any {
                 notifications: booksNotifications,
             });
         case ActionConstants.ACTION_REJECT_RENTAL:
-            databseInstance.rejectRental(action.bookKey, (resultCode: number) => {
+            databseInstance.rejectRental(action.bookKey, action.user, (resultCode: number) => {
                 if (resultCode !== 0) {
                     message.error(Strings.MYBOOKSHELVE_OPERATION_FAILED);
                 }

@@ -43,4 +43,15 @@ export default class FirebaseConnector implements DatabaseConnector {
     public deleteBook(_bookKey: string, _onComplete?: (resultCode: number) => void): void {}
 
     public addBook(_data: DataTypes.BookValueType, _onComplete?: (resultCode: number) => void): void {}
+
+    public confirmRental(
+        bookKey: string,
+        user: DataTypes.UserType,
+        onComplete?: ((resultCode: number) => void) | undefined,
+    ): void {}
+    public rejectRental(
+        bookKey: string,
+        user: DataTypes.UserType,
+        onComplete?: ((resultCode: number) => void) | undefined,
+    ): void {}
 }
