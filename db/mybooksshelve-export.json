@@ -1,74 +1,110 @@
 {
-  "books": {
-    "-Lb2_zfQlKBdih9FsKQd": {
+  "users": [
+    {
+      "id": 1,
+      "name": "Iulia Mogos",
+      "email": "daosmistique@yahoo.com"
+    },
+    {
+      "id": 2,
+      "name": "Florin Mogos",
+      "email": "florin.mogos@gmail.com"
+    },
+    {
+      "id": 3,
+      "name": "Varza Murata",
+      "email": "varzamurata@gmail.com"
+    }
+  ],
+  "queues": [
+    {
+      "id": 1,
+      "book_id": 1,
+      "user_id": 1
+    },
+    {
+      "id": 2,
+      "book_id": 1,
+      "user_id": 3
+    }
+  ],
+  "languages": [
+    {
+      "id": 1,
+      "language": "English"
+    },
+    {
+      "id": 2,
+      "language": "German"
+    }
+  ],
+  "states": [
+    {
+      "id": 1,
+      "book_id": 1,
+      "state": "state.book.pending.assignment"
+    },
+    {
+      "id": 2,
+      "book_id": 2,
+      "state": "state.book.pending.assignment"
+    },
+    {
+      "id": 3,
+      "book_id": 3,
+      "state": "state.book.pending.assignment"
+    },
+    {
+      "id": 4,
+      "book_id": 4,
+      "state": "state.book.idle"
+    },
+    {
+      "id": 5,
+      "book_id": 5,
+      "state": "state.book.pending.assignment"
+    }
+  ],
+  "books": [
+    {
+      "id": 1,
       "author": "Susanne Schotz",
-      "state": {
-        "state": "state.book.idle",
-        "accounts": []
-      },
       "image": "https://images-eu.ssl-images-amazon.com/images/I/51UkIlAOwEL._SY90_.jpg",
-      "language": "English",
-      "owner": {
-        "email": "florin.mogos@gmail.com",
-        "name": "Florin Mogos"
-      },
+      "language": 1,
+      "owner": 2,
       "title": "The Secret Language of Cats: How to Understand Your Cat for a Better, Happier Relationship"
     },
-    "-Lb2fXy3Z6edp87fkoSg": {
+    {
+      "id": 2,
       "author": "Eric Carle",
-      "state": {
-        "state": "state.book.idle",
-        "accounts": []
-      },
       "image": "https://images-na.ssl-images-amazon.com/images/I/51lsugWtCvL._SY498_BO1,204,203,200_.jpg",
-      "language": "English",
-      "owner": {
-        "email": "daosmistique@yahoo.com",
-        "name": "Iulia Mogos"
-      },
+      "language": 1,
+      "owner": 1,
       "title": "The Very Hungry Caterpillar's ABC"
     },
-    "-Lb2jsH6cQLQhETGukLv": {
+    {
+      "id": 3,
       "author": "Julia Donaldson",
-      "state": {
-        "state": "state.book.idle",
-        "accounts": []
-      },
       "image": "https://images-na.ssl-images-amazon.com/images/I/51Zm3fBs0PL._SY446_BO1,204,203,200_.jpg",
-      "language": "English",
-      "owner": {
-        "email": "daosmistique@yahoo.com",
-        "name": "Iulia Mogos"
-      },
+      "language": 1,
+      "owner": 1,
       "title": "Room on the Broom Board Book"
     },
-    "-Lb2kKM2YNIGyTau9Euw": {
+    {
+      "id": 4,
       "author": "Julia Donaldson",
-      "state": {
-        "state": "state.book.idle",
-        "accounts": []
-      },
       "image": "https://images-na.ssl-images-amazon.com/images/I/61YDHV-%2B-VL._SY448_BO1,204,203,200_.jpg",
-      "language": "English",
-      "owner": {
-        "email": "daosmistique@yahoo.com",
-        "name": "Iulia Mogos"
-      },
+      "language": 1,
+      "owner": 1,
       "title": "The Snail and the Whale"
     },
-    "-LbPb5uE8yPUS_9bvN-r": {
+    {
+      "id": 5,
       "author": " Yuval Noah Harari",
-      "state": {
-        "state": "state.book.idle",
-        "accounts": []
-      },
       "image": "https://images-na.ssl-images-amazon.com/images/I/417lbqaSihL._SX318_BO1,204,203,200_.jpg",
-      "language": "German",
-      "owner": {
-        "email": "florin.mogos@gmail.com",
-        "name": "Florin Mogos"
-      },
+      "language": 2,
+      "owner": 2,
       "title": "Homo Deus: Eine Geschichte von Morgen "
     }
-  }
+  ]
 }
