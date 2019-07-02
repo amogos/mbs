@@ -16,10 +16,7 @@
     "lint": "node_modules/.bin/eslint ./src --fix",
     "storybook": "start-storybook"
   },
-  "pre-commit": [
-    "compile",
-    "lint"
-  ],
+  "pre-commit": [],
   "dependencies": {
     "@babel/core": "^7.4.5",
     "@babel/plugin-proposal-class-properties": "^7.4.0",
