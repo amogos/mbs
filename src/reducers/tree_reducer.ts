@@ -79,7 +79,7 @@ export default function treeReducer(state = {} as any, action: any): any {
                 userdata: action.userdata,
             });
         case ActionConstants.ACTION_ASSIGN_BOOK: {
-            const key: string = action.bookKey;
+            const key: number = action.bookKey;
             const userdata = state.userdata;
             let index = booksArray.findIndex(function(item: DataTypes.BookRecordType) {
                 return item.id === key;
@@ -96,7 +96,7 @@ export default function treeReducer(state = {} as any, action: any): any {
             });
         }
         case ActionConstants.ACTION_RETURN_BOOK: {
-            const key: string = action.bookKey;
+            const key: number = action.bookKey;
             let index = booksArray.findIndex(function(item: DataTypes.BookRecordType) {
                 return item.id === key;
             });

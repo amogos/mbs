@@ -1,11 +1,7 @@
-import { User } from 'firebase';
-
 export interface UserType {
     name: string;
     email: string;
 }
-
-export const IdleBookState = 'state.book.idle';
 
 export interface BookValueType {
     title: string;
@@ -15,10 +11,6 @@ export interface BookValueType {
     owner: UserType;
     holder: UserType;
     state: string;
-}
-
-export interface BookKeyType {
-    id: string | null;
 }
 
 export interface BookRecordType {

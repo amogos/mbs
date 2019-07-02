@@ -9,13 +9,13 @@ describe('Should render correctly in both cases of ownership', () => {
         const bookValue: DataTypes.BookValueType = {
             author: 'Eric Carle',
             state: 'state.book.idle',
-            pending: [],
             image: 'https://images-na.ssl-images-amazon.com/images/I/51lsugWtCvL._SY498_BO1,204,203,200_.jpg',
             language: 'English',
             owner: {
                 email: 'daosmistique@yahoo.com',
                 name: 'Iulia Mogos',
             },
+            holder: DataTypes.nullUser,
             title: "The Very Hungry Caterpillar's ABC",
         };
         const bookKey = 'Lb2fXy3Z6edp87fkoSg';
@@ -35,7 +35,7 @@ describe('Should render correctly in both cases of ownership', () => {
         const bookValue: DataTypes.BookValueType = {
             author: 'Eric Carle',
             state: 'state.book.idle',
-            pending: [],
+            holder: DataTypes.nullUser,
             image: 'https://images-na.ssl-images-amazon.com/images/I/51lsugWtCvL._SY498_BO1,204,203,200_.jpg',
             language: 'English',
             owner: {

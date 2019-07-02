@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, Button } from 'react-native';
 import * as DataTypes from '../types';
+import * as BookStates from '../book_states'
 
 var defaultImage =
     'https://vignette.wikia.nocookie.net/superfriends/images/a/a5/No_Photo_Available.jpg/revision/latest?cb=20090329133959';
@@ -10,8 +11,8 @@ var currentBook = {
     language: '',
     image: defaultImage,
     owner: DataTypes.nullUser,
-    state: DataTypes.IdleBookState,
-    pending: [],
+    state: BookStates.default.STATE_BOOK_IDLE,
+    holder: DataTypes.nullUser,
 };
 
 const styles = {

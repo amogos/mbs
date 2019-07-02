@@ -5,33 +5,26 @@ import * as DataTypes from './../types';
 import * as BookStates from './../book_states';
 
 interface Props {
-    id: string | null;
+    id: number;
     value: DataTypes.BookValueType;
     userdata: DataTypes.UserType;
-    assignBook(key: string | null): void;
-    returnBook(key: string | null): void;
+    assignBook(key: number): void;
+    returnBook(key: number): void;
 }
 
 const returnable = (props: Props) => {
     const { userdata, value } = props;
-    if (value.state !== BookStates.default.STATE_BOOK_ASSIGNED) return false;
-    return value.pending[0].email === userdata.email;
+    return false;
 };
 
 const assignable = (props: Props) => {
     const { userdata, value } = props;
-    const stateAllowsAssignment: boolean =
-        value.state === BookStates.default.STATE_BOOK_IDLE ||
-        value.state === BookStates.default.STATE_BOOK_PENDING_ASSIGNMENT;
-    const bookNotMine: boolean = userdata.email !== value.owner.email;
-    let bookNotReserved = true;
-    if (value.pending.find(element => userdata.email === element.email)) bookNotReserved = false;
-    return stateAllowsAssignment && bookNotMine && bookNotReserved;
+    return false;
 };
 
 const BookPlacementComponent = (props: Props) => {
     let content;
-    const { state, owner, pending } = props.value;
+    const { state, owner } = props.value;
     const key = props.id;
 
     if (assignable(props)) {
@@ -62,9 +55,9 @@ const BookPlacementComponent = (props: Props) => {
         );
     } else {
         let title = owner.name;
-        if (state === BookStates.default.STATE_BOOK_ASSIGNED) title = pending[0].name;
-        else if (state === BookStates.default.STATE_BOOK_PENDING_ASSIGNMENT)
-            title = Strings.MYBOOKSHELVE_PENDING_ASSIGNMENT;
+        // if (state === BookStates.default.STATE_BOOK_ASSIGNED) title = pending[0].name;
+        // else if (state === BookStates.default.STATE_BOOK_PENDING_ASSIGNMENT)
+        //     title = Strings.MYBOOKSHELVE_PENDING_ASSIGNMENT;
         content = (
             <Text>
                 {' '}

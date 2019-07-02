@@ -15,8 +15,8 @@ describe('Should render correctly in both cases of ownership', () => {
                 email: 'daosmistique@yahoo.com',
                 name: 'Iulia Mogos',
             },
+            holder: DataTypes.nullUser,
             title: "The Very Hungry Caterpillar's ABC",
-            pending: [],
         };
         const bookKey = 'Lb2fXy3Z6edp87fkoSg';
         const props = {
@@ -42,8 +42,8 @@ describe('Should render correctly in both cases of ownership', () => {
                 email: 'daosmistique@yahoo.com',
                 name: 'Iulia Mogos',
             },
+            holder: DataTypes.nullUser,
             title: "The Very Hungry Caterpillar's ABC",
-            pending: [],
         };
         const bookKey = 'Lb2fXy3Z6edp87fkoSg';
         const props = {

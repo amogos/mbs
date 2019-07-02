@@ -4,7 +4,7 @@ import BookRemoverContainer from './../containers/book_remover_container';
 import * as Types from './../types';
 
 interface Props {
-    id: string | null;
+    id: number;
     value: Types.BookValueType;
     userdata: Types.UserType;
     extradata: string;

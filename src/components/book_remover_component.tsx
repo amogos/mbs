@@ -4,17 +4,17 @@ import * as DataTypes from './../types';
 import * as BookStates from './../book_states';
 
 interface Props {
-    id: string | null;
+    id: number;
     value: DataTypes.BookValueType;
     userdata: DataTypes.UserType;
-    deleteBook(key: string | null): void;
+    deleteBook(key: number): void;
 }
 
 const BookRemover: React.FunctionComponent<Props> = (props: Props) => {
     let content = null;
     var me: DataTypes.UserType = props.userdata;
     var book: DataTypes.BookValueType = props.value;
-    let bookKey: string | null = props.id;
+    let bookKey: number = props.id;
     let isMeOwner: boolean = me.email === book.owner.email;
     let isMeHolder: boolean = book.state === BookStates.default.STATE_BOOK_IDLE;
 

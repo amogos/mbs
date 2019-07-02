@@ -4,8 +4,8 @@ import * as DataTypes from './../types';
 
 interface Props {
     notifications: DataTypes.BookPendingNotification[];
-    confirmRental(key: string | null, user: DataTypes.UserType): void;
-    rejectRental(key: string | null, user: DataTypes.UserType): void;
+    confirmRental(key: number, user: DataTypes.UserType): void;
+    rejectRental(key: number, user: DataTypes.UserType): void;
 }
 
 const NotificationComponent = (props: Props) => {
