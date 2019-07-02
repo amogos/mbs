@@ -38,33 +38,6 @@
       "language": "German"
     }
   ],
-  "states": [
-    {
-      "id": 1,
-      "book_id": 1,
-      "state": "state.book.pending.assignment"
-    },
-    {
-      "id": 2,
-      "book_id": 2,
-      "state": "state.book.pending.assignment"
-    },
-    {
-      "id": 3,
-      "book_id": 3,
-      "state": "state.book.pending.assignment"
-    },
-    {
-      "id": 4,
-      "book_id": 4,
-      "state": "state.book.idle"
-    },
-    {
-      "id": 5,
-      "book_id": 5,
-      "state": "state.book.pending.assignment"
-    }
-  ],
   "books": [
     {
       "id": 1,
@@ -72,7 +45,9 @@
       "image": "https://images-eu.ssl-images-amazon.com/images/I/51UkIlAOwEL._SY90_.jpg",
       "language": 1,
       "owner": 2,
-      "title": "The Secret Language of Cats: How to Understand Your Cat for a Better, Happier Relationship"
+      "holder": -1,
+      "title": "The Secret Language of Cats: How to Understand Your Cat for a Better, Happier Relationship",
+      "state": "state.book.idle"
     },
     {
       "id": 2,
@@ -80,7 +55,9 @@
       "image": "https://images-na.ssl-images-amazon.com/images/I/51lsugWtCvL._SY498_BO1,204,203,200_.jpg",
       "language": 1,
       "owner": 1,
-      "title": "The Very Hungry Caterpillar's ABC"
+      "holder": -1,
+      "title": "The Very Hungry Caterpillar's ABC",
+      "state": "state.book.idle"
     },
     {
       "id": 3,
@@ -88,7 +65,9 @@
       "image": "https://images-na.ssl-images-amazon.com/images/I/51Zm3fBs0PL._SY446_BO1,204,203,200_.jpg",
       "language": 1,
       "owner": 1,
-      "title": "Room on the Broom Board Book"
+      "holder": -1,
+      "title": "Room on the Broom Board Book",
+      "state": "state.book.idle"
     },
     {
       "id": 4,
@@ -96,7 +75,9 @@
       "image": "https://images-na.ssl-images-amazon.com/images/I/61YDHV-%2B-VL._SY448_BO1,204,203,200_.jpg",
       "language": 1,
       "owner": 1,
-      "title": "The Snail and the Whale"
+      "holder": -1,
+      "title": "The Snail and the Whale",
+      "state": "state.book.idle"
     },
     {
       "id": 5,
@@ -104,7 +85,29 @@
       "image": "https://images-na.ssl-images-amazon.com/images/I/417lbqaSihL._SX318_BO1,204,203,200_.jpg",
       "language": 2,
       "owner": 2,
-      "title": "Homo Deus: Eine Geschichte von Morgen "
+      "holder": -1,
+      "title": "Homo Deus: Eine Geschichte von Morgen ",
+      "state": "state.book.idle"
+    }
+  ],
+  "reviews": [
+    {
+      "id": 1,
+      "book_id": 1,
+      "user_id": 1,
+      "title": "Good read",
+      "comment": "Highly recommend this book.",
+      "score": 4.5
+    }
+  ],
+  "orders": [
+    {
+      "id": 1,
+      "book_id": [
+        1,
+        2,
+        3
+      ]
     }
   ]
 }

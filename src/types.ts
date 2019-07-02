@@ -1,3 +1,5 @@
+import { User } from 'firebase';
+
 export interface UserType {
     name: string;
     email: string;
@@ -11,8 +13,8 @@ export interface BookValueType {
     language: string;
     image: string;
     owner: UserType;
+    holder: UserType;
     state: string;
-    pending: UserType[];
 }
 
 export interface BookKeyType {
@@ -20,7 +22,7 @@ export interface BookKeyType {
 }
 
 export interface BookRecordType {
-    id: string | null;
+    id: number;
     value: BookValueType;
 }
 
