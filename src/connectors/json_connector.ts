@@ -1,4 +1,5 @@
 import * as DataTypes from '../types';
+import * as BookStateTypes from '../book_states';
 import axios from 'axios';
 
 export default class JsonConnector {
@@ -58,6 +59,23 @@ export default class JsonConnector {
     }
 
     public async confirmRental(
+        bookId: number,
+        user: DataTypes.UserType,
+        onError: (resultCode: number) => void,
+    ): Promise<boolean> {
+        await axios
+            .delete('http://localhost:3001/queues?book_id=' + bookId + '&user_id=' + user.id)
+            .catch(error => onError(error));
+        await axios
+            .put('http://localhost:3001/books/' + bookId, {
+                state: BookStateTypes.default.STATE_BOOK_IN_TRANSIT_TO_HOLDER,
+            })
+            .catch(error => onError(error));
+
+        return true;
+    }
+
+    public async rejectRental(
         bookId: number,
         user: DataTypes.UserType,
         onError: (resultCode: number) => void,
