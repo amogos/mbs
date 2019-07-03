@@ -1,25 +1,7 @@
 import * as DataTypes from '../types';
+import axios from 'axios';
 
 export default class JsonConnector {
-    private fetchHeader = {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-    };
-    private argumentFetchGet = {
-        method: 'GET',
-        headers: this.fetchHeader,
-    };
-
-    private argumentFetchPost = {
-        method: 'POST',
-        headers: this.fetchHeader,
-    };
-
-    private argumentFetchPut = {
-        method: 'PUT',
-        headers: this.fetchHeader,
-    };
-
     public constructor() {
         this.init();
     }
@@ -28,27 +10,28 @@ export default class JsonConnector {
 
     public async getBooks(onError: (resultCode: number) => void): Promise<DataTypes.BookRecordType[]> {
         var booksArray: DataTypes.BookRecordType[] = [];
-        fetch('http://localhost:3001/books', this.argumentFetchGet)
-            .then(response => response.json())
+        await axios
+            .get('http://localhost:3001/books')
+            .then(response => response.data.json)
             .then(async item => {
                 let holder: DataTypes.UserType = DataTypes.nullUser;
                 if (item.val().holder > 0) {
-                    fetch('http://localhost:3001/users/' + item.val().holder, this.argumentFetchGet)
+                    fetch('http://localhost:3001/users/' + item.val().holder)
                         .then(response => response.json())
                         .then(item => {
-                            holder = { name: item.name, email: item.email };
+                            holder = { name: item.name, email: item.email, id: item.id };
                         });
                 }
 
                 let owner: DataTypes.UserType = DataTypes.nullUser;
-                fetch('http://localhost:3001/users/' + item.val().owner, this.argumentFetchGet)
+                fetch('http://localhost:3001/users/' + item.val().owner)
                     .then(response => response.json())
                     .then(item => {
-                        owner = { name: item.name, email: item.email };
+                        owner = { name: item.name, email: item.email, id: item.id };
                     });
 
                 let language = '';
-                fetch('http://localhost:3001/languages/' + item.val().language, this.argumentFetchGet)
+                fetch('http://localhost:3001/languages/' + item.val().language)
                     .then(response => response.json())
                     .then(item => {
                         language = item.language;
@@ -75,10 +58,13 @@ export default class JsonConnector {
     }
 
     public async confirmRental(
-        bookKey: number,
+        bookId: number,
         user: DataTypes.UserType,
         onError: (resultCode: number) => void,
     ): Promise<boolean> {
-        return false;
+        await axios
+            .delete('http://localhost:3001/queues?book_id=' + bookId + '&user_id=' + user.id)
+            .catch(error => onError(error));
+        return true;
     }
 }
