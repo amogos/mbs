@@ -18,7 +18,7 @@ describe('Should render correctly in both cases of ownership', () => {
             holder: DataTypes.nullUser,
             title: "The Very Hungry Caterpillar's ABC",
         };
-        const bookKey = 'Lb2fXy3Z6edp87fkoSg';
+        const bookKey = 1;
         const props = {
             id: bookKey,
             userdata: userdata,
@@ -45,7 +45,7 @@ describe('Should render correctly in both cases of ownership', () => {
             holder: DataTypes.nullUser,
             title: "The Very Hungry Caterpillar's ABC",
         };
-        const bookKey = 'Lb2fXy3Z6edp87fkoSg';
+        const bookKey = 1;
         const props = {
             id: bookKey,
             userdata: userdata,

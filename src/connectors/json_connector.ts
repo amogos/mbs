@@ -7,7 +7,7 @@ export default class JsonConnector {
 
     private init() {}
 
-    public async getBooks(): Promise<DataTypes.BookRecordType[]> {
+    public async getBooks(onError: (resultCode: number) => void): Promise<DataTypes.BookRecordType[]> {
         var booksArray: DataTypes.BookRecordType[] = [];
         fetch('http://localhost:3001/books')
             .then(response => response.json())
@@ -49,7 +49,9 @@ export default class JsonConnector {
                     value: bookValue,
                 } as DataTypes.BookRecordType);
             })
-            .catch(error => {});
+            .catch(error => {
+                onError(error);
+            });
         return booksArray;
     }
 }

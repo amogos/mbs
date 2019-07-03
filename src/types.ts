@@ -21,7 +21,7 @@ export interface BookRecordType {
 export interface BookPendingNotification {
     user: UserType;
     bookTitle: string;
-    bookKey: string;
+    bookKey: number;
 }
 
 export const nullUser: UserType = { name: '', email: '' };

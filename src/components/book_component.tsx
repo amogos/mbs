@@ -7,7 +7,7 @@ interface Props {
     id: number;
     value: Types.BookValueType;
     userdata: Types.UserType;
-    extradata: string;
+    extradata: number;
 }
 
 function BookLeftSide(props: Props) {

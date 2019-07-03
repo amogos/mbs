@@ -2,10 +2,11 @@ import * as ActionConstants from '../constants/action_constant';
 import * as DataTypes from '../types';
 import * as Actions from '../actions/index';
 import databseInstance from '../connectors/database_instance';
-import { booksArray, booksNotifications } from '../connectors/database_caches';
 import Store from './../store';
 import Strings from '../constants/string_constant';
 import { message } from 'antd';
+
+var booksArray: DataTypes.BookRecordType[];
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default function treeReducer(state = {} as any, action: any): any {
@@ -53,14 +54,13 @@ export default function treeReducer(state = {} as any, action: any): any {
             });
         case ActionConstants.ACTION_GOTO_LIST_BOOKS:
             const progressSpinner = message.loading(Strings.MYBOOKSHELVE_ACTION_IN_PROGRESS);
-            databseInstance.querryBooks((resultCode: number) => {
-                if (resultCode !== 0) {
-                    message.error(Strings.MYBOOKSHELVE_OPERATION_FAILED);
-                }
-                setTimeout(progressSpinner, 0);
-                Store.dispatch(Actions.listBooks());
-            });
-
+            databseInstance
+                .getBooks((resultCode: number) => message.error(Strings.MYBOOKSHELVE_OPERATION_FAILED))
+                .then(result => {
+                    setTimeout(progressSpinner, 0);
+                    booksArray = result;
+                    Store.dispatch(Actions.listBooks());
+                });
             return Object.assign({}, state, {
                 action: ActionConstants.ACTION_GOTO_LIST_BOOKS,
             });

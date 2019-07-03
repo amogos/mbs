@@ -2,23 +2,25 @@ import treeReducer from './../tree_reducer';
 import * as ActionTypes from './../../constants/action_constant';
 import * as Actions from './../../actions/index';
 import * as DataTypes from './../../types';
-import { booksArray } from '../../connectors/database_caches';
 jest.mock('./../../connectors/database_instance');
 
 const bookValue: DataTypes.BookValueType = {
     author: 'Eric Carle',
     state: 'state.book.idle',
-    pending: [],
     image: 'https://images-na.ssl-images-amazon.com/images/I/51lsugWtCvL._SY498_BO1,204,203,200_.jpg',
     language: 'English',
     owner: {
         email: 'daosmistique@yahoo.com',
         name: 'Iulia Mogos',
     },
+    holder: DataTypes.nullUser,
     title: "The Very Hungry Caterpillar's ABC",
 };
-const bookKey = '-Lb2_zfQlKBdih9FsKQd';
+const bookKey = 1;
 const userdata = { name: 'mockuser', email: 'mockusr@gmail.com' };
+
+var booksArray: DataTypes.BookRecordType[] = new Array<DataTypes.BookRecordType>();
+booksArray.push({ id: bookKey, value: bookValue });
 
 describe('Testing tree reducer branching', () => {
     it('Should return initial state if no action passed', () => {

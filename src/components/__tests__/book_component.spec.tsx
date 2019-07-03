@@ -20,7 +20,7 @@ test('Check correct rendering', () => {
         holder: DataTypes.nullUser,
         title: "The Very Hungry Caterpillar's ABC",
     };
-    const bookKey = 'Lb2fXy3Z6edp87fkoSg';
+    const bookKey = 1;
 
     const component = renderer.create(
         <BookComponent id={bookKey} value={bookValue} userdata={userdata} extradata={bookKey} />,
