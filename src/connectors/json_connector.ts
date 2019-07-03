@@ -1,6 +1,6 @@
+import axios from 'axios';
 import * as DataTypes from '../types';
 import * as BookStateTypes from '../book_states';
-import axios from 'axios';
 
 export default class JsonConnector {
     public constructor() {
@@ -84,5 +84,13 @@ export default class JsonConnector {
             .delete('http://localhost:3001/queues?book_id=' + bookId + '&user_id=' + user.id)
             .catch(error => onError(error));
         return true;
+    }
+
+    public async assignBook(bookId: number, user: DataTypes.UserType, onError: (resultCode: number) => void) {}
+    public async deleteBook(bookId: number, onError: (resultCode: number) => void) {
+        await axios.delete('http://localhost:3001/books/' + bookId).catch(error => onError(error));
+    }
+    public async addBook(value: DataTypes.BookValueType, onError: (resultCode: number) => void) {
+        
     }
 }

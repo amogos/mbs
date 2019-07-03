@@ -7,11 +7,16 @@ export interface UserType {
 export interface BookValueType {
     title: string;
     author: string;
-    language: string;
+    language: LanguageType;
     image: string;
     owner: UserType;
     holder: UserType;
     state: string;
+}
+
+export interface LanguageType {
+    id: number;
+    language: string;
 }
 
 export interface BookRecordType {
@@ -25,4 +30,4 @@ export interface BookPendingNotification {
     bookKey: number;
 }
 
-export const nullUser: UserType = { name: '', email: '' };
+export const nullUser: UserType = { name: '', email: '', id: 0 };

@@ -5,7 +5,7 @@ import BookRemoverComponent from './../book_remover_component';
 
 describe('Should render correctly in both cases of ownership', () => {
     test('I am the owner so I should see the delete button', () => {
-        const userdata: DataTypes.UserType = { name: 'Iulia Mogos', email: 'daosmistique@yahoo.com' };
+        const userdata: DataTypes.UserType = { name: 'Iulia Mogos', email: 'daosmistique@yahoo.com', id: 1 };
         const bookValue: DataTypes.BookValueType = {
             author: 'Eric Carle',
             state: 'state.book.idle',
@@ -14,6 +14,7 @@ describe('Should render correctly in both cases of ownership', () => {
             owner: {
                 email: 'daosmistique@yahoo.com',
                 name: 'Iulia Mogos',
+                id: 1,
             },
             holder: DataTypes.nullUser,
             title: "The Very Hungry Caterpillar's ABC",
@@ -31,7 +32,7 @@ describe('Should render correctly in both cases of ownership', () => {
     });
 
     test('I am not the owner I should not see the delete button ', () => {
-        const userdata: DataTypes.UserType = { name: 'PixyDixi', email: 'pixydixy@yahoo.com' };
+        const userdata: DataTypes.UserType = { name: 'PixyDixi', email: 'pixydixy@yahoo.com', id: 1 };
         const bookValue: DataTypes.BookValueType = {
             author: 'Eric Carle',
             state: 'state.book.idle',
@@ -41,6 +42,7 @@ describe('Should render correctly in both cases of ownership', () => {
             owner: {
                 email: 'daosmistique@yahoo.com',
                 name: 'Iulia Mogos',
+                id: 1,
             },
             title: "The Very Hungry Caterpillar's ABC",
         };

@@ -7,7 +7,7 @@ jest.mock('./../../containers/book_remover_container', () => 'remover container'
 jest.mock('./../../containers/book_placement_container', () => 'placement container');
 
 test('Check correct rendering', () => {
-    const userdata: DataTypes.UserType = { name: 'Iulia Mogos', email: 'daosmistique@yahoo.com' };
+    const userdata: DataTypes.UserType = { name: 'Iulia Mogos', email: 'daosmistique@yahoo.com', id: 1 };
     const bookValue: DataTypes.BookValueType = {
         author: 'Eric Carle',
         state: 'state.book.idle',
@@ -16,6 +16,7 @@ test('Check correct rendering', () => {
         owner: {
             email: 'daosmistique@yahoo.com',
             name: 'Iulia Mogos',
+            id: 1,
         },
         holder: DataTypes.nullUser,
         title: "The Very Hungry Caterpillar's ABC",

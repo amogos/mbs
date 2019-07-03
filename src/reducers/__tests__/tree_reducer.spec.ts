@@ -12,12 +12,13 @@ const bookValue: DataTypes.BookValueType = {
     owner: {
         email: 'daosmistique@yahoo.com',
         name: 'Iulia Mogos',
+        id: 1,
     },
     holder: DataTypes.nullUser,
     title: "The Very Hungry Caterpillar's ABC",
 };
 const bookKey = 1;
-const userdata = { name: 'mockuser', email: 'mockusr@gmail.com' };
+const userdata = { name: 'mockuser', email: 'mockusr@gmail.com', id: 1 };
 
 var booksArray: DataTypes.BookRecordType[] = new Array<DataTypes.BookRecordType>();
 booksArray.push({ id: bookKey, value: bookValue });

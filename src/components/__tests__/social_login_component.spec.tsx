@@ -6,7 +6,7 @@ jest.mock('./../../containers/facebook_container', () => 'login button');
 
 test('Render username if logged in', () => {
     const component = renderer.create(
-        SocialLoginComponent({ userdata: { name: 'mockuser', email: 'mockusr@gmail.com' } }),
+        SocialLoginComponent({ userdata: { name: 'mockuser', email: 'mockusr@gmail.com', id: 1 } }),
     );
     let tree = component.toJSON();
     expect(tree).toMatchSnapshot();

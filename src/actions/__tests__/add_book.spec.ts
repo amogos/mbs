@@ -10,6 +10,7 @@ const bookValue: DataTypes.BookValueType = {
     owner: {
         email: 'daosmistique@yahoo.com',
         name: 'Iulia Mogos',
+        id: 1,
     },
     holder: DataTypes.nullUser,
     title: "The Very Hungry Caterpillar's ABC",
