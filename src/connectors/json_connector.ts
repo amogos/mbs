@@ -31,11 +31,11 @@ export default class JsonConnector {
                         owner = { name: item.name, email: item.email, id: item.id };
                     });
 
-                let language = '';
+                let language = DataTypes.nullLanguage;
                 fetch('http://localhost:3001/languages/' + item.val().language)
                     .then(response => response.json())
                     .then(item => {
-                        language = item.language;
+                        language = { language: item.language, id: item.id };
                     });
 
                 let bookValue: DataTypes.BookValueType = {
@@ -69,6 +69,7 @@ export default class JsonConnector {
         await axios
             .put('http://localhost:3001/books/' + bookId, {
                 state: BookStateTypes.default.STATE_BOOK_IN_TRANSIT_TO_HOLDER,
+                holder: user.id,
             })
             .catch(error => onError(error));
 
@@ -86,11 +87,34 @@ export default class JsonConnector {
         return true;
     }
 
-    public async assignBook(bookId: number, user: DataTypes.UserType, onError: (resultCode: number) => void) {}
+    public async askBook(bookId: number, user: DataTypes.UserType, onError: (resultCode: number) => void) {
+        axios
+            .post('http://localhost:3001/queues/', {
+                userId: user.id,
+                bookId: bookId,
+            })
+            .catch(error => onError(error));
+    }
+
     public async deleteBook(bookId: number, onError: (resultCode: number) => void) {
         await axios.delete('http://localhost:3001/books/' + bookId).catch(error => onError(error));
     }
-    public async addBook(value: DataTypes.BookValueType, onError: (resultCode: number) => void) {
-        
+
+    public async addBook(
+        value: DataTypes.BookValueType,
+        user: DataTypes.UserType,
+        onError: (resultCode: number) => void,
+    ) {
+        axios
+            .post('http://localhost:3001/books/', {
+                author: value.author,
+                image: value.image,
+                language: value.language.id,
+                owner: user.id,
+                holder: -1,
+                title: value.title,
+                state: 'state.book.idle',
+            })
+            .catch(error => onError(error));
     }
 }

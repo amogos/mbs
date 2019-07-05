@@ -41,7 +41,7 @@ export default function treeReducer(state = {} as any, action: any): any {
                 action: ActionConstants.ACTION_GOTO_ADD_BOOK,
             });
         case ActionConstants.ACTION_ADD_BOOK:
-            databseInstance.addBook(action.data, (resultCode: number) => {
+            databseInstance.addBook(action.data, state.userdata, (resultCode: number) => {
                 if (resultCode !== 0) {
                     message.error(Strings.MYBOOKSHELVE_OPERATION_FAILED);
                 } else {
@@ -70,28 +70,23 @@ export default function treeReducer(state = {} as any, action: any): any {
                 booksArray: booksArray,
             });
         case ActionConstants.ACTION_USER_DATA:
-            databseInstance.querryNotifications(action.userdata, (resultCode: number) => {
-                if (resultCode !== 0) {
-                    message.error(Strings.MYBOOKSHELVE_OPERATION_FAILED);
-                }
-            });
             return Object.assign({}, state, {
                 userdata: action.userdata,
             });
-        case ActionConstants.ACTION_ASSIGN_BOOK: {
+        case ActionConstants.ACTION_ASK_BOOK: {
             const key: number = action.bookKey;
             const userdata = state.userdata;
             let index = booksArray.findIndex(function(item: DataTypes.BookRecordType) {
                 return item.id === key;
             });
-            databseInstance.assignBook(index, userdata, (resultCode: number) => {
+            databseInstance.askBook(index, userdata, (resultCode: number) => {
                 if (resultCode !== 0) {
                     message.error(Strings.MYBOOKSHELVE_OPERATION_FAILED);
                 }
                 Store.dispatch(Actions.listBooks());
             });
             return Object.assign({}, state, {
-                action: ActionConstants.ACTION_ASSIGN_BOOK,
+                action: ActionConstants.ACTION_ASK_BOOK,
                 changingkey: key,
             });
         }
@@ -100,7 +95,6 @@ export default function treeReducer(state = {} as any, action: any): any {
             let index = booksArray.findIndex(function(item: DataTypes.BookRecordType) {
                 return item.id === key;
             });
-            databseInstance.assignBook(index, booksArray[index].value.owner, () => Store.dispatch(Actions.listBooks()));
             return Object.assign({}, state, {
                 action: ActionConstants.ACTION_RETURN_BOOK,
                 changingkey: key,

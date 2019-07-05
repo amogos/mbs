@@ -31,3 +31,4 @@ export interface BookPendingNotification {
 }
 
 export const nullUser: UserType = { name: '', email: '', id: 0 };
+export const nullLanguage: LanguageType = { id: 0, language: '' };

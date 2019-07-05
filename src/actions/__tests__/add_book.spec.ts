@@ -6,7 +6,7 @@ const bookValue: DataTypes.BookValueType = {
     author: 'Eric Carle',
     state: 'state.book.idle',
     image: 'https://images-na.ssl-images-amazon.com/images/I/51lsugWtCvL._SY498_BO1,204,203,200_.jpg',
-    language: 'English',
+    language: DataTypes.nullLanguage,
     owner: {
         email: 'daosmistique@yahoo.com',
         name: 'Iulia Mogos',

@@ -8,7 +8,7 @@ var defaultImage =
 var currentBook = {
     title: '',
     author: '',
-    language: '',
+    language: DataTypes.nullLanguage,
     image: defaultImage,
     owner: DataTypes.nullUser,
     state: BookStates.default.STATE_BOOK_IDLE,
@@ -33,7 +33,7 @@ interface Props {
 
 const onSaveButtonPressed = (props: Props) => {
     props.addBook(currentBook);
-    currentBook.title = currentBook.author = currentBook.language = '';
+    currentBook.title = currentBook.author = currentBook.language.language = '';
 };
 
 const AddNewBookComponent = (props: Props) => {
@@ -58,7 +58,7 @@ const AddNewBookComponent = (props: Props) => {
             <TextInput
                 style={styles.inputField}
                 onChangeText={text => {
-                    currentBook.language = text;
+                    currentBook.language.language = text;
                     setLanguage(text);
                 }}
                 value={language}

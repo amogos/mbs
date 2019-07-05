@@ -9,7 +9,7 @@ export const listBooks = () => ({ type: ActionTypes.ACTION_LIST_BOOKS });
 
 export const addUserData = (userdata: DataTypes.UserType) => ({ type: ActionTypes.ACTION_USER_DATA, userdata });
 
-export const assignBook = (bookKey: number) => ({ type: ActionTypes.ACTION_ASSIGN_BOOK, bookKey });
+export const assignBook = (bookKey: number) => ({ type: ActionTypes.ACTION_ASK_BOOK, bookKey });
 export const returnBook = (bookKey: number) => ({ type: ActionTypes.ACTION_RETURN_BOOK, bookKey });
 
 export const deleteBook = (bookKey: number) => ({ type: ActionTypes.ACTION_DELETE_BOOK, bookKey });

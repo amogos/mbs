@@ -5,7 +5,7 @@ describe('assignBook(bookKey)', () => {
     it('should build action for assigning book', () => {
         let bookKey = 1;
         const expectedAction = {
-            type: ActionTypes.ACTION_ASSIGN_BOOK,
+            type: ActionTypes.ACTION_ASK_BOOK,
             bookKey: bookKey,
         };
         expect(Actions.assignBook(bookKey)).toEqual(expectedAction);
