@@ -9,27 +9,36 @@ import { message } from 'antd';
 var booksArray: DataTypes.BookRecordType[];
 var rentalNotifications: DataTypes.RentalNotificationType[];
 
+function handleResultCode(resultCode: number): void {
+    if (resultCode !== 0) {
+        message.error(Strings.MYBOOKSHELVE_OPERATION_FAILED + ' (' + resultCode + ')');
+    }
+}
+
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default function treeReducer(state = {} as any, action: any): any {
     switch (action.type) {
         case ActionConstants.ACTION_CONFIRM_RENTAL:
-            databseInstance.confirmRental(action.bookKey, action.user, (resultCode: number) => {
-                if (resultCode !== 0) {
-                    message.error(Strings.MYBOOKSHELVE_OPERATION_FAILED);
-                }
+            databseInstance.confirmRental(action.bookKey, action.user, handleResultCode).then(() => {
+                databseInstance.getRentalNotifications(state.userdata, handleResultCode).then(result => {
+                    rentalNotifications = result;
+                    Store.dispatch(Actions.gotoNotifications());
+                });
             });
+
             return Object.assign({}, state, {
                 action: ActionConstants.ACTION_CONFIRM_RENTAL,
                 notifications: rentalNotifications,
             });
         case ActionConstants.ACTION_REJECT_RENTAL:
-            databseInstance.rejectRental(action.bookKey, action.user, (resultCode: number) => {
-                if (resultCode !== 0) {
-                    message.error(Strings.MYBOOKSHELVE_OPERATION_FAILED);
-                }
+            databseInstance.rejectRental(action.bookKey, action.user, handleResultCode).then(() => {
+                databseInstance.getRentalNotifications(state.userdata, handleResultCode).then(result => {
+                    rentalNotifications = result;
+                    Store.dispatch(Actions.gotoNotifications());
+                });
             });
             return Object.assign({}, state, {
-                action: ActionConstants.ACTION_CONFIRM_RENTAL,
+                action: ActionConstants.ACTION_REJECT_RENTAL,
                 notifications: rentalNotifications,
             });
         case ActionConstants.ACTION_GOTO_NOTIFICATIONS:
@@ -42,26 +51,22 @@ export default function treeReducer(state = {} as any, action: any): any {
                 action: ActionConstants.ACTION_GOTO_ADD_BOOK,
             });
         case ActionConstants.ACTION_ADD_BOOK:
-            databseInstance.addBook(action.data, state.userdata, (resultCode: number) => {
-                if (resultCode !== 0) {
-                    message.error(Strings.MYBOOKSHELVE_OPERATION_FAILED);
-                } else {
-                    message.success(Strings.MYBOOKSHELVE_STRING_NEW_BOOK_ADDED);
-                    Store.dispatch(Actions.gotoAddBook());
-                }
+            databseInstance.addBook(action.data, state.userdata, handleResultCode).then(() => {
+                databseInstance.getBooks(handleResultCode).then(result => {
+                    booksArray = result;
+                    Store.dispatch(Actions.gotoAddBook);
+                });
             });
             return Object.assign({}, state, {
                 action: ActionConstants.ACTION_ADD_BOOK,
             });
         case ActionConstants.ACTION_GOTO_LIST_BOOKS:
             const progressSpinner = message.loading(Strings.MYBOOKSHELVE_ACTION_IN_PROGRESS);
-            databseInstance
-                .getBooks((resultCode: number) => message.error(Strings.MYBOOKSHELVE_OPERATION_FAILED))
-                .then(result => {
-                    setTimeout(progressSpinner, 0);
-                    booksArray = result;
-                    Store.dispatch(Actions.listBooks());
-                });
+            databseInstance.getBooks(handleResultCode).then(result => {
+                setTimeout(progressSpinner, 0);
+                booksArray = result;
+                Store.dispatch(Actions.listBooks());
+            });
             return Object.assign({}, state, {
                 action: ActionConstants.ACTION_GOTO_LIST_BOOKS,
             });
@@ -76,16 +81,12 @@ export default function treeReducer(state = {} as any, action: any): any {
             });
         case ActionConstants.ACTION_ASK_BOOK: {
             const key: number = action.bookKey;
+            const ownerId: number = action.ownerId;
             const userdata = state.userdata;
             let index = booksArray.findIndex(function(item: DataTypes.BookRecordType) {
                 return item.id === key;
             });
-            databseInstance.askBook(index, userdata, (resultCode: number) => {
-                if (resultCode !== 0) {
-                    message.error(Strings.MYBOOKSHELVE_OPERATION_FAILED);
-                }
-                Store.dispatch(Actions.listBooks());
-            });
+            databseInstance.askBook(index, ownerId, userdata, handleResultCode);
             return Object.assign({}, state, {
                 action: ActionConstants.ACTION_ASK_BOOK,
                 changingkey: key,
