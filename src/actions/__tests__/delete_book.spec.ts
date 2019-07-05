@@ -3,11 +3,11 @@ import * as Actions from '../index';
 
 describe('deleteBook(bookKey)', () => {
     it('should build action for deleting book', () => {
-        let bookKey = 1;
+        let bookId = 1;
         const expectedAction = {
             type: ActionTypes.ACTION_DELETE_BOOK,
-            bookKey: bookKey,
+            bookKey: bookId,
         };
-        expect(Actions.deleteBook(bookKey)).toEqual(expectedAction);
+        expect(Actions.deleteBook(bookId)).toEqual(expectedAction);
     });
 });

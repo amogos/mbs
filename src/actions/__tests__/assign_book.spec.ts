@@ -3,11 +3,13 @@ import * as Actions from '../index';
 
 describe('assignBook(bookKey)', () => {
     it('should build action for assigning book', () => {
-        let bookKey = 1;
+        let bookId = 1;
+        let ownerId = 1;
         const expectedAction = {
             type: ActionTypes.ACTION_ASK_BOOK,
-            bookKey: bookKey,
+            bookId: bookId,
+            ownerId: ownerId,
         };
-        expect(Actions.assignBook(bookKey)).toEqual(expectedAction);
+        expect(Actions.askBook(bookId, ownerId)).toEqual(expectedAction);
     });
 });

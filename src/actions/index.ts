@@ -9,21 +9,28 @@ export const listBooks = () => ({ type: ActionTypes.ACTION_LIST_BOOKS });
 
 export const addUserData = (userdata: DataTypes.UserType) => ({ type: ActionTypes.ACTION_USER_DATA, userdata });
 
-export const assignBook = (bookKey: number) => ({ type: ActionTypes.ACTION_ASK_BOOK, bookKey });
-export const returnBook = (bookKey: number) => ({ type: ActionTypes.ACTION_RETURN_BOOK, bookKey });
+export const askBook = (bookId: number, ownerId: number) => ({ type: ActionTypes.ACTION_ASK_BOOK, bookId, ownerId });
 
-export const deleteBook = (bookKey: number) => ({ type: ActionTypes.ACTION_DELETE_BOOK, bookKey });
+export const returnBook = (bookId: number) => ({
+    type: ActionTypes.ACTION_RETURN_BOOK,
+    bookId,
+});
+
+export const deleteBook = (bookId: number) => ({
+    type: ActionTypes.ACTION_DELETE_BOOK,
+    bookId,
+});
 
 export const gotoNotifications = () => ({ type: ActionTypes.ACTION_GOTO_NOTIFICATIONS });
 
-export const confirmRental = (bookKey: number, user: DataTypes.UserType) => ({
+export const confirmRental = (bookId: number, user: DataTypes.UserType) => ({
     type: ActionTypes.ACTION_CONFIRM_RENTAL,
-    bookKey,
+    bookId,
     user,
 });
 
-export const rejectRental = (bookKey: number, user: DataTypes.UserType) => ({
+export const rejectRental = (bookId: number, user: DataTypes.UserType) => ({
     type: ActionTypes.ACTION_REJECT_RENTAL,
-    bookKey,
+    bookId,
     user,
 });

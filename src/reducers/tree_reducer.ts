@@ -25,7 +25,6 @@ export default function treeReducer(state = {} as any, action: any): any {
                     Store.dispatch(Actions.gotoNotifications());
                 });
             });
-
             return Object.assign({}, state, {
                 action: ActionConstants.ACTION_CONFIRM_RENTAL,
                 notifications: rentalNotifications,
