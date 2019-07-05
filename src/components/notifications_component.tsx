@@ -3,7 +3,7 @@ import { List, Avatar } from 'antd';
 import * as DataTypes from './../types';
 
 interface Props {
-    notifications: DataTypes.BookPendingNotification[];
+    notifications: DataTypes.RentalNotificationType[];
     confirmRental(key: number, user: DataTypes.UserType): void;
     rejectRental(key: number, user: DataTypes.UserType): void;
 }

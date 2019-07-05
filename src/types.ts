@@ -24,7 +24,7 @@ export interface BookRecordType {
     value: BookValueType;
 }
 
-export interface BookPendingNotification {
+export interface RentalNotificationType {
     user: UserType;
     bookTitle: string;
     bookKey: number;

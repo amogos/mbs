@@ -7,6 +7,7 @@ import Strings from '../constants/string_constant';
 import { message } from 'antd';
 
 var booksArray: DataTypes.BookRecordType[];
+var rentalNotifications: DataTypes.RentalNotificationType[];
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default function treeReducer(state = {} as any, action: any): any {
@@ -19,7 +20,7 @@ export default function treeReducer(state = {} as any, action: any): any {
             });
             return Object.assign({}, state, {
                 action: ActionConstants.ACTION_CONFIRM_RENTAL,
-                notifications: booksNotifications,
+                notifications: rentalNotifications,
             });
         case ActionConstants.ACTION_REJECT_RENTAL:
             databseInstance.rejectRental(action.bookKey, action.user, (resultCode: number) => {
@@ -29,12 +30,12 @@ export default function treeReducer(state = {} as any, action: any): any {
             });
             return Object.assign({}, state, {
                 action: ActionConstants.ACTION_CONFIRM_RENTAL,
-                notifications: booksNotifications,
+                notifications: rentalNotifications,
             });
         case ActionConstants.ACTION_GOTO_NOTIFICATIONS:
             return Object.assign({}, state, {
                 action: ActionConstants.ACTION_GOTO_NOTIFICATIONS,
-                notifications: booksNotifications,
+                notifications: rentalNotifications,
             });
         case ActionConstants.ACTION_GOTO_ADD_BOOK:
             return Object.assign({}, state, {
