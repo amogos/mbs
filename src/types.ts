@@ -27,7 +27,7 @@ export interface BookRecordType {
 export interface RentalNotificationType {
     user: UserType;
     bookTitle: string;
-    bookKey: number;
+    bookId: number;
 }
 
 export const nullUser: UserType = { name: '', email: '', id: 0 };

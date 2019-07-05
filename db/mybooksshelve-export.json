@@ -20,12 +20,14 @@
     {
       "id": 1,
       "bookId": 1,
-      "userId": 1
+      "userId": 1,
+      "ownerId": 2
     },
     {
       "id": 2,
       "bookId": 1,
-      "userId": 3
+      "userId": 3,
+      "ownerId": 2
     }
   ],
   "languages": [

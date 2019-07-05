@@ -17,8 +17,8 @@ const NotificationComponent = (props: Props) => {
                 renderItem={item => (
                     <List.Item
                         actions={[
-                            <a onClick={() => props.confirmRental(item.bookKey, item.user)}>confirm</a>,
-                            <a onClick={() => props.rejectRental(item.bookKey, item.user)}>reject</a>,
+                            <a onClick={() => props.confirmRental(item.bookId, item.user)}>confirm</a>,
+                            <a onClick={() => props.rejectRental(item.bookId, item.user)}>reject</a>,
                         ]}
                     >
                         <List.Item.Meta

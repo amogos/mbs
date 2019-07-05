@@ -87,11 +87,17 @@ export default class JsonConnector {
         return true;
     }
 
-    public async askBook(bookId: number, user: DataTypes.UserType, onError: (resultCode: number) => void) {
+    public async askBook(
+        bookId: number,
+        ownerId: number,
+        user: DataTypes.UserType,
+        onError: (resultCode: number) => void,
+    ) {
         axios
             .post('http://localhost:3001/queues/', {
                 userId: user.id,
                 bookId: bookId,
+                ownerId: ownerId,
             })
             .catch(error => onError(error));
     }
@@ -116,5 +122,36 @@ export default class JsonConnector {
                 state: 'state.book.idle',
             })
             .catch(error => onError(error));
+    }
+
+    public async getRentalNotifications(
+        user: DataTypes.UserType,
+        onError: (resultCode: number) => void,
+    ): Promise<DataTypes.RentalNotificationType[]> {
+        var rentalNotifications: DataTypes.RentalNotificationType[] = [];
+        await axios
+            .get('http://localhost:3001/queues?ownerId=' + user.id)
+            .then(response => response.data.json)
+            .then(async item => {
+                var user: DataTypes.UserType = DataTypes.nullUser;
+                await axios
+                    .get('http://localhost:3001/users/' + item.userId)
+                    .then(response => (user = response.data))
+                    .catch(error => onError(error));
+
+                var title = '';
+                await axios
+                    .get('http://localhost:3001/books/' + item.bookId)
+                    .then(response => (title = response.data.title))
+                    .catch(error => onError(error));
+
+                let notification: DataTypes.RentalNotificationType = {
+                    bookId: item.bookId,
+                    bookTitle: title,
+                    user: user,
+                };
+                rentalNotifications.push(notification);
+            });
+        return rentalNotifications;
     }
 }
