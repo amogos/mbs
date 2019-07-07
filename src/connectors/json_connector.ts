@@ -7,7 +7,24 @@ export default class JsonConnector {
         this.init();
     }
 
+    public startedJobs: number = 0;
+    public completedJobs: number = 0;
+
     private init() {}
+
+    private sleep = (milliseconds: any) => {
+        return new Promise(resolve => setTimeout(resolve, milliseconds));
+    };
+
+    private workInProgress = () => {
+        return new Promise(async resolve => {
+            while (this.startedJobs !== this.completedJobs) {
+                await this.sleep(10);
+            }
+            this.startedJobs = this.completedJobs = 0;
+            resolve(true);
+        });
+    };
 
     public async getBooks(onError: (resultCode: number) => void): Promise<DataTypes.BookRecordType[]> {
         var booksArray: DataTypes.BookRecordType[] = [];
@@ -15,13 +32,12 @@ export default class JsonConnector {
             .get('http://localhost:3001/books')
             .then(response => {
                 response.data.forEach(async (item: any) => {
+                    this.startedJobs++;
                     let holder: DataTypes.UserType = DataTypes.nullUser;
                     if (item.holder > 0) {
-                        fetch('http://localhost:3001/users/' + item.holder)
-                            .then(response => response.json())
-                            .then(item => {
-                                holder = { name: item.name, email: item.email, id: item.id };
-                            });
+                        await axios.get('http://localhost:3001/users/' + item.holder).then(response => {
+                            holder = { name: response.data.name, email: response.data.email, id: response.data.id };
+                        });
                     }
 
                     let owner: DataTypes.UserType = DataTypes.nullUser;
@@ -47,12 +63,14 @@ export default class JsonConnector {
                         id: item.id,
                         value: bookValue,
                     } as DataTypes.BookRecordType);
+                    this.completedJobs++;
                 });
             })
             .catch(error => {
                 onError(error);
             });
 
+        await this.workInProgress();
         return booksArray;
     }
 
