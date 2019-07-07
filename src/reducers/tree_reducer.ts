@@ -62,7 +62,6 @@ export default function treeReducer(state = {} as any, action: any): any {
         case ActionConstants.ACTION_GOTO_LIST_BOOKS:
             const progressSpinner = message.loading(Strings.MYBOOKSHELVE_ACTION_IN_PROGRESS);
             databseInstance.getBooks(handleResultCode).then(result => {
-                alert(JSON.stringify(result));
                 setTimeout(progressSpinner, 0);
                 booksArray = result;
                 Store.dispatch(Actions.listBooks());
@@ -76,13 +75,17 @@ export default function treeReducer(state = {} as any, action: any): any {
                 action: ActionConstants.ACTION_LIST_BOOKS,
                 booksArray: booksArray,
             });
-        case ActionConstants.ACTION_USER_DATA:
-            let user: DataTypes.UserRecordType = DataTypes.nullUser;
-            databseInstance
-                .getUser(action.userdata, handleResultCode)
-                .then((result: DataTypes.UserRecordType) => (user = result));
+        case ActionConstants.ACTION_LOGIN_USER: {
+            databseInstance.getUser(action.user, handleResultCode).then((result: DataTypes.UserRecordType) => {
+                Store.dispatch(Actions.addUserData(result));
+            });
             return Object.assign({}, state, {
-                userdata: user,
+                action: ActionConstants.ACTION_LOGIN_USER,
+            });
+        }
+        case ActionConstants.ACTION_USER_DATA:
+            return Object.assign({}, state, {
+                userdata: action.userdata,
             });
         case ActionConstants.ACTION_ASK_BOOK: {
             const key: number = action.bookKey;

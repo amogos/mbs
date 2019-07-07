@@ -3,7 +3,7 @@ import FacebookLogin, { ReactFacebookLoginInfo } from 'react-facebook-login';
 import * as DataTypes from '../types';
 
 interface Props {
-    addUserData(userInfo: DataTypes.UserValueType): void;
+    loginUser(userInfo: DataTypes.UserValueType): void;
 }
 
 const responseFacebook = (response: ReactFacebookLoginInfo, props: Props) => {
@@ -16,7 +16,7 @@ const responseFacebook = (response: ReactFacebookLoginInfo, props: Props) => {
 
     let email = response.email === undefined ? testUserEmail : response.email;
     var userInfo: DataTypes.UserValueType = { name: response.name, email: email };
-    props.addUserData(userInfo);
+    props.loginUser(userInfo);
 };
 
 const componentClicked = () => {};

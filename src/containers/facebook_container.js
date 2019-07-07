@@ -4,7 +4,7 @@ import FacebookComponent from '../components/facebook_component';
 
 const mapDispatchToProps = dispatch => {
     return {
-        addUserData: data => dispatch(Actions.addUserData(data)),
+        loginUser: data => dispatch(Actions.loginUser(data)),
         dispatch,
     };
 };

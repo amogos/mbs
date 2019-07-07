@@ -131,14 +131,21 @@ export default class JsonConnector {
         await axios.delete('http://localhost:3001/books/' + bookId).catch(error => onError(error));
     }
 
-    public async getUser(user: any, onError: (resultCode: number) => void): Promise<DataTypes.UserRecordType> {
+    public async getUser(
+        user: DataTypes.UserValueType,
+        onError: (resultCode: number) => void,
+    ): Promise<DataTypes.UserRecordType> {
         let userData = DataTypes.nullUser;
         await axios
             .get('http://localhost:3001/users?email=' + user.email)
             .then(response => {
-                userData = response.data;
+                let entry = response.data[0];
+                userData.id = entry.id;
+                userData.value.name = entry.name;
+                userData.value.email = entry.email;
             })
             .catch(error => onError(error));
+
         return userData;
     }
 
