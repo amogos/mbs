@@ -8,7 +8,7 @@ interface Props {
     id: number;
     value: DataTypes.BookValueType;
     userdata: DataTypes.UserType;
-    assignBook(key: number): void;
+    askBook(key: number): void;
     returnBook(key: number): void;
 }
 
@@ -36,7 +36,7 @@ const BookPlacementComponent = (props: Props) => {
                 <Button
                     title={Strings.bookPlacementComponent.MYBOOKSHELVE_STRING_ASSIGN}
                     color="#000000ff"
-                    onPress={() => props.assignBook(key)}
+                    onPress={() => props.askBook(key)}
                 />
             </Text>
         );

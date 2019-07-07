@@ -13,48 +13,46 @@ export default class JsonConnector {
         var booksArray: DataTypes.BookRecordType[] = [];
         await axios
             .get('http://localhost:3001/books')
-            .then(response => response.data.json)
-            .then(async item => {
-                let holder: DataTypes.UserType = DataTypes.nullUser;
-                if (item.val().holder > 0) {
-                    fetch('http://localhost:3001/users/' + item.val().holder)
-                        .then(response => response.json())
-                        .then(item => {
-                            holder = { name: item.name, email: item.email, id: item.id };
-                        });
-                }
+            .then(response => {
+                response.data.forEach(async (item: any) => {
+                    let holder: DataTypes.UserType = DataTypes.nullUser;
+                    if (item.holder > 0) {
+                        fetch('http://localhost:3001/users/' + item.holder)
+                            .then(response => response.json())
+                            .then(item => {
+                                holder = { name: item.name, email: item.email, id: item.id };
+                            });
+                    }
 
-                let owner: DataTypes.UserType = DataTypes.nullUser;
-                fetch('http://localhost:3001/users/' + item.val().owner)
-                    .then(response => response.json())
-                    .then(item => {
-                        owner = { name: item.name, email: item.email, id: item.id };
+                    let owner: DataTypes.UserType = DataTypes.nullUser;
+                    await axios.get('http://localhost:3001/users/' + item.owner).then(response => {
+                        owner = { name: response.data.name, email: response.data.email, id: response.data.id };
                     });
 
-                let language = DataTypes.nullLanguage;
-                fetch('http://localhost:3001/languages/' + item.val().language)
-                    .then(response => response.json())
-                    .then(item => {
-                        language = { language: item.language, id: item.id };
+                    let language = DataTypes.nullLanguage;
+                    await axios.get('http://localhost:3001/languages/' + item.language).then(response => {
+                        language = { language: response.data.language, id: response.data.id };
                     });
+                    let bookValue: DataTypes.BookValueType = {
+                        title: item.title,
+                        image: item.image,
+                        author: item.author,
+                        language: language,
+                        owner: owner,
+                        holder: holder,
+                        state: item.state,
+                    };
 
-                let bookValue: DataTypes.BookValueType = {
-                    title: item.val().title,
-                    image: item.val().image,
-                    author: item.val().author,
-                    language: language,
-                    owner: owner,
-                    holder: holder,
-                    state: item.val().state,
-                };
-                booksArray.push({
-                    id: item.val().id,
-                    value: bookValue,
-                } as DataTypes.BookRecordType);
+                    booksArray.push({
+                        id: item.id,
+                        value: bookValue,
+                    } as DataTypes.BookRecordType);
+                });
             })
             .catch(error => {
                 onError(error);
             });
+
         return booksArray;
     }
 
