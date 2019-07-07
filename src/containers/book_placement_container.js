@@ -4,7 +4,7 @@ import BookPlacementComponent from '../components/book_placement_component';
 
 const mapDispatchToProps = dispatch => {
     return {
-        askBook: bookKey => dispatch(Actions.askBook(bookKey)),
+        askBook: (bookKey, ownerId) => dispatch(Actions.askBook(bookKey, ownerId)),
         returnBook: bookKey => dispatch(Actions.returnBook(bookKey)),
         dispatch,
     };

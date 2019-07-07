@@ -6,16 +6,16 @@ import * as BookStates from './../book_states';
 interface Props {
     id: number;
     value: DataTypes.BookValueType;
-    userdata: DataTypes.UserType;
+    userdata: DataTypes.UserRecordType;
     deleteBook(key: number): void;
 }
 
 const BookRemover: React.FunctionComponent<Props> = (props: Props) => {
     let content = null;
-    var me: DataTypes.UserType = props.userdata;
+    var me: DataTypes.UserRecordType = props.userdata;
     var book: DataTypes.BookValueType = props.value;
     let bookKey: number = props.id;
-    let isMeOwner: boolean = me.email === book.owner.email;
+    let isMeOwner: boolean = me.value.email === book.owner.value.email;
     let isMeHolder: boolean = book.state === BookStates.default.STATE_BOOK_IDLE;
 
     if (isMeOwner && isMeHolder)

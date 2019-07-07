@@ -77,8 +77,12 @@ export default function treeReducer(state = {} as any, action: any): any {
                 booksArray: booksArray,
             });
         case ActionConstants.ACTION_USER_DATA:
+            let user: DataTypes.UserRecordType = DataTypes.nullUser;
+            databseInstance
+                .getUser(action.userdata, handleResultCode)
+                .then((result: DataTypes.UserRecordType) => (user = result));
             return Object.assign({}, state, {
-                userdata: action.userdata,
+                userdata: user,
             });
         case ActionConstants.ACTION_ASK_BOOK: {
             const key: number = action.bookKey;

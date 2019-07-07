@@ -4,8 +4,8 @@ import * as DataTypes from './../types';
 
 interface Props {
     notifications: DataTypes.RentalNotificationType[];
-    confirmRental(key: number, user: DataTypes.UserType): void;
-    rejectRental(key: number, user: DataTypes.UserType): void;
+    confirmRental(key: number, user: DataTypes.UserRecordType): void;
+    rejectRental(key: number, user: DataTypes.UserRecordType): void;
 }
 
 const NotificationComponent = (props: Props) => {

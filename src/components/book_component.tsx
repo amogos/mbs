@@ -6,7 +6,7 @@ import * as Types from './../types';
 interface Props {
     id: number;
     value: Types.BookValueType;
-    userdata: Types.UserType;
+    userdata: Types.UserRecordType;
     extradata: number;
 }
 
@@ -24,7 +24,7 @@ function BookRightSide(props: Props) {
         <td>
             <div>
                 <p> {props.value.title} </p>
-                <p> ({props.value.language}) </p>
+                <p> ({props.value.language.language}) </p>
                 <p> {props.value.author} </p>
             </div>
             <BookPlacementContainer {...props} />

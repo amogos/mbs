@@ -5,7 +5,7 @@ import * as DataTypes from './../types';
 
 interface Props {
     action: string;
-    userdata: DataTypes.UserType;
+    userdata: DataTypes.UserRecordType;
     changingkey: number;
     booksArray: DataTypes.BookRecordType[];
 }

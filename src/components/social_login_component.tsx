@@ -3,13 +3,13 @@ import * as DataTypes from '../types';
 import FacebookContainer from './../containers/facebook_container';
 
 interface Props {
-    userdata: DataTypes.UserType;
+    userdata: DataTypes.UserRecordType;
 }
 
 const SocialLoginComponent = (props: Props) => {
     let content;
-    if (props.userdata && props.userdata.name) {
-        content = <div style={{ color: 'white' }}>Welcome: {props.userdata.name}</div>;
+    if (props.userdata && props.userdata.value.name) {
+        content = <div style={{ color: 'white' }}>Welcome: {props.userdata.value.name}</div>;
     } else {
         content = <FacebookContainer />;
     }

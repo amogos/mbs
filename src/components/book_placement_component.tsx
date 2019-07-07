@@ -7,8 +7,8 @@ import * as BookStates from './../book_states';
 interface Props {
     id: number;
     value: DataTypes.BookValueType;
-    userdata: DataTypes.UserType;
-    askBook(key: number): void;
+    userdata: DataTypes.UserRecordType;
+    askBook(key: number, ownerId: number): void;
     returnBook(key: number): void;
 }
 
@@ -31,12 +31,12 @@ const BookPlacementComponent = (props: Props) => {
         content = (
             <Text>
                 {' '}
-                <br /> {Strings.bookPlacementComponent.MYBOOKSHELVE_STRING_OWNER}: {owner.name}
+                <br /> {Strings.bookPlacementComponent.MYBOOKSHELVE_STRING_OWNER}: {owner.value.name}
                 <br />
                 <Button
                     title={Strings.bookPlacementComponent.MYBOOKSHELVE_STRING_ASSIGN}
                     color="#000000ff"
-                    onPress={() => props.askBook(key)}
+                    onPress={() => props.askBook(key, owner.id)}
                 />
             </Text>
         );
@@ -44,7 +44,7 @@ const BookPlacementComponent = (props: Props) => {
         content = (
             <Text>
                 {' '}
-                <br /> {Strings.bookPlacementComponent.MYBOOKSHELVE_STRING_OWNER}: {owner.name}
+                <br /> {Strings.bookPlacementComponent.MYBOOKSHELVE_STRING_OWNER}: {owner.value.name}
                 <br />
                 <Button
                     title={Strings.bookPlacementComponent.MYBOOKSHELVE_STRING_RETURN}
@@ -54,14 +54,14 @@ const BookPlacementComponent = (props: Props) => {
             </Text>
         );
     } else {
-        let title = owner.name;
+        let title = owner.value.name as string;
         // if (state === BookStates.default.STATE_BOOK_ASSIGNED) title = pending[0].name;
         // else if (state === BookStates.default.STATE_BOOK_PENDING_ASSIGNMENT)
         //     title = Strings.MYBOOKSHELVE_PENDING_ASSIGNMENT;
         content = (
             <Text>
                 {' '}
-                <br /> {Strings.bookPlacementComponent.MYBOOKSHELVE_STRING_OWNER}: {owner.name}
+                <br /> {Strings.bookPlacementComponent.MYBOOKSHELVE_STRING_OWNER}: {owner.value.name}
                 <br />
                 <Button title={title} color="#808080" onPress={() => {}} />
             </Text>

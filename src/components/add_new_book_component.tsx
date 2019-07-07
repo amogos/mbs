@@ -27,7 +27,7 @@ const styles = {
 };
 
 interface Props {
-    userdata: DataTypes.UserType;
+    userdata: DataTypes.UserRecordType;
     addBook(book: DataTypes.BookValueType): void;
 }
 

@@ -10,8 +10,7 @@ const bookValue: DataTypes.BookValueType = {
     image: 'https://images-na.ssl-images-amazon.com/images/I/51lsugWtCvL._SY498_BO1,204,203,200_.jpg',
     language: DataTypes.nullLanguage,
     owner: {
-        email: 'daosmistique@yahoo.com',
-        name: 'Iulia Mogos',
+        value: { email: 'daosmistique@yahoo.com', name: 'Iulia Mogos' } as DataTypes.UserValueType,
         id: 1,
     },
     holder: DataTypes.nullUser,
@@ -19,7 +18,7 @@ const bookValue: DataTypes.BookValueType = {
 };
 const bookKey = 1;
 const ownerId = 2;
-const userdata = { name: 'mockuser', email: 'mockusr@gmail.com', id: 1 };
+const userdata = { value: { name: 'mockuser', email: 'mockusr@gmail.com' } as DataTypes.UserValueType, id: 1 };
 
 var booksArray: DataTypes.BookRecordType[] = new Array<DataTypes.BookRecordType>();
 booksArray.push({ id: bookKey, value: bookValue });
@@ -45,7 +44,7 @@ describe('Testing tree reducer branching', () => {
         });
     });
     it('Should add userdata once connected', () => {
-        expect(treeReducer({}, Actions.addUserData(userdata))).toEqual({ userdata: userdata });
+        expect(treeReducer({}, Actions.addUserData(userdata.value))).toEqual({ userdata: userdata });
     });
     it('Should return assign book to user state', () => {
         expect(treeReducer({}, Actions.askBook(bookKey, ownerId))).toEqual({

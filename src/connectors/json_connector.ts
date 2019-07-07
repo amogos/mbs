@@ -33,16 +33,25 @@ export default class JsonConnector {
             .then(response => {
                 response.data.forEach(async (item: any) => {
                     this.startedJobs++;
-                    let holder: DataTypes.UserType = DataTypes.nullUser;
+                    let holder: DataTypes.UserRecordType = DataTypes.nullUser;
                     if (item.holder > 0) {
                         await axios.get('http://localhost:3001/users/' + item.holder).then(response => {
-                            holder = { name: response.data.name, email: response.data.email, id: response.data.id };
+                            holder = {
+                                value: {
+                                    name: response.data.name,
+                                    email: response.data.email,
+                                } as DataTypes.UserValueType,
+                                id: response.data.id,
+                            };
                         });
                     }
 
-                    let owner: DataTypes.UserType = DataTypes.nullUser;
+                    let owner: DataTypes.UserRecordType = DataTypes.nullUser;
                     await axios.get('http://localhost:3001/users/' + item.owner).then(response => {
-                        owner = { name: response.data.name, email: response.data.email, id: response.data.id };
+                        owner = {
+                            value: { name: response.data.name, email: response.data.email } as DataTypes.UserValueType,
+                            id: response.data.id,
+                        };
                     });
 
                     let language = DataTypes.nullLanguage;
@@ -76,7 +85,7 @@ export default class JsonConnector {
 
     public async confirmRental(
         bookId: number,
-        user: DataTypes.UserType,
+        user: DataTypes.UserRecordType,
         onError: (resultCode: number) => void,
     ): Promise<boolean> {
         await axios
@@ -94,7 +103,7 @@ export default class JsonConnector {
 
     public async rejectRental(
         bookId: number,
-        user: DataTypes.UserType,
+        user: DataTypes.UserRecordType,
         onError: (resultCode: number) => void,
     ): Promise<boolean> {
         await axios
@@ -106,7 +115,7 @@ export default class JsonConnector {
     public async askBook(
         bookId: number,
         ownerId: number,
-        user: DataTypes.UserType,
+        user: DataTypes.UserRecordType,
         onError: (resultCode: number) => void,
     ) {
         axios
@@ -122,11 +131,23 @@ export default class JsonConnector {
         await axios.delete('http://localhost:3001/books/' + bookId).catch(error => onError(error));
     }
 
+    public async getUser(user: any, onError: (resultCode: number) => void): Promise<DataTypes.UserRecordType> {
+        let userData = DataTypes.nullUser;
+        await axios
+            .get('http://localhost:3001/users?email=' + user.email)
+            .then(response => {
+                userData = response.data;
+            })
+            .catch(error => onError(error));
+        return userData;
+    }
+
     public async addBook(
         value: DataTypes.BookValueType,
-        user: DataTypes.UserType,
+        user: DataTypes.UserRecordType,
         onError: (resultCode: number) => void,
     ) {
+        alert(JSON.stringify(user));
         axios
             .post('http://localhost:3001/books/', {
                 author: value.author,
@@ -141,7 +162,7 @@ export default class JsonConnector {
     }
 
     public async getRentalNotifications(
-        user: DataTypes.UserType,
+        user: DataTypes.UserRecordType,
         onError: (resultCode: number) => void,
     ): Promise<DataTypes.RentalNotificationType[]> {
         var rentalNotifications: DataTypes.RentalNotificationType[] = [];
@@ -149,7 +170,7 @@ export default class JsonConnector {
             .get('http://localhost:3001/queues?ownerId=' + user.id)
             .then(response => response.data.json)
             .then(async item => {
-                var user: DataTypes.UserType = DataTypes.nullUser;
+                var user: DataTypes.UserRecordType = DataTypes.nullUser;
                 await axios
                     .get('http://localhost:3001/users/' + item.userId)
                     .then(response => (user = response.data))
