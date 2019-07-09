@@ -12,7 +12,7 @@ export default class JsonConnector {
 
     private init() {}
 
-    private sleep = (milliseconds: any) => {
+    private sleep = (milliseconds: number) => {
         return new Promise(resolve => setTimeout(resolve, milliseconds));
     };
 
@@ -171,8 +171,8 @@ export default class JsonConnector {
     public async getRentalNotifications(
         user: DataTypes.UserRecordType,
         onError: (resultCode: number) => void,
-    ): Promise<DataTypes.RentalNotificationType[]> {
-        var rentalNotifications: DataTypes.RentalNotificationType[] = [];
+    ): Promise<DataTypes.RentalNotificationRecordType[]> {
+        var rentalNotifications: DataTypes.RentalNotificationRecordType[] = [];
         await axios
             .get('http://localhost:3001/queues?ownerId=' + user.id)
             .then(response => response.data.json)
@@ -189,10 +189,9 @@ export default class JsonConnector {
                     .then(response => (title = response.data.title))
                     .catch(error => onError(error));
 
-                let notification: DataTypes.RentalNotificationType = {
+                let notification: DataTypes.RentalNotificationRecordType = {
                     bookId: item.bookId,
-                    bookTitle: title,
-                    user: user,
+                    value: { bookTitle: title, user: user } as DataTypes.RentalNotificationValue,
                 };
                 rentalNotifications.push(notification);
             });

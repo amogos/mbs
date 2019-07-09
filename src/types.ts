@@ -28,10 +28,14 @@ export interface BookRecordType {
     value: BookValueType;
 }
 
-export interface RentalNotificationType {
+export interface RentalNotificationRecordType {
+    bookId: number;
+    value: RentalNotificationValue;
+}
+
+export interface RentalNotificationValue {
     user: UserRecordType;
     bookTitle: string;
-    bookId: number;
 }
 
 export const nullUser: UserRecordType = { value: { name: '', email: '' }, id: 0 };

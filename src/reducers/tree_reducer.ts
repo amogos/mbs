@@ -7,7 +7,7 @@ import Strings from '../constants/string_constant';
 import { message } from 'antd';
 
 var booksArray: DataTypes.BookRecordType[];
-var rentalNotifications: DataTypes.RentalNotificationType[];
+var rentalNotifications: DataTypes.RentalNotificationRecordType[];
 
 function handleResultCode(resultCode: number): void {
     if (resultCode !== 0) {
@@ -102,6 +102,7 @@ export default function treeReducer(state = {} as any, action: any): any {
         }
         case ActionConstants.ACTION_RETURN_BOOK: {
             const key: number = action.bookKey;
+            //  TODO: this search needs to go
             let index = booksArray.findIndex(function(item: DataTypes.BookRecordType) {
                 return item.id === key;
             });
