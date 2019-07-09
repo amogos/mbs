@@ -5,7 +5,7 @@ import SocialLoginComponent from '../components/social_login_component';
 
 function mapStateToProps(state) {
     return {
-        userdata: state.treeReducer.userdata,
+        userdata: state.socialReducer.userdata,
     };
 }
 

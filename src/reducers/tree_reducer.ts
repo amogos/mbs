@@ -6,10 +6,10 @@ import Store from './../store';
 import Strings from '../constants/string_constant';
 import { message } from 'antd';
 
-var booksArray: DataTypes.BookRecordType[];
-var rentalNotifications: DataTypes.RentalNotificationRecordType[];
+export var booksArray: DataTypes.BookRecordType[];
+export var rentalNotifications: DataTypes.RentalNotificationRecordType[];
 
-function handleResultCode(resultCode: number): void {
+export function handleResultCode(resultCode: number): void {
     if (resultCode !== 0) {
         message.error(Strings.MYBOOKSHELVE_OPERATION_FAILED + ' (' + resultCode + ')');
     }
@@ -75,18 +75,7 @@ export default function treeReducer(state = {} as any, action: any): any {
                 action: ActionConstants.ACTION_LIST_BOOKS,
                 booksArray: booksArray,
             });
-        case ActionConstants.ACTION_LOGIN_USER: {
-            databseInstance.getUser(action.user, handleResultCode).then((result: DataTypes.UserRecordType) => {
-                Store.dispatch(Actions.addUserData(result));
-            });
-            return Object.assign({}, state, {
-                action: ActionConstants.ACTION_LOGIN_USER,
-            });
-        }
-        case ActionConstants.ACTION_USER_DATA:
-            return Object.assign({}, state, {
-                userdata: action.userdata,
-            });
+
         case ActionConstants.ACTION_ASK_BOOK: {
             const key: number = action.bookKey;
             const ownerId: number = action.ownerId;
