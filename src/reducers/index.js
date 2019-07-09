@@ -5,6 +5,8 @@ import socialReducer from './social_reducer';
 const rootReducer = combineReducers({
     treeReducer,
     socialReducer,
+    bookReducer,
+    notificationReducer,
 
     /* add other reducers here */
 });
