@@ -1,0 +1,2 @@
+export const ACTION_USER_DATA = 'ACTION_USER_DATA';
+export const ACTION_LOGIN_USER = 'ACTION_LOGIN_USER';

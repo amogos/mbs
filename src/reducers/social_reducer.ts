@@ -1,6 +1,6 @@
-import * as ActionConstants from '../constants/action_constant';
+import * as ActionConstants from '../constants/social_actions_constants';
 import * as DataTypes from '../types';
-import * as Actions from '../actions/index';
+import * as Actions from '../actions/social_actions';
 import databseInstance from '../connectors/database_instance';
 import Store from './../store';
 import { handleResultCode } from './tree_reducer';

@@ -1,5 +1,5 @@
-import * as ActionTypes from '../../constants/action_constant';
-import * as Actions from '../index';
+import * as ActionTypes from '../../constants/social_actions_constants';
+import * as Actions from '../social_actions';
 import * as DataTypes from '../../types';
 
 describe('addUserData ', () => {
@@ -9,6 +9,6 @@ describe('addUserData ', () => {
             type: ActionTypes.ACTION_USER_DATA,
             userdata: userdata,
         };
-    //    expect(Actions.addUserData(userdata)).toEqual(expectedAction);
+        //    expect(Actions.addUserData(userdata)).toEqual(expectedAction);
     });
 });
