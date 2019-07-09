@@ -45,8 +45,13 @@ const ListBooksComponent = (props: Props) => {
                 >
                     <List.Item.Meta
                         avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
-                        title={<a href={item.value.image}>{item.value.title}</a>}
-                        description={item.value.author}
+                        title={
+                            <a href={item.value.image}>
+                                {item.value.title}
+                                <i> ({item.value.language.language})</i>
+                            </a>
+                        }
+                        description={<div>Author: {item.value.author}</div>}
                     />
 
                 </List.Item>
