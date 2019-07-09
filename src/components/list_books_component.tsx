@@ -1,7 +1,6 @@
 import React from 'react';
-import { View, FlatList } from 'react-native';
-import Book from '../components/book_component';
 import * as DataTypes from './../types';
+import { List, Avatar, Icon } from 'antd';
 
 interface Props {
     action: string;
@@ -10,26 +9,49 @@ interface Props {
     booksArray: DataTypes.BookRecordType[];
 }
 
+interface Icon {
+    type: string;
+    text: string;
+}
+
+const IconText = (param: Icon) => (
+    <span>
+        <Icon type={param.type} style={{ marginRight: 8 }} />
+        {param.text}
+    </span>
+);
+
 const ListBooksComponent = (props: Props) => {
     return (
-        <View style={{ flex: 0, alignItems: 'center', justifyContent: 'center' }}>
-            <table>
-                <FlatList<DataTypes.BookRecordType>
-                    data={props.booksArray}
-                    extraData={props.action}
-                    renderItem={({ item }) => {
-                        return (
-                            <Book
-                                id={item.id}
-                                value={item.value}
-                                userdata={props.userdata}
-                                extradata={props.changingkey}
-                            />
-                        );
-                    }}
-                />
-            </table>
-        </View>
+        <List
+            itemLayout="vertical"
+            size="small"
+            pagination={{
+                onChange: page => {
+                    console.log(page);
+                },
+                pageSize: 6,
+            }}
+            dataSource={props.booksArray}
+            renderItem={item => (
+                <List.Item
+                    key={item.value.title}
+                    actions={[
+                        <IconText type="star-o" text="156" />,
+                        <IconText type="like-o" text="156" />,
+                        <IconText type="message" text="2" />,
+                    ]}
+                    extra={<img width={64} alt="logo" src={item.value.image} />}
+                >
+                    <List.Item.Meta
+                        avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
+                        title={<a href={item.value.image}>{item.value.title}</a>}
+                        description={item.value.author}
+                    />
+
+                </List.Item>
+            )}
+        />
     );
 };
 
