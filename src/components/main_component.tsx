@@ -1,5 +1,5 @@
 import React from 'react';
-import * as ActionTypes from '../constants/action_constant';
+import * as ActionTypes from '../constants/tree_actions_constants';
 import ListBooksContainer from '../containers/list_books_container';
 import AddNewBookContainer from '../containers/add_new_book_container';
 import NotificationsContainer from '../containers/notifications_component_container';

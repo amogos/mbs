@@ -1,5 +1,5 @@
-import * as ActionTypes from '../../constants/action_constant';
-import * as Actions from '../index';
+import * as ActionTypes from '../../constants/tree_actions_constants';
+import * as Actions from '../tree_actions';
 import * as DataTypes from '../../types';
 
 const bookValue: DataTypes.BookValueType = {

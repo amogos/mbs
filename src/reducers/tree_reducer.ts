@@ -1,6 +1,6 @@
 import * as ActionConstants from '../constants/tree_actions_constants';
 import * as DataTypes from '../types';
-import * as Actions from '../actions/index';
+import * as Actions from '../actions/tree_actions';
 import databseInstance from '../connectors/database_instance';
 import Store from './../store';
 import Strings from '../constants/string_constant';

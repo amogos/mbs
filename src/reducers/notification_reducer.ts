@@ -1,5 +1,5 @@
 import * as ActionConstants from '../constants/notification_actions_constants';
-import * as Actions from '../actions/index';
+import * as Actions from '../actions/tree_actions';
 import databseInstance from '../connectors/database_instance';
 import Store from './../store';
 import { GlobalVars, handleResultCode } from './tree_reducer';

@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import * as Actions from '../actions';
+import * as Actions from '../actions/tree_actions';
 import { bindActionCreators } from 'redux';
 import SocialLoginComponent from '../components/social_login_component';
 
