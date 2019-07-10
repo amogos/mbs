@@ -1,3 +1,4 @@
+import React from 'react';
 import * as DataTypes from '../types';
 import * as BookStates from '../book_states';
 import { Form, Select, Input, Button, List } from 'antd';
@@ -73,4 +74,4 @@ const AddNewBookComponent = (props: Props) => {
     );
 };
 
-export default AddNewBookComponent;
+export default Form.create({ name: 'wrapped-add-new-book' })(AddNewBookComponent);
