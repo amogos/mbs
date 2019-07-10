@@ -6,6 +6,7 @@ function mapStateToProps(state) {
     return {
         userdata: state.socialReducer.userdata,
         action: state.treeReducer.action,
+        languages: state.treeReducer.languages,
     };
 }
 

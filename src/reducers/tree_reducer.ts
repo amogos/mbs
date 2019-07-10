@@ -9,6 +9,7 @@ import { message } from 'antd';
 export class GlobalVars {
     public static booksArray: DataTypes.BookRecordType[];
     public static rentalNotifications: DataTypes.RentalNotificationRecordType[];
+    public static languages: DataTypes.LanguageRecordType[];
 }
 
 export function handleResultCode(resultCode: number): void {
@@ -26,8 +27,13 @@ export default function treeReducer(state = {} as any, action: any): any {
                 notifications: GlobalVars.rentalNotifications,
             });
         case ActionConstants.ACTION_GOTO_ADD_BOOK:
+            databseInstance.getLanguages(handleResultCode).then((result: DataTypes.LanguageRecordType[]) => {
+                GlobalVars.languages = result;
+                Store.dispatch(Actions.gotoAddBook());
+            });
             return Object.assign({}, state, {
                 action: ActionConstants.ACTION_GOTO_ADD_BOOK,
+                languages: GlobalVars.languages,
             });
         case ActionConstants.ACTION_ADD_BOOK:
             databseInstance.addBook(action.data, state.userdata, handleResultCode).then(() => {

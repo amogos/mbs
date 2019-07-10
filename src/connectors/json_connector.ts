@@ -26,6 +26,21 @@ export default class JsonConnector {
         });
     };
 
+    public async getLanguages(onError: (resultCode: number) => void): Promise<DataTypes.LanguageRecordType[]> {
+        var languagesArray: DataTypes.LanguageRecordType[] = [];
+        await axios
+            .get('http://localhost:30001/languages')
+            .then(response => {
+                response.data.forEach((item: DataTypes.LanguageRecordType) => {
+                    languagesArray.push(item);
+                });
+            })
+            .catch(error => {
+                onError(error);
+            });
+        return languagesArray;
+    }
+
     public async getBooks(onError: (resultCode: number) => void): Promise<DataTypes.BookRecordType[]> {
         var booksArray: DataTypes.BookRecordType[] = [];
         await axios

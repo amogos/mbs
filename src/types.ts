@@ -11,14 +11,14 @@ export interface UserValueType {
 export interface BookValueType {
     title: string;
     author: string;
-    language: LanguageType;
+    language: LanguageRecordType;
     image: string;
     owner: UserRecordType;
     holder: UserRecordType;
     state: string;
 }
 
-export interface LanguageType {
+export interface LanguageRecordType {
     id: number;
     language: string;
 }
@@ -39,4 +39,4 @@ export interface RentalNotificationValue {
 }
 
 export const nullUser: UserRecordType = { value: { name: '', email: '' }, id: 0 };
-export const nullLanguage: LanguageType = { id: 0, language: '' };
+export const nullLanguage: LanguageRecordType = { id: 0, language: '' };

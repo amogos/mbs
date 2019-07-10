@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
-import { View, Text, TextInput, Button } from 'react-native';
 import * as DataTypes from '../types';
-import * as BookStates from '../book_states'
+import * as BookStates from '../book_states';
+import { Form, Select, Input, Button, List } from 'antd';
+
+const { Option } = Select;
 
 var defaultImage =
     'https://vignette.wikia.nocookie.net/superfriends/images/a/a5/No_Photo_Available.jpg/revision/latest?cb=20090329133959';
@@ -15,87 +16,60 @@ var currentBook = {
     holder: DataTypes.nullUser,
 };
 
-const styles = {
-    inputField: {
-        height: 34,
-        width: 320,
-        borderColor: 'gray',
-        borderWidth: 1,
-        padding: 2,
-        borderRadius: 6,
-    },
-};
-
 interface Props {
+    languages: DataTypes.LanguageRecordType[];
     userdata: DataTypes.UserRecordType;
     addBook(book: DataTypes.BookValueType): void;
+    form: any;
 }
 
 const onSaveButtonPressed = (props: Props) => {
     props.addBook(currentBook);
-    currentBook.title = currentBook.author = currentBook.language.language = '';
+};
+
+const onLanguageSelectionChanged = (value: string, props: Props) => {
+    currentBook.language = props.languages.find(
+        (entry: DataTypes.LanguageRecordType) => entry.language === value,
+    ) as DataTypes.LanguageRecordType;
 };
 
 const AddNewBookComponent = (props: Props) => {
     currentBook.owner = props.userdata;
-    const [title, setTitle] = useState('');
-    const [language, setLanguage] = useState('');
-    const [author, setAuthor] = useState('');
-    const [image, setImage] = useState('');
+    const { getFieldDecorator } = props.form;
 
     return (
-        <View style={{ flex: 10, alignItems: 'center', justifyContent: 'center' }}>
-            <Text> title: </Text>
-            <TextInput
-                style={styles.inputField}
-                onChangeText={text => {
-                    currentBook.title = text;
-                    setTitle(text);
-                }}
-                value={title}
-            />
-            <Text> language: </Text>
-            <TextInput
-                style={styles.inputField}
-                onChangeText={text => {
-                    currentBook.language.language = text;
-                    setLanguage(text);
-                }}
-                value={language}
-            />
-            <Text> author: </Text>
-            <TextInput
-                style={styles.inputField}
-                onChangeText={text => {
-                    currentBook.author = text;
-                    setAuthor(text);
-                }}
-                value={author}
-            />
-            <Text> image: </Text>
-            <TextInput
-                style={styles.inputField}
-                onChangeText={text => {
-                    currentBook.image = text;
-                    setImage(text);
-                }}
-                value={image}
-            />
-            <img src={currentBook.image} alt="new" width={64} height={64} />
-            <Button
-                color="#000000"
-                onPress={() => {
-                    onSaveButtonPressed(props);
-                    setTitle('');
-                    setAuthor('');
-                    setLanguage('');
-                    setImage('');
-                    currentBook.image = defaultImage;
-                }}
-                title="Save"
-                accessibilityLabel="Save book"
-            />
-        </View>
+        <Form labelCol={{ span: 5 }} wrapperCol={{ span: 12 }} onSubmit={() => onSaveButtonPressed(props)}>
+            <Form.Item label="Title">
+                {getFieldDecorator('title', {
+                    rules: [{ required: true, message: 'Please input value!' }],
+                })(<Input />)}
+            </Form.Item>
+            <Form.Item label="Author">
+                {getFieldDecorator('author', {
+                    rules: [{ required: true, message: 'Please input value!' }],
+                })(<Input />)}
+            </Form.Item>
+            <Form.Item label="Language">
+                {getFieldDecorator('language', {
+                    rules: [{ required: true, message: 'Please select value!' }],
+                })(
+                    <Select
+                        placeholder="Select lanuage"
+                        onChange={value => onLanguageSelectionChanged(value as string, props)}
+                    >
+                        <List
+                            dataSource={props.languages}
+                            renderItem={item => <Option value={item.language}>{item.language}</Option>}
+                        />
+                    </Select>,
+                )}
+            </Form.Item>
+            <Form.Item wrapperCol={{ span: 12, offset: 5 }}>
+                <Button type="primary" htmlType="submit">
+                    Submit
+                </Button>
+            </Form.Item>
+        </Form>
     );
 };
 
