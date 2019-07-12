@@ -1,82 +1,87 @@
-import React, { useState } from 'react'
-import { View, Text, TextInput, Button } from 'react-native'
-import * as DataTypes from "../types";
+import React, { useState } from 'react';
+import * as DataTypes from '../types';
+import * as BookStates from '../book_states';
+import { Select, Input, Button } from 'antd';
 
-var defaultImage = 'https://vignette.wikia.nocookie.net/superfriends/images/a/a5/No_Photo_Available.jpg/revision/latest?cb=20090329133959';
-var currentBook = {
-  title: "",
-  author: "",
-  language: "",
-  image: defaultImage,
-  owner: DataTypes.nullUser,
-  holder: DataTypes.nullUser
-};
-
-const styles = {
-  inputField: {
-    height: 34,
-    width: 320,
-    borderColor: 'gray',
-    borderWidth: 1,
-    padding: 2,
-    borderRadius: 6
-  },
-}
+const { Option } = Select;
+const InputGroup = Input.Group;
 
 interface Props {
-  userdata: DataTypes.UserType;
-  addBook(book: DataTypes.BookValueType): void
+    languages: DataTypes.LanguageRecordType[];
+    userdata: DataTypes.UserRecordType;
+    addBook(book: DataTypes.BookValueType): void;
 }
+const defaultImage =
+    'https://vignette.wikia.nocookie.net/superfriends/images/a/a5/No_Photo_Available.jpg/revision/latest?cb=20090329133959';
+let currentBook = {
+    title: '',
+    author: '',
+    language: DataTypes.nullLanguage,
+    image: defaultImage,
+    owner: DataTypes.nullUser,
+    state: BookStates.default.STATE_BOOK_IDLE,
+    holder: DataTypes.nullUser,
+};
 
 const AddNewBookComponent = (props: Props) => {
-  currentBook.holder = currentBook.owner = props.userdata;
-  const [title, setTitle] = useState('');
-  const [language, setLanguage] = useState('');
-  const [author, setAuthor] = useState('');
-  const [image, setImage] = useState('');
+    const children = () => {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const children: any[] = [];
+        props.languages.forEach(language => children.push(<Option key={language.id}>{language.language}</Option>));
+        return children;
+    };
 
-  return (
-    <View style={{ flex: 10, alignItems: 'center', justifyContent: 'center' }} >
-      <Text> title: </Text>
-      <TextInput
-        style={styles.inputField}
-        onChangeText={(text) => { currentBook.title = text; setTitle(text) }}
-        value={title} />
-      <Text> language: </Text>
-      <TextInput
-        style={styles.inputField}
-        onChangeText={(text) => { currentBook.language = text; setLanguage(text) }}
-        value={language} />
-      <Text> author: </Text>
-      <TextInput
-        style={styles.inputField}
-        onChangeText={(text) => { currentBook.author = text; setAuthor(text) }}
-        value={author} />
-      <Text> image: </Text>
-      <TextInput
-        style={styles.inputField}
-        onChangeText={(text) => { currentBook.image = text; setImage(text) }}
-        value={image} />
-      <img src={currentBook.image} alt="new" width={64} height={64} />
-      <Button color="#000000"
-        onPress={() => {
-          onSaveButtonPressed(props);
-          setTitle('');
-          setAuthor('');
-          setLanguage('');
-          setImage('');
-          currentBook.image = defaultImage;
-        }}
-        title="Save"
-        accessibilityLabel="Save book" />
-    </View >
-  )
-}
+    const [title, setTitle] = useState('');
+    const [author, setAuthor] = useState('');
+    const [language, setLanguage] = useState(0);
+
+    const onLanguageSelected = (value: number) => {
+        if (value < 0 || value > props.languages.length) return;
+        setLanguage(value);
+        currentBook.language = props.languages[value - 1];
+    };
+    const onSaveButtonPressed = () => {
+        if (title === '' || author === '' || language === 0) return;
+        props.addBook(currentBook);
+        setTitle('');
+        setAuthor('');
+    };
+
+    currentBook.owner = props.userdata;
+
+    return (
+        <div className="basic-input-container">
+            <InputGroup>
+                <Input
+                    placeholder="Title"
+                    onChange={element => {
+                        setTitle(element.target.value);
+                        currentBook.title = element.target.value;
+                    }}
+                    value={title}
+                />
+                <Input
+                    placeholder="Author"
+                    onChange={element => {
+                        setAuthor(element.target.value);
+                        currentBook.author = element.target.value;
+                    }}
+                    value={author}
+                />
+                <Select
+                    style={{ width: 200 }}
+                    placeholder="Select language"
+                    onChange={value => onLanguageSelected(value as number)}
+                >
+                    {children()}
+                </Select>
+            </InputGroup>
+
+            <Button type="primary" onClick={() => onSaveButtonPressed()}>
+                Save
+            </Button>
+        </div>
+    );
+};
 
 export default AddNewBookComponent;
-
-const onSaveButtonPressed = (props: Props) => {
-  props.addBook(currentBook);
-  currentBook.title = currentBook.author = currentBook.language = "";
-}
-

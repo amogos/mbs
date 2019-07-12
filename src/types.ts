@@ -1,37 +1,42 @@
-import DatabaseConnector from "./connectors/database_connector";
+export interface UserRecordType {
+    id: number;
+    value: UserValueType;
+}
 
-export interface UserType {
-    name: string;
+export interface UserValueType {
+    name: string | undefined;
     email: string;
 }
 
 export interface BookValueType {
     title: string;
     author: string;
-    language: string;
+    language: LanguageRecordType;
     image: string;
-    owner: UserType;
-    holder: UserType;
+    owner: UserRecordType;
+    holder: UserRecordType;
+    state: string;
 }
 
-export interface BookKeyType {
-    id: string | null;
+export interface LanguageRecordType {
+    id: number;
+    language: string;
 }
 
 export interface BookRecordType {
-    id: string | null;
+    id: number;
     value: BookValueType;
 }
 
-export interface ConfirmationDialogParams {
-    text: string;
-    button1: string;
-}
-export const nullUser = { name: "", email: "" } as UserType;
-export interface Context {
-    dbconnector: DatabaseConnector;
-    userdata: UserType;
+export interface RentalNotificationRecordType {
+    bookId: number;
+    value: RentalNotificationValue;
 }
 
+export interface RentalNotificationValue {
+    user: UserRecordType;
+    bookTitle: string;
+}
 
-
+export const nullUser: UserRecordType = { value: { name: '', email: '' }, id: 0 };
+export const nullLanguage: LanguageRecordType = { id: 0, language: '' };

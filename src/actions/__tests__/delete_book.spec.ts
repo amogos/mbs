@@ -1,13 +1,13 @@
-import * as ActionTypes from '../../constants/action_constant'
-import * as Actions from '../index'
+import * as ActionTypes from '../../constants/book_actions_constants';
+import * as Actions from '../book_actions';
 
 describe('deleteBook(bookKey)', () => {
     it('should build action for deleting book', () => {
-        let bookKey = 'iehfjwnfjksdbsd';
+        let bookId = 1;
         const expectedAction = {
             type: ActionTypes.ACTION_DELETE_BOOK,
-            bookKey: bookKey
-        }
-        expect(Actions.deleteBook(bookKey)).toEqual(expectedAction)
-    })
-})
+            bookKey: bookId,
+        };
+        expect(Actions.deleteBook(bookId)).toEqual(expectedAction);
+    });
+});

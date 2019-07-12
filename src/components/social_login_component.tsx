@@ -1,19 +1,19 @@
-import React from 'react'
-import * as DataTypes from "../types";
-import FacebookContainer from './../containers/facebook_container'
+import React from 'react';
+import * as DataTypes from '../types';
+import FacebookContainer from './../containers/facebook_container';
 
 interface Props {
-    userdata: DataTypes.UserType
+    userdata: DataTypes.UserRecordType;
 }
 
 const SocialLoginComponent = (props: Props) => {
     let content;
-    if (props.userdata && props.userdata.name) {
-        content = (<div style={{ color: 'white' }}>Welcome: {props.userdata.name}</div>);
+    if (props.userdata && props.userdata.value.name) {
+        content = <div style={{ color: 'white' }}>Welcome: {props.userdata.value.name}</div>;
     } else {
-        content = <FacebookContainer />
+        content = <FacebookContainer />;
     }
     return content;
-}
+};
 
-export default SocialLoginComponent
+export default SocialLoginComponent;

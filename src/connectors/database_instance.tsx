@@ -1,4 +1,3 @@
-import FirebaseConnector from './firebase_connector'
-
-const dbconnector = new FirebaseConnector();
+import JsonConnector from './json_connector';
+const dbconnector = new JsonConnector();
 export default dbconnector;

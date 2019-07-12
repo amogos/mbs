@@ -1,74 +1,136 @@
 {
-  "books" : {
-    "-Lb2_zfQlKBdih9FsKQd" : {
-      "author" : "Susanne Schotz",
-      "holder" : {
-        "email" : "",
-        "name" : ""
-      },
-      "image" : "https://images-eu.ssl-images-amazon.com/images/I/51UkIlAOwEL._SY90_.jpg",
-      "language" : "English",
-      "owner" : {
-        "email" : "florin.mogos@gmail.com",
-        "name" : "Florin Mogos"
-      },
-      "title" : "The Secret Language of Cats: How to Understand Your Cat for a Better, Happier Relationship"
+  "users": [
+    {
+      "id": 1,
+      "name": "Iulia Mogos",
+      "email": "daosmistique@yahoo.com"
     },
-    "-Lb2fXy3Z6edp87fkoSg" : {
-      "author" : "Eric Carle",
-      "holder" : {
-        "email" : "",
-        "name" : ""
-      },
-      "image" : "https://images-na.ssl-images-amazon.com/images/I/51lsugWtCvL._SY498_BO1,204,203,200_.jpg",
-      "language" : "English",
-      "owner" : {
-        "email" : "daosmistique@yahoo.com",
-        "name" : "Iulia Mogos"
-      },
-      "title" : "The Very Hungry Caterpillar's ABC"
+    {
+      "id": 2,
+      "name": "Florin Mogos",
+      "email": "florin.mogos@gmail.com"
     },
-    "-Lb2jsH6cQLQhETGukLv" : {
-      "author" : "Julia Donaldson",
-      "holder" : {
-        "email" : "",
-        "name" : ""
-      },
-      "image" : "https://images-na.ssl-images-amazon.com/images/I/51Zm3fBs0PL._SY446_BO1,204,203,200_.jpg",
-      "language" : "English",
-      "owner" : {
-        "email" : "daosmistique@yahoo.com",
-        "name" : "Iulia Mogos"
-      },
-      "title" : "Room on the Broom Board Book"
-    },
-    "-Lb2kKM2YNIGyTau9Euw" : {
-      "author" : "Julia Donaldson",
-      "holder" : {
-        "email" : "",
-        "name" : ""
-      },
-      "image" : "https://images-na.ssl-images-amazon.com/images/I/61YDHV-%2B-VL._SY448_BO1,204,203,200_.jpg",
-      "language" : "English",
-      "owner" : {
-        "email" : "daosmistique@yahoo.com",
-        "name" : "Iulia Mogos"
-      },
-      "title" : "The Snail and the Whale"
-    },
-    "-LbPb5uE8yPUS_9bvN-r" : {
-      "author" : " Yuval Noah Harari",
-      "holder" : {
-        "email" : "",
-        "name" : ""
-      },
-      "image" : "https://images-na.ssl-images-amazon.com/images/I/417lbqaSihL._SX318_BO1,204,203,200_.jpg",
-      "language" : "German",
-      "owner" : {
-        "email" : "florin.mogos@gmail.com",
-        "name" : "Florin Mogos"
-      },
-      "title" : "Homo Deus: Eine Geschichte von Morgen "
+    {
+      "id": 3,
+      "name": "Varza Murata",
+      "email": "varzamurata@gmail.com"
     }
-  }
+  ],
+  "queues": [
+    {
+      "id": 1,
+      "bookId": 1,
+      "userId": 1,
+      "ownerId": 2
+    },
+    {
+      "id": 2,
+      "bookId": 1,
+      "userId": 3,
+      "ownerId": 2
+    }
+  ],
+  "languages": [
+    {
+      "id": 1,
+      "language": "English"
+    },
+    {
+      "id": 2,
+      "language": "German"
+    }
+  ],
+  "books": [
+    {
+      "id": 1,
+      "author": "Susanne Schotz",
+      "image": "https://images-eu.ssl-images-amazon.com/images/I/51UkIlAOwEL._SY90_.jpg",
+      "language": 1,
+      "owner": 2,
+      "holder": -1,
+      "title": "The Secret Language of Cats: How to Understand Your Cat for a Better, Happier Relationship",
+      "state": "state.book.idle"
+    },
+    {
+      "id": 2,
+      "author": "Eric Carle",
+      "image": "https://images-na.ssl-images-amazon.com/images/I/51lsugWtCvL._SY498_BO1,204,203,200_.jpg",
+      "language": 1,
+      "owner": 1,
+      "holder": -1,
+      "title": "The Very Hungry Caterpillar's ABC",
+      "state": "state.book.idle"
+    },
+    {
+      "id": 3,
+      "author": "Julia Donaldson",
+      "image": "https://images-na.ssl-images-amazon.com/images/I/51Zm3fBs0PL._SY446_BO1,204,203,200_.jpg",
+      "language": 1,
+      "owner": 1,
+      "holder": -1,
+      "title": "Room on the Broom Board Book",
+      "state": "state.book.idle"
+    },
+    {
+      "id": 4,
+      "author": "Julia Donaldson",
+      "image": "https://images-na.ssl-images-amazon.com/images/I/61YDHV-%2B-VL._SY448_BO1,204,203,200_.jpg",
+      "language": 1,
+      "owner": 1,
+      "holder": -1,
+      "title": "The Snail and the Whale",
+      "state": "state.book.idle"
+    },
+    {
+      "id": 5,
+      "author": " Yuval Noah Harari",
+      "image": "https://images-na.ssl-images-amazon.com/images/I/417lbqaSihL._SX318_BO1,204,203,200_.jpg",
+      "language": 2,
+      "owner": 2,
+      "holder": -1,
+      "title": "Homo Deus: Eine Geschichte von Morgen ",
+      "state": "state.book.idle"
+    },
+    {
+      "author": "a1",
+      "image": "https://vignette.wikia.nocookie.net/superfriends/images/a/a5/No_Photo_Available.jpg/revision/latest?cb=20090329133959",
+      "language": 1,
+      "owner": 1,
+      "holder": -1,
+      "title": "t1",
+      "state": "state.book.idle",
+      "id": 6
+    },
+    {
+      "author": "author some",
+      "image": "https://vignette.wikia.nocookie.net/superfriends/images/a/a5/No_Photo_Available.jpg/revision/latest?cb=20090329133959",
+      "language": 2,
+      "owner": 1,
+      "holder": -1,
+      "title": "title some",
+      "state": "state.book.idle",
+      "id": 7
+    },
+    {
+      "author": "a123",
+      "image": "https://vignette.wikia.nocookie.net/superfriends/images/a/a5/No_Photo_Available.jpg/revision/latest?cb=20090329133959",
+      "language": 2,
+      "owner": 1,
+      "holder": -1,
+      "title": "t123",
+      "state": "state.book.idle",
+      "id": 8
+    }
+  ],
+  "reviews": [
+    {
+      "id": 1,
+      "bookId": 1,
+      "userId": 1,
+      "title": "Good read",
+      "comment": "Highly recommend this book.",
+      "score": 4.5
+    }
+  ],
+  "orders": []
 }
