@@ -10,4 +10,5 @@ export default {
         MYBOOKSHELVE_STRING_RETURN: 'Return',
     },
     MYBOOKSHELVE_PENDING_ASSIGNMENT: 'Pending assignment',
+    MYBOOKSHELVE_INVALID_FIELDS: 'Invalid fields',
 };

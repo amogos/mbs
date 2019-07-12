@@ -5,7 +5,7 @@ import databseInstance from '../connectors/database_instance';
 import Store from './../store';
 import Strings from '../constants/string_constant';
 import { message } from 'antd';
-import { GlobalVars, handleResultCode } from './tree_reducer';
+import { GlobalVars, handleError } from './tree_reducer';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default function bookReducer(state = {} as any, action: any): any {
@@ -17,7 +17,7 @@ export default function bookReducer(state = {} as any, action: any): any {
             let index = GlobalVars.booksArray.findIndex(function(item: DataTypes.BookRecordType) {
                 return item.id === key;
             });
-            databseInstance.askBook(index, ownerId, userdata, handleResultCode);
+            databseInstance.askBook(index, ownerId, userdata, handleError);
             return Object.assign({}, state, {
                 action: BookConstants.ACTION_ASK_BOOK,
                 changingkey: key,

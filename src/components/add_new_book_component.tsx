@@ -31,15 +31,17 @@ const AddNewBookComponent = (props: Props) => {
         return children;
     };
 
-    const onLanguageSelected = (value: number) => {
-        if (value < 0 || value > props.languages.length) return;
-        currentBook.language = props.languages[value - 1];
-    };
-
     const [title, setTitle] = useState('');
     const [author, setAuthor] = useState('');
+    const [language, setLanguage] = useState(0);
 
+    const onLanguageSelected = (value: number) => {
+        if (value < 0 || value > props.languages.length) return;
+        setLanguage(value);
+        currentBook.language = props.languages[value - 1];
+    };
     const onSaveButtonPressed = () => {
+        if (title === '' || author === '' || language === 0) return;
         props.addBook(currentBook);
         setTitle('');
         setAuthor('');
