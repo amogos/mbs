@@ -53,7 +53,6 @@ const ListBooksComponent = (props: Props) => {
                         }
                         description={<div>Author: {item.value.author}</div>}
                     />
-
                 </List.Item>
             )}
         />

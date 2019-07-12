@@ -90,6 +90,36 @@
       "holder": -1,
       "title": "Homo Deus: Eine Geschichte von Morgen ",
       "state": "state.book.idle"
+    },
+    {
+      "author": "a1",
+      "image": "https://vignette.wikia.nocookie.net/superfriends/images/a/a5/No_Photo_Available.jpg/revision/latest?cb=20090329133959",
+      "language": 1,
+      "owner": 1,
+      "holder": -1,
+      "title": "t1",
+      "state": "state.book.idle",
+      "id": 6
+    },
+    {
+      "author": "author some",
+      "image": "https://vignette.wikia.nocookie.net/superfriends/images/a/a5/No_Photo_Available.jpg/revision/latest?cb=20090329133959",
+      "language": 2,
+      "owner": 1,
+      "holder": -1,
+      "title": "title some",
+      "state": "state.book.idle",
+      "id": 7
+    },
+    {
+      "author": "a123",
+      "image": "https://vignette.wikia.nocookie.net/superfriends/images/a/a5/No_Photo_Available.jpg/revision/latest?cb=20090329133959",
+      "language": 2,
+      "owner": 1,
+      "holder": -1,
+      "title": "t123",
+      "state": "state.book.idle",
+      "id": 8
     }
   ],
   "reviews": [

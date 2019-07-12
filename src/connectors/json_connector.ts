@@ -29,7 +29,7 @@ export default class JsonConnector {
     public async getLanguages(onError: (resultCode: number) => void): Promise<DataTypes.LanguageRecordType[]> {
         var languagesArray: DataTypes.LanguageRecordType[] = [];
         await axios
-            .get('http://localhost:30001/languages')
+            .get('http://localhost:3001/languages')
             .then(response => {
                 response.data.forEach((item: DataTypes.LanguageRecordType) => {
                     languagesArray.push(item);
@@ -164,18 +164,13 @@ export default class JsonConnector {
         return userData;
     }
 
-    public async addBook(
-        value: DataTypes.BookValueType,
-        user: DataTypes.UserRecordType,
-        onError: (resultCode: number) => void,
-    ) {
-        alert(JSON.stringify(user));
+    public async addBook(value: DataTypes.BookValueType, onError: (resultCode: number) => void) {
         axios
             .post('http://localhost:3001/books/', {
                 author: value.author,
                 image: value.image,
                 language: value.language.id,
-                owner: user.id,
+                owner: value.owner.id,
                 holder: -1,
                 title: value.title,
                 state: 'state.book.idle',

@@ -27,21 +27,12 @@ export default function treeReducer(state = {} as any, action: any): any {
                 notifications: GlobalVars.rentalNotifications,
             });
         case ActionConstants.ACTION_GOTO_ADD_BOOK:
-            databseInstance.getLanguages(handleResultCode).then((result: DataTypes.LanguageRecordType[]) => {
-                GlobalVars.languages = result;
-                Store.dispatch(Actions.gotoAddBook());
-            });
             return Object.assign({}, state, {
                 action: ActionConstants.ACTION_GOTO_ADD_BOOK,
                 languages: GlobalVars.languages,
             });
         case ActionConstants.ACTION_ADD_BOOK:
-            databseInstance.addBook(action.data, state.userdata, handleResultCode).then(() => {
-                databseInstance.getBooks(handleResultCode).then(result => {
-                    GlobalVars.booksArray = result;
-                    Store.dispatch(Actions.gotoAddBook);
-                });
-            });
+            databseInstance.addBook(action.data, handleResultCode);
             return Object.assign({}, state, {
                 action: ActionConstants.ACTION_ADD_BOOK,
             });
@@ -63,6 +54,9 @@ export default function treeReducer(state = {} as any, action: any): any {
             });
 
         default:
+            databseInstance.getLanguages(handleResultCode).then((result: DataTypes.LanguageRecordType[]) => {
+                GlobalVars.languages = result;
+            });
             return state;
     }
 }

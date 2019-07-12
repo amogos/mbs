@@ -1,0 +1,9 @@
+.basic-input-container {
+  margin: 0;
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  width: 30%;
+  transform: translate(-50%, -50%);
+  padding: 0 5px;
+}

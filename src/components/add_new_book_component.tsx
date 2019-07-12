@@ -1,13 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import * as DataTypes from '../types';
 import * as BookStates from '../book_states';
-import { Form, Select, Input, Button, List } from 'antd';
+import { Select, Input, Button } from 'antd';
 
 const { Option } = Select;
+const InputGroup = Input.Group;
 
-var defaultImage =
+interface Props {
+    languages: DataTypes.LanguageRecordType[];
+    userdata: DataTypes.UserRecordType;
+    addBook(book: DataTypes.BookValueType): void;
+}
+const defaultImage =
     'https://vignette.wikia.nocookie.net/superfriends/images/a/a5/No_Photo_Available.jpg/revision/latest?cb=20090329133959';
-var currentBook = {
+let currentBook = {
     title: '',
     author: '',
     language: DataTypes.nullLanguage,
@@ -17,61 +23,63 @@ var currentBook = {
     holder: DataTypes.nullUser,
 };
 
-interface Props {
-    languages: DataTypes.LanguageRecordType[];
-    userdata: DataTypes.UserRecordType;
-    addBook(book: DataTypes.BookValueType): void;
-    form: any;
-}
-
-const onSaveButtonPressed = (props: Props) => {
-    props.addBook(currentBook);
-};
-
-const onLanguageSelectionChanged = (value: string, props: Props) => {
-    currentBook.language = props.languages.find(
-        (entry: DataTypes.LanguageRecordType) => entry.language === value,
-    ) as DataTypes.LanguageRecordType;
-};
-
 const AddNewBookComponent = (props: Props) => {
+    const children = () => {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const children: any[] = [];
+        props.languages.forEach(language => children.push(<Option key={language.id}>{language.language}</Option>));
+        return children;
+    };
+
+    const onLanguageSelected = (value: number) => {
+        if (value < 0 || value > props.languages.length) return;
+        currentBook.language = props.languages[value - 1];
+    };
+
+    const [title, setTitle] = useState('');
+    const [author, setAuthor] = useState('');
+
+    const onSaveButtonPressed = () => {
+        props.addBook(currentBook);
+        setTitle('');
+        setAuthor('');
+    };
+
     currentBook.owner = props.userdata;
-    const { getFieldDecorator } = props.form;
 
     return (
-        <Form labelCol={{ span: 5 }} wrapperCol={{ span: 12 }} onSubmit={() => onSaveButtonPressed(props)}>
-            <Form.Item label="Title">
-                {getFieldDecorator('title', {
-                    rules: [{ required: true, message: 'Please input value!' }],
-                })(<Input />)}
-            </Form.Item>
-            <Form.Item label="Author">
-                {getFieldDecorator('author', {
-                    rules: [{ required: true, message: 'Please input value!' }],
-                })(<Input />)}
-            </Form.Item>
-            <Form.Item label="Language">
-                {getFieldDecorator('language', {
-                    rules: [{ required: true, message: 'Please select value!' }],
-                })(
-                    <Select
-                        placeholder="Select lanuage"
-                        onChange={value => onLanguageSelectionChanged(value as string, props)}
-                    >
-                        <List
-                            dataSource={props.languages}
-                            renderItem={item => <Option value={item.language}>{item.language}</Option>}
-                        />
-                    </Select>,
-                )}
-            </Form.Item>
-            <Form.Item wrapperCol={{ span: 12, offset: 5 }}>
-                <Button type="primary" htmlType="submit">
-                    Submit
-                </Button>
-            </Form.Item>
-        </Form>
+        <div className="basic-input-container">
+            <InputGroup>
+                <Input
+                    placeholder="Title"
+                    onChange={element => {
+                        setTitle(element.target.value);
+                        currentBook.title = element.target.value;
+                    }}
+                    value={title}
+                />
+                <Input
+                    placeholder="Author"
+                    onChange={element => {
+                        setAuthor(element.target.value);
+                        currentBook.author = element.target.value;
+                    }}
+                    value={author}
+                />
+                <Select
+                    style={{ width: 200 }}
+                    placeholder="Select language"
+                    onChange={value => onLanguageSelected(value as number)}
+                >
+                    {children()}
+                </Select>
+            </InputGroup>
+
+            <Button type="primary" onClick={() => onSaveButtonPressed()}>
+                Save
+            </Button>
+        </div>
     );
 };
 
-export default Form.create({ name: 'wrapped-add-new-book' })(AddNewBookComponent);
+export default AddNewBookComponent;
