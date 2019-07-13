@@ -75,7 +75,9 @@ const AddNewBookComponent = (props: Props) => {
                 <Select
                     style={{ width: 200 }}
                     placeholder="Select language"
-                    onChange={value => onLanguageSelected(value as number)}
+                    onChange={(value: number) => {
+                        return onLanguageSelected(value);
+                    }}
                 >
                     {children()}
                 </Select>
