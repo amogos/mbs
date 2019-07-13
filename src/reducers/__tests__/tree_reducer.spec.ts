@@ -1,10 +1,11 @@
 import treeReducer from './../tree_reducer';
-import * as ActionTreeTypes from './../../constants/tree_actions_constants';
 import * as TreeActions from '../../actions/tree_actions';
-import * as ActionBookTypes from './../../constants/book_actions_constants';
+import * as ActionTypes from '../../constants/action_constant';
 import * as BookActions from '../../actions/book_actions';
 import * as DataTypes from './../../types';
 jest.mock('./../../connectors/database_instance');
+
+const { BookActionConstant, TreeActionConstant } = ActionTypes.default;
 
 const bookValue: DataTypes.BookValueType = {
     author: 'Eric Carle',
@@ -31,17 +32,19 @@ describe('Testing tree reducer branching', () => {
         expect(treeReducer(undefined, { type: 'none' })).toEqual(initialState);
     });
     it('Should return goto add book state', () => {
-        expect(treeReducer({}, TreeActions.gotoAddBook())).toEqual({ action: ActionTreeTypes.ACTION_GOTO_ADD_BOOK });
+        expect(treeReducer({}, TreeActions.gotoAddBook())).toEqual({ action: TreeActionConstant.ACTION_GOTO_ADD_BOOK });
     });
     it('Should return finalized addBook state', () => {
-        expect(treeReducer({}, TreeActions.addBook(bookValue))).toEqual({ action: ActionTreeTypes.ACTION_ADD_BOOK });
+        expect(treeReducer({}, TreeActions.addBook(bookValue))).toEqual({ action: TreeActionConstant.ACTION_ADD_BOOK });
     });
     it('Should return goto list books state', () => {
-        expect(treeReducer({}, TreeActions.gotoListBooks())).toEqual({ action: ActionTreeTypes.ACTION_GOTO_LIST_BOOKS });
+        expect(treeReducer({}, TreeActions.gotoListBooks())).toEqual({
+            action: TreeActionConstant.ACTION_GOTO_LIST_BOOKS,
+        });
     });
     it('Should return list books state', () => {
         expect(treeReducer({}, TreeActions.listBooks())).toEqual({
-            action: ActionTreeTypes.ACTION_LIST_BOOKS,
+            action: TreeActionConstant.ACTION_LIST_BOOKS,
             booksArray: booksArray,
         });
     });
@@ -50,19 +53,19 @@ describe('Testing tree reducer branching', () => {
     });
     it('Should return assign book to user state', () => {
         expect(treeReducer({}, BookActions.askBook(bookKey, ownerId))).toEqual({
-            action: ActionBookTypes.ACTION_ASK_BOOK,
+            action: BookActionConstant.ACTION_ASK_BOOK,
             changingkey: bookKey,
         });
     });
     it('Should return book return state', () => {
         expect(treeReducer({}, BookActions.returnBook(bookKey))).toEqual({
-            action: ActionBookTypes.ACTION_RETURN_BOOK,
+            action: BookActionConstant.ACTION_RETURN_BOOK,
             changingkey: bookKey,
         });
     });
     it('Should return book deleted state', () => {
         expect(treeReducer({}, BookActions.deleteBook(bookKey))).toEqual({
-            action: ActionBookTypes.ACTION_DELETE_BOOK,
+            action: BookActionConstant.ACTION_DELETE_BOOK,
             changingkey: bookKey,
         });
     });

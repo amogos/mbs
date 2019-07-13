@@ -120,6 +120,16 @@
       "title": "t123",
       "state": "state.book.idle",
       "id": 8
+    },
+    {
+      "author": "ertewrterw",
+      "image": "https://vignette.wikia.nocookie.net/superfriends/images/a/a5/No_Photo_Available.jpg/revision/latest?cb=20090329133959",
+      "language": 1,
+      "owner": 1,
+      "holder": -1,
+      "title": "gwewrtretewrt",
+      "state": "state.book.idle",
+      "id": 9
     }
   ],
   "reviews": [

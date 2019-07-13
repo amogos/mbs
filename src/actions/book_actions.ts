@@ -1,13 +1,17 @@
-import * as ActionTypes from '../constants/book_actions_constants';
+import * as ActionTypes from '../constants/action_constant';
 
-export const askBook = (bookId: number, ownerId: number) => ({ type: ActionTypes.ACTION_ASK_BOOK, bookId, ownerId });
+export const askBook = (bookId: number, ownerId: number) => ({
+    type: ActionTypes.default.BookActionConstant.ACTION_ASK_BOOK,
+    bookId,
+    ownerId,
+});
 
 export const returnBook = (bookId: number) => ({
-    type: ActionTypes.ACTION_RETURN_BOOK,
+    type: ActionTypes.default.BookActionConstant.ACTION_RETURN_BOOK,
     bookId,
 });
 
 export const deleteBook = (bookId: number) => ({
-    type: ActionTypes.ACTION_DELETE_BOOK,
+    type: ActionTypes.default.BookActionConstant.ACTION_DELETE_BOOK,
     bookId,
 });

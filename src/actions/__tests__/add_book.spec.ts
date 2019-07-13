@@ -1,6 +1,8 @@
-import * as ActionTypes from '../../constants/tree_actions_constants';
+import * as ActionTypes from '../../constants/action_constant';
 import * as Actions from '../tree_actions';
 import * as DataTypes from '../../types';
+
+const { TreeActionConstant } = ActionTypes.default;
 
 const bookValue: DataTypes.BookValueType = {
     author: 'Eric Carle',
@@ -18,7 +20,7 @@ const bookValue: DataTypes.BookValueType = {
 describe('addBook', () => {
     it('should build action for adding a book', () => {
         const expectedAction = {
-            type: ActionTypes.ACTION_ADD_BOOK,
+            type: TreeActionConstant.ACTION_ADD_BOOK,
             data: bookValue,
         };
         expect(Actions.addBook(bookValue)).toEqual(expectedAction);

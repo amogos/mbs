@@ -1,4 +1,4 @@
-import * as ActionConstants from '../constants/tree_actions_constants';
+import * as ActionConstants from '../constants/action_constant';
 import * as DataTypes from '../types';
 import * as Actions from '../actions/tree_actions';
 import databseInstance from '../connectors/database_instance';
@@ -18,25 +18,27 @@ export function handleError(resultCode: number): void {
     }
 }
 
+const { TreeActionConstant } = ActionConstants.default;
+
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default function treeReducer(state = {} as any, action: any): any {
     switch (action.type) {
-        case ActionConstants.ACTION_GOTO_NOTIFICATIONS:
+        case TreeActionConstant.ACTION_GOTO_NOTIFICATIONS:
             return Object.assign({}, state, {
-                action: ActionConstants.ACTION_GOTO_NOTIFICATIONS,
+                action: TreeActionConstant.ACTION_GOTO_NOTIFICATIONS,
                 notifications: GlobalVars.rentalNotifications,
             });
-        case ActionConstants.ACTION_GOTO_ADD_BOOK:
+        case TreeActionConstant.ACTION_GOTO_ADD_BOOK:
             return Object.assign({}, state, {
-                action: ActionConstants.ACTION_GOTO_ADD_BOOK,
+                action: ActionConstants.default.TreeActionConstant.ACTION_GOTO_ADD_BOOK,
                 languages: GlobalVars.languages,
             });
-        case ActionConstants.ACTION_ADD_BOOK:
+        case TreeActionConstant.ACTION_ADD_BOOK:
             databseInstance.addBook(action.data, handleError);
             return Object.assign({}, state, {
-                action: ActionConstants.ACTION_ADD_BOOK,
+                action: ActionConstants.default.TreeActionConstant.ACTION_ADD_BOOK,
             });
-        case ActionConstants.ACTION_GOTO_LIST_BOOKS:
+        case TreeActionConstant.ACTION_GOTO_LIST_BOOKS:
             const progressSpinner = message.loading(Strings.MYBOOKSHELVE_ACTION_IN_PROGRESS);
             databseInstance.getBooks(handleError).then(result => {
                 setTimeout(progressSpinner, 0);
@@ -45,11 +47,11 @@ export default function treeReducer(state = {} as any, action: any): any {
             });
 
             return Object.assign({}, state, {
-                action: ActionConstants.ACTION_GOTO_LIST_BOOKS,
+                action: TreeActionConstant.ACTION_GOTO_LIST_BOOKS,
             });
-        case ActionConstants.ACTION_LIST_BOOKS:
+        case TreeActionConstant.ACTION_LIST_BOOKS:
             return Object.assign({}, state, {
-                action: ActionConstants.ACTION_LIST_BOOKS,
+                action: TreeActionConstant.ACTION_LIST_BOOKS,
                 booksArray: GlobalVars.booksArray,
             });
 
