@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import * as DataTypes from '../types';
 import * as BookStates from '../book_states';
-import { Select, Input, Button } from 'antd';
+import * as StringConstant from './../constants/string_constant'
+import { Select, Input, Button, message } from 'antd';
 
 const { Option } = Select;
 const InputGroup = Input.Group;
@@ -41,7 +42,10 @@ const AddNewBookComponent = (props: Props) => {
         currentBook.language = props.languages[value - 1];
     };
     const onSaveButtonPressed = () => {
-        if (title === '' || author === '' || language === 0) return;
+        if (title === '' || author === '' || language === 0) {
+            message.error(StringConstant.default.MYBOOKSHELVE_INVALID_FIELDS);
+            return;
+        }
         props.addBook(currentBook);
         setTitle('');
         setAuthor('');
