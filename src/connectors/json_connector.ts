@@ -1,6 +1,8 @@
 import axios from 'axios';
 import * as DataTypes from '../types';
 import * as BookStateTypes from '../book_states';
+import { GlobalVars } from '../reducers/tree_reducer';
+import { Data } from 'unist';
 
 export default class JsonConnector {
     public constructor() {
@@ -179,6 +181,21 @@ export default class JsonConnector {
                 holder: -1,
                 title: value.title,
                 state: 'state.book.idle',
+            })
+            .catch(error => onError(error));
+    }
+
+    public async getQueue(userId: number, onError: (resultCode: number) => void) {
+        await axios
+            .get('http://localhost:3001/queues?userId=' + userId)
+            .then(response => response.data.json)
+            .then(async item => {
+                let value: DataTypes.QueueValueType = {
+                    bookId: item.bookId,
+                    userId: item.userId,
+                    ownerId: item.ownerId,
+                };
+                GlobalVars.queueArray.push({ id: item.id, value: value } as DataTypes.QueueRecordType);
             })
             .catch(error => onError(error));
     }

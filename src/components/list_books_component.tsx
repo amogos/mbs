@@ -7,6 +7,7 @@ interface Props {
     userdata: DataTypes.UserRecordType;
     changingkey: number;
     booksArray: DataTypes.BookRecordType[];
+    queueArray: DataTypes.QueueRecordType[];
     deleteBook(bookId: number): void;
 }
 

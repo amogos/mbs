@@ -10,6 +10,7 @@ export class GlobalVars {
     public static booksArray: DataTypes.BookRecordType[];
     public static rentalNotifications: DataTypes.RentalNotificationRecordType[];
     public static languages: DataTypes.LanguageRecordType[];
+    public static queueArray: DataTypes.QueueRecordType[];
 }
 
 export function handleError(resultCode: number): void {
@@ -53,6 +54,7 @@ export default function treeReducer(state = {} as any, action: any): any {
             return Object.assign({}, state, {
                 action: TreeActionConstant.ACTION_LIST_BOOKS,
                 booksArray: GlobalVars.booksArray,
+                queueArray: GlobalVars.queueArray,
             });
 
         default:

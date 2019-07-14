@@ -8,6 +8,7 @@ function mapStateToProps(state) {
         changingkey: state.treeReducer.changingkey,
         action: state.treeReducer.action,
         booksArray: state.treeReducer.booksArray,
+        queueArray: state.treeReducer.queueArray,
     };
 }
 

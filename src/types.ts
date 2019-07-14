@@ -1,3 +1,5 @@
+import { number } from 'prop-types';
+
 export interface UserRecordType {
     id: number;
     value: UserValueType;
@@ -36,6 +38,17 @@ export interface RentalNotificationRecordType {
 export interface RentalNotificationValue {
     user: UserRecordType;
     bookTitle: string;
+}
+
+export interface QueueValueType {
+    bookId: number;
+    userId: number;
+    ownerId: number;
+}
+
+export interface QueueRecordType {
+    id: number;
+    value: QueueValueType;
 }
 
 export const nullUser: UserRecordType = { value: { name: '', email: '' }, id: 0 };
