@@ -143,7 +143,12 @@ export default class JsonConnector {
     }
 
     public async deleteBook(bookId: number, onError: (resultCode: number) => void) {
-        await axios.delete('http://localhost:3001/books/' + bookId).catch(error => onError(error));
+        await axios
+            .delete('http://localhost:3001/books/' + bookId)
+            .then(() => {
+                onError(0);
+            })
+            .catch(error => onError(error));
     }
 
     public async getUser(

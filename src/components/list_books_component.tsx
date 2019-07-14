@@ -1,12 +1,13 @@
 import React from 'react';
 import * as DataTypes from './../types';
-import { List, Avatar, Icon } from 'antd';
+import { List, Avatar, Icon, Button } from 'antd';
 
 interface Props {
     action: string;
     userdata: DataTypes.UserRecordType;
     changingkey: number;
     booksArray: DataTypes.BookRecordType[];
+    deleteBook(bookId: number): void;
 }
 
 interface Icon {
@@ -20,6 +21,22 @@ const IconText = (param: Icon) => (
         {param.text}
     </span>
 );
+
+interface BookAction {
+    props: Props;
+    book: DataTypes.BookRecordType;
+}
+
+const BookActionsComponent = (param: BookAction) => {
+    if (param.book.value.owner.id === param.props.userdata.id) {
+        return (
+            <Button onClick={() => param.props.deleteBook(param.book.id)}>
+                <IconText type="transaction" text="delete" />
+            </Button>
+        );
+    }
+    return null;
+};
 
 const ListBooksComponent = (props: Props) => {
     return (
@@ -40,6 +57,7 @@ const ListBooksComponent = (props: Props) => {
                         <IconText type="star-o" text="156" />,
                         <IconText type="like-o" text="156" />,
                         <IconText type="message" text="2" />,
+                        <BookActionsComponent book={item} props={props} />,
                     ]}
                     extra={<img width={64} alt="logo" src={item.value.image} />}
                 >
