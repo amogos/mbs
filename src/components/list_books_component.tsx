@@ -9,6 +9,7 @@ interface Props {
     booksArray: DataTypes.BookRecordType[];
     queueArray: DataTypes.QueueRecordType[];
     deleteBook(bookId: number): void;
+    askBook(bookId: number): void;
 }
 
 interface Icon {
@@ -28,7 +29,7 @@ interface BookAction {
     book: DataTypes.BookRecordType;
 }
 
-const BookActionsComponent = (param: BookAction) => {
+const DeleteBookComponent = (param: BookAction) => {
     if (param.book.value.owner.id === param.props.userdata.id) {
         return (
             <Button onClick={() => param.props.deleteBook(param.book.id)}>
@@ -37,6 +38,16 @@ const BookActionsComponent = (param: BookAction) => {
         );
     }
     return null;
+};
+
+const AddBookToCart = (param: BookAction) => {
+    const alreadyInQueue: boolean = param.props.queueArray.findIndex(item => item.value.bookId === param.book.id) >= 0;
+    if (alreadyInQueue) return null;
+    return (
+        <Button onClick={() => param.props.deleteBook(param.book.id)}>
+            <IconText type="shopping-cart" text="request" />
+        </Button>
+    );
 };
 
 const ListBooksComponent = (props: Props) => {
@@ -58,7 +69,8 @@ const ListBooksComponent = (props: Props) => {
                         <IconText type="star-o" text="156" />,
                         <IconText type="like-o" text="156" />,
                         <IconText type="message" text="2" />,
-                        <BookActionsComponent book={item} props={props} />,
+                        <DeleteBookComponent book={item} props={props} />,
+                        <AddBookToCart book={item} props={props} />,
                     ]}
                     extra={<img width={64} alt="logo" src={item.value.image} />}
                 >

@@ -1,11 +1,13 @@
 import * as DataTypes from '../types';
 import * as ActionTypes from '../constants/action_constant';
 
+const { SocialActionConstant } = ActionTypes.default;
+
 export const addUserData = (userdata: DataTypes.UserRecordType) => ({
-    type: ActionTypes.default.SocialActionConstant.ACTION_USER_DATA,
+    type: SocialActionConstant.ACTION_USER_DATA,
     userdata,
 });
 export const loginUser = (user: DataTypes.UserValueType) => ({
-    type: ActionTypes.default.SocialActionConstant.ACTION_LOGIN_USER,
+    type: SocialActionConstant.ACTION_LOGIN_USER,
     user,
 });

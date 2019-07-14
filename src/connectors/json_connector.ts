@@ -185,19 +185,26 @@ export default class JsonConnector {
             .catch(error => onError(error));
     }
 
-    public async getQueue(userId: number, onError: (resultCode: number) => void) {
+    public async getQueue(userId: number, onError: (resultCode: number) => void): Promise<DataTypes.QueueRecordType[]> {
+        let queueArray: DataTypes.QueueRecordType[] = [];
+
         await axios
             .get('http://localhost:3001/queues?userId=' + userId)
-            .then(response => response.data.json)
-            .then(async item => {
-                let value: DataTypes.QueueValueType = {
-                    bookId: item.bookId,
-                    userId: item.userId,
-                    ownerId: item.ownerId,
-                };
-                GlobalVars.queueArray.push({ id: item.id, value: value } as DataTypes.QueueRecordType);
-            })
+            .then(response =>
+                response.data.forEach((item: any) => {
+                    queueArray.push({
+                        id: item.id,
+                        value: {
+                            bookId: item.bookId,
+                            ownerId: item.ownerId,
+                            userId: item.userId,
+                        } as DataTypes.QueueValueType,
+                    });
+                }),
+            )
             .catch(error => onError(error));
+
+        return queueArray;
     }
 
     public async getRentalNotifications(

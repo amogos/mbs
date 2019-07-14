@@ -27,10 +27,6 @@ export default function bookReducer(state = {} as any, action: any): any {
         }
         case BookActionConstant.ACTION_RETURN_BOOK: {
             const bookId: number = action.bookId;
-            //  TODO: this search needs to go
-            let index = GlobalVars.booksArray.findIndex(function(item: DataTypes.BookRecordType) {
-                return item.id === bookId;
-            });
             return Object.assign({}, state, {
                 action: BookActionConstant.ACTION_RETURN_BOOK,
                 changingkey: bookId,

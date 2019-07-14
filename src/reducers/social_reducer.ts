@@ -3,7 +3,7 @@ import * as DataTypes from '../types';
 import * as Actions from '../actions/social_actions';
 import databseInstance from '../connectors/database_instance';
 import Store from './../store';
-import { handleError } from './tree_reducer';
+import { handleError, GlobalVars } from './tree_reducer';
 
 const { SocialActionConstant } = ActionConstants.default;
 
@@ -19,6 +19,7 @@ export default function socialReducer(state = {} as any, action: any): any {
             });
         }
         case SocialActionConstant.ACTION_USER_DATA:
+            GlobalVars.userData = action.userdata;
             return Object.assign({}, state, {
                 userdata: action.userdata,
             });

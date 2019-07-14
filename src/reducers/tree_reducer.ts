@@ -11,6 +11,7 @@ export class GlobalVars {
     public static rentalNotifications: DataTypes.RentalNotificationRecordType[];
     public static languages: DataTypes.LanguageRecordType[];
     public static queueArray: DataTypes.QueueRecordType[];
+    public static userData: DataTypes.UserRecordType;
 }
 
 export function handleError(resultCode: number): void {
@@ -41,6 +42,11 @@ export default function treeReducer(state = {} as any, action: any): any {
             });
         case TreeActionConstant.ACTION_GOTO_LIST_BOOKS:
             const progressSpinner = message.loading(Strings.MYBOOKSHELVE_ACTION_IN_PROGRESS);
+            databseInstance
+                .getQueue(GlobalVars.userData.id, handleError)
+                .then((result: DataTypes.QueueRecordType[]) => {
+                    GlobalVars.queueArray = result;
+                });
             databseInstance.getBooks(handleError).then(result => {
                 setTimeout(progressSpinner, 0);
                 GlobalVars.booksArray = result;
@@ -61,6 +67,7 @@ export default function treeReducer(state = {} as any, action: any): any {
             databseInstance.getLanguages(handleError).then((result: DataTypes.LanguageRecordType[]) => {
                 GlobalVars.languages = result;
             });
+
             return state;
     }
 }
