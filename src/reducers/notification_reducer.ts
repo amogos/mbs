@@ -12,24 +12,24 @@ export default function notificationReducer(state = {} as any, action: any): any
         case NotificationActionConstant.ACTION_CONFIRM_RENTAL:
             databseInstance.confirmRental(action.bookKey, action.user, handleError).then(() => {
                 databseInstance.getRentalNotifications(state.userdata, handleError).then(result => {
-                    GlobalVars.rentalNotifications = result;
+                    GlobalVars.rentalNotificationsArray = result;
                     Store.dispatch(Actions.gotoNotifications());
                 });
             });
             return Object.assign({}, state, {
                 action: NotificationActionConstant.ACTION_CONFIRM_RENTAL,
-                notifications: GlobalVars.rentalNotifications,
+                notifications: GlobalVars.rentalNotificationsArray,
             });
         case NotificationActionConstant.ACTION_REJECT_RENTAL:
             databseInstance.rejectRental(action.bookKey, action.user, handleError).then(() => {
                 databseInstance.getRentalNotifications(state.userdata, handleError).then(result => {
-                    GlobalVars.rentalNotifications = result;
+                    GlobalVars.rentalNotificationsArray = result;
                     Store.dispatch(Actions.gotoNotifications());
                 });
             });
             return Object.assign({}, state, {
                 action: NotificationActionConstant.ACTION_REJECT_RENTAL,
-                notifications: GlobalVars.rentalNotifications,
+                notifications: GlobalVars.rentalNotificationsArray,
             });
 
         default:

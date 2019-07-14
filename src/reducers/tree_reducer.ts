@@ -8,8 +8,8 @@ import { message } from 'antd';
 
 export class GlobalVars {
     public static booksArray: DataTypes.BookRecordType[];
-    public static rentalNotifications: DataTypes.RentalNotificationRecordType[];
-    public static languages: DataTypes.LanguageRecordType[];
+    public static rentalNotificationsArray: DataTypes.RentalNotificationRecordType[];
+    public static languagesArray: DataTypes.LanguageRecordType[];
     public static queueArray: DataTypes.QueueRecordType[];
     public static userData: DataTypes.UserRecordType;
 }
@@ -28,12 +28,12 @@ export default function treeReducer(state = {} as any, action: any): any {
         case TreeActionConstant.ACTION_GOTO_NOTIFICATIONS:
             return Object.assign({}, state, {
                 action: TreeActionConstant.ACTION_GOTO_NOTIFICATIONS,
-                notifications: GlobalVars.rentalNotifications,
+                notifications: GlobalVars.rentalNotificationsArray,
             });
         case TreeActionConstant.ACTION_GOTO_ADD_BOOK:
             return Object.assign({}, state, {
                 action: ActionConstants.default.TreeActionConstant.ACTION_GOTO_ADD_BOOK,
-                languages: GlobalVars.languages,
+                languages: GlobalVars.languagesArray,
             });
         case TreeActionConstant.ACTION_ADD_BOOK:
             databseInstance.addBook(action.data, handleError);
@@ -65,7 +65,7 @@ export default function treeReducer(state = {} as any, action: any): any {
 
         default:
             databseInstance.getLanguages(handleError).then((result: DataTypes.LanguageRecordType[]) => {
-                GlobalVars.languages = result;
+                GlobalVars.languagesArray = result;
             });
 
             return state;
