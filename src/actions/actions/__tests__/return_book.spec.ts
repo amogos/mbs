@@ -1,5 +1,5 @@
-import * as ActionTypes from '../../constants/action_constant';
-import * as Actions from '../book_actions';
+import * as ActionTypes from '../../../constants/action_constant';
+import { bookAction } from '../..';
 
 const { BookActionConstant } = ActionTypes.default;
 
@@ -11,6 +11,6 @@ describe('returnBook(bookKey)', () => {
             type: BookActionConstant.ACTION_RETURN_BOOK,
             bookId: bookId,
         };
-        expect(Actions.returnBook(bookId)).toEqual(expectedAction);
+        expect(bookAction.returnBook(bookId)).toEqual(expectedAction);
     });
 });

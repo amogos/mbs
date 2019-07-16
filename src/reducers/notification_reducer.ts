@@ -1,5 +1,5 @@
 import * as ActionConstants from '../constants/action_constant';
-import * as Actions from '../actions/tree_actions';
+import { treeAction } from '../actions/';
 import databseInstance from '../connectors/database_instance';
 import Store from './../store';
 import { GlobalVars, handleError } from './tree_reducer';
@@ -13,7 +13,7 @@ export default function notificationReducer(state = {} as any, action: any): any
             databseInstance.confirmRental(action.bookKey, action.user, handleError).then(() => {
                 databseInstance.getRentalNotifications(state.userdata, handleError).then(result => {
                     GlobalVars.rentalNotificationsArray = result;
-                    Store.dispatch(Actions.gotoNotifications());
+                    Store.dispatch(treeAction.gotoNotifications());
                 });
             });
             return Object.assign({}, state, {
@@ -24,7 +24,7 @@ export default function notificationReducer(state = {} as any, action: any): any
             databseInstance.rejectRental(action.bookKey, action.user, handleError).then(() => {
                 databseInstance.getRentalNotifications(state.userdata, handleError).then(result => {
                     GlobalVars.rentalNotificationsArray = result;
-                    Store.dispatch(Actions.gotoNotifications());
+                    Store.dispatch(treeAction.gotoNotifications());
                 });
             });
             return Object.assign({}, state, {

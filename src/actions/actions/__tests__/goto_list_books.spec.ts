@@ -1,5 +1,5 @@
-import * as ActionTypes from '../../constants/action_constant';
-import * as Actions from '../tree_actions';
+import * as ActionTypes from '../../../constants/action_constant';
+import { treeAction } from '../..';
 
 const { TreeActionConstant } = ActionTypes.default;
 
@@ -8,6 +8,6 @@ describe('gotoListBooks ', () => {
         const expectedAction = {
             type: TreeActionConstant.ACTION_GOTO_LIST_BOOKS,
         };
-        expect(Actions.gotoListBooks()).toEqual(expectedAction);
+        expect(treeAction.gotoListBooks()).toEqual(expectedAction);
     });
 });

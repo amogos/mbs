@@ -1,5 +1,5 @@
-import * as ActionTypes from '../../constants/action_constant';
-import * as Actions from '../book_actions';
+import * as ActionTypes from '../../../constants/action_constant';
+import { bookAction } from '../..';
 
 const { BookActionConstant } = ActionTypes.default;
 
@@ -10,6 +10,6 @@ describe('deleteBook(bookKey)', () => {
             type: BookActionConstant.ACTION_DELETE_BOOK,
             bookKey: bookId,
         };
-        expect(Actions.deleteBook(bookId)).toEqual(expectedAction);
+        expect(bookAction.deleteBook(bookId)).toEqual(expectedAction);
     });
 });

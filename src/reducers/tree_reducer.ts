@@ -1,6 +1,6 @@
 import * as ActionConstants from '../constants/action_constant';
 import * as DataTypes from '../types';
-import * as Actions from '../actions/tree_actions';
+import { treeAction } from '../actions/';
 import databseInstance from '../connectors/database_instance';
 import Store from './../store';
 import Strings from '../constants/string_constant';
@@ -50,7 +50,7 @@ export default function treeReducer(state = {} as any, action: any): any {
             databseInstance.getBooks(handleError).then(result => {
                 setTimeout(progressSpinner, 0);
                 GlobalVars.booksArray = result;
-                Store.dispatch(Actions.listBooks());
+                Store.dispatch(treeAction.listBooks());
             });
 
             return Object.assign({}, state, {

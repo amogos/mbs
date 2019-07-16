@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import * as Actions from '../actions/notification_actions';
+import { notificationAction } from '../actions/';
 import NotificationComponent from '../components/notifications_component';
 
 function mapStateToProps(state) {
@@ -10,8 +10,8 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = dispatch => {
     return {
-        confirmRental: (bookKey, user) => dispatch(Actions.confirmRental(bookKey, user)),
-        rejectRental: (bookKey, user) => dispatch(Actions.rejectRental(bookKey, user)),
+        confirmRental: (bookKey, user) => dispatch(notificationAction.confirmRental(bookKey, user)),
+        rejectRental: (bookKey, user) => dispatch(notificationAction.rejectRental(bookKey, user)),
         dispatch,
     };
 };

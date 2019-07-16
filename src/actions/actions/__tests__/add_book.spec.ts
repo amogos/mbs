@@ -1,6 +1,6 @@
-import * as ActionTypes from '../../constants/action_constant';
-import * as Actions from '../tree_actions';
-import * as DataTypes from '../../types';
+import * as ActionTypes from '../../../constants/action_constant';
+import { treeAction } from '../..';
+import * as DataTypes from '../../../types';
 
 const { TreeActionConstant } = ActionTypes.default;
 
@@ -23,6 +23,6 @@ describe('addBook', () => {
             type: TreeActionConstant.ACTION_ADD_BOOK,
             data: bookValue,
         };
-        expect(Actions.addBook(bookValue)).toEqual(expectedAction);
+        expect(treeAction.addBook(bookValue)).toEqual(expectedAction);
     });
 });

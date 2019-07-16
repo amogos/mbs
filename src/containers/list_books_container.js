@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import ListBooksComponent from '../components/list_books_component';
-import * as Actions from '../actions/book_actions';
+import { bookAction } from '../actions';
 
 function mapStateToProps(state) {
     return {
@@ -14,9 +14,9 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = dispatch => {
     return {
-        deleteBook: bookId => dispatch(Actions.deleteBook(bookId)),
-        askBook: bookId => dispatch(Actions.askBook(bookId)),
-        returnBook: bookId => dispatch(Actions.returnBook(bookId)),
+        deleteBook: bookId => dispatch(bookAction.deleteBook(bookId)),
+        askBook: bookId => dispatch(bookAction.askBook(bookId)),
+        returnBook: bookId => dispatch(bookAction.returnBook(bookId)),
         dispatch,
     };
 };

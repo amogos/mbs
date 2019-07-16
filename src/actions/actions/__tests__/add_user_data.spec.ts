@@ -1,6 +1,6 @@
-import * as ActionTypes from '../../constants/action_constant';
+import * as ActionTypes from '../../../constants/action_constant';
 import * as Actions from '../social_actions';
-import * as DataTypes from '../../types';
+import * as DataTypes from '../../../types';
 
 const { SocialActionConstant } = ActionTypes.default;
 

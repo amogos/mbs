@@ -1,4 +1,4 @@
-import * as ActionTypes from '../../constants/action_constant';
+import * as ActionTypes from '../../../constants/action_constant';
 import * as Actions from '../tree_actions';
 
 describe('gotoAddBook(message)', () => {

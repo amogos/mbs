@@ -1,5 +1,5 @@
 import * as ActionConstants from '../constants/action_constant';
-import * as Actions from '../actions/tree_actions';
+import { treeAction } from '../actions/';
 import databseInstance from '../connectors/database_instance';
 import Store from './../store';
 import Strings from '../constants/string_constant';
@@ -16,7 +16,7 @@ export default function bookReducer(state = {} as any, action: any): any {
             const ownerId: number = action.ownerId;
             const userdata = GlobalVars.userData;
             databseInstance.askBook(bookId, ownerId, userdata, handleError).then(() => {
-                Store.dispatch(Actions.listBooks());
+                Store.dispatch(treeAction.listBooks());
             });
             return Object.assign({}, state, {
                 action: BookActionConstant.ACTION_ASK_BOOK,
@@ -38,7 +38,7 @@ export default function bookReducer(state = {} as any, action: any): any {
                 let temp = [...GlobalVars.booksArray];
                 temp.splice(index, 1);
                 GlobalVars.booksArray = temp;
-                Store.dispatch(Actions.listBooks());
+                Store.dispatch(treeAction.listBooks());
             });
 
             return Object.assign({}, state, {

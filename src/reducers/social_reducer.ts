@@ -1,6 +1,6 @@
 import * as ActionConstants from '../constants/action_constant';
 import * as DataTypes from '../types';
-import * as Actions from '../actions/social_actions';
+import { socialAction } from '../actions/';
 import databseInstance from '../connectors/database_instance';
 import Store from './../store';
 import { handleError, GlobalVars } from './tree_reducer';
@@ -12,7 +12,7 @@ export default function socialReducer(state = {} as any, action: any): any {
     switch (action.type) {
         case ActionConstants.default.SocialActionConstant.ACTION_LOGIN_USER: {
             databseInstance.getUser(action.user, handleError).then((result: DataTypes.UserRecordType) => {
-                Store.dispatch(Actions.addUserData(result));
+                Store.dispatch(socialAction.addUserData(result));
             });
             return Object.assign({}, state, {
                 action: SocialActionConstant.ACTION_LOGIN_USER,
