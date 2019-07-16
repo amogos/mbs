@@ -49,5 +49,11 @@ export interface QueueRecordType {
     value: QueueValueType;
 }
 
-export const nullUser: UserRecordType = { value: { name: '', email: '' }, id: 0 };
-export const nullLanguage: LanguageRecordType = { id: 0, language: '' };
+export const nullUser = () => {
+    const nullUser: UserRecordType = { id: 0, value: { name: '', email: '' } };
+    return nullUser;
+};
+export const nullLanguage = () => {
+    const nullLanguage: LanguageRecordType = { id: 0, language: '' };
+    return nullLanguage;
+};

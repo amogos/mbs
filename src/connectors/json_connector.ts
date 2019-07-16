@@ -48,20 +48,20 @@ export default class JsonConnector {
             .then(response => {
                 response.data.forEach(async (item: any) => {
                     this.startedJobs++;
-                    let holder: DataTypes.UserRecordType = DataTypes.nullUser;
+                    let holder: DataTypes.UserRecordType = DataTypes.nullUser();
                     if (item.holder > 0) {
-                        await axios.get('http://localhost:3001/users/' + item.holder).then(response => {
+                        await axios.get('http://localhost:3001/users/' + item.holder).then(r => {
                             holder = {
                                 value: {
-                                    name: response.data.name,
-                                    email: response.data.email,
+                                    name: r.data.name,
+                                    email: r.data.email,
                                 } as DataTypes.UserValueType,
-                                id: response.data.id,
+                                id: r.data.id,
                             };
                         });
                     }
 
-                    let owner: DataTypes.UserRecordType = DataTypes.nullUser;
+                    let owner: DataTypes.UserRecordType = DataTypes.nullUser();
                     await axios.get('http://localhost:3001/users/' + item.owner).then(response => {
                         owner = {
                             value: { name: response.data.name, email: response.data.email } as DataTypes.UserValueType,
@@ -69,7 +69,7 @@ export default class JsonConnector {
                         };
                     });
 
-                    let language = DataTypes.nullLanguage;
+                    let language = DataTypes.nullLanguage();
                     await axios.get('http://localhost:3001/languages/' + item.language).then(response => {
                         language = { language: response.data.language, id: response.data.id };
                     });
@@ -164,7 +164,7 @@ export default class JsonConnector {
         user: DataTypes.UserValueType,
         onError: (resultCode: number) => void,
     ): Promise<DataTypes.UserRecordType> {
-        let userData = DataTypes.nullUser;
+        let userData = DataTypes.nullUser();
         await axios
             .get('http://localhost:3001/users?email=' + user.email)
             .then(response => {
@@ -174,7 +174,6 @@ export default class JsonConnector {
                 userData.value.email = entry.email;
             })
             .catch(error => onError(error));
-
         return userData;
     }
 
@@ -223,7 +222,7 @@ export default class JsonConnector {
             .get('http://localhost:3001/queues?ownerId=' + user.id)
             .then(response => response.data.json)
             .then(async item => {
-                let user: DataTypes.UserRecordType = DataTypes.nullUser;
+                let user: DataTypes.UserRecordType = DataTypes.nullUser();
                 await axios
                     .get('http://localhost:3001/users/' + item.userId)
                     .then(response => (user = response.data))

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import * as DataTypes from '../types';
 import * as BookStates from '../book_states';
-import * as StringConstant from './../constants/string_constant'
+import * as StringConstant from './../constants/string_constant';
 import { Select, Input, Button, message } from 'antd';
 
 const { Option } = Select;
@@ -17,11 +17,11 @@ const defaultImage =
 let currentBook = {
     title: '',
     author: '',
-    language: DataTypes.nullLanguage,
+    language: DataTypes.nullLanguage(),
     image: defaultImage,
-    owner: DataTypes.nullUser,
+    owner: DataTypes.nullUser(),
     state: BookStates.default.STATE_BOOK_IDLE,
-    holder: DataTypes.nullUser,
+    holder: DataTypes.nullUser(),
 };
 
 const AddNewBookComponent = (props: Props) => {

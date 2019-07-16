@@ -15,7 +15,7 @@ test('Render username if logged in', () => {
 });
 
 test('Render login button if not logged in yet', () => {
-    const component = renderer.create(SocialLoginComponent({ userdata: DataTypes.nullUser }));
+    const component = renderer.create(SocialLoginComponent({ userdata: DataTypes.nullUser() }));
     let tree = component.toJSON();
     expect(tree).toMatchSnapshot();
 });
