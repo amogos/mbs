@@ -14,8 +14,8 @@ const responseFacebook = (response: ReactFacebookLoginInfo, props: Props) => {
         .split(' ')
         .join('');
 
-    let email = response.email === undefined ? testUserEmail : response.email;
-    var userInfo: DataTypes.UserValueType = { name: response.name, email: email };
+    const email = response.email === undefined ? testUserEmail : response.email;
+    const userInfo: DataTypes.UserValueType = { name: response.name, email: email };
     props.loginUser(userInfo);
 };
 

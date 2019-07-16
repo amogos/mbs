@@ -1,8 +1,6 @@
 import axios from 'axios';
 import * as DataTypes from '../types';
 import * as BookStateTypes from '../book_states';
-import { GlobalVars } from '../reducers/tree_reducer';
-import { Data } from 'unist';
 
 export default class JsonConnector {
     public constructor() {
@@ -29,7 +27,7 @@ export default class JsonConnector {
     };
 
     public async getLanguages(onError: (resultCode: number) => void): Promise<DataTypes.LanguageRecordType[]> {
-        var languagesArray: DataTypes.LanguageRecordType[] = [];
+        let languagesArray: DataTypes.LanguageRecordType[] = [];
         await axios
             .get('http://localhost:3001/languages')
             .then(response => {
@@ -44,7 +42,7 @@ export default class JsonConnector {
     }
 
     public async getBooks(onError: (resultCode: number) => void): Promise<DataTypes.BookRecordType[]> {
-        var booksArray: DataTypes.BookRecordType[] = [];
+        let booksArray: DataTypes.BookRecordType[] = [];
         await axios
             .get('http://localhost:3001/books')
             .then(response => {
@@ -116,6 +114,15 @@ export default class JsonConnector {
             .catch(error => onError(error));
 
         return true;
+    }
+
+    public async returnBook(bookId: number, onError: (resultCode: number) => void) {
+        await axios
+            .put('http://localhost:3001/books/' + bookId, {
+                state: BookStateTypes.default.STATE_BOOK_IDLE,
+                holder: -1,
+            })
+            .catch(error => onError(error));
     }
 
     public async rejectRental(
@@ -211,18 +218,18 @@ export default class JsonConnector {
         user: DataTypes.UserRecordType,
         onError: (resultCode: number) => void,
     ): Promise<DataTypes.RentalNotificationRecordType[]> {
-        var rentalNotifications: DataTypes.RentalNotificationRecordType[] = [];
+        let rentalNotifications: DataTypes.RentalNotificationRecordType[] = [];
         await axios
             .get('http://localhost:3001/queues?ownerId=' + user.id)
             .then(response => response.data.json)
             .then(async item => {
-                var user: DataTypes.UserRecordType = DataTypes.nullUser;
+                let user: DataTypes.UserRecordType = DataTypes.nullUser;
                 await axios
                     .get('http://localhost:3001/users/' + item.userId)
                     .then(response => (user = response.data))
                     .catch(error => onError(error));
 
-                var title = '';
+                let title = '';
                 await axios
                     .get('http://localhost:3001/books/' + item.bookId)
                     .then(response => (title = response.data.title))

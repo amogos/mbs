@@ -16,20 +16,7 @@
       "email": "varzamurata@gmail.com"
     }
   ],
-  "queues": [
-    {
-      "id": 1,
-      "bookId": 1,
-      "userId": 1,
-      "ownerId": 2
-    },
-    {
-      "id": 2,
-      "bookId": 1,
-      "userId": 3,
-      "ownerId": 2
-    }
-  ],
+  "queues": [],
   "languages": [
     {
       "id": 1,
@@ -90,16 +77,6 @@
       "holder": -1,
       "title": "Homo Deus: Eine Geschichte von Morgen ",
       "state": "state.book.idle"
-    },
-    {
-      "author": "2",
-      "image": "https://vignette.wikia.nocookie.net/superfriends/images/a/a5/No_Photo_Available.jpg/revision/latest?cb=20090329133959",
-      "language": 2,
-      "owner": 1,
-      "holder": -1,
-      "title": "1",
-      "state": "state.book.idle",
-      "id": 6
     }
   ],
   "reviews": [

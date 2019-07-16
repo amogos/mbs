@@ -23,7 +23,7 @@ const bookKey = 1;
 const ownerId = 2;
 const userdata = { value: { name: 'mockuser', email: 'mockusr@gmail.com' } as DataTypes.UserValueType, id: 1 };
 
-var booksArray: DataTypes.BookRecordType[] = new Array<DataTypes.BookRecordType>();
+let booksArray: DataTypes.BookRecordType[] = new Array<DataTypes.BookRecordType>();
 booksArray.push({ id: bookKey, value: bookValue });
 
 describe('Testing tree reducer branching', () => {
@@ -54,19 +54,19 @@ describe('Testing tree reducer branching', () => {
     it('Should return assign book to user state', () => {
         expect(treeReducer({}, BookActions.askBook(bookKey, ownerId))).toEqual({
             action: BookActionConstant.ACTION_ASK_BOOK,
-            changingkey: bookKey,
+            bookChangingId: bookKey,
         });
     });
     it('Should return book return state', () => {
         expect(treeReducer({}, BookActions.returnBook(bookKey))).toEqual({
             action: BookActionConstant.ACTION_RETURN_BOOK,
-            changingkey: bookKey,
+            bookChangingId: bookKey,
         });
     });
     it('Should return book deleted state', () => {
         expect(treeReducer({}, BookActions.deleteBook(bookKey))).toEqual({
             action: BookActionConstant.ACTION_DELETE_BOOK,
-            changingkey: bookKey,
+            bookChangingId: bookKey,
         });
     });
 });

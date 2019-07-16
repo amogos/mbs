@@ -1,5 +1,4 @@
 import * as ActionConstants from '../constants/action_constant';
-import * as DataTypes from '../types';
 import * as Actions from '../actions/tree_actions';
 import databseInstance from '../connectors/database_instance';
 import Store from './../store';
@@ -15,21 +14,21 @@ export default function bookReducer(state = {} as any, action: any): any {
         case BookActionConstant.ACTION_ASK_BOOK: {
             const bookId: number = action.bookId;
             const ownerId: number = action.ownerId;
-            const userdata = state.userdata;
-            let index = GlobalVars.booksArray.findIndex(function(item: DataTypes.BookRecordType) {
-                return item.id === bookId;
+            const userdata = GlobalVars.userData;
+            databseInstance.askBook(bookId, ownerId, userdata, handleError).then(() => {
+                Store.dispatch(Actions.listBooks());
             });
-            databseInstance.askBook(index, ownerId, userdata, handleError);
             return Object.assign({}, state, {
                 action: BookActionConstant.ACTION_ASK_BOOK,
-                changingkey: bookId,
+                bookChangingId: bookId,
             });
         }
         case BookActionConstant.ACTION_RETURN_BOOK: {
             const bookId: number = action.bookId;
+            databseInstance.returnBook(bookId, handleError);
             return Object.assign({}, state, {
                 action: BookActionConstant.ACTION_RETURN_BOOK,
-                changingkey: bookId,
+                bookChangingId: bookId,
             });
         }
         case BookActionConstant.ACTION_DELETE_BOOK: {
@@ -44,7 +43,7 @@ export default function bookReducer(state = {} as any, action: any): any {
 
             return Object.assign({}, state, {
                 action: BookActionConstant.ACTION_DELETE_BOOK,
-                changingkey: action.bookId,
+                bookChangingId: action.bookId,
             });
         }
         default:

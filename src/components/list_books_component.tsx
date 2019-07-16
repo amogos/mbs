@@ -1,15 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import * as DataTypes from './../types';
 import { List, Avatar, Icon, Button } from 'antd';
+import { GlobalVars } from '../reducers/tree_reducer';
 
 interface Props {
     action: string;
     userdata: DataTypes.UserRecordType;
-    changingkey: number;
+    bookChangingId: number;
     booksArray: DataTypes.BookRecordType[];
     queueArray: DataTypes.QueueRecordType[];
     deleteBook(bookId: number): void;
     askBook(bookId: number): void;
+    returnBook(bookId: number): void;
 }
 
 interface Icon {
@@ -27,27 +29,65 @@ const IconText = (param: Icon) => (
 interface BookAction {
     props: Props;
     book: DataTypes.BookRecordType;
+    onClick?: () => void;
 }
 
-const DeleteBookComponent = (param: BookAction) => {
-    if (param.book.value.owner.id === param.props.userdata.id) {
-        return (
-            <Button onClick={() => param.props.deleteBook(param.book.id)}>
-                <IconText type="transaction" text="delete" />
-            </Button>
-        );
-    }
-    return null;
+const BookStateDelete = (param: BookAction) => {
+    return (
+        <Button type="link" onClick={() => param.props.deleteBook(param.book.id)}>
+            <IconText type="transaction" text="delete" />
+        </Button>
+    );
 };
 
-const AddBookToCart = (param: BookAction) => {
-    const alreadyInQueue: boolean = param.props.queueArray.findIndex(item => item.value.bookId === param.book.id) >= 0;
-    if (alreadyInQueue) return null;
+const BookStateAddToCart = (param: BookAction) => {
     return (
-        <Button onClick={() => param.props.deleteBook(param.book.id)}>
+        <Button
+            type="link"
+            onClick={() => {
+                param.props.askBook(param.book.id);
+                if (param.onClick) param.onClick();
+            }}
+        >
             <IconText type="shopping-cart" text="request" />
         </Button>
     );
+};
+
+const BookStateCarryOut = (param: BookAction) => {
+    return <IconText type="carry-out" text="pending" />;
+};
+
+const BookStateReturn = (param: BookAction) => {
+    return (
+        <Button
+            type="link"
+            onClick={() => {
+                param.props.returnBook(param.book.id);
+            }}
+        >
+            <IconText type="import" text="return" />
+        </Button>
+    );
+};
+
+const BookStateComponent = (param: BookAction) => {
+    const bookIsInMyQueue: boolean = param.props.queueArray.findIndex(item => item.value.bookId === param.book.id) >= 0;
+    const [requested, setRequested] = useState(bookIsInMyQueue);
+    const bookIsMine: boolean = GlobalVars.userData.id === param.book.value.owner.id;
+    const bookIsAssignedToMe: boolean = param.book.value.holder.id === GlobalVars.userData.id;
+
+    if (bookIsMine) {
+        return <BookStateDelete book={param.book} props={param.props} />;
+    }
+
+    if (requested) {
+        return <BookStateCarryOut book={param.book} props={param.props} />;
+    } else if (bookIsAssignedToMe) {
+        return <BookStateReturn book={param.book} props={param.props} />;
+    } else {
+        return <BookStateAddToCart book={param.book} props={param.props} onClick={() => setRequested(true)} />;
+    }
 };
 
 const ListBooksComponent = (props: Props) => {
@@ -69,8 +109,7 @@ const ListBooksComponent = (props: Props) => {
                         <IconText type="star-o" text="156" />,
                         <IconText type="like-o" text="156" />,
                         <IconText type="message" text="2" />,
-                        <DeleteBookComponent book={item} props={props} />,
-                        <AddBookToCart book={item} props={props} />,
+                        <BookStateComponent book={item} props={props} />,
                     ]}
                     extra={<img width={64} alt="logo" src={item.value.image} />}
                 >
