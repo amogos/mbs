@@ -16,7 +16,20 @@
       "email": "varzamurata@gmail.com"
     }
   ],
-  "queues": [],
+  "queues": [
+    {
+      "userId": 1,
+      "bookId": 1,
+      "ownerId": 2,
+      "id": 1
+    },
+    {
+      "userId": 3,
+      "bookId": 2,
+      "ownerId": 1,
+      "id": 2
+    }
+  ],
   "languages": [
     {
       "id": 1,

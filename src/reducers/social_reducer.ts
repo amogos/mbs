@@ -20,6 +20,11 @@ export default function socialReducer(state = {} as any, action: any): any {
         }
         case SocialActionConstant.ACTION_USER_DATA:
             GlobalVars.userData = action.userdata;
+            databseInstance
+                .getRentalNotifications(GlobalVars.userData, handleError)
+                .then((result: DataTypes.RentalNotificationRecordType[]) => {
+                    GlobalVars.rentalNotificationsArray = result;
+                });
             return Object.assign({}, state, {
                 userdata: action.userdata,
             });

@@ -220,26 +220,34 @@ export default class JsonConnector {
         let rentalNotifications: DataTypes.RentalNotificationRecordType[] = [];
         await axios
             .get('http://localhost:3001/queues?ownerId=' + user.id)
-            .then(response => response.data.json)
-            .then(async item => {
-                let user: DataTypes.UserRecordType = DataTypes.nullUser();
-                await axios
-                    .get('http://localhost:3001/users/' + item.userId)
-                    .then(response => (user = response.data))
-                    .catch(error => onError(error));
+            .then(response => {
+                if (response.data.length === 0) return rentalNotifications;
 
-                let title = '';
-                await axios
-                    .get('http://localhost:3001/books/' + item.bookId)
-                    .then(response => (title = response.data.title))
-                    .catch(error => onError(error));
+                response.data.forEach(async (item: any) => {
+                    this.startedJobs++;
+                    let user: DataTypes.UserRecordType = DataTypes.nullUser();
+                    await axios
+                        .get('http://localhost:3001/users/' + item.userId)
+                        .then(response => (user = response.data))
+                        .catch(error => onError(error));
 
-                let notification: DataTypes.RentalNotificationRecordType = {
-                    bookId: item.bookId,
-                    value: { bookTitle: title, user: user } as DataTypes.RentalNotificationValue,
-                };
-                rentalNotifications.push(notification);
-            });
+                    let title = '';
+                    await axios
+                        .get('http://localhost:3001/books/' + item.bookId)
+                        .then(response => (title = response.data.title))
+                        .catch(error => onError(error));
+
+                    let notification: DataTypes.RentalNotificationRecordType = {
+                        bookId: item.bookId,
+                        value: { bookTitle: title, user: user } as DataTypes.RentalNotificationValue,
+                    };
+                    rentalNotifications.push(notification);
+                    this.completedJobs++;
+                });
+            })
+            .catch(error => onError(error));
+
+        await this.workInProgress();
         return rentalNotifications;
     }
 }

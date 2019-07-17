@@ -67,7 +67,6 @@ export default function treeReducer(state = {} as any, action: any): any {
             databseInstance.getLanguages(handleError).then((result: DataTypes.LanguageRecordType[]) => {
                 GlobalVars.languagesArray = result;
             });
-
             return state;
     }
 }

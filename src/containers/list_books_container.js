@@ -15,7 +15,7 @@ function mapStateToProps(state) {
 const mapDispatchToProps = dispatch => {
     return {
         deleteBook: bookId => dispatch(bookAction.deleteBook(bookId)),
-        askBook: bookId => dispatch(bookAction.askBook(bookId)),
+        askBook: (bookId, ownerId) => dispatch(bookAction.askBook(bookId, ownerId)),
         returnBook: bookId => dispatch(bookAction.returnBook(bookId)),
         dispatch,
     };

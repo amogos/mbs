@@ -10,7 +10,7 @@ interface Props {
     booksArray: DataTypes.BookRecordType[];
     queueArray: DataTypes.QueueRecordType[];
     deleteBook(bookId: number): void;
-    askBook(bookId: number): void;
+    askBook(bookId: number, ownerId: number): void;
     returnBook(bookId: number): void;
 }
 
@@ -45,7 +45,7 @@ const BookStateAddToCart = (param: BookAction) => {
         <Button
             type="link"
             onClick={() => {
-                param.props.askBook(param.book.id);
+                param.props.askBook(param.book.id, param.book.value.owner.id);
                 if (param.onClick) param.onClick();
             }}
         >
