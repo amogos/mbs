@@ -1,8 +1,8 @@
-import treeReducer from '../slices/page_reducer';
-import { bookAction, pageAction } from '../../actions/';
-import * as ActionTypes from '../../constants/action_constant';
+import treeReducer from '../page_reducer';
+import { bookAction, pageAction } from '../../../actions';
+import * as ActionTypes from '../../../constants/action_constant';
 
-import * as DataTypes from './../../types';
+import * as DataTypes from '../../../types';
 jest.mock('./../../connectors/database_instance');
 
 const { BookActionConstant, TreeActionConstant } = ActionTypes.default;
