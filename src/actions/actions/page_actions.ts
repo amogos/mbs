@@ -1,7 +1,7 @@
 import * as ActionTypes from '../../constants/action_constant';
 import * as DataTypes from '../../types';
 
-class TreeAction {
+class PageAction {
     public gotoAddBook = () => ({ type: ActionTypes.default.TreeActionConstant.ACTION_GOTO_ADD_BOOK });
     public addBook = (data: DataTypes.BookValueType) => ({
         type: ActionTypes.default.TreeActionConstant.ACTION_ADD_BOOK,
@@ -14,4 +14,4 @@ class TreeAction {
     public gotoNotifications = () => ({ type: ActionTypes.default.TreeActionConstant.ACTION_GOTO_NOTIFICATIONS });
 }
 
-export default TreeAction;
+export default PageAction;

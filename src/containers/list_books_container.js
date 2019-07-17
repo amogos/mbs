@@ -4,11 +4,11 @@ import { bookAction } from '../actions';
 
 function mapStateToProps(state) {
     return {
-        userdata: state.socialReducer.userdata,
-        bookChangingId: state.treeReducer.bookChangingId,
-        action: state.treeReducer.action,
-        booksArray: state.treeReducer.booksArray,
-        queueArray: state.treeReducer.queueArray,
+        userdata: state.mainReducer.userdata,
+        bookChangingId: state.mainReducer.bookChangingId,
+        action: state.mainReducer.action,
+        booksArray: state.mainReducer.booksArray,
+        queueArray: state.mainReducer.queueArray,
     };
 }
 

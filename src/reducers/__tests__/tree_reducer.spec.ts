@@ -1,5 +1,5 @@
-import treeReducer from './../tree_reducer';
-import { bookAction, treeAction } from '../../actions/';
+import treeReducer from '../slices/page_reducer';
+import { bookAction, pageAction } from '../../actions/';
 import * as ActionTypes from '../../constants/action_constant';
 
 import * as DataTypes from './../../types';
@@ -32,18 +32,18 @@ describe('Testing tree reducer branching', () => {
         expect(treeReducer(undefined, { type: 'none' })).toEqual(initialState);
     });
     it('Should return goto add book state', () => {
-        expect(treeReducer({}, treeAction.gotoAddBook())).toEqual({ action: TreeActionConstant.ACTION_GOTO_ADD_BOOK });
+        expect(treeReducer({}, pageAction.gotoAddBook())).toEqual({ action: TreeActionConstant.ACTION_GOTO_ADD_BOOK });
     });
     it('Should return finalized addBook state', () => {
-        expect(treeReducer({}, treeAction.addBook(bookValue))).toEqual({ action: TreeActionConstant.ACTION_ADD_BOOK });
+        expect(treeReducer({}, pageAction.addBook(bookValue))).toEqual({ action: TreeActionConstant.ACTION_ADD_BOOK });
     });
     it('Should return goto list books state', () => {
-        expect(treeReducer({}, treeAction.gotoListBooks())).toEqual({
+        expect(treeReducer({}, pageAction.gotoListBooks())).toEqual({
             action: TreeActionConstant.ACTION_GOTO_LIST_BOOKS,
         });
     });
     it('Should return list books state', () => {
-        expect(treeReducer({}, treeAction.listBooks())).toEqual({
+        expect(treeReducer({}, pageAction.listBooks())).toEqual({
             action: TreeActionConstant.ACTION_LIST_BOOKS,
             booksArray: booksArray,
         });

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import * as DataTypes from './../types';
 import { List, Avatar, Icon, Button } from 'antd';
-import { GlobalVars } from '../reducers/tree_reducer';
+import { GlobalVars } from '../reducers/slices/page_reducer';
 
 interface Props {
     action: string;
@@ -74,8 +74,8 @@ const BookStateReturn = (param: BookAction) => {
 const BookStateComponent = (param: BookAction) => {
     const bookIsInMyQueue: boolean = param.props.queueArray.findIndex(item => item.value.bookId === param.book.id) >= 0;
     const [requested, setRequested] = useState(bookIsInMyQueue);
-    const bookIsMine: boolean = GlobalVars.userData.id === param.book.value.owner.id;
-    const bookIsAssignedToMe: boolean = param.book.value.holder.id === GlobalVars.userData.id;
+    const bookIsMine: boolean = param.props.userdata.id === param.book.value.owner.id;
+    const bookIsAssignedToMe: boolean = param.book.value.holder.id === param.props.userdata.id;
 
     if (bookIsMine) {
         return <BookStateDelete book={param.book} props={param.props} />;

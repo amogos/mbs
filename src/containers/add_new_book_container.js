@@ -1,18 +1,18 @@
 import { connect } from 'react-redux';
-import { treeAction } from '../actions/';
+import { pageAction } from '../actions/';
 import AddNewBookComponent from '../components/add_new_book_component';
 
 function mapStateToProps(state) {
     return {
-        userdata: state.socialReducer.userdata,
-        action: state.treeReducer.action,
-        languages: state.treeReducer.languages,
+        userdata: state.mainReducer.userdata,
+        action: state.mainReducer.action,
+        languages: state.mainReducer.languages,
     };
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        addBook: data => dispatch(treeAction.addBook(data)),
+        addBook: data => dispatch(pageAction.addBook(data)),
         dispatch,
     };
 };

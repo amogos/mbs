@@ -1,22 +1,22 @@
-import * as ActionConstants from '../constants/action_constant';
-import { treeAction } from '../actions/';
-import databseInstance from '../connectors/database_instance';
-import Store from './../store';
-import Strings from '../constants/string_constant';
+import * as ActionConstants from '../../constants/action_constant';
+import { pageAction } from '../../actions';
+import databseInstance from '../../connectors/database_instance';
+import Store from '../../store';
+import Strings from '../../constants/string_constant';
 import { message } from 'antd';
-import { GlobalVars, handleError } from './tree_reducer';
+import { GlobalVars, handleError } from './page_reducer';
 
 const { BookActionConstant } = ActionConstants.default;
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export default function bookReducer(state = {} as any, action: any): any {
+export default function bookReducer(state: any, action: any): any {
     switch (action.type) {
         case BookActionConstant.ACTION_ASK_BOOK: {
             const bookId: number = action.bookId;
             const ownerId: number = action.ownerId;
-            const userdata = GlobalVars.userData;
+            const userdata = state.userdata;
             databseInstance.askBook(bookId, ownerId, userdata, handleError).then(() => {
-                Store.dispatch(treeAction.listBooks());
+                Store.dispatch(pageAction.listBooks());
             });
             return Object.assign({}, state, {
                 action: BookActionConstant.ACTION_ASK_BOOK,
@@ -38,7 +38,7 @@ export default function bookReducer(state = {} as any, action: any): any {
                 let temp = [...GlobalVars.booksArray];
                 temp.splice(index, 1);
                 GlobalVars.booksArray = temp;
-                Store.dispatch(treeAction.listBooks());
+                Store.dispatch(pageAction.listBooks());
             });
 
             return Object.assign({}, state, {
@@ -47,6 +47,6 @@ export default function bookReducer(state = {} as any, action: any): any {
             });
         }
         default:
-            return state;
+            return null;
     }
 }

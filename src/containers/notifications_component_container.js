@@ -4,7 +4,7 @@ import NotificationComponent from '../components/notifications_component';
 
 function mapStateToProps(state) {
     return {
-        notifications: state.notificationReducer.notifications,
+        notifications: state.mainReducer.notifications,
     };
 }
 

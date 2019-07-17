@@ -1,12 +1,12 @@
 import { connect } from 'react-redux';
-import { treeAction } from '../actions/';
+import { pageAction } from '../actions/';
 import BannerComponent from '../components/banner_component';
 
 const mapDispatchToProps = dispatch => {
     return {
-        gotoListBooks: () => dispatch(treeAction.gotoListBooks()),
-        gotoAddBook: () => dispatch(treeAction.gotoAddBook()),
-        gotoNotifications: () => dispatch(treeAction.gotoNotifications()),
+        gotoListBooks: () => dispatch(pageAction.gotoListBooks()),
+        gotoAddBook: () => dispatch(pageAction.gotoAddBook()),
+        gotoNotifications: () => dispatch(pageAction.gotoNotifications()),
         dispatch,
     };
 };
