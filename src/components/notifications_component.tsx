@@ -9,6 +9,14 @@ interface Props {
 }
 
 const NotificationComponent = (props: Props) => {
+    const confirmRental = (key: number, user: DataTypes.UserRecordType) => {
+        props.confirmRental(key, user);
+    };
+
+    const rejectRental = (key: number, user: DataTypes.UserRecordType) => {
+        props.rejectRental(key, user);
+    };
+
     return (
         <div>
             <List
@@ -17,8 +25,8 @@ const NotificationComponent = (props: Props) => {
                 renderItem={item => (
                     <List.Item
                         actions={[
-                            <a onClick={() => props.confirmRental(item.bookId, item.value.user)}>confirm</a>,
-                            <a onClick={() => props.rejectRental(item.bookId, item.value.user)}>reject</a>,
+                            <a onClick={() => confirmRental(item.bookId, item.value.user)}>confirm</a>,
+                            <a onClick={() => rejectRental(item.bookId, item.value.user)}>reject</a>,
                         ]}
                     >
                         <List.Item.Meta

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import * as DataTypes from './../types';
 import { List, Avatar, Icon, Button } from 'antd';
-import { GlobalVars } from '../reducers/slices/page_reducer';
 
 interface Props {
     action: string;

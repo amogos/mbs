@@ -1,7 +1,6 @@
 import axios from 'axios';
 import * as DataTypes from '../types';
 import * as BookStateTypes from '../constants/book_states_constant';
-import { types } from '@babel/core';
 
 export default class JsonConnector {
     public constructor() {
@@ -105,7 +104,7 @@ export default class JsonConnector {
         onError: (resultCode: number) => void,
     ): Promise<boolean> {
         await axios
-            .delete('http://localhost:3001/queues?book_id=' + bookId + '&user_id=' + user.id)
+            .delete('http://localhost:3001/queues?bookId=' + bookId + '&userId=' + user.id)
             .catch(error => onError(error));
         await axios
             .put('http://localhost:3001/books/' + bookId, {
@@ -132,7 +131,7 @@ export default class JsonConnector {
         onError: (resultCode: number) => void,
     ): Promise<boolean> {
         await axios
-            .delete('http://localhost:3001/queues?book_id=' + bookId + '&user_id=' + user.id)
+            .delete('http://localhost:3001/queues?bookId=' + bookId + '&userId=' + user.id)
             .catch(error => onError(error));
         return true;
     }
