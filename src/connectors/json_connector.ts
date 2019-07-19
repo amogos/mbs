@@ -1,6 +1,7 @@
 import axios from 'axios';
 import * as DataTypes from '../types';
 import * as BookStateTypes from '../constants/book_states_constant';
+import { types } from '@babel/core';
 
 export default class JsonConnector {
     public constructor() {
@@ -168,10 +169,7 @@ export default class JsonConnector {
         await axios
             .get('http://localhost:3001/users?email=' + user.email)
             .then(response => {
-                let entry = response.data[0];
-                userData.id = entry.id;
-                userData.value.name = entry.name;
-                userData.value.email = entry.email;
+                userData = DataTypes.dbUserToObject(response.data[0]);
             })
             .catch(error => onError(error));
         return userData;
@@ -228,7 +226,7 @@ export default class JsonConnector {
                     let user: DataTypes.UserRecordType = DataTypes.nullUser();
                     await axios
                         .get('http://localhost:3001/users/' + item.userId)
-                        .then(response => (user = response.data))
+                        .then(response => (user = DataTypes.dbUserToObject(response.data)))
                         .catch(error => onError(error));
 
                     let title = '';
@@ -239,7 +237,10 @@ export default class JsonConnector {
 
                     let notification: DataTypes.RentalNotificationRecordType = {
                         bookId: item.bookId,
-                        value: { bookTitle: title, user: user } as DataTypes.RentalNotificationValue,
+                        value: {
+                            bookTitle: title,
+                            user: user,
+                        } as DataTypes.RentalNotificationValue,
                     };
                     rentalNotifications.push(notification);
                     this.completedJobs++;
