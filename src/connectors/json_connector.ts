@@ -99,17 +99,14 @@ export default class JsonConnector {
     }
 
     public async confirmRental(
-        bookId: number,
-        user: DataTypes.UserRecordType,
+        rental: DataTypes.RentalNotificationRecordType,
         onError: (resultCode: number) => void,
     ): Promise<boolean> {
+        await axios.delete('http://localhost:3001/queues/' + rental.id).catch(error => onError(error));
         await axios
-            .delete('http://localhost:3001/queues?bookId=' + bookId + '&userId=' + user.id)
-            .catch(error => onError(error));
-        await axios
-            .put('http://localhost:3001/books/' + bookId, {
+            .put('http://localhost:3001/books/' + rental.value.bookId, {
                 state: BookStateTypes.default.STATE_BOOK_IN_TRANSIT_TO_HOLDER,
-                holder: user.id,
+                holder: rental.value.user.id,
             })
             .catch(error => onError(error));
 
@@ -126,13 +123,10 @@ export default class JsonConnector {
     }
 
     public async rejectRental(
-        bookId: number,
-        user: DataTypes.UserRecordType,
+        rental: DataTypes.RentalNotificationRecordType,
         onError: (resultCode: number) => void,
     ): Promise<boolean> {
-        await axios
-            .delete('http://localhost:3001/queues?bookId=' + bookId + '&userId=' + user.id)
-            .catch(error => onError(error));
+        await axios.delete('http://localhost:3001/queues/' + rental.id).catch(error => onError(error));
         return true;
     }
 
@@ -235,9 +229,10 @@ export default class JsonConnector {
                         .catch(error => onError(error));
 
                     let notification: DataTypes.RentalNotificationRecordType = {
-                        bookId: item.bookId,
+                        id: item.id,
                         value: {
                             bookTitle: title,
+                            bookId: item.id,
                             user: user,
                         } as DataTypes.RentalNotificationValue,
                     };

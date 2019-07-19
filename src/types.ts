@@ -29,13 +29,14 @@ export interface BookRecordType {
 }
 
 export interface RentalNotificationRecordType {
-    bookId: number;
+    id: number;
     value: RentalNotificationValue;
 }
 
 export interface RentalNotificationValue {
     user: UserRecordType;
     bookTitle: string;
+    bookId: number;
 }
 
 export interface QueueValueType {

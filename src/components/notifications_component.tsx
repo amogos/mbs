@@ -4,17 +4,17 @@ import * as DataTypes from './../types';
 
 interface Props {
     notifications: DataTypes.RentalNotificationRecordType[];
-    confirmRental(key: number, user: DataTypes.UserRecordType): void;
-    rejectRental(key: number, user: DataTypes.UserRecordType): void;
+    confirmRental(rental: DataTypes.RentalNotificationRecordType): void;
+    rejectRental(rental: DataTypes.RentalNotificationRecordType): void;
 }
 
 const NotificationComponent = (props: Props) => {
-    const confirmRental = (key: number, user: DataTypes.UserRecordType) => {
-        props.confirmRental(key, user);
+    const confirmRental = (rental: DataTypes.RentalNotificationRecordType) => {
+        props.confirmRental(rental);
     };
 
-    const rejectRental = (key: number, user: DataTypes.UserRecordType) => {
-        props.rejectRental(key, user);
+    const rejectRental = (rental: DataTypes.RentalNotificationRecordType) => {
+        props.rejectRental(rental);
     };
 
     return (
@@ -25,8 +25,8 @@ const NotificationComponent = (props: Props) => {
                 renderItem={item => (
                     <List.Item
                         actions={[
-                            <a onClick={() => confirmRental(item.bookId, item.value.user)}>confirm</a>,
-                            <a onClick={() => rejectRental(item.bookId, item.value.user)}>reject</a>,
+                            <a onClick={() => confirmRental(item)}>confirm</a>,
+                            <a onClick={() => rejectRental(item)}>reject</a>,
                         ]}
                     >
                         <List.Item.Meta

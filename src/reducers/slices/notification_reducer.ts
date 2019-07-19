@@ -10,7 +10,7 @@ const { NotificationActionConstant } = ActionConstants.default;
 export default function notificationReducer(state: any, action: any): any {
     switch (action.type) {
         case NotificationActionConstant.ACTION_CONFIRM_RENTAL:
-            databseInstance.confirmRental(action.bookId, action.user, handleError).then(() => {
+            databseInstance.confirmRental(action.rental, handleError).then(() => {
                 databseInstance.getRentalNotifications(state.userdata, handleError).then(result => {
                     GlobalVars.rentalNotificationsArray = result;
                     Store.dispatch(pageAction.gotoNotifications());
@@ -21,7 +21,7 @@ export default function notificationReducer(state: any, action: any): any {
                 notifications: GlobalVars.rentalNotificationsArray,
             });
         case NotificationActionConstant.ACTION_REJECT_RENTAL:
-            databseInstance.rejectRental(action.bookId, action.user, handleError).then(() => {
+            databseInstance.rejectRental(action.rental, handleError).then(() => {
                 databseInstance.getRentalNotifications(state.userdata, handleError).then(result => {
                     GlobalVars.rentalNotificationsArray = result;
                     Store.dispatch(pageAction.gotoNotifications());
