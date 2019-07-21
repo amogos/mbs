@@ -27,7 +27,7 @@ const ListBooksComponent = (props: Props) => {
             size="small"
             pagination={{
                 onChange: page => {
-                    console.log(page);
+                    // on page changed
                 },
                 pageSize: 6,
             }}
