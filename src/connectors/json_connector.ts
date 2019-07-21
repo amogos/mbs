@@ -143,11 +143,20 @@ export default class JsonConnector {
 
     public async returnBook(bookId: number, onError: (resultCode: number) => void) {
         await axios
-            .put(this.urlBooks + '/' + bookId, {
-                state: BookStateTypes.default.STATE_BOOK_IDLE,
-                holder: -1,
+            .get(this.urlBooks + '/' + bookId)
+            .then(async result => {
+                const value = {
+                    ...result.data,
+                    state: BookStateTypes.default.STATE_BOOK_IDLE,
+                    holder: -1,
+                };
+                await axios.put(this.urlBooks + '/' + bookId, value).catch(error => {
+                    onError(error);
+                });
             })
-            .catch(error => onError(error));
+            .catch(error => {
+                onError(error);
+            });
     }
 
     public async askBook(
