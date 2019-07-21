@@ -48,8 +48,8 @@ const BookStateAddToCart = (param: BookAction) => {
         <Button
             type="link"
             onClick={() => {
-                param.props.askBook(param.book.id, param.book.value.owner.id);
                 if (param.onClick) param.onClick();
+                param.props.askBook(param.book.id, param.book.value.owner.id);
             }}
         >
             <IconText type="shopping-cart" text="request" />
@@ -74,22 +74,22 @@ const BookStateReturn = (param: BookAction) => {
     );
 };
 
-const BookStateComponent = (param: BookAction) => {
-    const bookIsInMyQueue: boolean = param.props.queueArray.findIndex(item => item.value.bookId === param.book.id) >= 0;
+const BookStateComponent = (props: BookAction) => {
+    const bookIsInMyQueue: boolean = props.props.queueArray.findIndex(item => item.value.bookId === props.book.id) >= 0;
     const [requested, setRequested] = useState(bookIsInMyQueue);
-    const bookIsMine: boolean = param.props.userdata.id === param.book.value.owner.id;
-    const bookHasHolder: boolean = param.book.value.holder.id > 0;
-    const bookIsAssignedToMe: boolean = param.book.value.holder.id === param.props.userdata.id;
+    const bookIsMine: boolean = props.props.userdata.id === props.book.value.owner.id;
+    const bookHasHolder: boolean = props.book.value.holder.id > 0;
+    const bookIsAssignedToMe: boolean = props.book.value.holder.id === props.props.userdata.id;
 
     if (requested) {
-        return <BookStateCarryOut book={param.book} props={param.props} />;
+        return <BookStateCarryOut {...props} />;
     } else if (bookIsAssignedToMe) {
-        return <BookStateReturn book={param.book} props={param.props} />;
+        return <BookStateReturn {...props} />;
     } else if (bookIsMine) {
-        if (bookHasHolder) return <BookStateAssigned book={param.book} props={param.props} />;
-        else return <BookStateDelete book={param.book} props={param.props} />;
+        if (bookHasHolder) return <BookStateAssigned {...props} />;
+        else return <BookStateDelete {...props} />;
     } else {
-        return <BookStateAddToCart book={param.book} props={param.props} onClick={() => setRequested(true)} />;
+        return <BookStateAddToCart {...props} onClick={() => setRequested(true)} />;
     }
 };
 
