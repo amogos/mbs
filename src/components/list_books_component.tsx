@@ -39,6 +39,10 @@ const BookStateDelete = (param: BookAction) => {
     );
 };
 
+const BookStateAssigned = (param: BookAction) => {
+    return <IconText type="hourglass" text="assigned" />;
+};
+
 const BookStateAddToCart = (param: BookAction) => {
     return (
         <Button
@@ -74,6 +78,7 @@ const BookStateComponent = (param: BookAction) => {
     const bookIsInMyQueue: boolean = param.props.queueArray.findIndex(item => item.value.bookId === param.book.id) >= 0;
     const [requested, setRequested] = useState(bookIsInMyQueue);
     const bookIsMine: boolean = param.props.userdata.id === param.book.value.owner.id;
+    const bookHasHolder: boolean = param.book.value.holder.id > 0;
     const bookIsAssignedToMe: boolean = param.book.value.holder.id === param.props.userdata.id;
 
     if (requested) {
@@ -81,7 +86,8 @@ const BookStateComponent = (param: BookAction) => {
     } else if (bookIsAssignedToMe) {
         return <BookStateReturn book={param.book} props={param.props} />;
     } else if (bookIsMine) {
-        return <BookStateDelete book={param.book} props={param.props} />;
+        if (bookHasHolder) return <BookStateAssigned book={param.book} props={param.props} />;
+        else return <BookStateDelete book={param.book} props={param.props} />;
     } else {
         return <BookStateAddToCart book={param.book} props={param.props} onClick={() => setRequested(true)} />;
     }
