@@ -64,6 +64,12 @@ export default class JsonConnector {
                                 id: r.data.id,
                             };
                         });
+                        await new Promise(async resolve => {
+                            while (holder.id <= 0) {
+                                await this.sleep(10);
+                            }
+                            resolve(true);
+                        });
                     }
 
                     let owner: DataTypes.UserRecordType = DataTypes.nullUser();
@@ -261,7 +267,7 @@ export default class JsonConnector {
                         id: item.id,
                         value: {
                             bookTitle: title,
-                            bookId: item.id,
+                            bookId: item.bookId,
                             user: user,
                         } as DataTypes.RentalNotificationValue,
                     };
