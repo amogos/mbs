@@ -43,11 +43,11 @@ export default function pageReducer(state: any, action: any): any {
             const progressSpinner = message.loading(Strings.MYBOOKSHELVE_ACTION_IN_PROGRESS);
             databseInstance.getQueue(state.userdata.id, handleError).then((result: DataTypes.QueueRecordType[]) => {
                 GlobalVars.queueArray = result;
-            });
-            databseInstance.getBooks(handleError).then(result => {
-                setTimeout(progressSpinner, 0);
-                GlobalVars.booksArray = result;
-                Store.dispatch(pageAction.listBooks());
+                databseInstance.getBooks(handleError).then(result => {
+                    setTimeout(progressSpinner, 0);
+                    GlobalVars.booksArray = result;
+                    Store.dispatch(pageAction.listBooks());
+                });
             });
 
             return Object.assign({}, state, {
