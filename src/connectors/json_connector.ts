@@ -171,7 +171,7 @@ export default class JsonConnector {
         user: DataTypes.UserRecordType,
         onError: (resultCode: number) => void,
     ) {
-        axios
+        await axios
             .post(this.urlQueues, {
                 userId: user.id,
                 bookId: bookId,
@@ -204,7 +204,7 @@ export default class JsonConnector {
     }
 
     public async addBook(value: DataTypes.BookValueType, onError: (resultCode: number) => void) {
-        axios
+        await axios
             .post(this.urlBooks, {
                 author: value.author,
                 image: value.image,
@@ -223,7 +223,7 @@ export default class JsonConnector {
         await axios
             .get(this.urlQueues + '?userId=' + userId)
             .then(response =>
-                response.data.forEach((item: any) => {
+                response.data.forEach(async (item: any) => {
                     queueArray.push({
                         id: item.id,
                         value: {
