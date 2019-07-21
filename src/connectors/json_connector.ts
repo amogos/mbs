@@ -107,51 +107,29 @@ export default class JsonConnector {
         rental: DataTypes.RentalNotificationRecordType,
         onError: (resultCode: number) => void,
     ): Promise<boolean> {
-        this.startedJobs++;
-        await axios
-            .delete(this.urlQueues + '/' + rental.id)
-            .then(() => this.completedJobs++)
-            .catch(error => {
-                onError(error);
-                return false;
-            });
-        this.startedJobs++;
         await axios
             .get(this.urlBooks + '/' + rental.value.bookId)
             .then(async result => {
-                let bookEntry: DataTypes.BookRecordType = result.data[0];
-                await axios
-                    .get(this.urlUsers + '/' + bookEntry.value.holder)
-                    .then(result => {
-                        const holder: DataTypes.UserRecordType = result.data[0];
-                        bookEntry.value = {
-                            ...bookEntry.value,
-                            state: BookStateTypes.default.STATE_BOOK_IN_TRANSIT_TO_HOLDER,
-                            holder: holder,
-                        };
-                        this.completedJobs++;
-                    })
-                    .catch(error => {
-                        onError(error);
-                        return false;
-                    });
+                const value = {
+                    ...result.data,
+                    state: BookStateTypes.default.STATE_BOOK_IN_TRANSIT_TO_HOLDER,
+                    holder: rental.value.user.id,
+                };
+                await axios.put(this.urlBooks + '/' + rental.value.bookId, value).catch(error => {
+                    onError(error);
+                    return false;
+                });
             })
             .catch(error => {
                 onError(error);
                 return false;
             });
-        this.startedJobs++;
-        await axios
-            .put(this.urlBooks + '/' + rental.value.bookId, {
-                state: BookStateTypes.default.STATE_BOOK_IN_TRANSIT_TO_HOLDER,
-                holder: rental.value.user.id,
-            })
-            .then(() => this.completedJobs++)
-            .catch(error => {
-                onError(error);
-                return false;
-            });
-        await this.workInProgress();
+
+        await axios.delete(this.urlQueues + '/' + rental.id).catch(error => {
+            onError(error);
+            return false;
+        });
+
         return true;
     }
 
