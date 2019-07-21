@@ -25,7 +25,9 @@ export default function bookReducer(state: any, action: any): any {
         }
         case BookActionConstant.ACTION_RETURN_BOOK: {
             const bookId: number = action.bookId;
-            databseInstance.returnBook(bookId, handleError);
+            databseInstance.returnBook(bookId, handleError).then(() => {
+                Store.dispatch(pageAction.gotoListBooks());
+            });
             return Object.assign({}, state, {
                 action: BookActionConstant.ACTION_RETURN_BOOK,
                 bookChangingId: bookId,
