@@ -76,14 +76,12 @@ const BookStateComponent = (param: BookAction) => {
     const bookIsMine: boolean = param.props.userdata.id === param.book.value.owner.id;
     const bookIsAssignedToMe: boolean = param.book.value.holder.id === param.props.userdata.id;
 
-    if (bookIsMine) {
-        return <BookStateDelete book={param.book} props={param.props} />;
-    }
-
     if (requested) {
         return <BookStateCarryOut book={param.book} props={param.props} />;
     } else if (bookIsAssignedToMe) {
         return <BookStateReturn book={param.book} props={param.props} />;
+    } else if (bookIsMine) {
+        return <BookStateDelete book={param.book} props={param.props} />;
     } else {
         return <BookStateAddToCart book={param.book} props={param.props} onClick={() => setRequested(true)} />;
     }
