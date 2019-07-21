@@ -1,11 +1,17 @@
 import React from 'react';
 import * as DataTypes from './../types';
 import { List, Avatar, Icon } from 'antd';
-import BookStateContainer from './../containers/book_state_container';
+import BookStateComponent from './book_state_component';
 
 interface Props {
     action: string;
     booksArray: DataTypes.BookRecordType[];
+    userdata: DataTypes.UserRecordType;
+    bookChangingId: number;
+    queueArray: DataTypes.QueueRecordType[];
+    deleteBook(bookId: number): void;
+    askBook(bookId: number, ownerId: number): void;
+    returnBook(bookId: number): void;
 }
 
 interface Icon {
@@ -39,7 +45,7 @@ const ListBooksComponent = (props: Props) => {
                         <IconText type="star-o" text="156" />,
                         <IconText type="like-o" text="156" />,
                         <IconText type="message" text="2" />,
-                        <BookStateContainer book={item} />,
+                        <BookStateComponent {...props} book={item} />,
                     ]}
                     extra={<img width={64} alt="logo" src={item.value.image} />}
                 >
