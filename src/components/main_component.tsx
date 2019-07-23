@@ -8,7 +8,7 @@ interface Props {
     action: string;
 }
 
-const { TreeActionConstant } = ActionTypes.default;
+const { PageActionConstant: TreeActionConstant } = ActionTypes.default;
 
 const MainComponent = (props: Props) => {
     if (props.action === TreeActionConstant.ACTION_LIST_BOOKS) {

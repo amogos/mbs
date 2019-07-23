@@ -2,7 +2,7 @@ import * as ActionTypes from '../../../constants/action_constant';
 import { pageAction } from '../..';
 import * as DataTypes from '../../../types';
 
-const { TreeActionConstant } = ActionTypes.default;
+const { PageActionConstant: TreeActionConstant } = ActionTypes.default;
 
 const bookValue: DataTypes.BookValueType = {
     author: 'Eric Carle',

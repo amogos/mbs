@@ -46,10 +46,17 @@ export default class JsonConnector {
         return languagesArray;
     }
 
-    public async getBooks(onError: (resultCode: number) => void): Promise<DataTypes.BookRecordType[]> {
+    public async getBooks(
+        filters: string[],
+        onError: (resultCode: number) => void,
+    ): Promise<DataTypes.BookRecordType[]> {
         let booksArray: DataTypes.BookRecordType[] = [];
+        let filterdBooksUrl = this.urlBooks;
+        if (filters && filters.length > 0) {
+            filterdBooksUrl += '?' + filters.join('&');
+        }
         await axios
-            .get(this.urlBooks)
+            .get(filterdBooksUrl)
             .then(response => {
                 response.data.forEach(async (item: any) => {
                     this.startedJobs++;

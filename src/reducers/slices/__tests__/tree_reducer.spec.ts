@@ -5,7 +5,7 @@ import * as ActionTypes from '../../../constants/action_constant';
 import * as DataTypes from '../../../types';
 jest.mock('./../../connectors/database_instance');
 
-const { BookActionConstant, TreeActionConstant } = ActionTypes.default;
+const { BookActionConstant, PageActionConstant } = ActionTypes.default;
 
 const bookValue: DataTypes.BookValueType = {
     author: 'Eric Carle',
@@ -32,19 +32,19 @@ describe('Testing tree reducer branching', () => {
         expect(treeReducer(undefined, { type: 'none' })).toEqual(initialState);
     });
     it('Should return goto add book state', () => {
-        expect(treeReducer({}, pageAction.gotoAddBook())).toEqual({ action: TreeActionConstant.ACTION_GOTO_ADD_BOOK });
+        expect(treeReducer({}, pageAction.gotoAddBook())).toEqual({ action: PageActionConstant.ACTION_GOTO_ADD_BOOK });
     });
     it('Should return finalized addBook state', () => {
-        expect(treeReducer({}, pageAction.addBook(bookValue))).toEqual({ action: TreeActionConstant.ACTION_ADD_BOOK });
+        expect(treeReducer({}, pageAction.addBook(bookValue))).toEqual({ action: PageActionConstant.ACTION_ADD_BOOK });
     });
     it('Should return goto list books state', () => {
-        expect(treeReducer({}, pageAction.gotoListBooks())).toEqual({
-            action: TreeActionConstant.ACTION_GOTO_LIST_BOOKS,
+        expect(treeReducer({}, pageAction.gotoListBooks([]))).toEqual({
+            action: PageActionConstant.ACTION_GOTO_LIST_BOOKS,
         });
     });
     it('Should return list books state', () => {
         expect(treeReducer({}, pageAction.listBooks())).toEqual({
-            action: TreeActionConstant.ACTION_LIST_BOOKS,
+            action: PageActionConstant.ACTION_LIST_BOOKS,
             booksArray: booksArray,
         });
     });

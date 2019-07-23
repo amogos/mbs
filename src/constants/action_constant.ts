@@ -14,7 +14,7 @@ export default {
         ACTION_USER_DATA: 'ACTION_USER_DATA',
         ACTION_LOGIN_USER: 'ACTION_LOGIN_USER',
     },
-    TreeActionConstant: {
+    PageActionConstant: {
         ACTION_GOTO_ADD_BOOK: 'ACTION_GOTO_ADD_BOOK',
         ACTION_ADD_BOOK: 'ACTION_ADD_BOOK',
         ACTION_GOTO_LIST_BOOKS: 'ACTION_GOTO_LIST_BOOKS',

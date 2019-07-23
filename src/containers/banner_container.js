@@ -4,7 +4,7 @@ import BannerComponent from '../components/banner_component';
 
 const mapDispatchToProps = dispatch => {
     return {
-        gotoListBooks: () => dispatch(pageAction.gotoListBooks()),
+        gotoListBooks: filters => dispatch(pageAction.gotoListBooks(filters)),
         gotoAddBook: () => dispatch(pageAction.gotoAddBook()),
         gotoNotifications: () => dispatch(pageAction.gotoNotifications()),
         dispatch,

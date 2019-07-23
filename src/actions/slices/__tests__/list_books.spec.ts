@@ -1,7 +1,7 @@
 import * as ActionTypes from '../../../constants/action_constant';
 import { pageAction } from '../..';
 
-let { TreeActionConstant } = ActionTypes.default;
+let { PageActionConstant: TreeActionConstant } = ActionTypes.default;
 
 describe('listBooks(message)', () => {
     it('should build action for books listing', () => {

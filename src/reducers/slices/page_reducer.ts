@@ -19,43 +19,42 @@ export function handleError(resultCode: number): void {
     }
 }
 
-const { TreeActionConstant } = ActionConstants.default;
+const { PageActionConstant } = ActionConstants.default;
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default function pageReducer(state: any, action: any): any {
     switch (action.type) {
-        case TreeActionConstant.ACTION_GOTO_NOTIFICATIONS:
+        case PageActionConstant.ACTION_GOTO_NOTIFICATIONS:
             return Object.assign({}, state, {
-                action: TreeActionConstant.ACTION_GOTO_NOTIFICATIONS,
+                action: PageActionConstant.ACTION_GOTO_NOTIFICATIONS,
                 notifications: GlobalVars.rentalNotificationsArray,
             });
-        case TreeActionConstant.ACTION_GOTO_ADD_BOOK:
+        case PageActionConstant.ACTION_GOTO_ADD_BOOK:
             return Object.assign({}, state, {
-                action: ActionConstants.default.TreeActionConstant.ACTION_GOTO_ADD_BOOK,
+                action: ActionConstants.default.PageActionConstant.ACTION_GOTO_ADD_BOOK,
                 languages: GlobalVars.languagesArray,
             });
-        case TreeActionConstant.ACTION_ADD_BOOK:
+        case PageActionConstant.ACTION_ADD_BOOK:
             databseInstance.addBook(action.data, handleError);
             return Object.assign({}, state, {
-                action: ActionConstants.default.TreeActionConstant.ACTION_ADD_BOOK,
+                action: ActionConstants.default.PageActionConstant.ACTION_ADD_BOOK,
             });
-        case TreeActionConstant.ACTION_GOTO_LIST_BOOKS:
+        case PageActionConstant.ACTION_GOTO_LIST_BOOKS:
             const progressSpinner = message.loading(Strings.MYBOOKSHELVE_ACTION_IN_PROGRESS);
             databseInstance.getQueue(state.userdata.id, handleError).then((result: DataTypes.QueueRecordType[]) => {
                 GlobalVars.queueArray = result;
-                databseInstance.getBooks(handleError).then(result => {
+                databseInstance.getBooks(action.filters, handleError).then(result => {
                     setTimeout(progressSpinner, 0);
                     GlobalVars.booksArray = result;
                     Store.dispatch(pageAction.listBooks());
                 });
             });
-
             return Object.assign({}, state, {
-                action: TreeActionConstant.ACTION_GOTO_LIST_BOOKS,
+                action: PageActionConstant.ACTION_GOTO_LIST_BOOKS,
             });
-        case TreeActionConstant.ACTION_LIST_BOOKS:
+        case PageActionConstant.ACTION_LIST_BOOKS:
             return Object.assign({}, state, {
-                action: TreeActionConstant.ACTION_LIST_BOOKS,
+                action: PageActionConstant.ACTION_LIST_BOOKS,
                 booksArray: GlobalVars.booksArray,
                 queueArray: GlobalVars.queueArray,
             });
