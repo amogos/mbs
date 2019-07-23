@@ -3,7 +3,7 @@ import SocialLoginContainer from './../containers/social_login_container';
 import { PageHeader, Button } from 'antd';
 
 interface Props {
-    gotoListBooks(): void;
+    gotoListBooks(filters: string[]): void;
     gotoAddBook(): void;
     gotoNotifications(): void;
 }
@@ -14,7 +14,7 @@ const BannerComponent = (props: Props) => {
             <div className="wrap">
                 <div className="content">
                     <p className="contentLink">
-                        <Button type="link" onClick={() => props.gotoListBooks()}>
+                        <Button type="link" onClick={() => props.gotoListBooks([])}>
                             <img
                                 src="https://gw.alipayobjects.com/zos/rmsportal/MjEImQtenlyueSmVEfUD.svg"
                                 alt="start"

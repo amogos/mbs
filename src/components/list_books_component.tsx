@@ -29,6 +29,32 @@ const IconText = (param: Icon) => (
 
 const FilteringTabs = (props: Props) => {
     const { TabPane } = Tabs;
+
+    const onTabSelectionChanged = (key: string) => {
+        switch (key) {
+            case '1':
+                {
+                    props.assignFilters(['ownerId=' + props.userdata.id]);
+                }
+                break;
+            case '2':
+                {
+                    props.assignFilters(['holderId=' + props.userdata.id]);
+                }
+                break;
+            case '3':
+                {
+                    props.assignFilters([]);
+                }
+                break;
+            default:
+                {
+                    props.assignFilters([]);
+                }
+                break;
+        }
+    };
+
     return (
         <Tabs defaultActiveKey="2">
             <TabPane
