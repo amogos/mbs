@@ -34,12 +34,12 @@ const FilteringTabs = (props: Props) => {
         switch (key) {
             case '1':
                 {
-                    props.gotoListBooks(['ownerId=' + props.userdata.id]);
+                    props.gotoListBooks(['owner=' + props.userdata.id]);
                 }
                 break;
             case '2':
                 {
-                    props.gotoListBooks(['holderId=' + props.userdata.id]);
+                    props.gotoListBooks(['holder=' + props.userdata.id]);
                 }
                 break;
             case '3':
