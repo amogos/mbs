@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import * as DataTypes from './../types';
 import { List, Avatar, Icon, Tabs } from 'antd';
 import BookStateComponent from './book_state_component';
@@ -29,8 +29,10 @@ const IconText = (param: Icon) => (
 
 const FilteringTabs = (props: Props) => {
     const { TabPane } = Tabs;
+    const [tabKey, setTabKey] = useState('');
 
     const onTabSelectionChanged = (key: string) => {
+        setTabKey(key);
         switch (key) {
             case '1':
                 {
@@ -56,7 +58,7 @@ const FilteringTabs = (props: Props) => {
     };
 
     return (
-        <Tabs defaultActiveKey="2" onChange={(key: string) => onTabSelectionChanged(key)}>
+        <Tabs defaultActiveKey={tabKey} onChange={(key: string) => onTabSelectionChanged(key)}>
             <TabPane
                 tab={
                     <span>
