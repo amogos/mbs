@@ -18,7 +18,7 @@ const mapDispatchToProps = dispatch => {
         deleteBook: bookId => dispatch(bookAction.deleteBook(bookId)),
         askBook: (bookId, ownerId) => dispatch(bookAction.askBook(bookId, ownerId)),
         returnBook: bookId => dispatch(bookAction.returnBook(bookId)),
-        assignFilters: filters => dispatch(pageAction.assignFilters(filters)),
+        gotoListBooks: filters => dispatch(pageAction.gotoListBooks(filters)),
         dispatch,
     };
 };

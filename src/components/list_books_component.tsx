@@ -12,7 +12,7 @@ interface Props {
     deleteBook(bookId: number): void;
     askBook(bookId: number, ownerId: number): void;
     returnBook(bookId: number): void;
-    assignFilters(filters: string[]): void;
+    gotoListBooks(filters: string[]): void;
 }
 
 interface Icon {
@@ -34,29 +34,29 @@ const FilteringTabs = (props: Props) => {
         switch (key) {
             case '1':
                 {
-                    props.assignFilters(['ownerId=' + props.userdata.id]);
+                    props.gotoListBooks(['ownerId=' + props.userdata.id]);
                 }
                 break;
             case '2':
                 {
-                    props.assignFilters(['holderId=' + props.userdata.id]);
+                    props.gotoListBooks(['holderId=' + props.userdata.id]);
                 }
                 break;
             case '3':
                 {
-                    props.assignFilters([]);
+                    props.gotoListBooks([]);
                 }
                 break;
             default:
                 {
-                    props.assignFilters([]);
+                    props.gotoListBooks([]);
                 }
                 break;
         }
     };
 
     return (
-        <Tabs defaultActiveKey="2">
+        <Tabs defaultActiveKey="2" onChange={(key: string) => onTabSelectionChanged(key)}>
             <TabPane
                 tab={
                     <span>

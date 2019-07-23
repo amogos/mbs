@@ -13,11 +13,6 @@ class PageAction {
         filters,
     });
 
-    public assignFilters = (filters: string[]) => ({
-        type: ActionTypes.default.PageActionConstant.ACTION_ASSIGN_FILTERS,
-        filters,
-    });
-
     public listBooks = () => ({ type: ActionTypes.default.PageActionConstant.ACTION_LIST_BOOKS });
 
     public gotoNotifications = () => ({ type: ActionTypes.default.PageActionConstant.ACTION_GOTO_NOTIFICATIONS });
