@@ -39,6 +39,11 @@ export default function pageReducer(state: any, action: any): any {
             return Object.assign({}, state, {
                 action: ActionConstants.default.PageActionConstant.ACTION_ADD_BOOK,
             });
+        case PageActionConstant.ACTION_ASSIGN_FILTERS:
+            return Object.assign({}, state, {
+                action: PageActionConstant.ACTION_GOTO_LIST_BOOKS,
+                filters: action.filters,
+            });
         case PageActionConstant.ACTION_GOTO_LIST_BOOKS:
             const progressSpinner = message.loading(Strings.MYBOOKSHELVE_ACTION_IN_PROGRESS);
             databseInstance.getQueue(state.userdata.id, handleError).then((result: DataTypes.QueueRecordType[]) => {
