@@ -15,9 +15,7 @@ const IconText = (param: Icon) => (
 );
 
 interface Props {
-    action: string;
     userdata: DataTypes.UserRecordType;
-    bookChangingId: number;
     queueArray: DataTypes.QueueRecordType[];
     deleteBook(bookId: number): void;
     askBook(bookId: number, ownerId: number): void;
