@@ -89,5 +89,147 @@
       "score": 4.5
     }
   ],
-  "orders": []
+  "orders": [],
+  "categories": [
+    {
+      "id": 1,
+      "title": "Art & Music"
+    },
+    {
+      "id": 2,
+      "title": "Biographies"
+    },
+    {
+      "id": 3,
+      "title": "Business"
+    },
+    {
+      "id": 4,
+      "title": "Kids"
+    },
+    {
+      "id": 5,
+      "title": "Comics"
+    },
+    {
+      "id": 6,
+      "title": "Computer & Tech"
+    },
+    {
+      "id": 7,
+      "title": "Cooking"
+    },
+    {
+      "id": 8,
+      "title": "Hobbies & Crafts"
+    },
+    {
+      "id": 9,
+      "title": "Gay & Lesbian"
+    },
+    {
+      "id": 10,
+      "title": "Health & Fitness"
+    },
+    {
+      "id": 11,
+      "title": "History"
+    },
+    {
+      "id": 12,
+      "title": "Home & Garden"
+    },
+    {
+      "id": 13,
+      "title": "Horror"
+    },
+    {
+      "id": 14,
+      "title": "Entertainment"
+    },
+    {
+      "id": 15,
+      "title": "Literture & Fiction"
+    },
+    {
+      "id": 16,
+      "title": "Medical"
+    },
+    {
+      "id": 14,
+      "title": "Mysteries"
+    },
+    {
+      "id": 15,
+      "title": "Parenting"
+    },
+    {
+      "id": 16,
+      "title": "Social Sciences"
+    },
+    {
+      "id": 17,
+      "title": "Religion"
+    },
+    {
+      "id": 18,
+      "title": "Romance & Sexuality"
+    },
+    {
+      "id": 19,
+      "title": "Science & Math"
+    },
+    {
+      "id": 20,
+      "title": "Sci-Fi & Fantasy"
+    },
+    {
+      "id": 21,
+      "title": "Sports"
+    },
+    {
+      "id": 22,
+      "title": "Teens"
+    },
+    {
+      "id": 21,
+      "title": "Travel"
+    },
+    {
+      "id": 22,
+      "title": "True Crime"
+    },
+    {
+      "id": 23,
+      "title": "Philosophy"
+    },
+    {
+      "id": 24,
+      "title": "Photography"
+    },
+    {
+      "id": 25,
+      "title": "Family & Care"
+    },
+    {
+      "id": 26,
+      "title": "Animal rights & Pets"
+    },
+    {
+      "id": 27,
+      "title": "Engineering"
+    },
+    {
+      "id": 28,
+      "title": "Architecture & Interior Design"
+    },
+    {
+      "id": 29,
+      "title": "Poetry"
+    },
+    {
+      "id": 30,
+      "title": "NonFiction(General)"
+    }
+  ]
 }
