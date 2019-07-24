@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import * as DataTypes from './../types';
 import { Icon, Tabs } from 'antd';
+import * as Strings from './../constants/string_constant';
+
+const { FilteringTabsStrings } = Strings.default;
 
 interface Props {
     userdata: DataTypes.UserRecordType;
@@ -43,7 +46,7 @@ const FilteringTabsComponent = (props: Props) => {
                 tab={
                     <span>
                         <Icon type="apple" />
-                        Owned Books
+                        {FilteringTabsStrings.MYBOOKSHELVE_STRING_OWNED_BOOKS}
                     </span>
                 }
                 key="1"
@@ -52,7 +55,7 @@ const FilteringTabsComponent = (props: Props) => {
                 tab={
                     <span>
                         <Icon type="android" />
-                        Rented Books
+                        {FilteringTabsStrings.MYBOOKSHELVE_STRING_RENTED_BOOKS}
                     </span>
                 }
                 key="2"
@@ -61,7 +64,7 @@ const FilteringTabsComponent = (props: Props) => {
                 tab={
                     <span>
                         <Icon type="android" />
-                        All Books Available
+                        {FilteringTabsStrings.MYBOOKSHELVE_STRING_ALL_BOOKS}
                     </span>
                 }
                 key="3"
