@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import SocialLoginContainer from './../containers/social_login_container';
 import { PageHeader, Button } from 'antd';
+import FilteringTabsContainer from '../containers/filtering_tabs_container';
 
 interface Props {
     gotoListBooks(filters: string[]): void;
@@ -8,13 +9,32 @@ interface Props {
     gotoNotifications(): void;
 }
 
+interface FilterProps {
+    page: string;
+}
+
+const ShowFilteringTabs = (props: FilterProps) => {
+    if (props.page === 'search') {
+        return <FilteringTabsContainer />;
+    }
+    return null;
+};
+
 const BannerComponent = (props: Props) => {
+    const [page, setPage] = useState('');
+
     return (
         <PageHeader title="" breadcrumb={{}}>
             <div className="wrap">
                 <div className="content">
                     <p className="contentLink">
-                        <Button type="link" onClick={() => props.gotoListBooks([])}>
+                        <Button
+                            type="link"
+                            onClick={() => {
+                                props.gotoListBooks([]);
+                                setPage('search');
+                            }}
+                        >
                             <img
                                 src="https://gw.alipayobjects.com/zos/rmsportal/MjEImQtenlyueSmVEfUD.svg"
                                 alt="start"
@@ -22,7 +42,13 @@ const BannerComponent = (props: Props) => {
                             Search
                         </Button>
 
-                        <Button type="link" onClick={() => props.gotoAddBook()}>
+                        <Button
+                            type="link"
+                            onClick={() => {
+                                props.gotoAddBook();
+                                setPage('add');
+                            }}
+                        >
                             <img
                                 src="https://gw.alipayobjects.com/zos/rmsportal/NbuDUAuBlIApFuDvWiND.svg"
                                 alt="start"
@@ -30,7 +56,13 @@ const BannerComponent = (props: Props) => {
                             Add Book
                         </Button>
 
-                        <Button type="link" onClick={() => props.gotoNotifications()}>
+                        <Button
+                            type="link"
+                            onClick={() => {
+                                props.gotoNotifications();
+                                setPage('notifications');
+                            }}
+                        >
                             <img
                                 src="https://gw.alipayobjects.com/zos/rmsportal/ohOEPSYdDTNnyMbGuyLb.svg"
                                 alt="start"
@@ -41,6 +73,7 @@ const BannerComponent = (props: Props) => {
                         <SocialLoginContainer />
                     </p>
                 </div>
+                <ShowFilteringTabs page={page} />
             </div>
         </PageHeader>
     );

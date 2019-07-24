@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import * as DataTypes from './../types';
-import { List, Avatar, Icon, Tabs } from 'antd';
+import { List, Avatar, Icon } from 'antd';
 import BookStateComponent from './book_state_component';
 
 interface Props {
@@ -12,7 +12,6 @@ interface Props {
     deleteBook(bookId: number): void;
     askBook(bookId: number, ownerId: number): void;
     returnBook(bookId: number): void;
-    gotoListBooks(filters: string[]): void;
 }
 
 interface Icon {
@@ -27,73 +26,9 @@ const IconText = (param: Icon) => (
     </span>
 );
 
-const FilteringTabs = (props: Props) => {
-    const { TabPane } = Tabs;
-    const [tabKey, setTabKey] = useState('');
-
-    const onTabSelectionChanged = (key: string) => {
-        setTabKey(key);
-        switch (key) {
-            case '1':
-                {
-                    props.gotoListBooks(['owner=' + props.userdata.id]);
-                }
-                break;
-            case '2':
-                {
-                    props.gotoListBooks(['holder=' + props.userdata.id]);
-                }
-                break;
-            case '3':
-                {
-                    props.gotoListBooks([]);
-                }
-                break;
-            default:
-                {
-                    props.gotoListBooks([]);
-                }
-                break;
-        }
-    };
-
-    return (
-        <Tabs defaultActiveKey={tabKey} onChange={(key: string) => onTabSelectionChanged(key)}>
-            <TabPane
-                tab={
-                    <span>
-                        <Icon type="apple" />
-                        Owned Books
-                    </span>
-                }
-                key="1"
-            />
-            <TabPane
-                tab={
-                    <span>
-                        <Icon type="android" />
-                        Rented Books
-                    </span>
-                }
-                key="2"
-            />
-            <TabPane
-                tab={
-                    <span>
-                        <Icon type="android" />
-                        All Books Available
-                    </span>
-                }
-                key="3"
-            />
-        </Tabs>
-    );
-};
-
 const ListBooksComponent = (props: Props) => {
     return (
         <div>
-            <FilteringTabs {...props} />
             <List
                 itemLayout="vertical"
                 size="small"

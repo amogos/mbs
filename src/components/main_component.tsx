@@ -8,17 +8,17 @@ interface Props {
     action: string;
 }
 
-const { PageActionConstant: TreeActionConstant } = ActionTypes.default;
+const { PageActionConstant } = ActionTypes.default;
 
 const MainComponent = (props: Props) => {
-    if (props.action === TreeActionConstant.ACTION_LIST_BOOKS) {
+    if (props.action === PageActionConstant.ACTION_LIST_BOOKS) {
         return <ListBooksContainer />;
     } else if (
-        props.action === TreeActionConstant.ACTION_GOTO_ADD_BOOK ||
-        props.action === TreeActionConstant.ACTION_ADD_BOOK
+        props.action === PageActionConstant.ACTION_GOTO_ADD_BOOK ||
+        props.action === PageActionConstant.ACTION_ADD_BOOK
     )
         return <AddNewBookContainer />;
-    else if (props.action === TreeActionConstant.ACTION_GOTO_NOTIFICATIONS) return <NotificationsContainer />;
+    else if (props.action === PageActionConstant.ACTION_GOTO_NOTIFICATIONS) return <NotificationsContainer />;
     else return null;
 };
 
