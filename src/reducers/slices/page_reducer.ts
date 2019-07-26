@@ -10,6 +10,7 @@ export class GlobalVars {
     public static booksArray: DataTypes.BookRecordType[];
     public static rentalNotificationsArray: DataTypes.RentalNotificationRecordType[];
     public static languagesArray: DataTypes.LanguageRecordType[];
+    public static categoriesArray: DataTypes.CategoryRecordType[];
     public static queueArray: DataTypes.QueueRecordType[];
 }
 
@@ -63,6 +64,9 @@ export default function pageReducer(state: any, action: any): any {
         default:
             databseInstance.getLanguages(handleError).then((result: DataTypes.LanguageRecordType[]) => {
                 GlobalVars.languagesArray = result;
+            });
+            databseInstance.getCategories(handleError).then((result: DataTypes.CategoryRecordType[]) => {
+                GlobalVars.categoriesArray = result;
             });
             return null;
     }

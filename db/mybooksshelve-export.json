@@ -36,7 +36,8 @@
       "owner": 2,
       "holder": -1,
       "title": "The Secret Language of Cats: How to Understand Your Cat for a Better, Happier Relationship",
-      "state": "state.book.idle"
+      "state": "state.book.idle",
+      "category": 26
     },
     {
       "id": 2,
@@ -46,7 +47,8 @@
       "owner": 1,
       "holder": -1,
       "title": "The Very Hungry Caterpillar's ABC",
-      "state": "state.book.idle"
+      "state": "state.book.idle",
+      "category": 4
     },
     {
       "id": 3,
@@ -56,7 +58,8 @@
       "owner": 1,
       "holder": -1,
       "title": "Room on the Broom Board Book",
-      "state": "state.book.idle"
+      "state": "state.book.idle",
+      "category": 4
     },
     {
       "id": 4,
@@ -66,7 +69,8 @@
       "owner": 1,
       "holder": -1,
       "title": "The Snail and the Whale",
-      "state": "state.book.idle"
+      "state": "state.book.idle",
+      "category": 4
     },
     {
       "id": 5,
@@ -76,7 +80,8 @@
       "owner": 2,
       "holder": -1,
       "title": "Homo Deus: Eine Geschichte von Morgen ",
-      "state": "state.book.idle"
+      "state": "state.book.idle",
+      "category": 11
     }
   ],
   "reviews": [

@@ -8,6 +8,11 @@ export interface UserValueType {
     email: string;
 }
 
+export interface CategoryRecordType {
+    id: number;
+    category: string;
+}
+
 export interface BookValueType {
     title: string;
     author: string;
@@ -16,6 +21,7 @@ export interface BookValueType {
     owner: UserRecordType;
     holder: UserRecordType;
     state: string;
+    category: CategoryRecordType;
 }
 
 export interface LanguageRecordType {
@@ -70,4 +76,9 @@ export const dbUserToObject = (jsonData: any) => {
 export const nullLanguage = () => {
     const nullLanguage: LanguageRecordType = { id: 0, language: '' };
     return nullLanguage;
+};
+
+export const nullCategory = () => {
+    const nullCategory: CategoryRecordType = { id: 0, category: '' };
+    return nullCategory;
 };

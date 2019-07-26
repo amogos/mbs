@@ -18,6 +18,7 @@ const bookValue: DataTypes.BookValueType = {
     },
     holder: DataTypes.nullUser(),
     title: "The Very Hungry Caterpillar's ABC",
+    category: DataTypes.nullCategory(),
 };
 const bookKey = 1;
 const ownerId = 2;

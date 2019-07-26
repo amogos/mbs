@@ -15,6 +15,7 @@ const bookValue: DataTypes.BookValueType = {
     },
     holder: DataTypes.nullUser(),
     title: "The Very Hungry Caterpillar's ABC",
+    category: DataTypes.nullCategory(),
 };
 
 describe('addBook', () => {

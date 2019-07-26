@@ -14,6 +14,7 @@ export default class JsonConnector {
     private urlLanguages = 'http://localhost:3001/languages';
     private urlUsers = 'http://localhost:3001/users';
     private urlQueues = 'http://localhost:3001/queues';
+    private urlCategory = 'http://localhost:3001/categories';
 
     private init() {}
 
@@ -44,6 +45,21 @@ export default class JsonConnector {
                 onError(error);
             });
         return languagesArray;
+    }
+
+    public async getCategories(onError: (resultCode: number) => void): Promise<DataTypes.CategoryRecordType[]> {
+        let categoryArray: DataTypes.CategoryRecordType[] = [];
+        await axios
+            .get(this.urlLanguages)
+            .then(response => {
+                response.data.forEach((item: DataTypes.CategoryRecordType) => {
+                    categoryArray.push(item);
+                });
+            })
+            .catch(error => {
+                onError(error);
+            });
+        return categoryArray;
     }
 
     public async getBooks(
@@ -91,6 +107,12 @@ export default class JsonConnector {
                     await axios.get(this.urlLanguages + '/' + item.language).then(response => {
                         language = { language: response.data.language, id: response.data.id };
                     });
+
+                    let category = DataTypes.nullCategory();
+                    await axios.get(this.urlCategory + '/' + item.category).then(response => {
+                        category = { id: response.data.id, category: response.data.category };
+                    });
+
                     let bookValue: DataTypes.BookValueType = {
                         title: item.title,
                         image: item.image,
@@ -99,6 +121,7 @@ export default class JsonConnector {
                         owner: owner,
                         holder: holder,
                         state: item.state,
+                        category: category,
                     };
 
                     booksArray.push({

@@ -22,6 +22,7 @@ let currentBook = {
     owner: DataTypes.nullUser(),
     state: BookStates.default.STATE_BOOK_IDLE,
     holder: DataTypes.nullUser(),
+    category: DataTypes.nullCategory(),
 };
 
 const AddNewBookComponent = (props: Props) => {
