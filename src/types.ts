@@ -10,7 +10,7 @@ export interface UserValueType {
 
 export interface CategoryRecordType {
     id: number;
-    category: string;
+    title: string;
 }
 
 export interface BookValueType {
@@ -79,6 +79,6 @@ export const nullLanguage = () => {
 };
 
 export const nullCategory = () => {
-    const nullCategory: CategoryRecordType = { id: 0, category: '' };
+    const nullCategory: CategoryRecordType = { id: 0, title: '' };
     return nullCategory;
 };

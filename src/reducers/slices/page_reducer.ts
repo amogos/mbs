@@ -34,6 +34,7 @@ export default function pageReducer(state: any, action: any): any {
             return Object.assign({}, state, {
                 action: ActionConstants.default.PageActionConstant.ACTION_GOTO_ADD_BOOK,
                 languages: GlobalVars.languagesArray,
+                categories: GlobalVars.categoriesArray,
             });
         case PageActionConstant.ACTION_ADD_BOOK:
             databseInstance.addBook(action.data, handleError);

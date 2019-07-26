@@ -50,7 +50,7 @@ export default class JsonConnector {
     public async getCategories(onError: (resultCode: number) => void): Promise<DataTypes.CategoryRecordType[]> {
         let categoryArray: DataTypes.CategoryRecordType[] = [];
         await axios
-            .get(this.urlLanguages)
+            .get(this.urlCategory)
             .then(response => {
                 response.data.forEach((item: DataTypes.CategoryRecordType) => {
                     categoryArray.push(item);
@@ -110,7 +110,7 @@ export default class JsonConnector {
 
                     let category = DataTypes.nullCategory();
                     await axios.get(this.urlCategory + '/' + item.category).then(response => {
-                        category = { id: response.data.id, category: response.data.category };
+                        category = { id: response.data.id, title: response.data.title };
                     });
 
                     let bookValue: DataTypes.BookValueType = {
@@ -243,6 +243,7 @@ export default class JsonConnector {
                 holder: -1,
                 title: value.title,
                 state: 'state.book.idle',
+                category: value.category.id,
             })
             .catch(error => onError(error));
     }
