@@ -14,9 +14,12 @@ interface Props {
 
 const FilteringTabsComponent = (props: Props) => {
     const { TabPane } = Tabs;
-    const [filter, setFilter] = useState('3');
+    const [tab, setTab] = useState('3');
 
-    function handleMultiFilterChange(value: any) {}
+    function handleMultiFilterChange(value: string) {
+        const filters = ['category=' + value];
+        props.gotoListBooks(filters);
+    }
 
     function getCategories(props: Props) {
         const children: any[] = [];
@@ -25,33 +28,28 @@ const FilteringTabsComponent = (props: Props) => {
     }
 
     const onTabSelectionChanged = (key: string) => {
-        setFilter(key);
+        setTab(key);
+
+        let filters: string[] = [];
+
         switch (key) {
             case '1':
                 {
-                    props.gotoListBooks(['owner=' + props.userdata.id]);
+                    filters = ['owner=' + props.userdata.id];
                 }
                 break;
             case '2':
                 {
-                    props.gotoListBooks(['holder=' + props.userdata.id]);
-                }
-                break;
-            case '3':
-                {
-                    props.gotoListBooks([]);
-                }
-                break;
-            default:
-                {
-                    props.gotoListBooks([]);
+                    filters = ['holder=' + props.userdata.id];
                 }
                 break;
         }
+
+        props.gotoListBooks(filters);
     };
 
     return (
-        <Tabs defaultActiveKey={filter} onChange={(key: string) => onTabSelectionChanged(key)}>
+        <Tabs defaultActiveKey={tab} onChange={(key: string) => onTabSelectionChanged(key)}>
             <TabPane
                 tab={
                     <span>
