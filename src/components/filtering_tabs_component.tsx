@@ -1,18 +1,28 @@
 import React, { useState } from 'react';
 import * as DataTypes from './../types';
-import { Icon, Tabs } from 'antd';
+import { Icon, Tabs, Select } from 'antd';
 import * as Strings from './../constants/string_constant';
 
+const { Option } = Select;
 const { FilteringTabsStrings } = Strings.default;
 
 interface Props {
     userdata: DataTypes.UserRecordType;
+    categoriesArray: DataTypes.CategoryRecordType[];
     gotoListBooks(filters: string[]): void;
 }
 
 const FilteringTabsComponent = (props: Props) => {
     const { TabPane } = Tabs;
     const [filter, setFilter] = useState('3');
+
+    function handleMultiFilterChange(value: any) {}
+
+    function getCategories(props: Props) {
+        const children: any[] = [];
+        props.categoriesArray.forEach(category => children.push(<Option key={category.id}>{category.title}</Option>));
+        return children;
+    }
 
     const onTabSelectionChanged = (key: string) => {
         setFilter(key);
@@ -65,6 +75,15 @@ const FilteringTabsComponent = (props: Props) => {
                     <span>
                         <Icon type="android" />
                         {FilteringTabsStrings.MYBOOKSHELVE_STRING_ALL_BOOKS}
+                        <Select
+                            mode="multiple"
+                            style={{ width: '100%' }}
+                            placeholder="Please select"
+                            onChange={handleMultiFilterChange}
+                        >
+                            {getCategories(props)}
+                        </Select>
+                        ,
                     </span>
                 }
                 key="3"

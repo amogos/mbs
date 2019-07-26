@@ -5,6 +5,7 @@ import { pageAction } from '../actions';
 function mapStateToProps(state) {
     return {
         userdata: state.mainReducer.userdata,
+        categoriesArray: state.mainReducer.categoriesArray,
     };
 }
 
