@@ -17,8 +17,12 @@ const FilteringTabsComponent = (props: Props) => {
     const [tab, setTab] = useState('3');
     const tabIds = ['owner', 'holder', 'all'];
 
-    function handleMultiFilterChange(value: string) {
-        const filters = ['category=' + value];
+    function handleMultiFilterChange(value: string[]) {
+        let filters: string[] = [];
+        value.forEach(category => {
+            filters = [...filters, 'category=' + category];
+        });
+
         props.gotoListBooks(filters);
     }
 
@@ -77,12 +81,11 @@ const FilteringTabsComponent = (props: Props) => {
                         <Select
                             mode="multiple"
                             style={{ width: '100%' }}
-                            placeholder="Please select"
+                            placeholder="Filter by category"
                             onChange={handleMultiFilterChange}
                         >
                             {getCategories(props)}
                         </Select>
-                        ,
                     </span>
                 }
                 key={tabIds[2]}
