@@ -14,15 +14,16 @@ interface Props {
 
 const FilteringTabsComponent = (props: Props) => {
     const { TabPane } = Tabs;
-    const [tab, setTab] = useState('3');
     const tabIds = ['owner', 'holder', 'all'];
+    const [tab, setTab] = useState(tabIds[2]);
+    const [categoryFilters, setCategoryFilters] = useState(['']);
 
     function handleMultiFilterChange(value: string[]) {
         let filters: string[] = [];
         value.forEach(category => {
             filters = [...filters, 'category=' + category];
         });
-
+        setCategoryFilters(filters);
         props.gotoListBooks(filters);
     }
 
@@ -33,10 +34,7 @@ const FilteringTabsComponent = (props: Props) => {
     }
 
     const onTabSelectionChanged = (key: string) => {
-        setTab(key);
-
         let filters: string[] = [];
-
         switch (key) {
             case tabIds[0]:
                 {
@@ -48,8 +46,13 @@ const FilteringTabsComponent = (props: Props) => {
                     filters = ['holder=' + props.userdata.id];
                 }
                 break;
+            case tabIds[2]:
+                {
+                    filters = categoryFilters;
+                }
+                break;
         }
-
+        setTab(key);
         props.gotoListBooks(filters);
     };
 
@@ -77,7 +80,7 @@ const FilteringTabsComponent = (props: Props) => {
                 tab={
                     <span>
                         <Icon type="android" />
-                        {FilteringTabsStrings.MYBOOKSHELVE_STRING_ALL_BOOKS}
+                        {FilteringTabsStrings.MYBOOKSHELVE_STRING_ALL_BOOKS} &nbsp;
                         <Select
                             mode="multiple"
                             style={{ width: '100%' }}
