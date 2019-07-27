@@ -20,9 +20,9 @@ let currentBook = {
     author: '',
     language: DataTypes.nullLanguage(),
     image: defaultImage,
-    owner: DataTypes.nullUser(),
+    owner: DataTypes.NullUser,
     state: BookStates.default.STATE_BOOK_IDLE,
-    holder: DataTypes.nullUser(),
+    holder: DataTypes.NullUser,
     category: DataTypes.nullCategory(),
 };
 

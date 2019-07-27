@@ -76,7 +76,7 @@ export default class JsonConnector {
             .then(response => {
                 response.data.forEach(async (item: any) => {
                     this.startedJobs++;
-                    let holder: DataTypes.UserRecordType = DataTypes.nullUser();
+                    let holder: DataTypes.UserRecordType = DataTypes.NullUser;
                     if (item.holder > 0) {
                         await axios.get(this.urlUsers + '/' + item.holder).then(r => {
                             holder = {
@@ -96,7 +96,7 @@ export default class JsonConnector {
                         });
                     }
 
-                    let owner: DataTypes.UserRecordType = DataTypes.nullUser();
+                    let owner: DataTypes.UserRecordType = DataTypes.NullUser;
                     await axios.get(this.urlUsers + '/' + item.owner).then(response => {
                         owner = {
                             value: {
@@ -228,7 +228,7 @@ export default class JsonConnector {
         user: DataTypes.UserValueType,
         onError: (resultCode: number) => void,
     ): Promise<DataTypes.UserRecordType> {
-        let userData = DataTypes.nullUser();
+        let userData = DataTypes.NullUser;
 
         await axios
             .get(this.urlUsers + '?email=' + user.email)
@@ -244,7 +244,7 @@ export default class JsonConnector {
                 } else {
                     userData = DataTypes.dbUserToObject(response.data[0]);
 
-                    const profilePictureAvailable = userData.value.picture !== DataTypes.nullUser().value.picture;
+                    const profilePictureAvailable = userData.value.picture !== DataTypes.NullUser.value.picture;
                     const socialMediaPicture = user.picture;
 
                     if (!profilePictureAvailable) {
@@ -306,7 +306,7 @@ export default class JsonConnector {
 
                 response.data.forEach(async (item: any) => {
                     this.startedJobs++;
-                    let user: DataTypes.UserRecordType = DataTypes.nullUser();
+                    let user: DataTypes.UserRecordType = DataTypes.NullUser;
                     await axios
                         .get(this.urlUsers + '/' + item.userId)
                         .then(response => (user = DataTypes.dbUserToObject(response.data)))

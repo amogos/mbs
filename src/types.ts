@@ -57,12 +57,9 @@ export interface QueueRecordType {
     value: QueueValueType;
 }
 
-export const nullUser = () => {
-    const nullUser: UserRecordType = {
-        id: 0,
-        value: { name: '', email: '', picture: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png' },
-    };
-    return nullUser;
+export const NullUser: UserRecordType = {
+    id: 0,
+    value: { name: '', email: '', picture: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png' },
 };
 
 export const dbUserToObject = (jsonData: any) => {

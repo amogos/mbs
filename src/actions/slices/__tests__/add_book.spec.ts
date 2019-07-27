@@ -13,7 +13,7 @@ const bookValue: DataTypes.BookValueType = {
         value: { email: 'daosmistique@yahoo.com', name: 'Iulia Mogos' } as DataTypes.UserValueType,
         id: 1,
     },
-    holder: DataTypes.nullUser(),
+    holder: DataTypes.NullUser,
     title: "The Very Hungry Caterpillar's ABC",
     category: DataTypes.nullCategory(),
 };
