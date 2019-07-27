@@ -8,14 +8,14 @@ const bookValue: DataTypes.BookValueType = {
     author: 'Eric Carle',
     state: 'state.book.idle',
     image: 'https://images-na.ssl-images-amazon.com/images/I/51lsugWtCvL._SY498_BO1,204,203,200_.jpg',
-    language: DataTypes.nullLanguage(),
+    language: DataTypes.NullLanguage,
     owner: {
         value: { email: 'daosmistique@yahoo.com', name: 'Iulia Mogos' } as DataTypes.UserValueType,
         id: 1,
     },
     holder: DataTypes.NullUser,
     title: "The Very Hungry Caterpillar's ABC",
-    category: DataTypes.nullCategory(),
+    category: DataTypes.NullCategory,
 };
 
 describe('addBook', () => {

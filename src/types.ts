@@ -57,11 +57,6 @@ export interface QueueRecordType {
     value: QueueValueType;
 }
 
-export const NullUser: UserRecordType = {
-    id: 0,
-    value: { name: '', email: '', picture: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png' },
-};
-
 export const dbUserToObject = (jsonData: any) => {
     let value: UserValueType = {
         name: jsonData.name,
@@ -75,12 +70,11 @@ export const dbUserToObject = (jsonData: any) => {
     return user;
 };
 
-export const nullLanguage = () => {
-    const nullLanguage: LanguageRecordType = { id: 0, language: '' };
-    return nullLanguage;
+export const NullUser: UserRecordType = {
+    id: 0,
+    value: { name: '', email: '', picture: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png' },
 };
 
-export const nullCategory = () => {
-    const nullCategory: CategoryRecordType = { id: 0, title: '' };
-    return nullCategory;
-};
+export const NullLanguage: LanguageRecordType = { id: 0, language: '' };
+
+export const NullCategory: CategoryRecordType = { id: 0, title: '' };

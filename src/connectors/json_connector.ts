@@ -108,12 +108,12 @@ export default class JsonConnector {
                         };
                     });
 
-                    let language = DataTypes.nullLanguage();
+                    let language = DataTypes.NullLanguage;
                     await axios.get(this.urlLanguages + '/' + item.language).then(response => {
                         language = { language: response.data.language, id: response.data.id };
                     });
 
-                    let category = DataTypes.nullCategory();
+                    let category = DataTypes.NullCategory;
                     await axios.get(this.urlCategory + '/' + item.category).then(response => {
                         category = { id: response.data.id, title: response.data.title };
                     });

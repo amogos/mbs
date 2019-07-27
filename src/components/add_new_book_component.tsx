@@ -18,12 +18,12 @@ const defaultImage =
 let currentBook = {
     title: '',
     author: '',
-    language: DataTypes.nullLanguage(),
+    language: DataTypes.NullLanguage,
     image: defaultImage,
     owner: DataTypes.NullUser,
     state: BookStates.default.STATE_BOOK_IDLE,
     holder: DataTypes.NullUser,
-    category: DataTypes.nullCategory(),
+    category: DataTypes.NullCategory,
 };
 
 const AddNewBookComponent = (props: Props) => {
