@@ -242,9 +242,14 @@ export default class JsonConnector {
                         })
                         .catch(error => onError(error));
                 } else {
-                    const userId = response.data[0].id;
-                    await axios.put(this.urlUsers + '/' + userId, user).catch(error => onError(error));
-                    userData = { value: user, id: userId };
+                    userData = DataTypes.dbUserToObject(response.data[0]);
+
+                    const profilePictureAvailable = userData.value.picture !== DataTypes.nullUser().value.picture;
+                    const socialMediaPicture = user.picture;
+
+                    if (!profilePictureAvailable) {
+                        userData.value.picture = socialMediaPicture;
+                    }
                 }
             })
             .catch(error => onError(error));
