@@ -9,12 +9,14 @@
     {
       "id": 2,
       "name": "Florin Mogos",
-      "email": "florin.mogos@gmail.com"
+      "email": "florin.mogos@gmail.com",
+      "picture": "https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
     },
     {
       "id": 3,
       "name": "Varza Murata",
-      "email": "varzamurata@gmail.com"
+      "email": "varzamurata@gmail.com",
+      "picture": "https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
     }
   ],
   "queues": [],
