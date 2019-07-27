@@ -83,6 +83,7 @@ export default class JsonConnector {
                                 value: {
                                     name: r.data.name,
                                     email: r.data.email,
+                                    picture: r.data.picture,
                                 } as DataTypes.UserValueType,
                                 id: r.data.id,
                             };
@@ -98,7 +99,11 @@ export default class JsonConnector {
                     let owner: DataTypes.UserRecordType = DataTypes.nullUser();
                     await axios.get(this.urlUsers + '/' + item.owner).then(response => {
                         owner = {
-                            value: { name: response.data.name, email: response.data.email } as DataTypes.UserValueType,
+                            value: {
+                                name: response.data.name,
+                                email: response.data.email,
+                                picture: response.data.picture,
+                            } as DataTypes.UserValueType,
                             id: response.data.id,
                         };
                     });

@@ -49,7 +49,7 @@ const ListBooksComponent = (props: Props) => {
                         extra={<img width={64} alt="logo" src={item.value.image} />}
                     >
                         <List.Item.Meta
-                            avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
+                            avatar={<Avatar src={item.value.owner.value.picture} />}
                             title={
                                 <a href={item.value.image}>
                                     {item.value.title}
