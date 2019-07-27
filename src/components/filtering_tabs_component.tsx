@@ -15,6 +15,7 @@ interface Props {
 const FilteringTabsComponent = (props: Props) => {
     const { TabPane } = Tabs;
     const [tab, setTab] = useState('3');
+    const tabIds = ['owner', 'holder', 'all'];
 
     function handleMultiFilterChange(value: string) {
         const filters = ['category=' + value];
@@ -33,12 +34,12 @@ const FilteringTabsComponent = (props: Props) => {
         let filters: string[] = [];
 
         switch (key) {
-            case '1':
+            case tabIds[0]:
                 {
                     filters = ['owner=' + props.userdata.id];
                 }
                 break;
-            case '2':
+            case tabIds[1]:
                 {
                     filters = ['holder=' + props.userdata.id];
                 }
@@ -57,7 +58,7 @@ const FilteringTabsComponent = (props: Props) => {
                         {FilteringTabsStrings.MYBOOKSHELVE_STRING_OWNED_BOOKS}
                     </span>
                 }
-                key="1"
+                key={tabIds[0]}
             />
             <TabPane
                 tab={
@@ -66,7 +67,7 @@ const FilteringTabsComponent = (props: Props) => {
                         {FilteringTabsStrings.MYBOOKSHELVE_STRING_RENTED_BOOKS}
                     </span>
                 }
-                key="2"
+                key={tabIds[1]}
             />
             <TabPane
                 tab={
@@ -84,7 +85,7 @@ const FilteringTabsComponent = (props: Props) => {
                         ,
                     </span>
                 }
-                key="3"
+                key={tabIds[2]}
             />
         </Tabs>
     );
