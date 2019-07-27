@@ -224,12 +224,26 @@ export default class JsonConnector {
         onError: (resultCode: number) => void,
     ): Promise<DataTypes.UserRecordType> {
         let userData = DataTypes.nullUser();
+
         await axios
             .get(this.urlUsers + '?email=' + user.email)
-            .then(response => {
-                userData = DataTypes.dbUserToObject(response.data[0]);
+            .then(async response => {
+                const isNewUser = response.data.length === 0;
+                if (isNewUser) {
+                    await axios
+                        .post(this.urlUsers, user)
+                        .then(response => {
+                            userData = DataTypes.dbUserToObject(response.data[0]);
+                        })
+                        .catch(error => onError(error));
+                } else {
+                    const userId = response.data[0].id;
+                    await axios.put(this.urlUsers + '/' + userId, user).catch(error => onError(error));
+                    userData = { value: user, id: userId };
+                }
             })
             .catch(error => onError(error));
+
         return userData;
     }
 

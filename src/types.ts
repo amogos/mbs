@@ -6,6 +6,7 @@ export interface UserRecordType {
 export interface UserValueType {
     name: string | undefined;
     email: string;
+    picture: string;
 }
 
 export interface CategoryRecordType {
@@ -57,7 +58,10 @@ export interface QueueRecordType {
 }
 
 export const nullUser = () => {
-    const nullUser: UserRecordType = { id: 0, value: { name: '', email: '' } };
+    const nullUser: UserRecordType = {
+        id: 0,
+        value: { name: '', email: '', picture: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png' },
+    };
     return nullUser;
 };
 
@@ -65,6 +69,7 @@ export const dbUserToObject = (jsonData: any) => {
     let value: UserValueType = {
         name: jsonData.name,
         email: jsonData.email,
+        picture: jsonData.picture,
     };
     let user: UserRecordType = {
         id: jsonData.id,
