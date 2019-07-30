@@ -7,14 +7,14 @@ const { Option } = Select;
 const { FilteringTabsStrings } = Strings.default;
 
 interface Props {
-    userdata: DataTypes.UserRecordType;
     categoriesArray: DataTypes.CategoryRecordType[];
     gotoListBooks(filters: string[]): void;
+    spaceOwnerId: number;
 }
 
-const FilteringTabsComponent = (props: Props) => {
+const SpaceFilteringTabsComponent = (props: Props) => {
     const { TabPane } = Tabs;
-    const tabIds = ['owner', 'holder', 'all'];
+    const tabIds = ['rented', 'assigned', 'all'];
     const [tab, setTab] = useState(tabIds[2]);
     const [categoryFilters, setCategoryFilters] = useState(['']);
 
@@ -24,6 +24,7 @@ const FilteringTabsComponent = (props: Props) => {
             filters = [...filters, 'category=' + category];
         });
         setCategoryFilters(filters);
+        filters = [...filters, 'owner=' + props.spaceOwnerId];
         props.gotoListBooks(filters);
     }
 
@@ -38,17 +39,17 @@ const FilteringTabsComponent = (props: Props) => {
         switch (key) {
             case tabIds[0]:
                 {
-                    filters = ['owner=' + props.userdata.id];
+                    filters = ['holder=' + props.spaceOwnerId];
                 }
                 break;
             case tabIds[1]:
                 {
-                    filters = ['holder=' + props.userdata.id];
+                    filters = ['owner=' + props.spaceOwnerId, 'holder > 0'];
                 }
                 break;
             case tabIds[2]:
                 {
-                    filters = categoryFilters;
+                    filters = [...categoryFilters, 'owner=' + props.spaceOwnerId];
                 }
                 break;
         }
@@ -62,7 +63,7 @@ const FilteringTabsComponent = (props: Props) => {
                 tab={
                     <span>
                         <Icon type="apple" />
-                        {FilteringTabsStrings.MYBOOKSHELVE_STRING_OWNED_BOOKS}
+                        {FilteringTabsStrings.MYBOOKSHELVE_STRING_RENTED}
                     </span>
                 }
                 key={tabIds[0]}
@@ -71,7 +72,7 @@ const FilteringTabsComponent = (props: Props) => {
                 tab={
                     <span>
                         <Icon type="android" />
-                        {FilteringTabsStrings.MYBOOKSHELVE_STRING_RENTED_BOOKS}
+                        {FilteringTabsStrings.MYBOOKSHELVE_STRING_ASSIGNED}
                     </span>
                 }
                 key={tabIds[1]}
@@ -80,7 +81,7 @@ const FilteringTabsComponent = (props: Props) => {
                 tab={
                     <span>
                         <Icon type="android" />
-                        {FilteringTabsStrings.MYBOOKSHELVE_STRING_ALL_BOOKS} &nbsp;
+                        {FilteringTabsStrings.MYBOOKSHELVE_STRING_ALL} &nbsp;
                         <Select
                             mode="multiple"
                             style={{ width: '100%' }}
@@ -97,4 +98,4 @@ const FilteringTabsComponent = (props: Props) => {
     );
 };
 
-export default FilteringTabsComponent;
+export default SpaceFilteringTabsComponent;

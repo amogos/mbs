@@ -82,7 +82,7 @@ const ShowFilteringTabs = (props: FilterProps) => {
     if (props.page === 'rent' || props.page === 'my-space') {
         return (
             <FilteringTabsComponent
-                userdata={props.parentProps.userdata}
+                spaceOwnerId={props.parentProps.userdata.id}
                 categoriesArray={props.parentProps.categoriesArray}
                 gotoListBooks={props.parentProps.gotoListBooks}
             />

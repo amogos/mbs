@@ -5,9 +5,9 @@ export default {
     MYBOOKSHELVE_STRING_BOOK_REMOVED: 'The book was successfully removed',
     MYBOOKSHELVE_STRING_CONFIRM: 'Confirm',
     FilteringTabsStrings: {
-        MYBOOKSHELVE_STRING_OWNED_BOOKS: 'Owned Books',
-        MYBOOKSHELVE_STRING_RENTED_BOOKS: 'Rented Books',
-        MYBOOKSHELVE_STRING_ALL_BOOKS: 'All Available Books',
+        MYBOOKSHELVE_STRING_RENTED: 'Rented',
+        MYBOOKSHELVE_STRING_ASSIGNED: 'Assigned',
+        MYBOOKSHELVE_STRING_ALL: 'All Space',
     },
     MYBOOKSHELVE_PENDING_ASSIGNMENT: 'Pending assignment',
     MYBOOKSHELVE_INVALID_FIELDS: 'Invalid fields',
