@@ -5,6 +5,7 @@ import BannerComponent from '../components/banner_component';
 function mapStateToProps(state) {
     return {
         userdata: state.mainReducer.userdata,
+        categoriesArray: state.mainReducer.categoriesArray,
     };
 }
 

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import SocialLoginContainer from './../containers/social_login_container';
 import { PageHeader, Button } from 'antd';
-import FilteringTabsContainer from '../containers/filtering_tabs_container';
+import FilteringTabsComponent from '../components/filtering_tabs_component';
 import * as DataTypes from './../types';
 
 interface Props {
@@ -9,10 +9,12 @@ interface Props {
     gotoAddBook(): void;
     gotoNotifications(): void;
     userdata: DataTypes.UserRecordType;
+    categoriesArray: DataTypes.CategoryRecordType[];
 }
 
 interface FilterProps {
     page: string;
+    parentProps: Props;
 }
 
 interface TabProps {
@@ -22,7 +24,7 @@ interface TabProps {
 
 const MySpaceTab = (props: TabProps) => {
     const clickFunction = () => {
-        props.parentProps.gotoListBooks([]);
+        props.parentProps.gotoListBooks(['owner=' + props.parentProps.userdata.id]);
         props.setPage('my-space');
     };
     return (
@@ -78,7 +80,13 @@ const SocialTab = (props: TabProps) => {
 
 const ShowFilteringTabs = (props: FilterProps) => {
     if (props.page === 'rent' || props.page === 'my-space') {
-        return <FilteringTabsContainer />;
+        return (
+            <FilteringTabsComponent
+                userdata={props.parentProps.userdata}
+                categoriesArray={props.parentProps.categoriesArray}
+                gotoListBooks={props.parentProps.gotoListBooks}
+            />
+        );
     }
     return null;
 };
@@ -97,7 +105,7 @@ const BannerComponent = (props: Props) => {
                         <SocialTab parentProps={props} setPage={(page: string) => setPage(page)} />
                     </p>
                 </div>
-                <ShowFilteringTabs page={page} />
+                <ShowFilteringTabs parentProps={props} page={page} />
             </div>
         </PageHeader>
     );
