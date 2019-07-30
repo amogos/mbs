@@ -2,6 +2,12 @@ import { connect } from 'react-redux';
 import { pageAction } from '../actions/';
 import BannerComponent from '../components/banner_component';
 
+function mapStateToProps(state) {
+    return {
+        userdata: state.mainReducer.userdata,
+    };
+}
+
 const mapDispatchToProps = dispatch => {
     return {
         gotoListBooks: filters => dispatch(pageAction.gotoListBooks(filters)),
@@ -11,6 +17,6 @@ const mapDispatchToProps = dispatch => {
     };
 };
 export default connect(
-    null,
+    mapStateToProps,
     mapDispatchToProps,
 )(BannerComponent);

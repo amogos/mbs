@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import SocialLoginContainer from './../containers/social_login_container';
-import { PageHeader, Button } from 'antd';
+import { PageHeader, Button, Avatar } from 'antd';
 import FilteringTabsContainer from '../containers/filtering_tabs_container';
+import * as DataTypes from './../types';
 
 interface Props {
     gotoListBooks(filters: string[]): void;
     gotoAddBook(): void;
     gotoNotifications(): void;
+    userdata: DataTypes.UserRecordType;
 }
 
 interface FilterProps {
@@ -14,7 +16,7 @@ interface FilterProps {
 }
 
 const ShowFilteringTabs = (props: FilterProps) => {
-    if (props.page === 'search') {
+    if (props.page === 'rent' || props.page === 'my-space') {
         return <FilteringTabsContainer />;
     }
     return null;
@@ -22,7 +24,6 @@ const ShowFilteringTabs = (props: FilterProps) => {
 
 const BannerComponent = (props: Props) => {
     const [page, setPage] = useState('');
-
     return (
         <PageHeader title="" breadcrumb={{}}>
             <div className="wrap">
@@ -32,30 +33,41 @@ const BannerComponent = (props: Props) => {
                             type="link"
                             onClick={() => {
                                 props.gotoListBooks([]);
-                                setPage('search');
+                                setPage('my-space');
                             }}
                         >
                             <img
                                 src="https://gw.alipayobjects.com/zos/rmsportal/MjEImQtenlyueSmVEfUD.svg"
                                 alt="start"
                             />{' '}
-                            Search
+                            MySpace
                         </Button>
-
                         <Button
                             type="link"
                             onClick={() => {
                                 props.gotoAddBook();
-                                setPage('add');
+                                setPage('spaces');
                             }}
                         >
                             <img
                                 src="https://gw.alipayobjects.com/zos/rmsportal/NbuDUAuBlIApFuDvWiND.svg"
                                 alt="start"
                             />{' '}
-                            Add Book
+                            Spaces
                         </Button>
-
+                        <Button
+                            type="link"
+                            onClick={() => {
+                                props.gotoListBooks(['owner!=' + props.userdata.id]);
+                                setPage('rent');
+                            }}
+                        >
+                            <img
+                                src="https://gw.alipayobjects.com/zos/rmsportal/ohOEPSYdDTNnyMbGuyLb.svg"
+                                alt="start"
+                            />{' '}
+                            Rent
+                        </Button>
                         <Button
                             type="link"
                             onClick={() => {
@@ -69,8 +81,9 @@ const BannerComponent = (props: Props) => {
                             />{' '}
                             Notifications
                         </Button>
-
-                        <SocialLoginContainer />
+                        <Button type="link">
+                            <SocialLoginContainer />
+                        </Button>
                     </p>
                 </div>
                 <ShowFilteringTabs page={page} />

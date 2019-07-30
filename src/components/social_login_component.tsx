@@ -1,6 +1,7 @@
 import React from 'react';
 import * as DataTypes from '../types';
 import FacebookContainer from './../containers/facebook_container';
+import { Avatar } from 'antd';
 
 interface Props {
     userdata: DataTypes.UserRecordType;
@@ -9,7 +10,11 @@ interface Props {
 const SocialLoginComponent = (props: Props) => {
     let content;
     if (props.userdata && props.userdata.value.name) {
-        content = <div style={{ color: 'white' }}>Welcome: {props.userdata.value.name}</div>;
+        content = (
+            <span>
+                <Avatar src={props.userdata.value.picture} /> Profile
+            </span>
+        );
     } else {
         content = <FacebookContainer />;
     }
