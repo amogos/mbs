@@ -44,7 +44,7 @@ const SpaceFilteringTabsComponent = (props: Props) => {
                 break;
             case tabIds[1]:
                 {
-                    filters = ['owner=' + props.spaceOwnerId, 'holder > 0'];
+                    filters = ['owner=' + props.spaceOwnerId, 'holder_gte=0'];
                 }
                 break;
             case tabIds[2]:
