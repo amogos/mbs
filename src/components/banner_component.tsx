@@ -3,6 +3,9 @@ import SocialLoginContainer from './../containers/social_login_container';
 import { PageHeader, Button } from 'antd';
 import FilteringTabsComponent from '../components/filtering_tabs_component';
 import * as DataTypes from './../types';
+import * as Strings from './../constants/string_constant';
+
+const { FilteringTabsStrings } = Strings.default;
 
 interface Props {
     gotoListBooks(filters: string[]): void;
@@ -80,11 +83,30 @@ const SocialTab = (props: TabProps) => {
 
 const ShowFilteringTabs = (props: FilterProps) => {
     if (props.page === 'rent' || props.page === 'my-space') {
+        const tabIds = ['rented', 'assigned', 'all'];
+        const defaultTabIndex = 2;
+        const currentUserId = props.parentProps.userdata.id;
+        const filters = [
+            ['holder=' + currentUserId],
+            ['owner=' + currentUserId, 'holder_gte=0'],
+            ['owner=' + currentUserId],
+        ];
+        const icons = ['apple', 'android', 'android'];
+        const titles = [
+            FilteringTabsStrings.MYBOOKSHELVE_STRING_RENTED,
+            FilteringTabsStrings.MYBOOKSHELVE_STRING_ASSIGNED,
+            FilteringTabsStrings.MYBOOKSHELVE_STRING_ALL,
+        ];
         return (
             <FilteringTabsComponent
                 spaceOwnerId={props.parentProps.userdata.id}
                 categoriesArray={props.parentProps.categoriesArray}
                 gotoListBooks={props.parentProps.gotoListBooks}
+                tabIds={tabIds}
+                defaultTabIndex={defaultTabIndex}
+                filters={filters}
+                icons={icons}
+                titles={titles}
             />
         );
     }

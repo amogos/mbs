@@ -1,101 +1,89 @@
 import React, { useState } from 'react';
 import * as DataTypes from './../types';
 import { Icon, Tabs, Select } from 'antd';
-import * as Strings from './../constants/string_constant';
 
 const { Option } = Select;
-const { FilteringTabsStrings } = Strings.default;
 
 interface Props {
     categoriesArray: DataTypes.CategoryRecordType[];
     gotoListBooks(filters: string[]): void;
     spaceOwnerId: number;
+    tabIds: string[];
+    filters: string[][];
+    defaultTabIndex: number;
+    icons: string[];
+    titles: string[];
 }
 
-const SpaceFilteringTabsComponent = (props: Props) => {
+const FilteringTabsComponent = (props: Props) => {
     const { TabPane } = Tabs;
-    const tabIds = ['rented', 'assigned', 'all'];
-    const [tab, setTab] = useState(tabIds[2]);
+    const tabIds = props.tabIds;
+    const [tab, setTab] = useState(tabIds[props.defaultTabIndex]);
     const [categoryFilters, setCategoryFilters] = useState(['']);
 
     function handleMultiFilterChange(value: string[]) {
         let filters: string[] = [];
+
         value.forEach(category => {
             filters = [...filters, 'category=' + category];
         });
+
         setCategoryFilters(filters);
-        filters = [...filters, 'owner=' + props.spaceOwnerId];
+        if (props.spaceOwnerId > 0) filters = [...filters, 'owner=' + props.spaceOwnerId];
         props.gotoListBooks(filters);
     }
 
-    function getCategories(props: Props) {
+    function CategoriesSelection(props: Props) {
         const children: any[] = [];
         props.categoriesArray.forEach(category => children.push(<Option key={category.id}>{category.title}</Option>));
         return children;
     }
 
+    function TabsListing(props: Props) {
+        const children: any[] = [];
+        props.tabIds.forEach((value, index) =>
+            children.push(
+                <TabPane
+                    tab={
+                        <span>
+                            <Icon type={props.icons[index]} />
+                            {props.titles[index]}
+                        </span>
+                    }
+                    key={value}
+                />,
+            ),
+        );
+        return children;
+    }
+
     const onTabSelectionChanged = (key: string) => {
         let filters: string[] = [];
-        switch (key) {
-            case tabIds[0]:
-                {
-                    filters = ['holder=' + props.spaceOwnerId];
-                }
-                break;
-            case tabIds[1]:
-                {
-                    filters = ['owner=' + props.spaceOwnerId, 'holder_gte=0'];
-                }
-                break;
-            case tabIds[2]:
-                {
-                    filters = [...categoryFilters, 'owner=' + props.spaceOwnerId];
-                }
-                break;
-        }
-        setTab(key);
+        props.tabIds.forEach((value, index) => {
+            if (key === value) {
+                filters = props.filters[index];
+                filters = filters.concat(categoryFilters);
+                setTab(key);
+            }
+        });
         props.gotoListBooks(filters);
     };
 
     return (
-        <Tabs defaultActiveKey={tab} onChange={(key: string) => onTabSelectionChanged(key)}>
-            <TabPane
-                tab={
-                    <span>
-                        <Icon type="apple" />
-                        {FilteringTabsStrings.MYBOOKSHELVE_STRING_RENTED}
-                    </span>
-                }
-                key={tabIds[0]}
-            />
-            <TabPane
-                tab={
-                    <span>
-                        <Icon type="android" />
-                        {FilteringTabsStrings.MYBOOKSHELVE_STRING_ASSIGNED}
-                    </span>
-                }
-                key={tabIds[1]}
-            />
-            <TabPane
-                tab={
-                    <span>
-                        <Icon type="android" />
-                        {FilteringTabsStrings.MYBOOKSHELVE_STRING_ALL} &nbsp;
-                        <Select
-                            mode="multiple"
-                            style={{ width: '100%' }}
-                            placeholder="Filter by category"
-                            onChange={handleMultiFilterChange}
-                        >
-                            {getCategories(props)}
-                        </Select>
-                    </span>
-                }
-                key={tabIds[2]}
-            />
-        </Tabs>
+        <span>
+            <Tabs defaultActiveKey={tab} onChange={(key: string) => onTabSelectionChanged(key)}>
+                {TabsListing(props)}
+            </Tabs>
+            <Select
+                mode="multiple"
+                style={{ width: '100%' }}
+                placeholder="Filter by category"
+                onChange={handleMultiFilterChange}
+            >
+                {CategoriesSelection(props)}
+            </Select>
+        </span>
     );
 };
 
-export default SpaceFilteringTabsComponent;
+export default FilteringTabsComponent;
