@@ -7,7 +7,6 @@ const { Option } = Select;
 interface Props {
     categoriesArray: DataTypes.CategoryRecordType[];
     gotoListBooks(filters: string[]): void;
-    spaceOwnerId: number;
     tabIds: string[];
     filters: string[][];
     defaultTabIndex: number;
@@ -29,7 +28,8 @@ const FilteringTabsComponent = (props: Props) => {
         });
 
         setCategoryFilters(filters);
-        if (props.spaceOwnerId > 0) filters = [...filters, 'owner=' + props.spaceOwnerId];
+
+        filters = filters.concat(props.filters[props.defaultTabIndex]);
         props.gotoListBooks(filters);
     }
 

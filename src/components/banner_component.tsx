@@ -98,7 +98,6 @@ const ShowSpaceFilteringTabs = (props: FilterProps) => {
     ];
     return (
         <FilteringTabsComponent
-            spaceOwnerId={props.parentProps.userdata.id}
             categoriesArray={props.parentProps.categoriesArray}
             gotoListBooks={props.parentProps.gotoListBooks}
             tabIds={tabIds}
@@ -119,7 +118,6 @@ const ShowRentFilteringTabs = (props: FilterProps) => {
     const titles = [FilteringTabsStrings.MYBOOKSHELVE_STRING_ASSIGNED, FilteringTabsStrings.MYBOOKSHELVE_STRING_ALL];
     return (
         <FilteringTabsComponent
-            spaceOwnerId={props.parentProps.userdata.id}
             categoriesArray={props.parentProps.categoriesArray}
             gotoListBooks={props.parentProps.gotoListBooks}
             tabIds={tabIds}
