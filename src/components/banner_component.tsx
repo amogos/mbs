@@ -51,7 +51,7 @@ const SpacesTab = (props: TabProps) => {
 
 const RentTab = (props: TabProps) => {
     const clickFunction = () => {
-        props.parentProps.gotoListBooks(['owner!=' + props.parentProps.userdata.id]);
+        props.parentProps.gotoListBooks(['owner_ne=' + props.parentProps.userdata.id]);
         props.setPage('rent');
     };
     return (
@@ -81,34 +81,61 @@ const SocialTab = (props: TabProps) => {
     );
 };
 
+const ShowSpaceFilteringTabs = (props: FilterProps) => {
+    const tabIds = ['rented', 'assigned', 'all'];
+    const defaultTabIndex = 2;
+    const currentUserId = props.parentProps.userdata.id;
+    const filters = [
+        ['holder=' + currentUserId],
+        ['owner=' + currentUserId, 'holder_gte=0'],
+        ['owner=' + currentUserId],
+    ];
+    const icons = ['apple', 'android', 'android'];
+    const titles = [
+        FilteringTabsStrings.MYBOOKSHELVE_STRING_RENTED,
+        FilteringTabsStrings.MYBOOKSHELVE_STRING_ASSIGNED,
+        FilteringTabsStrings.MYBOOKSHELVE_STRING_ALL,
+    ];
+    return (
+        <FilteringTabsComponent
+            spaceOwnerId={props.parentProps.userdata.id}
+            categoriesArray={props.parentProps.categoriesArray}
+            gotoListBooks={props.parentProps.gotoListBooks}
+            tabIds={tabIds}
+            defaultTabIndex={defaultTabIndex}
+            filters={filters}
+            icons={icons}
+            titles={titles}
+        />
+    );
+};
+
+const ShowRentFilteringTabs = (props: FilterProps) => {
+    const tabIds = ['assigned', 'all'];
+    const defaultTabIndex = 1;
+    const currentUserId = props.parentProps.userdata.id;
+    const filters = [['owner_ne=' + currentUserId, 'holder_gte=1'], ['owner_ne=' + currentUserId]];
+    const icons = ['apple', 'android'];
+    const titles = [FilteringTabsStrings.MYBOOKSHELVE_STRING_ASSIGNED, FilteringTabsStrings.MYBOOKSHELVE_STRING_ALL];
+    return (
+        <FilteringTabsComponent
+            spaceOwnerId={props.parentProps.userdata.id}
+            categoriesArray={props.parentProps.categoriesArray}
+            gotoListBooks={props.parentProps.gotoListBooks}
+            tabIds={tabIds}
+            defaultTabIndex={defaultTabIndex}
+            filters={filters}
+            icons={icons}
+            titles={titles}
+        />
+    );
+};
+
 const ShowFilteringTabs = (props: FilterProps) => {
-    if (props.page === 'rent' || props.page === 'my-space') {
-        const tabIds = ['rented', 'assigned', 'all'];
-        const defaultTabIndex = 2;
-        const currentUserId = props.parentProps.userdata.id;
-        const filters = [
-            ['holder=' + currentUserId],
-            ['owner=' + currentUserId, 'holder_gte=0'],
-            ['owner=' + currentUserId],
-        ];
-        const icons = ['apple', 'android', 'android'];
-        const titles = [
-            FilteringTabsStrings.MYBOOKSHELVE_STRING_RENTED,
-            FilteringTabsStrings.MYBOOKSHELVE_STRING_ASSIGNED,
-            FilteringTabsStrings.MYBOOKSHELVE_STRING_ALL,
-        ];
-        return (
-            <FilteringTabsComponent
-                spaceOwnerId={props.parentProps.userdata.id}
-                categoriesArray={props.parentProps.categoriesArray}
-                gotoListBooks={props.parentProps.gotoListBooks}
-                tabIds={tabIds}
-                defaultTabIndex={defaultTabIndex}
-                filters={filters}
-                icons={icons}
-                titles={titles}
-            />
-        );
+    if (props.page === 'my-space') {
+        return ShowSpaceFilteringTabs(props);
+    } else if (props.page === 'rent') {
+        return ShowRentFilteringTabs(props);
     }
     return null;
 };
