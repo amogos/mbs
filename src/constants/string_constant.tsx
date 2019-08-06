@@ -9,6 +9,8 @@ export default {
         MYBOOKSHELVE_STRING_ASSIGNED: 'Assigned',
         MYBOOKSHELVE_STRING_ALL: 'All Space',
     },
+    MYBOOKSHELVE_ADD_NEW_BOOK_BUTTON: '+',
+    MYBOOKSHELVE_ADD_NEW_BOOK_TITLE: 'Add Book',
     MYBOOKSHELVE_PENDING_ASSIGNMENT: 'Pending assignment',
     MYBOOKSHELVE_INVALID_FIELDS: 'Invalid fields',
 };

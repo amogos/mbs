@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import SocialLoginContainer from './../containers/social_login_container';
-import { PageHeader, Button } from 'antd';
+import { PageHeader, Button, Modal } from 'antd';
 import FilteringTabsComponent from '../components/filtering_tabs_component';
 import * as DataTypes from './../types';
 import * as Strings from './../constants/string_constant';
+import AddNewBookComponent from './add_new_book_component';
 
 const { FilteringTabsStrings } = Strings.default;
 
@@ -12,7 +13,9 @@ interface Props {
     gotoAddBook(): void;
     gotoNotifications(): void;
     userdata: DataTypes.UserRecordType;
-    categoriesArray: DataTypes.CategoryRecordType[];
+    categories: DataTypes.CategoryRecordType[];
+    languages: DataTypes.LanguageRecordType[];
+    addBook(book: DataTypes.BookValueType): void;
 }
 
 interface FilterProps {
@@ -98,7 +101,7 @@ const ShowSpaceFilteringTabs = (props: FilterProps) => {
     ];
     return (
         <FilteringTabsComponent
-            categoriesArray={props.parentProps.categoriesArray}
+            categories={props.parentProps.categories}
             gotoListBooks={props.parentProps.gotoListBooks}
             tabIds={tabIds}
             defaultTabIndex={defaultTabIndex}
@@ -118,7 +121,7 @@ const ShowRentFilteringTabs = (props: FilterProps) => {
     const titles = [FilteringTabsStrings.MYBOOKSHELVE_STRING_ASSIGNED, FilteringTabsStrings.MYBOOKSHELVE_STRING_ALL];
     return (
         <FilteringTabsComponent
-            categoriesArray={props.parentProps.categoriesArray}
+            categories={props.parentProps.categories}
             gotoListBooks={props.parentProps.gotoListBooks}
             tabIds={tabIds}
             defaultTabIndex={defaultTabIndex}
@@ -138,23 +141,33 @@ const ShowFilteringTabs = (props: FilterProps) => {
     return null;
 };
 
+const ShowAddBookButton = (props: FilterProps) => {
+    if (props.page === 'my-space') {
+        return <AddNewBookComponent {...props.parentProps} />;
+    }
+    return null;
+};
+
 const BannerComponent = (props: Props) => {
     const [page, setPage] = useState('');
     return (
-        <PageHeader title="" breadcrumb={{}}>
-            <div className="wrap">
-                <div className="content">
-                    <p className="contentLink">
-                        <MySpaceTab parentProps={props} setPage={(page: string) => setPage(page)} />
-                        <SpacesTab parentProps={props} setPage={(page: string) => setPage(page)} />
-                        <RentTab parentProps={props} setPage={(page: string) => setPage(page)} />
-                        <NotificationsTab parentProps={props} setPage={(page: string) => setPage(page)} />
-                        <SocialTab parentProps={props} setPage={(page: string) => setPage(page)} />
-                    </p>
+        <div>
+            <PageHeader title="" breadcrumb={{}}>
+                <div className="wrap">
+                    <div className="content">
+                        <p className="contentLink">
+                            <MySpaceTab parentProps={props} setPage={(page: string) => setPage(page)} />
+                            <SpacesTab parentProps={props} setPage={(page: string) => setPage(page)} />
+                            <RentTab parentProps={props} setPage={(page: string) => setPage(page)} />
+                            <NotificationsTab parentProps={props} setPage={(page: string) => setPage(page)} />
+                            <SocialTab parentProps={props} setPage={(page: string) => setPage(page)} />
+                        </p>
+                    </div>
+                    <ShowFilteringTabs parentProps={props} page={page} />
                 </div>
-                <ShowFilteringTabs parentProps={props} page={page} />
-            </div>
-        </PageHeader>
+            </PageHeader>
+            <ShowAddBookButton parentProps={props} page={page} />
+        </div>
     );
 };
 

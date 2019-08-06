@@ -54,13 +54,15 @@ export default function pageReducer(state: any, action: any): any {
             return Object.assign({}, state, {
                 action: PageActionConstant.ACTION_GOTO_LIST_BOOKS,
                 filters: action.filters,
-                categoriesArray: GlobalVars.categoriesArray,
+                categories: GlobalVars.categoriesArray,
+                languages: GlobalVars.languagesArray,
             });
         case PageActionConstant.ACTION_LIST_BOOKS:
             return Object.assign({}, state, {
                 action: PageActionConstant.ACTION_LIST_BOOKS,
                 booksArray: GlobalVars.booksArray,
                 queueArray: GlobalVars.queueArray,
+                languages: GlobalVars.languagesArray,
             });
 
         default:

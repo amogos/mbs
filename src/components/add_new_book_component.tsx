@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import * as DataTypes from '../types';
 import * as BookStates from '../constants/book_states_constant';
 import * as StringConstant from './../constants/string_constant';
-import { Select, Input, Button, message } from 'antd';
+import { Select, Input, Button, message, Modal } from 'antd';
 
 const { Option } = Select;
 const InputGroup = Input.Group;
@@ -31,6 +31,7 @@ const AddNewBookComponent = (props: Props) => {
     const [author, setAuthor] = useState('');
     const [language, setLanguage] = useState(0);
     const [category, setCategory] = useState(0);
+    const [visible, setVisible] = useState(false);
 
     const onLanguageSelected = (value: number) => {
         if (value < 0 || value > props.languages.length) return;
@@ -71,48 +72,59 @@ const AddNewBookComponent = (props: Props) => {
     currentBook.owner = props.userdata;
 
     return (
-        <div className="basic-input-container">
-            <InputGroup>
-                <Input
-                    placeholder="Title"
-                    onChange={element => {
-                        setTitle(element.target.value);
-                        currentBook.title = element.target.value;
-                    }}
-                    value={title}
-                />
-                <Input
-                    placeholder="Author"
-                    onChange={element => {
-                        setAuthor(element.target.value);
-                        currentBook.author = element.target.value;
-                    }}
-                    value={author}
-                />
-                <Select
-                    style={{ width: 200 }}
-                    placeholder="Select language"
-                    onChange={(value: number) => {
-                        return onLanguageSelected(value);
-                    }}
-                >
-                    {languages()}
-                </Select>
-
-                <Select
-                    style={{ width: 200 }}
-                    placeholder="Select categorye"
-                    onChange={(value: number) => {
-                        return onCategorySelected(value);
-                    }}
-                >
-                    {categories()}
-                </Select>
-            </InputGroup>
-
-            <Button type="primary" onClick={() => onSaveButtonPressed()}>
-                Save
+        <div>
+            <Button type="primary" onClick={() => setVisible(true)}>
+                {StringConstant.default.MYBOOKSHELVE_ADD_NEW_BOOK_BUTTON}
             </Button>
+            <Modal
+                title={StringConstant.default.MYBOOKSHELVE_ADD_NEW_BOOK_TITLE}
+                visible={visible}
+                onOk={() => {
+                    onSaveButtonPressed();
+                    setVisible(false);
+                }}
+                onCancel={() => setVisible(false)}
+            >
+                <div>
+                    <InputGroup>
+                        <Input
+                            placeholder="Title"
+                            onChange={element => {
+                                setTitle(element.target.value);
+                                currentBook.title = element.target.value;
+                            }}
+                            value={title}
+                        />
+                        <Input
+                            placeholder="Author"
+                            onChange={element => {
+                                setAuthor(element.target.value);
+                                currentBook.author = element.target.value;
+                            }}
+                            value={author}
+                        />
+                        <Select
+                            style={{ width: 200 }}
+                            placeholder="Select language"
+                            onChange={(value: number) => {
+                                return onLanguageSelected(value);
+                            }}
+                        >
+                            {languages()}
+                        </Select>
+
+                        <Select
+                            style={{ width: 200 }}
+                            placeholder="Select categorye"
+                            onChange={(value: number) => {
+                                return onCategorySelected(value);
+                            }}
+                        >
+                            {categories()}
+                        </Select>
+                    </InputGroup>
+                </div>
+            </Modal>
         </div>
     );
 };

@@ -5,7 +5,8 @@ import BannerComponent from '../components/banner_component';
 function mapStateToProps(state) {
     return {
         userdata: state.mainReducer.userdata,
-        categoriesArray: state.mainReducer.categoriesArray,
+        categories: state.mainReducer.categories,
+        languages: state.mainReducer.languages,
     };
 }
 
@@ -14,6 +15,7 @@ const mapDispatchToProps = dispatch => {
         gotoListBooks: filters => dispatch(pageAction.gotoListBooks(filters)),
         gotoAddBook: () => dispatch(pageAction.gotoAddBook()),
         gotoNotifications: () => dispatch(pageAction.gotoNotifications()),
+        addBook: data => dispatch(pageAction.addBook(data)),
         dispatch,
     };
 };

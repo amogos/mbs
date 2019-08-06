@@ -5,7 +5,7 @@ import { Icon, Tabs, Select } from 'antd';
 const { Option } = Select;
 
 interface Props {
-    categoriesArray: DataTypes.CategoryRecordType[];
+    categories: DataTypes.CategoryRecordType[];
     gotoListBooks(filters: string[]): void;
     tabIds: string[];
     filters: string[][];
@@ -35,7 +35,7 @@ const FilteringTabsComponent = (props: Props) => {
 
     function CategoriesSelection(props: Props) {
         const children: any[] = [];
-        props.categoriesArray.forEach(category => children.push(<Option key={category.id}>{category.title}</Option>));
+        props.categories.forEach(category => children.push(<Option key={category.id}>{category.title}</Option>));
         return children;
     }
 
