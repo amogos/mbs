@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import SocialLoginContainer from './../containers/social_login_container';
-import { PageHeader, Button, Modal } from 'antd';
+import { PageHeader, Button } from 'antd';
 import FilteringTabsComponent from '../components/filtering_tabs_component';
 import * as DataTypes from './../types';
 import * as Strings from './../constants/string_constant';
@@ -132,7 +132,7 @@ const ShowRentFilteringTabs = (props: FilterProps) => {
     );
 };
 
-const ShowFilteringTabs = (props: FilterProps) => {
+const FilteringTabs = (props: FilterProps) => {
     if (props.page === 'my-space') {
         return ShowSpaceFilteringTabs(props);
     } else if (props.page === 'rent') {
@@ -141,7 +141,7 @@ const ShowFilteringTabs = (props: FilterProps) => {
     return null;
 };
 
-const ShowAddBookButton = (props: FilterProps) => {
+const AddBookButton = (props: FilterProps) => {
     if (props.page === 'my-space') {
         return <AddNewBookComponent {...props.parentProps} />;
     }
@@ -163,10 +163,10 @@ const BannerComponent = (props: Props) => {
                             <SocialTab parentProps={props} setPage={(page: string) => setPage(page)} />
                         </p>
                     </div>
-                    <ShowFilteringTabs parentProps={props} page={page} />
+                    <FilteringTabs parentProps={props} page={page} />
                 </div>
             </PageHeader>
-            <ShowAddBookButton parentProps={props} page={page} />
+            <AddBookButton parentProps={props} page={page} />
         </div>
     );
 };
