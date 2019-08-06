@@ -30,11 +30,9 @@ export default function pageReducer(state: any, action: any): any {
                 action: PageActionConstant.ACTION_GOTO_NOTIFICATIONS,
                 notifications: GlobalVars.rentalNotificationsArray,
             });
-        case PageActionConstant.ACTION_GOTO_ADD_BOOK:
+        case PageActionConstant.ACTION_GOTO_SPACES:
             return Object.assign({}, state, {
-                action: ActionConstants.default.PageActionConstant.ACTION_GOTO_ADD_BOOK,
-                languages: GlobalVars.languagesArray,
-                categories: GlobalVars.categoriesArray,
+                action: ActionConstants.default.PageActionConstant.ACTION_GOTO_SPACES,
             });
         case PageActionConstant.ACTION_ADD_BOOK:
             databseInstance.addBook(action.data, handleError);

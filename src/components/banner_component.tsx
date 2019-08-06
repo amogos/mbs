@@ -10,7 +10,7 @@ const { FilteringTabsStrings } = Strings.default;
 
 interface Props {
     gotoListBooks(filters: string[]): void;
-    gotoAddBook(): void;
+    gotoSpaces(): void;
     gotoNotifications(): void;
     userdata: DataTypes.UserRecordType;
     categories: DataTypes.CategoryRecordType[];
@@ -42,7 +42,7 @@ const MySpaceTab = (props: TabProps) => {
 
 const SpacesTab = (props: TabProps) => {
     const clickFunction = () => {
-        props.parentProps.gotoAddBook();
+        props.parentProps.gotoSpaces();
         props.setPage('spaces');
     };
     return (

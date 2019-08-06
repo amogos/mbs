@@ -13,7 +13,7 @@ function mapStateToProps(state) {
 const mapDispatchToProps = dispatch => {
     return {
         gotoListBooks: filters => dispatch(pageAction.gotoListBooks(filters)),
-        gotoAddBook: () => dispatch(pageAction.gotoAddBook()),
+        gotoSpaces: () => dispatch(pageAction.gotoSpaces()),
         gotoNotifications: () => dispatch(pageAction.gotoNotifications()),
         addBook: data => dispatch(pageAction.addBook(data)),
         dispatch,

@@ -33,7 +33,7 @@ describe('Testing tree reducer branching', () => {
         expect(treeReducer(undefined, { type: 'none' })).toEqual(initialState);
     });
     it('Should return goto add book state', () => {
-        expect(treeReducer({}, pageAction.gotoAddBook())).toEqual({ action: PageActionConstant.ACTION_GOTO_ADD_BOOK });
+        expect(treeReducer({}, pageAction.gotoSpaces())).toEqual({ action: PageActionConstant.ACTION_GOTO_SPACES });
     });
     it('Should return finalized addBook state', () => {
         expect(treeReducer({}, pageAction.addBook(bookValue))).toEqual({ action: PageActionConstant.ACTION_ADD_BOOK });
