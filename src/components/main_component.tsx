@@ -10,7 +10,7 @@ interface Props {
 const { PageActionConstant } = ActionTypes.default;
 
 const MainComponent = (props: Props) => {
-    if (props.action === PageActionConstant.ACTION_LIST_BOOKS) {
+    if (props.action === PageActionConstant.ACTION_LIST_BOOKS || props.action === PageActionConstant.ACTION_ADD_BOOK) {
         return <ListBooksContainer />;
     } else if (props.action === PageActionConstant.ACTION_GOTO_NOTIFICATIONS) return <NotificationsContainer />;
     else return null;

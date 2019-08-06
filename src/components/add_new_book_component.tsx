@@ -12,6 +12,7 @@ interface Props {
     categories: DataTypes.CategoryRecordType[];
     userdata: DataTypes.UserRecordType;
     addBook(book: DataTypes.BookValueType): void;
+    gotoListBooks(filters: string[]): void;
 }
 const defaultImage =
     'https://vignette.wikia.nocookie.net/superfriends/images/a/a5/No_Photo_Available.jpg/revision/latest?cb=20090329133959';
@@ -65,6 +66,7 @@ const AddNewBookComponent = (props: Props) => {
             return;
         }
         props.addBook(currentBook);
+        props.gotoListBooks(['owner=' + props.userdata.id]);
         setTitle('');
         setAuthor('');
     };
@@ -115,7 +117,7 @@ const AddNewBookComponent = (props: Props) => {
 
                         <Select
                             style={{ width: 200 }}
-                            placeholder="Select categorye"
+                            placeholder="Select category"
                             onChange={(value: number) => {
                                 return onCategorySelected(value);
                             }}
