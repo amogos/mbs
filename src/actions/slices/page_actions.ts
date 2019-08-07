@@ -3,6 +3,7 @@ import * as DataTypes from '../../types';
 
 class PageAction {
     public gotoSpaces = () => ({ type: ActionTypes.default.PageActionConstant.ACTION_GOTO_SPACES });
+
     public addBook = (data: DataTypes.BookValueType) => ({
         type: ActionTypes.default.PageActionConstant.ACTION_ADD_BOOK,
         data,

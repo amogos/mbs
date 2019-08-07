@@ -78,3 +78,8 @@ export const NullUser: UserRecordType = {
 export const NullLanguage: LanguageRecordType = { id: 0, language: '' };
 
 export const NullCategory: CategoryRecordType = { id: 0, title: '' };
+
+export interface SpaceType {
+    user: UserRecordType;
+    nbooks: number;
+}

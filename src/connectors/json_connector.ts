@@ -1,6 +1,7 @@
 import axios from 'axios';
 import * as DataTypes from '../types';
 import * as BookStateTypes from '../constants/book_states_constant';
+import { SSL_OP_SSLEAY_080_CLIENT_DH_BUG } from 'constants';
 
 export default class JsonConnector {
     public constructor() {
@@ -62,12 +63,42 @@ export default class JsonConnector {
         return categoryArray;
     }
 
+    public async getSpaces(onError: (resultCode: number) => void): Promise<DataTypes.SpaceType[]> {
+        let spacesArray: DataTypes.SpaceType[] = [];
+        this.startedJobs = this.completedJobs = 0;
+        await axios
+            .get(this.urlUsers)
+            .then(response => {
+                this.startedJobs++;
+                response.data.forEach(async (item: DataTypes.UserRecordType) => {
+                    await axios
+                        .get(this.urlBooks + '?owner=' + item.id)
+                        .then(response => {
+                            if (response.data.length > 0) {
+                                const space: DataTypes.SpaceType = { user: item, nbooks: response.data.length };
+                                spacesArray.push(space);
+                            }
+                            this.completedJobs++;
+                        })
+                        .catch(error => {
+                            onError(error);
+                        });
+                });
+            })
+            .catch(error => {
+                onError(error);
+            });
+        await this.workInProgress();
+        return spacesArray;
+    }
+
     public async getBooks(
         filters: string[],
         onError: (resultCode: number) => void,
     ): Promise<DataTypes.BookRecordType[]> {
         let booksArray: DataTypes.BookRecordType[] = [];
         let filterdBooksUrl = this.urlBooks;
+        this.startedJobs = this.completedJobs = 0;
         if (filters && filters.length > 0) {
             filterdBooksUrl += '?' + filters.join('&');
         }
@@ -298,6 +329,7 @@ export default class JsonConnector {
         user: DataTypes.UserRecordType,
         onError: (resultCode: number) => void,
     ): Promise<DataTypes.RentalNotificationRecordType[]> {
+        this.startedJobs = this.completedJobs = 0;
         let rentalNotifications: DataTypes.RentalNotificationRecordType[] = [];
         await axios
             .get(this.urlQueues + '?ownerId=' + user.id)
