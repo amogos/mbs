@@ -75,7 +75,10 @@ export default class JsonConnector {
                         .get(this.urlBooks + '?owner=' + item.id)
                         .then(response => {
                             if (response.data.length > 0) {
-                                const space: DataTypes.SpaceType = { user: item, nbooks: response.data.length };
+                                const space: DataTypes.SpaceType = {
+                                    user: DataTypes.dbUserToObject(item),
+                                    nbooks: response.data.length,
+                                };
                                 spacesArray.push(space);
                             }
                             this.completedJobs++;
