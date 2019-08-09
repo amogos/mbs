@@ -1,7 +1,7 @@
 import axios from 'axios';
 import * as DataTypes from '../types';
 import * as BookStateTypes from '../constants/book_states_constant';
-import { SSL_OP_SSLEAY_080_CLIENT_DH_BUG } from 'constants';
+
 
 export default class JsonConnector {
     public constructor() {
