@@ -1,30 +1,34 @@
 import React, { useState } from 'react';
 import { Modal, Select } from 'antd';
-import * as StringConstants from './../constants/string_constant';
+import * as StringConstants from '../constants/string_constant';
 
 interface Props {
+    visible: boolean;
     onDurationChanged(duration: number): void;
+    onClosed(): void;
 }
 
-const RentalDurationPicker = (props: Props) => {
-    const [visible, setVisible] = useState(false);
-    const [duration, setDuration] = useState(14);
+const RentalSettings = (props: Props) => {
+    const [duration, setDuration] = useState(0);
     let days = Array.from(Array(120).keys());
     const { Option } = Select;
 
     return (
         <Modal
-            title={StringConstants.default.MYBOOKSHELVE_ADD_NEW_BOOK_TITLE}
-            visible={visible}
+            title={StringConstants.default.MYBOOKSHELVE_RENTAL_SETTINGS}
+            visible={props.visible}
             onOk={() => {
+                if (duration == 0) return;
                 props.onDurationChanged(duration);
-                setVisible(false);
+                props.onClosed();
             }}
-            onCancel={() => setVisible(false)}
+            onCancel={() => {
+                props.onClosed();
+            }}
         >
             <Select
                 style={{ width: 200 }}
-                placeholder="Select category"
+                placeholder="Select rental duration"
                 onChange={(value: number) => {
                     setDuration(value);
                 }}
@@ -37,4 +41,4 @@ const RentalDurationPicker = (props: Props) => {
     );
 };
 
-export default RentalDurationPicker;
+export default RentalSettings;

@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import * as DataTypes from './../types';
 import { Icon, Button } from 'antd';
+import RentalSettings from './rental_settings';
 
 interface Icon {
     type: string;
@@ -36,15 +37,23 @@ const BookStateAssigned = (props: Props) => {
 };
 
 const BookStateAddToCart = (param: Props) => {
+    const [visible, setVisible] = useState(false);
     return (
-        <Button
-            type="link"
-            onClick={() => {
-                param.askBook(param.book.id, param.book.value.owner.id);
-            }}
-        >
-            <IconText type="shopping-cart" text="request" />
-        </Button>
+        <div>
+            <Button
+                type="link"
+                onClick={() => {
+                    setVisible(true);
+                }}
+            >
+                <IconText type="shopping-cart" text="request" />
+            </Button>
+            <RentalSettings
+                visible={visible}
+                onDurationChanged={() => param.askBook(param.book.id, param.book.value.owner.id)}
+                onClosed={() => setVisible(false)}
+            />
+        </div>
     );
 };
 

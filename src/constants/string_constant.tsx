@@ -13,4 +13,5 @@ export default {
     MYBOOKSHELVE_ADD_NEW_BOOK_TITLE: 'Add Book',
     MYBOOKSHELVE_PENDING_ASSIGNMENT: 'Pending assignment',
     MYBOOKSHELVE_INVALID_FIELDS: 'Invalid fields',
+    MYBOOKSHELVE_RENTAL_SETTINGS: 'Rental settings',
 };
