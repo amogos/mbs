@@ -160,6 +160,7 @@ export default class JsonConnector {
                         holder: holder,
                         state: item.state,
                         category: category,
+                        return: item.return,
                     };
 
                     booksArray.push({
@@ -188,6 +189,7 @@ export default class JsonConnector {
                     ...result.data,
                     state: BookStateTypes.default.STATE_BOOK_IN_TRANSIT_TO_HOLDER,
                     holder: rental.value.user.id,
+                    return: Date.now() + rental.value.duration * 24 * 60 * 60 * 60 * 1000,
                 };
                 await axios.put(this.urlBooks + '/' + rental.value.bookId, value).catch(error => {
                     onError(error);

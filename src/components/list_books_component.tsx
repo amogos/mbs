@@ -1,7 +1,8 @@
 import React from 'react';
 import * as DataTypes from './../types';
-import { List, Avatar, Icon } from 'antd';
+import { List, Avatar, Icon, Badge, Tag } from 'antd';
 import BookStateComponent from './book_state_component';
+import Moment from 'react-moment';
 
 interface Props {
     action: string;
@@ -25,6 +26,22 @@ const IconText = (param: Icon) => (
         {param.text}
     </span>
 );
+
+interface BookInfo {
+    book: DataTypes.BookValueType;
+}
+
+const AvailabilityDate = (param: BookInfo) => {
+    if (param.book.return)
+        return (
+            <Badge count={<Icon type="clock-circle" style={{ color: '#f5222d' }} />}>
+                <Tag color="red">
+                    <Moment format="YYYY/MM/DD" date={new Date(param.book.return)} />
+                </Tag>
+            </Badge>
+        );
+    return null;
+};
 
 const ListBooksComponent = (props: Props) => {
     return (
@@ -54,9 +71,14 @@ const ListBooksComponent = (props: Props) => {
                                 <a href={item.value.image}>
                                     {item.value.title}
                                     <i> ({item.value.language.language})</i>
+                                    <AvailabilityDate book={item.value} />
                                 </a>
                             }
-                            description={<div>Author: {item.value.author}</div>}
+                            description={
+                                <div>
+                                    Author: {item.value.author} <br />
+                                </div>
+                            }
                         />
                     </List.Item>
                 )}

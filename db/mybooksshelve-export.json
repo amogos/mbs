@@ -48,10 +48,11 @@
       "image": "https://images-na.ssl-images-amazon.com/images/I/51lsugWtCvL._SY498_BO1,204,203,200_.jpg",
       "language": 1,
       "owner": 1,
-      "holder": -1,
+      "holder": 2,
       "title": "The Very Hungry Caterpillar's ABC",
-      "state": "state.book.idle",
-      "category": 4
+      "state": "state.book.in.transit.to.holder",
+      "category": 4,
+      "return": 1607140134619
     },
     {
       "id": 3,

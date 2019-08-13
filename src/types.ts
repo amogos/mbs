@@ -23,6 +23,7 @@ export interface BookValueType {
     holder: UserRecordType;
     state: string;
     category: CategoryRecordType;
+    return?: number;
 }
 
 export interface LanguageRecordType {
