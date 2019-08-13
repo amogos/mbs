@@ -15,7 +15,9 @@ export default function bookReducer(state: any, action: any): any {
             const bookId: number = action.bookId;
             const ownerId: number = action.ownerId;
             const userdata = state.userdata;
-            databseInstance.askBook(bookId, ownerId, userdata, handleError).then(() => {
+            const duration = action.duration;
+
+            databseInstance.askBook(bookId, ownerId, userdata, duration, handleError).then(() => {
                 Store.dispatch(pageAction.gotoListBooks(state.filters));
             });
             return Object.assign({}, state, {

@@ -44,12 +44,14 @@ export interface RentalNotificationValue {
     user: UserRecordType;
     bookTitle: string;
     bookId: number;
+    duration: number;
 }
 
 export interface QueueValueType {
     bookId: number;
     userId: number;
     ownerId: number;
+    duration: number;
 }
 
 export interface QueueRecordType {

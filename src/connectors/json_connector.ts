@@ -2,7 +2,6 @@ import axios from 'axios';
 import * as DataTypes from '../types';
 import * as BookStateTypes from '../constants/book_states_constant';
 
-
 export default class JsonConnector {
     public constructor() {
         this.init();
@@ -238,6 +237,7 @@ export default class JsonConnector {
         bookId: number,
         ownerId: number,
         user: DataTypes.UserRecordType,
+        duration: number,
         onError: (resultCode: number) => void,
     ) {
         await axios
@@ -245,6 +245,7 @@ export default class JsonConnector {
                 userId: user.id,
                 bookId: bookId,
                 ownerId: ownerId,
+                duration: duration,
             })
             .catch(error => onError(error));
     }
@@ -319,6 +320,7 @@ export default class JsonConnector {
                             bookId: item.bookId,
                             ownerId: item.ownerId,
                             userId: item.userId,
+                            duration: item.duration,
                         } as DataTypes.QueueValueType,
                     });
                 }),
@@ -359,6 +361,7 @@ export default class JsonConnector {
                             bookTitle: title,
                             bookId: item.bookId,
                             user: user,
+                            duration: item.duration,
                         } as DataTypes.RentalNotificationValue,
                     };
                     rentalNotifications.push(notification);

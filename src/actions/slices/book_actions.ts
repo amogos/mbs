@@ -1,10 +1,11 @@
 import * as ActionTypes from '../../constants/action_constant';
 
 class BookAction {
-    public askBook = (bookId: number, ownerId: number) => ({
+    public askBook = (bookId: number, ownerId: number, duration: number) => ({
         type: ActionTypes.default.BookActionConstant.ACTION_ASK_BOOK,
         bookId,
         ownerId,
+        duration,
     });
 
     public returnBook = (bookId: number) => ({

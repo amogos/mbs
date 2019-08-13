@@ -23,6 +23,7 @@ const bookValue: DataTypes.BookValueType = {
 const bookKey = 1;
 const ownerId = 2;
 const userdata = { value: { name: 'mockuser', email: 'mockusr@gmail.com' } as DataTypes.UserValueType, id: 1 };
+const duration = 10;
 
 let booksArray: DataTypes.BookRecordType[] = new Array<DataTypes.BookRecordType>();
 booksArray.push({ id: bookKey, value: bookValue });
@@ -53,7 +54,7 @@ describe('Testing tree reducer branching', () => {
         // expect(treeReducer({}, Actions.addUserData(userdata.value))).toEqual({ userdata: userdata });
     });
     it('Should return assign book to user state', () => {
-        expect(treeReducer({}, bookAction.askBook(bookKey, ownerId))).toEqual({
+        expect(treeReducer({}, bookAction.askBook(bookKey, ownerId, duration))).toEqual({
             action: BookActionConstant.ACTION_ASK_BOOK,
             bookChangingId: bookKey,
         });

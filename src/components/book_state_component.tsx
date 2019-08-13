@@ -19,7 +19,7 @@ interface Props {
     userdata: DataTypes.UserRecordType;
     queueArray: DataTypes.QueueRecordType[];
     deleteBook(bookId: number): void;
-    askBook(bookId: number, ownerId: number): void;
+    askBook(bookId: number, ownerId: number, duration: number): void;
     returnBook(bookId: number): void;
     book: DataTypes.BookRecordType;
 }
@@ -50,7 +50,9 @@ const BookStateAddToCart = (param: Props) => {
             </Button>
             <RentalSettings
                 visible={visible}
-                onDurationChanged={() => param.askBook(param.book.id, param.book.value.owner.id)}
+                onDurationChanged={(duration: number) =>
+                    param.askBook(param.book.id, param.book.value.owner.id, duration)
+                }
                 onClosed={() => setVisible(false)}
             />
         </div>
