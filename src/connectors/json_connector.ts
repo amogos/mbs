@@ -7,6 +7,7 @@ export default class JsonConnector {
         this.init();
     }
 
+    public OneDayMilliseconds = 24 * 60 * 60 * 1000;
     public startedJobs: number = 0;
     public completedJobs: number = 0;
 
@@ -151,6 +152,15 @@ export default class JsonConnector {
                         category = { id: response.data.id, title: response.data.title };
                     });
 
+                    let returnDateMilliseconds = item.return;
+                    await axios.get(this.urlQueues + '?bookId=' + item.id).then(response => {
+                        if (response.data.length > 0) {
+                            response.data.forEach(
+                                (item: any) => (returnDateMilliseconds += this.OneDayMilliseconds * item.duration),
+                            );
+                        }
+                    });
+
                     let bookValue: DataTypes.BookValueType = {
                         title: item.title,
                         image: item.image,
@@ -160,7 +170,7 @@ export default class JsonConnector {
                         holder: holder,
                         state: item.state,
                         category: category,
-                        return: item.return,
+                        return: returnDateMilliseconds,
                     };
 
                     booksArray.push({
@@ -189,7 +199,7 @@ export default class JsonConnector {
                     ...result.data,
                     state: BookStateTypes.default.STATE_BOOK_IN_TRANSIT_TO_HOLDER,
                     holder: rental.value.user.id,
-                    return: Date.now() + rental.value.duration * 24 * 60 * 60 * 1000,
+                    return: Date.now() + rental.value.duration * this.OneDayMilliseconds,
                 };
                 await axios.put(this.urlBooks + '/' + rental.value.bookId, value).catch(error => {
                     onError(error);
@@ -352,21 +362,31 @@ export default class JsonConnector {
                         .catch(error => onError(error));
 
                     let title = '';
+                    let holder = -1;
                     await axios
                         .get(this.urlBooks + '/' + item.bookId)
-                        .then(response => (title = response.data.title))
+                        .then(response => {
+                            title = response.data.title;
+                            holder = response.data.holder;
+                        })
                         .catch(error => onError(error));
 
-                    let notification: DataTypes.RentalNotificationRecordType = {
-                        id: item.id,
-                        value: {
-                            bookTitle: title,
-                            bookId: item.bookId,
-                            user: user,
-                            duration: item.duration,
-                        } as DataTypes.RentalNotificationValue,
-                    };
-                    rentalNotifications.push(notification);
+                    const notAssigned = holder < 0;
+                    const alreadyOneRequestForBookIdProcessed = rentalNotifications.find(
+                        notifiction => notifiction.value.bookId === item.bookId,
+                    );
+                    if (notAssigned && !alreadyOneRequestForBookIdProcessed) {
+                        let notification: DataTypes.RentalNotificationRecordType = {
+                            id: item.id,
+                            value: {
+                                bookTitle: title,
+                                bookId: item.bookId,
+                                user: user,
+                                duration: item.duration,
+                            } as DataTypes.RentalNotificationValue,
+                        };
+                        rentalNotifications.push(notification);
+                    }
                     this.completedJobs++;
                 });
             })

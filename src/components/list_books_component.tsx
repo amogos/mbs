@@ -32,7 +32,7 @@ interface BookInfo {
 }
 
 const AvailabilityDate = (param: BookInfo) => {
-    if (param.book.return)
+    if (param.book.return && Date.now() < param.book.return)
         return (
             <Badge count={<Icon type="clock-circle" style={{ color: '#f5222d' }} />}>
                 <Tag color="red">

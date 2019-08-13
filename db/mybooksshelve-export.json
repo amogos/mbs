@@ -19,7 +19,15 @@
       "picture": "https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
     }
   ],
-  "queues": [],
+  "queues": [
+    {
+      "id": 1,
+      "userId": 3,
+      "bookId": 2,
+      "ownerId": 1,
+      "duration": 2
+    }
+  ],
   "languages": [
     {
       "id": 1,
@@ -52,7 +60,7 @@
       "title": "The Very Hungry Caterpillar's ABC",
       "state": "state.book.in.transit.to.holder",
       "category": 4,
-      "return": 1607140134619
+      "return": 1565937976485
     },
     {
       "id": 3,
