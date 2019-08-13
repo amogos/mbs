@@ -28,7 +28,7 @@ const RentalSettings = (props: Props) => {
         >
             <Select
                 style={{ width: 200 }}
-                placeholder="Select rental duration"
+                placeholder={StringConstants.default.MYBOOKSHELVE_RENTAL_DURATION}
                 onChange={(value: number) => {
                     setDuration(value);
                 }}
