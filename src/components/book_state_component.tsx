@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import * as DataTypes from './../types';
 import { Icon, Button } from 'antd';
 import RentalSettingsComponent from './rental_settings_component';
+import BookContentRating from './book_content_rating';
 
 interface Icon {
     type: string;
@@ -64,15 +65,25 @@ const BookStateCarryOut = (props: Props) => {
 };
 
 const BookStateReturn = (props: Props) => {
+    const [showRatingModal, setShowRatingModal] = useState(false);
+
     return (
-        <Button
-            type="link"
-            onClick={() => {
-                props.returnBook(props.book.id);
-            }}
-        >
-            <IconText type="import" text="return" />
-        </Button>
+        <div>
+            <Button
+                type="link"
+                onClick={() => {
+                    //   props.returnBook(props.book.id);
+                    setShowRatingModal(true);
+                }}
+            >
+                <IconText type="import" text="return" />
+            </Button>
+            <BookContentRating
+                visible={showRatingModal}
+                userdata={props.userdata}
+                onClosed={() => setShowRatingModal(false)}
+            />
+        </div>
     );
 };
 
