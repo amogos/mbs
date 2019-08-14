@@ -8,7 +8,7 @@ interface Props {
     onClosed(): void;
 }
 
-const RentalSettings = (props: Props) => {
+const RentalSettingsComponent = (props: Props) => {
     const [duration, setDuration] = useState(0);
     let days = Array.from(Array(120).keys());
     const { Option } = Select;
@@ -41,4 +41,4 @@ const RentalSettings = (props: Props) => {
     );
 };
 
-export default RentalSettings;
+export default RentalSettingsComponent;

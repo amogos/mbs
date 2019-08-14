@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import * as DataTypes from './../types';
 import { Icon, Button } from 'antd';
-import RentalSettings from './rental_settings';
+import RentalSettingsComponent from './rental_settings_component';
 
 interface Icon {
     type: string;
@@ -48,7 +48,7 @@ const BookStateAddToCart = (param: Props) => {
             >
                 <IconText type="shopping-cart" text="request" />
             </Button>
-            <RentalSettings
+            <RentalSettingsComponent
                 visible={visible}
                 onDurationChanged={(duration: number) =>
                     param.askBook(param.book.id, param.book.value.owner.id, duration)
