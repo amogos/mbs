@@ -18,6 +18,7 @@ const IconText = (param: Icon) => (
 
 interface Props {
     userdata: DataTypes.UserRecordType;
+    reviewBook(bookId: number, comment: string, contentScore: number, stateScore: number): void;
     queueArray: DataTypes.QueueRecordType[];
     deleteBook(bookId: number): void;
     askBook(bookId: number, ownerId: number, duration: number): void;
@@ -81,6 +82,8 @@ const BookStateReturn = (props: Props) => {
             <BookContentRating
                 visible={showRatingModal}
                 userdata={props.userdata}
+                bookId={props.book.id}
+                reviewBook={props.reviewBook}
                 onClosed={() => setShowRatingModal(false)}
             />
         </div>

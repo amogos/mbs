@@ -86,3 +86,18 @@ export interface SpaceType {
     user: UserRecordType;
     nbooks: number;
 }
+
+export interface BookReviewRecordType {
+    id: number;
+    bookId: number;
+    comment: string;
+    contentScore: number;
+    stateScore: number;
+}
+
+export interface BookReviewValueType {
+    bookId: number;
+    comment: string;
+    contentScore: number;
+    stateScore: number;
+}

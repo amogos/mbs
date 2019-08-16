@@ -15,5 +15,7 @@ export default {
     MYBOOKSHELVE_INVALID_FIELDS: 'Invalid fields',
     MYBOOKSHELVE_RENTAL_SETTINGS: 'Rental settings',
     MYBOOKSHELVE_RENTAL_DURATION: 'Select rental duration',
-    MYBOOKSHELVE_RATING_TITLE: 'Rate book',
+    MYBOOKSHELVE_RATING_TITLE: 'Rate Book',
+    MYBOOKSHELVE_RATING_STATE: 'Rate State',
+    MYBOOKSHELVE_RATING_CONTENT: 'Rate Content',
 };

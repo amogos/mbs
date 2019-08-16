@@ -112,9 +112,9 @@
       "id": 1,
       "bookId": 1,
       "userId": 1,
-      "title": "Good read",
       "comment": "Highly recommend this book.",
-      "score": 4.5
+      "contentScore": 4.5,
+      "stateScore": 4.5
     }
   ],
   "orders": [],

@@ -16,6 +16,7 @@ export default class JsonConnector {
     private urlUsers = 'http://localhost:3001/users';
     private urlQueues = 'http://localhost:3001/queues';
     private urlCategory = 'http://localhost:3001/categories';
+    private urlReviews = 'http://localhost:3001/reviews';
 
     private init() {}
 
@@ -315,6 +316,23 @@ export default class JsonConnector {
                 title: value.title,
                 state: 'state.book.idle',
                 category: value.category.id,
+            })
+            .catch(error => onError(error));
+    }
+
+    public async reviewBook(
+        bookId: number,
+        comment: string,
+        contentScore: number,
+        stateScore: number,
+        onError: (resultCode: number) => void,
+    ) {
+        await axios
+            .post(this.urlReviews, {
+                bookId: bookId,
+                comment: comment,
+                contentScore: contentScore,
+                stateScore: stateScore,
             })
             .catch(error => onError(error));
     }

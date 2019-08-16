@@ -22,46 +22,57 @@ interface Props {
     userdata: DataTypes.UserRecordType;
     visible: boolean;
     onClosed(): void;
+    bookId: number;
+    reviewBook(bookId: number, comment: string, contentScore: number, stateScore: number): void;
 }
 
 const BookContentRating = (props: Props) => {
-    const [value, setValue] = useState('');
+    const [comment, setComment] = useState('');
     const [contentRating, setContentRating] = useState(0);
     const [stateRating, setStateRating] = useState(0);
 
     const description = ['terrible', 'bad', 'normal', 'good', 'excellent'];
 
-    const handleEditorChange = (e: any) => setValue(e.target.value);
+    const handleEditorChange = (e: any) => setComment(e.target.value);
     const handleContentRaterChange = (value: number) => setContentRating(value);
     const handleStateRaterChange = (value: number) => setStateRating(value);
+    const validFields = () => comment !== '' && contentRating > 0 && stateRating > 0;
 
-    const handleSubmit = () => {
-        setValue('');
+    const clearFields = () => {
+        setComment('');
         setContentRating(0);
         setStateRating(0);
+    };
+
+    const close = () => {
+        props.onClosed();
+    };
+
+    const onOk = () => {
+        if (!validFields) return;
+        props.reviewBook(props.bookId, comment, contentRating, stateRating);
+        clearFields();
+        close();
     };
 
     return (
         <Modal
             title={StringConstants.default.MYBOOKSHELVE_RATING_TITLE}
             visible={props.visible}
-            onOk={() => {
-                handleSubmit();
-                props.onClosed();
-            }}
-            onCancel={() => {
-                props.onClosed();
-            }}
+            onOk={onOk}
+            onCancel={close}
         >
             <p>
-                Rate State: <Rate tooltips={description} onChange={handleStateRaterChange} value={stateRating} />
+                {StringConstants.default.MYBOOKSHELVE_RATING_STATE}
+                <Rate tooltips={description} onChange={handleStateRaterChange} value={stateRating} />
             </p>
             <p>
-                Rate Content: <Rate tooltips={description} onChange={handleContentRaterChange} value={contentRating} />
+                {StringConstants.default.MYBOOKSHELVE_RATING_CONTENT}
+                <Rate tooltips={description} onChange={handleContentRaterChange} value={contentRating} />
             </p>
             <Comment
                 avatar={<Avatar src={props.userdata.value.picture} alt="Han Solo" />}
-                content={<Editor onChange={handleEditorChange} value={value} />}
+                content={<Editor onChange={handleEditorChange} value={comment} />}
             />
         </Modal>
     );
