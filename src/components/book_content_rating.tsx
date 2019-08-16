@@ -30,9 +30,7 @@ const BookContentRating = (props: Props) => {
     const [comment, setComment] = useState('');
     const [contentRating, setContentRating] = useState(0);
     const [stateRating, setStateRating] = useState(0);
-
     const description = ['terrible', 'bad', 'normal', 'good', 'excellent'];
-
     const handleEditorChange = (e: any) => setComment(e.target.value);
     const handleContentRaterChange = (value: number) => setContentRating(value);
     const handleStateRaterChange = (value: number) => setStateRating(value);
