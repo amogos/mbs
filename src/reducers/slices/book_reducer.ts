@@ -43,7 +43,9 @@ export default function bookReducer(state: any, action: any): any {
                 action.stateScore,
                 handleError,
             );
-            return null;
+            return Object.assign({}, state, {
+                bookChangingId: action.bookId,
+            });
         }
         case BookActionConstant.ACTION_DELETE_BOOK: {
             databseInstance.deleteBook(action.bookId, handleError).then(() => {

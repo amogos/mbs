@@ -73,7 +73,6 @@ const BookStateReturn = (props: Props) => {
             <Button
                 type="link"
                 onClick={() => {
-                    //   props.returnBook(props.book.id);
                     setShowRatingModal(true);
                 }}
             >
@@ -82,8 +81,9 @@ const BookStateReturn = (props: Props) => {
             <BookContentRating
                 visible={showRatingModal}
                 userdata={props.userdata}
-                bookId={props.book.id}
+                book={props.book}
                 reviewBook={props.reviewBook}
+                returnBook={props.returnBook}
                 onClosed={() => setShowRatingModal(false)}
             />
         </div>

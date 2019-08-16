@@ -22,8 +22,9 @@ interface Props {
     userdata: DataTypes.UserRecordType;
     visible: boolean;
     onClosed(): void;
-    bookId: number;
+    book: DataTypes.BookRecordType;
     reviewBook(bookId: number, comment: string, contentScore: number, stateScore: number): void;
+    returnBook(bookId: number): void;
 }
 
 const BookContentRating = (props: Props) => {
@@ -48,7 +49,9 @@ const BookContentRating = (props: Props) => {
 
     const onOk = () => {
         if (!validFields) return;
-        props.reviewBook(props.bookId, comment, contentRating, stateRating);
+        props.reviewBook(props.book.id, comment, contentRating, stateRating);
+        props.book.value.holder = DataTypes.NullUser;
+        props.returnBook(props.book.id);
         clearFields();
         close();
     };
