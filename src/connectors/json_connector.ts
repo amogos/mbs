@@ -175,11 +175,15 @@ export default class JsonConnector {
                         .catch(error => onError(error));
 
                     let contentScore = 0;
+                    let numReviews = 0;
+
                     await axios
                         .get(this.urlReviews + '?bookId=' + item.id)
                         .then(response => {
                             if (response.data.length > 0) {
                                 response.data.forEach((item: any) => (contentScore += item.contentScore));
+                                contentScore = contentScore / response.data.length;
+                                numReviews = response.data.length;
                             }
                         })
                         .catch(error => onError(error));
@@ -195,6 +199,7 @@ export default class JsonConnector {
                         category: category,
                         return: returnDateMilliseconds,
                         contentScore: contentScore,
+                        numReviews: numReviews,
                     };
 
                     booksArray.push({

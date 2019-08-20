@@ -25,6 +25,7 @@ export interface BookValueType {
     category: CategoryRecordType;
     return?: number;
     contentScore?: number;
+    numReviews?: number;
 }
 
 export interface LanguageRecordType {

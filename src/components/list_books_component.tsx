@@ -1,8 +1,9 @@
 import React from 'react';
 import * as DataTypes from './../types';
-import { List, Avatar, Icon, Badge, Tag } from 'antd';
+import { List, Avatar, Icon, Badge, Tag, Rate } from 'antd';
 import BookStateComponent from './book_state_component';
 import Moment from 'react-moment';
+import * as StringConstant from './../constants/string_constant';
 
 interface Props {
     action: string;
@@ -59,9 +60,10 @@ const ListBooksComponent = (props: Props) => {
                     <List.Item
                         key={item.value.title}
                         actions={[
-                            <IconText type="star-o" text="156" />,
-                            <IconText type="like-o" text="156" />,
-                            <IconText type="message" text="2" />,
+                            <div>
+                                <Rate allowHalf disabled defaultValue={item.value.contentScore} />
+                                {item.value.numReviews} {StringConstant.default.MYBOOKSHELVE_CUSTOMER_REVIEWS}
+                            </div>,
                             <BookStateComponent {...props} book={item} />,
                         ]}
                         extra={<img width={64} alt="logo" src={item.value.image} />}

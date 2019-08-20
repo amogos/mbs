@@ -18,4 +18,5 @@ export default {
     MYBOOKSHELVE_RATING_TITLE: 'Rate Book',
     MYBOOKSHELVE_RATING_STATE: 'Rate State',
     MYBOOKSHELVE_RATING_CONTENT: 'Rate Content',
+    MYBOOKSHELVE_CUSTOMER_REVIEWS: 'customer reviews',
 };
