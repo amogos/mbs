@@ -112,9 +112,17 @@
       "id": 1,
       "bookId": 1,
       "userId": 1,
-      "comment": "Highly recommend this book.",
+      "comment": "Good spelling practice but sometimes too many exercises and not enough explanation.",
       "contentScore": 4.5,
       "stateScore": 4.5
+    },
+    {
+      "id": 1,
+      "bookId": 1,
+      "userId": 2,
+      "comment": "Unsere Tochter kommt in die 3. Klasse und nutzt das Buch schon mal zur Vorbereitung. Sie findet es klasse. Wir sind der Meinung das die Qualität sehr gut ist und genau das richtige ist zum Üben. Wir können das Buch nur weiterempfehlen.",
+      "contentScore": 4.1,
+      "stateScore": 4.0
     }
   ],
   "orders": [],

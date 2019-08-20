@@ -24,6 +24,7 @@ export interface BookValueType {
     state: string;
     category: CategoryRecordType;
     return?: number;
+    contentScore?: number;
 }
 
 export interface LanguageRecordType {

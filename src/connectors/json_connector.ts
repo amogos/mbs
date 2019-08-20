@@ -132,35 +132,57 @@ export default class JsonConnector {
                     }
 
                     let owner: DataTypes.UserRecordType = DataTypes.NullUser;
-                    await axios.get(this.urlUsers + '/' + item.owner).then(response => {
-                        owner = {
-                            value: {
-                                name: response.data.name,
-                                email: response.data.email,
-                                picture: response.data.picture,
-                            } as DataTypes.UserValueType,
-                            id: response.data.id,
-                        };
-                    });
+                    await axios
+                        .get(this.urlUsers + '/' + item.owner)
+                        .then(response => {
+                            owner = {
+                                value: {
+                                    name: response.data.name,
+                                    email: response.data.email,
+                                    picture: response.data.picture,
+                                } as DataTypes.UserValueType,
+                                id: response.data.id,
+                            };
+                        })
+                        .catch(error => onError(error));
 
                     let language = DataTypes.NullLanguage;
-                    await axios.get(this.urlLanguages + '/' + item.language).then(response => {
-                        language = { language: response.data.language, id: response.data.id };
-                    });
+                    await axios
+                        .get(this.urlLanguages + '/' + item.language)
+                        .then(response => {
+                            language = { language: response.data.language, id: response.data.id };
+                        })
+                        .catch(error => onError(error));
 
                     let category = DataTypes.NullCategory;
-                    await axios.get(this.urlCategory + '/' + item.category).then(response => {
-                        category = { id: response.data.id, title: response.data.title };
-                    });
+                    await axios
+                        .get(this.urlCategory + '/' + item.category)
+                        .then(response => {
+                            category = { id: response.data.id, title: response.data.title };
+                        })
+                        .catch(error => onError(error));
 
                     let returnDateMilliseconds = item.return;
-                    await axios.get(this.urlQueues + '?bookId=' + item.id).then(response => {
-                        if (response.data.length > 0) {
-                            response.data.forEach(
-                                (item: any) => (returnDateMilliseconds += this.OneDayMilliseconds * item.duration),
-                            );
-                        }
-                    });
+                    await axios
+                        .get(this.urlQueues + '?bookId=' + item.id)
+                        .then(response => {
+                            if (response.data.length > 0) {
+                                response.data.forEach(
+                                    (item: any) => (returnDateMilliseconds += this.OneDayMilliseconds * item.duration),
+                                );
+                            }
+                        })
+                        .catch(error => onError(error));
+
+                    let contentScore = 0;
+                    await axios
+                        .get(this.urlReviews + '?bookId=' + item.id)
+                        .then(response => {
+                            if (response.data.length > 0) {
+                                response.data.forEach((item: any) => (contentScore += item.contentScore));
+                            }
+                        })
+                        .catch(error => onError(error));
 
                     let bookValue: DataTypes.BookValueType = {
                         title: item.title,
@@ -172,6 +194,7 @@ export default class JsonConnector {
                         state: item.state,
                         category: category,
                         return: returnDateMilliseconds,
+                        contentScore: contentScore,
                     };
 
                     booksArray.push({

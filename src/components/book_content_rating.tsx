@@ -43,7 +43,7 @@ const BookContentRating = (props: Props) => {
         setStateRating(0);
     };
 
-    const close = () => {
+    const onCancel = () => {
         props.onClosed();
     };
 
@@ -53,7 +53,7 @@ const BookContentRating = (props: Props) => {
         props.book.value.holder = DataTypes.NullUser;
         props.returnBook(props.book.id);
         clearFields();
-        close();
+        props.onClosed();
     };
 
     return (
@@ -61,7 +61,7 @@ const BookContentRating = (props: Props) => {
             title={StringConstants.default.MYBOOKSHELVE_RATING_TITLE}
             visible={props.visible}
             onOk={onOk}
-            onCancel={close}
+            onCancel={onCancel}
         >
             <p>
                 {StringConstants.default.MYBOOKSHELVE_RATING_STATE}
