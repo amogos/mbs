@@ -1,6 +1,6 @@
 import React from 'react';
 import * as DataTypes from './../types';
-import { List, Avatar, Icon, Badge, Tag, Rate } from 'antd';
+import { List, Avatar, Icon, Badge, Tag, Rate, Button } from 'antd';
 import BookStateComponent from './book_state_component';
 import Moment from 'react-moment';
 import * as StringConstant from './../constants/string_constant';
@@ -17,23 +17,7 @@ interface Props {
     reviewBook(bookId: number, comment: string, contentScore: number, stateScore: number): void;
 }
 
-interface Icon {
-    type: string;
-    text: string;
-}
-
-const IconText = (param: Icon) => (
-    <span>
-        <Icon type={param.type} style={{ marginRight: 8 }} />
-        {param.text}
-    </span>
-);
-
-interface BookInfo {
-    book: DataTypes.BookValueType;
-}
-
-const AvailabilityDate = (param: BookInfo) => {
+const AvailabilityDate = (param: { book: DataTypes.BookValueType }) => {
     if (param.book.return && Date.now() < param.book.return)
         return (
             <Badge count={<Icon type="clock-circle" style={{ color: '#f5222d' }} />}>
@@ -45,7 +29,21 @@ const AvailabilityDate = (param: BookInfo) => {
     return null;
 };
 
+const BookRatingButton = (param: {
+    contentRating: number | undefined;
+    numReviews: number | undefined;
+    onClick: () => void;
+}) => {
+    return (
+        <Button type="link" onClick={param.onClick}>
+            <Rate allowHalf disabled defaultValue={param.contentRating} />
+            {param.numReviews} {StringConstant.default.MYBOOKSHELVE_CUSTOMER_REVIEWS}
+        </Button>
+    );
+};
+
 const ListBooksComponent = (props: Props) => {
+    const onShowReviewsForBook = (bookId: number) => {};
     return (
         <div>
             <List
@@ -60,10 +58,11 @@ const ListBooksComponent = (props: Props) => {
                     <List.Item
                         key={item.value.title}
                         actions={[
-                            <div>
-                                <Rate allowHalf disabled defaultValue={item.value.contentScore} />
-                                {item.value.numReviews} {StringConstant.default.MYBOOKSHELVE_CUSTOMER_REVIEWS}
-                            </div>,
+                            <BookRatingButton
+                                contentRating={item.value.contentScore}
+                                numReviews={item.value.numReviews}
+                                onClick={() => onShowReviewsForBook(item.id)}
+                            />,
                             <BookStateComponent {...props} book={item} />,
                         ]}
                         extra={<img width={64} alt="logo" src={item.value.image} />}
