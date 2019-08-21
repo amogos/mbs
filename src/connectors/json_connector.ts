@@ -365,6 +365,22 @@ export default class JsonConnector {
             .catch(error => onError(error));
     }
 
+    public async getReviewsForBook(
+        bookId: number,
+        onError: (resultCode: number) => void,
+    ): Promise<DataTypes.BookReviewRecordType[]> {
+        let reviewsArray: DataTypes.BookReviewRecordType[] = [];
+        const url = '${this.urlReviews}?bookId=${bookId}';
+        await axios
+            .get(url)
+            .then(response => {
+                response.data.forEach((item: DataTypes.BookReviewRecordType) => reviewsArray.push(item));
+            })
+            .catch(error => onError(error));
+
+        return reviewsArray;
+    }
+
     public async getQueue(userId: number, onError: (resultCode: number) => void): Promise<DataTypes.QueueRecordType[]> {
         let queueArray: DataTypes.QueueRecordType[] = [];
 
