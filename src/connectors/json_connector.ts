@@ -370,7 +370,7 @@ export default class JsonConnector {
         onError: (resultCode: number) => void,
     ): Promise<DataTypes.BookReviewRecordType[]> {
         let reviewsArray: DataTypes.BookReviewRecordType[] = [];
-        const url = '${this.urlReviews}?bookId=${bookId}';
+        const url = `${this.urlReviews}?bookId=${bookId}`;
         await axios
             .get(url)
             .then(response => {

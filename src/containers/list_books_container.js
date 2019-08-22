@@ -21,6 +21,7 @@ const mapDispatchToProps = dispatch => {
         gotoListBooks: filters => dispatch(pageAction.gotoListBooks(filters)),
         reviewBook: (bookId, comment, contentScore, stateScore) =>
             dispatch(bookAction.reviewBook(bookId, comment, contentScore, stateScore)),
+        getReviewsForBook: (bookId, callback) => dispatch(bookAction.getReviewsForBook(bookId, callback)),
         dispatch,
     };
 };

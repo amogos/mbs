@@ -5,6 +5,7 @@ import Store from '../../store';
 import Strings from '../../constants/string_constant';
 import { message } from 'antd';
 import { GlobalVars, handleError } from './page_reducer';
+import { ActionSheetIOS } from 'react-native';
 
 const { BookActionConstant } = ActionConstants.default;
 
@@ -46,6 +47,12 @@ export default function bookReducer(state: any, action: any): any {
             return Object.assign({}, state, {
                 bookChangingId: action.bookId,
             });
+        }
+        case BookActionConstant.ACTION_GET_REVIEWS_FOR_BOOK: {
+            databseInstance
+                .getReviewsForBook(action.bookId, handleError)
+                .then(result => action.callback(action.bookId, result));
+            return state;
         }
         case BookActionConstant.ACTION_DELETE_BOOK: {
             databseInstance.deleteBook(action.bookId, handleError).then(() => {

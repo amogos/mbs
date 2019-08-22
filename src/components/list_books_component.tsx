@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import * as DataTypes from './../types';
 import { List, Avatar, Icon, Badge, Tag, Rate, Button } from 'antd';
 import BookStateComponent from './book_state_component';
 import Moment from 'react-moment';
 import * as StringConstant from './../constants/string_constant';
+import BookReviewsComponent from './book_reviews_component';
 
 interface Props {
     action: string;
@@ -15,6 +16,10 @@ interface Props {
     askBook(bookId: number, ownerId: number): void;
     returnBook(bookId: number): void;
     reviewBook(bookId: number, comment: string, contentScore: number, stateScore: number): void;
+    getReviewsForBook(
+        bookId: number,
+        callback: (bookId: number, reviews: DataTypes.BookReviewRecordType[]) => void,
+    ): void;
 }
 
 const AvailabilityDate = (param: { book: DataTypes.BookValueType }) => {
@@ -43,7 +48,14 @@ const BookRatingButton = (param: {
 };
 
 const ListBooksComponent = (props: Props) => {
-    const onShowReviewsForBook = (bookId: number) => {};
+    const [state, setState] = useState({});
+
+    const onReviewsReceived = (bookId: number, reviews: DataTypes.BookReviewRecordType[]) => {
+        const key = `k${bookId}`;
+    };
+
+    const onGetReviewsForBook = (bookId: number) => props.getReviewsForBook(bookId, onReviewsReceived);
+
     return (
         <div>
             <List
@@ -56,12 +68,12 @@ const ListBooksComponent = (props: Props) => {
                 dataSource={props.booksArray}
                 renderItem={item => (
                     <List.Item
-                        key={item.value.title}
+                        key={`k${item.id}`}
                         actions={[
                             <BookRatingButton
                                 contentRating={item.value.contentScore}
                                 numReviews={item.value.numReviews}
-                                onClick={() => onShowReviewsForBook(item.id)}
+                                onClick={() => onGetReviewsForBook(item.id)}
                             />,
                             <BookStateComponent {...props} book={item} />,
                         ]}
@@ -82,6 +94,7 @@ const ListBooksComponent = (props: Props) => {
                                 </div>
                             }
                         />
+                        <BookReviewsComponent bookId={item.id} reviews={[]} />
                     </List.Item>
                 )}
             />

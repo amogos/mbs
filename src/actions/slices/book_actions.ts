@@ -1,4 +1,5 @@
 import * as ActionTypes from '../../constants/action_constant';
+import * as Datatype from '../../types';
 
 class BookAction {
     public askBook = (bookId: number, ownerId: number, duration: number) => ({
@@ -24,6 +25,15 @@ class BookAction {
         comment,
         contentScore,
         stateScore,
+    });
+
+    public getReviewsForBook = (
+        bookId: number,
+        callback: (bookId: number, reviews: Datatype.BookReviewRecordType[]) => void,
+    ) => ({
+        type: ActionTypes.default.BookActionConstant.ACTION_GET_REVIEWS_FOR_BOOK,
+        bookId,
+        callback,
     });
 }
 
