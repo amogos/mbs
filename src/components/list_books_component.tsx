@@ -50,11 +50,54 @@ const BookRatingButton = (param: {
 const ListBooksComponent = (props: Props) => {
     const [state, setState] = useState({});
 
+    interface ReviewState {
+        reviews: DataTypes.BookReviewRecordType[];
+        visibility: boolean;
+    }
+
     const onReviewsReceived = (bookId: number, reviews: DataTypes.BookReviewRecordType[]) => {
         const key = `k${bookId}`;
+        const newstate = { ...state, [key]: { reviews: reviews, visibility: true } };
+        setState(newstate);
     };
 
-    const onGetReviewsForBook = (bookId: number) => props.getReviewsForBook(bookId, onReviewsReceived);
+    const getReviewsFromState = (bookId: number): DataTypes.BookReviewRecordType[] => {
+        const targetKey = `k${bookId}`;
+        for (const [key, value] of Object.entries(state)) {
+            if (key === targetKey) {
+                return (value as ReviewState).reviews;
+            }
+        }
+        return [];
+    };
+
+    const onGetReviewsClicked = (bookId: number) => {
+        const key = `k${bookId}`;
+        if (key in state) {
+            const reviews = getReviewsFromState(bookId);
+            const newstate = { ...state, [key]: { reviews: reviews, visibility: true } };
+            setState(newstate);
+            return;
+        }
+        props.getReviewsForBook(bookId, onReviewsReceived);
+    };
+
+    const getVisibilityFromState = (bookId: number): boolean => {
+        const targetKey = `k${bookId}`;
+        for (const [key, value] of Object.entries(state)) {
+            if (key === targetKey) {
+                return (value as ReviewState).visibility;
+            }
+        }
+        return false;
+    };
+
+    const closeComments = (bookId: number) => {
+        const key = `k${bookId}`;
+        const reviews = getReviewsFromState(bookId);
+        const newstate = { ...state, [key]: { reviews: reviews, visibility: false } };
+        setState(newstate);
+    };
 
     return (
         <div>
@@ -73,7 +116,7 @@ const ListBooksComponent = (props: Props) => {
                             <BookRatingButton
                                 contentRating={item.value.contentScore}
                                 numReviews={item.value.numReviews}
-                                onClick={() => onGetReviewsForBook(item.id)}
+                                onClick={() => onGetReviewsClicked(item.id)}
                             />,
                             <BookStateComponent {...props} book={item} />,
                         ]}
@@ -94,7 +137,12 @@ const ListBooksComponent = (props: Props) => {
                                 </div>
                             }
                         />
-                        <BookReviewsComponent bookId={item.id} reviews={[]} />
+                        <BookReviewsComponent
+                            bookId={item.id}
+                            reviews={getReviewsFromState(item.id)}
+                            visible={getVisibilityFromState(item.id)}
+                            onClick={() => closeComments(item.id)}
+                        />
                     </List.Item>
                 )}
             />
