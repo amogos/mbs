@@ -72,7 +72,7 @@ const BookContentRating = (props: Props) => {
                 <Rate tooltips={description} onChange={handleContentRaterChange} value={contentRating} />
             </p>
             <Comment
-                avatar={<Avatar src={props.userdata.value.picture} alt="Han Solo" />}
+                avatar={<Avatar src={props.userdata.picture} alt="Han Solo" />}
                 content={<Editor onChange={handleEditorChange} value={comment} />}
             />
         </Modal>

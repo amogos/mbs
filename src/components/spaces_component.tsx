@@ -26,8 +26,8 @@ const SpacesComponent = (props: Props) => {
                         actions={[<Icon type="setting" />, <Icon type="edit" />, <Icon type="ellipsis" />]}
                     >
                         <Meta
-                            avatar={<Avatar src={item.user.value.picture} />}
-                            title={item.user.value.name}
+                            avatar={<Avatar src={item.user.picture} />}
+                            title={item.user.name}
                             description={item.nbooks}
                         />
                     </Card>

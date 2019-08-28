@@ -9,10 +9,10 @@ interface Props {
 
 const SocialLoginComponent = (props: Props) => {
     let content;
-    if (props.userdata && props.userdata.value.name) {
+    if (props.userdata && props.userdata.name) {
         content = (
             <span>
-                <Avatar src={props.userdata.value.picture} /> Profile
+                <Avatar src={props.userdata.picture} /> Profile
             </span>
         );
     } else {

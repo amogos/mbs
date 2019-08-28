@@ -10,7 +10,9 @@ const bookValue: DataTypes.BookValueType = {
     image: 'https://images-na.ssl-images-amazon.com/images/I/51lsugWtCvL._SY498_BO1,204,203,200_.jpg',
     language: DataTypes.NullLanguage,
     owner: {
-        value: { email: 'daosmistique@yahoo.com', name: 'Iulia Mogos' } as DataTypes.UserValueType,
+        email: 'daosmistique@yahoo.com',
+        name: 'Iulia Mogos',
+        picture: '',
         id: 1,
     },
     holder: DataTypes.NullUser,

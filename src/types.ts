@@ -1,6 +1,8 @@
 export interface UserRecordType {
     id: number;
-    value: UserValueType;
+    name: string | undefined;
+    email: string;
+    picture: string;
 }
 
 export interface UserValueType {
@@ -8,6 +10,13 @@ export interface UserValueType {
     email: string;
     picture: string;
 }
+
+export const NullUser: UserRecordType = {
+    id: 0,
+    name: '',
+    email: '',
+    picture: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
+};
 
 export interface CategoryRecordType {
     id: number;
@@ -50,6 +59,25 @@ export interface RentalNotificationValue {
     duration: number;
 }
 
+export interface ReturnRecordType {
+    id: number;
+    bookId: number;
+    userId: number;
+    ownerId: number;
+}
+
+export interface ReturnValueType {
+    bookId: number;
+    userId: number;
+    ownerId: number;
+}
+
+export interface ReturnNotificationType {
+    bookId: number;
+    bookTitle: string;
+    user: UserRecordType;
+}
+
 export interface QueueValueType {
     bookId: number;
     userId: number;
@@ -61,24 +89,6 @@ export interface QueueRecordType {
     id: number;
     value: QueueValueType;
 }
-
-export const dbUserToObject = (jsonData: any) => {
-    let value: UserValueType = {
-        name: jsonData.name,
-        email: jsonData.email,
-        picture: jsonData.picture,
-    };
-    let user: UserRecordType = {
-        id: jsonData.id,
-        value: value,
-    };
-    return user;
-};
-
-export const NullUser: UserRecordType = {
-    id: 0,
-    value: { name: '', email: '', picture: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png' },
-};
 
 export const NullLanguage: LanguageRecordType = { id: 0, language: '' };
 

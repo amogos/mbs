@@ -17,6 +17,7 @@ export default class JsonConnector {
     private urlQueues = 'http://localhost:3001/queues';
     private urlCategory = 'http://localhost:3001/categories';
     private urlReviews = 'http://localhost:3001/reviews';
+    private urlReturns = 'http://localhost:3001/returns';
 
     private init() {}
 
@@ -77,7 +78,7 @@ export default class JsonConnector {
                         .then(response => {
                             if (response.data.length > 0) {
                                 const space: DataTypes.SpaceType = {
-                                    user: DataTypes.dbUserToObject(item),
+                                    user: item,
                                     nbooks: response.data.length,
                                 };
                                 spacesArray.push(space);
@@ -115,11 +116,9 @@ export default class JsonConnector {
                     if (item.holder > 0) {
                         await axios.get(this.urlUsers + '/' + item.holder).then(r => {
                             holder = {
-                                value: {
-                                    name: r.data.name,
-                                    email: r.data.email,
-                                    picture: r.data.picture,
-                                } as DataTypes.UserValueType,
+                                name: r.data.name,
+                                email: r.data.email,
+                                picture: r.data.picture,
                                 id: r.data.id,
                             };
                         });
@@ -136,11 +135,9 @@ export default class JsonConnector {
                         .get(this.urlUsers + '/' + item.owner)
                         .then(response => {
                             owner = {
-                                value: {
-                                    name: response.data.name,
-                                    email: response.data.email,
-                                    picture: response.data.picture,
-                                } as DataTypes.UserValueType,
+                                name: response.data.name,
+                                email: response.data.email,
+                                picture: response.data.picture,
                                 id: response.data.id,
                             };
                         })
@@ -265,7 +262,7 @@ export default class JsonConnector {
                     state: BookStateTypes.default.STATE_BOOK_IDLE,
                     holder: -1,
                 };
-                await axios.put(this.urlBooks + '/' + bookId, value).catch(error => {
+                await axios.put(`${this.urlBooks} / ${bookId}`, value).catch(error => {
                     onError(error);
                 });
             })
@@ -314,17 +311,17 @@ export default class JsonConnector {
                     await axios
                         .post(this.urlUsers, user)
                         .then(response => {
-                            userData = DataTypes.dbUserToObject(response.data[0]);
+                            userData = response.data[0];
                         })
                         .catch(error => onError(error));
                 } else {
-                    userData = DataTypes.dbUserToObject(response.data[0]);
+                    userData = response.data[0];
 
-                    const profilePictureAvailable = userData.value.picture !== DataTypes.NullUser.value.picture;
+                    const profilePictureAvailable = userData.picture !== DataTypes.NullUser.picture;
                     const socialMediaPicture = user.picture;
 
                     if (!profilePictureAvailable) {
-                        userData.value.picture = socialMediaPicture;
+                        userData.picture = socialMediaPicture;
                     }
                 }
             })
@@ -404,6 +401,40 @@ export default class JsonConnector {
         return queueArray;
     }
 
+    public async getReturnNotifications(
+        user: DataTypes.UserRecordType,
+        onError: (resultCode: number) => void,
+    ): Promise<DataTypes.ReturnNotificationType[]> {
+        let returnNotifications: DataTypes.ReturnNotificationType[] = [];
+        await axios.get(`${this.urlReturns}?ownerId=${user.id}`).then(response => {
+            response.data.forEach(async (item: DataTypes.ReturnRecordType) => {
+                this.startedJobs++;
+                let user: DataTypes.UserRecordType = DataTypes.NullUser;
+                await axios
+                    .get(this.urlUsers + '/' + item.userId)
+                    .then(response => (user = response.data))
+                    .catch(error => onError(error));
+                let title = '';
+                await axios
+                    .get(this.urlBooks + '/' + item.bookId)
+                    .then(response => {
+                        title = response.data.title;
+                    })
+                    .catch(error => onError(error));
+
+                let notification: DataTypes.ReturnNotificationType = {
+                    bookId: item.bookId,
+                    bookTitle: title,
+                    user: user,
+                };
+                returnNotifications.push(notification);
+                this.completedJobs++;
+            });
+        });
+        await this.workInProgress();
+        return returnNotifications;
+    }
+
     public async getRentalNotifications(
         user: DataTypes.UserRecordType,
         onError: (resultCode: number) => void,
@@ -420,7 +451,7 @@ export default class JsonConnector {
                     let user: DataTypes.UserRecordType = DataTypes.NullUser;
                     await axios
                         .get(this.urlUsers + '/' + item.userId)
-                        .then(response => (user = DataTypes.dbUserToObject(response.data)))
+                        .then(response => (user = response.data))
                         .catch(error => onError(error));
 
                     let title = '';

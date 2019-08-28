@@ -28,6 +28,14 @@
       "duration": 2
     }
   ],
+  "returns": [
+    {
+      "id": 1,
+      "userId": 2,
+      "bookId": 3,
+      "ownerId": 1
+    }
+  ],
   "languages": [
     {
       "id": 1,
