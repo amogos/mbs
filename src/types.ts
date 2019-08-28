@@ -52,6 +52,21 @@ export interface BookRecordType {
     numReviews?: number;
 }
 
+export interface BookRawRecordType {
+    id: number;
+    title: string;
+    author: string;
+    language: number;
+    image: string;
+    owner: number;
+    holder: number;
+    state: string;
+    category: number;
+    return?: number;
+    contentScore?: number;
+    numReviews?: number;
+}
+
 export interface LanguageRecordType {
     id: number;
     language: string;

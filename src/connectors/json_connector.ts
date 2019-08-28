@@ -110,7 +110,7 @@ export default class JsonConnector {
         await axios
             .get(filterdBooksUrl)
             .then(response => {
-                response.data.forEach(async (item: any) => {
+                response.data.forEach(async (item: DataTypes.BookRawRecordType) => {
                     this.startedJobs++;
                     let holder: DataTypes.UserRecordType = DataTypes.NullUser;
                     if (item.holder > 0) {
@@ -159,13 +159,14 @@ export default class JsonConnector {
                         })
                         .catch(error => onError(error));
 
-                    let returnDateMilliseconds = item.return;
+                    let returnDateMilliseconds = item.return ? item.return : 0;
                     await axios
                         .get(this.urlQueues + '?bookId=' + item.id)
                         .then(response => {
                             if (response.data.length > 0) {
                                 response.data.forEach(
-                                    (item: any) => (returnDateMilliseconds += this.OneDayMilliseconds * item.duration),
+                                    (item: DataTypes.QueueRecordType) =>
+                                        (returnDateMilliseconds += this.OneDayMilliseconds * item.duration),
                                 );
                             }
                         })
@@ -178,7 +179,9 @@ export default class JsonConnector {
                         .get(this.urlReviews + '?bookId=' + item.id)
                         .then(response => {
                             if (response.data.length > 0) {
-                                response.data.forEach((item: any) => (contentScore += item.contentScore));
+                                response.data.forEach(
+                                    (item: DataTypes.BookReviewRecordType) => (contentScore += item.contentScore),
+                                );
                                 contentScore = contentScore / response.data.length;
                                 numReviews = response.data.length;
                             }
