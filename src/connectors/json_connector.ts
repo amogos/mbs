@@ -185,7 +185,8 @@ export default class JsonConnector {
                         })
                         .catch(error => onError(error));
 
-                    let bookValue: DataTypes.BookValueType = {
+                    let bookRecord: DataTypes.BookRecordType = {
+                        id: item.id,
                         title: item.title,
                         image: item.image,
                         author: item.author,
@@ -199,10 +200,7 @@ export default class JsonConnector {
                         numReviews: numReviews,
                     };
 
-                    booksArray.push({
-                        id: item.id,
-                        value: bookValue,
-                    } as DataTypes.BookRecordType);
+                    booksArray.push(bookRecord);
                     this.completedJobs++;
                 });
             })
@@ -219,15 +217,15 @@ export default class JsonConnector {
         onError: (resultCode: number) => void,
     ): Promise<boolean> {
         await axios
-            .get(this.urlBooks + '/' + rental.value.bookId)
+            .get(this.urlBooks + '/' + rental.bookId)
             .then(async result => {
                 const value = {
                     ...result.data,
                     state: BookStateTypes.default.STATE_BOOK_IN_TRANSIT_TO_HOLDER,
-                    holder: rental.value.user.id,
-                    return: Date.now() + rental.value.duration * this.OneDayMilliseconds,
+                    holder: rental.user.id,
+                    return: Date.now() + rental.duration * this.OneDayMilliseconds,
                 };
-                await axios.put(this.urlBooks + '/' + rental.value.bookId, value).catch(error => {
+                await axios.put(this.urlBooks + '/' + rental.bookId, value).catch(error => {
                     onError(error);
                     return false;
                 });
@@ -384,16 +382,8 @@ export default class JsonConnector {
         await axios
             .get(this.urlQueues + '?userId=' + userId)
             .then(response =>
-                response.data.forEach(async (item: any) => {
-                    queueArray.push({
-                        id: item.id,
-                        value: {
-                            bookId: item.bookId,
-                            ownerId: item.ownerId,
-                            userId: item.userId,
-                            duration: item.duration,
-                        } as DataTypes.QueueValueType,
-                    });
+                response.data.forEach(async (item: DataTypes.QueueRecordType) => {
+                    queueArray.push(item);
                 }),
             )
             .catch(error => onError(error));
@@ -466,17 +456,15 @@ export default class JsonConnector {
 
                     const notAssigned = holder < 0;
                     const alreadyOneRequestForBookIdProcessed = rentalNotifications.find(
-                        notifiction => notifiction.value.bookId === item.bookId,
+                        notifiction => notifiction.bookId === item.bookId,
                     );
                     if (notAssigned && !alreadyOneRequestForBookIdProcessed) {
                         let notification: DataTypes.RentalNotificationRecordType = {
                             id: item.id,
-                            value: {
-                                bookTitle: title,
-                                bookId: item.bookId,
-                                user: user,
-                                duration: item.duration,
-                            } as DataTypes.RentalNotificationValue,
+                            bookTitle: title,
+                            bookId: item.bookId,
+                            user: user,
+                            duration: item.duration,
                         };
                         rentalNotifications.push(notification);
                     }

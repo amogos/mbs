@@ -50,7 +50,7 @@ const BookContentRating = (props: Props) => {
     const onOk = () => {
         if (!validFields) return;
         props.reviewBook(props.book.id, comment, contentRating, stateRating);
-        props.book.value.holder = DataTypes.NullUser;
+        props.book.holder = DataTypes.NullUser;
         props.returnBook(props.book.id);
         clearFields();
         props.onClosed();

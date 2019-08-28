@@ -52,9 +52,7 @@ const BookStateAddToCart = (param: Props) => {
             </Button>
             <RentalSettingsComponent
                 visible={visible}
-                onDurationChanged={(duration: number) =>
-                    param.askBook(param.book.id, param.book.value.owner.id, duration)
-                }
+                onDurationChanged={(duration: number) => param.askBook(param.book.id, param.book.owner.id, duration)}
                 onClosed={() => setVisible(false)}
             />
         </div>
@@ -91,10 +89,10 @@ const BookStateReturn = (props: Props) => {
 };
 
 const BookStateComponent = (props: Props) => {
-    const bookIsInMyQueue: boolean = props.queueArray.findIndex(item => item.value.bookId === props.book.id) >= 0;
-    const bookIsMine: boolean = props.userdata.id === props.book.value.owner.id;
-    const bookHasHolder: boolean = props.book.value.holder.id > 0;
-    const bookIsAssignedToMe: boolean = props.book.value.holder.id === props.userdata.id;
+    const bookIsInMyQueue: boolean = props.queueArray.findIndex(item => item.bookId === props.book.id) >= 0;
+    const bookIsMine: boolean = props.userdata.id === props.book.owner.id;
+    const bookHasHolder: boolean = props.book.holder.id > 0;
+    const bookIsAssignedToMe: boolean = props.book.holder.id === props.userdata.id;
 
     if (bookIsInMyQueue) {
         return <BookStateCarryOut {...props} />;

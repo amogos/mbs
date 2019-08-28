@@ -33,8 +33,8 @@ const NotificationComponent = (props: Props) => {
                             avatar={
                                 <Avatar src="https://gw.alipayobjects.com/zos/rmsportal/BiazfanxmamNRoxxVxka.png" />
                             }
-                            title={<a href="https://ant.design/index-cn">{item.value.user.name}</a>}
-                            description={item.value.bookTitle}
+                            title={<a href="https://ant.design/index-cn">{item.user.name}</a>}
+                            description={item.bookTitle}
                         />
                     </List.Item>
                 )}

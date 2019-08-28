@@ -37,22 +37,35 @@ export interface BookValueType {
     numReviews?: number;
 }
 
+export interface BookRecordType {
+    id: number;
+    title: string;
+    author: string;
+    language: LanguageRecordType;
+    image: string;
+    owner: UserRecordType;
+    holder: UserRecordType;
+    state: string;
+    category: CategoryRecordType;
+    return?: number;
+    contentScore?: number;
+    numReviews?: number;
+}
+
 export interface LanguageRecordType {
     id: number;
     language: string;
 }
 
-export interface BookRecordType {
-    id: number;
-    value: BookValueType;
-}
-
 export interface RentalNotificationRecordType {
     id: number;
-    value: RentalNotificationValue;
+    user: UserRecordType;
+    bookTitle: string;
+    bookId: number;
+    duration: number;
 }
 
-export interface RentalNotificationValue {
+export interface RentalNotificationValueType {
     user: UserRecordType;
     bookTitle: string;
     bookId: number;
@@ -87,7 +100,10 @@ export interface QueueValueType {
 
 export interface QueueRecordType {
     id: number;
-    value: QueueValueType;
+    bookId: number;
+    userId: number;
+    ownerId: number;
+    duration: number;
 }
 
 export const NullLanguage: LanguageRecordType = { id: 0, language: '' };

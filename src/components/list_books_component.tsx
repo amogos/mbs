@@ -114,26 +114,26 @@ const ListBooksComponent = (props: Props) => {
                         key={`k${item.id}`}
                         actions={[
                             <BookRatingButton
-                                contentRating={item.value.contentScore}
-                                numReviews={item.value.numReviews}
+                                contentRating={item.contentScore}
+                                numReviews={item.numReviews}
                                 onClick={() => onGetReviewsClicked(item.id)}
                             />,
                             <BookStateComponent {...props} book={item} />,
                         ]}
-                        extra={<img width={64} alt="logo" src={item.value.image} />}
+                        extra={<img width={64} alt="logo" src={item.image} />}
                     >
                         <List.Item.Meta
-                            avatar={<Avatar src={item.value.owner.picture} />}
+                            avatar={<Avatar src={item.owner.picture} />}
                             title={
-                                <a href={item.value.image}>
-                                    {item.value.title}
-                                    <i> ({item.value.language.language})</i>
-                                    <AvailabilityDate book={item.value} />
+                                <a href={item.image}>
+                                    {item.title}
+                                    <i> ({item.language.language})</i>
+                                    <AvailabilityDate book={item} />
                                 </a>
                             }
                             description={
                                 <div>
-                                    Author: {item.value.author} <br />
+                                    Author: {item.author} <br />
                                 </div>
                             }
                         />
