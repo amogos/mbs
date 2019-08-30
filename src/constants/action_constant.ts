@@ -11,6 +11,7 @@ export default {
     NotificationActionConstant: {
         ACTION_CONFIRM_RENTAL: 'CONFIRM_RENTAL',
         ACTION_REJECT_RENTAL: 'REJECT_RENTAL',
+        ACTION_GET_RETURNS: 'ACTION_GET_RETURNS',
     },
     SocialActionConstant: {
         ACTION_USER_DATA: 'ACTION_USER_DATA',

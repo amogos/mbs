@@ -11,6 +11,11 @@ class NotificationAction {
         type: ActionTypes.default.NotificationActionConstant.ACTION_REJECT_RENTAL,
         rental,
     });
+
+    public getReturnsForUser = (callback: (reviews: DataTypes.ReturnNotificationType[]) => void) => ({
+        type: ActionTypes.default.NotificationActionConstant.ACTION_GET_RETURNS,
+        callback,
+    });
 }
 
 export default NotificationAction;

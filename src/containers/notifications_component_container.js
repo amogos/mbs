@@ -12,6 +12,7 @@ const mapDispatchToProps = dispatch => {
     return {
         confirmRental: rental => dispatch(notificationAction.confirmRental(rental)),
         rejectRental: rental => dispatch(notificationAction.rejectRental(rental)),
+        getReturns: callback => dispatch(notificationAction.getReturnsForUser(callback)),
         dispatch,
     };
 };

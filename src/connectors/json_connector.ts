@@ -398,32 +398,36 @@ export default class JsonConnector {
         user: DataTypes.UserRecordType,
         onError: (resultCode: number) => void,
     ): Promise<DataTypes.ReturnNotificationType[]> {
+        this.startedJobs = this.completedJobs = 0;
         let returnNotifications: DataTypes.ReturnNotificationType[] = [];
-        await axios.get(`${this.urlReturns}?ownerId=${user.id}`).then(response => {
-            response.data.forEach(async (item: DataTypes.ReturnRecordType) => {
-                this.startedJobs++;
-                let user: DataTypes.UserRecordType = DataTypes.NullUser;
-                await axios
-                    .get(this.urlUsers + '/' + item.userId)
-                    .then(response => (user = response.data))
-                    .catch(error => onError(error));
-                let title = '';
-                await axios
-                    .get(this.urlBooks + '/' + item.bookId)
-                    .then(response => {
-                        title = response.data.title;
-                    })
-                    .catch(error => onError(error));
+        await axios
+            .get(`${this.urlReturns}?ownerId=${user.id}`)
+            .then(response => {
+                response.data.forEach(async (item: DataTypes.ReturnRecordType) => {
+                    this.startedJobs++;
+                    let user: DataTypes.UserRecordType = DataTypes.NullUser;
+                    await axios
+                        .get(this.urlUsers + '/' + item.userId)
+                        .then(response => (user = response.data))
+                        .catch(error => onError(error));
+                    let title = '';
+                    await axios
+                        .get(this.urlBooks + '/' + item.bookId)
+                        .then(response => {
+                            title = response.data.title;
+                        })
+                        .catch(error => onError(error));
 
-                let notification: DataTypes.ReturnNotificationType = {
-                    bookId: item.bookId,
-                    bookTitle: title,
-                    user: user,
-                };
-                returnNotifications.push(notification);
-                this.completedJobs++;
-            });
-        });
+                    let notification: DataTypes.ReturnNotificationType = {
+                        bookId: item.bookId,
+                        bookTitle: title,
+                        user: user,
+                    };
+                    returnNotifications.push(notification);
+                    this.completedJobs++;
+                });
+            })
+            .catch(error => onError(error));
         await this.workInProgress();
         return returnNotifications;
     }
