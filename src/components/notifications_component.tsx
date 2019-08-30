@@ -16,10 +16,14 @@ interface Notification {
     description: string;
 }
 
-const emptyNotifictions: Notification[] = [];
+interface State {
+    returnNotifications: Notification[];
+}
+
+const emptyState: State = { returnNotifications: [] };
 
 const NotificationComponent = (props: Props) => {
-    const [notifications, setNotifications] = useState(emptyNotifictions);
+    const [notifications, setNotifications] = useState(emptyState);
 
     const confirmRental = (rental: DataTypes.RentalNotificationRecordType) => {
         props.confirmRental(rental);
@@ -43,22 +47,21 @@ const NotificationComponent = (props: Props) => {
             });
         });
 
-        let state = { ...notifications, returnsNotifications };
+        let state = { ...notifications };
+        state.returnNotifications = returnsNotifications;
         setNotifications(state);
     };
 
-    if (notifications.length == 0) {
+    if (notifications === emptyState) {
         props.getReturns(onReturnsReceived);
     }
 
     alert(JSON.stringify(notifications));
 
-    const returnsNotifications = notifications.returnsNotifications;
-
     return (
         <div>
             <List
-                dataSource={returnsNotifications}
+                dataSource={notifications.returnNotifications}
                 bordered
                 renderItem={item => (
                     <List.Item actions={item.actions}>
