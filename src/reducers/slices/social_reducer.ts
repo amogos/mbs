@@ -3,7 +3,7 @@ import * as DataTypes from '../../types';
 import { socialAction } from '../../actions';
 import databseInstance from '../../connectors/database_instance';
 import Store from '../../store';
-import { handleError, GlobalVars } from './page_reducer';
+import { handleError } from './page_reducer';
 
 const { SocialActionConstant } = ActionConstants.default;
 
@@ -19,11 +19,6 @@ export default function socialReducer(state: any, action: any): any {
             });
         }
         case SocialActionConstant.ACTION_USER_DATA:
-            databseInstance
-                .getRentalNotifications(action.userdata, handleError)
-                .then((result: DataTypes.RentalNotificationRecordType[]) => {
-                    GlobalVars.rentalNotificationsArray = result;
-                });
             return Object.assign({}, state, {
                 userdata: action.userdata,
             });

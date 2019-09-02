@@ -216,7 +216,7 @@ export default class JsonConnector {
     }
 
     public async confirmRental(
-        rental: DataTypes.RentalNotificationRecordType,
+        rental: DataTypes.QueueNotificationRecordType,
         onError: (resultCode: number) => void,
     ): Promise<boolean> {
         await axios
@@ -247,7 +247,7 @@ export default class JsonConnector {
     }
 
     public async rejectRental(
-        rental: DataTypes.RentalNotificationRecordType,
+        rental: DataTypes.QueueNotificationRecordType,
         onError: (resultCode: number) => void,
     ): Promise<boolean> {
         await axios.delete(this.urlQueues + '/' + rental.id).catch(error => onError(error));
@@ -432,12 +432,12 @@ export default class JsonConnector {
         return returnNotifications;
     }
 
-    public async getRentalNotifications(
+    public async getQueueNotifications(
         user: DataTypes.UserRecordType,
         onError: (resultCode: number) => void,
-    ): Promise<DataTypes.RentalNotificationRecordType[]> {
+    ): Promise<DataTypes.QueueNotificationRecordType[]> {
         this.startedJobs = this.completedJobs = 0;
-        let rentalNotifications: DataTypes.RentalNotificationRecordType[] = [];
+        let rentalNotifications: DataTypes.QueueNotificationRecordType[] = [];
         await axios
             .get(this.urlQueues + '?ownerId=' + user.id)
             .then(response => {
@@ -466,7 +466,7 @@ export default class JsonConnector {
                         notifiction => notifiction.bookId === item.bookId,
                     );
                     if (notAssigned && !alreadyOneRequestForBookIdProcessed) {
-                        let notification: DataTypes.RentalNotificationRecordType = {
+                        let notification: DataTypes.QueueNotificationRecordType = {
                             id: item.id,
                             bookTitle: title,
                             bookId: item.bookId,

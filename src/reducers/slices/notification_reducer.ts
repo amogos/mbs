@@ -1,8 +1,6 @@
 import * as ActionConstants from '../../constants/action_constant';
-import { pageAction } from '../../actions';
 import databseInstance from '../../connectors/database_instance';
-import Store from '../../store';
-import { GlobalVars, handleError } from './page_reducer';
+import { handleError } from './page_reducer';
 
 const { NotificationActionConstant } = ActionConstants.default;
 
@@ -12,27 +10,20 @@ export default function notificationReducer(state: any, action: any): any {
         case NotificationActionConstant.ACTION_GET_RETURNS:
             databseInstance.getReturnNotifications(state.userdata, handleError).then(result => action.callback(result));
             return state;
+        case NotificationActionConstant.ACTION_GET_QUEUE:
+            databseInstance.getQueueNotifications(state.userdata, handleError).then(result => action.callback(result));
+            return state;
         case NotificationActionConstant.ACTION_CONFIRM_RENTAL:
-            databseInstance.confirmRental(action.rental, handleError).then(() => {
-                databseInstance.getRentalNotifications(state.userdata, handleError).then(result => {
-                    GlobalVars.rentalNotificationsArray = result;
-                    Store.dispatch(pageAction.gotoNotifications());
-                });
-            });
+            databseInstance.confirmRental(action.rental, handleError);
+
             return Object.assign({}, state, {
                 action: NotificationActionConstant.ACTION_CONFIRM_RENTAL,
-                notifications: GlobalVars.rentalNotificationsArray,
             });
         case NotificationActionConstant.ACTION_REJECT_RENTAL:
-            databseInstance.rejectRental(action.rental, handleError).then(() => {
-                databseInstance.getRentalNotifications(state.userdata, handleError).then(result => {
-                    GlobalVars.rentalNotificationsArray = result;
-                    Store.dispatch(pageAction.gotoNotifications());
-                });
-            });
+            databseInstance.rejectRental(action.rental, handleError);
+
             return Object.assign({}, state, {
                 action: NotificationActionConstant.ACTION_REJECT_RENTAL,
-                notifications: GlobalVars.rentalNotificationsArray,
             });
         default:
             return null;

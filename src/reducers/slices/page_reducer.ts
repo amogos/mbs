@@ -8,7 +8,6 @@ import { message } from 'antd';
 
 export class GlobalVars {
     public static booksArray: DataTypes.BookRecordType[];
-    public static rentalNotificationsArray: DataTypes.RentalNotificationRecordType[];
     public static languagesArray: DataTypes.LanguageRecordType[];
     public static categoriesArray: DataTypes.CategoryRecordType[];
     public static queueArray: DataTypes.QueueRecordType[];
@@ -29,7 +28,6 @@ export default function pageReducer(state: any, action: any): any {
         case PageActionConstant.ACTION_GOTO_NOTIFICATIONS:
             return Object.assign({}, state, {
                 action: PageActionConstant.ACTION_GOTO_NOTIFICATIONS,
-                notifications: GlobalVars.rentalNotificationsArray,
             });
         case PageActionConstant.ACTION_GOTO_SPACES:
             return Object.assign({}, state, {

@@ -8,7 +8,6 @@ import socialReducer from './slices/social_reducer';
 
 export class GlobalVars {
     public static booksArray: DataTypes.BookRecordType[];
-    public static rentalNotificationsArray: DataTypes.RentalNotificationRecordType[];
     public static languagesArray: DataTypes.LanguageRecordType[];
     public static queueArray: DataTypes.QueueRecordType[];
     public static userData: DataTypes.UserRecordType;

@@ -72,7 +72,7 @@ export interface LanguageRecordType {
     language: string;
 }
 
-export interface RentalNotificationRecordType {
+export interface QueueNotificationRecordType {
     id: number;
     user: UserRecordType;
     bookTitle: string;
@@ -80,7 +80,7 @@ export interface RentalNotificationRecordType {
     duration: number;
 }
 
-export interface RentalNotificationValueType {
+export interface QueueNotificationType {
     user: UserRecordType;
     bookTitle: string;
     bookId: number;

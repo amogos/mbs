@@ -3,10 +3,10 @@ import { List, Avatar } from 'antd';
 import * as DataTypes from './../types';
 
 interface Props {
-    notifications: DataTypes.RentalNotificationRecordType[];
-    confirmRental(rental: DataTypes.RentalNotificationRecordType): void;
-    rejectRental(rental: DataTypes.RentalNotificationRecordType): void;
+    confirmRental(rental: DataTypes.QueueNotificationRecordType): void;
+    rejectRental(rental: DataTypes.QueueNotificationRecordType): void;
     getReturns(callback: (returns: DataTypes.ReturnNotificationType[]) => void): void;
+    getQueue(callback: (returns: DataTypes.QueueNotificationRecordType[]) => void): void;
 }
 
 interface Notification {
@@ -18,29 +18,48 @@ interface Notification {
 
 interface State {
     returnNotifications: Notification[];
+    queueNotifications: Notification[];
 }
 
-const emptyState: State = { returnNotifications: [] };
+const emptyState: State = { returnNotifications: [], queueNotifications: [] };
 
 const NotificationComponent = (props: Props) => {
     const [notifications, setNotifications] = useState(emptyState);
 
-    const confirmRental = (rental: DataTypes.RentalNotificationRecordType) => {
-        props.confirmRental(rental);
+    const confirmRental = (queueElement: DataTypes.QueueNotificationRecordType) => {
+        props.confirmRental(queueElement);
     };
 
-    const rejectRental = (rental: DataTypes.RentalNotificationRecordType) => {
-        props.rejectRental(rental);
+    const rejectRental = (queueElement: DataTypes.QueueNotificationRecordType) => {
+        props.rejectRental(queueElement);
     };
 
-    const rateReturn = (bookId: number) => {};
+    const rateReturn = (returnElement: DataTypes.ReturnNotificationType) => {};
+
+    const onQueueReceived = (queue: DataTypes.QueueNotificationRecordType[]) => {
+        let queueNotifications: Notification[] = [];
+        queue.forEach(item => {
+            queueNotifications.push({
+                actions: [
+                    <a onClick={() => rejectRental(item)}>reject</a>,
+                    <a onClick={() => confirmRental(item)}>confirm</a>,
+                ],
+                title: item.user.name,
+                avatar: item.user.picture,
+                description: item.bookTitle,
+            });
+        });
+
+        let state = { ...notifications };
+        state.queueNotifications = queueNotifications;
+        setNotifications(state);
+    };
 
     const onReturnsReceived = (returns: DataTypes.ReturnNotificationType[]) => {
         let returnsNotifications: Notification[] = [];
-
         returns.forEach(item => {
             returnsNotifications.push({
-                actions: [<a onClick={() => rateReturn(item.bookId)}>rate</a>],
+                actions: [<a onClick={() => rateReturn(item)}>rate</a>],
                 title: item.user.name,
                 avatar: item.user.picture,
                 description: item.bookTitle,
@@ -54,14 +73,13 @@ const NotificationComponent = (props: Props) => {
 
     if (notifications === emptyState) {
         props.getReturns(onReturnsReceived);
+        props.getQueue(onQueueReceived);
     }
-
-    alert(JSON.stringify(notifications));
 
     return (
         <div>
             <List
-                dataSource={notifications.returnNotifications}
+                dataSource={notifications.queueNotifications}
                 bordered
                 renderItem={item => (
                     <List.Item actions={item.actions}>
