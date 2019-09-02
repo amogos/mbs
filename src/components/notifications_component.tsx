@@ -16,12 +16,7 @@ interface Notification {
     description: string;
 }
 
-interface State {
-    returnNotifications: Notification[];
-    queueNotifications: Notification[];
-}
-
-const emptyState: State = { returnNotifications: [], queueNotifications: [] };
+const emptyState: Notification[] = [];
 
 const NotificationComponent = (props: Props) => {
     const [notifications, setNotifications] = useState(emptyState);
@@ -37,7 +32,7 @@ const NotificationComponent = (props: Props) => {
     const rateReturn = (returnElement: DataTypes.ReturnNotificationType) => {};
 
     const onQueueReceived = (queue: DataTypes.QueueNotificationRecordType[]) => {
-        let queueNotifications: Notification[] = [];
+        let queueNotifications: Notification[] = notifications;
         queue.forEach(item => {
             queueNotifications.push({
                 actions: [
@@ -50,13 +45,12 @@ const NotificationComponent = (props: Props) => {
             });
         });
 
-        let state = { ...notifications };
-        state.queueNotifications = queueNotifications;
+        let state = [...notifications];
         setNotifications(state);
     };
 
     const onReturnsReceived = (returns: DataTypes.ReturnNotificationType[]) => {
-        let returnsNotifications: Notification[] = [];
+        let returnsNotifications: Notification[] = notifications;
         returns.forEach(item => {
             returnsNotifications.push({
                 actions: [<a onClick={() => rateReturn(item)}>rate</a>],
@@ -66,8 +60,7 @@ const NotificationComponent = (props: Props) => {
             });
         });
 
-        let state = { ...notifications };
-        state.returnNotifications = returnsNotifications;
+        let state = [...notifications];
         setNotifications(state);
     };
 
@@ -79,7 +72,7 @@ const NotificationComponent = (props: Props) => {
     return (
         <div>
             <List
-                dataSource={notifications.queueNotifications}
+                dataSource={notifications}
                 bordered
                 renderItem={item => (
                     <List.Item actions={item.actions}>
