@@ -16,9 +16,8 @@ interface Notification {
     description: string;
 }
 
-const emptyState: Notification[] = [];
-
 const NotificationComponent = (props: Props) => {
+    const emptyState: Notification[] = [];
     const [notifications, setNotifications] = useState(emptyState);
 
     const confirmRental = (queueElement: DataTypes.QueueNotificationRecordType) => {
