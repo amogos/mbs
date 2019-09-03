@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import * as DataTypes from './../types';
 import { Icon, Button } from 'antd';
 import RentalSettingsComponent from './rental_settings_component';
-import BookContentRating from './book_content_rating';
+import BookRating from './book_rating';
 
 interface Icon {
     type: string;
@@ -66,6 +66,21 @@ const BookStateCarryOut = (props: Props) => {
 const BookStateReturn = (props: Props) => {
     const [showRatingModal, setShowRatingModal] = useState(false);
 
+    const onRatePressed = (
+        book: DataTypes.BookRecordType,
+        contentRating: number,
+        stateRating: number,
+        comment: string,
+    ) => {
+        props.reviewBook(props.book.id, comment, contentRating, stateRating);
+        props.book.holder = DataTypes.NullUser;
+        props.returnBook(props.book.id);
+    };
+
+    const onRateCanceledPressed = () => {
+        setShowRatingModal(false);
+    };
+
     return (
         <div>
             <Button
@@ -76,13 +91,13 @@ const BookStateReturn = (props: Props) => {
             >
                 <IconText type="import" text="return" />
             </Button>
-            <BookContentRating
+            <BookRating
                 visible={showRatingModal}
                 userdata={props.userdata}
-                book={props.book}
-                reviewBook={props.reviewBook}
-                returnBook={props.returnBook}
-                onClosed={() => setShowRatingModal(false)}
+                onOk={(contentRating: number, stateRating: number, comment: string) =>
+                    onRatePressed(props.book, contentRating, stateRating, comment)
+                }
+                onClosed={onRateCanceledPressed}
             />
         </div>
     );

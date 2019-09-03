@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Comment, Form, Avatar, Input, Modal, Rate } from 'antd';
 import * as DataTypes from '../types';
-import * as StringConstants from './../constants/string_constant';
+import * as StringConstants from '../constants/string_constant';
 
 const { TextArea } = Input;
 
@@ -22,12 +22,10 @@ interface Props {
     userdata: DataTypes.UserRecordType;
     visible: boolean;
     onClosed(): void;
-    book: DataTypes.BookRecordType;
-    reviewBook(bookId: number, comment: string, contentScore: number, stateScore: number): void;
-    returnBook(bookId: number): void;
+    onOk(content: number, state: number, commment: string): void;
 }
 
-const BookContentRating = (props: Props) => {
+const BookRating = (props: Props) => {
     const [comment, setComment] = useState('');
     const [contentRating, setContentRating] = useState(0);
     const [stateRating, setStateRating] = useState(0);
@@ -44,14 +42,13 @@ const BookContentRating = (props: Props) => {
     };
 
     const onCancel = () => {
+        clearFields();
         props.onClosed();
     };
 
     const onOk = () => {
         if (!validFields) return;
-        props.reviewBook(props.book.id, comment, contentRating, stateRating);
-        props.book.holder = DataTypes.NullUser;
-        props.returnBook(props.book.id);
+        props.onOk(contentRating, stateRating, comment);
         clearFields();
         props.onClosed();
     };
@@ -79,4 +76,4 @@ const BookContentRating = (props: Props) => {
     );
 };
 
-export default BookContentRating;
+export default BookRating;

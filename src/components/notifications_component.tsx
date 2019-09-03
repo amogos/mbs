@@ -28,7 +28,9 @@ const NotificationComponent = (props: Props) => {
         props.rejectRental(queueElement);
     };
 
-    const rateReturn = (returnElement: DataTypes.ReturnNotificationType) => {};
+    const rateReturn = (returnElement: DataTypes.ReturnNotificationType) => {
+        
+    };
 
     const onQueueReceived = (queue: DataTypes.QueueNotificationRecordType[]) => {
         let queueNotifications: Notification[] = notifications;
