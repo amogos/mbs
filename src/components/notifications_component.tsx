@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { List, Avatar } from 'antd';
 import * as DataTypes from './../types';
+import RatingComponent from './../components/rating_component';
 
 interface Props {
+    userdata: DataTypes.UserRecordType;
     confirmRental(rental: DataTypes.QueueNotificationRecordType): void;
     rejectRental(rental: DataTypes.QueueNotificationRecordType): void;
     getReturns(callback: (returns: DataTypes.ReturnNotificationType[]) => void): void;
@@ -19,6 +21,8 @@ interface Notification {
 const NotificationComponent = (props: Props) => {
     const emptyState: Notification[] = [];
     const [notifications, setNotifications] = useState(emptyState);
+    const [showRating, setShowRating] = useState(false);
+    const [bookId, setBookId] = useState(0);
 
     const confirmRental = (queueElement: DataTypes.QueueNotificationRecordType) => {
         props.confirmRental(queueElement);
@@ -28,7 +32,20 @@ const NotificationComponent = (props: Props) => {
         props.rejectRental(queueElement);
     };
 
-    const rateReturn = (returnElement: DataTypes.ReturnNotificationType) => {};
+    const rateReturn = (returnElement: DataTypes.ReturnNotificationType) => {
+        setBookId(returnElement.bookId);
+        setShowRating(true);
+    };
+
+    const onRatingCanceled = () => {
+        setShowRating(false);
+        setBookId(0);
+    };
+
+    const onRatingOk = (content: number, state: number, commment: string) => {
+        setShowRating(false);
+        setBookId(0);
+    };
 
     const onQueueReceived = (queue: DataTypes.QueueNotificationRecordType[]) => {
         let queueNotifications: Notification[] = notifications;
@@ -82,6 +99,16 @@ const NotificationComponent = (props: Props) => {
                         />
                     </List.Item>
                 )}
+            />
+            <RatingComponent
+                visible={showRating}
+                rateState={true}
+                rateContent={false}
+                userdata={props.userdata}
+                onOk={(contentRating: number, stateRating: number, comment: string) =>
+                    onRatingOk(contentRating, stateRating, comment)
+                }
+                onClosed={onRatingCanceled}
             />
         </div>
     );

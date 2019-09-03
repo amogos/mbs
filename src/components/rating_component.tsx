@@ -56,7 +56,7 @@ const RatingComponent = (props: Props) => {
     };
 
     const StateRating = () => {
-        if (props.rateState && props.rateState.valueOf() === false) return null;
+        if (props.rateState === false) return null;
         return (
             <p>
                 {StringConstants.default.MYBOOKSHELVE_RATING_STATE}
@@ -66,7 +66,7 @@ const RatingComponent = (props: Props) => {
     };
 
     const ContentRating = () => {
-        if (props.rateContent && props.rateContent.valueOf() === false) return null;
+        if (props.rateContent === false) return null;
         return (
             <p>
                 {StringConstants.default.MYBOOKSHELVE_RATING_CONTENT}

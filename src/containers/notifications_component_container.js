@@ -2,6 +2,12 @@ import { connect } from 'react-redux';
 import { notificationAction } from '../actions/';
 import NotificationComponent from '../components/notifications_component';
 
+function mapStateToProps(state) {
+    return {
+        userdata: state.mainReducer.userdata,
+    };
+}
+
 const mapDispatchToProps = dispatch => {
     return {
         confirmRental: rental => dispatch(notificationAction.confirmRental(rental)),
@@ -13,6 +19,6 @@ const mapDispatchToProps = dispatch => {
 };
 
 export default connect(
-    null,
+    mapStateToProps,
     mapDispatchToProps,
 )(NotificationComponent);
