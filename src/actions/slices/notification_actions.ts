@@ -2,8 +2,9 @@ import * as ActionTypes from '../../constants/action_constant';
 import * as DataTypes from '../../types';
 
 class NotificationAction {
-    public rateReturn = (bookId: number, user: DataTypes.UserRecordType, rating: number, comment: string) => ({
+    public rateReturn = (returnId:number, bookId: number, user: DataTypes.UserRecordType, rating: number, comment: string) => ({
         type: ActionTypes.default.NotificationActionConstant.ACTION_RATE_RETURN,
+        returnId,
         bookId,
         user,
         rating,

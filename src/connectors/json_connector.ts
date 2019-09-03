@@ -349,6 +349,7 @@ export default class JsonConnector {
     }
 
     public async reviewUser(
+        returnId: number,
         bookId: number,
         userId: number,
         comment: string,
@@ -363,6 +364,8 @@ export default class JsonConnector {
                 stateScore: stateScore,
             })
             .catch(error => onError(error));
+
+        await axios.delete(this.urlReturns + '/' + returnId).catch(error => onError(error));
     }
 
     public async reviewBook(
@@ -440,6 +443,7 @@ export default class JsonConnector {
                         .catch(error => onError(error));
 
                     let notification: DataTypes.ReturnNotificationType = {
+                        returnId: item.id,
                         bookId: item.bookId,
                         bookTitle: title,
                         user: user,

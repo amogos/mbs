@@ -8,7 +8,14 @@ const { NotificationActionConstant } = ActionConstants.default;
 export default function notificationReducer(state: any, action: any): any {
     switch (action.type) {
         case NotificationActionConstant.ACTION_RATE_RETURN:
-            databseInstance.reviewUser(action.bookId, action.user.id, action.comment, action.rating, handleError);
+            databseInstance.reviewUser(
+                action.returnId,
+                action.bookId,
+                action.user.id,
+                action.comment,
+                action.rating,
+                handleError,
+            );
         case NotificationActionConstant.ACTION_GET_RETURNS:
             databseInstance.getReturnNotifications(state.userdata, handleError).then(result => action.callback(result));
             return state;

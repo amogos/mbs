@@ -5,7 +5,7 @@ import RatingComponent from './../components/rating_component';
 
 interface Props {
     userdata: DataTypes.UserRecordType;
-    rateReturn(bookId: number, user: DataTypes.UserRecordType, state: number, comment: string): void;
+    rateReturn(returnId: number, bookId: number, user: DataTypes.UserRecordType, state: number, comment: string): void;
     confirmRental(rental: DataTypes.QueueNotificationRecordType): void;
     rejectRental(rental: DataTypes.QueueNotificationRecordType): void;
     getReturns(callback: (returns: DataTypes.ReturnNotificationType[]) => void): void;
@@ -24,6 +24,7 @@ const NotificationComponent = (props: Props) => {
     const [notifications, setNotifications] = useState(emptyState);
     const [showRating, setShowRating] = useState(false);
     const [bookId, setBookId] = useState(0);
+    const [returnId, setReturnId] = useState(0);
     const [user, setUser] = useState(DataTypes.NullUser);
 
     const confirmRental = (queueElement: DataTypes.QueueNotificationRecordType) => {
@@ -35,6 +36,7 @@ const NotificationComponent = (props: Props) => {
     };
 
     const rateReturn = (returnElement: DataTypes.ReturnNotificationType) => {
+        setReturnId(returnElement.returnId);
         setUser(returnElement.user);
         setBookId(returnElement.bookId);
         setShowRating(true);
@@ -46,7 +48,7 @@ const NotificationComponent = (props: Props) => {
     };
 
     const onRatingOk = (content: number, state: number, commment: string) => {
-        props.rateReturn(bookId, user, state, commment);
+        props.rateReturn(returnId, bookId, user, state, commment);
         setShowRating(false);
         setBookId(0);
     };

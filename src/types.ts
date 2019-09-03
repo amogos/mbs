@@ -101,6 +101,7 @@ export interface ReturnValueType {
 }
 
 export interface ReturnNotificationType {
+    returnId: number;
     bookId: number;
     bookTitle: string;
     user: UserRecordType;
