@@ -16,7 +16,8 @@ export default class JsonConnector {
     private urlUsers = 'http://localhost:3001/users';
     private urlQueues = 'http://localhost:3001/queues';
     private urlCategory = 'http://localhost:3001/categories';
-    private urlReviews = 'http://localhost:3001/reviews';
+    private urlBookReviews = 'http://localhost:3001/book_reviews';
+    private urlUserReviews = 'http://localhost:3001/user_reviews';
     private urlReturns = 'http://localhost:3001/returns';
 
     private init() {}
@@ -176,7 +177,7 @@ export default class JsonConnector {
                     let numReviews = 0;
 
                     await axios
-                        .get(this.urlReviews + '?bookId=' + item.id)
+                        .get(this.urlBookReviews + '?bookId=' + item.id)
                         .then(response => {
                             if (response.data.length > 0) {
                                 response.data.forEach(
@@ -354,7 +355,7 @@ export default class JsonConnector {
         onError: (resultCode: number) => void,
     ) {
         await axios
-            .post(this.urlReviews, {
+            .post(this.urlBookReviews, {
                 bookId: bookId,
                 comment: comment,
                 contentScore: contentScore,
@@ -368,7 +369,7 @@ export default class JsonConnector {
         onError: (resultCode: number) => void,
     ): Promise<DataTypes.BookReviewRecordType[]> {
         let reviewsArray: DataTypes.BookReviewRecordType[] = [];
-        const url = `${this.urlReviews}?bookId=${bookId}`;
+        const url = `${this.urlBookReviews}?bookId=${bookId}`;
         await axios
             .get(url)
             .then(response => {

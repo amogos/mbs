@@ -115,7 +115,7 @@
       "id": 6
     }
   ],
-  "reviews": [
+  "book_reviews": [
     {
       "id": 1,
       "bookId": 1,
