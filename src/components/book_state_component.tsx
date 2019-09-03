@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import * as DataTypes from './../types';
 import { Icon, Button } from 'antd';
 import RentalSettingsComponent from './rental_settings_component';
-import BookRating from './book_rating';
+import RatingComponent from './rating_component';
 
 interface Icon {
     type: string;
@@ -91,7 +91,7 @@ const BookStateReturn = (props: Props) => {
             >
                 <IconText type="import" text="return" />
             </Button>
-            <BookRating
+            <RatingComponent
                 visible={showRatingModal}
                 userdata={props.userdata}
                 onOk={(contentRating: number, stateRating: number, comment: string) =>

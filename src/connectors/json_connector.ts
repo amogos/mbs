@@ -348,6 +348,23 @@ export default class JsonConnector {
             .catch(error => onError(error));
     }
 
+    public async reviewUser(
+        bookId: number,
+        userId: number,
+        comment: string,
+        stateScore: number,
+        onError: (resultCode: number) => void,
+    ) {
+        await axios
+            .post(this.urlUserReviews, {
+                bookId: bookId,
+                userId: userId,
+                comment: comment,
+                stateScore: stateScore,
+            })
+            .catch(error => onError(error));
+    }
+
     public async reviewBook(
         bookId: number,
         userId: number,

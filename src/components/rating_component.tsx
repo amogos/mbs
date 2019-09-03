@@ -21,11 +21,13 @@ const Editor = (props: EditorProps) => (
 interface Props {
     userdata: DataTypes.UserRecordType;
     visible: boolean;
+    rateState?: boolean;
+    rateContent?: boolean;
     onClosed(): void;
     onOk(content: number, state: number, commment: string): void;
 }
 
-const BookRating = (props: Props) => {
+const RatingComponent = (props: Props) => {
     const [comment, setComment] = useState('');
     const [contentRating, setContentRating] = useState(0);
     const [stateRating, setStateRating] = useState(0);
@@ -53,6 +55,26 @@ const BookRating = (props: Props) => {
         props.onClosed();
     };
 
+    const StateRating = () => {
+        if (props.rateState && props.rateState.valueOf() === false) return null;
+        return (
+            <p>
+                {StringConstants.default.MYBOOKSHELVE_RATING_STATE}
+                <Rate tooltips={description} onChange={handleStateRaterChange} value={stateRating} />
+            </p>
+        );
+    };
+
+    const ContentRating = () => {
+        if (props.rateContent && props.rateContent.valueOf() === false) return null;
+        return (
+            <p>
+                {StringConstants.default.MYBOOKSHELVE_RATING_CONTENT}
+                <Rate tooltips={description} onChange={handleContentRaterChange} value={contentRating} />
+            </p>
+        );
+    };
+
     return (
         <Modal
             title={StringConstants.default.MYBOOKSHELVE_RATING_TITLE}
@@ -60,14 +82,8 @@ const BookRating = (props: Props) => {
             onOk={onOk}
             onCancel={onCancel}
         >
-            <p>
-                {StringConstants.default.MYBOOKSHELVE_RATING_STATE}
-                <Rate tooltips={description} onChange={handleStateRaterChange} value={stateRating} />
-            </p>
-            <p>
-                {StringConstants.default.MYBOOKSHELVE_RATING_CONTENT}
-                <Rate tooltips={description} onChange={handleContentRaterChange} value={contentRating} />
-            </p>
+            <StateRating />
+            <ContentRating />
             <Comment
                 avatar={<Avatar src={props.userdata.picture} alt="Han Solo" />}
                 content={<Editor onChange={handleEditorChange} value={comment} />}
@@ -76,4 +92,4 @@ const BookRating = (props: Props) => {
     );
 };
 
-export default BookRating;
+export default RatingComponent;
