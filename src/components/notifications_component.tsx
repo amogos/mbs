@@ -23,6 +23,7 @@ const NotificationComponent = (props: Props) => {
     const [notifications, setNotifications] = useState(emptyState);
     const [showRating, setShowRating] = useState(false);
     const [bookId, setBookId] = useState(0);
+    const [user, setUser] = useState(DataTypes.NullUser);
 
     const confirmRental = (queueElement: DataTypes.QueueNotificationRecordType) => {
         props.confirmRental(queueElement);
@@ -33,6 +34,7 @@ const NotificationComponent = (props: Props) => {
     };
 
     const rateReturn = (returnElement: DataTypes.ReturnNotificationType) => {
+        setUser(returnElement.user);
         setBookId(returnElement.bookId);
         setShowRating(true);
     };
@@ -104,7 +106,7 @@ const NotificationComponent = (props: Props) => {
                 visible={showRating}
                 rateState={true}
                 rateContent={false}
-                userdata={props.userdata}
+                userdata={user}
                 onOk={(contentRating: number, stateRating: number, comment: string) =>
                     onRatingOk(contentRating, stateRating, comment)
                 }

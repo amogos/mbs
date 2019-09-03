@@ -10,6 +10,7 @@ export default {
     },
     NotificationActionConstant: {
         ACTION_CONFIRM_RENTAL: 'CONFIRM_RENTAL',
+        ACTION_RATE_RETURN: 'RATE_RETURN',
         ACTION_REJECT_RENTAL: 'REJECT_RENTAL',
         ACTION_GET_RETURNS: 'ACTION_GET_RETURNS',
         ACTION_GET_QUEUE: 'ACTION_GET_QUEUE',

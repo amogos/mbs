@@ -7,6 +7,8 @@ const { NotificationActionConstant } = ActionConstants.default;
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default function notificationReducer(state: any, action: any): any {
     switch (action.type) {
+        case NotificationActionConstant.ACTION_RATE_RETURN:
+            databseInstance.reviewUser(action.bookId, action.user.id, action.comment, action.rating, handleError);
         case NotificationActionConstant.ACTION_GET_RETURNS:
             databseInstance.getReturnNotifications(state.userdata, handleError).then(result => action.callback(result));
             return state;
@@ -15,13 +17,11 @@ export default function notificationReducer(state: any, action: any): any {
             return state;
         case NotificationActionConstant.ACTION_CONFIRM_RENTAL:
             databseInstance.confirmRental(action.rental, handleError);
-
             return Object.assign({}, state, {
                 action: NotificationActionConstant.ACTION_CONFIRM_RENTAL,
             });
         case NotificationActionConstant.ACTION_REJECT_RENTAL:
             databseInstance.rejectRental(action.rental, handleError);
-
             return Object.assign({}, state, {
                 action: NotificationActionConstant.ACTION_REJECT_RENTAL,
             });

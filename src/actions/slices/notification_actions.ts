@@ -2,6 +2,13 @@ import * as ActionTypes from '../../constants/action_constant';
 import * as DataTypes from '../../types';
 
 class NotificationAction {
+    public rateReturn = (bookId: number, user: DataTypes.UserRecordType, rating: number, comment: string) => ({
+        type: ActionTypes.default.NotificationActionConstant.ACTION_RATE_RETURN,
+        bookId,
+        user,
+        rating,
+        comment,
+    });
     public confirmRental = (rental: DataTypes.QueueNotificationType) => ({
         type: ActionTypes.default.NotificationActionConstant.ACTION_CONFIRM_RENTAL,
         rental,
