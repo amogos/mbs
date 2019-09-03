@@ -359,7 +359,7 @@ export default class JsonConnector {
         await axios
             .post(this.urlBookReviews, {
                 bookId: bookId,
-                userId: number,
+                userId: userId,
                 comment: comment,
                 contentScore: contentScore,
                 stateScore: stateScore,
