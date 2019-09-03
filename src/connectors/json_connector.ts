@@ -1,6 +1,7 @@
 import axios from 'axios';
 import * as DataTypes from '../types';
 import * as BookStateTypes from '../constants/book_states_constant';
+import { number } from 'prop-types';
 
 export default class JsonConnector {
     public constructor() {
@@ -349,6 +350,7 @@ export default class JsonConnector {
 
     public async reviewBook(
         bookId: number,
+        userId: number,
         comment: string,
         contentScore: number,
         stateScore: number,
@@ -357,6 +359,7 @@ export default class JsonConnector {
         await axios
             .post(this.urlBookReviews, {
                 bookId: bookId,
+                userId: number,
                 comment: comment,
                 contentScore: contentScore,
                 stateScore: stateScore,
