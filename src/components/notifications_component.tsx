@@ -5,6 +5,7 @@ import RatingComponent from './../components/rating_component';
 
 interface Props {
     userdata: DataTypes.UserRecordType;
+    rateReturn(bookId: number, user: DataTypes.UserRecordType, state: number, comment: string): void;
     confirmRental(rental: DataTypes.QueueNotificationRecordType): void;
     rejectRental(rental: DataTypes.QueueNotificationRecordType): void;
     getReturns(callback: (returns: DataTypes.ReturnNotificationType[]) => void): void;
@@ -45,6 +46,7 @@ const NotificationComponent = (props: Props) => {
     };
 
     const onRatingOk = (content: number, state: number, commment: string) => {
+        props.rateReturn(bookId, user, state, commment);
         setShowRating(false);
         setBookId(0);
     };
