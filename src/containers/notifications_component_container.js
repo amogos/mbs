@@ -10,8 +10,8 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = dispatch => {
     return {
-        rateReturn: (returnId, bookId, user, state, comment) =>
-            dispatch(notificationAction.rateReturn(returnId, bookId, user, state, comment)),
+        rateReturn: (returnId, bookId, user, state, comment, callback) =>
+            dispatch(notificationAction.rateReturn(returnId, bookId, user, state, comment, callback)),
         confirmRental: rental => dispatch(notificationAction.confirmRental(rental)),
         rejectRental: rental => dispatch(notificationAction.rejectRental(rental)),
         getReturns: callback => dispatch(notificationAction.getReturnsForUser(callback)),

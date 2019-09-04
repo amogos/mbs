@@ -14,6 +14,7 @@ export default function notificationReducer(state: any, action: any): any {
                 action.user.id,
                 action.comment,
                 action.rating,
+                action.callback,
                 handleError,
             );
             return state;

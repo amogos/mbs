@@ -1,7 +1,6 @@
 import axios from 'axios';
 import * as DataTypes from '../types';
 import * as BookStateTypes from '../constants/book_states_constant';
-import { number } from 'prop-types';
 
 export default class JsonConnector {
     public constructor() {
@@ -354,6 +353,7 @@ export default class JsonConnector {
         userId: number,
         comment: string,
         stateScore: number,
+        callback: () => void,
         onError: (resultCode: number) => void,
     ) {
         await axios
@@ -363,6 +363,7 @@ export default class JsonConnector {
                 comment: comment,
                 stateScore: stateScore,
             })
+            .then(callback)
             .catch(error => onError(error));
 
         await axios.delete(this.urlReturns + '/' + returnId).catch(error => onError(error));

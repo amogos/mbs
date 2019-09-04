@@ -5,7 +5,14 @@ import RatingComponent from './../components/rating_component';
 
 interface Props {
     userdata: DataTypes.UserRecordType;
-    rateReturn(returnId: number, bookId: number, user: DataTypes.UserRecordType, state: number, comment: string): void;
+    rateReturn(
+        returnId: number,
+        bookId: number,
+        user: DataTypes.UserRecordType,
+        state: number,
+        comment: string,
+        callback: () => void,
+    ): void;
     confirmRental(rental: DataTypes.QueueNotificationRecordType): void;
     rejectRental(rental: DataTypes.QueueNotificationRecordType): void;
     getReturns(callback: (returns: DataTypes.ReturnNotificationType[]) => void): void;
@@ -17,6 +24,7 @@ interface Notification {
     title: string | undefined;
     avatar: string;
     description: string;
+    key: string;
 }
 
 const NotificationComponent = (props: Props) => {
@@ -47,12 +55,6 @@ const NotificationComponent = (props: Props) => {
         setBookId(0);
     };
 
-    const onRatingOk = (content: number, state: number, commment: string) => {
-        props.rateReturn(returnId, bookId, user, state, commment);
-        setShowRating(false);
-        setBookId(0);
-    };
-
     const onQueueReceived = (queue: DataTypes.QueueNotificationRecordType[]) => {
         let queueNotifications: Notification[] = notifications;
         queue.forEach(item => {
@@ -64,6 +66,7 @@ const NotificationComponent = (props: Props) => {
                 title: item.user.name,
                 avatar: item.user.picture,
                 description: item.bookTitle,
+                key: `q${item.id}`,
             });
         });
 
@@ -79,6 +82,7 @@ const NotificationComponent = (props: Props) => {
                 title: item.user.name,
                 avatar: item.user.picture,
                 description: item.bookTitle,
+                key: `r${item.returnId}`,
             });
         });
 
@@ -86,9 +90,24 @@ const NotificationComponent = (props: Props) => {
         setNotifications(state);
     };
 
-    if (notifications === emptyState) {
+    const loadNotifications = () => {
+        setNotifications(emptyState);
         props.getReturns(onReturnsReceived);
         props.getQueue(onQueueReceived);
+    };
+
+    const onRatingOk = (_content: number, state: number, commment: string) => {
+        props.rateReturn(returnId, bookId, user, state, commment, () => {
+            const removeKey = `r${returnId}`;
+            const leftNotifications = notifications.filter(item => item.key !== removeKey);
+            setNotifications(leftNotifications);
+        });
+        setShowRating(false);
+        setBookId(0);
+    };
+
+    if (notifications === emptyState) {
+        loadNotifications();
     }
 
     return (
