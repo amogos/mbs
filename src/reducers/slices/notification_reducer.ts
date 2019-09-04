@@ -25,12 +25,12 @@ export default function notificationReducer(state: any, action: any): any {
             databseInstance.getQueueNotifications(state.userdata, handleError).then(result => action.callback(result));
             return state;
         case NotificationActionConstant.ACTION_CONFIRM_RENTAL:
-            databseInstance.confirmRental(action.rental, handleError);
+            databseInstance.confirmRental(action.rental, action.callback, handleError);
             return Object.assign({}, state, {
                 action: NotificationActionConstant.ACTION_CONFIRM_RENTAL,
             });
         case NotificationActionConstant.ACTION_REJECT_RENTAL:
-            databseInstance.rejectRental(action.rental, handleError);
+            databseInstance.rejectRental(action.rental, action.callback, handleError);
             return Object.assign({}, state, {
                 action: NotificationActionConstant.ACTION_REJECT_RENTAL,
             });

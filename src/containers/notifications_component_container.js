@@ -12,8 +12,8 @@ const mapDispatchToProps = dispatch => {
     return {
         rateReturn: (returnId, bookId, user, state, comment, callback) =>
             dispatch(notificationAction.rateReturn(returnId, bookId, user, state, comment, callback)),
-        confirmRental: rental => dispatch(notificationAction.confirmRental(rental)),
-        rejectRental: rental => dispatch(notificationAction.rejectRental(rental)),
+        confirmRental: (rental, callback) => dispatch(notificationAction.confirmRental(rental, callback)),
+        rejectRental: (rental, callback) => dispatch(notificationAction.rejectRental(rental, callback)),
         getReturns: callback => dispatch(notificationAction.getReturnsForUser(callback)),
         getQueue: callback => dispatch(notificationAction.getQueueForUser(callback)),
         dispatch,

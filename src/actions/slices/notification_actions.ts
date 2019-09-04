@@ -18,14 +18,16 @@ class NotificationAction {
         comment,
         callback,
     });
-    public confirmRental = (rental: DataTypes.QueueNotificationType) => ({
+    public confirmRental = (rental: DataTypes.QueueNotificationType, callback: () => void) => ({
         type: ActionTypes.default.NotificationActionConstant.ACTION_CONFIRM_RENTAL,
         rental,
+        callback,
     });
 
-    public rejectRental = (rental: DataTypes.QueueNotificationType) => ({
+    public rejectRental = (rental: DataTypes.QueueNotificationType, callback: () => void) => ({
         type: ActionTypes.default.NotificationActionConstant.ACTION_REJECT_RENTAL,
         rental,
+        callback,
     });
 
     public getReturnsForUser = (callback: (reviews: DataTypes.ReturnNotificationType[]) => void) => ({

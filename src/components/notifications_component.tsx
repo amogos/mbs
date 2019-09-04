@@ -13,8 +13,8 @@ interface Props {
         comment: string,
         callback: () => void,
     ): void;
-    confirmRental(rental: DataTypes.QueueNotificationRecordType): void;
-    rejectRental(rental: DataTypes.QueueNotificationRecordType): void;
+    confirmRental(rental: DataTypes.QueueNotificationRecordType, callback: () => void): void;
+    rejectRental(rental: DataTypes.QueueNotificationRecordType, callback: () => void): void;
     getReturns(callback: (returns: DataTypes.ReturnNotificationType[]) => void): void;
     getQueue(callback: (returns: DataTypes.QueueNotificationRecordType[]) => void): void;
 }
@@ -47,12 +47,17 @@ const NotificationComponent = (props: Props) => {
     const [notifications, setNotifications] = useState(emptyState);
     const [selection, setSelection] = useState(emptySelection);
 
+    const resolveNotification = (removeKey: string) => {
+        const leftNotifications = notifications.filter(item => item.key !== removeKey);
+        setNotifications(leftNotifications);
+    };
+
     const confirmRental = (queueElement: DataTypes.QueueNotificationRecordType) => {
-        props.confirmRental(queueElement);
+        props.confirmRental(queueElement, () => resolveNotification(`q${queueElement.id}`));
     };
 
     const rejectRental = (queueElement: DataTypes.QueueNotificationRecordType) => {
-        props.rejectRental(queueElement);
+        props.rejectRental(queueElement, () => resolveNotification(`q${queueElement.id}`));
     };
 
     const rateReturn = (returnElement: DataTypes.ReturnNotificationType) => {
@@ -104,18 +109,16 @@ const NotificationComponent = (props: Props) => {
         setNotifications(state);
     };
 
+    const onRatingOk = (_content: number, state: number, commment: string) => {
+        props.rateReturn(selection.returnId, selection.bookId, selection.user, state, commment, () =>
+            resolveNotification(`r${selection.returnId}`),
+        );
+        setSelection(emptySelection);
+    };
+
     const loadNotifications = () => {
         props.getReturns(onReturnsReceived);
         props.getQueue(onQueueReceived);
-    };
-
-    const onRatingOk = (_content: number, state: number, commment: string) => {
-        props.rateReturn(selection.returnId, selection.bookId, selection.user, state, commment, () => {
-            const removeKey = `r${selection.returnId}`;
-            const leftNotifications = notifications.filter(item => item.key !== removeKey);
-            setNotifications(leftNotifications);
-        });
-        setSelection(emptySelection);
     };
 
     if (notifications === emptyState) {

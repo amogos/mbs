@@ -218,10 +218,13 @@ export default class JsonConnector {
 
     public async confirmRental(
         rental: DataTypes.QueueNotificationRecordType,
+        callback: () => void,
         onError: (resultCode: number) => void,
     ): Promise<boolean> {
+        const bookIdUrl = `${this.urlBooks}/${rental.bookId}`;
+
         await axios
-            .get(this.urlBooks + '/' + rental.bookId)
+            .get(bookIdUrl)
             .then(async result => {
                 const value = {
                     ...result.data,
@@ -229,7 +232,7 @@ export default class JsonConnector {
                     holder: rental.user.id,
                     return: Date.now() + rental.duration * this.OneDayMilliseconds,
                 };
-                await axios.put(this.urlBooks + '/' + rental.bookId, value).catch(error => {
+                await axios.put(bookIdUrl, value).catch(error => {
                     onError(error);
                     return false;
                 });
@@ -239,19 +242,26 @@ export default class JsonConnector {
                 return false;
             });
 
-        await axios.delete(this.urlQueues + '/' + rental.id).catch(error => {
-            onError(error);
-            return false;
-        });
+        await axios
+            .delete(this.urlQueues + '/' + rental.id)
+            .catch(error => {
+                onError(error);
+                return false;
+            })
+            .then(callback);
 
         return true;
     }
 
     public async rejectRental(
         rental: DataTypes.QueueNotificationRecordType,
+        callback: () => void,
         onError: (resultCode: number) => void,
     ): Promise<boolean> {
-        await axios.delete(this.urlQueues + '/' + rental.id).catch(error => onError(error));
+        await axios
+            .delete(this.urlQueues + '/' + rental.id)
+            .then(callback)
+            .catch(error => onError(error));
         return true;
     }
 
