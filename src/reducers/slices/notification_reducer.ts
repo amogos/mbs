@@ -16,6 +16,7 @@ export default function notificationReducer(state: any, action: any): any {
                 action.rating,
                 handleError,
             );
+            return state;
         case NotificationActionConstant.ACTION_GET_RETURNS:
             databseInstance.getReturnNotifications(state.userdata, handleError).then(result => action.callback(result));
             return state;
