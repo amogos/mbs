@@ -27,13 +27,25 @@ interface Notification {
     key: string;
 }
 
+interface Selection {
+    showRating: boolean;
+    bookId: number;
+    returnId: number;
+    user: DataTypes.UserRecordType;
+}
+
+const emptyState: Notification[] = [];
+
+const emptySelection: Selection = {
+    returnId: 0,
+    user: DataTypes.NullUser,
+    bookId: 0,
+    showRating: false,
+};
+
 const NotificationComponent = (props: Props) => {
-    const emptyState: Notification[] = [];
     const [notifications, setNotifications] = useState(emptyState);
-    const [showRating, setShowRating] = useState(false);
-    const [bookId, setBookId] = useState(0);
-    const [returnId, setReturnId] = useState(0);
-    const [user, setUser] = useState(DataTypes.NullUser);
+    const [selection, setSelection] = useState(emptySelection);
 
     const confirmRental = (queueElement: DataTypes.QueueNotificationRecordType) => {
         props.confirmRental(queueElement);
@@ -44,15 +56,17 @@ const NotificationComponent = (props: Props) => {
     };
 
     const rateReturn = (returnElement: DataTypes.ReturnNotificationType) => {
-        setReturnId(returnElement.returnId);
-        setUser(returnElement.user);
-        setBookId(returnElement.bookId);
-        setShowRating(true);
+        const selection: Selection = {
+            returnId: returnElement.returnId,
+            user: returnElement.user,
+            bookId: returnElement.bookId,
+            showRating: true,
+        };
+        setSelection(selection);
     };
 
     const onRatingCanceled = () => {
-        setShowRating(false);
-        setBookId(0);
+        setSelection(emptySelection);
     };
 
     const onQueueReceived = (queue: DataTypes.QueueNotificationRecordType[]) => {
@@ -91,19 +105,17 @@ const NotificationComponent = (props: Props) => {
     };
 
     const loadNotifications = () => {
-        setNotifications(emptyState);
         props.getReturns(onReturnsReceived);
         props.getQueue(onQueueReceived);
     };
 
     const onRatingOk = (_content: number, state: number, commment: string) => {
-        props.rateReturn(returnId, bookId, user, state, commment, () => {
-            const removeKey = `r${returnId}`;
+        props.rateReturn(selection.returnId, selection.bookId, selection.user, state, commment, () => {
+            const removeKey = `r${selection.returnId}`;
             const leftNotifications = notifications.filter(item => item.key !== removeKey);
             setNotifications(leftNotifications);
         });
-        setShowRating(false);
-        setBookId(0);
+        setSelection(emptySelection);
     };
 
     if (notifications === emptyState) {
@@ -126,10 +138,10 @@ const NotificationComponent = (props: Props) => {
                 )}
             />
             <RatingComponent
-                visible={showRating}
+                visible={selection.showRating}
                 rateState={true}
                 rateContent={false}
-                userdata={user}
+                userdata={selection.user}
                 onOk={(contentRating: number, stateRating: number, comment: string) =>
                     onRatingOk(contentRating, stateRating, comment)
                 }
