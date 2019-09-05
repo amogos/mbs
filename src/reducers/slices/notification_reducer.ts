@@ -26,14 +26,10 @@ export default function notificationReducer(state: any, action: any): any {
             return state;
         case NotificationActionConstant.ACTION_CONFIRM_RENTAL:
             databseInstance.confirmRental(action.rental, action.callback, handleError);
-            return Object.assign({}, state, {
-                action: NotificationActionConstant.ACTION_CONFIRM_RENTAL,
-            });
+            return state;
         case NotificationActionConstant.ACTION_REJECT_RENTAL:
             databseInstance.rejectRental(action.rental, action.callback, handleError);
-            return Object.assign({}, state, {
-                action: NotificationActionConstant.ACTION_REJECT_RENTAL,
-            });
+            return state;
         default:
             return null;
     }

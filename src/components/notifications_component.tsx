@@ -34,16 +34,16 @@ interface Selection {
     user: DataTypes.UserRecordType;
 }
 
-const emptyState: Notification[] = [];
-
-const emptySelection: Selection = {
-    returnId: 0,
-    user: DataTypes.NullUser,
-    bookId: 0,
-    showRating: false,
-};
-
 const NotificationComponent = (props: Props) => {
+    const emptyState: Notification[] = [];
+
+    const emptySelection: Selection = {
+        returnId: 0,
+        user: DataTypes.NullUser,
+        bookId: 0,
+        showRating: false,
+    };
+
     const [notifications, setNotifications] = useState(emptyState);
     const [selection, setSelection] = useState(emptySelection);
 

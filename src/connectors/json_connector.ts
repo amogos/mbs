@@ -222,25 +222,31 @@ export default class JsonConnector {
         onError: (resultCode: number) => void,
     ): Promise<boolean> {
         const bookIdUrl = `${this.urlBooks}/${rental.bookId}`;
-
+        this.startedJobs = this.completedJobs = 0;
         await axios
             .get(bookIdUrl)
             .then(async result => {
+                this.startedJobs++;
                 const value = {
                     ...result.data,
                     state: BookStateTypes.default.STATE_BOOK_IN_TRANSIT_TO_HOLDER,
                     holder: rental.user.id,
                     return: Date.now() + rental.duration * this.OneDayMilliseconds,
                 };
-                await axios.put(bookIdUrl, value).catch(error => {
-                    onError(error);
-                    return false;
-                });
+                await axios
+                    .put(bookIdUrl, value)
+                    .then(() => this.completedJobs++)
+                    .catch(error => {
+                        onError(error);
+                        return false;
+                    });
             })
             .catch(error => {
                 onError(error);
                 return false;
             });
+
+        await this.workInProgress();
 
         await axios
             .delete(this.urlQueues + '/' + rental.id)
@@ -248,11 +254,7 @@ export default class JsonConnector {
                 onError(error);
                 return false;
             })
-            .then(callback)
-            .catch(error => {
-                onError(error);
-                return false;
-            });
+            .then(callback);
 
         return true;
     }
