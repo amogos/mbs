@@ -248,7 +248,11 @@ export default class JsonConnector {
                 onError(error);
                 return false;
             })
-            .then(callback);
+            .then(callback)
+            .catch(error => {
+                onError(error);
+                return false;
+            });
 
         return true;
     }
