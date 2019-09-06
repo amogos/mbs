@@ -1,8 +1,24 @@
 import axios from 'axios';
-import * as DataTypes from '../types';
-import * as BookStateTypes from '../constants/book_states_constant';
+import * as DataTypes from '../../types';
+import * as BookStateTypes from '../../constants/book_states_constant';
+import {
+    urlBooks,
+    urlLanguages,
+    urlUsers,
+    urlCategory,
+    urlBookReviews,
+    urlUserReviews,
+    urlReturns,
+    urlQueues,
+} from '../endpoints/constants';
+
+import { getLanguages } from '../endpoints/get_languages';
+import { getCategories } from '../endpoints/get_categories';
 
 export default class JsonConnector {
+    public getLanguages = getLanguages;
+    public getCategories = getCategories;
+
     public constructor() {
         this.init();
     }
@@ -10,15 +26,6 @@ export default class JsonConnector {
     public OneDayMilliseconds = 24 * 60 * 60 * 1000;
     public startedJobs: number = 0;
     public completedJobs: number = 0;
-
-    private urlBooks = 'http://localhost:3001/books';
-    private urlLanguages = 'http://localhost:3001/languages';
-    private urlUsers = 'http://localhost:3001/users';
-    private urlQueues = 'http://localhost:3001/queues';
-    private urlCategory = 'http://localhost:3001/categories';
-    private urlBookReviews = 'http://localhost:3001/book_reviews';
-    private urlUserReviews = 'http://localhost:3001/user_reviews';
-    private urlReturns = 'http://localhost:3001/returns';
 
     private init() {}
 
@@ -36,46 +43,16 @@ export default class JsonConnector {
         });
     };
 
-    public async getLanguages(onError: (resultCode: number) => void): Promise<DataTypes.LanguageRecordType[]> {
-        let languagesArray: DataTypes.LanguageRecordType[] = [];
-        await axios
-            .get(this.urlLanguages)
-            .then(response => {
-                response.data.forEach((item: DataTypes.LanguageRecordType) => {
-                    languagesArray.push(item);
-                });
-            })
-            .catch(error => {
-                onError(error);
-            });
-        return languagesArray;
-    }
-
-    public async getCategories(onError: (resultCode: number) => void): Promise<DataTypes.CategoryRecordType[]> {
-        let categoryArray: DataTypes.CategoryRecordType[] = [];
-        await axios
-            .get(this.urlCategory)
-            .then(response => {
-                response.data.forEach((item: DataTypes.CategoryRecordType) => {
-                    categoryArray.push(item);
-                });
-            })
-            .catch(error => {
-                onError(error);
-            });
-        return categoryArray;
-    }
-
     public async getSpaces(onError: (resultCode: number) => void): Promise<DataTypes.SpaceType[]> {
         let spacesArray: DataTypes.SpaceType[] = [];
         this.startedJobs = this.completedJobs = 0;
         await axios
-            .get(this.urlUsers)
+            .get(urlUsers)
             .then(response => {
                 this.startedJobs++;
                 response.data.forEach(async (item: DataTypes.UserRecordType) => {
                     await axios
-                        .get(this.urlBooks + '?owner=' + item.id)
+                        .get(urlBooks + '?owner=' + item.id)
                         .then(response => {
                             if (response.data.length > 0) {
                                 const space: DataTypes.SpaceType = {
@@ -103,7 +80,7 @@ export default class JsonConnector {
         onError: (resultCode: number) => void,
     ): Promise<DataTypes.BookRecordType[]> {
         let booksArray: DataTypes.BookRecordType[] = [];
-        let filterdBooksUrl = this.urlBooks;
+        let filterdBooksUrl = urlBooks;
         this.startedJobs = this.completedJobs = 0;
         if (filters && filters.length > 0) {
             filterdBooksUrl += '?' + filters.join('&');
@@ -115,7 +92,7 @@ export default class JsonConnector {
                     this.startedJobs++;
                     let holder: DataTypes.UserRecordType = DataTypes.NullUser;
                     if (item.holder > 0) {
-                        await axios.get(this.urlUsers + '/' + item.holder).then(r => {
+                        await axios.get(urlUsers + '/' + item.holder).then(r => {
                             holder = {
                                 name: r.data.name,
                                 email: r.data.email,
@@ -133,7 +110,7 @@ export default class JsonConnector {
 
                     let owner: DataTypes.UserRecordType = DataTypes.NullUser;
                     await axios
-                        .get(this.urlUsers + '/' + item.owner)
+                        .get(urlUsers + '/' + item.owner)
                         .then(response => {
                             owner = {
                                 name: response.data.name,
@@ -146,7 +123,7 @@ export default class JsonConnector {
 
                     let language = DataTypes.NullLanguage;
                     await axios
-                        .get(this.urlLanguages + '/' + item.language)
+                        .get(urlLanguages + '/' + item.language)
                         .then(response => {
                             language = { language: response.data.language, id: response.data.id };
                         })
@@ -154,7 +131,7 @@ export default class JsonConnector {
 
                     let category = DataTypes.NullCategory;
                     await axios
-                        .get(this.urlCategory + '/' + item.category)
+                        .get(urlCategory + '/' + item.category)
                         .then(response => {
                             category = { id: response.data.id, title: response.data.title };
                         })
@@ -162,7 +139,7 @@ export default class JsonConnector {
 
                     let returnDateMilliseconds = item.return ? item.return : 0;
                     await axios
-                        .get(this.urlQueues + '?bookId=' + item.id)
+                        .get(urlQueues + '?bookId=' + item.id)
                         .then(response => {
                             if (response.data.length > 0) {
                                 response.data.forEach(
@@ -177,7 +154,7 @@ export default class JsonConnector {
                     let numReviews = 0;
 
                     await axios
-                        .get(this.urlBookReviews + '?bookId=' + item.id)
+                        .get(urlBookReviews + '?bookId=' + item.id)
                         .then(response => {
                             if (response.data.length > 0) {
                                 response.data.forEach(
@@ -221,7 +198,7 @@ export default class JsonConnector {
         callback: () => void,
         onError: (resultCode: number) => void,
     ): Promise<boolean> {
-        const bookIdUrl = `${this.urlBooks}/${rental.bookId}`;
+        const bookIdUrl = `${urlBooks}/${rental.bookId}`;
         this.startedJobs = this.completedJobs = 0;
         await axios
             .get(bookIdUrl)
@@ -249,7 +226,7 @@ export default class JsonConnector {
         await this.workInProgress();
 
         await axios
-            .delete(this.urlQueues + '/' + rental.id)
+            .delete(urlQueues + '/' + rental.id)
             .catch(error => {
                 onError(error);
                 return false;
@@ -265,7 +242,7 @@ export default class JsonConnector {
         onError: (resultCode: number) => void,
     ): Promise<boolean> {
         await axios
-            .delete(this.urlQueues + '/' + rental.id)
+            .delete(urlQueues + '/' + rental.id)
             .then(callback)
             .catch(error => onError(error));
         return true;
@@ -273,14 +250,14 @@ export default class JsonConnector {
 
     public async returnBook(bookId: number, onError: (resultCode: number) => void) {
         await axios
-            .get(this.urlBooks + '/' + bookId)
+            .get(urlBooks + '/' + bookId)
             .then(async result => {
                 const value = {
                     ...result.data,
                     state: BookStateTypes.default.STATE_BOOK_IDLE,
                     holder: -1,
                 };
-                await axios.put(`${this.urlBooks} / ${bookId}`, value).catch(error => {
+                await axios.put(`${urlBooks} / ${bookId}`, value).catch(error => {
                     onError(error);
                 });
             })
@@ -297,7 +274,7 @@ export default class JsonConnector {
         onError: (resultCode: number) => void,
     ) {
         await axios
-            .post(this.urlQueues, {
+            .post(urlQueues, {
                 userId: user.id,
                 bookId: bookId,
                 ownerId: ownerId,
@@ -308,7 +285,7 @@ export default class JsonConnector {
 
     public async deleteBook(bookId: number, onError: (resultCode: number) => void) {
         await axios
-            .delete(this.urlBooks + '/' + bookId)
+            .delete(urlBooks + '/' + bookId)
             .then(() => {
                 onError(0);
             })
@@ -322,12 +299,12 @@ export default class JsonConnector {
         let userData = DataTypes.NullUser;
 
         await axios
-            .get(this.urlUsers + '?email=' + user.email)
+            .get(urlUsers + '?email=' + user.email)
             .then(async response => {
                 const isNewUser = response.data.length === 0;
                 if (isNewUser) {
                     await axios
-                        .post(this.urlUsers, user)
+                        .post(urlUsers, user)
                         .then(response => {
                             userData = response.data[0];
                         })
@@ -350,7 +327,7 @@ export default class JsonConnector {
 
     public async addBook(value: DataTypes.BookValueType, onError: (resultCode: number) => void) {
         await axios
-            .post(this.urlBooks, {
+            .post(urlBooks, {
                 author: value.author,
                 image: value.image,
                 language: value.language.id,
@@ -373,7 +350,7 @@ export default class JsonConnector {
         onError: (resultCode: number) => void,
     ) {
         await axios
-            .post(this.urlUserReviews, {
+            .post(urlUserReviews, {
                 bookId: bookId,
                 userId: userId,
                 comment: comment,
@@ -382,7 +359,7 @@ export default class JsonConnector {
             .then(callback)
             .catch(error => onError(error));
 
-        await axios.delete(this.urlReturns + '/' + returnId).catch(error => onError(error));
+        await axios.delete(urlReturns + '/' + returnId).catch(error => onError(error));
     }
 
     public async reviewBook(
@@ -394,7 +371,7 @@ export default class JsonConnector {
         onError: (resultCode: number) => void,
     ) {
         await axios
-            .post(this.urlBookReviews, {
+            .post(urlBookReviews, {
                 bookId: bookId,
                 userId: userId,
                 comment: comment,
@@ -409,7 +386,7 @@ export default class JsonConnector {
         onError: (resultCode: number) => void,
     ): Promise<DataTypes.BookReviewRecordType[]> {
         let reviewsArray: DataTypes.BookReviewRecordType[] = [];
-        const url = `${this.urlBookReviews}?bookId=${bookId}`;
+        const url = `${urlBookReviews}?bookId=${bookId}`;
         await axios
             .get(url)
             .then(response => {
@@ -424,7 +401,7 @@ export default class JsonConnector {
         let queueArray: DataTypes.QueueRecordType[] = [];
 
         await axios
-            .get(this.urlQueues + '?userId=' + userId)
+            .get(urlQueues + '?userId=' + userId)
             .then(response =>
                 response.data.forEach(async (item: DataTypes.QueueRecordType) => {
                     queueArray.push(item);
@@ -442,18 +419,18 @@ export default class JsonConnector {
         this.startedJobs = this.completedJobs = 0;
         let returnNotifications: DataTypes.ReturnNotificationType[] = [];
         await axios
-            .get(`${this.urlReturns}?ownerId=${user.id}`)
+            .get(`${urlReturns}?ownerId=${user.id}`)
             .then(response => {
                 response.data.forEach(async (item: DataTypes.ReturnRecordType) => {
                     this.startedJobs++;
                     let user: DataTypes.UserRecordType = DataTypes.NullUser;
                     await axios
-                        .get(this.urlUsers + '/' + item.userId)
+                        .get(urlUsers + '/' + item.userId)
                         .then(response => (user = response.data))
                         .catch(error => onError(error));
                     let title = '';
                     await axios
-                        .get(this.urlBooks + '/' + item.bookId)
+                        .get(urlBooks + '/' + item.bookId)
                         .then(response => {
                             title = response.data.title;
                         })
@@ -481,7 +458,7 @@ export default class JsonConnector {
         this.startedJobs = this.completedJobs = 0;
         let rentalNotifications: DataTypes.QueueNotificationRecordType[] = [];
         await axios
-            .get(this.urlQueues + '?ownerId=' + user.id)
+            .get(urlQueues + '?ownerId=' + user.id)
             .then(response => {
                 if (response.data.length === 0) return rentalNotifications;
 
@@ -489,14 +466,14 @@ export default class JsonConnector {
                     this.startedJobs++;
                     let user: DataTypes.UserRecordType = DataTypes.NullUser;
                     await axios
-                        .get(this.urlUsers + '/' + item.userId)
+                        .get(urlUsers + '/' + item.userId)
                         .then(response => (user = response.data))
                         .catch(error => onError(error));
 
                     let title = '';
                     let holder = -1;
                     await axios
-                        .get(this.urlBooks + '/' + item.bookId)
+                        .get(urlBooks + '/' + item.bookId)
                         .then(response => {
                             title = response.data.title;
                             holder = response.data.holder;

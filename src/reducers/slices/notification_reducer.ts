@@ -1,5 +1,5 @@
 import * as ActionConstants from '../../constants/action_constant';
-import databseInstance from '../../connectors/database_instance';
+import databseInstance from '../../backend/database_instance';
 import { handleError } from './page_reducer';
 
 const { NotificationActionConstant } = ActionConstants.default;

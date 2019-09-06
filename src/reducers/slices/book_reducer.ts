@@ -1,6 +1,6 @@
 import * as ActionConstants from '../../constants/action_constant';
 import { pageAction } from '../../actions';
-import databseInstance from '../../connectors/database_instance';
+import databseInstance from '../../backend/database_instance';
 import Store from '../../store';
 import Strings from '../../constants/string_constant';
 import { message } from 'antd';

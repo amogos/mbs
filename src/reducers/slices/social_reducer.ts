@@ -1,7 +1,7 @@
 import * as ActionConstants from '../../constants/action_constant';
 import * as DataTypes from '../../types';
 import { socialAction } from '../../actions';
-import databseInstance from '../../connectors/database_instance';
+import databseInstance from '../../backend/database_instance';
 import Store from '../../store';
 import { handleError } from './page_reducer';
 
