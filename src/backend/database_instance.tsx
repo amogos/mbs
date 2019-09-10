@@ -1,3 +1,3 @@
-import JsonConnector from './connectors/json_connector';
-const dbconnector = new JsonConnector();
-export default dbconnector;
+import JSONConnector from './connectors/json_connector';
+const DBConnector = new JSONConnector();
+export default DBConnector;
