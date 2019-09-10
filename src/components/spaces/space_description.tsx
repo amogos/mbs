@@ -1,6 +1,6 @@
 import React from 'react';
 import * as DataTypes from '../../types';
-import { Card, Avatar } from 'antd';
+import { Card } from 'antd';
 
 interface Props {
     item: DataTypes.SpaceType;
@@ -8,8 +8,8 @@ interface Props {
 
 const SpaceDescription = (props: Props) => {
     const { Meta } = Card;
-    const { user, title, description } = props.item;
-    return <Meta avatar={<Avatar src={user.picture} />} title={title} description={description} />;
+    const { title, description } = props.item;
+    return <Meta title={title} description={description} />;
 };
 
 export default SpaceDescription;
