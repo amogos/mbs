@@ -18,7 +18,13 @@ export async function getSpaces(onError: (resultCode: number) => void): Promise<
                         if (response.data.length > 0) {
                             const space: DataTypes.SpaceType = {
                                 user: item,
-                                nbooks: response.data.length,
+                                numberOfBooks: response.data.length,
+                                numberOfFollowers: 100,
+                                rating: 3.5,
+                                format: 1,
+                                transport: 0,
+                                title: 'Anton-Saefkow-Bibliothek Lichtenberg',
+                                description: 'Public library in Berlin, Germany',
                             };
                             spacesArray.push(space);
                         }

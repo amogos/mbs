@@ -128,7 +128,13 @@ export const NullCategory: CategoryRecordType = { id: 0, title: '' };
 
 export interface SpaceType {
     user: UserRecordType;
-    nbooks: number;
+    numberOfBooks: number;
+    numberOfFollowers: number;
+    rating: number; // 1-5 and fractional
+    format: number; //  1 - hardcover 2 - ebook  4- audio (5 = hardcover & audio)
+    transport: number; // 0 - no transport  1 - optional/not mendatory  2 - transport covered
+    title: string;
+    description: string;
 }
 
 export interface BookReviewRecordType {
