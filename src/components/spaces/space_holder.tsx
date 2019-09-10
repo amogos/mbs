@@ -1,6 +1,9 @@
 import React from 'react';
-import { Card, Icon, Avatar } from 'antd';
 import * as DataTypes from '../../types';
+import { Card, Avatar } from 'antd';
+
+import SpaceImage from './space_image';
+import SpaceActions from './space_actions';
 
 const { Meta } = Card;
 
@@ -9,22 +12,11 @@ interface Props {
 }
 
 const SpaceHolder = (props: Props) => {
+    const { user } = props.item;
+
     return (
-        <Card
-            style={{ width: 300 }}
-            cover={
-                <img
-                    alt="example"
-                    src="https://static1.squarespace.com/static/52e90e99e4b04f8e0ba4b3f8/t/5980a7c9cd39c3a86f4d57aa/1501603792367/"
-                />
-            }
-            actions={[<Icon type="setting" />, <Icon type="edit" />, <Icon type="ellipsis" />]}
-        >
-            <Meta
-                avatar={<Avatar src={props.item.user.picture} />}
-                title={props.item.user.name}
-                description={props.item.nbooks}
-            />
+        <Card style={{ width: 300 }} cover={SpaceImage(props)} actions={SpaceActions(props)}>
+            <Meta avatar={<Avatar src={props.item.user.picture} />} title={user.name} description={props.item.nbooks} />
         </Card>
     );
 };
