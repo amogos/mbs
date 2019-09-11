@@ -62,9 +62,8 @@ export interface BookRawRecordType {
     holder: number;
     state: string;
     category: number;
+    space: number;
     return?: number;
-    contentScore?: number;
-    numReviews?: number;
 }
 
 export interface LanguageRecordType {
@@ -135,6 +134,15 @@ export interface SpaceType {
     transport: number; // 0 - no transport  1 - optional/not mendatory  2 - transport covered
     title: string;
     description: string;
+}
+
+export interface SpaceRawRecordType {
+    id: number;
+    owner: number;
+    subscription: number;
+    title: string;
+    description: string;
+    transport: number;
 }
 
 export interface BookReviewRecordType {

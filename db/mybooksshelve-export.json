@@ -56,7 +56,9 @@
       "holder": 1,
       "title": "The Secret Language of Cats: How to Understand Your Cat for a Better, Happier Relationship",
       "state": "state.book.idle",
-      "category": 26
+      "category": 26,
+      "space": 2,
+      "format": 1
     },
     {
       "id": 2,
@@ -68,6 +70,8 @@
       "title": "The Very Hungry Caterpillar's ABC",
       "state": "state.book.in.transit.to.holder",
       "category": 4,
+      "space": 1,
+      "format": 1,
       "return": 1565937976485
     },
     {
@@ -79,7 +83,9 @@
       "holder": -1,
       "title": "Room on the Broom Board Book",
       "state": "state.book.idle",
-      "category": 4
+      "category": 4,
+      "space": 1,
+      "format": 1
     },
     {
       "id": 4,
@@ -90,7 +96,9 @@
       "holder": -1,
       "title": "The Snail and the Whale",
       "state": "state.book.idle",
-      "category": 4
+      "category": 4,
+      "space": 1,
+      "format": 1
     },
     {
       "id": 5,
@@ -101,7 +109,9 @@
       "holder": -1,
       "title": "Homo Deus: Eine Geschichte von Morgen ",
       "state": "state.book.idle",
-      "category": 11
+      "category": 11,
+      "space": 2,
+      "format": 1
     },
     {
       "author": "me",
@@ -112,7 +122,9 @@
       "title": "business book",
       "state": "state.book.idle",
       "category": 3,
-      "id": 6
+      "space": 1,
+      "id": 6,
+      "format": 1
     }
   ],
   "book_reviews": [
@@ -275,6 +287,38 @@
     {
       "id": 30,
       "title": "NonFiction(General)"
+    }
+  ],
+  "spaces": [
+    {
+      "id": 1,
+      "owner": 1,
+      "subscription": 0,
+      "title": "daosmistique@yahoo.com",
+      "description": "Iulia Mogos Default",
+      "transport": 0
+    },
+    {
+      "id": 2,
+      "owner": 2,
+      "subscription": 0,
+      "title": "florin.mogos@gmail.com",
+      "description": "Florin Mogos Default",
+      "transport": 0
+    }
+  ],
+  "formats": [
+    {
+      "id": 1,
+      "type": "hardcover"
+    },
+    {
+      "id": 2,
+      "type": "ebook"
+    },
+    {
+      "id": 3,
+      "type": "audio-book"
     }
   ]
 }
