@@ -3,6 +3,41 @@ import * as DataTypes from '../../types';
 import { urlUsers, urlBooks, urlSpaces } from './constants';
 import WaitEqual from '../utils/wait_equal';
 
+export async function getSpaceOwner(
+    owner: number,
+    onError: (resultCode: number) => void,
+): Promise<DataTypes.UserRecordType> {
+    let spaceOwner: DataTypes.UserRecordType = DataTypes.NullUser;
+    await axios
+        .get(`${urlUsers} ?id=${owner}`)
+        .then(response => (spaceOwner = response.data))
+        .catch(error => {
+            onError(error);
+        });
+    return spaceOwner;
+}
+
+export async function getSpaceStatistics(
+    space: number,
+    onError: (resultCode: number) => void,
+): Promise<{ size: number; rating: number }> {
+    let size = 0;
+    let rating = 0;
+    await axios
+        .get(`${urlBooks}?space=${space}`)
+        .then(response => {
+            size = response.data.length;
+        })
+        .catch(error => {
+            onError(error);
+        });
+    return { size: size, rating: rating };
+}
+
+export async function getSpaceNumberOfFollowers(space: number, onError: (resultCode: number) => void): Promise<number> {
+    return 100;
+}
+
 export async function getSpaces(onError: (resultCode: number) => void): Promise<DataTypes.SpaceType[]> {
     let spacesArray: DataTypes.SpaceType[] = [];
     let waitEqual = new WaitEqual();
@@ -11,61 +46,28 @@ export async function getSpaces(onError: (resultCode: number) => void): Promise<
         .get(urlSpaces)
         .then(response => {
             response.data.forEach(async (item: DataTypes.SpaceRawRecordType) => {
-                let spaceOwner: DataTypes.UserRecordType = DataTypes.NullUser;
-                await axios
-                    .get(urlUsers + '?id=' + item.owner)
-                    .then(response => (spaceOwner = response.data))
-                    .catch(error => {
-                        onError(error);
-                    });
-
-                let spaceNumberOfBooks = 0;
+                waitEqual.begin();
+                let spaceOwner = await getSpaceOwner(item.owner, onError);
+                let spaceStatistics = await getSpaceStatistics(item.id, onError);
+                let spaceNumberOfFollowers = await getSpaceNumberOfFollowers(item.id, onError);
 
                 const space: DataTypes.SpaceType = {
                     user: spaceOwner,
-                    numberOfBooks: spaceNumberOfBooks,
-                    numberOfFollowers: 100,
-                    rating: 3.5,
-                    transport: 0,
+                    numberOfBooks: spaceStatistics.size,
+                    numberOfFollowers: spaceNumberOfFollowers,
+                    rating: spaceStatistics.rating,
+                    transport: item.transport,
                     title: item.title,
                     description: item.description,
                 };
+                spacesArray.push(space);
+                waitEqual.end();
             });
         })
         .catch(error => {
             onError(error);
         });
 
-    await axios
-        .get(urlUsers)
-        .then(response => {
-            waitEqual.begin();
-            response.data.forEach(async (item: DataTypes.UserRecordType) => {
-                await axios
-                    .get(urlBooks + '?owner=' + item.id)
-                    .then(response => {
-                        if (response.data.length > 0) {
-                            const space: DataTypes.SpaceType = {
-                                user: item,
-                                numberOfBooks: response.data.length,
-                                numberOfFollowers: 100,
-                                rating: 3.5,
-                                transport: 0,
-                                title: 'Anton-Saefkow-Bibliothek Lichtenberg',
-                                description: 'Public library in Berlin, Germany',
-                            };
-                            spacesArray.push(space);
-                        }
-                        waitEqual.end();
-                    })
-                    .catch(error => {
-                        onError(error);
-                    });
-            });
-        })
-        .catch(error => {
-            onError(error);
-        });
     await waitEqual.result();
     return spacesArray;
 }
