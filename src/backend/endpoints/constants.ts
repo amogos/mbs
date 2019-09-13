@@ -6,5 +6,7 @@ export const urlBookReviews = 'http://localhost:3001/book_reviews';
 export const urlUserReviews = 'http://localhost:3001/user_reviews';
 export const urlReturns = 'http://localhost:3001/returns';
 export const urlQueues = 'http://localhost:3001/queues';
+export const urlSpaces = 'http://localhost:3001/spaces';
+export const urlFormats = 'http://localhost:3001/formats';
 
 export const OneDayMilliseconds = 24 * 60 * 60 * 1000;

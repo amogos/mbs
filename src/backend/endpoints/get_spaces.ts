@@ -1,11 +1,40 @@
 import axios from 'axios';
 import * as DataTypes from '../../types';
-import { urlUsers, urlBooks } from './constants';
+import { urlUsers, urlBooks, urlSpaces } from './constants';
 import WaitEqual from '../utils/wait_equal';
 
 export async function getSpaces(onError: (resultCode: number) => void): Promise<DataTypes.SpaceType[]> {
     let spacesArray: DataTypes.SpaceType[] = [];
     let waitEqual = new WaitEqual();
+
+    await axios
+        .get(urlSpaces)
+        .then(response => {
+            response.data.forEach(async (item: DataTypes.SpaceRawRecordType) => {
+                let spaceOwner: DataTypes.UserRecordType = DataTypes.NullUser;
+                await axios
+                    .get(urlUsers + '?id=' + item.owner)
+                    .then(response => (spaceOwner = response.data))
+                    .catch(error => {
+                        onError(error);
+                    });
+
+                let spaceNumberOfBooks = 0;
+
+                const space: DataTypes.SpaceType = {
+                    user: spaceOwner,
+                    numberOfBooks: spaceNumberOfBooks,
+                    numberOfFollowers: 100,
+                    rating: 3.5,
+                    transport: 0,
+                    title: item.title,
+                    description: item.description,
+                };
+            });
+        })
+        .catch(error => {
+            onError(error);
+        });
 
     await axios
         .get(urlUsers)
@@ -21,7 +50,6 @@ export async function getSpaces(onError: (resultCode: number) => void): Promise<
                                 numberOfBooks: response.data.length,
                                 numberOfFollowers: 100,
                                 rating: 3.5,
-                                format: 1,
                                 transport: 0,
                                 title: 'Anton-Saefkow-Bibliothek Lichtenberg',
                                 description: 'Public library in Berlin, Germany',
