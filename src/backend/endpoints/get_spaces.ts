@@ -3,10 +3,7 @@ import * as DataTypes from '../../types';
 import { urlUsers, urlBooks, urlSpaces } from './constants';
 import WaitEqual from '../utils/wait_equal';
 
-export async function getSpaceOwner(
-    owner: number,
-    onError: (resultCode: number) => void,
-): Promise<DataTypes.UserRecordType> {
+async function getSpaceOwner(owner: number, onError: (resultCode: number) => void): Promise<DataTypes.UserRecordType> {
     let spaceOwner: DataTypes.UserRecordType = DataTypes.NullUser;
     await axios
         .get(`${urlUsers}?id=${owner}`)
@@ -17,7 +14,7 @@ export async function getSpaceOwner(
     return spaceOwner;
 }
 
-export async function getSpaceStatistics(
+async function getSpaceStatistics(
     space: number,
     onError: (resultCode: number) => void,
 ): Promise<{ size: number; rating: number; format: string[] }> {
@@ -34,11 +31,11 @@ export async function getSpaceStatistics(
     return { size: size, rating: rating, format: ['hardcover'] };
 }
 
-export async function getSpaceNumberOfFollowers(space: number, onError: (resultCode: number) => void): Promise<number> {
+async function getSpaceNumberOfFollowers(space: number, onError: (resultCode: number) => void): Promise<number> {
     return 100;
 }
 
-export async function getSpaces(onError: (resultCode: number) => void): Promise<DataTypes.SpaceType[]> {
+async function getSpaces(onError: (resultCode: number) => void): Promise<DataTypes.SpaceType[]> {
     let spacesArray: DataTypes.SpaceType[] = [];
     let waitEqual = new WaitEqual();
 
