@@ -136,7 +136,19 @@ export interface SpaceType {
     transport: number; // 0 - no transport  1 - optional/not mendatory  2 - transport covered
     title: string;
     description: string;
+    format: string[];
 }
+
+export const NullSpace: SpaceType = {
+    user: NullUser,
+    numberOfBooks: 0,
+    numberOfFollowers: 0,
+    rating: 0,
+    transport: 0,
+    title: '',
+    description: '',
+    format: [],
+};
 
 export interface SpaceRawRecordType {
     id: number;

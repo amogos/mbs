@@ -105,6 +105,9 @@ export async function getBooks(
                     })
                     .catch(error => onError(error));
 
+                let space: DataTypes.SpaceType = DataTypes.NullSpace;
+                let format: DataTypes.FormatRawType = DataTypes.NullFormat;
+
                 let bookRecord: DataTypes.BookRecordType = {
                     id: item.id,
                     title: item.title,
@@ -115,6 +118,8 @@ export async function getBooks(
                     holder: holder,
                     state: item.state,
                     category: category,
+                    space: space,
+                    format: format.type,
                     return: returnDateMilliseconds,
                     contentScore: contentScore,
                     numReviews: numReviews,

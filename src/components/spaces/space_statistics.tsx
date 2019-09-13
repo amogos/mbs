@@ -6,7 +6,7 @@ interface Props {
     item: DataTypes.SpaceType;
 }
 
-const IconFormat = (format: number, numberOfBooks: number) => {
+const IconFormat = (format: string[], numberOfBooks: number) => {
     return (
         <span>
             <Divider type="vertical" />

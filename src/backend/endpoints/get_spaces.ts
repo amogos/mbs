@@ -20,7 +20,7 @@ export async function getSpaceOwner(
 export async function getSpaceStatistics(
     space: number,
     onError: (resultCode: number) => void,
-): Promise<{ size: number; rating: number }> {
+): Promise<{ size: number; rating: number; format: string[] }> {
     let size = 0;
     let rating = 0;
     await axios
@@ -31,7 +31,7 @@ export async function getSpaceStatistics(
         .catch(error => {
             onError(error);
         });
-    return { size: size, rating: rating };
+    return { size: size, rating: rating, format: ['hardcover'] };
 }
 
 export async function getSpaceNumberOfFollowers(space: number, onError: (resultCode: number) => void): Promise<number> {
@@ -59,6 +59,7 @@ export async function getSpaces(onError: (resultCode: number) => void): Promise<
                     transport: item.transport,
                     title: item.title,
                     description: item.description,
+                    format: spaceStatistics.format,
                 };
                 spacesArray.push(space);
                 waitEqual.end();
