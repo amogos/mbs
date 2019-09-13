@@ -9,7 +9,7 @@ export async function getSpaceOwner(
 ): Promise<DataTypes.UserRecordType> {
     let spaceOwner: DataTypes.UserRecordType = DataTypes.NullUser;
     await axios
-        .get(`${urlUsers} ?id=${owner}`)
+        .get(`${urlUsers}?id=${owner}`)
         .then(response => (spaceOwner = response.data))
         .catch(error => {
             onError(error);
