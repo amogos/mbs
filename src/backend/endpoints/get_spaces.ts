@@ -1,20 +1,10 @@
 import axios from 'axios';
 import * as DataTypes from '../../types';
-import { urlUsers, urlBooks, urlSpaces } from './constants';
+import { urlBooks, urlSpaces } from './constants';
 import WaitEqual from '../utils/wait_equal';
+import { getUserRecordTypeFromId } from './get_user';
 
-async function getSpaceOwner(owner: number, onError: (resultCode: number) => void): Promise<DataTypes.UserRecordType> {
-    let spaceOwner: DataTypes.UserRecordType = DataTypes.NullUser;
-    await axios
-        .get(`${urlUsers}?id=${owner}`)
-        .then(response => (spaceOwner = response.data))
-        .catch(error => {
-            onError(error);
-        });
-    return spaceOwner;
-}
-
-async function getSpaceStatistics(
+export async function getSpaceStatistics(
     space: number,
     onError: (resultCode: number) => void,
 ): Promise<{ size: number; rating: number; format: string[] }> {
@@ -35,7 +25,29 @@ async function getSpaceNumberOfFollowers(space: number, onError: (resultCode: nu
     return 100;
 }
 
-async function getSpaces(onError: (resultCode: number) => void): Promise<DataTypes.SpaceType[]> {
+export async function getSpaceDataFromRawData(
+    item: DataTypes.SpaceRawRecordType,
+    onError: (resultCode: number) => void,
+): Promise<DataTypes.SpaceType> {
+    let spaceOwner = await getUserRecordTypeFromId(item.owner, onError);
+    let spaceStatistics = await getSpaceStatistics(item.id, onError);
+    let spaceNumberOfFollowers = await getSpaceNumberOfFollowers(item.id, onError);
+
+    const space: DataTypes.SpaceType = {
+        user: spaceOwner,
+        numberOfBooks: spaceStatistics.size,
+        numberOfFollowers: spaceNumberOfFollowers,
+        rating: spaceStatistics.rating,
+        transport: item.transport,
+        title: item.title,
+        description: item.description,
+        format: spaceStatistics.format,
+    };
+
+    return space;
+}
+
+export async function getSpaces(onError: (resultCode: number) => void): Promise<DataTypes.SpaceType[]> {
     let spacesArray: DataTypes.SpaceType[] = [];
     let waitEqual = new WaitEqual();
 
@@ -44,20 +56,7 @@ async function getSpaces(onError: (resultCode: number) => void): Promise<DataTyp
         .then(response => {
             response.data.forEach(async (item: DataTypes.SpaceRawRecordType) => {
                 waitEqual.begin();
-                let spaceOwner = await getSpaceOwner(item.owner, onError);
-                let spaceStatistics = await getSpaceStatistics(item.id, onError);
-                let spaceNumberOfFollowers = await getSpaceNumberOfFollowers(item.id, onError);
-
-                const space: DataTypes.SpaceType = {
-                    user: spaceOwner,
-                    numberOfBooks: spaceStatistics.size,
-                    numberOfFollowers: spaceNumberOfFollowers,
-                    rating: spaceStatistics.rating,
-                    transport: item.transport,
-                    title: item.title,
-                    description: item.description,
-                    format: spaceStatistics.format,
-                };
+                const space = await getSpaceDataFromRawData(item, onError);
                 spacesArray.push(space);
                 waitEqual.end();
             });

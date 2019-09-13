@@ -8,6 +8,7 @@ import {
     urlQueues,
     urlBookReviews,
     OneDayMilliseconds,
+    urlFormats,
 } from './constants';
 
 import WaitEqual from '../utils/wait_equal';
@@ -106,7 +107,14 @@ export async function getBooks(
                     .catch(error => onError(error));
 
                 let space: DataTypes.SpaceType = DataTypes.NullSpace;
+
                 let format: DataTypes.FormatRawType = DataTypes.NullFormat;
+                await axios
+                    .get(`${urlFormats}?id=${item.format}`)
+                    .then(response => {
+                        format = response.data;
+                    })
+                    .catch(error => onError(error));
 
                 let bookRecord: DataTypes.BookRecordType = {
                     id: item.id,

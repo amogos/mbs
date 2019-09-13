@@ -11,9 +11,11 @@ const { SocialActionConstant } = ActionConstants.default;
 export default function socialReducer(state: any, action: any): any {
     switch (action.type) {
         case ActionConstants.default.SocialActionConstant.ACTION_LOGIN_USER: {
-            databseInstance.getUser(action.user, handleError).then((result: DataTypes.UserRecordType) => {
-                Store.dispatch(socialAction.addUserData(result));
-            });
+            databseInstance
+                .getUserRecordTypeFromValueType(action.user, handleError)
+                .then((result: DataTypes.UserRecordType) => {
+                    Store.dispatch(socialAction.addUserData(result));
+                });
             return Object.assign({}, state, {
                 action: SocialActionConstant.ACTION_LOGIN_USER,
             });

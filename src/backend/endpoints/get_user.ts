@@ -2,7 +2,7 @@ import axios from 'axios';
 import * as DataTypes from '../../types';
 import { urlUsers } from './constants';
 
-export async function getUser(
+export async function getUserRecordTypeFromValueType(
     user: DataTypes.UserValueType,
     onError: (resultCode: number) => void,
 ): Promise<DataTypes.UserRecordType> {
@@ -33,4 +33,18 @@ export async function getUser(
         .catch(error => onError(error));
 
     return userData;
+}
+
+export async function getUserRecordTypeFromId(
+    id: number,
+    onError: (resultCode: number) => void,
+): Promise<DataTypes.UserRecordType> {
+    let spaceOwner: DataTypes.UserRecordType = DataTypes.NullUser;
+    await axios
+        .get(`${urlUsers}?id=${id}`)
+        .then(response => (spaceOwner = response.data))
+        .catch(error => {
+            onError(error);
+        });
+    return spaceOwner;
 }

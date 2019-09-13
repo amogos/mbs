@@ -7,7 +7,7 @@ import { rejectRental } from '../endpoints/reject_rental';
 import { returnBook } from '../endpoints/return_book';
 import { askBook } from '../endpoints/ask_book';
 import { deleteBook } from '../endpoints/delete_book';
-import { getUser } from '../endpoints/get_user';
+import { getUserRecordTypeFromValueType, getUserRecordTypeFromId } from '../endpoints/get_user';
 import { addBook } from '../endpoints/add_book';
 import { reviewUser } from '../endpoints/review_user';
 import { reviewBook } from '../endpoints/review_book';
@@ -26,7 +26,8 @@ export default class JSONConnector {
     public returnBook = returnBook;
     public askBook = askBook;
     public deleteBook = deleteBook;
-    public getUser = getUser;
+    public getUserRecordTypeFromValueType = getUserRecordTypeFromValueType;
+    public getUserRecordTypeFromId = getUserRecordTypeFromId;
     public addBook = addBook;
     public reviewUser = reviewUser;
     public reviewBook = reviewBook;
