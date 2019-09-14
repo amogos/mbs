@@ -138,6 +138,8 @@ const ListBooksComponent = (props: Props) => {
                             description={
                                 <div>
                                     Author: {item.author} <br />
+                                    Space: {item.space.description} <br />
+                                    Format: {item.format}
                                 </div>
                             }
                         />
@@ -147,7 +149,6 @@ const ListBooksComponent = (props: Props) => {
                             visible={getVisibilityFromState(item.id)}
                             onClick={() => closeComments(item.id)}
                         />
-                        space : {item.space.description}
                     </List.Item>
                 )}
             />

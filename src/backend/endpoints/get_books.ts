@@ -65,3 +65,15 @@ export async function getBooks(
     await waitEqual.result();
     return booksArray;
 }
+
+export async function getBookRawRecordTypeFromId(
+    id: number,
+    onError: (resultCode: number) => void,
+): Promise<DataTypes.BookRawRecordType> {
+    let record: DataTypes.BookRawRecordType = DataTypes.NullRawBookRecordType;
+    await axios
+        .get(urlBooks + '/' + id)
+        .then(response => (record = response.data))
+        .catch(error => onError(error));
+    return record;
+}

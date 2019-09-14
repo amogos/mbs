@@ -21,7 +21,7 @@ export async function getFormatRecordTypeFromId(
     await axios
         .get(`${urlFormats}?id=${id}`)
         .then(response => {
-            format = response.data;
+            format = response.data[0];
         })
         .catch(error => onError(error));
     return format;

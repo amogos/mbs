@@ -69,6 +69,20 @@ export interface BookRawRecordType {
     format: number;
 }
 
+export const NullRawBookRecordType: BookRawRecordType = {
+    id: 0,
+    title: '',
+    author: '',
+    language: 0,
+    image: '',
+    owner: 0,
+    holder: 0,
+    state: '',
+    category: 0,
+    space: 0,
+    format: 0,
+};
+
 export interface LanguageRecordType {
     id: number;
     language: string;
