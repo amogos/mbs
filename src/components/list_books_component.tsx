@@ -123,7 +123,7 @@ const ListBooksComponent = (props: Props) => {
                         extra={<img width={64} alt="logo" src={item.image} />}
                     >
                         <List.Item.Meta
-                            avatar={<Avatar src={item.owner.picture} />}
+                            avatar={<Avatar src={item.space.picture} />}
                             title={
                                 <a href={item.image}>
                                     {item.title}

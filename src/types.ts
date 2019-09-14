@@ -137,6 +137,7 @@ export interface SpaceType {
     title: string;
     description: string;
     format: string[];
+    picture: string;
 }
 
 export const NullSpace: SpaceType = {
@@ -148,6 +149,7 @@ export const NullSpace: SpaceType = {
     title: '',
     description: '',
     format: [],
+    picture: '',
 };
 
 export interface SpaceRawRecordType {
@@ -157,6 +159,7 @@ export interface SpaceRawRecordType {
     title: string;
     description: string;
     transport: number;
+    picture: string;
 }
 
 export interface BookReviewRecordType {

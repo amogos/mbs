@@ -1,7 +1,7 @@
 import React from 'react';
 import * as DataTypes from '../../types';
 import { Avatar } from 'antd';
-import './spaces.css'
+import './spaces.css';
 
 interface Props {
     item: DataTypes.SpaceType;
@@ -9,7 +9,7 @@ interface Props {
 
 const SpaceImage = (props: Props) => {
     return (
-        <div className = 'avatar'>
+        <div className="avatar">
             <Avatar size={64} icon="user" />
         </div>
     );
