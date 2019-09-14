@@ -123,7 +123,11 @@ const ListBooksComponent = (props: Props) => {
                         extra={<img width={64} alt="logo" src={item.image} />}
                     >
                         <List.Item.Meta
-                            avatar={<Avatar src={item.space.picture} />}
+                            avatar={
+                                <div>
+                                    <Avatar src={item.space.picture} size="large" shape="square" />
+                                </div>
+                            }
                             title={
                                 <a href={item.image}>
                                     {item.title}
@@ -143,6 +147,7 @@ const ListBooksComponent = (props: Props) => {
                             visible={getVisibilityFromState(item.id)}
                             onClick={() => closeComments(item.id)}
                         />
+                        space : {item.space.description}
                     </List.Item>
                 )}
             />
