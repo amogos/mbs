@@ -3,6 +3,7 @@ import * as DataTypes from '../../types';
 import { urlBooks, urlSpaces } from './constants';
 import WaitEqual from '../utils/wait_equal';
 import { getUserRecordTypeFromId } from './get_user';
+import spaces_container from '../../containers/spaces_container';
 
 export async function getSpaceStatistics(
     space: number,
@@ -67,4 +68,15 @@ export async function getSpaces(onError: (resultCode: number) => void): Promise<
 
     await waitEqual.result();
     return spacesArray;
+}
+
+export async function getSpaceTypeFromId(
+    id: number,
+    onError: (resultCode: number) => void,
+): Promise<DataTypes.SpaceType> {
+    let space = DataTypes.NullSpace;
+    await axios.get(`${urlSpaces}?id=${id}`).then(async response => {
+        space = await getSpaceDataFromRawData(response.data, onError);
+    });
+    return space;
 }

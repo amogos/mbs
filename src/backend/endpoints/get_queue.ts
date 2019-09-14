@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { urlQueues } from './constants';
+import { urlQueues, OneDayMilliseconds } from './constants';
 import * as DataTypes from '../../types';
 
 export async function getQueue(
@@ -18,4 +18,22 @@ export async function getQueue(
         .catch(error => onError(error));
 
     return queueArray;
+}
+
+export async function getFutureAvailabilityForBookInMilliseconds(
+    book: DataTypes.BookRawRecordType,
+    onError: (resultCode: number) => void,
+): Promise<number> {
+    let returnDateMilliseconds = book.return ? book.return : 0;
+    await axios
+        .get(`${urlQueues}?bookId=${book.id}`)
+        .then(response => {
+            if (response.data.length > 0) {
+                response.data.forEach(
+                    (item: DataTypes.QueueRecordType) => (returnDateMilliseconds += OneDayMilliseconds * item.duration),
+                );
+            }
+        })
+        .catch(error => onError(error));
+    return returnDateMilliseconds;
 }

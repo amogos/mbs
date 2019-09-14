@@ -1,18 +1,16 @@
 import axios from 'axios';
 import * as DataTypes from '../../types';
-import {
-    urlUsers,
-    urlBooks,
-    urlLanguages,
-    urlCategory,
-    urlQueues,
-    urlBookReviews,
-    OneDayMilliseconds,
-    urlFormats,
-} from './constants';
+import { urlBooks } from './constants';
+
+import { getUserRecordTypeFromId } from './get_user';
+import { getLanguageRecordTypeFromId } from './get_languages';
+import { getCategoryRecordTypeFromId } from './get_categories';
+import { getFutureAvailabilityForBookInMilliseconds } from './get_queue';
+import { getReviewStatisticsForBook } from './get_reviews_for_book';
+import { getFormatRecordTypeFromId } from './get_format';
+import { getSpaceTypeFromId } from './get_spaces';
 
 import WaitEqual from '../utils/wait_equal';
-import Sleep from '../utils/sleep';
 
 export async function getBooks(
     filters: string[],
@@ -21,8 +19,9 @@ export async function getBooks(
     let booksArray: DataTypes.BookRecordType[] = [];
     let filterdBooksUrl = urlBooks;
     let waitEqual = new WaitEqual();
+    const applyFilters = filters && filters.length > 0;
 
-    if (filters && filters.length > 0) {
+    if (applyFilters) {
         filterdBooksUrl += '?' + filters.join('&');
     }
     await axios
@@ -30,93 +29,15 @@ export async function getBooks(
         .then(response => {
             response.data.forEach(async (item: DataTypes.BookRawRecordType) => {
                 waitEqual.begin();
-                let holder: DataTypes.UserRecordType = DataTypes.NullUser;
-                if (item.holder > 0) {
-                    await axios.get(urlUsers + '/' + item.holder).then(r => {
-                        holder = {
-                            name: r.data.name,
-                            email: r.data.email,
-                            picture: r.data.picture,
-                            id: r.data.id,
-                        };
-                    });
-                    await new Promise(async resolve => {
-                        while (holder.id <= 0) {
-                            await Sleep(10);
-                        }
-                        resolve(true);
-                    });
-                }
-
-                let owner: DataTypes.UserRecordType = DataTypes.NullUser;
-                await axios
-                    .get(urlUsers + '/' + item.owner)
-                    .then(response => {
-                        owner = {
-                            name: response.data.name,
-                            email: response.data.email,
-                            picture: response.data.picture,
-                            id: response.data.id,
-                        };
-                    })
-                    .catch(error => onError(error));
-
-                let language = DataTypes.NullLanguage;
-                await axios
-                    .get(urlLanguages + '/' + item.language)
-                    .then(response => {
-                        language = { language: response.data.language, id: response.data.id };
-                    })
-                    .catch(error => onError(error));
-
-                let category = DataTypes.NullCategory;
-                await axios
-                    .get(urlCategory + '/' + item.category)
-                    .then(response => {
-                        category = { id: response.data.id, title: response.data.title };
-                    })
-                    .catch(error => onError(error));
-
-                let returnDateMilliseconds = item.return ? item.return : 0;
-                await axios
-                    .get(urlQueues + '?bookId=' + item.id)
-                    .then(response => {
-                        if (response.data.length > 0) {
-                            response.data.forEach(
-                                (item: DataTypes.QueueRecordType) =>
-                                    (returnDateMilliseconds += OneDayMilliseconds * item.duration),
-                            );
-                        }
-                    })
-                    .catch(error => onError(error));
-
-                let contentScore = 0;
-                let numReviews = 0;
-
-                await axios
-                    .get(urlBookReviews + '?bookId=' + item.id)
-                    .then(response => {
-                        if (response.data.length > 0) {
-                            response.data.forEach(
-                                (item: DataTypes.BookReviewRecordType) => (contentScore += item.contentScore),
-                            );
-                            contentScore = contentScore / response.data.length;
-                            numReviews = response.data.length;
-                        }
-                    })
-                    .catch(error => onError(error));
-
-                let space: DataTypes.SpaceType = DataTypes.NullSpace;
-
-                let format: DataTypes.FormatRawType = DataTypes.NullFormat;
-                await axios
-                    .get(`${urlFormats}?id=${item.format}`)
-                    .then(response => {
-                        format = response.data;
-                    })
-                    .catch(error => onError(error));
-
-                let bookRecord: DataTypes.BookRecordType = {
+                const holder = await getUserRecordTypeFromId(item.holder, onError);
+                const owner = await getUserRecordTypeFromId(item.owner, onError);
+                const language = await getLanguageRecordTypeFromId(item.language, onError);
+                const category = await getCategoryRecordTypeFromId(item.category, onError);
+                const returnDateMilliseconds = await getFutureAvailabilityForBookInMilliseconds(item, onError);
+                const reviewStatistics = await getReviewStatisticsForBook(item.id, onError);
+                const space = await getSpaceTypeFromId(item.space, onError);
+                const format = await getFormatRecordTypeFromId(item.format, onError);
+                const bookRecord: DataTypes.BookRecordType = {
                     id: item.id,
                     title: item.title,
                     image: item.image,
@@ -129,8 +50,8 @@ export async function getBooks(
                     space: space,
                     format: format.type,
                     return: returnDateMilliseconds,
-                    contentScore: contentScore,
-                    numReviews: numReviews,
+                    contentScore: reviewStatistics.contentScore,
+                    numReviews: reviewStatistics.numReviews,
                 };
 
                 booksArray.push(bookRecord);

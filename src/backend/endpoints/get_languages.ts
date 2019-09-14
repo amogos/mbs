@@ -16,3 +16,17 @@ export async function getLanguages(onError: (resultCode: number) => void): Promi
         });
     return languagesArray;
 }
+
+export async function getLanguageRecordTypeFromId(
+    id: number,
+    onError: (resultCode: number) => void,
+): Promise<DataTypes.LanguageRecordType> {
+    let language = DataTypes.NullLanguage;
+    await axios
+        .get(`${urlLanguages}/${id}`)
+        .then(response => {
+            language = response.data;
+        })
+        .catch(error => onError(error));
+    return language;
+}
