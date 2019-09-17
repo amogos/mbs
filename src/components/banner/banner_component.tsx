@@ -189,7 +189,8 @@ const BannerComponent = (props: Props) => {
                     />
                     <FilteringCategoriesComponent
                         categories={props.categories}
-                        filters={tabFilters}
+                        tabFilters={tabFilters}
+                        categoryFilters={categoryFilters}
                         onFiltersChanged={filters => {
                             setCategoryFilters(filters);
                             props.gotoListBooks(filters);

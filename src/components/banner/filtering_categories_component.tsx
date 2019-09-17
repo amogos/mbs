@@ -6,8 +6,9 @@ const { Option } = Select;
 
 interface Props {
     categories: DataTypes.CategoryRecordType[];
-    filters: string[];
+    tabFilters: string[];
     onFiltersChanged(filter: string[]): void;
+    categoryFilters: string[];
 }
 
 const CategoryItems = (props: Props) => {
