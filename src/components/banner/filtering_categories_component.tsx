@@ -9,6 +9,7 @@ interface Props {
     tabFilters: string[];
     onFiltersChanged(filter: string[]): void;
     categoryFilters: string[];
+    visible:boolean;
 }
 
 const CategoryItems = (props: Props) => {
@@ -28,7 +29,7 @@ const FilteringCategoriesComponent = (props: Props) => {
         if (props.onFiltersChanged) props.onFiltersChanged(filters);
     }
 
-    if (props.categories)
+    if (props.categories && props.visible)
         return (
             <Select
                 mode="multiple"

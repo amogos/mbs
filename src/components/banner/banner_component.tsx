@@ -149,6 +149,10 @@ const FilteringTabs = (props: FilterProps) => {
     return null;
 };
 
+const ShouldShowCategoryFiltering = (page: string) => {
+    return page === 'my-space' || page === 'rent';
+}
+
 const BannerComponent = (props: Props) => {
     const [page, setPage] = useState('');
     const [categoryFilters, setCategoryFilters] = useState(['']);
@@ -188,6 +192,7 @@ const BannerComponent = (props: Props) => {
                         }}
                     />
                     <FilteringCategoriesComponent
+                        visible={ShouldShowCategoryFiltering(page)}
                         categories={props.categories}
                         tabFilters={tabFilters}
                         categoryFilters={categoryFilters}
