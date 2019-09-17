@@ -4,7 +4,7 @@ import { PageHeader, Button } from 'antd';
 import FilteringTabsComponent from './filtering_tabs_component';
 import * as DataTypes from '../../types';
 import * as Strings from '../../constants/string_constant';
-import AddNewBookComponent from '../books/add_new_book_component';
+import FilteringCategoriesComponent from './filtering_categories_component';
 
 const { FilteringTabsStrings } = Strings.default;
 
@@ -21,6 +21,8 @@ interface Props {
 interface FilterProps {
     page: string;
     parentProps: Props;
+    categoryFilters: string[];
+    onFiltersChanged(filters: string[]): void;
 }
 
 interface TabProps {
@@ -102,12 +104,13 @@ const ShowSpaceFilteringTabs = (props: FilterProps) => {
     return (
         <FilteringTabsComponent
             categories={props.parentProps.categories}
-            gotoListBooks={props.parentProps.gotoListBooks}
             tabIds={tabIds}
             defaultTabIndex={defaultTabIndex}
             filters={filters}
             icons={icons}
             titles={titles}
+            categoryFilters={props.categoryFilters}
+            onFiltersChanged={props.onFiltersChanged}
         />
     );
 };
@@ -122,12 +125,13 @@ const ShowRentFilteringTabs = (props: FilterProps) => {
     return (
         <FilteringTabsComponent
             categories={props.parentProps.categories}
-            gotoListBooks={props.parentProps.gotoListBooks}
             tabIds={tabIds}
             defaultTabIndex={defaultTabIndex}
             filters={filters}
             icons={icons}
             titles={titles}
+            categoryFilters={props.categoryFilters}
+            onFiltersChanged={props.onFiltersChanged}
         />
     );
 };
@@ -141,15 +145,10 @@ const FilteringTabs = (props: FilterProps) => {
     return null;
 };
 
-const AddBookButton = (props: FilterProps) => {
-    if (props.page === 'my-space') {
-        return <AddNewBookComponent {...props.parentProps} />;
-    }
-    return null;
-};
-
 const BannerComponent = (props: Props) => {
     const [page, setPage] = useState('');
+    const [categoryFilters, setCategoryFilters] = useState(['']);
+    const [tabFilters, setTabFilters] = useState(['']);
     return (
         <div>
             <PageHeader title="" breadcrumb={{}}>
@@ -163,10 +162,25 @@ const BannerComponent = (props: Props) => {
                             <SocialTab parentProps={props} setPage={(page: string) => setPage(page)} />
                         </p>
                     </div>
-                    <FilteringTabs parentProps={props} page={page} />
+                    <FilteringTabs
+                        parentProps={props}
+                        page={page}
+                        categoryFilters={categoryFilters}
+                        onFiltersChanged={filters => {
+                            setTabFilters(filters);
+                            props.gotoListBooks(filters);
+                        }}
+                    />
+                    <FilteringCategoriesComponent
+                        categories={props.categories}
+                        filters={tabFilters}
+                        onFiltersChanged={filters => {
+                            setCategoryFilters(filters);
+                            props.gotoListBooks(filters);
+                        }}
+                    />
                 </div>
             </PageHeader>
-            <AddBookButton parentProps={props} page={page} />
         </div>
     );
 };
