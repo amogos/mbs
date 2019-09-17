@@ -10,10 +10,12 @@ interface Props {
 
 const BookRatingButton = (param: Props) => {
     return (
-        <Button type="link" onClick={param.onClick}>
-            <Rate allowHalf disabled defaultValue={param.contentRating} />
-            {param.numReviews} {StringConstant.default.MYBOOKSHELVE_CUSTOMER_REVIEWS}
-        </Button>
+        <div className="review_buttons">
+            <Button type="link" onClick={param.onClick}>
+                <Rate allowHalf disabled defaultValue={param.contentRating} />
+                {param.numReviews} {StringConstant.default.MYBOOKSHELVE_CUSTOMER_REVIEWS}
+            </Button>
+        </div>
     );
 };
 

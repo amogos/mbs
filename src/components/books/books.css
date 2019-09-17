@@ -17,3 +17,6 @@
 .customer_reviews {
     transform: translate(-20%, 0%)
 }
+.review_buttons {
+  transform: translate(-1.5%, 0%)
+}
