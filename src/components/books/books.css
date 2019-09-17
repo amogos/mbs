@@ -1,0 +1,14 @@
+.section_divider_small {
+   width: 450px;
+}
+.book_icon_small {
+  padding-left: 20px;
+}
+
+.book_details {
+  margin: auto;
+  width: 70%;
+
+  padding-left:10%;
+  padding-top:0%;
+}
