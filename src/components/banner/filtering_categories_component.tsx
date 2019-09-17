@@ -32,9 +32,10 @@ const FilteringCategoriesComponent = (props: Props) => {
         return (
             <Select
                 mode="multiple"
-                style={{ width: '100%' }}
+                style={{ width: '60%' }}
                 placeholder="Filter by category"
                 onChange={handleMultiFilterChange}
+                allowClear={true}
             >
                 {CategoryItems(props)}
             </Select>
