@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { socialAction } from '../actions/';
-import FacebookComponent from '../components/facebook_component';
+import FacebookComponent from '../components/social/facebook_component';
 
 const mapDispatchToProps = dispatch => {
     return {

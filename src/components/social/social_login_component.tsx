@@ -1,6 +1,6 @@
 import React from 'react';
-import * as DataTypes from '../types';
-import FacebookContainer from './../containers/facebook_container';
+import * as DataTypes from '../../types';
+import FacebookContainer from '../../containers/facebook_container';
 import { Avatar } from 'antd';
 
 interface Props {

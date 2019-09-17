@@ -1,6 +1,6 @@
 import React from 'react';
 import FacebookLogin from 'react-facebook-login';
-import * as DataTypes from '../types';
+import * as DataTypes from '../../types';
 
 interface Props {
     loginUser(userInfo: DataTypes.UserValueType): void;

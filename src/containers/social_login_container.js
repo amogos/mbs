@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import * as Actions from '../actions/slices/page_actions';
 import { bindActionCreators } from 'redux';
-import SocialLoginComponent from '../components/social_login_component';
+import SocialLoginComponent from '../components/social/social_login_component';
 
 function mapStateToProps(state) {
     return {

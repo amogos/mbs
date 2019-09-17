@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import SocialLoginContainer from './../containers/social_login_container';
+import SocialLoginContainer from '../../containers/social_login_container';
 import { PageHeader, Button } from 'antd';
-import FilteringTabsComponent from './books/filtering_tabs_component';
-import * as DataTypes from './../types';
-import * as Strings from './../constants/string_constant';
-import AddNewBookComponent from './books/add_new_book_component';
+import FilteringTabsComponent from './filtering_tabs_component';
+import * as DataTypes from '../../types';
+import * as Strings from '../../constants/string_constant';
+import AddNewBookComponent from '../books/add_new_book_component';
 
 const { FilteringTabsStrings } = Strings.default;
 

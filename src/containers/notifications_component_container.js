@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { notificationAction } from '../actions/';
-import NotificationComponent from '../components/notifications_component';
+import NotificationComponent from '../components/notifications/notifications_component';
 
 function mapStateToProps(state) {
     return {

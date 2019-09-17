@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { List, Avatar } from 'antd';
-import * as DataTypes from './../types';
-import RatingComponent from './../components/rating_component';
+import * as DataTypes from '../../types';
+import RatingComponent from './rating_component';
 
 interface Props {
     userdata: DataTypes.UserRecordType;
