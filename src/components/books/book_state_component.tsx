@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import * as DataTypes from './../types';
+import * as DataTypes from '../../types';
 import { Icon, Button } from 'antd';
-import RentalSettingsComponent from './rental_settings_component';
-import RatingComponent from './rating_component';
+import RentalSettingsComponent from '../rental_settings_component';
+import RatingComponent from '../rating_component';
 
 interface Icon {
     type: string;

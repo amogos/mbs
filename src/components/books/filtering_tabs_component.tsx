@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import * as DataTypes from './../types';
+import * as DataTypes from '../../types';
 import { Icon, Tabs, Select } from 'antd';
 
 const { Option } = Select;

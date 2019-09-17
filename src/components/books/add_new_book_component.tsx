@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import * as DataTypes from '../types';
-import * as BookStates from '../constants/book_states_constant';
-import * as StringConstant from './../constants/string_constant';
+import * as DataTypes from '../../types';
+import * as BookStates from '../../constants/book_states_constant';
+import * as StringConstant from '../../constants/string_constant';
 import { Select, Input, Button, message, Modal } from 'antd';
 
 const { Option } = Select;

@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import * as DataTypes from './../types';
+import React from 'react';
+import * as DataTypes from '../../types';
 import { Comment, Avatar, Tooltip, Card, Button } from 'antd';
 import moment from 'moment';
 
