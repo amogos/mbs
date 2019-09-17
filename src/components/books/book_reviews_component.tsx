@@ -15,7 +15,7 @@ const BookReviewsComponent = (props: Props) => {
     if (props.visible === false) return null;
 
     return (
-        <div>
+        <div className="customer_reviews">
             <Card
                 title="Comments"
                 extra={
@@ -23,7 +23,6 @@ const BookReviewsComponent = (props: Props) => {
                         Close
                     </Button>
                 }
-                style={{ width: 1000 }}
             >
                 {props.reviews.map(entry => (
                     <Comment

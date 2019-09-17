@@ -3,13 +3,17 @@
 }
 .book_icon_small {
   display:table-cell;
-  width:33%;
+  width:20%;
   padding-left: 60px;
   transform: translate(0%, 10%)
 }
 
 .book_details {
   display:table-cell;
-  width:53%;
+  width:63%;
   transform: translate(0%, -15%)
+}
+
+.customer_reviews {
+    transform: translate(-20%, 0%)
 }
