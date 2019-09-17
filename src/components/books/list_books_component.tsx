@@ -109,7 +109,7 @@ const ListBooksComponent = (props: Props) => {
                     />
                     <SectionDivider />
                     <div>
-                        <Avatar src={item.space.picture} size="large" shape="square" />
+                        <Avatar src={item.space.picture} size="large" />
                         Space: {item.space.description} <br />
                     </div>
                     <SectionDivider />
