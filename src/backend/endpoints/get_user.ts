@@ -39,12 +39,14 @@ export async function getUserRecordTypeFromId(
     id: number,
     onError: (resultCode: number) => void,
 ): Promise<DataTypes.UserRecordType> {
-    let spaceOwner: DataTypes.UserRecordType = DataTypes.NullUser;
+    let userRecord: DataTypes.UserRecordType = DataTypes.NullUser;
     await axios
         .get(`${urlUsers}?id=${id}`)
-        .then(response => (spaceOwner = response.data))
+        .then(response => {
+            if (response.data.length > 0) userRecord = response.data[0];
+        })
         .catch(error => {
             onError(error);
         });
-    return spaceOwner;
+    return userRecord;
 }
