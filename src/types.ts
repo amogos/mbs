@@ -143,6 +143,7 @@ export const NullLanguage: LanguageRecordType = { id: 0, language: '' };
 export const NullCategory: CategoryRecordType = { id: 0, title: '' };
 
 export interface SpaceType {
+    id: number;
     user: UserRecordType;
     numberOfBooks: number;
     numberOfFollowers: number;
@@ -155,6 +156,7 @@ export interface SpaceType {
 }
 
 export const NullSpace: SpaceType = {
+    id: 0,
     user: NullUser,
     numberOfBooks: 0,
     numberOfFollowers: 0,
@@ -197,3 +199,8 @@ export interface FormatRawType {
 }
 
 export const NullFormat: FormatRawType = { id: 0, type: '' };
+
+export interface BannerAttributes {
+    showCategoryFiltering: boolean;
+    showTabFiltering: boolean;
+}

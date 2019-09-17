@@ -9,11 +9,12 @@ import SpaceStatistics from './space_statistics';
 
 interface Props {
     item: DataTypes.SpaceType;
+    onClick: () => void;
 }
 
 const SpaceHolder = (props: Props) => {
     return (
-        <Button type="link" onClick={() => {}}>
+        <Button type="link" onClick={props.onClick}>
             <Card style={{ width: 300 }} cover={SpaceImage(props)} actions={SpaceActions(props)}>
                 <SpaceDescription {...props} />
                 <p />

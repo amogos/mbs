@@ -3,8 +3,6 @@ import * as DataTypes from '../../types';
 import { urlBooks, urlSpaces } from './constants';
 import WaitEqual from '../utils/wait_equal';
 import { getUserRecordTypeFromId } from './get_user';
-import spaces_container from '../../containers/spaces_container';
-import { isTerminatorless } from '@babel/types';
 
 export async function getSpaceStatistics(
     space: number,
@@ -36,6 +34,7 @@ export async function getSpaceDataFromRawData(
     let spaceNumberOfFollowers = await getSpaceNumberOfFollowers(item.id, onError);
 
     const space: DataTypes.SpaceType = {
+        id: item.id,
         user: spaceOwner,
         numberOfBooks: spaceStatistics.size,
         numberOfFollowers: spaceNumberOfFollowers,
