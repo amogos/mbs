@@ -10,7 +10,7 @@ interface Props {
     icons: string[];
     titles: string[];
     categoryFilters: string[];
-    onFiltersChanged(filters: string[]): void;
+    onFiltersChanged?: (filters: string[]) => void;
 }
 
 const FilteringTabsComponent = (props: Props) => {
@@ -45,7 +45,7 @@ const FilteringTabsComponent = (props: Props) => {
                 setTab(key);
             }
         });
-        props.onFiltersChanged(filters);
+        if (props.onFiltersChanged) props.onFiltersChanged(filters);
     };
 
     return (

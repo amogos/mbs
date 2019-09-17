@@ -22,16 +22,18 @@ interface FilterProps {
     page: string;
     parentProps: Props;
     categoryFilters: string[];
-    onFiltersChanged(filters: string[]): void;
+    onFiltersChanged?: (filters: string[]) => void;
 }
 
 interface TabProps {
     setPage(page: string): void;
+    resetCategoryFilters?: () => void;
     parentProps: Props;
 }
 
 const MySpaceTab = (props: TabProps) => {
     const clickFunction = () => {
+        if (props.resetCategoryFilters) props.resetCategoryFilters();
         props.parentProps.gotoListBooks(['owner=' + props.parentProps.userdata.id]);
         props.setPage('my-space');
     };
@@ -44,6 +46,7 @@ const MySpaceTab = (props: TabProps) => {
 
 const SpacesTab = (props: TabProps) => {
     const clickFunction = () => {
+        if (props.resetCategoryFilters) props.resetCategoryFilters();
         props.parentProps.gotoSpaces();
         props.setPage('spaces');
     };
@@ -56,6 +59,7 @@ const SpacesTab = (props: TabProps) => {
 
 const RentTab = (props: TabProps) => {
     const clickFunction = () => {
+        if (props.resetCategoryFilters) props.resetCategoryFilters();
         props.parentProps.gotoListBooks(['owner_ne=' + props.parentProps.userdata.id]);
         props.setPage('rent');
     };
@@ -155,9 +159,21 @@ const BannerComponent = (props: Props) => {
                 <div className="wrap">
                     <div className="content">
                         <p className="contentLink">
-                            <MySpaceTab parentProps={props} setPage={(page: string) => setPage(page)} />
-                            <SpacesTab parentProps={props} setPage={(page: string) => setPage(page)} />
-                            <RentTab parentProps={props} setPage={(page: string) => setPage(page)} />
+                            <MySpaceTab
+                                parentProps={props}
+                                setPage={(page: string) => setPage(page)}
+                                resetCategoryFilters={() => setCategoryFilters([''])}
+                            />
+                            <SpacesTab
+                                parentProps={props}
+                                setPage={(page: string) => setPage(page)}
+                                resetCategoryFilters={() => setCategoryFilters([''])}
+                            />
+                            <RentTab
+                                parentProps={props}
+                                setPage={(page: string) => setPage(page)}
+                                resetCategoryFilters={() => setCategoryFilters([''])}
+                            />
                             <NotificationsTab parentProps={props} setPage={(page: string) => setPage(page)} />
                             <SocialTab parentProps={props} setPage={(page: string) => setPage(page)} />
                         </p>
