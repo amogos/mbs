@@ -2,13 +2,14 @@
    width: 450px;
 }
 .book_icon_small {
-  padding-left: 20px;
+  display:table-cell;
+  width:33%;
+  padding-left: 60px;
+  transform: translate(0%, 10%)
 }
 
 .book_details {
-  margin: auto;
-  width: 70%;
-
-  padding-left:10%;
-  padding-top:0%;
+  display:table-cell;
+  width:53%;
+  transform: translate(0%, -15%)
 }

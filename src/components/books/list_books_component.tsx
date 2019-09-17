@@ -126,7 +126,7 @@ const ListBooksComponent = (props: Props) => {
                 size="small"
                 pagination={{
                     onChange: page => {},
-                    pageSize: 3,
+                    pageSize: 6,
                 }}
                 dataSource={props.booksArray}
                 renderItem={item => BookComponent(item)}
