@@ -7,6 +7,7 @@ function mapStateToProps(state) {
         userdata: state.mainReducer.userdata,
         categories: state.mainReducer.categories,
         languages: state.mainReducer.languages,
+        action: state.mainReducer.action,
     };
 }
 

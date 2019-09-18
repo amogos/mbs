@@ -9,7 +9,7 @@ interface Props {
     tabFilters: string[];
     onFiltersChanged(filter: string[]): void;
     categoryFilters: string[];
-    visible:boolean;
+    visible: boolean;
 }
 
 const CategoryItems = (props: Props) => {

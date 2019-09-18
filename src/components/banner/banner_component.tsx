@@ -5,7 +5,9 @@ import FilteringTabsComponent from './filtering_tabs_component';
 import * as DataTypes from '../../types';
 import * as Strings from '../../constants/string_constant';
 import FilteringCategoriesComponent from './filtering_categories_component';
+import * as ActionTypes from './../../constants/action_constant';
 
+const { PageActionConstant } = ActionTypes.default;
 const { FilteringTabsStrings } = Strings.default;
 
 interface Props {
@@ -16,6 +18,7 @@ interface Props {
     categories: DataTypes.CategoryRecordType[];
     languages: DataTypes.LanguageRecordType[];
     addBook(book: DataTypes.BookValueType): void;
+    action: string;
 }
 
 interface FilterProps {
@@ -149,9 +152,9 @@ const FilteringTabs = (props: FilterProps) => {
     return null;
 };
 
-const ShouldShowCategoryFiltering = (page: string) => {
-    return page === 'my-space' || page === 'rent';
-}
+const ShouldShowCategoryFiltering = (action: string) => {
+    return action === PageActionConstant.ACTION_LIST_BOOKS;
+};
 
 const BannerComponent = (props: Props) => {
     const [page, setPage] = useState('');
@@ -192,7 +195,7 @@ const BannerComponent = (props: Props) => {
                         }}
                     />
                     <FilteringCategoriesComponent
-                        visible={ShouldShowCategoryFiltering(page)}
+                        visible={ShouldShowCategoryFiltering(props.action)}
                         categories={props.categories}
                         tabFilters={tabFilters}
                         categoryFilters={categoryFilters}
