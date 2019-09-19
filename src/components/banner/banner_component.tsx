@@ -152,14 +152,26 @@ const FilteringTabs = (props: FilterProps) => {
     return null;
 };
 
-const ShouldShowCategoryFiltering = (action: string) => {
-    return action === PageActionConstant.ACTION_LIST_BOOKS;
+interface CategoryProps {
+    categories: DataTypes.CategoryRecordType[];
+    action: string;
+    onFiltersChanged: (filters: string[]) => void;
+}
+
+const CategoryFiltering = (param: CategoryProps) => {
+    if (
+        param.action === PageActionConstant.ACTION_LIST_BOOKS ||
+        param.action === PageActionConstant.ACTION_GOTO_LIST_BOOKS
+    ) {
+        return <FilteringCategoriesComponent categories={param.categories} onFiltersChanged={param.onFiltersChanged} />;
+    }
+    return null;
 };
 
 const BannerComponent = (props: Props) => {
     const [page, setPage] = useState('');
     const [categoryFilters, setCategoryFilters] = useState(['']);
-    const [tabFilters, setTabFilters] = useState(['']);
+
     return (
         <div>
             <PageHeader title="" breadcrumb={{}}>
@@ -187,19 +199,16 @@ const BannerComponent = (props: Props) => {
                     </div>
                     <FilteringTabs
                         parentProps={props}
-                        page={page}
                         categoryFilters={categoryFilters}
+                        page={page}
                         onFiltersChanged={filters => {
-                            setTabFilters(filters);
                             props.gotoListBooks(filters);
                         }}
                     />
-                    <FilteringCategoriesComponent
-                        visible={ShouldShowCategoryFiltering(props.action)}
+                    <CategoryFiltering
                         categories={props.categories}
-                        tabFilters={tabFilters}
-                        categoryFilters={categoryFilters}
-                        onFiltersChanged={filters => {
+                        action={props.action}
+                        onFiltersChanged={(filters: string[]) => {
                             setCategoryFilters(filters);
                             props.gotoListBooks(filters);
                         }}
