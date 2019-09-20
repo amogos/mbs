@@ -85,3 +85,25 @@ export async function getSpaceTypeFromId(
     await waitEqual.result();
     return space;
 }
+
+export async function addDefaultSpaceForUser(
+    user: DataTypes.UserRecordType,
+    onError: (resultCode: number) => void,
+): Promise<boolean> {
+    const newDefaultSpace = {
+        owner: user.id,
+        subscription: 0,
+        title: user.email,
+        description: `${user.name} Default`,
+        transport: 0,
+        picture: '',
+    };
+
+    await axios
+        .post(urlSpaces, newDefaultSpace)
+        .then(() => {
+            return true;
+        })
+        .catch(error => onError(error));
+    return false;
+}
