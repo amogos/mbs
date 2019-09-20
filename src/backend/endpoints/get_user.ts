@@ -11,10 +11,11 @@ async function addNewUser(
     await axios
         .post(urlUsers, user)
         .then(response => {
-            newUserData = response.data[0];
+            newUserData = response.data;
         })
         .catch(error => onError(error));
     await addDefaultSpaceForUser(newUserData, onError);
+
     return newUserData;
 }
 
