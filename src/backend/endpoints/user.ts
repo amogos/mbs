@@ -1,6 +1,23 @@
 import axios from 'axios';
 import * as DataTypes from '../../types';
 import { urlUsers } from './constants';
+import { addDefaultSpaceForUser } from './get_spaces';
+
+async function addNewUser(
+    user: DataTypes.UserValueType,
+    onError: (resultCode: number) => void,
+): Promise<DataTypes.UserRecordType> {
+    let newUserData = DataTypes.NullUser;
+    await axios
+        .post(urlUsers, user)
+        .then(response => {
+            newUserData = response.data;
+        })
+        .catch(error => onError(error));
+    await addDefaultSpaceForUser(newUserData, onError);
+
+    return newUserData;
+}
 
 export async function getUserRecordTypeFromValueType(
     user: DataTypes.UserValueType,
@@ -9,24 +26,16 @@ export async function getUserRecordTypeFromValueType(
     let userData = DataTypes.NullUser;
 
     await axios
-        .get(urlUsers + '?email=' + user.email)
+        .get(`${urlUsers}?email=${user.email}`)
         .then(async response => {
             const isNewUser = response.data.length === 0;
             if (isNewUser) {
-                await axios
-                    .post(urlUsers, user)
-                    .then(response => {
-                        userData = response.data[0];
-                    })
-                    .catch(error => onError(error));
+                userData = await addNewUser(user, onError);
             } else {
                 userData = response.data[0];
-
                 const profilePictureAvailable = userData.picture !== DataTypes.NullUser.picture;
-                const socialMediaPicture = user.picture;
-
                 if (!profilePictureAvailable) {
-                    userData.picture = socialMediaPicture;
+                    userData.picture = user.picture;
                 }
             }
         })

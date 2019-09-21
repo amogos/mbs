@@ -6,10 +6,7 @@ const { Option } = Select;
 
 interface Props {
     categories: DataTypes.CategoryRecordType[];
-    tabFilters: string[];
     onFiltersChanged(filter: string[]): void;
-    categoryFilters: string[];
-    visible:boolean;
 }
 
 const CategoryItems = (props: Props) => {
@@ -29,7 +26,7 @@ const FilteringCategoriesComponent = (props: Props) => {
         if (props.onFiltersChanged) props.onFiltersChanged(filters);
     }
 
-    if (props.categories && props.visible)
+    if (props.categories)
         return (
             <Select
                 mode="multiple"

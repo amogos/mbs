@@ -5,7 +5,9 @@ import FilteringTabsComponent from './filtering_tabs_component';
 import * as DataTypes from '../../types';
 import * as Strings from '../../constants/string_constant';
 import FilteringCategoriesComponent from './filtering_categories_component';
+import * as ActionTypes from './../../constants/action_constant';
 
+const { PageActionConstant } = ActionTypes.default;
 const { FilteringTabsStrings } = Strings.default;
 
 interface Props {
@@ -16,6 +18,7 @@ interface Props {
     categories: DataTypes.CategoryRecordType[];
     languages: DataTypes.LanguageRecordType[];
     addBook(book: DataTypes.BookValueType): void;
+    action: string;
 }
 
 interface FilterProps {
@@ -159,14 +162,26 @@ const FilteringTabs = (props: FilterProps) => {
     return null;
 };
 
-const ShouldShowCategoryFiltering = (page: string) => {
-    return page === 'my-space' || page === 'rent';
+interface CategoryProps {
+    categories: DataTypes.CategoryRecordType[];
+    action: string;
+    onFiltersChanged: (filters: string[]) => void;
 }
+
+const CategoryFiltering = (param: CategoryProps) => {
+    if (
+        param.action === PageActionConstant.ACTION_LIST_BOOKS ||
+        param.action === PageActionConstant.ACTION_GOTO_LIST_BOOKS
+    ) {
+        return <FilteringCategoriesComponent categories={param.categories} onFiltersChanged={param.onFiltersChanged} />;
+    }
+    return null;
+};
 
 const BannerComponent = (props: Props) => {
     const [page, setPage] = useState('');
     const [categoryFilters, setCategoryFilters] = useState(['']);
-    const [tabFilters, setTabFilters] = useState(['']);
+
     return (
         <div>
             <PageHeader title="" breadcrumb={{}}>
@@ -194,19 +209,16 @@ const BannerComponent = (props: Props) => {
                     </div>
                     <FilteringTabs
                         parentProps={props}
-                        page={page}
                         categoryFilters={categoryFilters}
+                        page={page}
                         onFiltersChanged={filters => {
-                            setTabFilters(filters);
                             props.gotoListBooks(filters);
                         }}
                     />
-                    <FilteringCategoriesComponent
-                        visible={ShouldShowCategoryFiltering(page)}
+                    <CategoryFiltering
                         categories={props.categories}
-                        tabFilters={tabFilters}
-                        categoryFilters={categoryFilters}
-                        onFiltersChanged={filters => {
+                        action={props.action}
+                        onFiltersChanged={(filters: string[]) => {
                             setCategoryFilters(filters);
                             props.gotoListBooks(filters);
                         }}
