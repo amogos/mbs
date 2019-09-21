@@ -1,7 +1,7 @@
 import axios from 'axios';
 import * as DataTypes from '../../types';
 import { urlUsers } from './constants';
-import { addDefaultSpaceForUser } from './get_spaces';
+import * as SpacesEndpoint from './spaces';
 
 async function addNewUser(
     user: DataTypes.UserValueType,
@@ -14,7 +14,7 @@ async function addNewUser(
             newUserData = response.data;
         })
         .catch(error => onError(error));
-    await addDefaultSpaceForUser(newUserData, onError);
+    await SpacesEndpoint.addDefaultSpaceForUser(newUserData, onError);
 
     return newUserData;
 }
