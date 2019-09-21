@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { urlUserReviews, urlReturns } from './constants';
+import { urlUserReviews, urlReturns } from '../constants';
 
 export async function reviewUser(
     returnId: number,

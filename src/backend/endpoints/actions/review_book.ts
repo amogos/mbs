@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { urlBookReviews } from './constants';
+import { urlBookReviews } from '../constants';
 
 export async function reviewBook(
     bookId: number,
