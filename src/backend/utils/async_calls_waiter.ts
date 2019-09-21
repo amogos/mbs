@@ -1,9 +1,8 @@
 import Sleep from './sleep';
 
-export default class WaitEqual {
+export default class AsyncCallsWaiter {
     public value1: number = 0;
     public value2: number = 0;
-
     public begin = () => this.value1++;
     public end = () => this.value2++;
 

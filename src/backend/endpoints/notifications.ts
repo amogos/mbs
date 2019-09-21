@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { urlQueues } from './constants';
 import * as DataTypes from '../../types';
-import WaitEqual from '../utils/wait_equal';
+import AsyncCallsWaiter from '../utils/async_calls_waiter';
 import { getUserRecordTypeFromId } from './user';
 import { getBookRawRecordTypeFromId } from './books';
 
@@ -9,7 +9,7 @@ export async function getQueueNotifications(
     user: DataTypes.UserRecordType,
     onError: (resultCode: number) => void,
 ): Promise<DataTypes.QueueNotificationRecordType[]> {
-    let waiter = new WaitEqual();
+    let waiter = new AsyncCallsWaiter();
     let rentalNotifications: DataTypes.QueueNotificationRecordType[] = [];
     await axios
         .get(urlQueues + '?ownerId=' + user.id)

@@ -10,7 +10,7 @@ import { getReviewStatisticsForBook } from './book_reviews';
 import { getFormatRecordTypeFromId } from './format';
 import { getSpaceTypeFromId } from './spaces';
 
-import WaitEqual from '../utils/wait_equal';
+import AsyncCallsWaiter from '../utils/async_calls_waiter';
 
 export async function getBooks(
     filters: string[],
@@ -18,7 +18,7 @@ export async function getBooks(
 ): Promise<DataTypes.BookRecordType[]> {
     let booksArray: DataTypes.BookRecordType[] = [];
     let filterdBooksUrl = urlBooks;
-    let waitEqual = new WaitEqual();
+    let waiter = new AsyncCallsWaiter();
     const applyFilters = filters && filters.length > 0;
 
     if (applyFilters) {
@@ -28,7 +28,7 @@ export async function getBooks(
         .get(filterdBooksUrl)
         .then(response => {
             response.data.forEach(async (item: DataTypes.BookRawRecordType) => {
-                waitEqual.begin();
+                waiter.begin();
                 const holder = await getUserRecordTypeFromId(item.holder, onError);
                 const owner = await getUserRecordTypeFromId(item.owner, onError);
                 const language = await getLanguageRecordTypeFromId(item.language, onError);
@@ -55,14 +55,14 @@ export async function getBooks(
                 };
 
                 booksArray.push(bookRecord);
-                waitEqual.end();
+                waiter.end();
             });
         })
         .catch(error => {
             onError(error);
         });
 
-    await waitEqual.result();
+    await waiter.result();
     return booksArray;
 }
 

@@ -1,7 +1,7 @@
 import axios from 'axios';
 import * as DataTypes from '../../types';
 import { urlBooks, urlSpaces } from './constants';
-import WaitEqual from '../utils/wait_equal';
+import AsyncCallsWaiter from '../utils/async_calls_waiter';
 import { getUserRecordTypeFromId } from './user';
 
 export async function getSpaceStatistics(
@@ -51,23 +51,23 @@ export async function getSpaceDataFromRawData(
 
 export async function getSpaces(onError: (resultCode: number) => void): Promise<DataTypes.SpaceType[]> {
     let spacesArray: DataTypes.SpaceType[] = [];
-    let waitEqual = new WaitEqual();
+    let waiter = new AsyncCallsWaiter();
 
     await axios
         .get(urlSpaces)
         .then(response => {
             response.data.forEach(async (item: DataTypes.SpaceRawRecordType) => {
-                waitEqual.begin();
+                waiter.begin();
                 const space = await getSpaceDataFromRawData(item, onError);
                 spacesArray.push(space);
-                waitEqual.end();
+                waiter.end();
             });
         })
         .catch(error => {
             onError(error);
         });
 
-    await waitEqual.result();
+    await waiter.result();
     return spacesArray;
 }
 
@@ -76,12 +76,12 @@ export async function getSpaceTypeFromId(
     onError: (resultCode: number) => void,
 ): Promise<DataTypes.SpaceType> {
     let space = DataTypes.NullSpace;
-    let waitEqual = new WaitEqual();
+    let waiter = new AsyncCallsWaiter();
     await axios.get(`${urlSpaces}?id=${id}`).then(async response => {
-        waitEqual.begin();
+        waiter.begin();
         space = await getSpaceDataFromRawData(response.data[0], onError);
-        waitEqual.end();
+        waiter.end();
     });
-    await waitEqual.result();
+    await waiter.result();
     return space;
 }

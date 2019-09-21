@@ -1,7 +1,7 @@
 import axios from 'axios';
 import * as DataTypes from '../../../types';
 import { urlBooks, urlQueues, OneDayMilliseconds } from '../constants';
-import WaitEqual from '../../utils/wait_equal';
+import AsyncCallsWaiter from '../../utils/async_calls_waiter';
 import * as BookStateTypes from '../../../constants/book_states_constant';
 
 export async function confirmRental(
@@ -10,12 +10,12 @@ export async function confirmRental(
     onError: (resultCode: number) => void,
 ): Promise<boolean> {
     const bookIdUrl = `${urlBooks}/${rental.bookId}`;
-    let waitEqual = new WaitEqual();
+    let waiter = new AsyncCallsWaiter();
 
     await axios
         .get(bookIdUrl)
         .then(async result => {
-            waitEqual.begin();
+            waiter.begin();
             const value = {
                 ...result.data,
                 state: BookStateTypes.default.STATE_BOOK_IN_TRANSIT_TO_HOLDER,
@@ -24,7 +24,7 @@ export async function confirmRental(
             };
             await axios
                 .put(bookIdUrl, value)
-                .then(() => waitEqual.end())
+                .then(() => waiter.end())
                 .catch(error => {
                     onError(error);
                     return false;
@@ -35,7 +35,7 @@ export async function confirmRental(
             return false;
         });
 
-    await waitEqual.result();
+    await waiter.result();
 
     await axios
         .delete(urlQueues + '/' + rental.id)
