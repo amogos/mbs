@@ -2,7 +2,7 @@ import axios from 'axios';
 import * as DataTypes from '../../types';
 import { urlBooks, urlSpaces } from './constants';
 import WaitEqual from '../utils/wait_equal';
-import { getUserRecordTypeFromId } from './get_user';
+import { getUserRecordTypeFromId } from './user';
 
 export async function getSpaceStatistics(
     space: number,

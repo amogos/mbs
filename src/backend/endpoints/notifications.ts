@@ -1,9 +1,9 @@
 import axios from 'axios';
 import { urlQueues } from './constants';
 import * as DataTypes from '../../types';
-import WaitEqual from './../utils/wait_equal';
-import { getUserRecordTypeFromId } from './get_user';
-import { getBookRawRecordTypeFromId } from './get_books';
+import WaitEqual from '../utils/wait_equal';
+import { getUserRecordTypeFromId } from './user';
+import { getBookRawRecordTypeFromId } from './books';
 
 export async function getQueueNotifications(
     user: DataTypes.UserRecordType,

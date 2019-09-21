@@ -1,9 +1,9 @@
 import axios from 'axios';
 import { urlReturns, urlUsers, urlBooks } from './constants';
 import * as DataTypes from '../../types';
-import WaitEqual from './../utils/wait_equal';
-import * as UsersEndpoint from './get_user'
-import * as BooksEndpoint from './get_books'
+import WaitEqual from '../utils/wait_equal';
+import * as UsersEndpoint from './user'
+import * as BooksEndpoint from './books'
 
 export async function getReturnNotifications(
     user: DataTypes.UserRecordType,

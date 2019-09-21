@@ -2,13 +2,13 @@ import axios from 'axios';
 import * as DataTypes from '../../types';
 import { urlBooks } from './constants';
 
-import { getUserRecordTypeFromId } from './get_user';
-import { getLanguageRecordTypeFromId } from './get_languages';
-import { getCategoryRecordTypeFromId } from './get_categories';
-import { getFutureAvailabilityForBookInMilliseconds } from './get_queue';
-import { getReviewStatisticsForBook } from './get_reviews_for_book';
-import { getFormatRecordTypeFromId } from './get_format';
-import { getSpaceTypeFromId } from './get_spaces';
+import { getUserRecordTypeFromId } from './user';
+import { getLanguageRecordTypeFromId } from './languages';
+import { getCategoryRecordTypeFromId } from './categories';
+import { getFutureAvailabilityForBookInMilliseconds } from './queue';
+import { getReviewStatisticsForBook } from './book_reviews';
+import { getFormatRecordTypeFromId } from './format';
+import { getSpaceTypeFromId } from './spaces';
 
 import WaitEqual from '../utils/wait_equal';
 
