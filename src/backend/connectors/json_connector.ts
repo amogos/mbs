@@ -8,7 +8,7 @@ import { returnBook } from '../endpoints/actions/return_book';
 import { askBook } from '../endpoints/actions/ask_book';
 import { deleteBook } from '../endpoints/actions/delete_book';
 import { getUserRecordTypeFromValueType, getUserRecordTypeFromId } from '../endpoints/get_user';
-import { addBook } from '../endpoints/add_book';
+import { addBook } from '../endpoints/actions/add_book';
 import { reviewUser } from '../endpoints/actions/review_user';
 import { reviewBook } from '../endpoints/actions/review_book';
 import { getQueue } from '../endpoints/get_queue';
