@@ -13,7 +13,7 @@ import { reviewUser } from '../endpoints/actions/review_user';
 import { reviewBook } from '../endpoints/actions/review_book';
 import { getQueue } from '../endpoints/queue';
 import { getReturnNotifications } from '../endpoints/return_notifications';
-import { getQueueNotifications } from '../endpoints/notifications';
+import { getQueueNotifications } from '../endpoints/queue_notifications';
 import { getReviewsForBook } from '../endpoints/book_reviews';
 
 export default class JSONConnector {
