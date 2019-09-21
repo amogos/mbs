@@ -2,6 +2,8 @@ import axios from 'axios';
 import { urlReturns, urlUsers, urlBooks } from './constants';
 import * as DataTypes from '../../types';
 import WaitEqual from './../utils/wait_equal';
+import * as UsersEndpoint from './get_user'
+import * as BooksEndpoint from './get_books'
 
 export async function getReturnNotifications(
     user: DataTypes.UserRecordType,
@@ -14,11 +16,8 @@ export async function getReturnNotifications(
         .then(response => {
             response.data.forEach(async (item: DataTypes.ReturnRecordType) => {
                 waiter.begin();
-                let user: DataTypes.UserRecordType = DataTypes.NullUser;
-                await axios
-                    .get(urlUsers + '/' + item.userId)
-                    .then(response => (user = response.data))
-                    .catch(error => onError(error));
+                const user = await UsersEndpoint.getUserRecordTypeFromId(item.userId, onError);
+                const book = await BooksEndpoint.getBookRawRecordTypeFromId(item.bookId, onError);
                 let title = '';
                 await axios
                     .get(urlBooks + '/' + item.bookId)
