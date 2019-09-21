@@ -8,17 +8,16 @@ interface Props {
 }
 
 const SocialLoginComponent = (props: Props) => {
-    let content;
-    if (props.userdata && props.userdata.name) {
-        content = (
+    const loggedIn = props.userdata && props.userdata.name;
+    if (loggedIn) {
+        return (
             <span>
                 <Avatar src={props.userdata.picture} /> Profile
             </span>
         );
     } else {
-        content = <FacebookContainer />;
+        return <FacebookContainer />;
     }
-    return content;
 };
 
 export default SocialLoginComponent;
