@@ -23,6 +23,7 @@ let currentBook = {
     image: defaultImage,
     owner: DataTypes.NullUser,
     state: BookStates.default.STATE_BOOK_IDLE,
+    isbn:"",
     holder: DataTypes.NullUser,
     category: DataTypes.NullCategory,
 };

@@ -58,7 +58,8 @@
       "state": "state.book.idle",
       "category": 26,
       "space": 2,
-      "format": 1
+      "format": 1,
+      "isbn": "978-3734820211"
     },
     {
       "id": 2,
@@ -72,6 +73,7 @@
       "category": 4,
       "space": 1,
       "format": 1,
+      "isbn": "978-3734820212",
       "return": 1565937976485
     },
     {
@@ -85,7 +87,8 @@
       "state": "state.book.idle",
       "category": 4,
       "space": 1,
-      "format": 1
+      "format": 1,
+      "isbn": "978-3734820213"
     },
     {
       "id": 4,
@@ -98,7 +101,8 @@
       "state": "state.book.idle",
       "category": 4,
       "space": 1,
-      "format": 1
+      "format": 1,
+      "isbn": "978-3734820214"
     },
     {
       "id": 5,
@@ -111,7 +115,8 @@
       "state": "state.book.idle",
       "category": 11,
       "space": 2,
-      "format": 1
+      "format": 1,
+      "isbn": "978-3734820215"
     },
     {
       "author": "me",
@@ -124,7 +129,8 @@
       "category": 3,
       "space": 1,
       "id": 6,
-      "format": 1
+      "format": 1,
+      "isbn": "978-3734820216"
     }
   ],
   "book_reviews": [

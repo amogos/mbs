@@ -48,6 +48,7 @@ export async function getBooks(
                     state: item.state,
                     category: category,
                     space: space,
+                    isbn:item.isbn,
                     format: format.type,
                     return: returnDateMilliseconds,
                     contentScore: reviewStatistics.contentScore,
