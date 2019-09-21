@@ -18,18 +18,11 @@ export async function getReturnNotifications(
                 waiter.begin();
                 const user = await UsersEndpoint.getUserRecordTypeFromId(item.userId, onError);
                 const book = await BooksEndpoint.getBookRawRecordTypeFromId(item.bookId, onError);
-                let title = '';
-                await axios
-                    .get(urlBooks + '/' + item.bookId)
-                    .then(response => {
-                        title = response.data.title;
-                    })
-                    .catch(error => onError(error));
 
                 let notification: DataTypes.ReturnNotificationType = {
                     returnId: item.id,
                     bookId: item.bookId,
-                    bookTitle: title,
+                    bookTitle: book.title,
                     user: user,
                 };
                 returnNotifications.push(notification);
