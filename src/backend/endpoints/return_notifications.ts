@@ -1,7 +1,6 @@
 import axios from 'axios';
-import { urlReturns, urlUsers, urlBooks } from './constants';
+import { urlReturns } from './constants';
 import * as DataTypes from '../../types';
-import AsyncCallsWaiter from '../utils/async_calls_waiter';
 import * as UsersEndpoint from './user'
 import * as BooksEndpoint from './books'
 
@@ -9,27 +8,28 @@ export async function getReturnNotifications(
     user: DataTypes.UserRecordType,
     onError: (resultCode: number) => void,
 ): Promise<DataTypes.ReturnNotificationType[]> {
-    let waiter = new AsyncCallsWaiter();
     let returnNotifications: DataTypes.ReturnNotificationType[] = [];
+    let responseArray: any = null;
+
     await axios
         .get(`${urlReturns}?ownerId=${user.id}`)
-        .then(response => {
-            response.data.forEach(async (item: DataTypes.ReturnRecordType) => {
-                waiter.begin();
-                const user = await UsersEndpoint.getUserRecordTypeFromId(item.userId, onError);
-                const book = await BooksEndpoint.getBookRawRecordTypeFromId(item.bookId, onError);
-
-                let notification: DataTypes.ReturnNotificationType = {
-                    returnId: item.id,
-                    bookId: item.bookId,
-                    bookTitle: book.title,
-                    user: user,
-                };
-                returnNotifications.push(notification);
-                waiter.end();
-            });
-        })
+        .then(r => responseArray = r.data)
         .catch(error => onError(error));
-    await waiter.result();
+
+    if (responseArray) {
+        for (let i = 0; i < responseArray.length; i++) {
+            const item = responseArray[i];
+            const user = await UsersEndpoint.getUserRecordTypeFromId(item.userId, onError);
+            const book = await BooksEndpoint.getBookRawRecordTypeFromId(item.bookId, onError);
+            const notification: DataTypes.ReturnNotificationType = {
+                returnId: item.id,
+                bookId: item.bookId,
+                bookTitle: book.title,
+                user: user,
+            };
+            returnNotifications.push(notification);
+        }
+    }
+    
     return returnNotifications;
 }
