@@ -50,20 +50,6 @@ const AddNewBookComponent = (props: Props) => {
         currentBook.category = props.categories[value - 1];
     };
 
-    const languages = () => {
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        const children: any[] = [];
-        props.languages.forEach(language => children.push(<Option key={language.id}>{language.language}</Option>));
-        return children;
-    };
-
-    const categories = () => {
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        const children: any[] = [];
-        props.categories.forEach(category => children.push(<Option key={category.id}>{category.title}</Option>));
-        return children;
-    };
-
     const onSaveButtonPressed = () => {
         if (!fieldsValid()) {
             message.error(StringConstant.default.MYBOOKSHELVE_INVALID_FIELDS);
@@ -133,7 +119,7 @@ const AddNewBookComponent = (props: Props) => {
                                 return onLanguageSelected(value);
                             }}
                         >
-                            {languages()}
+                            {props.languages.map(language => <Option key={language.id}>{language.title}</Option>)}
                         </Select>
 
                         <Select
@@ -143,7 +129,8 @@ const AddNewBookComponent = (props: Props) => {
                                 return onCategorySelected(value);
                             }}
                         >
-                            {categories()}
+                            {props.categories.map(category => <Option key={category.id}>{category.title}</Option>)}
+                            }
                         </Select>
                     </InputGroup>
                 </div>

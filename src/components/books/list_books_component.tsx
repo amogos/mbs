@@ -91,7 +91,7 @@ const ListBooksComponent = (props: Props) => {
                 </div>
                 <div className="book_details">
                     {item.title}
-                    <i> ({item.language.language})</i> <br />
+                    <i> ({item.language.title})</i> <br />
                     Author: {item.author} <br />
                     Format: {item.format} <br />
                     <BookRatingComponent

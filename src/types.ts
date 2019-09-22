@@ -89,7 +89,7 @@ export const NullRawBookRecordType: BookRawRecordType = {
 
 export interface LanguageRecordType {
     id: number;
-    language: string;
+    title: string;
 }
 
 export interface QueueNotificationRecordType {
@@ -142,7 +142,7 @@ export interface QueueRecordType {
     duration: number;
 }
 
-export const NullLanguage: LanguageRecordType = { id: 0, language: '' };
+export const NullLanguage: LanguageRecordType = { id: 0, title: '' };
 
 export const NullCategory: CategoryRecordType = { id: 0, title: '' };
 
