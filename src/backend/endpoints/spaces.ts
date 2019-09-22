@@ -49,7 +49,7 @@ export async function getSpaceDataFromRawData(
     return space;
 }
 
-export async function getSpaces(onError: (resultCode: number) => void): Promise<DataTypes.SpaceType[]> {
+async function _getSpaces(url: string, onError: (resultCode: number) => void): Promise<DataTypes.SpaceType[]> {
     let spacesArray: DataTypes.SpaceType[] = [];
     let waiter = new AsyncCallsWaiter();
 
@@ -69,6 +69,15 @@ export async function getSpaces(onError: (resultCode: number) => void): Promise<
 
     await waiter.result();
     return spacesArray;
+}
+
+export async function getSpaces(onError: (resultCode: number) => void): Promise<DataTypes.SpaceType[]> {
+    return await _getSpaces(urlSpaces, onError);
+}
+
+export async function getUserSpaces(user: DataTypes.UserRecordType, onError: (resultCode: number) => void): Promise<DataTypes.SpaceType[]> {
+    return await _getSpaces(`${urlSpaces}?owner=${user.id}`, onError);
+
 }
 
 export async function getSpaceTypeFromId(
