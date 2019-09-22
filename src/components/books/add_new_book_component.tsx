@@ -23,7 +23,7 @@ let currentBook = {
     image: defaultImage,
     owner: DataTypes.NullUser,
     state: BookStates.default.STATE_BOOK_IDLE,
-    isbn:"",
+    isbn: "",
     holder: DataTypes.NullUser,
     category: DataTypes.NullCategory,
 };
@@ -34,15 +34,18 @@ const AddNewBookComponent = (props: Props) => {
     const [language, setLanguage] = useState(0);
     const [category, setCategory] = useState(0);
     const [visible, setVisible] = useState(false);
+    const [isbn, setIsbn] = useState("");
 
     const onLanguageSelected = (value: number) => {
-        if (value < 0 || value > props.languages.length) return;
+        const validLanguageSelection = value > 0 && value <= props.languages.length;
+        if (!validLanguageSelection) return;
         setLanguage(value);
         currentBook.language = props.languages[value - 1];
     };
 
     const onCategorySelected = (value: number) => {
-        if (value < 0 || value > props.categories.length) return;
+        const validCategorySelection = value > 0 && value <= props.categories.length
+        if (!validCategorySelection) return;
         setCategory(value);
         currentBook.category = props.categories[value - 1];
     };
@@ -62,15 +65,24 @@ const AddNewBookComponent = (props: Props) => {
     };
 
     const onSaveButtonPressed = () => {
-        if (title === '' || author === '' || language === 0 || category === 0) {
+        if (!fieldsValid()) {
             message.error(StringConstant.default.MYBOOKSHELVE_INVALID_FIELDS);
             return;
         }
         props.addBook(currentBook);
         props.gotoListBooks(['owner=' + props.userdata.id]);
+        clearFields();
+    };
+
+    const fieldsValid = () => {
+        return title !== '' && author !== '' && language !== 0 && category !== 0 && isbn !== ''
+    }
+
+    const clearFields = () => {
         setTitle('');
         setAuthor('');
-    };
+        setIsbn('');
+    }
 
     currentBook.owner = props.userdata;
 
@@ -105,6 +117,14 @@ const AddNewBookComponent = (props: Props) => {
                                 currentBook.author = element.target.value;
                             }}
                             value={author}
+                        />
+                        <Input
+                            placeholder="Isbn"
+                            onChange={element => {
+                                setIsbn(element.target.value);
+                                currentBook.isbn = element.target.value;
+                            }}
+                            value={isbn}
                         />
                         <Select
                             style={{ width: 200 }}
