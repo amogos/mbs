@@ -1,8 +1,7 @@
 import axios from 'axios';
 import * as DataTypes from '../../types';
 import { urlBooks, urlSpaces } from './constants';
-import AsyncCallsWaiter from '../utils/async_calls_waiter';
-import { getUserRecordTypeFromId } from './user';
+import * as UserEndpoint from './user';
 
 export async function getSpaceStatistics(
     space: number,
@@ -12,9 +11,7 @@ export async function getSpaceStatistics(
     let rating = 0;
     await axios
         .get(`${urlBooks}?space=${space}`)
-        .then(response => {
-            size = response.data.length;
-        })
+        .then(response => size = response.data.length)
         .catch(error => {
             onError(error);
         });
@@ -29,7 +26,7 @@ export async function getSpaceDataFromRawData(
     item: DataTypes.SpaceRawRecordType,
     onError: (resultCode: number) => void,
 ): Promise<DataTypes.SpaceType> {
-    let spaceOwner = await getUserRecordTypeFromId(item.owner, onError);
+    let spaceOwner = await UserEndpoint.getUserRecordTypeFromId(item.owner, onError);
     let spaceStatistics = await getSpaceStatistics(item.id, onError);
     let spaceNumberOfFollowers = await getSpaceNumberOfFollowers(item.id, onError);
 
@@ -51,23 +48,21 @@ export async function getSpaceDataFromRawData(
 
 async function _getSpaces(url: string, onError: (resultCode: number) => void): Promise<DataTypes.SpaceType[]> {
     let spacesArray: DataTypes.SpaceType[] = [];
-    let waiter = new AsyncCallsWaiter();
+    let responseArray: any = null;
 
     await axios
         .get(urlSpaces)
-        .then(response => {
-            response.data.forEach(async (item: DataTypes.SpaceRawRecordType) => {
-                waiter.begin();
-                const space = await getSpaceDataFromRawData(item, onError);
-                spacesArray.push(space);
-                waiter.end();
-            });
-        })
+        .then(r => responseArray = r.data)
         .catch(error => {
             onError(error);
         });
 
-    await waiter.result();
+    if (responseArray) {
+        for (let i = 0; i < responseArray.length; i++) {
+            const space = await getSpaceDataFromRawData(responseArray[i], onError);
+            spacesArray.push(space);
+        }
+    }
     return spacesArray;
 }
 
@@ -84,14 +79,9 @@ export async function getSpaceTypeFromId(
     id: number,
     onError: (resultCode: number) => void,
 ): Promise<DataTypes.SpaceType> {
-    let space = DataTypes.NullSpace;
-    let waiter = new AsyncCallsWaiter();
-    await axios.get(`${urlSpaces}?id=${id}`).then(async response => {
-        waiter.begin();
-        space = await getSpaceDataFromRawData(response.data[0], onError);
-        waiter.end();
-    });
-    await waiter.result();
+    let response: any = null;
+    await axios.get(`${urlSpaces}?id=${id}`).then(r => response = r.data[0]).catch(error => onError(error));
+    const space = await getSpaceDataFromRawData(response, onError);
     return space;
 }
 
