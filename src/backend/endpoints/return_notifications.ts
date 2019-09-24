@@ -9,6 +9,7 @@ export async function getReturnNotifications(
     onError: (resultCode: number) => void,
 ): Promise<DataTypes.ReturnNotificationType[]> {
     let returnNotifications: DataTypes.ReturnNotificationType[] = [];
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     let responseArray: any = null;
 
     await axios

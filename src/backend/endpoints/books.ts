@@ -21,7 +21,7 @@ export async function getBooks(
         filterdBooksUrl += '?' + filters.join('&');
     }
 
-    let responseArray: any = null;
+    let responseArray: DataTypes.BookRawRecordType[] = [];
     await axios
         .get(filterdBooksUrl)
         .then(r => (responseArray = r.data))
@@ -29,7 +29,7 @@ export async function getBooks(
             onError(error);
         });
 
-    if (responseArray) {
+    if (responseArray.length > 0) {
         for (let i = 0; i < responseArray.length; i++) {
             const item = responseArray[i];
             const holder = await getUserRecordTypeFromId(item.holder, onError);
