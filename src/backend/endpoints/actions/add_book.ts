@@ -12,8 +12,10 @@ export async function addBook(value: DataTypes.BookValueType, onError: (resultCo
             holder: -1,
             title: value.title,
             state: 'state.book.idle',
-            isbn:value.isbn,
+            isbn: value.isbn,
             category: value.category.id,
+            format: value.format,
+            space: value.space,
         })
         .catch(error => onError(error));
 }

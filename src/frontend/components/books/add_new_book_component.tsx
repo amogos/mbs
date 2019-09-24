@@ -17,7 +17,7 @@ interface Props {
 }
 const defaultImage =
     'https://vignette.wikia.nocookie.net/superfriends/images/a/a5/No_Photo_Available.jpg/revision/latest?cb=20090329133959';
-let currentBook = {
+let currentBook: DataTypes.BookValueType = {
     title: '',
     author: '',
     language: DataTypes.NullLanguage,
@@ -27,6 +27,8 @@ let currentBook = {
     isbn: '',
     holder: DataTypes.NullUser,
     category: DataTypes.NullCategory,
+    format: '1',
+    space: 0,
 };
 
 const AddNewBookComponent = (props: Props) => {
@@ -67,20 +69,18 @@ const AddNewBookComponent = (props: Props) => {
             return;
         }
         props.addBook(currentBook);
-        props.gotoListBooks(['owner=' + props.userdata.id]);
+        setVisible(false);
         clearFields();
     };
 
     currentBook.owner = props.userdata;
+    currentBook.space = props.spaceId;
 
     return (
         <Modal
             title={StringConstant.default.MYBOOKSHELVE_ADD_NEW_BOOK_TITLE}
             visible={visible}
-            onOk={() => {
-                onSaveButtonPressed();
-                setVisible(false);
-            }}
+            onOk={onSaveButtonPressed}
             onCancel={() => setVisible(false)}
         >
             <div>

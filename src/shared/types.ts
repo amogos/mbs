@@ -40,6 +40,8 @@ export interface BookValueType {
     return?: number;
     contentScore?: number;
     numReviews?: number;
+    format: string;
+    space: number;
 }
 
 export interface BookRecordType {
