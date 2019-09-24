@@ -6,6 +6,8 @@
 }
 .space_holder:hover {
     cursor: pointer;
+    background-color: #cccccc10;
+    opacity: 0.9;
 }
 .space_holder_with_effect:hover {
     -webkit-transform: scale(1.02);
@@ -24,4 +26,3 @@
 .space_statistics {
     transform: translate(25%, 0%);
 }
-
