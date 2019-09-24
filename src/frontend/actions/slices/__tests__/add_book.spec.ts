@@ -1,8 +1,8 @@
 import * as ActionTypes from './../../../../shared/constants/action_constant';
-import { pageAction } from '../..';
+import { bookAction } from '../..';
 import * as DataTypes from '../../../../shared/types';
 
-const { PageActionConstant: TreeActionConstant } = ActionTypes.default;
+const { BookActionConstant: TreeActionConstant } = ActionTypes.default;
 
 const bookValue: DataTypes.BookValueType = {
     author: 'Eric Carle',
@@ -29,6 +29,6 @@ describe('addBook', () => {
             type: TreeActionConstant.ACTION_ADD_BOOK,
             data: bookValue,
         };
-        expect(pageAction.addBook(bookValue)).toEqual(expectedAction);
+        expect(bookAction.addBook(bookValue)).toEqual(expectedAction);
     });
 });

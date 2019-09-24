@@ -4,11 +4,6 @@ import * as DataTypes from '../../../shared/types';
 class PageAction {
     public gotoSpaces = () => ({ type: ActionTypes.default.PageActionConstant.ACTION_GOTO_SPACES });
 
-    public addBook = (data: DataTypes.BookValueType) => ({
-        type: ActionTypes.default.PageActionConstant.ACTION_ADD_BOOK,
-        data,
-    });
-
     public gotoListBooks = (filters: string[]) => ({
         type: ActionTypes.default.PageActionConstant.ACTION_GOTO_LIST_BOOKS,
         filters,

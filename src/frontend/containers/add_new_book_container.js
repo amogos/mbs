@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { pageAction } from '../actions/';
+import { bookAction } from '../actions/';
 import AddNewBookComponent from '../components/books/add_new_book_component';
 
 function mapStateToProps(state) {
@@ -12,7 +12,7 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = dispatch => {
     return {
-        addBook: data => dispatch(pageAction.addBook(data)),
+        addBook: data => dispatch(bookAction.addBook(data)),
         dispatch,
     };
 };

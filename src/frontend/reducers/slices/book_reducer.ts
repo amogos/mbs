@@ -11,6 +11,10 @@ const { BookActionConstant } = ActionConstants.default;
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default function bookReducer(state: any, action: any): any {
     switch (action.type) {
+        case BookActionConstant.ACTION_ADD_BOOK: {
+            databseInstance.addBook(action.data, handleError);
+            return state;
+        }
         case BookActionConstant.ACTION_ASK_BOOK: {
             const bookId: number = action.bookId;
             const ownerId: number = action.ownerId;
