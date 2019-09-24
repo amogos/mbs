@@ -39,11 +39,11 @@
   "languages": [
     {
       "id": 1,
-      "language": "English"
+      "title": "English"
     },
     {
       "id": 2,
-      "language": "German"
+      "title": "German"
     }
   ],
   "books": [

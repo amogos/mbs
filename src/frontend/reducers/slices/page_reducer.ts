@@ -33,6 +33,8 @@ export default function pageReducer(state: any, action: any): any {
             return Object.assign({}, state, {
                 action: ActionConstants.default.PageActionConstant.ACTION_GOTO_SPACES,
                 spaces: GlobalVars.spacesArray,
+                categories: GlobalVars.categoriesArray,
+                languages: GlobalVars.languagesArray,
             });
         case PageActionConstant.ACTION_ADD_BOOK:
             databseInstance.addBook(action.data, handleError);
