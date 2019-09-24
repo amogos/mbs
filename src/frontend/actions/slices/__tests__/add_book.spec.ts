@@ -7,7 +7,7 @@ const { PageActionConstant: TreeActionConstant } = ActionTypes.default;
 const bookValue: DataTypes.BookValueType = {
     author: 'Eric Carle',
     state: 'state.book.idle',
-    isbn:"",
+    isbn: '',
     image: 'https://images-na.ssl-images-amazon.com/images/I/51lsugWtCvL._SY498_BO1,204,203,200_.jpg',
     language: DataTypes.NullLanguage,
     owner: {
@@ -19,6 +19,8 @@ const bookValue: DataTypes.BookValueType = {
     holder: DataTypes.NullUser,
     title: "The Very Hungry Caterpillar's ABC",
     category: DataTypes.NullCategory,
+    format: '1',
+    space: 1,
 };
 
 describe('addBook', () => {

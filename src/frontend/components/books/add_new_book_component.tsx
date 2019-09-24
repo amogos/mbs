@@ -12,7 +12,6 @@ interface Props {
     categories: DataTypes.CategoryRecordType[];
     userdata: DataTypes.UserRecordType;
     addBook(book: DataTypes.BookValueType): void;
-    gotoListBooks(filters: string[]): void;
     spaceId: number;
 }
 const defaultImage =

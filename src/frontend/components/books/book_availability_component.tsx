@@ -4,7 +4,7 @@ import { Icon, Badge, Tag } from 'antd';
 import Moment from 'react-moment';
 
 interface Props {
-    book: DataTypes.BookValueType;
+    book: DataTypes.BookRecordType;
 }
 
 const BookAvailabilityDate = (props: Props) => {
