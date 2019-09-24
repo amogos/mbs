@@ -3,7 +3,7 @@ import * as DataTypes from '../../../shared/types';
 import { socialAction } from './../../actions';
 import databseInstance from './../../../backend/database_instance';
 import Store from '../../store';
-import { handleError } from './page_reducer';
+import { GlobalVars, handleError } from './../main_reducer';
 
 const { SocialActionConstant } = ActionConstants.default;
 
@@ -21,6 +21,12 @@ export default function socialReducer(state: any, action: any): any {
             });
         }
         case SocialActionConstant.ACTION_USER_DATA:
+            databseInstance.getUserSpaces(action.userdata, handleError).then((result: DataTypes.SpaceType[]) => {
+                GlobalVars.spacesArrays.userSpaces = result;
+            });
+            databseInstance.getOtherSpaces(action.userdata, handleError).then((result: DataTypes.SpaceType[]) => {
+                GlobalVars.spacesArrays.otherSpaces = result;
+            });
             return Object.assign({}, state, {
                 userdata: action.userdata,
             });

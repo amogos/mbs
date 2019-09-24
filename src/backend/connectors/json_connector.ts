@@ -1,6 +1,6 @@
 import { getLanguages } from '../endpoints/languages';
 import { getCategories } from '../endpoints/categories';
-import { getSpaces } from '../endpoints/spaces';
+import { getSpaces, getUserSpaces, getOtherSpaces } from '../endpoints/spaces';
 import { getBooks } from '../endpoints/books';
 import { confirmRental } from '../endpoints/actions/confirm_rental';
 import { rejectRental } from '../endpoints/actions/reject_rental';
@@ -20,6 +20,9 @@ export default class JSONConnector {
     public getLanguages = getLanguages;
     public getCategories = getCategories;
     public getSpaces = getSpaces;
+    public getUserSpaces = getUserSpaces;
+    public getOtherSpaces = getOtherSpaces;
+
     public getBooks = getBooks;
     public confirmRental = confirmRental;
     public rejectRental = rejectRental;

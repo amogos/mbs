@@ -48,16 +48,16 @@ export async function getSpaceDataFromRawData(
 
 async function _getSpaces(url: string, onError: (resultCode: number) => void): Promise<DataTypes.SpaceType[]> {
     let spacesArray: DataTypes.SpaceType[] = [];
-    let responseArray: any = null;
+    let responseArray: DataTypes.SpaceRawRecordType[] = [];
 
     await axios
-        .get(urlSpaces)
+        .get(url)
         .then(r => (responseArray = r.data))
         .catch(error => {
             onError(error);
         });
 
-    if (responseArray) {
+    if (responseArray.length > 0) {
         for (let i = 0; i < responseArray.length; i++) {
             const space = await getSpaceDataFromRawData(responseArray[i], onError);
             spacesArray.push(space);
@@ -75,6 +75,13 @@ export async function getUserSpaces(
     onError: (resultCode: number) => void,
 ): Promise<DataTypes.SpaceType[]> {
     return await _getSpaces(`${urlSpaces}?owner=${user.id}`, onError);
+}
+
+export async function getOtherSpaces(
+    user: DataTypes.UserRecordType,
+    onError: (resultCode: number) => void,
+): Promise<DataTypes.SpaceType[]> {
+    return await _getSpaces(`${urlSpaces}?owner_ne=${user.id}`, onError);
 }
 
 export async function getSpaceTypeFromId(

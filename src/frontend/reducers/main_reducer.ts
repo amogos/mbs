@@ -9,8 +9,9 @@ import socialReducer from './slices/social_reducer';
 export class GlobalVars {
     public static booksArray: DataTypes.BookRecordType[];
     public static languagesArray: DataTypes.LanguageRecordType[];
+    public static categoriesArray: DataTypes.CategoryRecordType[];
     public static queueArray: DataTypes.QueueRecordType[];
-    public static userData: DataTypes.UserRecordType;
+    public static spacesArrays: DataTypes.Spaces = { userSpaces: [], otherSpaces: [] };
 }
 
 export function handleError(resultCode: number): void {

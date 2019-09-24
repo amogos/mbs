@@ -214,3 +214,8 @@ export interface BannerAttributes {
     showCategoryFiltering: boolean;
     showTabFiltering: boolean;
 }
+
+export interface Spaces {
+    userSpaces: SpaceType[];
+    otherSpaces: SpaceType[];
+}

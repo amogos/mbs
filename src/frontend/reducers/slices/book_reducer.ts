@@ -4,8 +4,7 @@ import databseInstance from '../../../backend/database_instance';
 import Store from '../../store';
 import Strings from '../../../shared/constants/string_constant';
 import { message } from 'antd';
-import { GlobalVars, handleError } from './page_reducer';
-
+import { GlobalVars, handleError } from './../main_reducer';
 const { BookActionConstant } = ActionConstants.default;
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any

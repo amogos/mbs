@@ -5,20 +5,7 @@ import databseInstance from './../../../backend/database_instance';
 import Store from '../../store';
 import Strings from '../../../shared/constants/string_constant';
 import { message } from 'antd';
-
-export class GlobalVars {
-    public static booksArray: DataTypes.BookRecordType[];
-    public static languagesArray: DataTypes.LanguageRecordType[];
-    public static categoriesArray: DataTypes.CategoryRecordType[];
-    public static queueArray: DataTypes.QueueRecordType[];
-    public static spacesArray: DataTypes.SpaceType[];
-}
-
-export function handleError(resultCode: number): void {
-    if (resultCode !== 0) {
-        message.error(Strings.MYBOOKSHELVE_OPERATION_FAILED + ' (' + resultCode + ')');
-    }
-}
+import { GlobalVars, handleError } from './../main_reducer';
 
 const { PageActionConstant } = ActionConstants.default;
 
@@ -32,7 +19,7 @@ export default function pageReducer(state: any, action: any): any {
         case PageActionConstant.ACTION_GOTO_SPACES:
             return Object.assign({}, state, {
                 action: ActionConstants.default.PageActionConstant.ACTION_GOTO_SPACES,
-                spaces: GlobalVars.spacesArray,
+                spaces: GlobalVars.spacesArrays,
                 categories: GlobalVars.categoriesArray,
                 languages: GlobalVars.languagesArray,
             });
@@ -66,9 +53,7 @@ export default function pageReducer(state: any, action: any): any {
             databseInstance.getCategories(handleError).then((result: DataTypes.CategoryRecordType[]) => {
                 GlobalVars.categoriesArray = result;
             });
-            databseInstance.getSpaces(handleError).then((result: DataTypes.SpaceType[]) => {
-                GlobalVars.spacesArray = result;
-            });
+
             return null;
     }
 }

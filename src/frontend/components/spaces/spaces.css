@@ -1,30 +1,27 @@
-.space_holder
-{
-  opacity:1.0;
+.space_holder {
+    opacity: 1;
 }
-.space_holder_locked
-{
-  opacity:0.5;
+.space_holder_locked {
+    opacity: 0.5;
 }
-.space_holder:hover
-{
+.space_holder:hover {
     cursor: pointer;
 }
-.space_holder_with_effect:hover
-{
-   -webkit-transform: scale(1.02);
-   -ms-transform: scale(1.02);
+.space_holder_with_effect:hover {
+    -webkit-transform: scale(1.02);
+    -ms-transform: scale(1.02);
     transform: scale(1.02);
     cursor: pointer;
 }
 .avatar {
-  transform: translate(40%, 28%)
+    transform: translate(40%, 28%);
 }
 
 .space_description {
-   transform: translate(15%, 0%)
+    transform: translate(15%, 0%);
 }
 
 .space_statistics {
-   transform: translate(25%, 0%)
+    transform: translate(25%, 0%);
 }
+

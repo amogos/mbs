@@ -1,10 +1,11 @@
 import React from 'react';
 import * as DataTypes from '../../../shared/types';
-import { List } from 'antd';
+import { List, Divider, Carousel } from 'antd';
 import SpaceHolder from './space_holder';
+import Aux from './../aux_component';
 
 interface Props {
-    spaces: DataTypes.SpaceType[];
+    spaces: DataTypes.Spaces;
     userdata: DataTypes.UserRecordType;
     gotoListBooks(filters: string[]): void;
 }
@@ -15,16 +16,28 @@ const ListSpacesComponent = (props: Props) => {
         props.gotoListBooks(filters);
     };
 
+    function onChange(slideNumber: number) {}
+
     return (
-        <List
-            grid={{ gutter: 16, column: 4 }}
-            dataSource={props.spaces}
-            renderItem={item => (
-                <List.Item>
+        <Aux>
+            <p className="thicker">All Spaces</p>
+            <p className="thicker">My Spaces</p>
+            <Carousel afterChange={onChange}>
+                {props.spaces.userSpaces.map(item => (
                     <SpaceHolder item={item} onClick={() => onSpaceClicked(item.id)} userdata={props.userdata} />
-                </List.Item>
-            )}
-        />
+                ))}
+            </Carousel>
+            <p className="thicker">Other Spaces</p>
+            <List
+                grid={{ gutter: 16, column: 4 }}
+                dataSource={props.spaces.otherSpaces}
+                renderItem={item => (
+                    <List.Item>
+                        <SpaceHolder item={item} onClick={() => onSpaceClicked(item.id)} userdata={props.userdata} />
+                    </List.Item>
+                )}
+            />
+        </Aux>
     );
 };
 
