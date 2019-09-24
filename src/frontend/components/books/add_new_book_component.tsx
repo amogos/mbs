@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import * as DataTypes from '../../../shared/types';
 import * as BookStates from '../../../shared/constants/book_states_constant';
 import * as StringConstant from '../../../shared/constants/string_constant';
-import { Select, Input, Button, message, Modal } from 'antd';
+import { Select, Input, message, Modal } from 'antd';
 
 const { Option } = Select;
 const InputGroup = Input.Group;
@@ -13,6 +13,8 @@ interface Props {
     userdata: DataTypes.UserRecordType;
     addBook(book: DataTypes.BookValueType): void;
     spaceId: number;
+    visible: boolean;
+    callback: () => void;
 }
 const defaultImage =
     'https://vignette.wikia.nocookie.net/superfriends/images/a/a5/No_Photo_Available.jpg/revision/latest?cb=20090329133959';
@@ -35,7 +37,6 @@ const AddNewBookComponent = (props: Props) => {
     const [author, setAuthor] = useState('');
     const [language, setLanguage] = useState(0);
     const [category, setCategory] = useState(0);
-    const [visible, setVisible] = useState(true);
     const [isbn, setIsbn] = useState('');
 
     const onLanguageSelected = (value: number) => {
@@ -68,7 +69,6 @@ const AddNewBookComponent = (props: Props) => {
             return;
         }
         props.addBook(currentBook);
-        setVisible(false);
         clearFields();
     };
 
@@ -78,9 +78,9 @@ const AddNewBookComponent = (props: Props) => {
     return (
         <Modal
             title={StringConstant.default.MYBOOKSHELVE_ADD_NEW_BOOK_TITLE}
-            visible={visible}
+            visible={props.visible}
             onOk={onSaveButtonPressed}
-            onCancel={() => setVisible(false)}
+            onCancel={() => props.callback()}
         >
             <div>
                 <InputGroup>

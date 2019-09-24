@@ -30,7 +30,9 @@ const SpaceHolder = (props: Props) => {
 
     const AddNewBookPopup = () => {
         if (!showAddBook) return null;
-        return <AddNewBookComponent spaceId={props.item.id} />;
+        return (
+            <AddNewBookComponent spaceId={props.item.id} visible={showAddBook} callback={() => setShowAddBook(false)} />
+        );
     };
 
     const owner = props.item.user.id === props.userdata.id;
