@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { urlBookReviews } from './constants';
-import * as DataTypes from '../../types';
+import * as DataTypes from '../../shared/types';
 
 export async function getReviewsForBook(
     bookId: number,

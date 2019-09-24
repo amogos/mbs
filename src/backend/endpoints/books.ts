@@ -1,5 +1,5 @@
 import axios from 'axios';
-import * as DataTypes from '../../types';
+import * as DataTypes from '../../shared/types';
 import { urlBooks } from './constants';
 import { getUserRecordTypeFromId } from './user';
 import { getLanguageRecordTypeFromId } from './languages';

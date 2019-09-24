@@ -1,5 +1,5 @@
 import axios from 'axios';
-import * as DataTypes from '../../types';
+import * as DataTypes from '../../shared/types';
 import { urlLanguages } from './constants';
 
 export async function getLanguages(onError: (resultCode: number) => void): Promise<DataTypes.LanguageRecordType[]> {

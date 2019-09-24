@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { urlBooks } from '../constants';
-import * as DataTypes from '../../../types';
+import * as DataTypes from '../../../shared/types';
 
 export async function addBook(value: DataTypes.BookValueType, onError: (resultCode: number) => void) {
     await axios

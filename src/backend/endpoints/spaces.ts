@@ -1,5 +1,5 @@
 import axios from 'axios';
-import * as DataTypes from '../../types';
+import * as DataTypes from '../../shared/types';
 import { urlBooks, urlSpaces } from './constants';
 import * as UserEndpoint from './user';
 

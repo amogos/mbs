@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { urlReturns } from './constants';
-import * as DataTypes from '../../types';
+import * as DataTypes from '../../shared/types';
 import * as UsersEndpoint from './user'
 import * as BooksEndpoint from './books'
 

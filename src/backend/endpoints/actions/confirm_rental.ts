@@ -1,7 +1,7 @@
 import axios from 'axios';
-import * as DataTypes from '../../../types';
+import * as DataTypes from '../../../shared/types';
 import { urlBooks, urlQueues, OneDayMilliseconds } from '../constants';
-import * as BookStateTypes from '../../../constants/book_states_constant';
+import * as BookStateTypes from '../../../shared/constants/book_states_constant';
 
 export async function confirmRental(
     rental: DataTypes.QueueNotificationRecordType,

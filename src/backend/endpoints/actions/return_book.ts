@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { urlBooks } from '../constants';
-import * as BookStateTypes from '../../../constants/book_states_constant';
+import * as BookStateTypes from '../../../shared/constants/book_states_constant';
 
 export async function returnBook(bookId: number, onError: (resultCode: number) => void) {
     await axios

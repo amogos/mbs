@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { urlQueues } from '../constants';
-import * as DataTypes from '../../../types';
+import * as DataTypes from '../../../shared/types';
 
 export async function askBook(
     bookId: number,
