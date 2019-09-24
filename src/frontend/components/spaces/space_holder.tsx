@@ -13,9 +13,21 @@ interface Props {
 }
 
 const SpaceHolder = (props: Props) => {
+    const onFollowButtonClicked = () => {};
+    const onSubscribeButtonClicked = () => {};
+    const OnAddBookButtonClicked = () => {};
+    const OnEditSpaceButtonClicked = () => {};
+
+    const actions = {
+        follow: onFollowButtonClicked,
+        subscribe: onSubscribeButtonClicked,
+        add: OnAddBookButtonClicked,
+        edit: OnEditSpaceButtonClicked,
+    };
+
     return (
         <Button type="link" onClick={props.onClick}>
-            <Card style={{ width: 300 }} cover={SpaceImage(props)} actions={SpaceActions(props)}>
+            <Card style={{ width: 300 }} cover={SpaceImage(props)} actions={SpaceActions({ ...props, actions })}>
                 <SpaceDescription {...props} />
                 <p />
                 <SpaceStatistics {...props} />

@@ -1,3 +1,7 @@
+export interface CallbackFunction {
+    function: () => void;
+}
+
 export interface UserRecordType {
     id: number;
     name: string | undefined;
@@ -50,7 +54,7 @@ export interface BookRecordType {
     category: CategoryRecordType;
     format: string;
     space: SpaceType;
-    isbn: string,
+    isbn: string;
     return?: number;
     contentScore?: number;
     numReviews?: number;
@@ -84,7 +88,7 @@ export const NullRawBookRecordType: BookRawRecordType = {
     category: 0,
     space: 0,
     format: 0,
-    isbn: "",
+    isbn: '',
 };
 
 export interface LanguageRecordType {
