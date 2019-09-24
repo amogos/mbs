@@ -10,6 +10,7 @@ import AddNewBookComponent from './../../containers/add_new_book_container';
 
 interface Props {
     item: DataTypes.SpaceType;
+    userdata: DataTypes.UserRecordType;
     onClick: () => void;
 }
 
@@ -32,13 +33,15 @@ const SpaceHolder = (props: Props) => {
         return <AddNewBookComponent spaceId={props.item.id} />;
     };
 
+    const owner = props.item.user.id === props.userdata.id;
+
     return (
         <Aux>
             <Card
                 className="space_holder"
                 style={{ width: 300 }}
                 cover={SpaceImage(props)}
-                actions={SpaceActions({ ...props, actions })}
+                actions={SpaceActions({ ...props, actions, owner })}
             >
                 <div onClick={props.onClick}>
                     <SpaceDescription {...props} />

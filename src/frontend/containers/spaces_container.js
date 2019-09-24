@@ -5,6 +5,7 @@ import { pageAction } from './../actions';
 function mapStateToProps(state) {
     return {
         spaces: state.mainReducer.spaces,
+        userdata: state.mainReducer.userdata,
     };
 }
 

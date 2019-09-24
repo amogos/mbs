@@ -11,7 +11,7 @@ export async function getSpaceStatistics(
     let rating = 0;
     await axios
         .get(`${urlBooks}?space=${space}`)
-        .then(response => size = response.data.length)
+        .then(response => (size = response.data.length))
         .catch(error => {
             onError(error);
         });
@@ -52,7 +52,7 @@ async function _getSpaces(url: string, onError: (resultCode: number) => void): P
 
     await axios
         .get(urlSpaces)
-        .then(r => responseArray = r.data)
+        .then(r => (responseArray = r.data))
         .catch(error => {
             onError(error);
         });
@@ -70,9 +70,11 @@ export async function getSpaces(onError: (resultCode: number) => void): Promise<
     return await _getSpaces(urlSpaces, onError);
 }
 
-export async function getUserSpaces(user: DataTypes.UserRecordType, onError: (resultCode: number) => void): Promise<DataTypes.SpaceType[]> {
+export async function getUserSpaces(
+    user: DataTypes.UserRecordType,
+    onError: (resultCode: number) => void,
+): Promise<DataTypes.SpaceType[]> {
     return await _getSpaces(`${urlSpaces}?owner=${user.id}`, onError);
-
 }
 
 export async function getSpaceTypeFromId(
@@ -80,7 +82,10 @@ export async function getSpaceTypeFromId(
     onError: (resultCode: number) => void,
 ): Promise<DataTypes.SpaceType> {
     let response: any = null;
-    await axios.get(`${urlSpaces}?id=${id}`).then(r => response = r.data[0]).catch(error => onError(error));
+    await axios
+        .get(`${urlSpaces}?id=${id}`)
+        .then(r => (response = r.data[0]))
+        .catch(error => onError(error));
     const space = await getSpaceDataFromRawData(response, onError);
     return space;
 }

@@ -5,6 +5,7 @@ import SpaceHolder from './space_holder';
 
 interface Props {
     spaces: DataTypes.SpaceType[];
+    userdata: DataTypes.UserRecordType;
     gotoListBooks(filters: string[]): void;
 }
 
@@ -20,7 +21,7 @@ const SpacesComponent = (props: Props) => {
             dataSource={props.spaces}
             renderItem={item => (
                 <List.Item>
-                    <SpaceHolder item={item} onClick={() => onSpaceClicked(item.id)} />
+                    <SpaceHolder item={item} onClick={() => onSpaceClicked(item.id)} userdata={props.userdata} />
                 </List.Item>
             )}
         />
