@@ -19,7 +19,7 @@ const ListSpacesComponent = (props: Props) => {
     function onChange(slideNumber: number) {}
 
     return (
-        <Aux>
+        <div className="space_list">
             <p className="thicker">All Spaces</p>
             <p className="thicker">My Spaces</p>
             <Carousel afterChange={onChange}>
@@ -27,6 +27,7 @@ const ListSpacesComponent = (props: Props) => {
                     <SpaceHolder item={item} onClick={() => onSpaceClicked(item.id)} userdata={props.userdata} />
                 ))}
             </Carousel>
+            <p />
             <p className="thicker">Other Spaces</p>
             <List
                 grid={{ gutter: 16, column: 4 }}
@@ -37,7 +38,7 @@ const ListSpacesComponent = (props: Props) => {
                     </List.Item>
                 )}
             />
-        </Aux>
+        </div>
     );
 };
 
