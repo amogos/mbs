@@ -5,11 +5,12 @@ import './spaces.css';
 
 interface Props {
     item: DataTypes.SpaceType;
+    onClick: () => void;
 }
 
 const SpaceImage = (props: Props) => {
     return (
-        <div className="avatar">
+        <div className="avatar" onClick={props.onClick}>
             <Avatar size={64} icon="user" />
         </div>
     );

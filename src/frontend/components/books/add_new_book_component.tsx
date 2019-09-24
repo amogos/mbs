@@ -23,7 +23,7 @@ let currentBook = {
     image: defaultImage,
     owner: DataTypes.NullUser,
     state: BookStates.default.STATE_BOOK_IDLE,
-    isbn: "",
+    isbn: '',
     holder: DataTypes.NullUser,
     category: DataTypes.NullCategory,
 };
@@ -34,7 +34,7 @@ const AddNewBookComponent = (props: Props) => {
     const [language, setLanguage] = useState(0);
     const [category, setCategory] = useState(0);
     const [visible, setVisible] = useState(false);
-    const [isbn, setIsbn] = useState("");
+    const [isbn, setIsbn] = useState('');
 
     const onLanguageSelected = (value: number) => {
         const validLanguageSelection = value > 0 && value <= props.languages.length;
@@ -44,10 +44,20 @@ const AddNewBookComponent = (props: Props) => {
     };
 
     const onCategorySelected = (value: number) => {
-        const validCategorySelection = value > 0 && value <= props.categories.length
+        const validCategorySelection = value > 0 && value <= props.categories.length;
         if (!validCategorySelection) return;
         setCategory(value);
         currentBook.category = props.categories[value - 1];
+    };
+
+    const fieldsValid = () => {
+        return title !== '' && author !== '' && language !== 0 && category !== 0 && isbn !== '';
+    };
+
+    const clearFields = () => {
+        setTitle('');
+        setAuthor('');
+        setIsbn('');
     };
 
     const onSaveButtonPressed = () => {
@@ -59,16 +69,6 @@ const AddNewBookComponent = (props: Props) => {
         props.gotoListBooks(['owner=' + props.userdata.id]);
         clearFields();
     };
-
-    const fieldsValid = () => {
-        return title !== '' && author !== '' && language !== 0 && category !== 0 && isbn !== ''
-    }
-
-    const clearFields = () => {
-        setTitle('');
-        setAuthor('');
-        setIsbn('');
-    }
 
     currentBook.owner = props.userdata;
 
@@ -119,7 +119,9 @@ const AddNewBookComponent = (props: Props) => {
                                 return onLanguageSelected(value);
                             }}
                         >
-                            {props.languages.map(language => <Option key={language.id}>{language.title}</Option>)}
+                            {props.languages.map(language => (
+                                <Option key={language.id}>{language.title}</Option>
+                            ))}
                         </Select>
 
                         <Select
@@ -129,7 +131,9 @@ const AddNewBookComponent = (props: Props) => {
                                 return onCategorySelected(value);
                             }}
                         >
-                            {props.categories.map(category => <Option key={category.id}>{category.title}</Option>)}
+                            {props.categories.map(category => (
+                                <Option key={category.id}>{category.title}</Option>
+                            ))}
                             }
                         </Select>
                     </InputGroup>

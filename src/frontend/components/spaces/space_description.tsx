@@ -9,7 +9,7 @@ interface Props {
 const SpaceDescription = (props: Props) => {
     const { Meta } = Card;
     const { title, description } = props.item;
-    return <Meta title={title} description={description} />;
+    return <Meta className="space_description" title={title} description={description} />;
 };
 
 export default SpaceDescription;

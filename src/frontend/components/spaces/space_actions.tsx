@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Icon, Tooltip, Menu } from 'antd';
+import React from 'react';
+import { Icon, Tooltip } from 'antd';
 import * as DataTypes from '../../../shared/types';
 
 interface Props {
@@ -8,18 +8,6 @@ interface Props {
 }
 
 const SpaceActions = (props: Props) => {
-    const [showDropDownMenu, setShowDropDownMenu] = useState(false);
-
-    const DropDownMenu = () => {
-        if (!showDropDownMenu) return null;
-        return (
-            <Menu>
-                <Menu.Item key="1">menu item</Menu.Item>
-                <Menu.Item key="2">menu item</Menu.Item>
-            </Menu>
-        );
-    };
-
     return [
         <a onClick={props.actions.follow}>
             <Tooltip title="follow">
@@ -31,10 +19,14 @@ const SpaceActions = (props: Props) => {
                 <Icon type="unlock" />
             </Tooltip>
         </a>,
-        <a onClick={() => setShowDropDownMenu(true)}>
-            <Tooltip title="more">
-                <Icon type="ellipsis" />
-                <DropDownMenu />
+        <a onClick={props.actions.add}>
+            <Tooltip title="add">
+                <Icon type="plus" />
+            </Tooltip>
+        </a>,
+        <a onClick={props.actions.add}>
+            <Tooltip title="edit">
+                <Icon type="edit" />
             </Tooltip>
         </a>,
     ];

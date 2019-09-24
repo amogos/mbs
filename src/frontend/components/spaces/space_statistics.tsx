@@ -29,11 +29,11 @@ const IconRating = (rating: number) => {
 const SpaceStatistics = (props: Props) => {
     const { numberOfFollowers, rating, numberOfBooks, format } = props.item;
     return (
-        <span>
+        <div className="space_statistics">
             <Icon type="team" /> {numberOfFollowers}
             {IconRating(rating)}
             {IconFormat(format, numberOfBooks)}
-        </span>
+        </div>
     );
 };
 
