@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
-import SpacesComponent from '../components/spaces/spaces_component';
-import { pageAction } from './../actions';
+import SpacesComponent from '../components/spaces/list_spaces_component';
+import { pageAction } from '../actions';
 
 function mapStateToProps(state) {
     return {

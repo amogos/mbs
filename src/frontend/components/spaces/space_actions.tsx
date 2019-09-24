@@ -9,22 +9,8 @@ interface Props {
 }
 
 const SpaceActions = (props: Props) => {
-    let result = [
-        <a onClick={props.actions.follow}>
-            <Tooltip title="follow">
-                <Icon type="eye" />
-            </Tooltip>
-        </a>,
-        <a onClick={props.actions.subscribe}>
-            <Tooltip title="subscribe">
-                <Icon type="unlock" />
-            </Tooltip>
-        </a>,
-    ];
-
     if (props.owner) {
         return [
-            ...result,
             <a onClick={props.actions.add}>
                 <Tooltip title="add">
                     <Icon type="plus" />
@@ -36,8 +22,20 @@ const SpaceActions = (props: Props) => {
                 </Tooltip>
             </a>,
         ];
+    } else {
+        return [
+            <a onClick={props.actions.follow}>
+                <Tooltip title="follow">
+                    <Icon type="eye" />
+                </Tooltip>
+            </a>,
+            <a onClick={props.actions.subscribe}>
+                <Tooltip title="subscribe">
+                    <Icon type="unlock" />
+                </Tooltip>
+            </a>,
+        ];
     }
-    return result;
 };
 
 export default SpaceActions;

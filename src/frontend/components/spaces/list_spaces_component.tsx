@@ -9,7 +9,7 @@ interface Props {
     gotoListBooks(filters: string[]): void;
 }
 
-const SpacesComponent = (props: Props) => {
+const ListSpacesComponent = (props: Props) => {
     const onSpaceClicked = (spaceId: number) => {
         let filters = [`space=${spaceId}`];
         props.gotoListBooks(filters);
@@ -28,4 +28,4 @@ const SpacesComponent = (props: Props) => {
     );
 };
 
-export default SpacesComponent;
+export default ListSpacesComponent;
