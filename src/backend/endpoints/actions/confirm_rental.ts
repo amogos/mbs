@@ -13,7 +13,7 @@ export async function confirmRental(
 
     await axios
         .get(bookIdUrl)
-        .then(response => bookResponse = response)
+        .then(response => (bookResponse = response))
         .catch(error => {
             onError(error);
             return false;
@@ -27,12 +27,10 @@ export async function confirmRental(
         holder: rental.user.id,
         return: Date.now() + rental.duration * OneDayMilliseconds,
     };
-    await axios
-        .put(bookIdUrl, value)
-        .catch(error => {
-            onError(error);
-            return false;
-        });
+    await axios.put(bookIdUrl, value).catch(error => {
+        onError(error);
+        return false;
+    });
 
     await axios
         .delete(urlQueues + '/' + rental.id)

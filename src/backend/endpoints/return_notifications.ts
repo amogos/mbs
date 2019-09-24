@@ -1,8 +1,8 @@
 import axios from 'axios';
 import { urlReturns } from './constants';
 import * as DataTypes from '../../shared/types';
-import * as UsersEndpoint from './user'
-import * as BooksEndpoint from './books'
+import * as UsersEndpoint from './user';
+import * as BooksEndpoint from './books';
 
 export async function getReturnNotifications(
     user: DataTypes.UserRecordType,
@@ -13,7 +13,7 @@ export async function getReturnNotifications(
 
     await axios
         .get(`${urlReturns}?ownerId=${user.id}`)
-        .then(r => responseArray = r.data)
+        .then(r => (responseArray = r.data))
         .catch(error => onError(error));
 
     if (responseArray) {
@@ -30,6 +30,6 @@ export async function getReturnNotifications(
             returnNotifications.push(notification);
         }
     }
-    
+
     return returnNotifications;
 }

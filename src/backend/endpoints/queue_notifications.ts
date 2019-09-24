@@ -11,7 +11,7 @@ export async function getQueueNotifications(
     let rentalNotifications: DataTypes.QueueNotificationRecordType[] = [];
     let responseArray: any = null;
 
-    await axios                                                   
+    await axios
         .get(urlQueues + '?ownerId=' + user.id)
         .then(response => {
             if (response.data.length === 0) return rentalNotifications;
@@ -37,7 +37,6 @@ export async function getQueueNotifications(
             };
             rentalNotifications.push(notification);
         }
-
     }
     return rentalNotifications;
 }

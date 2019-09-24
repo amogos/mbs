@@ -9,7 +9,6 @@ import { getReviewStatisticsForBook } from './book_reviews';
 import { getFormatRecordTypeFromId } from './format';
 import { getSpaceTypeFromId } from './spaces';
 
-
 export async function getBooks(
     filters: string[],
     onError: (resultCode: number) => void,
@@ -25,7 +24,7 @@ export async function getBooks(
     let responseArray: any = null;
     await axios
         .get(filterdBooksUrl)
-        .then(r => responseArray = r.data)
+        .then(r => (responseArray = r.data))
         .catch(error => {
             onError(error);
         });
