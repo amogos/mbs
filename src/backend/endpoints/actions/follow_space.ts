@@ -10,6 +10,6 @@ export async function followSpace(
     const followingSpaces = [...user.following, spaceId];
     await axios
         .put(`${urlUsers}/${user.id}`, { following: followingSpaces })
-        .then(() => (user.following = followingSpaces))
+        .then()
         .catch(error => onError(error));
 }

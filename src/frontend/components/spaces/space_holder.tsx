@@ -17,8 +17,8 @@ interface Props {
 
 const SpaceHolder = (props: Props) => {
     const [showAddBook, setShowAddBook] = useState(false);
-    const onFollowButtonClicked = () => {};
-    const onSubscribeButtonClicked = () => props.followSpace(props.item.id);
+    const onFollowButtonClicked = () => props.followSpace(props.item.id);
+    const onSubscribeButtonClicked = () => {};
     const OnAddBookButtonClicked = () => setShowAddBook(true);
     const OnEditSpaceButtonClicked = () => {};
 
