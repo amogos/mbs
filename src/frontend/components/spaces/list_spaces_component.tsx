@@ -7,6 +7,7 @@ interface Props {
     spaces: DataTypes.Spaces;
     userdata: DataTypes.UserRecordType;
     gotoListBooks(filters: string[]): void;
+    followSpace(spaceId: number): void;
 }
 
 const ListSpacesComponent = (props: Props) => {
@@ -23,7 +24,12 @@ const ListSpacesComponent = (props: Props) => {
             <p className="thicker">My Spaces</p>
             <Carousel afterChange={onChange}>
                 {props.spaces.userSpaces.map(item => (
-                    <SpaceHolder item={item} onClick={() => onSpaceClicked(item.id)} userdata={props.userdata} />
+                    <SpaceHolder
+                        item={item}
+                        followSpace={props.followSpace}
+                        onClick={() => onSpaceClicked(item.id)}
+                        userdata={props.userdata}
+                    />
                 ))}
             </Carousel>
             <p />
@@ -33,7 +39,12 @@ const ListSpacesComponent = (props: Props) => {
                 dataSource={props.spaces.otherSpaces}
                 renderItem={item => (
                     <List.Item>
-                        <SpaceHolder item={item} onClick={() => onSpaceClicked(item.id)} userdata={props.userdata} />
+                        <SpaceHolder
+                            item={item}
+                            followSpace={props.followSpace}
+                            onClick={() => onSpaceClicked(item.id)}
+                            userdata={props.userdata}
+                        />
                     </List.Item>
                 )}
             />

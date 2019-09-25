@@ -12,12 +12,13 @@ interface Props {
     item: DataTypes.SpaceType;
     userdata: DataTypes.UserRecordType;
     onClick: () => void;
+    followSpace: (spaceId: number) => void;
 }
 
 const SpaceHolder = (props: Props) => {
     const [showAddBook, setShowAddBook] = useState(false);
     const onFollowButtonClicked = () => {};
-    const onSubscribeButtonClicked = () => {};
+    const onSubscribeButtonClicked = () => props.followSpace(props.item.id);
     const OnAddBookButtonClicked = () => setShowAddBook(true);
     const OnEditSpaceButtonClicked = () => {};
 

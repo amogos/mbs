@@ -5,6 +5,7 @@ import bookReducer from './slices/book_reducer';
 import notificationReducer from './slices/notification_reducer';
 import pageReducer from './slices/page_reducer';
 import socialReducer from './slices/social_reducer';
+import spaceReducer from './slices/space_reducer';
 
 export class GlobalVars {
     public static booksArray: DataTypes.BookRecordType[];
@@ -32,6 +33,9 @@ export default function mainReducer(state = {} as any, action: any): any {
     if (newState !== null) return newState;
 
     newState = socialReducer(state, action);
+    if (newState !== null) return newState;
+
+    newState = spaceReducer(state, action);
     if (newState !== null) return newState;
 
     return state;

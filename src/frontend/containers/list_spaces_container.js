@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import SpacesComponent from '../components/spaces/list_spaces_component';
-import { pageAction } from '../actions';
+import { pageAction, spaceAction } from '../actions';
 
 function mapStateToProps(state) {
     return {
@@ -12,6 +12,7 @@ function mapStateToProps(state) {
 const mapDispatchToProps = dispatch => {
     return {
         gotoListBooks: filters => dispatch(pageAction.gotoListBooks(filters)),
+        followSpace: spaceId => dispatch(spaceAction.followSpace(spaceId)),
         dispatch,
     };
 };
