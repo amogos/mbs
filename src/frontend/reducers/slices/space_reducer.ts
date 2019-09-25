@@ -12,9 +12,7 @@ export default function spaceReducer(state: any, action: any): any {
     switch (action.type) {
         case ActionConstants.default.SpaceActionConstant.FOLLOW_SPACE: {
             databseInstance.followSpace(state.userdata, action.spaceId, handleError);
-            return Object.assign({}, state, {
-                action: SpaceActionConstant.FOLLOW_SPACE,
-            });
+            return state;
         }
 
         default:
