@@ -15,6 +15,7 @@ const bookValue: DataTypes.BookValueType = {
         name: 'Iulia Mogos',
         picture: '',
         id: 1,
+        following: [],
     },
     holder: DataTypes.NullUser,
     title: "The Very Hungry Caterpillar's ABC",

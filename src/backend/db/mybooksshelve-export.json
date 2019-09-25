@@ -4,19 +4,22 @@
             "name": "Iulia Mogos",
             "email": "daosmistique@yahoo.com",
             "picture": "https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=2223056511038248&height=50&width=50&ext=1566812071&hash=AeSiTV7UwEZToD2h",
+            "following": [],
             "id": 1
         },
         {
             "id": 2,
             "name": "Florin Mogos",
             "email": "florin.mogos@gmail.com",
-            "picture": "https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
+            "picture": "https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png",
+            "following": []
         },
         {
             "id": 3,
             "name": "Varza Murata",
             "email": "varzamurata@gmail.com",
-            "picture": "https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
+            "picture": "https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png",
+            "following": []
         }
     ],
     "queues": [

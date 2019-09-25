@@ -1,12 +1,9 @@
-export interface CallbackFunction {
-    function: () => void;
-}
-
 export interface UserRecordType {
     id: number;
     name: string | undefined;
     email: string;
     picture: string;
+    following: number[];
 }
 
 export interface UserValueType {
@@ -20,6 +17,7 @@ export const NullUser: UserRecordType = {
     name: '',
     email: '',
     picture: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
+    following: [],
 };
 
 export interface CategoryRecordType {

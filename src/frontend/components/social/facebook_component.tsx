@@ -19,15 +19,24 @@ const responseFacebook = (response: any, props: Props) => {
     props.loginUser(userInfo);
 };
 
-const componentClicked = () => { };
+const componentClicked = () => {};
 
 const FacebookMockComponent = (props: Props) => {
-    return (<Button onClick={() => {
-        const userInfo: DataTypes.UserValueType = { name: "Iulia Mogos", email: "daosmistique@yahoo.com", picture: "" };
-        props.loginUser(userInfo);
-    }
-    }>MockLogin</Button>);
-}
+    return (
+        <Button
+            onClick={() => {
+                const userInfo: DataTypes.UserValueType = {
+                    name: 'Iulia Mogos',
+                    email: 'daosmistique@yahoo.com',
+                    picture: '',
+                };
+                props.loginUser(userInfo);
+            }}
+        >
+            MockLogin
+        </Button>
+    );
+};
 
 const FacebookComponent = (props: Props) => {
     return (
