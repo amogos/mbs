@@ -1,8 +1,7 @@
 import React from 'react';
 import * as DataTypes from '../../../shared/types';
-import { List, Divider, Carousel } from 'antd';
+import { List, Carousel } from 'antd';
 import SpaceHolder from './space_holder';
-import Aux from './../aux_component';
 
 interface Props {
     spaces: DataTypes.Spaces;
