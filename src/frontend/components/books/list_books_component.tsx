@@ -8,6 +8,7 @@ import BookReviewsComponent from './book_reviews_component';
 import BookRatingComponent from './book_rating_component';
 
 interface Props {
+    page: string;
     action: string;
     booksArray: DataTypes.BookRecordType[];
     userdata: DataTypes.UserRecordType;

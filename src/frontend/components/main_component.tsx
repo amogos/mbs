@@ -5,17 +5,17 @@ import NotificationsContainer from '../containers/notifications_component_contai
 import SpaceContainer from '../containers/list_spaces_container';
 
 interface Props {
-    action: string;
+    page: string;
 }
 
 const { PageActionConstant } = ActionTypes.default;
 
 const MainComponent = (props: Props) => {
-    if (props.action === PageActionConstant.ACTION_LIST_BOOKS) {
+    if (props.page === PageActionConstant.ACTION_LIST_BOOKS) {
         return <ListBooksContainer />;
-    } else if (props.action === PageActionConstant.ACTION_GOTO_NOTIFICATIONS) {
+    } else if (props.page === PageActionConstant.ACTION_GOTO_NOTIFICATIONS) {
         return <NotificationsContainer />;
-    } else if (props.action === PageActionConstant.ACTION_GOTO_SPACES) {
+    } else if (props.page === PageActionConstant.ACTION_GOTO_SPACES) {
         return <SpaceContainer />;
     } else return null;
 };

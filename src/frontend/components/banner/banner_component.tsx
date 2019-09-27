@@ -19,6 +19,7 @@ interface Props {
     languages: DataTypes.LanguageRecordType[];
     addBook(book: DataTypes.BookValueType): void;
     action: string;
+    page: string;
 }
 
 interface FilterProps {
