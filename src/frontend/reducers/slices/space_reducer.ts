@@ -6,7 +6,7 @@ import { handleError, handleSuccess } from './../main_reducer';
 export default function spaceReducer(state: any, action: any): any {
     switch (action.type) {
         case ActionConstants.default.SpaceActionConstant.FOLLOW_SPACE: {
-            databseInstance.followSpace(state.userdata, action.spaceId, handleError, handleSuccess);
+            databseInstance.followSpace(state.userdata, action.spaceId, action.callback, handleError, handleSuccess);
             return Object.assign({}, state, {
                 action: ActionConstants.default.SpaceActionConstant.FOLLOW_SPACE,
             });

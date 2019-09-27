@@ -5,6 +5,7 @@ import * as DataTypes from '../../../shared/types';
 export async function followSpace(
     user: DataTypes.UserRecordType,
     spaceId: number,
+    onCallback: () => void,
     onError: (resultCode: number) => void,
     onSuccess: () => void,
 ) {
@@ -16,6 +17,7 @@ export async function followSpace(
         .then(() => {
             user.following = userRecordUpdate.following;
             onSuccess();
+            if (onCallback) onCallback();
         })
         .catch(error => onError(error));
 }

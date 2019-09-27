@@ -12,12 +12,24 @@ interface Props {
     item: DataTypes.SpaceType;
     userdata: DataTypes.UserRecordType;
     onClick: () => void;
-    followSpace: (spaceId: number) => void;
+    followSpace: (spaceId: number, callback: () => void) => void;
 }
 
 const SpaceHolder = (props: Props) => {
+    const images = {
+        follow: 'eye',
+        subscribe: 'unlock',
+        add: 'plus',
+        edit: 'edit',
+    };
+
+    const [icons, setIcons] = useState(images);
     const [showAddBook, setShowAddBook] = useState(false);
-    const onFollowButtonClicked = () => props.followSpace(props.item.id);
+
+    const onFollowButtonClicked = () =>
+        props.followSpace(props.item.id, () => {
+            setIcons({ ...images, follow: 'eye-invisible' });
+        });
     const onSubscribeButtonClicked = () => {};
     const OnAddBookButtonClicked = () => setShowAddBook(true);
     const OnEditSpaceButtonClicked = () => {};
@@ -44,7 +56,7 @@ const SpaceHolder = (props: Props) => {
                 className="space_holder"
                 style={{ width: 300 }}
                 cover={SpaceImage(props)}
-                actions={SpaceActions({ ...props, actions, owner })}
+                actions={SpaceActions({ ...props, actions, icons, owner })}
             >
                 <div onClick={props.onClick}>
                     <SpaceDescription {...props} />

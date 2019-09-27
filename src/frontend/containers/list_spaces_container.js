@@ -12,7 +12,7 @@ function mapStateToProps(state) {
 const mapDispatchToProps = dispatch => {
     return {
         gotoListBooks: filters => dispatch(pageAction.gotoListBooks(filters)),
-        followSpace: spaceId => dispatch(spaceAction.followSpace(spaceId)),
+        followSpace: (spaceId, callback) => dispatch(spaceAction.followSpace(spaceId, callback)),
         dispatch,
     };
 };
