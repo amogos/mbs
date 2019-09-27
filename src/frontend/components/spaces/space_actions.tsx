@@ -5,7 +5,12 @@ import * as DataTypes from '../../../shared/types';
 interface Props {
     item: DataTypes.SpaceType;
     actions: { follow: () => void; subscribe: () => void; add: () => void; edit: () => void };
-    icons: { follow: string; subscribe: string; add: string; edit: string };
+    icons: {
+        follow: { icon: string; tooltip: string };
+        subscribe: { icon: string; tooltip: string };
+        add: { icon: string; tooltip: string };
+        edit: { icon: string; tooltip: string };
+    };
     owner: boolean;
 }
 
@@ -13,26 +18,26 @@ const SpaceActions = (props: Props) => {
     if (props.owner) {
         return [
             <a onClick={props.actions.add}>
-                <Tooltip title="add">
-                    <Icon type={props.icons.add} />
+                <Tooltip title={props.icons.add.tooltip}>
+                    <Icon type={props.icons.add.icon} />
                 </Tooltip>
             </a>,
             <a onClick={props.actions.add}>
-                <Tooltip title="edit">
-                    <Icon type={props.icons.edit} />
+                <Tooltip title={props.icons.edit.tooltip}>
+                    <Icon type={props.icons.edit.icon} />
                 </Tooltip>
             </a>,
         ];
     } else {
         return [
             <a onClick={props.actions.follow}>
-                <Tooltip title="follow">
-                    <Icon type={props.icons.follow} />
+                <Tooltip title={props.icons.follow.tooltip}>
+                    <Icon type={props.icons.follow.icon} />
                 </Tooltip>
             </a>,
             <a onClick={props.actions.subscribe}>
-                <Tooltip title="subscribe">
-                    <Icon type={props.icons.subscribe} />
+                <Tooltip title={props.icons.subscribe.icon}>
+                    <Icon type={props.icons.subscribe.icon} />
                 </Tooltip>
             </a>,
         ];

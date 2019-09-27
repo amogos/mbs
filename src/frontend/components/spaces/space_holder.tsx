@@ -17,10 +17,10 @@ interface Props {
 
 const SpaceHolder = (props: Props) => {
     const images = {
-        follow: 'eye',
-        subscribe: 'unlock',
-        add: 'plus',
-        edit: 'edit',
+        follow: { icon: 'eye', tooltip: 'follow' },
+        subscribe: { icon: 'unlock', tooltip: 'subscribe' },
+        add: { icon: 'plus', tooltip: 'add book' },
+        edit: { icon: 'edit', tooltip: 'edit space' },
     };
 
     const [icons, setIcons] = useState(images);
@@ -28,7 +28,7 @@ const SpaceHolder = (props: Props) => {
 
     const onFollowButtonClicked = () =>
         props.followSpace(props.item.id, () => {
-            setIcons({ ...images, follow: 'eye-invisible' });
+            setIcons({ ...images, follow: { icon: 'eye-invisible', tooltip: 'stop following' } });
         });
     const onSubscribeButtonClicked = () => {};
     const OnAddBookButtonClicked = () => setShowAddBook(true);
