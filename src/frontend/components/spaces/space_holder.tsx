@@ -16,8 +16,10 @@ interface Props {
 }
 
 const SpaceHolder = (props: Props) => {
+    const following = props.userdata.following.includes(props.item.id);
+
     const images = {
-        follow: { icon: 'eye', tooltip: 'follow' },
+        follow: following ? { icon: 'eye-invisible', tooltip: 'stop following' } : { icon: 'eye', tooltip: 'follow' },
         subscribe: { icon: 'unlock', tooltip: 'subscribe' },
         add: { icon: 'plus', tooltip: 'add book' },
         edit: { icon: 'edit', tooltip: 'edit space' },
