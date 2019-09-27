@@ -16,9 +16,11 @@ export class GlobalVars {
 }
 
 export function handleError(resultCode: number): void {
-    if (resultCode !== 0) {
-        message.error(Strings.MYBOOKSHELVE_OPERATION_FAILED + ' (' + resultCode + ')');
-    }
+    message.error(Strings.MYBOOKSHELVE_OPERATION_FAILED + ' (' + resultCode + ')');
+}
+
+export function handleSuccess(): void {
+    message.success(Strings.MYBOOKSHELVE_OPERATION_SUCCESS);
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
