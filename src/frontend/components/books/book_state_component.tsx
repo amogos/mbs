@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import * as DataTypes from '../../../shared/types';
-import { Icon, Button } from 'antd';
+import { Icon, Button, DatePicker } from 'antd';
 import RentalSettingsComponent from './rental_settings_component';
 import RatingComponent from '../notifications/rating_component';
+import moment from 'moment';
+import Aux from './../aux_component';
 
 interface Icon {
     type: string;
@@ -82,15 +84,11 @@ const BookStateReturn = (props: Props) => {
     };
 
     return (
-        <div>
-            <Button
-                type="link"
-                onClick={() => {
-                    setShowRatingModal(true);
-                }}
-            >
+        <Aux>
+            <Button type="link" onClick={() => setShowRatingModal(true)}>
                 <IconText type="import" text="return" />
             </Button>
+            <DatePicker defaultValue={moment(props.book.return)} disabled />
             <RatingComponent
                 visible={showRatingModal}
                 userdata={props.userdata}
@@ -99,7 +97,7 @@ const BookStateReturn = (props: Props) => {
                 }
                 onClosed={onRateCanceledPressed}
             />
-        </div>
+        </Aux>
     );
 };
 
