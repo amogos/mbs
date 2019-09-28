@@ -5,6 +5,9 @@ import RentalSettingsComponent from './rental_settings_component';
 import RatingComponent from '../notifications/rating_component';
 import moment from 'moment';
 import Aux from './../aux_component';
+import * as Strings from './../../../shared/constants/string_constant';
+
+const { BookStateStrings } = Strings.default;
 
 interface Icon {
     type: string;
@@ -31,13 +34,13 @@ interface Props {
 const BookStateDelete = (props: Props) => {
     return (
         <Button type="link" onClick={() => props.deleteBook(props.book.id)}>
-            <IconText type="transaction" text="delete" />
+            <IconText type="transaction" text={BookStateStrings.DELETE_BOOK} />
         </Button>
     );
 };
 
 const BookStateAssigned = (props: Props) => {
-    return <IconText type="hourglass" text="assigned" />;
+    return <IconText type="hourglass" text={BookStateStrings.ASSIGNED_BOOK} />;
 };
 
 const BookStateAddToCart = (param: Props) => {
@@ -50,7 +53,7 @@ const BookStateAddToCart = (param: Props) => {
                     setVisible(true);
                 }}
             >
-                <IconText type="shopping-cart" text="request" />
+                <IconText type="shopping-cart" text={BookStateStrings.REQUEST_BOOK} />
             </Button>
             <RentalSettingsComponent
                 visible={visible}
@@ -62,7 +65,7 @@ const BookStateAddToCart = (param: Props) => {
 };
 
 const BookStateCarryOut = (props: Props) => {
-    return <IconText type="carry-out" text="pending" />;
+    return <IconText type="carry-out" text={BookStateStrings.PENDING_BOOK} />;
 };
 
 const BookStateReturn = (props: Props) => {
@@ -86,7 +89,7 @@ const BookStateReturn = (props: Props) => {
     return (
         <Aux>
             <Button type="link" onClick={() => setShowRatingModal(true)}>
-                <IconText type="import" text="return" />
+                <IconText type="import" text={BookStateStrings.RETURN_BOOK} />
             </Button>
             <DatePicker defaultValue={moment(props.book.return)} disabled />
             <RatingComponent

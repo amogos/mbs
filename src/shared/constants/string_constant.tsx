@@ -20,4 +20,11 @@ export default {
     MYBOOKSHELVE_RATING_STATE: 'Rate State',
     MYBOOKSHELVE_RATING_CONTENT: 'Rate Content',
     MYBOOKSHELVE_CUSTOMER_REVIEWS: 'customer reviews',
+    BookStateStrings: {
+        DELETE_BOOK: 'delete',
+        ASSIGNED_BOOK: 'assigned',
+        PENDING_BOOK: 'pending',
+        REQUEST_BOOK: 'request',
+        RETURN_BOOK: 'return',
+    },
 };
