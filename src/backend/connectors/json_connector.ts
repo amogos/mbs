@@ -15,7 +15,7 @@ import { getQueue } from '../endpoints/queue';
 import { getReturnNotifications } from '../endpoints/return_notifications';
 import { getQueueNotifications } from '../endpoints/queue_notifications';
 import { getReviewsForBook } from '../endpoints/book_reviews';
-import { followSpace } from '../endpoints/actions/follow_space';
+import { followSpace, unfollowSpace } from '../endpoints/actions/follow_space';
 
 export default class JSONConnector {
     public getLanguages = getLanguages;
@@ -24,6 +24,7 @@ export default class JSONConnector {
     public getUserSpaces = getUserSpaces;
     public getOtherSpaces = getOtherSpaces;
     public followSpace = followSpace;
+    public unfollowSpace = unfollowSpace;
     public getBooks = getBooks;
     public confirmRental = confirmRental;
     public rejectRental = rejectRental;

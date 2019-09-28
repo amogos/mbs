@@ -1,6 +1,7 @@
 export default {
     SpaceActionConstant: {
         FOLLOW_SPACE: 'ACTION_FOLLOW_SPACE',
+        UNFOLLOW_SPACE: 'ACTION_UNFOLLOW_SPACE',
     },
     BookActionConstant: {
         ACTION_ADD_BOOK: 'ACTION_ADD_BOOK',

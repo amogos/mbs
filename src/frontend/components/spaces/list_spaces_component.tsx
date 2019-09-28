@@ -7,7 +7,8 @@ interface Props {
     spaces: DataTypes.Spaces;
     userdata: DataTypes.UserRecordType;
     gotoListBooks(filters: string[]): void;
-    followSpace(spaceId: number): void;
+    followSpace: (spaceId: number, callback: () => void) => void;
+    unfollowSpace: (spaceId: number, callback: () => void) => void;
 }
 
 const ListSpacesComponent = (props: Props) => {
@@ -27,6 +28,7 @@ const ListSpacesComponent = (props: Props) => {
                     <SpaceHolder
                         item={item}
                         followSpace={props.followSpace}
+                        unfollowSpace={props.unfollowSpace}
                         onClick={() => onSpaceClicked(item.id)}
                         userdata={props.userdata}
                     />
@@ -42,6 +44,7 @@ const ListSpacesComponent = (props: Props) => {
                         <SpaceHolder
                             item={item}
                             followSpace={props.followSpace}
+                            unfollowSpace={props.unfollowSpace}
                             onClick={() => onSpaceClicked(item.id)}
                             userdata={props.userdata}
                         />

@@ -11,6 +11,12 @@ export default function spaceReducer(state: any, action: any): any {
                 action: ActionConstants.default.SpaceActionConstant.FOLLOW_SPACE,
             });
         }
+        case ActionConstants.default.SpaceActionConstant.UNFOLLOW_SPACE: {
+            databseInstance.unfollowSpace(state.userdata, action.spaceId, action.callback, handleError, handleSuccess);
+            return Object.assign({}, state, {
+                action: ActionConstants.default.SpaceActionConstant.UNFOLLOW_SPACE,
+            });
+        }
 
         default:
             return null;

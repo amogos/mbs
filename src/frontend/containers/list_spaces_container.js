@@ -13,6 +13,7 @@ const mapDispatchToProps = dispatch => {
     return {
         gotoListBooks: filters => dispatch(pageAction.gotoListBooks(filters)),
         followSpace: (spaceId, callback) => dispatch(spaceAction.followSpace(spaceId, callback)),
+        unfollowSpace: (spaceId, callback) => dispatch(spaceAction.unfollowSpace(spaceId, callback)),
         dispatch,
     };
 };

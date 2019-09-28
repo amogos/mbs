@@ -13,6 +13,7 @@ interface Props {
     userdata: DataTypes.UserRecordType;
     onClick: () => void;
     followSpace: (spaceId: number, callback: () => void) => void;
+    unfollowSpace: (spaceId: number, callback: () => void) => void;
 }
 
 const SpaceHolder = (props: Props) => {
@@ -28,10 +29,18 @@ const SpaceHolder = (props: Props) => {
     const [icons, setIcons] = useState(images);
     const [showAddBook, setShowAddBook] = useState(false);
 
-    const onFollowButtonClicked = () =>
-        props.followSpace(props.item.id, () => {
-            setIcons({ ...images, follow: { icon: 'eye-invisible', tooltip: 'stop following' } });
-        });
+    const onFollowButtonClicked = () => {
+        if (following) {
+            props.unfollowSpace(props.item.id, () => {
+                setIcons({ ...images, follow: { icon: 'eye', tooltip: 'follow' } });
+            });
+        } else {
+            props.followSpace(props.item.id, () => {
+                setIcons({ ...images, follow: { icon: 'eye-invisible', tooltip: 'stop following' } });
+            });
+        }
+    };
+
     const onSubscribeButtonClicked = () => {};
     const OnAddBookButtonClicked = () => setShowAddBook(true);
     const OnEditSpaceButtonClicked = () => {};

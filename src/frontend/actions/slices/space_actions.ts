@@ -6,6 +6,11 @@ class SpaceAction {
         spaceId,
         callback,
     });
+    public unfollowSpace = (spaceId: number, callback: () => void) => ({
+        type: ActionTypes.default.SpaceActionConstant.UNFOLLOW_SPACE,
+        spaceId,
+        callback,
+    });
 }
 
 export default SpaceAction;
