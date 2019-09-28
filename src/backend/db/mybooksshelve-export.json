@@ -155,7 +155,15 @@
             "stateScore": 4
         }
     ],
-    "user_reviews": [],
+    "user_reviews": [
+        {
+            "bookId": 3,
+            "userId": 3,
+            "comment": "Book came back in good conditions.",
+            "stateScore": 4,
+            "id": 1
+        }
+    ],
     "orders": [],
     "categories": [
         {

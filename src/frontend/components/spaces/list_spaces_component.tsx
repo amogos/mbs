@@ -26,6 +26,7 @@ const ListSpacesComponent = (props: Props) => {
             <Carousel afterChange={onChange}>
                 {props.spaces.userSpaces.map(item => (
                     <SpaceHolder
+                        key={item.id}
                         item={item}
                         followSpace={props.followSpace}
                         unfollowSpace={props.unfollowSpace}
@@ -42,6 +43,7 @@ const ListSpacesComponent = (props: Props) => {
                 renderItem={item => (
                     <List.Item>
                         <SpaceHolder
+                            key={item.id}
                             item={item}
                             followSpace={props.followSpace}
                             unfollowSpace={props.unfollowSpace}
