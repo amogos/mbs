@@ -22,7 +22,7 @@ const SpaceActions = (props: Props) => {
                     <Icon type={props.icons.add.icon} />
                 </Tooltip>
             </a>,
-            <a onClick={props.actions.add}>
+            <a onClick={props.actions.edit}>
                 <Tooltip title={props.icons.edit.tooltip}>
                     <Icon type={props.icons.edit.icon} />
                 </Tooltip>
