@@ -1,5 +1,4 @@
 import * as ActionTypes from '../../../shared/constants/action_constant';
-import * as DataTypes from '../../../shared/types';
 
 class PageAction {
     public gotoSpaces = () => ({ type: ActionTypes.default.PageActionConstant.ACTION_GOTO_SPACES });

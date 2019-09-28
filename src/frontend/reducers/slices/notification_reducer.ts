@@ -1,6 +1,6 @@
 import * as ActionConstants from '../../../shared/constants/action_constant';
 import databseInstance from './../../../backend/database_instance';
-import { GlobalVars, handleError } from './../main_reducer';
+import { handleError } from './../main_reducer';
 
 const { NotificationActionConstant } = ActionConstants.default;
 

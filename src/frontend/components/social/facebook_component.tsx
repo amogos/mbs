@@ -15,7 +15,12 @@ const responseFacebook = (response: any, props: Props) => {
         .split(' ')
         .join('');
     const email = response.email === undefined ? testUserEmail : response.email;
-    const userInfo: DataTypes.UserValueType = { name: response.name, email: email, picture: response.picture.data.url };
+    const userInfo: DataTypes.UserValueType = {
+        name: response.name,
+        email: email,
+        picture: response.picture.data.url,
+        rating: 0,
+    };
     props.loginUser(userInfo);
 };
 
@@ -29,6 +34,7 @@ const FacebookMockComponent = (props: Props) => {
                     name: 'Iulia Mogos',
                     email: 'daosmistique@yahoo.com',
                     picture: '',
+                    rating: 0,
                 };
                 props.loginUser(userInfo);
             }}

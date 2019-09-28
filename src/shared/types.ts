@@ -4,12 +4,14 @@ export interface UserRecordType {
     email: string;
     picture: string;
     following: number[];
+    rating: number;
 }
 
 export interface UserValueType {
     name: string | undefined;
     email: string;
     picture: string;
+    rating: number;
 }
 
 export const NullUser: UserRecordType = {
@@ -18,6 +20,7 @@ export const NullUser: UserRecordType = {
     email: '',
     picture: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
     following: [],
+    rating: 0,
 };
 
 export interface CategoryRecordType {

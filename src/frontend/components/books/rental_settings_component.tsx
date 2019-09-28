@@ -18,7 +18,7 @@ const RentalSettingsComponent = (props: Props) => {
             title={StringConstants.default.MYBOOKSHELVE_RENTAL_SETTINGS}
             visible={props.visible}
             onOk={() => {
-                if (duration == 0) return;
+                if (duration === 0) return;
                 props.onDurationChanged(duration);
                 props.onClosed();
             }}

@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { List, Avatar } from 'antd';
+import { List, Avatar, Rate } from 'antd';
 import * as DataTypes from '../../../shared/types';
 import RatingComponent from './rating_component';
+import Aux from './../aux_component';
 
 interface Props {
     userdata: DataTypes.UserRecordType;
@@ -23,6 +24,7 @@ interface Notification {
     actions: React.ReactNode[];
     title: string | undefined;
     avatar: string;
+    rating: number;
     description: string;
     key: string;
 }
@@ -84,6 +86,7 @@ const NotificationComponent = (props: Props) => {
                 ],
                 title: item.user.name,
                 avatar: item.user.picture,
+                rating: item.user.rating,
                 description: item.bookTitle,
                 key: `q${item.id}`,
             });
@@ -100,6 +103,7 @@ const NotificationComponent = (props: Props) => {
                 actions: [<a onClick={() => rateReturn(item)}>rate</a>],
                 title: item.user.name,
                 avatar: item.user.picture,
+                rating: item.user.rating,
                 description: item.bookTitle,
                 key: `r${item.returnId}`,
             });
@@ -133,7 +137,12 @@ const NotificationComponent = (props: Props) => {
                 renderItem={item => (
                     <List.Item actions={item.actions}>
                         <List.Item.Meta
-                            avatar={<Avatar src={item.avatar} />}
+                            avatar={
+                                <Aux>
+                                    <Avatar src={item.avatar} />
+                                    <p>user rating:{item.rating}</p>
+                                </Aux>
+                            }
                             title={<a href="https://ant.design/index-cn">{item.title}</a>}
                             description={item.description}
                         />
