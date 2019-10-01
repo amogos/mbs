@@ -183,11 +183,6 @@ const BannerComponent = (props: Props) => {
                         setPage={(page: string) => setPage(page)}
                         resetCategoryFilters={() => setCategoryFilters([''])}
                     />
-                    <RentTab
-                        parentProps={props}
-                        setPage={(page: string) => setPage(page)}
-                        resetCategoryFilters={() => setCategoryFilters([''])}
-                    />
                     <NotificationsTab parentProps={props} setPage={(page: string) => setPage(page)} />
                     <SocialTab parentProps={props} setPage={(page: string) => setPage(page)} />
                 </span>
@@ -201,7 +196,7 @@ const BannerComponent = (props: Props) => {
         <Aux>
             <Logo />
             <WrappedTabs />
-            <CategoryTabs tabs={categoryTabsContent} />
+            {page === 'my-space' ? <CategoryTabs tabs={categoryTabsContent} /> : null}
         </Aux>
     );
 };
