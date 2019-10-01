@@ -1,7 +1,18 @@
 .main_component {
-    margin-top: 5%;
+    margin-top: 15%;
     margin-left: 15%;
     margin-right: 35%;
-    background-color: rgb(250, 250, 250);
+    background-color: white;
     z-index: 0;
+    position: absolute;
+}
+
+.right_component {
+    z-index: 0;
+    margin-top: 15%;
+    margin-left: 68%;
+    position: absolute;
+    width: 25%;
+    height: 100%;
+    background-color: white;
 }
