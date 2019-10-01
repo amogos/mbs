@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import './books.css';
 import * as DataTypes from '../../../shared/types';
-import { List, Avatar, Divider } from 'antd';
+import { Avatar, Divider } from 'antd';
 import BookStateComponent from './book_state_component';
 import BookAvailabilityComponent from './book_availability_component';
 import BookReviewsComponent from './book_reviews_component';
 import BookRatingComponent from './book_rating_component';
+import Aux, { withStyle } from './../aux_component';
 
 interface Props {
     page: string;
@@ -86,7 +87,7 @@ const ListBooksComponent = (props: Props) => {
 
     const BookComponent = (item: DataTypes.BookRecordType) => {
         return (
-            <List.Item key={`k${item.id}`}>
+            <Aux key={`k${item.id}`}>
                 <div className="book_icon_small">
                     <img width={200} alt="logo" src={item.image} />
                 </div>
@@ -116,24 +117,12 @@ const ListBooksComponent = (props: Props) => {
                     <SectionDivider />
                     <BookStateComponent {...props} book={item} />
                 </div>
-            </List.Item>
+                <br />
+            </Aux>
         );
     };
 
-    return (
-        <div>
-            <List
-                itemLayout="vertical"
-                size="small"
-                pagination={{
-                    onChange: page => {},
-                    pageSize: 6,
-                }}
-                dataSource={props.booksArray}
-                renderItem={item => BookComponent(item)}
-            />
-        </div>
-    );
+    return props.booksArray.map(item => BookComponent(item));
 };
 
-export default ListBooksComponent;
+export default withStyle(ListBooksComponent, 'list_book_component');
