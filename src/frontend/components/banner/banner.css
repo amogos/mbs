@@ -9,10 +9,14 @@
 }
 
 .logo {
-    margin-left: 15%;
+    margin-top: 1%;
+    position: absolute;
+    margin-left: 14%;
 }
 
 .tabs {
-    margin-left: 60%;
-    z-index: 0;
+    margin-left: 70%;
+    position: absolute;
+    margin-top: 1%;
+    background-color: white;
 }

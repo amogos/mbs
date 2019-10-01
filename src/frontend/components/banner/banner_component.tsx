@@ -180,26 +180,38 @@ const BannerComponent = (props: Props) => {
     const [page, setPage] = useState('');
     const [categoryFilters, setCategoryFilters] = useState(['']);
 
+    class Tabs extends React.Component {
+        public render() {
+            return (
+                <span>
+                    <MySpaceTab
+                        parentProps={props}
+                        setPage={(page: string) => setPage(page)}
+                        resetCategoryFilters={() => setCategoryFilters([''])}
+                    />
+                    <SpacesTab
+                        parentProps={props}
+                        setPage={(page: string) => setPage(page)}
+                        resetCategoryFilters={() => setCategoryFilters([''])}
+                    />
+                    <RentTab
+                        parentProps={props}
+                        setPage={(page: string) => setPage(page)}
+                        resetCategoryFilters={() => setCategoryFilters([''])}
+                    />
+                    <NotificationsTab parentProps={props} setPage={(page: string) => setPage(page)} />
+                    <SocialTab parentProps={props} setPage={(page: string) => setPage(page)} />
+                </span>
+            );
+        }
+    }
+
+    const WrappedTabs = withStyle(Tabs, 'tabs');
+
     return (
         <Aux>
             <Logo />
-            <MySpaceTab
-                parentProps={props}
-                setPage={(page: string) => setPage(page)}
-                resetCategoryFilters={() => setCategoryFilters([''])}
-            />
-            <SpacesTab
-                parentProps={props}
-                setPage={(page: string) => setPage(page)}
-                resetCategoryFilters={() => setCategoryFilters([''])}
-            />
-            <RentTab
-                parentProps={props}
-                setPage={(page: string) => setPage(page)}
-                resetCategoryFilters={() => setCategoryFilters([''])}
-            />
-            <NotificationsTab parentProps={props} setPage={(page: string) => setPage(page)} />
-            <SocialTab parentProps={props} setPage={(page: string) => setPage(page)} />
+            <WrappedTabs />
 
             {/*<FilteringTabs
                 parentProps={props}
