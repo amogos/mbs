@@ -1,9 +1,6 @@
 .main_component {
-    margin-top: 100px;
-    background-color: blue;
+    margin-top: 10px;
+    background-color: rgb(214, 202, 202);
 }
 
-.list_book_component {
-    margin-top: 100px;
-    background-color: red;
-}
+

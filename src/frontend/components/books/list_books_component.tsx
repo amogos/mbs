@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import './books.css';
 import * as DataTypes from '../../../shared/types';
 import { Avatar, Divider } from 'antd';
 import BookStateComponent from './book_state_component';

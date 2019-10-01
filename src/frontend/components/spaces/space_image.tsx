@@ -1,7 +1,6 @@
 import React from 'react';
 import * as DataTypes from '../../../shared/types';
 import { Avatar } from 'antd';
-import './spaces.css';
 
 interface Props {
     item: DataTypes.SpaceType;

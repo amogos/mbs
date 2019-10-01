@@ -1,22 +1,27 @@
 .section_divider_small {
-   width: 450px;
+    width: 450px;
 }
 .book_icon_small {
-  display:table-cell;
-  width:20%;
-  padding-left: 60px;
-  transform: translate(0%, 10%)
+    display: table-cell;
+    width: 20%;
+    padding-left: 60px;
+    transform: translate(0%, 10%);
 }
 
 .book_details {
-  display:table-cell;
-  width:63%;
-  transform: translate(0%, -15%)
+    display: table-cell;
+    width: 63%;
+    transform: translate(0%, -15%);
 }
 
 .customer_reviews {
-    transform: translate(-20%, 0%)
+    transform: translate(-20%, 0%);
 }
 .review_buttons {
-    transform: translate(-1.5%, 0%)
+    transform: translate(-1.5%, 0%);
+}
+
+.list_book_component {
+    margin-top: 5%;
+    background-color: rgb(138, 209, 176);
 }

@@ -180,47 +180,42 @@ const BannerComponent = (props: Props) => {
     const [categoryFilters, setCategoryFilters] = useState(['']);
 
     return (
-        <PageHeader title="" breadcrumb={{}}>
-            <div className="wrap">
-                <div className="content">
-                    <p className="contentLink">
-                        <MySpaceTab
-                            parentProps={props}
-                            setPage={(page: string) => setPage(page)}
-                            resetCategoryFilters={() => setCategoryFilters([''])}
-                        />
-                        <SpacesTab
-                            parentProps={props}
-                            setPage={(page: string) => setPage(page)}
-                            resetCategoryFilters={() => setCategoryFilters([''])}
-                        />
-                        <RentTab
-                            parentProps={props}
-                            setPage={(page: string) => setPage(page)}
-                            resetCategoryFilters={() => setCategoryFilters([''])}
-                        />
-                        <NotificationsTab parentProps={props} setPage={(page: string) => setPage(page)} />
-                        <SocialTab parentProps={props} setPage={(page: string) => setPage(page)} />
-                    </p>
-                </div>
-                <FilteringTabs
-                    parentProps={props}
-                    categoryFilters={categoryFilters}
-                    page={page}
-                    onFiltersChanged={filters => {
-                        props.gotoListBooks(filters);
-                    }}
-                />
-                <CategoryFiltering
-                    categories={props.categories}
-                    action={props.action}
-                    onFiltersChanged={(filters: string[]) => {
-                        setCategoryFilters(filters);
-                        props.gotoListBooks(filters);
-                    }}
-                />
-            </div>
-        </PageHeader>
+        <Aux>
+            <MySpaceTab
+                parentProps={props}
+                setPage={(page: string) => setPage(page)}
+                resetCategoryFilters={() => setCategoryFilters([''])}
+            />
+            <SpacesTab
+                parentProps={props}
+                setPage={(page: string) => setPage(page)}
+                resetCategoryFilters={() => setCategoryFilters([''])}
+            />
+            <RentTab
+                parentProps={props}
+                setPage={(page: string) => setPage(page)}
+                resetCategoryFilters={() => setCategoryFilters([''])}
+            />
+            <NotificationsTab parentProps={props} setPage={(page: string) => setPage(page)} />
+            <SocialTab parentProps={props} setPage={(page: string) => setPage(page)} />
+
+            <FilteringTabs
+                parentProps={props}
+                categoryFilters={categoryFilters}
+                page={page}
+                onFiltersChanged={filters => {
+                    props.gotoListBooks(filters);
+                }}
+            />
+            <CategoryFiltering
+                categories={props.categories}
+                action={props.action}
+                onFiltersChanged={(filters: string[]) => {
+                    setCategoryFilters(filters);
+                    props.gotoListBooks(filters);
+                }}
+            />
+        </Aux>
     );
 };
 
