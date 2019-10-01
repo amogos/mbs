@@ -1,32 +1,3 @@
-.space_holder {
-    opacity: 1;
-}
-.space_holder_locked {
-    opacity: 0.5;
-}
-.space_holder:hover {
-    cursor: pointer;
-    background-color: #cccccc10;
-    opacity: 0.9;
-}
-.space_holder_with_effect:hover {
-    -webkit-transform: scale(1.02);
-    -ms-transform: scale(1.02);
-    transform: scale(1.02);
-    cursor: pointer;
-}
-.avatar {
-    transform: translate(40%, 28%);
-}
-
-.space_description {
-    transform: translate(15%, 0%);
-}
-
-.space_statistics {
-    transform: translate(25%, 0%);
-}
-
 .list_spaces_component {
     margin-top: 5%;
     position: absolute;

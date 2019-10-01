@@ -63,12 +63,7 @@ const SpaceHolder = (props: Props) => {
 
     return (
         <Aux>
-            <Card
-                className="space_holder"
-                style={{ width: 300 }}
-                cover={SpaceImage(props)}
-                actions={SpaceActions({ ...props, actions, icons, owner })}
-            >
+            <Card cover={SpaceImage(props)} actions={SpaceActions({ ...props, actions, icons, owner })}>
                 <div onClick={props.onClick}>
                     <SpaceDescription {...props} />
                     <p />
