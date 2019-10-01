@@ -24,4 +24,5 @@
 .list_book_component {
     margin-top: 5%;
     background-color: rgb(138, 209, 176);
+    z-index: 0;
 }

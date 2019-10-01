@@ -1,6 +1,8 @@
 .banner_component {
     width: 100%;
     position: fixed;
+    top: 0%;
     left: 0px;
     background-color: rgb(218, 92, 218);
+    z-index: 1;
 }
