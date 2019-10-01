@@ -8,6 +8,7 @@ import FilteringCategoriesComponent from './filtering_categories_component';
 import * as ActionTypes from './../../../shared/constants/action_constant';
 import Aux, { withStyle } from './../aux_component';
 import Logo from './logo';
+import CategoryTabs, { CategoryTabInformation } from './category_tabs';
 
 const { PageActionConstant } = ActionTypes.default;
 const { FilteringTabsStrings } = Strings.default;
@@ -180,6 +181,21 @@ const BannerComponent = (props: Props) => {
     const [page, setPage] = useState('');
     const [categoryFilters, setCategoryFilters] = useState(['']);
 
+    function onCategoryTabClicked(tabId: number) {}
+
+    let categoryTabsContent: CategoryTabInformation[] = [];
+
+    if (props.categories) {
+        categoryTabsContent.push({ id: -1, title: 'HOME', callback: onCategoryTabClicked });
+        categoryTabsContent.concat(
+            props.categories.slice(0, 10).map(item => {
+                const tab: CategoryTabInformation = { id: item.id, title: item.title, callback: onCategoryTabClicked };
+                return tab;
+            }),
+        );
+        categoryTabsContent.push({ id: -2, title: 'MORE', callback: onCategoryTabClicked });
+    }
+
     class Tabs extends React.Component {
         public render() {
             return (
@@ -212,6 +228,7 @@ const BannerComponent = (props: Props) => {
         <Aux>
             <Logo />
             <WrappedTabs />
+            <CategoryTabs tabs={categoryTabsContent} />
 
             {/*<FilteringTabs
                 parentProps={props}
