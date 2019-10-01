@@ -4,7 +4,6 @@ import { Button } from 'antd';
 import FilteringTabsComponent from './filtering_tabs_component';
 import * as DataTypes from '../../../shared/types';
 import * as Strings from '../../../shared/constants/string_constant';
-import FilteringCategoriesComponent from './filtering_categories_component';
 import * as ActionTypes from './../../../shared/constants/action_constant';
 import Aux, { withStyle } from './../aux_component';
 import Logo from './logo';
@@ -151,32 +150,6 @@ const ShowRentFilteringTabs = (props: FilterProps) => {
     );
 };
 
-const FilteringTabs = (props: FilterProps) => {
-    if (!props.parentProps.userdata) return null;
-    if (props.page === 'my-space') {
-        return ShowSpaceFilteringTabs(props);
-    } else if (props.page === 'rent') {
-        return ShowRentFilteringTabs(props);
-    }
-    return null;
-};
-
-interface CategoryProps {
-    categories: DataTypes.CategoryRecordType[];
-    action: string;
-    onFiltersChanged: (filters: string[]) => void;
-}
-
-const CategoryFiltering = (param: CategoryProps) => {
-    if (
-        param.action === PageActionConstant.ACTION_LIST_BOOKS ||
-        param.action === PageActionConstant.ACTION_GOTO_LIST_BOOKS
-    ) {
-        return <FilteringCategoriesComponent categories={param.categories} onFiltersChanged={param.onFiltersChanged} />;
-    }
-    return null;
-};
-
 const BannerComponent = (props: Props) => {
     const [page, setPage] = useState('');
     const [categoryFilters, setCategoryFilters] = useState(['']);
@@ -188,7 +161,7 @@ const BannerComponent = (props: Props) => {
     if (props.categories) {
         categoryTabsContent.push({ id: -1, title: 'HOME', callback: onCategoryTabClicked });
         categoryTabsContent = categoryTabsContent.concat(
-            props.categories.slice(1, 10).map(item => {
+            props.categories.slice(1, 11).map(item => {
                 const tab: CategoryTabInformation = { id: item.id, title: item.title, callback: onCategoryTabClicked };
                 return tab;
             }),
@@ -229,24 +202,6 @@ const BannerComponent = (props: Props) => {
             <Logo />
             <WrappedTabs />
             <CategoryTabs tabs={categoryTabsContent} />
-
-            {/*<FilteringTabs
-                parentProps={props}
-                categoryFilters={categoryFilters}
-                page={page}
-                onFiltersChanged={filters => {
-                    props.gotoListBooks(filters);
-                }}
-            />
-            <br />
-            <CategoryFiltering
-                categories={props.categories}
-                action={props.action}
-                onFiltersChanged={(filters: string[]) => {
-                    setCategoryFilters(filters);
-                    props.gotoListBooks(filters);
-                }}
-            />*/}
         </Aux>
     );
 };
