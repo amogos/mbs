@@ -1,5 +1,5 @@
 .main_component {
-    margin-top: 15%;
+    margin-top: 20%;
     margin-left: 15%;
     margin-right: 35%;
     background-color: white;
@@ -9,10 +9,23 @@
 
 .right_component {
     z-index: 0;
-    margin-top: 15%;
+    margin-top: 20%;
     margin-left: 68%;
     position: absolute;
     width: 25%;
     height: 100%;
     background-color: white;
+}
+
+.top_component {
+    margin-top: 5%;
+    margin-left: 10%;
+    margin-right: 10%;
+    width: 80%;
+    height: 20%;
+    background-color: white;
+    z-index: 0;
+    position: absolute;
+    border-style: solid;
+    border-width: 1px;
 }

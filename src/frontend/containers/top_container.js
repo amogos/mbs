@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import RightComponent from '../components/regions/right_component';
+import TopComponent from '../components/regions/top_component';
 
 function mapStateToProps(state) {
     return { page: state.mainReducer.page };
@@ -8,4 +8,4 @@ function mapStateToProps(state) {
 export default connect(
     mapStateToProps,
     null,
-)(RightComponent);
+)(TopComponent);
