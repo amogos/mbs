@@ -187,8 +187,8 @@ const BannerComponent = (props: Props) => {
 
     if (props.categories) {
         categoryTabsContent.push({ id: -1, title: 'HOME', callback: onCategoryTabClicked });
-        categoryTabsContent.concat(
-            props.categories.slice(0, 10).map(item => {
+        categoryTabsContent = categoryTabsContent.concat(
+            props.categories.slice(1, 10).map(item => {
                 const tab: CategoryTabInformation = { id: item.id, title: item.title, callback: onCategoryTabClicked };
                 return tab;
             }),
