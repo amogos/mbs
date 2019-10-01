@@ -1,9 +1,9 @@
 import React from 'react';
-import * as ActionTypes from '../../shared/constants/action_constant';
-import ListBooksContainer from '../containers/list_books_container';
-import NotificationsContainer from '../containers/notifications_component_container';
-import SpaceContainer from '../containers/list_spaces_container';
-import { withStyle } from './aux_component';
+import * as ActionTypes from '../../../shared/constants/action_constant';
+import ListBooksContainer from '../../containers/list_books_container';
+import NotificationsContainer from '../../containers/notifications_component_container';
+import SpaceContainer from '../../containers/list_spaces_container';
+import { withStyle } from '../aux_component';
 
 interface Props {
     page: string;
