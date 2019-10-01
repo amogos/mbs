@@ -1,7 +1,7 @@
 import React from 'react';
 import * as DataTypes from '../../../shared/types';
-import { List, Carousel } from 'antd';
 import SpaceHolder from './space_holder';
+import Aux, { withStyle } from './../aux_component';
 
 interface Props {
     spaces: DataTypes.Spaces;
@@ -20,41 +20,33 @@ const ListSpacesComponent = (props: Props) => {
     function onChange(slideNumber: number) {}
 
     return (
-        <div className="space_list">
+        <Aux>
             <p className="thicker">All Spaces</p>
             <p className="thicker">My Spaces</p>
-            <Carousel afterChange={onChange}>
-                {props.spaces.userSpaces.map(item => (
-                    <SpaceHolder
-                        key={item.id}
-                        item={item}
-                        followSpace={props.followSpace}
-                        unfollowSpace={props.unfollowSpace}
-                        onClick={() => onSpaceClicked(item.id)}
-                        userdata={props.userdata}
-                    />
-                ))}
-            </Carousel>
+            {props.spaces.userSpaces.map(item => (
+                <SpaceHolder
+                    key={item.id}
+                    item={item}
+                    followSpace={props.followSpace}
+                    unfollowSpace={props.unfollowSpace}
+                    onClick={() => onSpaceClicked(item.id)}
+                    userdata={props.userdata}
+                />
+            ))}
             <p />
             <p className="thicker">Other Spaces</p>
-            <List
-                grid={{ gutter: 16, column: 4 }}
-                dataSource={props.spaces.otherSpaces}
-                renderItem={item => (
-                    <List.Item>
-                        <SpaceHolder
-                            key={item.id}
-                            item={item}
-                            followSpace={props.followSpace}
-                            unfollowSpace={props.unfollowSpace}
-                            onClick={() => onSpaceClicked(item.id)}
-                            userdata={props.userdata}
-                        />
-                    </List.Item>
-                )}
-            />
-        </div>
+            {props.spaces.otherSpaces.map(item => (
+                <SpaceHolder
+                    key={item.id}
+                    item={item}
+                    followSpace={props.followSpace}
+                    unfollowSpace={props.unfollowSpace}
+                    onClick={() => onSpaceClicked(item.id)}
+                    userdata={props.userdata}
+                />
+            ))}
+        </Aux>
     );
 };
 
-export default ListSpacesComponent;
+export default withStyle(ListSpacesComponent, 'list_spaces_component');

@@ -2,7 +2,8 @@
     margin-top: 20%;
     margin-left: 15%;
     margin-right: 35%;
-    background-color: white;
+    width: 50%;
+    background-color: rgb(199, 97, 97);
     z-index: 0;
     position: absolute;
 }
