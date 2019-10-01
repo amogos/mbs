@@ -7,6 +7,7 @@ import * as Strings from '../../../shared/constants/string_constant';
 import FilteringCategoriesComponent from './filtering_categories_component';
 import * as ActionTypes from './../../../shared/constants/action_constant';
 import Aux, { withStyle } from './../aux_component';
+import Logo from './logo';
 
 const { PageActionConstant } = ActionTypes.default;
 const { FilteringTabsStrings } = Strings.default;
@@ -181,6 +182,7 @@ const BannerComponent = (props: Props) => {
 
     return (
         <Aux>
+            <Logo />
             <MySpaceTab
                 parentProps={props}
                 setPage={(page: string) => setPage(page)}
@@ -199,7 +201,7 @@ const BannerComponent = (props: Props) => {
             <NotificationsTab parentProps={props} setPage={(page: string) => setPage(page)} />
             <SocialTab parentProps={props} setPage={(page: string) => setPage(page)} />
 
-            <FilteringTabs
+            {/*<FilteringTabs
                 parentProps={props}
                 categoryFilters={categoryFilters}
                 page={page}
@@ -207,6 +209,7 @@ const BannerComponent = (props: Props) => {
                     props.gotoListBooks(filters);
                 }}
             />
+            <br />
             <CategoryFiltering
                 categories={props.categories}
                 action={props.action}
@@ -214,7 +217,7 @@ const BannerComponent = (props: Props) => {
                     setCategoryFilters(filters);
                     props.gotoListBooks(filters);
                 }}
-            />
+            />*/}
         </Aux>
     );
 };
