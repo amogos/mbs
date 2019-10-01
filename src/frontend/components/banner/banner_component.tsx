@@ -6,6 +6,7 @@ import * as DataTypes from '../../../shared/types';
 import * as Strings from '../../../shared/constants/string_constant';
 import FilteringCategoriesComponent from './filtering_categories_component';
 import * as ActionTypes from './../../../shared/constants/action_constant';
+import './banner.css';
 
 const { PageActionConstant } = ActionTypes.default;
 const { FilteringTabsStrings } = Strings.default;
@@ -179,7 +180,7 @@ const BannerComponent = (props: Props) => {
     const [categoryFilters, setCategoryFilters] = useState(['']);
 
     return (
-        <div>
+        <div className="banner_component">
             <PageHeader title="" breadcrumb={{}}>
                 <div className="wrap">
                     <div className="content">
