@@ -200,7 +200,7 @@ const BannerComponent = (props: Props) => {
         <Aux>
             <Logo />
             <WrappedTabs />
-            {page === 'my-space' ? <CategoryTabs tabs={categoryTabsContent} /> : null}
+            <CategoryTabs tabs={categoryTabsContent} />
         </Aux>
     );
 };

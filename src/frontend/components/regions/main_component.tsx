@@ -18,7 +18,7 @@ const MainComponent = (props: Props) => {
         return <NotificationsContainer />;
     } else if (props.page === PageActionConstant.ACTION_GOTO_SPACES) {
         return <SpaceContainer />;
-    } else return null;
+    } else return <SpaceContainer />;
 };
 
 export default withStyle(MainComponent, 'main_component');

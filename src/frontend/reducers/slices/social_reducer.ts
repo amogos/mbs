@@ -1,6 +1,6 @@
 import * as ActionConstants from '../../../shared/constants/action_constant';
 import * as DataTypes from '../../../shared/types';
-import { socialAction } from './../../actions';
+import { socialAction, pageAction } from './../../actions';
 import databseInstance from './../../../backend/database_instance';
 import Store from '../../store';
 import { GlobalVars, handleError } from './../main_reducer';
@@ -23,13 +23,24 @@ export default function socialReducer(state: any, action: any): any {
         case SocialActionConstant.ACTION_USER_DATA:
             databseInstance.getUserSpaces(action.userdata, handleError).then((result: DataTypes.SpaceType[]) => {
                 GlobalVars.spacesArrays.userSpaces = result;
+                databseInstance.getOtherSpaces(action.userdata, handleError).then((result: DataTypes.SpaceType[]) => {
+                    GlobalVars.spacesArrays.otherSpaces = result;
+                    Store.dispatch(pageAction.refreshState({ spaces: GlobalVars.spacesArrays }));
+                });
             });
-            databseInstance.getOtherSpaces(action.userdata, handleError).then((result: DataTypes.SpaceType[]) => {
-                GlobalVars.spacesArrays.otherSpaces = result;
+
+            databseInstance.getLanguages(handleError).then((result: DataTypes.LanguageRecordType[]) => {
+                GlobalVars.languagesArray = result;
+                Store.dispatch(pageAction.refreshState({ spaces: result }));
+            });
+            databseInstance.getCategories(handleError).then((result: DataTypes.CategoryRecordType[]) => {
+                GlobalVars.categoriesArray = result;
+                Store.dispatch(pageAction.refreshState({ categories: result }));
             });
             return Object.assign({}, state, {
                 userdata: action.userdata,
             });
+
         default:
             return null;
     }

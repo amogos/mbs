@@ -50,14 +50,9 @@ export default function pageReducer(state: any, action: any): any {
                 queueArray: GlobalVars.queueArray,
                 languages: GlobalVars.languagesArray,
             });
+        case PageActionConstant.ACTION_REFRESH_STATE:
+            return Object.assign({}, state, action.append);
         default:
-            databseInstance.getLanguages(handleError).then((result: DataTypes.LanguageRecordType[]) => {
-                GlobalVars.languagesArray = result;
-            });
-            databseInstance.getCategories(handleError).then((result: DataTypes.CategoryRecordType[]) => {
-                GlobalVars.categoriesArray = result;
-            });
-
             return null;
     }
 }
