@@ -5,7 +5,7 @@ import databseInstance from './../../../backend/database_instance';
 import Store from '../../store';
 import Strings from '../../../shared/constants/string_constant';
 import { message } from 'antd';
-import { GlobalVars, handleError } from './../main_reducer';
+import { handleError } from './../main_reducer';
 
 const { PageActionConstant } = ActionConstants.default;
 
@@ -21,34 +21,26 @@ export default function pageReducer(state: any, action: any): any {
             return Object.assign({}, state, {
                 page: ActionConstants.default.PageActionConstant.ACTION_GOTO_SPACES,
                 action: ActionConstants.default.PageActionConstant.ACTION_GOTO_SPACES,
-                spaces: GlobalVars.spacesArrays,
-                categories: GlobalVars.categoriesArray,
-                languages: GlobalVars.languagesArray,
             });
         case PageActionConstant.ACTION_GOTO_LIST_BOOKS:
             const progressSpinner = message.loading(Strings.MYBOOKSHELVE_ACTION_IN_PROGRESS);
-            databseInstance.getQueue(state.userdata.id, handleError).then((result: DataTypes.QueueRecordType[]) => {
-                GlobalVars.queueArray = result;
-                databseInstance.getBooks(action.filters, handleError).then(result => {
+            databseInstance.getQueue(state.userdata.id, handleError).then((result1: DataTypes.QueueRecordType[]) => {
+                databseInstance.getBooks(action.filters, handleError).then(result2 => {
                     setTimeout(progressSpinner, 0);
-                    GlobalVars.booksArray = result;
+                    Store.dispatch(pageAction.refreshState({ queueArray: result1, booksArray: result2 }));
                     Store.dispatch(pageAction.listBooks());
                 });
             });
+
             return Object.assign({}, state, {
                 page: PageActionConstant.ACTION_GOTO_LIST_BOOKS,
                 action: PageActionConstant.ACTION_GOTO_LIST_BOOKS,
                 filters: action.filters,
-                categories: GlobalVars.categoriesArray,
-                languages: GlobalVars.languagesArray,
             });
         case PageActionConstant.ACTION_LIST_BOOKS:
             return Object.assign({}, state, {
                 page: PageActionConstant.ACTION_LIST_BOOKS,
                 action: PageActionConstant.ACTION_LIST_BOOKS,
-                booksArray: GlobalVars.booksArray,
-                queueArray: GlobalVars.queueArray,
-                languages: GlobalVars.languagesArray,
             });
         case PageActionConstant.ACTION_REFRESH_STATE:
             return Object.assign({}, state, action.append);

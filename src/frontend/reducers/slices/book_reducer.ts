@@ -4,7 +4,9 @@ import databseInstance from '../../../backend/database_instance';
 import Store from '../../store';
 import Strings from '../../../shared/constants/string_constant';
 import { message } from 'antd';
-import { GlobalVars, handleError } from './../main_reducer';
+import { handleError } from './../main_reducer';
+import * as DataTypes from '../../../shared/types';
+
 const { BookActionConstant } = ActionConstants.default;
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -60,11 +62,12 @@ export default function bookReducer(state: any, action: any): any {
         case BookActionConstant.ACTION_DELETE_BOOK: {
             databseInstance.deleteBook(action.bookId, handleError).then(() => {
                 message.success(Strings.MYBOOKSHELVE_STRING_BOOK_REMOVED);
-                const index = GlobalVars.booksArray.findIndex(book => book.id === action.bookId);
-                let temp = [...GlobalVars.booksArray];
+                let booksArray: DataTypes.BookRecordType[] = state.booksArray;
+                const index = booksArray.findIndex(book => book.id === action.bookId);
+                let temp = [...booksArray];
                 temp.splice(index, 1);
-                GlobalVars.booksArray = temp;
-                Store.dispatch(pageAction.listBooks());
+                booksArray = temp;
+                Store.dispatch(pageAction.refreshState({ booksArray: booksArray }));
             });
 
             return Object.assign({}, state, {

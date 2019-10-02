@@ -42,7 +42,6 @@ const MySpaceTab = (props: TabProps) => {
     const clickFunction = () => {
         if (props.resetCategoryFilters) props.resetCategoryFilters();
         props.parentProps.gotoListBooks(['owner=' + props.parentProps.userdata.id]);
-        window.scrollTo(0, 0);
         props.setPage('my-space');
     };
     return (
@@ -58,7 +57,6 @@ const SpacesTab = (props: TabProps) => {
         if (props.resetCategoryFilters) props.resetCategoryFilters();
         props.parentProps.gotoSpaces();
         props.setPage('spaces');
-        window.scrollTo(0, 0);
     };
     return (
         <Button type="link" onClick={clickFunction}>
@@ -73,7 +71,6 @@ const RentTab = (props: TabProps) => {
         if (props.resetCategoryFilters) props.resetCategoryFilters();
         props.parentProps.gotoListBooks(['owner_ne=' + props.parentProps.userdata.id]);
         props.setPage('rent');
-        window.scrollTo(0, 0);
     };
     return (
         <Button type="link" onClick={clickFunction}>
@@ -85,7 +82,6 @@ const RentTab = (props: TabProps) => {
 const NotificationsTab = (props: TabProps) => {
     if (!props.parentProps.userdata) return null;
     const clickFunction = () => {
-        window.scrollTo(0, 0);
         props.parentProps.gotoNotifications();
         props.setPage('notifications');
     };

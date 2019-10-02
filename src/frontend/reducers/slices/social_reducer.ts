@@ -3,7 +3,7 @@ import * as DataTypes from '../../../shared/types';
 import { socialAction, pageAction } from './../../actions';
 import databseInstance from './../../../backend/database_instance';
 import Store from '../../store';
-import { GlobalVars, handleError } from './../main_reducer';
+import { handleError } from './../main_reducer';
 
 const { SocialActionConstant } = ActionConstants.default;
 
@@ -22,19 +22,22 @@ export default function socialReducer(state: any, action: any): any {
         }
         case SocialActionConstant.ACTION_USER_DATA:
             databseInstance.getUserSpaces(action.userdata, handleError).then((result: DataTypes.SpaceType[]) => {
-                GlobalVars.spacesArrays.userSpaces = result;
-                databseInstance.getOtherSpaces(action.userdata, handleError).then((result: DataTypes.SpaceType[]) => {
-                    GlobalVars.spacesArrays.otherSpaces = result;
-                    Store.dispatch(pageAction.refreshState({ spaces: GlobalVars.spacesArrays }));
-                });
+                let spacesArrays: DataTypes.Spaces = { userSpaces: [], otherSpaces: [] };
+                spacesArrays.userSpaces = result;
+                if (state.spaces && state.spaces.otherSpaces) spacesArrays.otherSpaces = state.spaces.otherSpaces;
+                Store.dispatch(pageAction.refreshState({ spaces: spacesArrays }));
+            });
+            databseInstance.getOtherSpaces(action.userdata, handleError).then((result: DataTypes.SpaceType[]) => {
+                let spacesArrays: DataTypes.Spaces = { userSpaces: [], otherSpaces: [] };
+                spacesArrays.otherSpaces = result;
+                if (state.spaces && state.spaces.userSpaces) spacesArrays.userSpaces = state.spaces.userSpaces;
+                Store.dispatch(pageAction.refreshState({ spaces: spacesArrays }));
             });
 
             databseInstance.getLanguages(handleError).then((result: DataTypes.LanguageRecordType[]) => {
-                GlobalVars.languagesArray = result;
                 Store.dispatch(pageAction.refreshState({ spaces: result }));
             });
             databseInstance.getCategories(handleError).then((result: DataTypes.CategoryRecordType[]) => {
-                GlobalVars.categoriesArray = result;
                 Store.dispatch(pageAction.refreshState({ categories: result }));
             });
             return Object.assign({}, state, {
