@@ -51,20 +51,6 @@ const MySpaceTab = (props: TabProps) => {
     );
 };
 
-const SpacesTab = (props: TabProps) => {
-    if (!props.parentProps.userdata) return null;
-    const clickFunction = () => {
-        if (props.resetCategoryFilters) props.resetCategoryFilters();
-        props.parentProps.gotoSpaces();
-        props.setPage('spaces');
-    };
-    return (
-        <Button type="link" onClick={clickFunction}>
-            <img src="https://gw.alipayobjects.com/zos/rmsportal/NbuDUAuBlIApFuDvWiND.svg" alt="start" /> Spaces
-        </Button>
-    );
-};
-
 const RentTab = (props: TabProps) => {
     if (!props.parentProps.userdata) return null;
     const clickFunction = () => {
@@ -178,11 +164,7 @@ const BannerComponent = (props: Props) => {
                         setPage={(page: string) => setPage(page)}
                         resetCategoryFilters={() => setCategoryFilters([''])}
                     />
-                    <SpacesTab
-                        parentProps={props}
-                        setPage={(page: string) => setPage(page)}
-                        resetCategoryFilters={() => setCategoryFilters([''])}
-                    />
+
                     <NotificationsTab parentProps={props} setPage={(page: string) => setPage(page)} />
                     <SocialTab parentProps={props} setPage={(page: string) => setPage(page)} />
                 </span>
