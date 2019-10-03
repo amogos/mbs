@@ -7,6 +7,7 @@
 
 .space_holder {
     padding-bottom: 50px;
+    padding-top: 50px;
     display: flex;
     flex-direction: row;
 }
@@ -25,7 +26,9 @@
     position: relative;
     margin-left: 30%;
 }
-
+.space_actions a {
+    padding-left: 30px;
+}
 .space_statistics {
     padding-top: 30px;
 }
