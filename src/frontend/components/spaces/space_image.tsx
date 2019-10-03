@@ -9,7 +9,11 @@ interface Props {
 }
 
 const SpaceImage = (props: Props) => {
-    return <Avatar size={128} icon="" shape="square" />;
+    return (
+        <div onClick={props.onClick}>
+            <Avatar size={128} icon="" shape="square" />
+        </div>
+    );
 };
 
 export default withStyle(SpaceImage, 'space_image');

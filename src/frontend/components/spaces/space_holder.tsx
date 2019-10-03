@@ -60,8 +60,8 @@ const SpaceHolder = (props: Props) => {
     const actionProps = { ...props, actions, icons, owner };
 
     return (
-        <Aux onClick={props.onClick}>
-            <div>
+        <Aux>
+            <div onClick={props.onClick}>
                 <SpaceDescription {...props} />
                 <SpaceStatistics {...props} />
             </div>
