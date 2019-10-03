@@ -49,21 +49,24 @@ const SocialTab = (props: TabProps) => {
     );
 };
 
-const BannerComponent = (props: Props) => {
-    function onCategoryTabClicked(tabId: number) {}
-
+const BuildCategoryTabsInformation = (categories: DataTypes.CategoryRecordType[], callback: (id: number) => void) => {
     let categoryTabsContent: CategoryTabInformation[] = [];
 
-    if (props.categories) {
-        categoryTabsContent.push({ id: -1, title: 'HOME', callback: onCategoryTabClicked });
+    if (categories) {
+        categoryTabsContent.push({ id: -1, title: 'HOME', callback: callback });
         categoryTabsContent = categoryTabsContent.concat(
-            props.categories.slice(1, 11).map(item => {
-                const tab: CategoryTabInformation = { id: item.id, title: item.title, callback: onCategoryTabClicked };
+            categories.slice(1, 11).map(item => {
+                const tab: CategoryTabInformation = { id: item.id, title: item.title, callback: callback };
                 return tab;
             }),
         );
-        categoryTabsContent.push({ id: -2, title: 'MORE', callback: onCategoryTabClicked });
+        categoryTabsContent.push({ id: -2, title: 'MORE', callback: callback });
     }
+    return categoryTabsContent;
+};
+
+const BannerComponent = (props: Props) => {
+    function onCategoryTabClicked(tabId: number) {}
 
     class Tabs extends React.Component {
         public render() {
@@ -77,12 +80,13 @@ const BannerComponent = (props: Props) => {
     }
 
     const WrappedTabs = withStyle(Tabs, 'tabs');
+    const categoryTabsInformation = BuildCategoryTabsInformation(props.categories, onCategoryTabClicked);
 
     return (
         <Aux>
             <Logo />
             <WrappedTabs />
-            <CategoryTabs tabs={categoryTabsContent} />
+            <CategoryTabs tabs={categoryTabsInformation} />
         </Aux>
     );
 };
