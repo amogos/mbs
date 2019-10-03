@@ -1,15 +1,19 @@
 import React from 'react';
 import * as DataTypes from '../../../shared/types';
-import { Card } from 'antd';
+import Aux, { withStyle } from './../aux_component';
 
 interface Props {
     item: DataTypes.SpaceType;
 }
 
 const SpaceDescription = (props: Props) => {
-    const { Meta } = Card;
     const { title, description } = props.item;
-    return <Meta className="space_description" title={title} description={description} />;
+    return (
+        <Aux>
+            <p className="space_description_title">{title}</p>
+            <p className="space_description_description">{description}</p>
+        </Aux>
+    );
 };
 
-export default SpaceDescription;
+export default withStyle(SpaceDescription, 'space_description');

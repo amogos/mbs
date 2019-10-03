@@ -1,6 +1,7 @@
 import React from 'react';
 import { Icon, Tooltip } from 'antd';
 import * as DataTypes from '../../../shared/types';
+import Aux, { withStyle } from './../aux_component';
 
 interface Props {
     item: DataTypes.SpaceType;
@@ -16,32 +17,37 @@ interface Props {
 
 const SpaceActions = (props: Props) => {
     if (props.owner) {
-        return [
-            <a onClick={props.actions.add}>
-                <Tooltip title={props.icons.add.tooltip}>
-                    <Icon type={props.icons.add.icon} />
-                </Tooltip>
-            </a>,
-            <a onClick={props.actions.edit}>
-                <Tooltip title={props.icons.edit.tooltip}>
-                    <Icon type={props.icons.edit.icon} />
-                </Tooltip>
-            </a>,
-        ];
+        return (
+            <Aux>
+                <a onClick={props.actions.add}>
+                    <Tooltip title={props.icons.add.tooltip}>
+                        <Icon type={props.icons.add.icon} />
+                    </Tooltip>
+                </a>
+
+                <a onClick={props.actions.edit}>
+                    <Tooltip title={props.icons.edit.tooltip}>
+                        <Icon type={props.icons.edit.icon} />
+                    </Tooltip>
+                </a>
+            </Aux>
+        );
     } else {
-        return [
-            <a onClick={props.actions.follow}>
-                <Tooltip title={props.icons.follow.tooltip}>
-                    <Icon type={props.icons.follow.icon} />
-                </Tooltip>
-            </a>,
-            <a onClick={props.actions.subscribe}>
-                <Tooltip title={props.icons.subscribe.icon}>
-                    <Icon type={props.icons.subscribe.icon} />
-                </Tooltip>
-            </a>,
-        ];
+        return (
+            <Aux>
+                <a onClick={props.actions.follow}>
+                    <Tooltip title={props.icons.follow.tooltip}>
+                        <Icon type={props.icons.follow.icon} />
+                    </Tooltip>
+                </a>
+                <a onClick={props.actions.subscribe}>
+                    <Tooltip title={props.icons.subscribe.icon}>
+                        <Icon type={props.icons.subscribe.icon} />
+                    </Tooltip>
+                </a>
+            </Aux>
+        );
     }
 };
 
-export default SpaceActions;
+export default withStyle(SpaceActions, 'space_actions');

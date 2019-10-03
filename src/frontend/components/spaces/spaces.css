@@ -1,4 +1,31 @@
 .list_spaces_component {
+    padding-top: 50px;
     margin-top: 5%;
     position: absolute;
+    width: 100%;
+}
+
+.space_holder {
+    padding-bottom: 50px;
+    display: flex;
+    flex-direction: row;
+}
+
+.space_description {
+    position: relative;
+}
+
+.space_image {
+    margin-left: 10%;
+    position: relative;
+    margin-top: 0%;
+}
+
+.space_actions {
+    position: relative;
+    margin-left: 30%;
+}
+
+.space_statistics {
+    padding-top: 30px;
 }

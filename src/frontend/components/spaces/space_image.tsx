@@ -1,6 +1,7 @@
 import React from 'react';
 import * as DataTypes from '../../../shared/types';
 import { Avatar } from 'antd';
+import { withStyle } from './../aux_component';
 
 interface Props {
     item: DataTypes.SpaceType;
@@ -8,11 +9,7 @@ interface Props {
 }
 
 const SpaceImage = (props: Props) => {
-    return (
-        <div className="avatar" onClick={props.onClick}>
-            <Avatar size={64} icon="user" />
-        </div>
-    );
+    return <Avatar size={128} icon="" shape="square" />;
 };
 
-export default SpaceImage;
+export default withStyle(SpaceImage, 'space_image');

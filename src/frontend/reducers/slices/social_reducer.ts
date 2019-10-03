@@ -24,14 +24,10 @@ export default function socialReducer(state: any, action: any): any {
             databseInstance.getUserSpaces(action.userdata, handleError).then((result: DataTypes.SpaceType[]) => {
                 let spacesArrays: DataTypes.Spaces = { userSpaces: [], otherSpaces: [] };
                 spacesArrays.userSpaces = result;
-                if (state.spaces && state.spaces.otherSpaces) spacesArrays.otherSpaces = state.spaces.otherSpaces;
-                Store.dispatch(pageAction.refreshState({ spaces: spacesArrays }));
-            });
-            databseInstance.getOtherSpaces(action.userdata, handleError).then((result: DataTypes.SpaceType[]) => {
-                let spacesArrays: DataTypes.Spaces = { userSpaces: [], otherSpaces: [] };
-                spacesArrays.otherSpaces = result;
-                if (state.spaces && state.spaces.userSpaces) spacesArrays.userSpaces = state.spaces.userSpaces;
-                Store.dispatch(pageAction.refreshState({ spaces: spacesArrays }));
+                databseInstance.getOtherSpaces(action.userdata, handleError).then((result: DataTypes.SpaceType[]) => {
+                    spacesArrays.otherSpaces = result;
+                    Store.dispatch(pageAction.refreshState({ spaces: spacesArrays }));
+                });
             });
 
             databseInstance.getLanguages(handleError).then((result: DataTypes.LanguageRecordType[]) => {

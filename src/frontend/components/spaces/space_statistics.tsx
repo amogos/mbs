@@ -1,6 +1,7 @@
 import React from 'react';
 import * as DataTypes from '../../../shared/types';
 import { Icon, Divider } from 'antd';
+import { withStyle } from './../aux_component';
 
 interface Props {
     item: DataTypes.SpaceType;
@@ -37,4 +38,4 @@ const SpaceStatistics = (props: Props) => {
     );
 };
 
-export default SpaceStatistics;
+export default withStyle(SpaceStatistics, 'space_statistics');

@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import * as DataTypes from '../../../shared/types';
-import { Card } from 'antd';
 import SpaceImage from './space_image';
 import SpaceActions from './space_actions';
 import SpaceDescription from './space_description';
 import SpaceStatistics from './space_statistics';
-import Aux from './../aux_component';
+import Aux, { withStyle } from './../aux_component';
 import AddNewBookComponent from './../../containers/add_new_book_container';
 
 interface Props {
@@ -60,19 +59,20 @@ const SpaceHolder = (props: Props) => {
     };
 
     const owner = props.item.user.id === props.userdata.id;
+    const actionProps = { ...props, actions, icons, owner };
 
     return (
-        <Aux>
-            <Card cover={SpaceImage(props)} actions={SpaceActions({ ...props, actions, icons, owner })}>
-                <div onClick={props.onClick}>
-                    <SpaceDescription {...props} />
-                    <p />
-                    <SpaceStatistics {...props} />
-                </div>
-            </Card>
+        <Aux onClick={props.onClick}>
+            <div>
+                <SpaceDescription {...props} />
+                <SpaceStatistics {...props} />
+            </div>
+            <SpaceActions {...actionProps} />
+            <SpaceImage {...props} />
+
             <AddNewBookPopup />
         </Aux>
     );
 };
 
-export default SpaceHolder;
+export default withStyle(SpaceHolder, 'space_holder');
