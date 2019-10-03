@@ -31,7 +31,7 @@ export default function socialReducer(state: any, action: any): any {
             });
 
             databseInstance.getLanguages(handleError).then((result: DataTypes.LanguageRecordType[]) => {
-                Store.dispatch(pageAction.refreshState({ spaces: result }));
+                Store.dispatch(pageAction.refreshState({ languages: result }));
             });
             databseInstance.getCategories(handleError).then((result: DataTypes.CategoryRecordType[]) => {
                 Store.dispatch(pageAction.refreshState({ categories: result }));
