@@ -13,7 +13,7 @@ interface Props {
 }
 
 const CategoryTabs = (props: Props) => {
-    return props.tabs.map(item => <Button onClick={() => item.callback(item.id)}>{item.title}</Button>);
+    return props.tabs.map(item => <Button onClick={() => item.callback(item.id)}>{item.title.toUpperCase()}</Button>);
 };
 
 export default withStyle(CategoryTabs, 'category_tabs');

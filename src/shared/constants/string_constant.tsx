@@ -27,4 +27,8 @@ export default {
         REQUEST_BOOK: 'request',
         RETURN_BOOK: 'return',
     },
+    CategoryTabsStrings: {
+        MORE: 'MORE',
+        HOME: 'HOME',
+    },
 };
