@@ -26,7 +26,7 @@ const SpaceHolder = (props: Props) => {
     };
 
     const [icons, setIcons] = useState(images);
-    const [showAddBook, setShowAddBook] = useState(false);
+    const [visible, setVisible] = useState(false);
 
     const onFollowButtonClicked = () => {
         if (following) {
@@ -41,7 +41,7 @@ const SpaceHolder = (props: Props) => {
     };
 
     const onSubscribeButtonClicked = () => {};
-    const OnAddBookButtonClicked = () => setShowAddBook(true);
+    const OnAddBookButtonClicked = () => setVisible(true);
     const OnEditSpaceButtonClicked = () => {};
 
     const actions = {
@@ -52,10 +52,8 @@ const SpaceHolder = (props: Props) => {
     };
 
     const AddNewBookPopup = () => {
-        if (!showAddBook) return null;
-        return (
-            <AddNewBookComponent spaceId={props.item.id} visible={showAddBook} callback={() => setShowAddBook(false)} />
-        );
+        if (!visible) return null;
+        return <AddNewBookComponent spaceId={props.item.id} visible={visible} callback={() => setVisible(false)} />;
     };
 
     const owner = props.item.user.id === props.userdata.id;
