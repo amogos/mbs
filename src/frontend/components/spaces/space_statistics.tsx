@@ -1,7 +1,7 @@
 import React from 'react';
 import * as DataTypes from '../../../shared/types';
 import { Icon, Divider } from 'antd';
-import { withStyle } from './../aux_component';
+import Aux, { withStyle } from './../aux_component';
 
 interface Props {
     item: DataTypes.SpaceType;
@@ -30,11 +30,11 @@ const IconRating = (rating: number) => {
 const SpaceStatistics = (props: Props) => {
     const { numberOfFollowers, rating, numberOfBooks, format } = props.item;
     return (
-        <div className="space_statistics">
+        <Aux>
             <Icon type="team" /> {numberOfFollowers}
             {IconRating(rating)}
             {IconFormat(format, numberOfBooks)}
-        </div>
+        </Aux>
     );
 };
 
