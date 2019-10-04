@@ -1,28 +1,33 @@
 .banner_component {
     width: 100%;
     height: 8%;
-    position: fixed;
+    display: flex;
+    flex-direction: column;
     top: 0%;
     left: 0px;
     z-index: 1;
     background-color: white;
 }
 
+.div1 {
+    display: flex;
+    flex-direction: row;
+}
+
 .logo {
-    margin-top: 1%;
-    position: absolute;
     margin-left: 14%;
+    width:60%;
 }
 
 .banner_menu {
-    margin-left: 70%;
-    position: absolute;
-    margin-top: 1%;
     background-color: white;
+    margin-right: 4%;
+    display: flex;
+    flex-direction: row;
 }
 
 .category_tabs {
-    margin-top: 4%;
+    margin-top: 0%;
     height: 1%;
     width: 70%;
     margin-left: 10%;

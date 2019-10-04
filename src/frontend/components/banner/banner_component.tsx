@@ -82,8 +82,11 @@ const BannerComponent = (props: Props) => {
 
     return (
         <Aux>
-            <Logo />
-            <WrappedMenu />
+            <div className="div1">
+                <Logo />
+                <WrappedMenu />
+            </div>
+            
             <CategoryTabs tabs={categoryTabsInformation} />
         </Aux>
     );
