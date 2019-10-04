@@ -40,17 +40,21 @@ const SocialTab = (props: Props) => {
 
 const BuildCategoryTabsInformation = (categories: DataTypes.CategoryRecordType[], callback: (id: number) => void) => {
     let categoryTabsContent: TabData[] = [];
+    const { CategoryTabsStrings } = Strings.default;
 
-    if (categories) {
-        categoryTabsContent.push({ id: -1, title: 'HOME', callback: callback });
-        categoryTabsContent = categoryTabsContent.concat(
-            categories.slice(1, 11).map(item => {
-                const tab: TabData = { id: item.id, title: item.title, callback: callback };
-                return tab;
-            }),
-        );
-        categoryTabsContent.push({ id: -2, title: 'MORE', callback: callback });
-    }
+    if (!categories) return categoryTabsContent;
+
+    categoryTabsContent.push({ id: -1, title: CategoryTabsStrings.HOME, callback: callback });
+
+    categoryTabsContent = categoryTabsContent.concat(
+        categories.slice(1, 11).map(item => {
+            const tab: TabData = { id: item.id, title: item.title, callback: callback };
+            return tab;
+        }),
+    );
+
+    categoryTabsContent.push({ id: -2, title: CategoryTabsStrings.MORE, callback: callback });
+
     return categoryTabsContent;
 };
 
