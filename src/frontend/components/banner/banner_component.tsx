@@ -18,7 +18,7 @@ interface Props {
     action: string;
 }
 
-const NotificationsTab = (props: Props) => {
+const NotificationsButton = (props: Props) => {
     if (!props.userdata) return null;
     const clickFunction = () => {
         props.gotoNotifications();
@@ -30,7 +30,7 @@ const NotificationsTab = (props: Props) => {
     );
 };
 
-const SocialTab = (props: Props) => {
+const ProfileButton = (props: Props) => {
     return (
         <Button type="link">
             <SocialLoginContainer />
@@ -70,8 +70,8 @@ const BannerComponent = (props: Props) => {
         public render() {
             return (
                 <Aux>
-                    <NotificationsTab {...props} />
-                    <SocialTab {...props} />
+                    <NotificationsButton {...props} />
+                    <ProfileButton {...props} />
                 </Aux>
             );
         }
