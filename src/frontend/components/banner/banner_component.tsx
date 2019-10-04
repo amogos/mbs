@@ -15,7 +15,6 @@ interface Props {
     categories: DataTypes.CategoryRecordType[];
     languages: DataTypes.LanguageRecordType[];
     addBook(book: DataTypes.BookValueType): void;
-    action: string;
 }
 
 const NotificationsButton = (props: Props) => {
