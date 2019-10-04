@@ -1,19 +1,18 @@
 import React from 'react';
 import { Button } from 'antd';
-import { withStyle } from './../aux_component';
 
-export interface CategoryTabInformation {
+export interface TabData {
     id: number;
     title: string;
     callback: (id: number) => void;
 }
 
 interface Props {
-    tabs: CategoryTabInformation[];
+    tabs: TabData[];
 }
 
-const CategoryTabs = (props: Props) => {
+const Tabs = (props: Props) => {
     return props.tabs.map(item => <Button onClick={() => item.callback(item.id)}>{item.title.toUpperCase()}</Button>);
 };
 
-export default withStyle(CategoryTabs, 'category_tabs');
+export default Tabs;

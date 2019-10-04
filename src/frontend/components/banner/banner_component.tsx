@@ -5,7 +5,7 @@ import * as DataTypes from '../../../shared/types';
 import * as Strings from '../../../shared/constants/string_constant';
 import Aux, { withStyle } from './../aux_component';
 import Logo from './logo';
-import CategoryTabs, { CategoryTabInformation } from './category_tabs';
+import Tabs, { TabData } from './tabs';
 
 interface Props {
     gotoListBooks(filters: string[]): void;
@@ -18,21 +18,10 @@ interface Props {
     action: string;
 }
 
-interface FilterProps {
-    parentProps: Props;
-    categoryFilters: string[];
-    onFiltersChanged?: (filters: string[]) => void;
-}
-
-interface TabProps {
-    resetCategoryFilters?: () => void;
-    parentProps: Props;
-}
-
-const NotificationsTab = (props: TabProps) => {
-    if (!props.parentProps.userdata) return null;
+const NotificationsTab = (props: Props) => {
+    if (!props.userdata) return null;
     const clickFunction = () => {
-        props.parentProps.gotoNotifications();
+        props.gotoNotifications();
     };
     return (
         <Button type="link" onClick={clickFunction}>
@@ -41,7 +30,7 @@ const NotificationsTab = (props: TabProps) => {
     );
 };
 
-const SocialTab = (props: TabProps) => {
+const SocialTab = (props: Props) => {
     return (
         <Button type="link">
             <SocialLoginContainer />
@@ -50,13 +39,13 @@ const SocialTab = (props: TabProps) => {
 };
 
 const BuildCategoryTabsInformation = (categories: DataTypes.CategoryRecordType[], callback: (id: number) => void) => {
-    let categoryTabsContent: CategoryTabInformation[] = [];
+    let categoryTabsContent: TabData[] = [];
 
     if (categories) {
         categoryTabsContent.push({ id: -1, title: 'HOME', callback: callback });
         categoryTabsContent = categoryTabsContent.concat(
             categories.slice(1, 11).map(item => {
-                const tab: CategoryTabInformation = { id: item.id, title: item.title, callback: callback };
+                const tab: TabData = { id: item.id, title: item.title, callback: callback };
                 return tab;
             }),
         );
@@ -68,24 +57,25 @@ const BuildCategoryTabsInformation = (categories: DataTypes.CategoryRecordType[]
 const BannerComponent = (props: Props) => {
     function onCategoryTabClicked(tabId: number) {}
 
-    class Tabs extends React.Component {
+    class Menu extends React.Component {
         public render() {
             return (
                 <Aux>
-                    <NotificationsTab parentProps={props} />
-                    <SocialTab parentProps={props} />
+                    <NotificationsTab {...props} />
+                    <SocialTab {...props} />
                 </Aux>
             );
         }
     }
 
-    const WrappedTabs = withStyle(Tabs, 'tabs');
+    const WrappedMenu = withStyle(Menu, 'banner_menu');
     const categoryTabsInformation = BuildCategoryTabsInformation(props.categories, onCategoryTabClicked);
+    const CategoryTabs = withStyle(Tabs, 'category_tabs');
 
     return (
         <Aux>
             <Logo />
-            <WrappedTabs />
+            <WrappedMenu />
             <CategoryTabs tabs={categoryTabsInformation} />
         </Aux>
     );
