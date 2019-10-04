@@ -13,13 +13,15 @@ const { PageActionConstant } = ActionTypes.default;
 
 const MainComponent = (props: Props) => {
     window.scrollTo(0, 0);
-    if (props.page === PageActionConstant.ACTION_LIST_BOOKS) {
+    if (props.page === PageActionConstant.ACTION_GOTO_LIST_BOOKS) {
         return <ListBooksContainer />;
     } else if (props.page === PageActionConstant.ACTION_GOTO_NOTIFICATIONS) {
         return <NotificationsContainer />;
     } else if (props.page === PageActionConstant.ACTION_GOTO_SPACES) {
         return <SpaceContainer />;
-    } else return <SpaceContainer />;
+    } else {
+        return <SpaceContainer />;
+    }
 };
 
 export default withStyle(MainComponent, 'main_component');

@@ -27,6 +27,8 @@ interface Props {
 const ListBooksComponent = (props: Props) => {
     const [state, setState] = useState({});
 
+    if (!props.booksArray || !props.queueArray) return null;
+
     interface ReviewState {
         reviews: DataTypes.BookReviewRecordType[];
         visibility: boolean;

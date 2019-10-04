@@ -8,7 +8,7 @@ class PageAction {
         filters,
     });
 
-    public listBooks = () => ({ type: ActionTypes.default.PageActionConstant.ACTION_LIST_BOOKS });
+    public listBooks = () => ({ type: ActionTypes.default.PageActionConstant.ACTION_GOTO_LIST_BOOKS });
 
     public gotoNotifications = () => ({ type: ActionTypes.default.PageActionConstant.ACTION_GOTO_NOTIFICATIONS });
 

@@ -28,7 +28,6 @@ export default function pageReducer(state: any, action: any): any {
                 databseInstance.getBooks(action.filters, handleError).then(result2 => {
                     setTimeout(progressSpinner, 0);
                     Store.dispatch(pageAction.refreshState({ queueArray: result1, booksArray: result2 }));
-                    Store.dispatch(pageAction.listBooks());
                 });
             });
 
@@ -37,11 +36,7 @@ export default function pageReducer(state: any, action: any): any {
                 action: PageActionConstant.ACTION_GOTO_LIST_BOOKS,
                 filters: action.filters,
             });
-        case PageActionConstant.ACTION_LIST_BOOKS:
-            return Object.assign({}, state, {
-                page: PageActionConstant.ACTION_LIST_BOOKS,
-                action: PageActionConstant.ACTION_LIST_BOOKS,
-            });
+
         case PageActionConstant.ACTION_REFRESH_STATE:
             return Object.assign({}, state, action.append);
         default:
