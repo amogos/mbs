@@ -59,7 +59,12 @@ const BuildCategoryTabsInformation = (categories: DataTypes.CategoryRecordType[]
 };
 
 const BannerComponent = (props: Props) => {
-    function onCategoryTabClicked(tabId: number) {}
+    function onCategoryTabClicked(tabId: number) {
+        if (tabId > 0) {
+            const filters = [`category=${tabId}`];
+            props.gotoListBooks(filters);
+        }
+    }
 
     class Menu extends React.Component {
         public render() {
