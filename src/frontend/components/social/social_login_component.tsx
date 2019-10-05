@@ -1,6 +1,6 @@
 import React from 'react';
 import * as DataTypes from '../../../shared/types';
-import FacebookComponent from './facebook_login';
+import FacebookLogin from './facebook_login';
 import { Avatar } from 'antd';
 
 interface Props {
@@ -11,13 +11,9 @@ interface Props {
 const SocialLoginComponent = (props: Props) => {
     const loggedIn = props.userdata && props.userdata.name;
     if (loggedIn) {
-        return (
-            <span>
-                <Avatar src={props.userdata.picture} /> Profile
-            </span>
-        );
+        return <Avatar src={props.userdata.picture} />;
     } else {
-        return <FacebookComponent {...props} />;
+        return <FacebookLogin {...props} />;
     }
 };
 

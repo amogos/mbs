@@ -44,7 +44,7 @@ const MockLogin = (props: Props) => {
     );
 };
 
-const FacebookLogin = (props: Props) => {
+const Login = (props: Props) => {
     return (
         <FacebookLoginComponent
             appId="298690497437467"
@@ -59,3 +59,4 @@ const FacebookLogin = (props: Props) => {
 };
 
 export default MockLogin;
+//export default withStyle(Login, 'login');
