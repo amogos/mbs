@@ -23,4 +23,4 @@ const MainComponent = (props: Props) => {
     }
 };
 
-export default requiresLogin(withStyle(MainComponent, 'main_component'), null);
+export default requiresLogin(withStyle(MainComponent, 'main_component'));

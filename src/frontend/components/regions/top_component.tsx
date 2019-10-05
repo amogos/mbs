@@ -22,4 +22,4 @@ const TopComponent = (props: Props) => {
     return null;
 };
 
-export default requiresLogin(withStyle(TopComponent, 'top_component'), null);
+export default requiresLogin(withStyle(TopComponent, 'top_component'));
