@@ -5,11 +5,14 @@ import SpaceActions from './space_actions';
 import SpaceDescription from './space_description';
 import SpaceStatistics from './space_statistics';
 import Aux, { withStyle } from './../aux_component';
-import AddNewBookComponent from './../../containers/add_new_book_container';
+import AddNewBookComponent from './../books/add_new_book_component';
 
 interface Props {
     item: DataTypes.SpaceType;
     userdata: DataTypes.UserRecordType;
+    languages: DataTypes.LanguageRecordType[];
+    categories: DataTypes.CategoryRecordType[];
+    addBook(book: DataTypes.BookValueType): void;
     onClick: () => void;
     followSpace: (spaceId: number, callback: () => void) => void;
     unfollowSpace: (spaceId: number, callback: () => void) => void;
@@ -53,7 +56,14 @@ const SpaceHolder = (props: Props) => {
 
     const AddNewBookPopup = () => {
         if (!visible) return null;
-        return <AddNewBookComponent spaceId={props.item.id} visible={visible} callback={() => setVisible(false)} />;
+        return (
+            <AddNewBookComponent
+                {...props}
+                spaceId={props.item.id}
+                visible={visible}
+                callback={() => setVisible(false)}
+            />
+        );
     };
 
     const owner = props.item.user.id === props.userdata.id;
