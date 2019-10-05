@@ -14,9 +14,8 @@ interface Props {
 
 const RightComponent = (props: Props) => {
     const loggedIn = props.userdata && props.userdata !== DataTypes.NullUser;
-    const shouldBeVisible = props.page != PageActionConstant.ACTION_GOTO_SPACES;
 
-    if (loggedIn && shouldBeVisible)
+    if (loggedIn)
         return (
             <Aux>
                 POPULAR ON FLIP

@@ -5,8 +5,6 @@ import { Divider } from 'antd';
 import * as DataTypes from './../../../shared/types';
 import * as ActionTypes from './../../../shared/constants/action_constant';
 
-const { PageActionConstant } = ActionTypes.default;
-
 interface Props {
     page: string;
     userdata: DataTypes.UserRecordType;
@@ -14,9 +12,8 @@ interface Props {
 
 const TopComponent = (props: Props) => {
     const loggedIn = props.userdata && props.userdata !== DataTypes.NullUser;
-    const shouldBeVisible = props.page !== PageActionConstant.ACTION_GOTO_SPACES;
 
-    if (loggedIn && shouldBeVisible)
+    if (loggedIn)
         return (
             <Aux>
                 NEW TITLES

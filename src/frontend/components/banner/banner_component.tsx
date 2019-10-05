@@ -38,34 +38,31 @@ const ProfileButton = (props: Props) => {
     );
 };
 
-const BuildCategoryTabsInformation = (categories: DataTypes.CategoryRecordType[], callback: (id: number) => void) => {
+const BuildCategoryTabsInformation = (props: Props) => {
     let categoryTabsContent: TabData[] = [];
     const { CategoryTabsStrings } = Strings.default;
 
-    if (!categories) return categoryTabsContent;
+    if (!props.categories) return categoryTabsContent;
 
-    categoryTabsContent.push({ id: -1, title: CategoryTabsStrings.HOME, callback: callback });
+    categoryTabsContent.push({ id: -1, title: CategoryTabsStrings.HOME, callback: () => props.gotoSpaces() });
 
     categoryTabsContent = categoryTabsContent.concat(
-        categories.slice(1, 11).map(item => {
-            const tab: TabData = { id: item.id, title: item.title, callback: callback };
+        props.categories.slice(1, 11).map(item => {
+            const tab: TabData = {
+                id: item.id,
+                title: item.title,
+                callback: () => props.gotoListBooks([`category=${item.id}`]),
+            };
             return tab;
         }),
     );
 
-    categoryTabsContent.push({ id: -2, title: CategoryTabsStrings.MORE, callback: callback });
+    categoryTabsContent.push({ id: -2, title: CategoryTabsStrings.MORE, callback: () => {} });
 
     return categoryTabsContent;
 };
 
 const BannerComponent = (props: Props) => {
-    function onCategoryTabClicked(tabId: number) {
-        if (tabId > 0) {
-            const filters = [`category=${tabId}`];
-            props.gotoListBooks(filters);
-        }
-    }
-
     class Menu extends React.Component {
         public render() {
             return (
@@ -78,7 +75,6 @@ const BannerComponent = (props: Props) => {
     }
 
     const WrappedMenu = withStyle(Menu, 'banner_menu');
-    const categoryTabsInformation = BuildCategoryTabsInformation(props.categories, onCategoryTabClicked);
     const CategoryTabs = withStyle(Tabs, 'category_tabs');
 
     return (
@@ -88,7 +84,7 @@ const BannerComponent = (props: Props) => {
                 <WrappedMenu />
             </div>
 
-            <CategoryTabs tabs={categoryTabsInformation} />
+            <CategoryTabs tabs={BuildCategoryTabsInformation(props)} />
         </Aux>
     );
 };
