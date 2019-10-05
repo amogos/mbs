@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { List, Avatar } from 'antd';
 import * as DataTypes from '../../../shared/types';
-import RatingComponent from './rating_component';
+import RatingComponent from './rating';
 import Aux, { withStyle } from './../aux_component';
 
 interface Props {

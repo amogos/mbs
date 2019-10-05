@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import * as DataTypes from '../../../shared/types';
 import { Avatar, Divider } from 'antd';
-import BookStateComponent from './book_state_component';
-import BookAvailabilityComponent from './book_availability_component';
-import BookReviewsComponent from './book_reviews_component';
-import BookRatingComponent from './book_rating_component';
+import BookStateComponent from './book_state';
+import BookAvailabilityComponent from './book_availability';
+import BookReviewsComponent from './book_reviews';
+import BookRatingComponent from './book_rating';
 import Aux, { withStyle } from './../aux_component';
 
 interface Props {

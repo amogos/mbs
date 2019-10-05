@@ -1,5 +1,5 @@
 import React from 'react';
-import FacebookLogin from 'react-facebook-login';
+import FacebookLoginComponent from 'react-facebook-login';
 import * as DataTypes from '../../../shared/types';
 import { Button } from 'antd';
 
@@ -26,7 +26,7 @@ const responseFacebook = (response: any, props: Props) => {
 
 const componentClicked = () => {};
 
-const FacebookMockComponent = (props: Props) => {
+const MockLogin = (props: Props) => {
     return (
         <Button
             onClick={() => {
@@ -44,9 +44,9 @@ const FacebookMockComponent = (props: Props) => {
     );
 };
 
-const FacebookComponent = (props: Props) => {
+const FacebookLogin = (props: Props) => {
     return (
-        <FacebookLogin
+        <FacebookLoginComponent
             appId="298690497437467"
             autoLoad={true}
             fields="name,email,picture"
@@ -58,4 +58,4 @@ const FacebookComponent = (props: Props) => {
     );
 };
 
-export default FacebookMockComponent;
+export default MockLogin;

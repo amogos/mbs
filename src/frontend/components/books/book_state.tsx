@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import * as DataTypes from '../../../shared/types';
 import { Icon, Button, DatePicker } from 'antd';
-import RentalSettingsComponent from './rental_settings_component';
-import RatingComponent from '../notifications/rating_component';
+import RentalSettingsComponent from './rental_settings';
+import RatingComponent from '../notifications/rating';
 import moment from 'moment';
-import Aux from './../aux_component';
-import * as Strings from './../../../shared/constants/string_constant';
+import Aux from '../aux_component';
+import * as Strings from '../../../shared/constants/string_constant';
 
 const { BookStateStrings } = Strings.default;
 

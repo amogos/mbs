@@ -1,6 +1,6 @@
 import React from 'react';
 import * as DataTypes from '../../../shared/types';
-import FacebookComponent from './../social/facebook_component';
+import FacebookComponent from './facebook_login';
 import { Avatar } from 'antd';
 
 interface Props {

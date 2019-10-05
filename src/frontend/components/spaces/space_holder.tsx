@@ -5,7 +5,7 @@ import SpaceActions from './space_actions';
 import SpaceDescription from './space_description';
 import SpaceStatistics from './space_statistics';
 import Aux, { withStyle } from './../aux_component';
-import AddNewBookComponent from './../books/add_new_book_component';
+import AddNewBookComponent from '../books/add_new_book';
 
 interface Props {
     item: DataTypes.SpaceType;

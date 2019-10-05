@@ -2,10 +2,9 @@ import React from 'react';
 import SocialLoginContainer from '../../containers/social_login_container';
 import { Button, Popover } from 'antd';
 import * as DataTypes from '../../../shared/types';
-import * as Strings from '../../../shared/constants/string_constant';
 import Aux, { withStyle } from '../aux_component';
 import Logo from '../banner/logo';
-import Tabs, { TabData } from '../banner/tabs';
+import CategoryTabs from '../banner/category_tabs';
 import NotificationsContainer from '../../containers/notifications_component_container';
 
 interface Props {
@@ -38,30 +37,6 @@ const ProfileButton = (props: Props) => {
     );
 };
 
-const BuildCategoryTabsInformation = (props: Props) => {
-    let categoryTabsContent: TabData[] = [];
-    const { CategoryTabsStrings } = Strings.default;
-
-    if (!props.categories) return categoryTabsContent;
-
-    categoryTabsContent.push({ id: -1, title: CategoryTabsStrings.HOME, callback: () => props.gotoSpaces() });
-
-    categoryTabsContent = categoryTabsContent.concat(
-        props.categories.slice(1, 11).map(item => {
-            const tab: TabData = {
-                id: item.id,
-                title: item.title,
-                callback: () => props.gotoListBooks([`category=${item.id}`]),
-            };
-            return tab;
-        }),
-    );
-
-    categoryTabsContent.push({ id: -2, title: CategoryTabsStrings.MORE, callback: () => {} });
-
-    return categoryTabsContent;
-};
-
 const BannerComponent = (props: Props) => {
     class Menu extends React.Component {
         public render() {
@@ -75,7 +50,6 @@ const BannerComponent = (props: Props) => {
     }
 
     const WrappedMenu = withStyle(Menu, 'banner_menu');
-    const CategoryTabs = withStyle(Tabs, 'category_tabs');
 
     return (
         <Aux>
@@ -84,7 +58,7 @@ const BannerComponent = (props: Props) => {
                 <WrappedMenu />
             </div>
 
-            <CategoryTabs tabs={BuildCategoryTabsInformation(props)} />
+            <CategoryTabs {...props} />
         </Aux>
     );
 };

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button } from 'antd';
+import Aux from '../aux_component';
 
 export interface TabData {
     id: number;
@@ -12,7 +13,13 @@ interface Props {
 }
 
 const Tabs = (props: Props) => {
-    return props.tabs.map(item => <Button onClick={() => item.callback(item.id)}>{item.title.toUpperCase()}</Button>);
+    return (
+        <Aux>
+            {props.tabs.map(item => (
+                <Button onClick={() => item.callback(item.id)}>{item.title.toUpperCase()}</Button>
+            ))}
+        </Aux>
+    );
 };
 
 export default Tabs;
