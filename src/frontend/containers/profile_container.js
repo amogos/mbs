@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
-import SocialLoginComponent from '../components/social/social_login_component';
-import { socialAction } from '../actions/';
+import ProfileComponent from '../components/social/profile_component';
+import { socialAction } from '../actions';
 
 function mapStateToProps(state) {
     return {
@@ -18,4 +18,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
     mapStateToProps,
     mapDispatchToProps,
-)(SocialLoginComponent);
+)(ProfileComponent);

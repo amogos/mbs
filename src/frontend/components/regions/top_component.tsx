@@ -3,7 +3,6 @@ import { withStyle, requiresLogin } from '../aux_component';
 import Aux from './../aux_component';
 import { Divider } from 'antd';
 import * as DataTypes from './../../../shared/types';
-import * as ActionTypes from './../../../shared/constants/action_constant';
 
 interface Props {
     page: string;
@@ -23,4 +22,4 @@ const TopComponent = (props: Props) => {
     return null;
 };
 
-export default requiresLogin(withStyle(TopComponent, 'top_component'));
+export default requiresLogin(withStyle(TopComponent, 'top_component'), null);

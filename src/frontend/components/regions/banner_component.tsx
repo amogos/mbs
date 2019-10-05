@@ -1,5 +1,5 @@
 import React from 'react';
-import SocialLoginContainer from '../../containers/social_login_container';
+import SocialLoginContainer from '../../containers/profile_container';
 import { Button, Popover } from 'antd';
 import * as DataTypes from '../../../shared/types';
 import Aux, { withStyle } from '../aux_component';

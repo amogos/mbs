@@ -15,10 +15,11 @@ export function withStyle(WrappedComponent: any, classname: string) {
     };
 }
 
-export function requiresLogin(WrappedComponent: any) {
+export function requiresLogin(WrappedComponent: any, FallbackComponent?: any) {
     return class extends React.Component<any, any> {
         public render() {
-            return this.props.userdata ? <WrappedComponent {...this.props} /> : null;
+            let Fallback = FallbackComponent ? <FallbackComponent {...this.props} /> : null;
+            return this.props.userdata ? <WrappedComponent {...this.props} /> : Fallback;
         }
     };
 }

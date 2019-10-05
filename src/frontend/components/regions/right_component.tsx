@@ -41,4 +41,4 @@ const RightComponent = (props: Props) => {
     return null;
 };
 
-export default requiresLogin(withStyle(RightComponent, 'right_component'));
+export default requiresLogin(withStyle(RightComponent, 'right_component'), null);
