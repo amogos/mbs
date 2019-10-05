@@ -1,5 +1,5 @@
 import React from 'react';
-import { withStyle } from '../aux_component';
+import { withStyle, requiresLogin } from '../aux_component';
 import Aux from './../aux_component';
 import { Divider } from 'antd';
 import * as DataTypes from './../../../shared/types';
@@ -44,4 +44,4 @@ const RightComponent = (props: Props) => {
     return null;
 };
 
-export default withStyle(RightComponent, 'right_component');
+export default requiresLogin(withStyle(RightComponent, 'right_component'));

@@ -3,7 +3,7 @@ import SocialLoginContainer from '../../containers/social_login_container';
 import { Button, Popover } from 'antd';
 import * as DataTypes from '../../../shared/types';
 import * as Strings from '../../../shared/constants/string_constant';
-import Aux, { withStyle } from './../aux_component';
+import Aux, { withStyle, requiresLogin } from './../aux_component';
 import Logo from './logo';
 import Tabs, { TabData } from './tabs';
 import NotificationsContainer from '../../containers/notifications_component_container';
