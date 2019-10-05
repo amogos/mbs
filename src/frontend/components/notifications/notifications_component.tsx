@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { List, Avatar, Rate } from 'antd';
+import { List, Avatar } from 'antd';
 import * as DataTypes from '../../../shared/types';
 import RatingComponent from './rating_component';
-import Aux from './../aux_component';
+import Aux, { withStyle } from './../aux_component';
 
 interface Props {
     userdata: DataTypes.UserRecordType;
@@ -36,7 +36,7 @@ interface Selection {
     user: DataTypes.UserRecordType;
 }
 
-const NotificationComponent = (props: Props) => {
+const NotificationsComponent = (props: Props) => {
     const emptyState: Notification[] = [];
 
     const emptySelection: Selection = {
@@ -163,4 +163,4 @@ const NotificationComponent = (props: Props) => {
     );
 };
 
-export default NotificationComponent;
+export default withStyle(NotificationsComponent, 'notification_component');

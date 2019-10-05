@@ -1,11 +1,12 @@
 import React from 'react';
 import SocialLoginContainer from '../../containers/social_login_container';
-import { Button } from 'antd';
+import { Button, Popover } from 'antd';
 import * as DataTypes from '../../../shared/types';
 import * as Strings from '../../../shared/constants/string_constant';
 import Aux, { withStyle } from './../aux_component';
 import Logo from './logo';
 import Tabs, { TabData } from './tabs';
+import NotificationsContainer from '../../containers/notifications_component_container';
 
 interface Props {
     gotoListBooks(filters: string[]): void;
@@ -19,13 +20,13 @@ interface Props {
 
 const NotificationsButton = (props: Props) => {
     if (!props.userdata) return null;
-    const clickFunction = () => {
-        props.gotoNotifications();
-    };
     return (
-        <Button type="link" onClick={clickFunction}>
-            <img src="https://gw.alipayobjects.com/zos/rmsportal/ohOEPSYdDTNnyMbGuyLb.svg" alt="start" /> Notifications
-        </Button>
+        <Popover placement="bottom" content={<NotificationsContainer />} trigger="click">
+            <Button type="link">
+                <img src="https://gw.alipayobjects.com/zos/rmsportal/ohOEPSYdDTNnyMbGuyLb.svg" alt="start" />{' '}
+                Notifications
+            </Button>
+        </Popover>
     );
 };
 
@@ -86,7 +87,7 @@ const BannerComponent = (props: Props) => {
                 <Logo />
                 <WrappedMenu />
             </div>
-            
+
             <CategoryTabs tabs={categoryTabsInformation} />
         </Aux>
     );
