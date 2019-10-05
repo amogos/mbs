@@ -11,18 +11,15 @@ interface Props {
 }
 
 const TopComponent = (props: Props) => {
-    const loggedIn = props.userdata && props.userdata !== DataTypes.NullUser;
-
-    if (loggedIn)
-        return (
-            <Aux>
-                NEW TITLES
-                <Divider />
-                <p> text </p>
-                <p> text </p>
-                <p> text </p>
-            </Aux>
-        );
+    return (
+        <Aux>
+            NEW TITLES
+            <Divider />
+            <p> text </p>
+            <p> text </p>
+            <p> text </p>
+        </Aux>
+    );
     return null;
 };
 

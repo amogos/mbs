@@ -13,34 +13,31 @@ interface Props {
 }
 
 const RightComponent = (props: Props) => {
-    const loggedIn = props.userdata && props.userdata !== DataTypes.NullUser;
-
-    if (loggedIn)
-        return (
-            <Aux>
-                POPULAR ON FLIP
-                <Divider />
-                <p> text </p>
-                <p> text </p>
-                <p> text </p>
-                <p> text </p>
-                <p> text </p>
-                <p> text </p>
-                <p> text </p>
-                <p> text </p>
-                <p> text </p>
-                <p> text </p>
-                <p> text </p>
-                <p> </p>
-                READING LIST
-                <Divider />
-                <p> text </p>
-                <p> text </p>
-                <p> text </p>
-                <p> text </p>
-                <p> text </p>
-            </Aux>
-        );
+    return (
+        <Aux>
+            POPULAR ON FLIP
+            <Divider />
+            <p> text </p>
+            <p> text </p>
+            <p> text </p>
+            <p> text </p>
+            <p> text </p>
+            <p> text </p>
+            <p> text </p>
+            <p> text </p>
+            <p> text </p>
+            <p> text </p>
+            <p> text </p>
+            <p> </p>
+            READING LIST
+            <Divider />
+            <p> text </p>
+            <p> text </p>
+            <p> text </p>
+            <p> text </p>
+            <p> text </p>
+        </Aux>
+    );
     return null;
 };
 

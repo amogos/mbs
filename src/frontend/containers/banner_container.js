@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { pageAction } from '../actions/';
-import BannerComponent from '../components/banner/banner_component';
+import BannerComponent from '../components/regions/banner_component';
 
 function mapStateToProps(state) {
     return {
