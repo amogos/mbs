@@ -12,11 +12,6 @@ const { PageActionConstant } = ActionConstants.default;
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default function pageReducer(state: any, action: any): any {
     switch (action.type) {
-        case PageActionConstant.ACTION_GOTO_NOTIFICATIONS:
-            return Object.assign({}, state, {
-                page: PageActionConstant.ACTION_GOTO_NOTIFICATIONS,
-                action: PageActionConstant.ACTION_GOTO_NOTIFICATIONS,
-            });
         case PageActionConstant.ACTION_GOTO_SPACES:
             return Object.assign({}, state, {
                 page: ActionConstants.default.PageActionConstant.ACTION_GOTO_SPACES,

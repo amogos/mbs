@@ -10,8 +10,6 @@ class PageAction {
 
     public listBooks = () => ({ type: ActionTypes.default.PageActionConstant.ACTION_GOTO_LIST_BOOKS });
 
-    public gotoNotifications = () => ({ type: ActionTypes.default.PageActionConstant.ACTION_GOTO_NOTIFICATIONS });
-
     public refreshState = (append: any) => ({
         type: ActionTypes.default.PageActionConstant.ACTION_REFRESH_STATE,
         append,
