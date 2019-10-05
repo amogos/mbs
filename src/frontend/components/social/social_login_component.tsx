@@ -1,10 +1,11 @@
 import React from 'react';
 import * as DataTypes from '../../../shared/types';
-import FacebookContainer from '../../containers/facebook_container';
+import FacebookComponent from './../social/facebook_component';
 import { Avatar } from 'antd';
 
 interface Props {
     userdata: DataTypes.UserRecordType;
+    loginUser(userInfo: DataTypes.UserValueType): void;
 }
 
 const SocialLoginComponent = (props: Props) => {
@@ -16,7 +17,7 @@ const SocialLoginComponent = (props: Props) => {
             </span>
         );
     } else {
-        return <FacebookContainer />;
+        return <FacebookComponent {...props} />;
     }
 };
 

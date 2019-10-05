@@ -1,7 +1,6 @@
 import { connect } from 'react-redux';
-import * as Actions from '../actions/slices/page_actions';
-import { bindActionCreators } from 'redux';
 import SocialLoginComponent from '../components/social/social_login_component';
+import { socialAction } from '../actions/';
 
 function mapStateToProps(state) {
     return {
@@ -9,9 +8,12 @@ function mapStateToProps(state) {
     };
 }
 
-const mapDispatchToProps = dispatch => ({
-    actions: bindActionCreators(Actions, dispatch),
-});
+const mapDispatchToProps = dispatch => {
+    return {
+        loginUser: data => dispatch(socialAction.loginUser(data)),
+        dispatch,
+    };
+};
 
 export default connect(
     mapStateToProps,
