@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { pageAction } from '../actions/';
+import { pageAction, socialAction } from '../actions/';
 import BannerComponent from '../components/regions/banner_component';
 
 function mapStateToProps(state) {
@@ -17,6 +17,7 @@ const mapDispatchToProps = dispatch => {
         gotoSpaces: () => dispatch(pageAction.gotoSpaces()),
         gotoNotifications: () => dispatch(pageAction.gotoNotifications()),
         addBook: data => dispatch(pageAction.addBook(data)),
+        loginUser: user => dispatch(socialAction.loginUser(user)),
         dispatch,
     };
 };

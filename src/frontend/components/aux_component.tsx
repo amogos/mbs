@@ -19,7 +19,10 @@ export function requiresLogin(WrappedComponent: any, FallbackComponent?: any) {
     return class extends React.Component<any, any> {
         public render() {
             let fallback = FallbackComponent ? <FallbackComponent {...this.props} /> : null;
-            return this.props.userdata ? <WrappedComponent {...this.props} /> : fallback;
+            if (this.props.userdata) {
+                return <WrappedComponent {...this.props} />;
+            }
+            return fallback;
         }
     };
 }
