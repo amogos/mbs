@@ -2,6 +2,7 @@ import React from 'react';
 import FacebookLoginComponent from 'react-facebook-login';
 import * as DataTypes from '../../../shared/types';
 import { Button } from 'antd';
+import { withStyle } from './../aux_component';
 
 interface Props {
     loginUser(userInfo: DataTypes.UserValueType): void;
@@ -58,5 +59,5 @@ const Login = (props: Props) => {
     );
 };
 
-export default MockLogin;
+export default withStyle(MockLogin, 'login');
 //export default withStyle(Login, 'login');

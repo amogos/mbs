@@ -41,13 +41,10 @@ const ProfileButton = (props: Props) => {
 const BannerComponent = (props: Props) => {
     class Menu extends React.Component {
         public render() {
-            let WrappedNotificationsButton = requiresLogin(NotificationsButton);
-            let WrappedProfileButton = requiresLogin(ProfileButton, LoginComponent);
-
             return (
                 <Aux>
-                    <WrappedNotificationsButton {...props} />
-                    <WrappedProfileButton {...props} />
+                    <NotificationsButton {...props} />
+                    <ProfileButton {...props} />
                 </Aux>
             );
         }
@@ -67,4 +64,4 @@ const BannerComponent = (props: Props) => {
     );
 };
 
-export default withStyle(BannerComponent, 'banner_component');
+export default requiresLogin(withStyle(BannerComponent, 'banner_component'), LoginComponent);

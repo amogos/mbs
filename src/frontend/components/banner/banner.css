@@ -15,15 +15,6 @@
     flex-direction: row;
 }
 
-.banner_menu_login {
-    background-color: white;
-    margin-right: 4%;
-    align-content: center;
-    position: absolute;
-    top: 30%;
-    left: 48%;
-}
-
 .category_tabs {
     margin-top: 0%;
     height: 1%;

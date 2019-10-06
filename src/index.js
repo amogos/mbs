@@ -8,6 +8,7 @@ import './frontend/components/regions/regions.css';
 import './frontend/components/banner/banner.css';
 import './frontend/components/books/books.css';
 import './frontend/components/spaces/spaces.css';
+import './frontend/components/social/social.css';
 
 import { Provider } from 'react-redux';
 import Store from './frontend/store';
