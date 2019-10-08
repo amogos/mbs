@@ -1,5 +1,11 @@
-import { createStore, applyMiddleware } from 'redux';
+import { createStore } from 'redux';
 import rootReducer from './index';
-import sessionCacher, { sessionState } from './middleware/session_cacher';
 
-export default createStore(rootReducer, sessionState(), applyMiddleware(sessionCacher));
+const sessionState = sessionStorage.getItem('state');
+let store = createStore(rootReducer, sessionState ? JSON.parse(sessionState) : {});
+
+store.subscribe(() => {
+    sessionStorage.setItem('state', JSON.stringify(store.getState()));
+});
+
+export default store;

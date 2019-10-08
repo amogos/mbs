@@ -16,7 +16,7 @@ import PageNotFound from './frontend/components/errors/page_not_found';
 
 import Aux from './frontend/components/aux_component';
 
-const Pages = ['home'];
+const Pages = ['spaces', 'books'];
 
 const App = ownProps => {
     const page = ownProps.match.params.id;

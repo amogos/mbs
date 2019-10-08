@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 import Tabs, { TabData } from '../banner/tabs';
 import * as DataTypes from '../../../shared/types';
 import * as Strings from '../../../shared/constants/string_constant';
@@ -8,6 +9,7 @@ interface Props {
     gotoSpaces(): void;
     gotoListBooks(filters: string[]): void;
     categories: DataTypes.CategoryRecordType[];
+    history: any;
 }
 
 const BuildCategoryTabsInformation = (props: Props) => {
@@ -16,14 +18,24 @@ const BuildCategoryTabsInformation = (props: Props) => {
 
     if (!props.categories) return categoryTabsContent;
 
-    categoryTabsContent.push({ id: -1, title: CategoryTabsStrings.HOME, callback: () => props.gotoSpaces() });
+    categoryTabsContent.push({
+        id: -1,
+        title: CategoryTabsStrings.HOME,
+        callback: () => {
+            props.gotoSpaces();
+            props.history.push('/spaces');
+        },
+    });
 
     categoryTabsContent = categoryTabsContent.concat(
         props.categories.slice(1, 11).map(item => {
             const tab: TabData = {
                 id: item.id,
                 title: item.title,
-                callback: () => props.gotoListBooks([`category=${item.id}`]),
+                callback: () => {
+                    props.gotoListBooks([`category=${item.id}`]);
+                    props.history.push(`/books/${item.id}`);
+                },
             };
             return tab;
         }),
@@ -39,4 +51,4 @@ const CategoryTabs = (props: Props) => {
     return <Tabs tabs={tabs} />;
 };
 
-export default withStyle(CategoryTabs, 'category_tabs');
+export default withRouter(withStyle(CategoryTabs, 'category_tabs'));
