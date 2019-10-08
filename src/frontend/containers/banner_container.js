@@ -7,7 +7,7 @@ function mapStateToProps(state, ownProps) {
         userdata: state.mainReducer.userdata,
         categories: state.mainReducer.categories,
         languages: state.mainReducer.languages,
-        urlparams: ownProps,
+        urlparams: ownProps.match.params,
     };
 }
 

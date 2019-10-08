@@ -22,23 +22,31 @@ import PageNotFound from './frontend/components/errors/page_not_found';
 
 import Aux from './frontend/components/aux_component';
 
-const App = urlParms => {
-    return (
-        <Aux>
-            <BannerContainer {...urlParms} />
-            <MainContainer {...urlParms} />
-            <RightContainer {...urlParms} />
-            <TopContainer {...urlParms} />
-        </Aux>
-    );
+const Pages = ['home'];
+
+const App = ownProps => {
+    const page = ownProps.match.params.id;
+
+    if (!page || Pages.includes(page)) {
+        return (
+            <Aux>
+                <BannerContainer {...ownProps} />
+                <MainContainer {...ownProps} />
+                <RightContainer {...ownProps} />
+                <TopContainer {...ownProps} />
+            </Aux>
+        );
+    } else {
+        return <PageNotFound />;
+    }
 };
 
 ReactDom.render(
     <Provider store={Store}>
         <Router>
             <Switch>
-                <Route exact path="/:id" component={App} />
-                <Route component={PageNotFound} />
+                <Route exact path="/" component={App} />
+                <Route path="/:id" component={App} />
             </Switch>
         </Router>
     </Provider>,
