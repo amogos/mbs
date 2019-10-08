@@ -3,7 +3,7 @@ import React from 'react';
 import ReactDom from 'react-dom';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import Store from './frontend/store';
+import Store from './frontend/reducers/store';
 
 import 'antd/dist/antd.css';
 import './main.css';

@@ -2,7 +2,7 @@ import * as ActionConstants from '../../../shared/constants/action_constant';
 import * as DataTypes from '../../../shared/types';
 import { socialAction, pageAction } from './../../actions';
 import databseInstance from './../../../backend/database_instance';
-import Store from '../../store';
+import Store from '../store';
 import { handleError } from './../main_reducer';
 
 const { SocialActionConstant } = ActionConstants.default;
@@ -36,6 +36,7 @@ export default function socialReducer(state: any, action: any): any {
             databseInstance.getCategories(handleError).then((result: DataTypes.CategoryRecordType[]) => {
                 Store.dispatch(pageAction.refreshState({ categories: result }));
             });
+
             return Object.assign({}, state, {
                 userdata: action.userdata,
             });

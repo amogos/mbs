@@ -1,7 +1,7 @@
 import * as ActionConstants from '../../../shared/constants/action_constant';
 import { pageAction } from '../../actions';
 import databseInstance from '../../../backend/database_instance';
-import Store from '../../store';
+import Store from '../store';
 import Strings from '../../../shared/constants/string_constant';
 import { message } from 'antd';
 import { handleError } from './../main_reducer';

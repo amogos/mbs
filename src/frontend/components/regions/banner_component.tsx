@@ -1,5 +1,4 @@
 import React from 'react';
-import ProfileContainer from '../../containers/profile_container';
 import { Button, Popover } from 'antd';
 import * as DataTypes from '../../../shared/types';
 import Aux, { withStyle, requiresLogin } from '../aux_component';
@@ -7,6 +6,7 @@ import Logo from '../banner/logo';
 import CategoryTabs from '../banner/category_tabs';
 import NotificationsContainer from '../../containers/notifications_component_container';
 import LoginComponent from './../social/facebook_login';
+import ProfileComponent from '../../components/social/profile_component';
 
 interface Props {
     gotoListBooks(filters: string[]): void;
@@ -34,7 +34,7 @@ const NotificationsButton = (props: Props) => {
 const ProfileButton = (props: Props) => {
     return (
         <Button type="link">
-            <ProfileContainer />
+            <ProfileComponent {...props} />
         </Button>
     );
 };
