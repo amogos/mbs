@@ -5,7 +5,6 @@ import notificationReducer from './slices/notification_reducer';
 import pageReducer from './slices/page_reducer';
 import socialReducer from './slices/social_reducer';
 import spaceReducer from './slices/space_reducer';
-import { sessionState } from './middleware/session_cacher';
 
 export function handleError(resultCode: number): void {
     message.error(Strings.MYBOOKSHELVE_OPERATION_FAILED + ' (' + resultCode + ')');
@@ -16,7 +15,7 @@ export function handleSuccess(): void {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export default function mainReducer(state = sessionState() as any, action: any): any {
+export default function mainReducer(state = {}, action: any): any {
     let newState = bookReducer(state, action);
     if (newState !== null) return newState;
 

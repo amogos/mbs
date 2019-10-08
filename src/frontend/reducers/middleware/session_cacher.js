@@ -24,6 +24,20 @@ const sessionCacher = store => next => action => {
         sessionState.mainReducer = { ...sessionState.mainReducer, languages: reduxState.mainReducer.languages };
         dirty = true;
     }
+    if (!sessionState.mainReducer.spaces && reduxState.mainReducer.spaces) {
+        sessionState.mainReducer = { ...sessionState.mainReducer, spaces: reduxState.mainReducer.spaces };
+        dirty = true;
+    }
+
+    if (!sessionState.mainReducer.queueArray && reduxState.mainReducer.queueArray) {
+        sessionState.mainReducer = { ...sessionState.mainReducer, queueArray: reduxState.mainReducer.queueArray };
+        dirty = true;
+    }
+
+    if (!sessionState.mainReducer.booksArray && reduxState.mainReducer.booksArray) {
+        sessionState.mainReducer = { ...sessionState.mainReducer, booksArray: reduxState.mainReducer.booksArray };
+        dirty = true;
+    }
 
     if (dirty) {
         sessionStorage.setItem('state', JSON.stringify(sessionState));
