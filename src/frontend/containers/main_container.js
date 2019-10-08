@@ -5,7 +5,6 @@ function mapStateToProps(state, ownProps) {
     return {
         page: state.mainReducer.page,
         userdata: state.mainReducer.userdata,
-        urlparams: ownProps.match.params,
     };
 }
 
