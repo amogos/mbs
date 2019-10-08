@@ -8,6 +8,7 @@ import * as DataTypes from './../../../shared/types';
 interface Props {
     page: string;
     userdata: DataTypes.UserRecordType;
+    urlparams: any;
 }
 
 const { PageActionConstant } = ActionTypes.default;

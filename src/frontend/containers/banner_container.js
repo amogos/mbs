@@ -2,12 +2,12 @@ import { connect } from 'react-redux';
 import { pageAction, socialAction } from '../actions/';
 import BannerComponent from '../components/regions/banner_component';
 
-function mapStateToProps(state) {
+function mapStateToProps(state, ownProps) {
     return {
         userdata: state.mainReducer.userdata,
         categories: state.mainReducer.categories,
         languages: state.mainReducer.languages,
-        page: state.mainReducer.page,
+        urlparams: ownProps,
     };
 }
 

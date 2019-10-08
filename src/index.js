@@ -22,13 +22,13 @@ import PageNotFound from './frontend/components/errors/page_not_found';
 
 import Aux from './frontend/components/aux_component';
 
-const App = () => {
+const App = urlParms => {
     return (
         <Aux>
-            <BannerContainer />
-            <MainContainer />
-            <RightContainer />
-            <TopContainer />
+            <BannerContainer {...urlParms} />
+            <MainContainer {...urlParms} />
+            <RightContainer {...urlParms} />
+            <TopContainer {...urlParms} />
         </Aux>
     );
 };
@@ -37,7 +37,7 @@ ReactDom.render(
     <Provider store={Store}>
         <Router>
             <Switch>
-                <Route exact path="/" component={App} />
+                <Route exact path="/:id" component={App} />
                 <Route component={PageNotFound} />
             </Switch>
         </Router>
