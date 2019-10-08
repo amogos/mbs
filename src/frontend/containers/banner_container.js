@@ -1,14 +1,12 @@
 import { connect } from 'react-redux';
 import { pageAction, socialAction } from '../actions/';
 import BannerComponent from '../components/regions/banner_component';
-import { sessionState } from './../reducers/middleware/session_cacher';
 
 function mapStateToProps(state, ownProps) {
-    const cachedState = sessionState();
     return {
-        userdata: cachedState.mainReducer.userdata,
-        categories: cachedState.mainReducer.categories,
-        languages: cachedState.mainReducer.languages,
+        userdata: state.mainReducer.userdata,
+        categories: state.mainReducer.categories,
+        languages: state.mainReducer.languages,
         urlparams: ownProps.match.params,
     };
 }
