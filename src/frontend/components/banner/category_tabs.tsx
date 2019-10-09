@@ -34,7 +34,7 @@ const BuildCategoryTabsInformation = (props: Props) => {
                 title: item.title,
                 callback: () => {
                     props.gotoListBooks([`category=${item.id}`]);
-                    props.history.push(`/books/${item.id}`);
+                    props.history.push(`/books?cid=${item.id}`);
                 },
             };
             return tab;

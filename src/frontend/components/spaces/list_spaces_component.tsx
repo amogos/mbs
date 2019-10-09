@@ -15,8 +15,6 @@ interface Props {
 }
 
 const ListSpacesComponent = (props: Props) => {
-    const loggedIn = props.userdata && props.userdata != DataTypes.NullUser;
-    if (!loggedIn) return null;
     if (!props.spaces || !props.spaces.userSpaces || !props.spaces.otherSpaces) return null;
 
     const onSpaceClicked = (spaceId: number) => {
