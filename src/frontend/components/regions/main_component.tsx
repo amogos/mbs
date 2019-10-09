@@ -7,14 +7,14 @@ import * as DataTypes from './../../../shared/types';
 interface Props {
     page: string;
     userdata: DataTypes.UserRecordType;
-    match: any;
+    urlparams: any;
 }
 
 const MainComponent = (props: Props) => {
     window.scrollTo(0, 0);
-    if (props.match.params.id === 'books') {
+    if (props.urlparams.id === 'books') {
         return <ListBooksContainer />;
-    } else if (props.match.params.id === 'spaces') {
+    } else if (props.urlparams.id === 'spaces') {
         return <SpaceContainer />;
     } else {
         return <SpaceContainer />;

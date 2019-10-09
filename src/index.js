@@ -1,7 +1,7 @@
 // src/index.js
 import React from 'react';
 import ReactDom from 'react-dom';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, useLocation } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import Store from './frontend/reducers/store';
 
@@ -19,15 +19,17 @@ import Aux from './frontend/components/aux_component';
 const Pages = ['spaces', 'books'];
 
 const App = ownProps => {
+    const query = Object.fromEntries(new URLSearchParams(useLocation().search));
     const page = ownProps.match.params.id;
+    const urlparams = { urlparams: { ...ownProps.match.params, query } };
 
     if (!page || Pages.includes(page)) {
         return (
             <Aux>
-                <BannerContainer {...ownProps} />
-                <MainContainer {...ownProps} />
-                <RightContainer {...ownProps} />
-                <TopContainer {...ownProps} />
+                <BannerContainer {...urlparams} />
+                <MainContainer {...urlparams} />
+                <RightContainer {...urlparams} />
+                <TopContainer {...urlparams} />
             </Aux>
         );
     } else {
