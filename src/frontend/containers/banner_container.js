@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import { pageAction, socialAction } from '../actions/';
 import BannerComponent from '../components/regions/banner_component';
 
-function mapStateToProps(state, ownProps) {
+function mapStateToProps(state) {
     return {
         userdata: state.mainReducer.userdata,
         categories: state.mainReducer.categories,
