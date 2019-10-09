@@ -5,8 +5,8 @@ import { Divider } from 'antd';
 import * as DataTypes from './../../../shared/types';
 
 interface Props {
-    page: string;
     userdata: DataTypes.UserRecordType;
+    urlparams: any;
 }
 
 const TopComponent = (props: Props) => {

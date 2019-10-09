@@ -8,8 +8,8 @@ import * as ActionTypes from './../../../shared/constants/action_constant';
 const { PageActionConstant } = ActionTypes.default;
 
 interface Props {
-    page: string;
     userdata: DataTypes.UserRecordType;
+    urlparams: any;
 }
 
 const RightComponent = (props: Props) => {

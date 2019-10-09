@@ -5,13 +5,13 @@ import { withStyle, requiresLogin } from '../aux_component';
 import * as DataTypes from './../../../shared/types';
 
 interface Props {
-    page: string;
     userdata: DataTypes.UserRecordType;
     urlparams: any;
 }
 
 const MainComponent = (props: Props) => {
     window.scrollTo(0, 0);
+
     if (props.urlparams.id === 'books') {
         return <ListBooksContainer />;
     } else if (props.urlparams.id === 'spaces') {
