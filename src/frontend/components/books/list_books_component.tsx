@@ -10,7 +10,7 @@ import Aux, { withStyle } from './../aux_component';
 interface Props {
     page: string;
     action: string;
-    booksArray: DataTypes.BookRecordType[];
+    books: { filters: string; data: DataTypes.BookRecordType[] };
     userdata: DataTypes.UserRecordType;
     bookChangingId: number;
     queueArray: DataTypes.QueueRecordType[];
@@ -28,7 +28,7 @@ interface Props {
 const ListBooksComponent = (props: Props) => {
     const [state, setState] = useState({});
 
-    if (!props.booksArray || !props.queueArray) return null;
+    if (!props.books || !props.queueArray) return null;
 
     interface ReviewState {
         reviews: DataTypes.BookReviewRecordType[];
@@ -124,7 +124,7 @@ const ListBooksComponent = (props: Props) => {
         );
     };
 
-    return props.booksArray.map(item => BookComponent(item));
+    return props.books.data.map(item => BookComponent(item));
 };
 
 export default withStyle(ListBooksComponent, 'list_book_component');

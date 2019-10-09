@@ -22,7 +22,12 @@ export default function pageReducer(state: any, action: any): any {
             databseInstance.getQueue(state.userdata.id, handleError).then((result1: DataTypes.QueueRecordType[]) => {
                 databseInstance.getBooks(action.filters, handleError).then(result2 => {
                     setTimeout(progressSpinner, 0);
-                    Store.dispatch(pageAction.refreshState({ queueArray: result1, booksArray: result2 }));
+                    Store.dispatch(
+                        pageAction.refreshState({
+                            queueArray: result1,
+                            books: { filters: action.filters, data: result2 },
+                        }),
+                    );
                 });
             });
 
