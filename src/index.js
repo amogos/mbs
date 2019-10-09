@@ -18,10 +18,10 @@ import Aux from './frontend/components/aux_component';
 
 const Pages = ['spaces', 'books'];
 
-const App = ownProps => {
+const App = routeParams => {
     const query = Object.fromEntries(new URLSearchParams(useLocation().search));
-    const page = ownProps.match.params.id;
-    const urlparams = { urlparams: { ...ownProps.match.params, query } };
+    const page = routeParams.match.params.id;
+    const urlparams = { urlparams: { ...routeParams.match.params, query } };
 
     if (!page || Pages.includes(page)) {
         return (
@@ -32,9 +32,9 @@ const App = ownProps => {
                 <TopContainer {...urlparams} />
             </Aux>
         );
-    } else {
-        return <PageNotFound />;
     }
+
+    return <PageNotFound />;
 };
 
 ReactDom.render(
