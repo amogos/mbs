@@ -13,7 +13,6 @@ interface Props {
     userdata: DataTypes.UserRecordType;
     bookChangingId: number;
     queueArray: DataTypes.QueueRecordType[];
-    gotoListBooks(filters: string[]): void;
     deleteBook(bookId: number): void;
     askBook(bookId: number, ownerId: number): void;
     returnBook(bookId: number): void;
@@ -22,7 +21,6 @@ interface Props {
         bookId: number,
         callback: (bookId: number, reviews: DataTypes.BookReviewRecordType[]) => void,
     ): void;
-
     urlparams: { id: string; query: { category: number } };
 }
 

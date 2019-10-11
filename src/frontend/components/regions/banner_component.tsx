@@ -9,7 +9,6 @@ import LoginComponent from './../social/facebook_login';
 import ProfileComponent from '../../components/social/profile_component';
 
 interface Props {
-    gotoListBooks(filters: string[]): void;
     gotoSpaces(): void;
     gotoNotifications(): void;
     loginUser(userInfo: DataTypes.UserValueType): void;

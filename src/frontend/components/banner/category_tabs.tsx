@@ -7,7 +7,6 @@ import { withStyle } from '../aux_component';
 
 interface Props {
     gotoSpaces(): void;
-    gotoListBooks(filters: string[]): void;
     categories: DataTypes.CategoryRecordType[];
     history: any;
 }
@@ -33,7 +32,6 @@ const BuildCategoryTabsInformation = (props: Props) => {
                 id: item.id,
                 title: item.title,
                 callback: () => {
-                    props.gotoListBooks([`category=${item.id}`]);
                     props.history.push(`/books?category=${item.id}`);
                 },
             };
