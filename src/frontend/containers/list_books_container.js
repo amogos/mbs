@@ -1,8 +1,8 @@
 import { connect } from 'react-redux';
 import ListBooksComponent from '../components/books/list_books_component';
-import { bookAction, pageAction } from './../actions';
+import { bookAction } from './../actions';
 
-function mapStateToProps(state, ownparams) {
+function mapStateToProps(state) {
     return {
         booksArray: state.mainReducer.booksArray,
         userdata: state.mainReducer.userdata,

@@ -6,15 +6,15 @@ import * as DataTypes from './../../../shared/types';
 
 interface Props {
     userdata: DataTypes.UserRecordType;
-    urlparams: { id: string; query: any };
+    urlparams: { id: string; query: { category: number } };
     gotoListBooks(filters: string[]): void;
 }
 
 const MainComponent = (props: Props) => {
     window.scrollTo(0, 0);
-
     if (props.urlparams.id === 'books') {
-        props.gotoListBooks([`category=${props.urlparams.query.category}`]);
+        const queryFilters = [`category=${props.urlparams.query.category}`];
+        props.gotoListBooks(queryFilters);
         return <ListBooksContainer />;
     } else if (props.urlparams.id === 'spaces') {
         return <SpaceContainer />;
