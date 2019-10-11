@@ -4,7 +4,7 @@ import { bookAction, pageAction } from './../actions';
 
 function mapStateToProps(state) {
     return {
-        booksArray: state.mainReducer.books,
+        booksArray: state.mainReducer.booksArray,
         userdata: state.mainReducer.userdata,
         bookChangingId: state.mainReducer.bookChangingId,
         action: state.mainReducer.action,

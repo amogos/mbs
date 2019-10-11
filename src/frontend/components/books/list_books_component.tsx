@@ -125,7 +125,7 @@ const ListBooksComponent = (props: Props) => {
         );
     };
 
-    return props.books.data.map(item => BookComponent(item));
+    return props.booksArray.map(item => BookComponent(item));
 };
 
 export default withStyle(ListBooksComponent, 'list_book_component');

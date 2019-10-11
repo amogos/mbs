@@ -1,6 +1,5 @@
-import { createStore } from 'redux';
-import rootReducer from './index';
 import { createStore, applyMiddleware } from 'redux';
+import rootReducer from './index';
 import dispatchCacher from '../middleware/dispatch_cacher';
 
 const sessionState = sessionStorage.getItem('state');

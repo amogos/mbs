@@ -34,7 +34,6 @@ export default function pageReducer(state: any, action: any): any {
             return Object.assign({}, state, {
                 page: PageActionConstant.ACTION_GOTO_LIST_BOOKS,
                 action: PageActionConstant.ACTION_GOTO_LIST_BOOKS,
-                filters: action.filters,
             });
 
         case PageActionConstant.ACTION_REFRESH_STATE:
