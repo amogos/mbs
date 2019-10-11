@@ -14,7 +14,6 @@ export default function pageReducer(state: any, action: any): any {
     switch (action.type) {
         case PageActionConstant.ACTION_GOTO_SPACES:
             return Object.assign({}, state, {
-                page: ActionConstants.default.PageActionConstant.ACTION_GOTO_SPACES,
                 action: ActionConstants.default.PageActionConstant.ACTION_GOTO_SPACES,
             });
         case PageActionConstant.ACTION_GOTO_LIST_BOOKS:
@@ -32,7 +31,6 @@ export default function pageReducer(state: any, action: any): any {
             });
 
             return Object.assign({}, state, {
-                page: PageActionConstant.ACTION_GOTO_LIST_BOOKS,
                 action: PageActionConstant.ACTION_GOTO_LIST_BOOKS,
             });
 

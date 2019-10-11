@@ -13,7 +13,9 @@ const dispatchCacher = store => next => action => {
                     filters.ACTION_GOTO_LIST_BOOKS &&
                     filters.ACTION_GOTO_LIST_BOOKS === JSON.stringify(action.filters.sort())
                 ) {
-                    return store.getState();
+                    return Object.assign({}, store.getState(), {
+                        action: PageActionConstant.ACTION_GOTO_LIST_BOOKS,
+                    });
                 } else {
                     if (!filters) {
                         filters = {};
