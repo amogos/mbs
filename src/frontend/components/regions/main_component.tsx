@@ -10,7 +10,11 @@ interface Props {
     gotoListBooks(filters: string[]): void;
 }
 
-const MainComponent = (props: Props) => {
+function propsEqual(prevProps: Props, nextProps: Props) {
+    return nextProps.urlparams === prevProps.urlparams;
+}
+
+const MainComponent = React.memo((props: Props) => {
     window.scrollTo(0, 0);
     if (props.urlparams.id === 'books') {
         const queryFilters = [`category=${props.urlparams.query.category}`];
@@ -21,6 +25,6 @@ const MainComponent = (props: Props) => {
     } else {
         return <SpaceContainer />;
     }
-};
+}, propsEqual);
 
 export default requiresLogin(withStyle(MainComponent, 'main_component'));
