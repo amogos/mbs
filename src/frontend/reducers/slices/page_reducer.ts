@@ -25,7 +25,7 @@ export default function pageReducer(state: any, action: any): any {
                     Store.dispatch(
                         pageAction.refreshState({
                             queueArray: result1,
-                            books: { filters: action.filters, data: result2 },
+                            booksArray: result2,
                         }),
                     );
                 });

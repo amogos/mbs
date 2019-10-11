@@ -13,7 +13,7 @@ const MainComponent = (props: Props) => {
     window.scrollTo(0, 0);
 
     if (props.urlparams.id === 'books') {
-        return <ListBooksContainer />;
+        return <ListBooksContainer urlparams={props.urlparams} />;
     } else if (props.urlparams.id === 'spaces') {
         return <SpaceContainer />;
     } else {

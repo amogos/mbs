@@ -8,9 +8,8 @@ import BookRatingComponent from './book_rating';
 import Aux, { withStyle } from './../aux_component';
 
 interface Props {
-    page: string;
     action: string;
-    books: { filters: string; data: DataTypes.BookRecordType[] };
+    booksArray: DataTypes.BookRecordType[];
     userdata: DataTypes.UserRecordType;
     bookChangingId: number;
     queueArray: DataTypes.QueueRecordType[];
@@ -23,12 +22,14 @@ interface Props {
         bookId: number,
         callback: (bookId: number, reviews: DataTypes.BookReviewRecordType[]) => void,
     ): void;
+
+    urlparams: { id: string; query: { category: number } };
 }
 
 const ListBooksComponent = (props: Props) => {
     const [state, setState] = useState({});
 
-    if (!props.books || !props.queueArray) return null;
+    if (!props.booksArray || !props.queueArray) return null;
 
     interface ReviewState {
         reviews: DataTypes.BookReviewRecordType[];
