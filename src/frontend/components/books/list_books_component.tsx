@@ -29,10 +29,16 @@ const ListBooksComponent = (props: Props) => {
     const [state, setState] = useState({});
     const [loading, setLoading] = useState(false);
     const [contents, setContents] = useState(NullBooksArray);
+    const [filters, setFilters] = useState('');
+
+    if (loading) return null;
 
     const queryFilters = [`category=${props.urlparams.query.category}`];
 
-    if (loading || !props.queueArray) return null;
+    if (filters !== JSON.stringify(queryFilters)) {
+        setFilters(JSON.stringify(queryFilters));
+        setContents(NullBooksArray);
+    }
 
     if (contents.length <= 0) {
         props.getBooks(queryFilters, books => {
