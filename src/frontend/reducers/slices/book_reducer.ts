@@ -23,7 +23,7 @@ export default function bookReducer(state: any, action: any): any {
             const duration = action.duration;
 
             databseInstance.askBook(bookId, ownerId, userdata, duration, handleError).then(() => {
-                Store.dispatch(pageAction.gotoListBooks(state.filters));
+                Store.dispatch(pageAction.getBooks(state.filters));
             });
             return Object.assign({}, state, {
                 action: BookActionConstant.ACTION_ASK_BOOK,
@@ -33,7 +33,7 @@ export default function bookReducer(state: any, action: any): any {
         case BookActionConstant.ACTION_RETURN_BOOK: {
             const bookId: number = action.bookId;
             databseInstance.returnBook(bookId, handleError).then(() => {
-                Store.dispatch(pageAction.gotoListBooks(state.filters));
+                Store.dispatch(pageAction.getBooks(state.filters));
             });
             return Object.assign({}, state, {
                 action: BookActionConstant.ACTION_RETURN_BOOK,

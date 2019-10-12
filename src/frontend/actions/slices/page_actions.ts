@@ -3,7 +3,7 @@ import * as ActionTypes from '../../../shared/constants/action_constant';
 class PageAction {
     public gotoSpaces = () => ({ type: ActionTypes.default.PageActionConstant.ACTION_GOTO_SPACES });
 
-    public gotoListBooks = (filters: string[]) => ({
+    public getBooks = (filters: string[]) => ({
         type: ActionTypes.default.PageActionConstant.ACTION_GOTO_LIST_BOOKS,
         filters,
     });

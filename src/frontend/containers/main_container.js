@@ -10,7 +10,7 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = dispatch => {
     return {
-        gotoListBooks: filters => dispatch(pageAction.gotoListBooks(filters)),
+        getBooks: filters => dispatch(pageAction.getBooks(filters)),
         dispatch,
     };
 };
