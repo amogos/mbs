@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import ListBooksComponent from '../components/books/list_books_component';
-import { bookAction } from './../actions';
+import { bookAction, pageAction } from './../actions';
 
 function mapStateToProps(state) {
     return {

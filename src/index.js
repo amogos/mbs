@@ -21,12 +21,12 @@ const Pages = ['spaces', 'books'];
 
 const App = routeParams => {
     const query = Object.fromEntries(new URLSearchParams(useLocation().search));
-    const page = routeParams.match.params.id;
-    const urlparams = { page, query };
+    const id = routeParams.match.params.id;
+    const urlparams = { id, query };
 
     Store.dispatch(pageAction.addUrlParams(urlparams));
 
-    if (!page || Pages.includes(page)) {
+    if (!id || Pages.includes(id)) {
         return (
             <Aux>
                 <BannerContainer />
