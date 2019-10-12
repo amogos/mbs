@@ -12,7 +12,7 @@ interface Props {
     userdata: DataTypes.UserRecordType;
     bookChangingId: number;
     queueArray: DataTypes.QueueRecordType[];
-    getBooks(filters: string[], callback: (books: DataTypes.BookRecordType[]) => void): void;
+    getBooks(filters: string[], callbacks: ((books: DataTypes.BookRecordType[]) => void)[]): void;
     deleteBook(bookId: number): void;
     askBook(bookId: number, ownerId: number): void;
     returnBook(bookId: number): void;
@@ -60,10 +60,12 @@ const ListBooksComponent = (props: Props) => {
     if (!initialized) {
         setInitialized(true);
         setLoading(true);
-        props.getBooks(queryFilters, books => {
-            setContents(books);
-            setLoading(false);
-        });
+        props.getBooks(queryFilters, [
+            books => {
+                setContents(books);
+                setLoading(false);
+            },
+        ]);
         return null;
     }
 

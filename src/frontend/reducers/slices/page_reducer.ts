@@ -27,7 +27,9 @@ export default function pageReducer(state: any, action: any): any {
                             booksArray: result2,
                         }),
                     );
-                    action.callback(result2);
+                    action.callbacks.forEach((callback: (books: DataTypes.BookRecordType[]) => void) =>
+                        callback(result2),
+                    );
                 });
             });
 

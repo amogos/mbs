@@ -7,6 +7,7 @@ let bookCache = new QueryCache(10);
 
 const dispatchCacher = store => next => action => {
     let cacheKey = '';
+
     if (action.filters) {
         action.filters.forEach(element => (cacheKey = cacheKey + element));
     }
@@ -21,7 +22,9 @@ const dispatchCacher = store => next => action => {
                         action: PageActionConstant.ACTION_GOTO_LIST_BOOKS,
                     });
                 } else {
-                    bookCache.addEntry(cacheKey, null);
+                    action.callbacks.push(books => {
+                        bookCache.addEntry(cacheKey, books);
+                    });
                 }
             }
             break;

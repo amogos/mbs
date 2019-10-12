@@ -4,10 +4,10 @@ import * as DataTypes from '../../../shared/types';
 class PageAction {
     public gotoSpaces = () => ({ type: ActionTypes.default.PageActionConstant.ACTION_GOTO_SPACES });
 
-    public getBooks = (filters: string[], callback: (books: DataTypes.BookRecordType[]) => void) => ({
+    public getBooks = (filters: string[], callbacks: ((books: DataTypes.BookRecordType[]) => void)[]) => ({
         type: ActionTypes.default.PageActionConstant.ACTION_GOTO_LIST_BOOKS,
         filters,
-        callback,
+        callbacks,
     });
 
     public addUrlParams = (urlparams: DataTypes.UrlParms) => ({
