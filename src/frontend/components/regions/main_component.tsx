@@ -6,8 +6,7 @@ import * as DataTypes from './../../../shared/types';
 
 interface Props {
     userdata: DataTypes.UserRecordType;
-    urlparams: { id: string; query: { category: number } };
-    getBooks(filters: string[]): void;
+    urlparams: DataTypes.UrlParms;
 }
 
 function propsEqual(prevProps: Props, nextProps: Props) {
@@ -17,8 +16,6 @@ function propsEqual(prevProps: Props, nextProps: Props) {
 const MainComponent = React.memo((props: Props) => {
     window.scrollTo(0, 0);
     if (props.urlparams.id === 'books') {
-        const queryFilters = [`category=${props.urlparams.query.category}`];
-        props.getBooks(queryFilters);
         return <ListBooksContainer />;
     } else if (props.urlparams.id === 'spaces') {
         return <SpaceContainer />;

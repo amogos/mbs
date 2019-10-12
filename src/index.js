@@ -15,21 +15,24 @@ import TopContainer from './frontend/containers/top_container';
 import PageNotFound from './frontend/components/errors/page_not_found';
 
 import Aux from './frontend/components/aux_component';
+import { pageAction } from './frontend/actions';
 
 const Pages = ['spaces', 'books'];
 
 const App = routeParams => {
     const query = Object.fromEntries(new URLSearchParams(useLocation().search));
     const page = routeParams.match.params.id;
-    const urlparams = { urlparams: { ...routeParams.match.params, query } };
+    const urlparams = { page, query };
+
+    Store.dispatch(pageAction.addUrlParams(urlparams));
 
     if (!page || Pages.includes(page)) {
         return (
             <Aux>
-                <BannerContainer {...urlparams} />
-                <MainContainer {...urlparams} />
-                <RightContainer {...urlparams} />
-                <TopContainer {...urlparams} />
+                <BannerContainer />
+                <MainContainer />
+                <RightContainer />
+                <TopContainer />
             </Aux>
         );
     }

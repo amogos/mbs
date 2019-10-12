@@ -27,11 +27,18 @@ export default function pageReducer(state: any, action: any): any {
                             booksArray: result2,
                         }),
                     );
+                    action.callback(result2);
                 });
             });
 
             return Object.assign({}, state, {
                 action: PageActionConstant.ACTION_GOTO_LIST_BOOKS,
+            });
+
+        case PageActionConstant.ACTION_ADD_URL_PARAMS:
+            return Object.assign({}, state, {
+                action: PageActionConstant.ACTION_ADD_URL_PARAMS,
+                urlparams: action.urlparams,
             });
 
         case PageActionConstant.ACTION_REFRESH_STATE:

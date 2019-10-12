@@ -6,7 +6,6 @@ import * as DataTypes from './../../../shared/types';
 
 interface Props {
     userdata: DataTypes.UserRecordType;
-    urlparams: any;
 }
 
 const RightComponent = (props: Props) => {

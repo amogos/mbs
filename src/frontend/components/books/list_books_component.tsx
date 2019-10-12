@@ -9,10 +9,10 @@ import Aux, { withStyle } from './../aux_component';
 
 interface Props {
     action: string;
-    booksArray: DataTypes.BookRecordType[];
     userdata: DataTypes.UserRecordType;
     bookChangingId: number;
     queueArray: DataTypes.QueueRecordType[];
+    getBooks(filters: string[], callback: (books: DataTypes.BookRecordType[]) => void): void;
     deleteBook(bookId: number): void;
     askBook(bookId: number, ownerId: number): void;
     returnBook(bookId: number): void;
@@ -21,13 +21,27 @@ interface Props {
         bookId: number,
         callback: (bookId: number, reviews: DataTypes.BookReviewRecordType[]) => void,
     ): void;
-    urlparams: { id: string; query: { category: number } };
+    urlparams: DataTypes.UrlParms;
 }
 
 const ListBooksComponent = (props: Props) => {
+    const NullBooksArray: DataTypes.BookRecordType[] = [];
     const [state, setState] = useState({});
+    const [loading, setLoading] = useState(false);
+    const [contents, setContents] = useState(NullBooksArray);
 
-    if (!props.booksArray || !props.queueArray) return null;
+    const queryFilters = [`category=${props.urlparams.query.category}`];
+
+    if (!contents) {
+        props.getBooks(queryFilters, books => {
+            setContents(books);
+            setLoading(false);
+        });
+        setLoading(true);
+        return null;
+    }
+
+    if (loading || !props.queueArray) return null;
 
     interface ReviewState {
         reviews: DataTypes.BookReviewRecordType[];
@@ -123,7 +137,7 @@ const ListBooksComponent = (props: Props) => {
         );
     };
 
-    return props.booksArray.map(item => BookComponent(item));
+    return contents.map(item => BookComponent(item));
 };
 
 export default withStyle(ListBooksComponent, 'list_book_component');

@@ -220,3 +220,8 @@ export interface Spaces {
     userSpaces: SpaceType[];
     otherSpaces: SpaceType[];
 }
+
+export interface UrlParms {
+    id: string;
+    query: { category?: number; space?: number };
+}
