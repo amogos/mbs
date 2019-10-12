@@ -24,6 +24,19 @@ interface Props {
     urlparams: DataTypes.UrlParms;
 }
 
+interface ReviewState {
+    reviews: DataTypes.BookReviewRecordType[];
+    visibility: boolean;
+}
+
+const SectionDivider = () => {
+    return (
+        <div className="section_divider_small">
+            <Divider />
+        </div>
+    );
+};
+
 const ListBooksComponent = (props: Props) => {
     const NullBooksArray: DataTypes.BookRecordType[] = [];
     const [state, setState] = useState({});
@@ -34,24 +47,20 @@ const ListBooksComponent = (props: Props) => {
     if (loading) return null;
 
     const queryFilters = [`category=${props.urlparams.query.category}`];
-
     if (filters !== JSON.stringify(queryFilters)) {
         setFilters(JSON.stringify(queryFilters));
         setContents(NullBooksArray);
     }
 
-    if (contents.length <= 0) {
+    const initialized = contents.length > 0;
+
+    if (!initialized) {
         props.getBooks(queryFilters, books => {
             setContents(books);
             setLoading(false);
         });
         setLoading(true);
         return null;
-    }
-
-    interface ReviewState {
-        reviews: DataTypes.BookReviewRecordType[];
-        visibility: boolean;
     }
 
     const getReviewsFromState = (bookId: number): DataTypes.BookReviewRecordType[] => {
@@ -96,14 +105,6 @@ const ListBooksComponent = (props: Props) => {
         const reviews = getReviewsFromState(bookId);
         const newstate = { ...state, [key]: { reviews: reviews, visibility: false } };
         setState(newstate);
-    };
-
-    const SectionDivider = () => {
-        return (
-            <div className="section_divider_small">
-                <Divider />
-            </div>
-        );
     };
 
     const BookComponent = (item: DataTypes.BookRecordType) => {
