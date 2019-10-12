@@ -1,34 +1,29 @@
 import * as ActionConstants from './../../shared/constants/action_constant';
+import QueryCache from './query_cache';
 
 const { PageActionConstant } = ActionConstants.default;
 
-const cacheBookListing = (store, action) => {
-    let filters = sessionStorage.getItem('filters');
+let bookCache = new QueryCache(10);
 
-    const filterExists =
-        filters && filters.ACTION_GOTO_LIST_BOOKS && filters.ACTION_GOTO_LIST_BOOKS === JSON.stringify(action.filters);
+const cacheBookListing = (store, action, next) => {
+    let cacheKey = '';
+    action.filters.forEach(element => (cacheKey = cacheKey + element));
+    const cacheEntry = bookCache.getEntry(cacheKey);
 
-    if (filterExists) {
+    if (cacheEntry) {
         return Object.assign({}, store.getState(), {
             action: PageActionConstant.ACTION_GOTO_LIST_BOOKS,
         });
     } else {
-        if (!filters) {
-            filters = {};
-        }
-        if (!filters.ACTION_GOTO_LIST_BOOKS) {
-            filters = { ...filters, ACTION_GOTO_LIST_BOOKS: '' };
-        }
-        filters.ACTION_GOTO_LIST_BOOKS = JSON.stringify(action.filters);
-        sessionStorage.setItem('filters', filters);
+        bookCache.addEntry(cacheKey, null);
+        return next(action);
     }
 };
 
 const dispatchCacher = store => next => action => {
     switch (action.type) {
         case PageActionConstant.ACTION_GOTO_LIST_BOOKS:
-            cacheBookListing(store, action);
-            break;
+            return cacheBookListing(store, action, next);
     }
 
     return next(action);
