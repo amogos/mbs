@@ -8,11 +8,12 @@ const dispatchCacher = store => next => action => {
     switch (action.type) {
         case PageActionConstant.ACTION_GOTO_LIST_BOOKS:
             {
-                if (
+                const filterExists =
                     filters &&
                     filters.ACTION_GOTO_LIST_BOOKS &&
-                    filters.ACTION_GOTO_LIST_BOOKS === JSON.stringify(action.filters.sort())
-                ) {
+                    filters.ACTION_GOTO_LIST_BOOKS === JSON.stringify(action.filters);
+
+                if (filterExists) {
                     return Object.assign({}, store.getState(), {
                         action: PageActionConstant.ACTION_GOTO_LIST_BOOKS,
                     });
@@ -23,7 +24,7 @@ const dispatchCacher = store => next => action => {
                     if (!filters.ACTION_GOTO_LIST_BOOKS) {
                         filters = { ...filters, ACTION_GOTO_LIST_BOOKS: '' };
                     }
-                    filters.ACTION_GOTO_LIST_BOOKS = JSON.stringify(action.filters.sort());
+                    filters.ACTION_GOTO_LIST_BOOKS = JSON.stringify(action.filters);
                     sessionStorage.setItem('filters', filters);
                 }
             }
