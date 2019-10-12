@@ -8,8 +8,6 @@ class PageAction {
         filters,
     });
 
-    public listBooks = () => ({ type: ActionTypes.default.PageActionConstant.ACTION_GOTO_LIST_BOOKS });
-
     public refreshState = (append: any) => ({
         type: ActionTypes.default.PageActionConstant.ACTION_REFRESH_STATE,
         append,
