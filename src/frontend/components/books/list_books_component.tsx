@@ -32,7 +32,9 @@ const ListBooksComponent = (props: Props) => {
 
     const queryFilters = [`category=${props.urlparams.query.category}`];
 
-    if (!contents) {
+    if (loading || !props.queueArray) return null;
+
+    if (contents.length <= 0) {
         props.getBooks(queryFilters, books => {
             setContents(books);
             setLoading(false);
@@ -40,8 +42,6 @@ const ListBooksComponent = (props: Props) => {
         setLoading(true);
         return null;
     }
-
-    if (loading || !props.queueArray) return null;
 
     interface ReviewState {
         reviews: DataTypes.BookReviewRecordType[];
