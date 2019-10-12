@@ -37,29 +37,33 @@ const SectionDivider = () => {
     );
 };
 
+const NullBooksArray: DataTypes.BookRecordType[] = [];
+
 const ListBooksComponent = (props: Props) => {
-    const NullBooksArray: DataTypes.BookRecordType[] = [];
     const [state, setState] = useState({});
     const [loading, setLoading] = useState(false);
+    const [initialized, setInitialized] = useState(false);
     const [contents, setContents] = useState(NullBooksArray);
     const [filters, setFilters] = useState('');
 
     if (loading) return null;
 
     const queryFilters = [`category=${props.urlparams.query.category}`];
-    if (filters !== JSON.stringify(queryFilters)) {
-        setFilters(JSON.stringify(queryFilters));
+    const queryFiltersToString = JSON.stringify(queryFilters);
+
+    if (filters !== queryFiltersToString) {
+        setFilters(queryFiltersToString);
         setContents(NullBooksArray);
+        setInitialized(false);
     }
 
-    const initialized = contents.length > 0;
-
     if (!initialized) {
+        setInitialized(true);
+        setLoading(true);
         props.getBooks(queryFilters, books => {
             setContents(books);
             setLoading(false);
         });
-        setLoading(true);
         return null;
     }
 
