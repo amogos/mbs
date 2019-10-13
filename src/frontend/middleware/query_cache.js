@@ -12,12 +12,14 @@ export default class QueryCache {
                 return;
             }
         }
+
         if (this.size < this.capacity - 1) {
-            this.data.push({ key: key, value: value });
             this.size++;
         } else {
-            this.data[0] = { key: key, value: value };
+            this.data.shift();
         }
+
+        this.data.push({ key: key, value: value });
     }
 
     getEntry(key) {
