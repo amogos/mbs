@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import MainComponent from '../components/regions/main_component';
-
+import { pageAction } from './../actions';
 function mapStateToProps(state) {
     return {
         userdata: state.mainReducer.userdata,
@@ -8,7 +8,14 @@ function mapStateToProps(state) {
     };
 }
 
+const mapDispatchToProps = dispatch => {
+    return {
+        getBooks: (filters, callback) => dispatch(pageAction.getBooks(filters, callback)),
+        dispatch,
+    };
+};
+
 export default connect(
     mapStateToProps,
-    null,
+    mapDispatchToProps,
 )(MainComponent);

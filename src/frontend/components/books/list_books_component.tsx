@@ -11,8 +11,8 @@ interface Props {
     action: string;
     userdata: DataTypes.UserRecordType;
     bookChangingId: number;
+    booksArray: DataTypes.BookRecordType[];
     queueArray: DataTypes.QueueRecordType[];
-    getBooks(filters: string[], callbacks: ((books: DataTypes.BookRecordType[]) => void)[]): void;
     deleteBook(bookId: number): void;
     askBook(bookId: number, ownerId: number): void;
     returnBook(bookId: number): void;
@@ -37,35 +37,10 @@ const SectionDivider = () => {
     );
 };
 
-const NullBooksArray: DataTypes.BookRecordType[] = [];
-
 const ListBooksComponent = (props: Props) => {
     const [state, setState] = useState({});
-    const [loading, setLoading] = useState(false);
-    const [initialized, setInitialized] = useState(false);
-    const [contents, setContents] = useState(NullBooksArray);
-    const [filters, setFilters] = useState('');
 
-    if (loading) return null;
-
-    const queryFilters = [`category=${props.urlparams.query.category}`];
-    const queryFiltersToString = JSON.stringify(queryFilters);
-
-    if (filters !== queryFiltersToString) {
-        setFilters(queryFiltersToString);
-        setContents(NullBooksArray);
-        setInitialized(false);
-    }
-
-    if (!initialized) {
-        setInitialized(true);
-        setLoading(true);
-        props.getBooks(queryFilters, [
-            books => {
-                setContents(books);
-                setLoading(false);
-            },
-        ]);
+    if (!props.booksArray) {
         return null;
     }
 
@@ -150,7 +125,7 @@ const ListBooksComponent = (props: Props) => {
         );
     };
 
-    return contents.map(item => BookComponent(item));
+    return props.booksArray.map(item => BookComponent(item));
 };
 
 export default withStyle(ListBooksComponent, 'list_book_component');

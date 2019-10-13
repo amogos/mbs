@@ -1,12 +1,13 @@
 import { connect } from 'react-redux';
 import ListBooksComponent from '../components/books/list_books_component';
-import { bookAction, pageAction } from './../actions';
+import { bookAction } from './../actions';
 
 function mapStateToProps(state) {
     return {
         userdata: state.mainReducer.userdata,
         bookChangingId: state.mainReducer.bookChangingId,
         action: state.mainReducer.action,
+        booksArray: state.mainReducer.booksArray,
         queueArray: state.mainReducer.queueArray,
         urlparams: state.mainReducer.urlparams,
     };
@@ -14,7 +15,6 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = dispatch => {
     return {
-        getBooks: (filters, callback) => dispatch(pageAction.getBooks(filters, callback)),
         deleteBook: bookId => dispatch(bookAction.deleteBook(bookId)),
         askBook: (bookId, ownerId, duration) => dispatch(bookAction.askBook(bookId, ownerId, duration)),
         returnBook: bookId => dispatch(bookAction.returnBook(bookId)),
