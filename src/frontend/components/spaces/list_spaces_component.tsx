@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 import * as DataTypes from '../../../shared/types';
 import SpaceHolder from './space_holder';
 import Aux, { withStyle } from './../aux_component';
@@ -12,6 +13,7 @@ interface Props {
     getBooks(filters: string[], callbacks: ((books: DataTypes.BookRecordType[]) => void)[]): void;
     followSpace: (spaceId: number, callback: () => void) => void;
     unfollowSpace: (spaceId: number, callback: () => void) => void;
+    history: any;
 }
 
 const ListSpacesComponent = (props: Props) => {
@@ -19,6 +21,7 @@ const ListSpacesComponent = (props: Props) => {
 
     const onSpaceClicked = (spaceId: number) => {
         let filters = [`space=${spaceId}`];
+        props.history.push(`/books?space=${spaceId}`);
         props.getBooks(filters, []);
     };
 
@@ -40,4 +43,4 @@ const ListSpacesComponent = (props: Props) => {
     );
 };
 
-export default withStyle(ListSpacesComponent, 'list_spaces_component');
+export default withRouter(withStyle(ListSpacesComponent, 'list_spaces_component'));
