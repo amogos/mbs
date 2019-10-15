@@ -20,9 +20,7 @@ const ListSpacesComponent = (props: Props) => {
     if (!props.spaces || !props.spaces.userSpaces || !props.spaces.otherSpaces) return null;
 
     const onSpaceClicked = (spaceId: number) => {
-        let filters = [`space=${spaceId}`];
         props.history.push(`/books?space=${spaceId}`);
-        props.getBooks(filters, []);
     };
 
     function onChange(slideNumber: number) {}
