@@ -40,7 +40,7 @@ export default function pageReducer(state: any, action: any): any {
                 state.urlparams &&
                 state.urlparams.query.category &&
                 action.urlparams.query.category &&
-                state.urlparams.query.category.id != action.urlparams.query.category.id;
+                state.urlparams.query.category != action.urlparams.query.category;
 
             if (pageChanged || categoryChanged) {
                 shouldResetBooksAray = true;
