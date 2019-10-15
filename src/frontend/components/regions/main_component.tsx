@@ -21,11 +21,9 @@ const MainComponent = React.memo((props: Props) => {
         const queryFilters = [`category=${props.urlparams.query.category}`];
         props.getBooks(queryFilters, []);
         return <ListBooksContainer />;
-    } else if (props.urlparams.id === 'spaces') {
-        return <ListSpacesContainer />;
-    } else {
-        return <ListSpacesContainer />;
     }
+
+    return <ListSpacesContainer />;
 }, propsEqual);
 
 export default requiresLogin(withStyle(MainComponent, 'main_component'));

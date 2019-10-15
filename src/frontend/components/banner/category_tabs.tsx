@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { withRouter } from 'react-router-dom';
 import Tabs, { TabData } from '../banner/tabs';
 import * as DataTypes from '../../../shared/types';
@@ -7,11 +7,14 @@ import { withStyle } from '../aux_component';
 
 interface Props {
     gotoSpaces(): void;
+    refreshState(params: any): void;
     categories: DataTypes.CategoryRecordType[];
     history: any;
 }
 
 const BuildCategoryTabsInformation = (props: Props) => {
+    const [category, setCategory] = useState(0);
+
     let categoryTabsContent: TabData[] = [];
     const { CategoryTabsStrings } = Strings.default;
 
@@ -31,7 +34,14 @@ const BuildCategoryTabsInformation = (props: Props) => {
             const tab: TabData = {
                 id: item.id,
                 title: item.title,
-                callback: () => props.history.push(`/books?category=${item.id}`),
+                callback: () => {
+                    if (category !== item.id) {
+                        const nullBooksArray: DataTypes.BookRecordType[] = [];
+                        props.refreshState({ booksArray: nullBooksArray });
+                        props.history.push(`/books?category=${item.id}`);
+                        setCategory(item.id);
+                    }
+                },
             };
             return tab;
         }),

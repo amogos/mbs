@@ -15,9 +15,9 @@ class PageAction {
         urlparams,
     });
 
-    public refreshState = (append: any) => ({
+    public refreshState = (params: any) => ({
         type: ActionTypes.default.PageActionConstant.ACTION_REFRESH_STATE,
-        append,
+        params,
     });
 }
 

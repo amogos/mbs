@@ -10,6 +10,7 @@ import ProfileComponent from '../../components/social/profile_component';
 
 interface Props {
     gotoSpaces(): void;
+    refreshState(params: any): void;
     gotoNotifications(): void;
     loginUser(userInfo: DataTypes.UserValueType): void;
     userdata: DataTypes.UserRecordType;

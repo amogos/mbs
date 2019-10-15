@@ -21,6 +21,7 @@ const dispatchCacher = store => next => action => {
                     return store.dispatch(
                         pageAction.refreshState({
                             booksArray: cacheEntry.value,
+                            append: true,
                         }),
                     );
                 } else {
