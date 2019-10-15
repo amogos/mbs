@@ -3,6 +3,7 @@ import ListBooksContainer from '../../containers/list_books_container';
 import ListSpacesContainer from '../../containers/list_spaces_container';
 import { withStyle, requiresLogin } from '../aux_component';
 import * as DataTypes from './../../../shared/types';
+import debounce from 'lodash.debounce';
 
 interface Props {
     userdata: DataTypes.UserRecordType;
@@ -27,10 +28,17 @@ function prepareBooksListing(props: Props) {
     props.getBooks(queryFilters, []);
 }
 
+function streamBooks(props: Props) {
+    if (window.innerHeight + document.documentElement.scrollTop >= document.documentElement.offsetHeight) {
+        prepareBooksListing(props);
+    }
+}
+
 const MainComponent = React.memo((props: Props) => {
     window.scrollTo(0, 0);
 
     if (props.urlparams.id === 'books') {
+        window.onscroll = debounce(() => streamBooks(props), 100);
         prepareBooksListing(props);
         return <ListBooksContainer />;
     }
