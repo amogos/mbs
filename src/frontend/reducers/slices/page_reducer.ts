@@ -21,6 +21,7 @@ export default function pageReducer(state: any, action: any): any {
             databseInstance.getQueue(state.userdata.id, handleError).then((result1: DataTypes.QueueRecordType[]) => {
                 databseInstance.getBooks(action.filters, handleError).then(result2 => {
                     setTimeout(progressSpinner, 0);
+
                     Store.dispatch(
                         pageAction.refreshState({
                             queueArray: result1,
@@ -44,6 +45,9 @@ export default function pageReducer(state: any, action: any): any {
             });
 
         case PageActionConstant.ACTION_REFRESH_STATE:
+            if (action.append.booksArray && state.booksArray) {
+                action.append.booksArray = state.booksArray.concat(action.append.booksArray);
+            }
             return Object.assign({}, state, action.append);
         default:
             return null;
