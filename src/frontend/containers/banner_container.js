@@ -13,7 +13,6 @@ function mapStateToProps(state) {
 const mapDispatchToProps = dispatch => {
     return {
         gotoSpaces: () => dispatch(pageAction.gotoSpaces()),
-        refreshState: params => dispatch(pageAction.refreshState(params)),
         gotoNotifications: () => dispatch(pageAction.gotoNotifications()),
         addBook: data => dispatch(pageAction.addBook(data)),
         loginUser: user => dispatch(socialAction.loginUser(user)),

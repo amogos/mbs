@@ -7,7 +7,6 @@ import { withStyle } from '../aux_component';
 
 interface Props {
     gotoSpaces(): void;
-    refreshState(params: any): void;
     categories: DataTypes.CategoryRecordType[];
     history: any;
 }
@@ -36,8 +35,6 @@ const BuildCategoryTabsInformation = (props: Props) => {
                 title: item.title,
                 callback: () => {
                     if (category !== item.id) {
-                        const nullBooksArray: DataTypes.BookRecordType[] = [];
-                        props.refreshState({ booksArray: nullBooksArray });
                         props.history.push(`/books?category=${item.id}`);
                         setCategory(item.id);
                     }

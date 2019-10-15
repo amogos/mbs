@@ -34,10 +34,28 @@ export default function pageReducer(state: any, action: any): any {
             });
 
         case PageActionConstant.ACTION_ADD_URL_PARAMS:
-            return Object.assign({}, state, {
+            let shouldResetBooksAray = false;
+            const pageChanged: boolean = state.urlparams && state.urlparams.id != action.urlparams.id;
+            const categoryChanged =
+                state.urlparams &&
+                state.urlparams.query.category &&
+                action.urlparams.query.category &&
+                state.urlparams.query.category.id != action.urlparams.query.category.id;
+
+            if (pageChanged || categoryChanged) {
+                shouldResetBooksAray = true;
+            }
+
+            let stateAppend: any = {
                 action: PageActionConstant.ACTION_ADD_URL_PARAMS,
                 urlparams: action.urlparams,
-            });
+            };
+
+            if (shouldResetBooksAray) {
+                stateAppend = { ...stateAppend, booksArray: [] };
+            }
+
+            return Object.assign({}, state, stateAppend);
 
         case PageActionConstant.ACTION_REFRESH_STATE:
             if (action.params.booksArray && state.booksArray) {
