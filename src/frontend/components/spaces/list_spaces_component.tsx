@@ -9,7 +9,7 @@ interface Props {
     languages: DataTypes.LanguageRecordType[];
     categories: DataTypes.CategoryRecordType[];
     addBook(book: DataTypes.BookValueType): void;
-    getBooks(filters: string[]): void;
+    getBooks(filters: string[], callbacks: ((books: DataTypes.BookRecordType[]) => void)[]): void;
     followSpace: (spaceId: number, callback: () => void) => void;
     unfollowSpace: (spaceId: number, callback: () => void) => void;
 }
@@ -19,7 +19,7 @@ const ListSpacesComponent = (props: Props) => {
 
     const onSpaceClicked = (spaceId: number) => {
         let filters = [`space=${spaceId}`];
-        props.getBooks(filters);
+        props.getBooks(filters, []);
     };
 
     function onChange(slideNumber: number) {}

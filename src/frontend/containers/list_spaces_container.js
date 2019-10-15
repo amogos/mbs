@@ -13,7 +13,7 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = dispatch => {
     return {
-        getBooks: filters => dispatch(pageAction.getBooks(filters)),
+        getBooks: (filters, callbacks) => dispatch(pageAction.getBooks(filters, callbacks)),
         followSpace: (spaceId, callback) => dispatch(spaceAction.followSpace(spaceId, callback)),
         unfollowSpace: (spaceId, callback) => dispatch(spaceAction.unfollowSpace(spaceId, callback)),
         addBook: data => dispatch(bookAction.addBook(data)),
