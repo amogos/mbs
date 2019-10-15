@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { withRouter } from 'react-router-dom';
 import Tabs, { TabData } from '../banner/tabs';
 import * as DataTypes from '../../../shared/types';
@@ -12,8 +12,6 @@ interface Props {
 }
 
 const BuildCategoryTabsInformation = (props: Props) => {
-    const [category, setCategory] = useState(0);
-
     let categoryTabsContent: TabData[] = [];
     const { CategoryTabsStrings } = Strings.default;
 
@@ -33,12 +31,7 @@ const BuildCategoryTabsInformation = (props: Props) => {
             const tab: TabData = {
                 id: item.id,
                 title: item.title,
-                callback: () => {
-                    if (category !== item.id) {
-                        props.history.push(`/books?category=${item.id}`);
-                        setCategory(item.id);
-                    }
-                },
+                callback: () => props.history.push(`/books?category=${item.id}`),
             };
             return tab;
         }),
