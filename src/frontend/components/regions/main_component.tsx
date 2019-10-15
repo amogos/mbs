@@ -17,7 +17,7 @@ function propsEqual(prevProps: Props, nextProps: Props) {
 
 function streamBooks(props: Props, force: boolean) {
     const endOfContent =
-        window.innerHeight + document.documentElement.scrollTop >= document.documentElement.offsetHeight;
+        window.innerHeight + document.documentElement.scrollTop >= document.documentElement.scrollHeight;
 
     if (endOfContent || force) {
         const queryFilters: string[] = [];
