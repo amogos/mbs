@@ -34,12 +34,12 @@ export default function pageReducer(state: any, action: any): any {
             });
 
         case PageActionConstant.ACTION_ADD_URL_PARAMS:
-            let shouldResetBooksAray = false;
+            let shouldResetBooksArray = false;
             const pageChanged: boolean = state.urlparams && state.urlparams.id != action.urlparams.id;
             const queryChanged = state.urlparams && state.urlparams.query !== action.urlparams.query;
 
             if (pageChanged || queryChanged) {
-                shouldResetBooksAray = true;
+                shouldResetBooksArray = true;
             }
 
             let stateAppend: any = {
@@ -47,7 +47,7 @@ export default function pageReducer(state: any, action: any): any {
                 urlparams: action.urlparams,
             };
 
-            if (shouldResetBooksAray) {
+            if (shouldResetBooksArray) {
                 stateAppend = { ...stateAppend, booksArray: [] };
             }
 
