@@ -36,13 +36,9 @@ export default function pageReducer(state: any, action: any): any {
         case PageActionConstant.ACTION_ADD_URL_PARAMS:
             let shouldResetBooksAray = false;
             const pageChanged: boolean = state.urlparams && state.urlparams.id != action.urlparams.id;
-            const categoryChanged =
-                state.urlparams &&
-                state.urlparams.query.category &&
-                action.urlparams.query.category &&
-                state.urlparams.query.category != action.urlparams.query.category;
+            const queryChanged = state.urlparams && state.urlparams.query !== action.urlparams.query;
 
-            if (pageChanged || categoryChanged) {
+            if (pageChanged || queryChanged) {
                 shouldResetBooksAray = true;
             }
 
