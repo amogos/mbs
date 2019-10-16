@@ -8,6 +8,7 @@ import debounce from 'lodash.debounce';
 interface Props {
     userdata: DataTypes.UserRecordType;
     urlparams: DataTypes.UrlParms;
+    booksArray: DataTypes.BookRecordType[];
     getBooks(filters: string[], callbacks: ((books: DataTypes.BookRecordType[]) => void)[]): void;
 }
 
@@ -15,7 +16,7 @@ function propsEqual(prevProps: Props, nextProps: Props) {
     return nextProps.urlparams === prevProps.urlparams;
 }
 
-function streamBooks(props: Props, force: boolean) {
+function nextBooks(props: Props, force: boolean) {
     const endOfContent =
         window.innerHeight + document.documentElement.scrollTop >= document.documentElement.scrollHeight;
 
@@ -25,9 +26,16 @@ function streamBooks(props: Props, force: boolean) {
         if (props.urlparams.query.category) {
             queryFilters.push(`category=${props.urlparams.query.category}`);
         }
+
         if (props.urlparams.query.space) {
             queryFilters.push(`space=${props.urlparams.query.space}`);
         }
+
+        const index = props.booksArray.length > 0 ? props.booksArray[props.booksArray.length - 1].id + 1 : 0;
+        queryFilters.push(`_start=${index}`);
+
+        const limit = 50;
+        queryFilters.push(`_limit=${limit}`);
 
         props.getBooks(queryFilters, []);
     }
@@ -37,8 +45,8 @@ const MainComponent = React.memo((props: Props) => {
     window.scrollTo(0, 0);
 
     if (props.urlparams.id === 'books') {
-        window.onscroll = debounce(() => streamBooks(props, false), 100);
-        streamBooks(props, true);
+        window.onscroll = debounce(() => nextBooks(props, false), 100);
+        nextBooks(props, true);
         return <ListBooksContainer />;
     }
 

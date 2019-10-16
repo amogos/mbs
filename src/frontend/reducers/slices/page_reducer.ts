@@ -42,7 +42,11 @@ export default function pageReducer(state: any, action: any): any {
                 shouldResetBooksArray = true;
             }
 
-            let stateAppend: any = {
+            let stateAppend: {
+                action: string;
+                urlparams: DataTypes.UrlParms;
+                booksArray?: DataTypes.BookRecordType[];
+            } = {
                 action: PageActionConstant.ACTION_ADD_URL_PARAMS,
                 urlparams: action.urlparams,
             };
@@ -55,8 +59,17 @@ export default function pageReducer(state: any, action: any): any {
 
         case PageActionConstant.ACTION_REFRESH_STATE:
             if (action.params.booksArray && state.booksArray) {
-                if (action.params.append === true)
-                    action.params.booksArray = state.booksArray.concat(action.params.booksArray);
+                if (action.params.append === true) {
+                    const duplicateEntries =
+                        state.booksArray.length > 0 &&
+                        action.params.booksArray.length > 0 &&
+                        state.booksArray[state.booksArray.length - 1].id ===
+                            action.params.booksArray[action.params.booksArray.length - 1].id;
+
+                    if (!duplicateEntries) {
+                        action.params.booksArray = state.booksArray.concat(action.params.booksArray);
+                    }
+                }
             }
             return Object.assign({}, state, action.params);
         default:

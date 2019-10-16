@@ -5,6 +5,7 @@ function mapStateToProps(state) {
     return {
         userdata: state.mainReducer.userdata,
         urlparams: state.mainReducer.urlparams,
+        booksArray: state.mainReducer.booksArray,
     };
 }
 
