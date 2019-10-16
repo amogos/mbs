@@ -58,17 +58,17 @@ export default function pageReducer(state: any, action: any): any {
             return Object.assign({}, state, stateAppend);
 
         case PageActionConstant.ACTION_REFRESH_STATE:
-            if (action.params.booksArray && state.booksArray) {
-                if (action.params.append === true) {
-                    const duplicateEntries =
-                        state.booksArray.length > 0 &&
-                        action.params.booksArray.length > 0 &&
-                        state.booksArray[state.booksArray.length - 1].id ===
-                            action.params.booksArray[action.params.booksArray.length - 1].id;
+            const shouldAppendBooks: boolean =
+                action.params.booksArray && state.booksArray && action.params.append === true;
+            if (shouldAppendBooks) {
+                const hasDuplicates =
+                    state.booksArray.length > 0 &&
+                    action.params.booksArray.length > 0 &&
+                    state.booksArray[state.booksArray.length - 1].id ===
+                        action.params.booksArray[action.params.booksArray.length - 1].id;
 
-                    if (!duplicateEntries) {
-                        action.params.booksArray = state.booksArray.concat(action.params.booksArray);
-                    }
+                if (!hasDuplicates) {
+                    action.params.booksArray = state.booksArray.concat(action.params.booksArray);
                 }
             }
             return Object.assign({}, state, action.params);
