@@ -138,7 +138,6 @@ const NotificationsComponent = (props: Props) => {
                             <Avatar src={item.avatar} />
                         </div>
                         <div>
-                            {' '}
                             {item.title} ({item.rating})
                         </div>
                     </div>
@@ -157,7 +156,7 @@ const NotificationsComponent = (props: Props) => {
 
     return (
         <div>
-            <List dataSource={notifications} bordered renderItem={item => NotificationItem(item)} />
+            <List dataSource={notifications} renderItem={item => NotificationItem(item)} />
             <RatingComponent
                 visible={selection.showRating}
                 rateState={true}

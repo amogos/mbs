@@ -3,11 +3,11 @@
 
 .notification_item {
     display: flex;
-    align-content: center;
     flex-direction: row;
     justify-content: space-around;
     margin-left: 10px;
     margin-right: 10px;
+    margin-top: 2px;
 }
 
 .notification_actions {
