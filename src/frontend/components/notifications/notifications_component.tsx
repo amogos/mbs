@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { List, Avatar } from 'antd';
+import { List, Avatar, Divider } from 'antd';
 import * as DataTypes from '../../../shared/types';
 import RatingComponent from './rating';
 import Aux, { withStyle } from './../aux_component';
@@ -129,26 +129,35 @@ const NotificationsComponent = (props: Props) => {
         loadNotifications();
     }
 
+    const NotificationItem = (item: Notification) => {
+        return (
+            <Aux>
+                <div className="notification_item">
+                    <div>
+                        <div>
+                            <Avatar src={item.avatar} />
+                        </div>
+                        <div>
+                            {' '}
+                            {item.title} ({item.rating})
+                        </div>
+                    </div>
+                    <div>{item.description}</div>
+                </div>
+                <div className="notification_actions">
+                    <div />
+                    {item.actions.map(action => (
+                        <div>{action}</div>
+                    ))}
+                </div>
+                <Divider />
+            </Aux>
+        );
+    };
+
     return (
         <div>
-            <List
-                dataSource={notifications}
-                bordered
-                renderItem={item => (
-                    <List.Item actions={item.actions}>
-                        <List.Item.Meta
-                            avatar={
-                                <Aux>
-                                    <Avatar src={item.avatar} />
-                                    <p>user rating:{item.rating}</p>
-                                </Aux>
-                            }
-                            title={<a href="https://ant.design/index-cn">{item.title}</a>}
-                            description={item.description}
-                        />
-                    </List.Item>
-                )}
-            />
+            <List dataSource={notifications} bordered renderItem={item => NotificationItem(item)} />
             <RatingComponent
                 visible={selection.showRating}
                 rateState={true}
