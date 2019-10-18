@@ -138,7 +138,7 @@ const NotificationsComponent = (props: Props) => {
                             <Avatar src={item.avatar} />
                         </div>
                         <div>
-                            {item.title} ({item.rating})
+                            {item.title} ({item.rating.toFixed(1)})
                         </div>
                     </div>
                     <div>{item.description}</div>
