@@ -225,3 +225,11 @@ export interface UrlParms {
     id: string;
     query: { category?: number; space?: number };
 }
+
+export interface UserReviewRecordType {
+    bookId: number;
+    userId: number;
+    comment: string;
+    stateScore: number;
+    id: number;
+}
