@@ -28,9 +28,13 @@ export default function socialReducer(state: any, action: any): any {
                 Store.dispatch(pageAction.refreshState({ categories: result }));
             });
 
-            return Object.assign({}, state, {
-                userdata: action.userdata,
-            });
+            let stateAppend: {
+                userdata: DataTypes.UserValueType;
+                userSpaces: DataTypes.SpaceType[];
+                otherSpaces: DataTypes.SpaceType[];
+            } = { userdata: action.userdata, userSpaces: [], otherSpaces: [] };
+
+            return Object.assign({}, state, stateAppend);
 
         default:
             return null;
