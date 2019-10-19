@@ -16,10 +16,12 @@ export default function pageReducer(state: any, action: any): any {
             databseInstance.getUserSpaces(state.userdata, handleError).then((result: DataTypes.SpaceType[]) => {
                 let spacesArrays: DataTypes.Spaces = { userSpaces: [], otherSpaces: [] };
                 spacesArrays.userSpaces = result;
-                databseInstance.getOtherSpaces(state.userdata, handleError).then((result: DataTypes.SpaceType[]) => {
-                    spacesArrays.otherSpaces = result;
-                    Store.dispatch(pageAction.refreshState({ spaces: spacesArrays }));
-                });
+                databseInstance
+                    .getOtherSpaces(state.userdata, action.filters, handleError)
+                    .then((result: DataTypes.SpaceType[]) => {
+                        spacesArrays.otherSpaces = result;
+                        Store.dispatch(pageAction.refreshState({ spaces: spacesArrays, append: true }));
+                    });
             });
 
             return Object.assign({}, state, {
@@ -44,17 +46,21 @@ export default function pageReducer(state: any, action: any): any {
 
         case PageActionConstant.ACTION_ADD_URL_PARAMS:
             let shouldResetBooksArray = false;
+            let shouldResetSpacesArray = false;
+
             const pageChanged: boolean = state.urlparams && state.urlparams.id != action.urlparams.id;
             const queryChanged = state.urlparams && state.urlparams.query !== action.urlparams.query;
 
             if (pageChanged || queryChanged) {
                 shouldResetBooksArray = true;
+                shouldResetSpacesArray = true;
             }
 
             let stateAppend: {
                 action: string;
                 urlparams: DataTypes.UrlParms;
                 booksArray?: DataTypes.BookRecordType[];
+                spaces?: DataTypes.Spaces;
             } = {
                 action: PageActionConstant.ACTION_ADD_URL_PARAMS,
                 urlparams: action.urlparams,
@@ -62,6 +68,10 @@ export default function pageReducer(state: any, action: any): any {
 
             if (shouldResetBooksArray) {
                 stateAppend = { ...stateAppend, booksArray: [] };
+            }
+
+            if (shouldResetSpacesArray) {
+                stateAppend = { ...stateAppend, spaces: { userSpaces: state.spaces.userSpaces, otherSpaces: [] } };
             }
 
             return Object.assign({}, state, stateAppend);
@@ -80,6 +90,12 @@ export default function pageReducer(state: any, action: any): any {
                     action.params.booksArray = state.booksArray.concat(action.params.booksArray);
                 }
             }
+
+            const shouldAppendSpaces: boolean = action.params.spaces && state.spaces && action.params.append === true;
+            if (shouldAppendSpaces) {
+                action.params.spaces.otherSpaces = state.spaces.otherSpaces.concat(action.params.spaces.otherSpaces);
+            }
+
             return Object.assign({}, state, action.params);
         default:
             return null;

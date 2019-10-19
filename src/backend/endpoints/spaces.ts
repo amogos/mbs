@@ -79,9 +79,11 @@ export async function getUserSpaces(
 
 export async function getOtherSpaces(
     user: DataTypes.UserRecordType,
+    filters: string[],
     onError: (resultCode: number) => void,
 ): Promise<DataTypes.SpaceType[]> {
-    return await _getSpaces(`${urlSpaces}?owner_ne=${user.id}`, onError);
+    filters.push(`owner_ne=${user.id}`);
+    return await _getSpaces(`${urlSpaces}?` + filters.join('&'), onError);
 }
 
 export async function getSpaceTypeFromId(
