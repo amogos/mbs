@@ -21,7 +21,6 @@ const BuildCategoryTabsInformation = (props: Props) => {
         id: -1,
         title: CategoryTabsStrings.HOME,
         callback: () => {
-            props.getSpaces(['_start=0', '_limit=50']);
             props.history.push('/spaces');
         },
     });

@@ -58,7 +58,7 @@ export default function pageReducer(state: any, action: any): any {
                 action: string;
                 urlparams: DataTypes.UrlParms;
                 booksArray?: DataTypes.BookRecordType[];
-                spaces?: DataTypes.Spaces;
+                otherSpaces?: DataTypes.SpaceType[];
             } = {
                 action: PageActionConstant.ACTION_ADD_URL_PARAMS,
                 urlparams: action.urlparams,
@@ -69,7 +69,7 @@ export default function pageReducer(state: any, action: any): any {
             }
 
             if (shouldResetSpacesArray) {
-                stateAppend = { ...stateAppend, spaces: { userSpaces: state.spaces.userSpaces, otherSpaces: [] } };
+                stateAppend = { ...stateAppend, otherSpaces: [] };
             }
 
             return Object.assign({}, state, stateAppend);
