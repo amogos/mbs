@@ -19,9 +19,6 @@ function propsEqual(prevProps: Props, nextProps: Props) {
     if (prevProps.otherSpaces && prevProps.otherSpaces.length != nextProps.otherSpaces.length) {
         return false;
     }
-    if (prevProps.booksArray && prevProps.booksArray.length != nextProps.booksArray.length) {
-        return false;
-    }
 
     return nextProps.urlparams === prevProps.urlparams;
 }
