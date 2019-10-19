@@ -9,7 +9,8 @@ interface Props {
     userdata: DataTypes.UserRecordType;
     urlparams: DataTypes.UrlParms;
     booksArray: DataTypes.BookRecordType[];
-    spaces: DataTypes.Spaces;
+    userSpaces: DataTypes.SpaceType[];
+    otherSpaces: DataTypes.SpaceType[];
     getBooks(filters: string[], callbacks: ((books: DataTypes.BookRecordType[]) => void)[]): void;
     getSpaces(filters: string[]): void;
 }
@@ -56,16 +57,15 @@ function nextSpaces(props: Props, force: boolean) {
 
     if (force || endOfContent) {
         let index = 0;
-        if (props.spaces) {
-            const { otherSpaces } = props.spaces;
-            const lastVisibleSpaceId = otherSpaces.length > 0 ? otherSpaces[otherSpaces.length - 1].id : -1;
+        if (props.otherSpaces) {
+            const lastVisibleSpaceId =
+                props.otherSpaces.length > 0 ? props.otherSpaces[props.otherSpaces.length - 1].id : -1;
             index = lastVisibleSpaceId + 1;
         }
         queryFilters.push(`_start=${index}`);
         queryFilters.push(`_limit=${limit}`);
+        props.getSpaces(queryFilters);
     }
-
-    props.getSpaces(queryFilters);
 }
 
 function SpacesList(props: Props) {

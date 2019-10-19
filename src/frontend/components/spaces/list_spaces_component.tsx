@@ -5,7 +5,8 @@ import SpaceHolder from './space_holder';
 import Aux, { withStyle } from './../aux_component';
 
 interface Props {
-    spaces: DataTypes.Spaces;
+    userSpaces: DataTypes.SpaceType[];
+    otherSpaces: DataTypes.SpaceType[];
     userdata: DataTypes.UserRecordType;
     languages: DataTypes.LanguageRecordType[];
     categories: DataTypes.CategoryRecordType[];
@@ -17,7 +18,7 @@ interface Props {
 }
 
 const ListSpacesComponent = (props: Props) => {
-    if (!props.spaces || !props.spaces.userSpaces || !props.spaces.otherSpaces) return null;
+    if (!props.userSpaces || !props.otherSpaces) return null;
 
     const onSpaceClicked = (spaceId: number) => {
         props.history.push(`/books?space=${spaceId}`);
@@ -29,12 +30,12 @@ const ListSpacesComponent = (props: Props) => {
         <Aux>
             <p className="thicker">All Spaces</p>
             <p className="thicker">My Spaces</p>
-            {props.spaces.userSpaces.map(item => (
+            {props.userSpaces.map(item => (
                 <SpaceHolder key={item.id} {...props} item={item} onClick={() => onSpaceClicked(item.id)} />
             ))}
             <p />
             <p className="thicker">Other Spaces</p>
-            {props.spaces.otherSpaces.map(item => (
+            {props.otherSpaces.map(item => (
                 <SpaceHolder key={item.id} {...props} item={item} onClick={() => onSpaceClicked(item.id)} />
             ))}
         </Aux>

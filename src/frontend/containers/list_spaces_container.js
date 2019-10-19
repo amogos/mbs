@@ -4,7 +4,8 @@ import { pageAction, spaceAction, bookAction } from '../actions';
 
 function mapStateToProps(state) {
     return {
-        spaces: state.mainReducer.spaces,
+        userSpaces: state.mainReducer.userSpaces,
+        otherSpaces: state.mainReducer.otherSpaces,
         userdata: state.mainReducer.userdata,
         categories: state.mainReducer.categories,
         languages: state.mainReducer.languages,

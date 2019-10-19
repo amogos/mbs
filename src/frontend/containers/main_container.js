@@ -7,7 +7,8 @@ function mapStateToProps(state) {
         userdata: state.mainReducer.userdata,
         urlparams: state.mainReducer.urlparams,
         booksArray: state.mainReducer.booksArray,
-        spaces: state.mainReducer.spaces,
+        userSpaces: state.mainReducer.userSpaces,
+        otherSpaces: state.mainReducer.otherSpaces,
     };
 }
 

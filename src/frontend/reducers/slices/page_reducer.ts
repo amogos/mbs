@@ -14,15 +14,13 @@ export default function pageReducer(state: any, action: any): any {
     switch (action.type) {
         case PageActionConstant.ACTION_GOTO_LIST_SPACES:
             databseInstance.getUserSpaces(state.userdata, handleError).then((result: DataTypes.SpaceType[]) => {
-                let spacesArrays: DataTypes.Spaces = { userSpaces: [], otherSpaces: [] };
-                spacesArrays.userSpaces = result;
-                databseInstance
-                    .getOtherSpaces(state.userdata, action.filters, handleError)
-                    .then((result: DataTypes.SpaceType[]) => {
-                        spacesArrays.otherSpaces = result;
-                        Store.dispatch(pageAction.refreshState({ spaces: spacesArrays, append: true }));
-                    });
+                Store.dispatch(pageAction.refreshState({ userSpaces: result, append: false }));
             });
+            databseInstance
+                .getOtherSpaces(state.userdata, action.filters, handleError)
+                .then((result: DataTypes.SpaceType[]) => {
+                    Store.dispatch(pageAction.refreshState({ otherSpaces: result, append: true }));
+                });
 
             return Object.assign({}, state, {
                 action: ActionConstants.default.PageActionConstant.ACTION_GOTO_LIST_SPACES,
@@ -91,9 +89,10 @@ export default function pageReducer(state: any, action: any): any {
                 }
             }
 
-            const shouldAppendSpaces: boolean = action.params.spaces && state.spaces && action.params.append === true;
+            const shouldAppendSpaces: boolean =
+                state.otherSpaces && action.params.otherSpaces && action.params.append === true;
             if (shouldAppendSpaces) {
-                action.params.spaces.otherSpaces = state.spaces.otherSpaces.concat(action.params.spaces.otherSpaces);
+                action.params.otherSpaces = state.otherSpaces.concat(action.params.otherSpaces);
             }
 
             return Object.assign({}, state, action.params);
