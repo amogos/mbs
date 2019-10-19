@@ -6,7 +6,7 @@ import * as Strings from '../../../shared/constants/string_constant';
 import { withStyle } from '../aux_component';
 
 interface Props {
-    gotoSpaces(): void;
+    getSpaces(filters: string[]): void;
     categories: DataTypes.CategoryRecordType[];
     history: any;
 }
@@ -21,7 +21,7 @@ const BuildCategoryTabsInformation = (props: Props) => {
         id: -1,
         title: CategoryTabsStrings.HOME,
         callback: () => {
-            props.gotoSpaces();
+            props.getSpaces(['_start=0', '_limit=50']);
             props.history.push('/spaces');
         },
     });

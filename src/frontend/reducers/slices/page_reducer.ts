@@ -12,9 +12,18 @@ const { PageActionConstant } = ActionConstants.default;
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default function pageReducer(state: any, action: any): any {
     switch (action.type) {
-        case PageActionConstant.ACTION_GOTO_SPACES:
+        case PageActionConstant.ACTION_GOTO_LIST_SPACES:
+            databseInstance.getUserSpaces(state.userdata, handleError).then((result: DataTypes.SpaceType[]) => {
+                let spacesArrays: DataTypes.Spaces = { userSpaces: [], otherSpaces: [] };
+                spacesArrays.userSpaces = result;
+                databseInstance.getOtherSpaces(state.userdata, handleError).then((result: DataTypes.SpaceType[]) => {
+                    spacesArrays.otherSpaces = result;
+                    Store.dispatch(pageAction.refreshState({ spaces: spacesArrays }));
+                });
+            });
+
             return Object.assign({}, state, {
-                action: ActionConstants.default.PageActionConstant.ACTION_GOTO_SPACES,
+                action: ActionConstants.default.PageActionConstant.ACTION_GOTO_LIST_SPACES,
             });
         case PageActionConstant.ACTION_GOTO_LIST_BOOKS:
             const progressSpinner = message.loading(Strings.MYBOOKSHELVE_ACTION_IN_PROGRESS);

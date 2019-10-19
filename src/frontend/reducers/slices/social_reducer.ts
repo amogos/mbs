@@ -21,15 +21,6 @@ export default function socialReducer(state: any, action: any): any {
             });
         }
         case SocialActionConstant.ACTION_USER_DATA:
-            databseInstance.getUserSpaces(action.userdata, handleError).then((result: DataTypes.SpaceType[]) => {
-                let spacesArrays: DataTypes.Spaces = { userSpaces: [], otherSpaces: [] };
-                spacesArrays.userSpaces = result;
-                databseInstance.getOtherSpaces(action.userdata, handleError).then((result: DataTypes.SpaceType[]) => {
-                    spacesArrays.otherSpaces = result;
-                    Store.dispatch(pageAction.refreshState({ spaces: spacesArrays }));
-                });
-            });
-
             databseInstance.getLanguages(handleError).then((result: DataTypes.LanguageRecordType[]) => {
                 Store.dispatch(pageAction.refreshState({ languages: result }));
             });

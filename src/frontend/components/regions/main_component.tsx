@@ -9,7 +9,9 @@ interface Props {
     userdata: DataTypes.UserRecordType;
     urlparams: DataTypes.UrlParms;
     booksArray: DataTypes.BookRecordType[];
+    spaces: DataTypes.Spaces;
     getBooks(filters: string[], callbacks: ((books: DataTypes.BookRecordType[]) => void)[]): void;
+    getSpaces(filters: string[]): void;
 }
 
 function propsEqual(prevProps: Props, nextProps: Props) {
@@ -17,6 +19,7 @@ function propsEqual(prevProps: Props, nextProps: Props) {
 }
 
 function nextBooks(props: Props, force: boolean) {
+    const limit = 50;
     const endOfContent =
         window.innerHeight + document.documentElement.scrollTop >= document.documentElement.scrollHeight;
 
@@ -31,26 +34,56 @@ function nextBooks(props: Props, force: boolean) {
             queryFilters.push(`space=${props.urlparams.query.space}`);
         }
 
-        const index = props.booksArray.length > 0 ? props.booksArray[props.booksArray.length - 1].id + 1 : 0;
+        const lastVisibleBookId = props.booksArray.length > 0 ? props.booksArray[props.booksArray.length - 1].id : -1;
+        const index = lastVisibleBookId + 1;
         queryFilters.push(`_start=${index}`);
-
-        const limit = 50;
         queryFilters.push(`_limit=${limit}`);
-
         props.getBooks(queryFilters, []);
     }
 }
 
-const MainComponent = React.memo((props: Props) => {
-    window.scrollTo(0, 0);
+function BooksList(props: Props) {
+    window.onscroll = debounce(() => nextBooks(props, false), 100);
+    nextBooks(props, true);
+    return <ListBooksContainer />;
+}
 
-    if (props.urlparams.id === 'books') {
-        window.onscroll = debounce(() => nextBooks(props, false), 100);
-        nextBooks(props, true);
-        return <ListBooksContainer />;
+function nextSpaces(props: Props, force: boolean) {
+    const limit = 50;
+    const endOfContent =
+        window.innerHeight + document.documentElement.scrollTop >= document.documentElement.scrollHeight;
+    const queryFilters: string[] = [];
+
+    if (force || endOfContent) {
+        let index = 0;
+        if (props.spaces) {
+            const { otherSpaces } = props.spaces;
+            const lastVisibleSpaceId = otherSpaces.length > 0 ? otherSpaces[otherSpaces.length - 1].id : -1;
+            index = lastVisibleSpaceId + 1;
+        }
+        queryFilters.push(`_start=${index}`);
+        queryFilters.push(`_limit=${limit}`);
     }
 
+    props.getSpaces(queryFilters);
+}
+
+function SpacesList(props: Props) {
+    window.onscroll = debounce(() => nextSpaces(props, false), 100);
+    nextSpaces(props, true);
     return <ListSpacesContainer />;
+}
+
+const MainComponent = React.memo((props: Props) => {
+    window.scrollTo(0, 0);
+    const { id } = props.urlparams;
+
+    switch (id) {
+        case 'books':
+            return BooksList(props);
+        default:
+            return SpacesList(props);
+    }
 }, propsEqual);
 
 export default requiresLogin(withStyle(MainComponent, 'main_component'));

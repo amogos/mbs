@@ -9,7 +9,7 @@ import LoginComponent from './../social/facebook_login';
 import ProfileComponent from '../../components/social/profile_component';
 
 interface Props {
-    gotoSpaces(): void;
+    getSpaces(filters: string[]): void;
     gotoNotifications(): void;
     loginUser(userInfo: DataTypes.UserValueType): void;
     userdata: DataTypes.UserRecordType;
