@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import * as DataTypes from '../../../shared/types';
 import * as BookStates from '../../../shared/constants/book_states_constant';
 import * as StringConstant from '../../../shared/constants/string_constant';
-import { Select, Input, message, Modal } from 'antd';
+import { Select, Input, message, Modal, Button } from 'antd';
 
 const { Option } = Select;
 const InputGroup = Input.Group;
@@ -32,12 +33,15 @@ let currentBook: DataTypes.BookValueType = {
     space: 0,
 };
 
+//  https://www.googleapis.com/books/v1/volumes?q=isbn:9783314103483
+
 const AddNewBookComponent = (props: Props) => {
     const [title, setTitle] = useState('');
     const [author, setAuthor] = useState('');
     const [language, setLanguage] = useState(0);
     const [category, setCategory] = useState(0);
     const [isbn, setIsbn] = useState('');
+    const [useGoogleApi, setUseGoogleApi] = useState(true);
 
     const onLanguageSelected = (value: number) => {
         const validLanguageSelection = value > 0 && value <= props.languages.length;
@@ -75,6 +79,101 @@ const AddNewBookComponent = (props: Props) => {
     currentBook.owner = props.userdata;
     currentBook.space = props.spaceId;
 
+    const SearchGoogleView = () => {
+        async function fetchBook(
+            isbn: string,
+            onFailure: (error: any) => void,
+            onSuccess: (response: any) => void,
+        ): Promise<any> {
+            let result = {};
+            let url = `https://www.googleapis.com/books/v1/volumes?q=isbn:${isbn}`;
+            await axios
+                .get(url)
+                .then(response => {
+                    result = response;
+                    onSuccess(result);
+                })
+                .catch(error => onFailure(error));
+            return result;
+        }
+
+        const onSuccess = (response: any) => {
+            alert(JSON.stringify(response));
+        };
+        const onFailure = (error: any) => {};
+
+        return (
+            <InputGroup>
+                <Input
+                    placeholder="Isbn"
+                    onChange={element => {
+                        setIsbn(element.target.value);
+                        currentBook.isbn = element.target.value;
+                    }}
+                    value={isbn}
+                />
+                <Button icon="search" onClick={() => fetchBook(isbn, onFailure, onSuccess)}>
+                    Search
+                </Button>
+            </InputGroup>
+        );
+    };
+
+    const FallbackView = () => {
+        return (
+            <InputGroup>
+                <Input
+                    placeholder="Title"
+                    onChange={element => {
+                        setTitle(element.target.value);
+                        currentBook.title = element.target.value;
+                    }}
+                    value={title}
+                />
+                <Input
+                    placeholder="Author"
+                    onChange={element => {
+                        setAuthor(element.target.value);
+                        currentBook.author = element.target.value;
+                    }}
+                    value={author}
+                />
+                <Input
+                    placeholder="Isbn"
+                    onChange={element => {
+                        setIsbn(element.target.value);
+                        currentBook.isbn = element.target.value;
+                    }}
+                    value={isbn}
+                />
+                <Select
+                    style={{ width: 200 }}
+                    placeholder="Select language"
+                    onChange={(value: number) => {
+                        return onLanguageSelected(value);
+                    }}
+                >
+                    {props.languages.map(language => (
+                        <Option key={language.id}>{language.title}</Option>
+                    ))}
+                </Select>
+                <Select
+                    style={{ width: 200 }}
+                    placeholder="Select category"
+                    onChange={(value: number) => {
+                        return onCategorySelected(value);
+                    }}
+                >
+                    {props.categories.map(category => (
+                        <Option key={category.id}>{category.title}</Option>
+                    ))}
+                </Select>
+            </InputGroup>
+        );
+    };
+
+    const ContentView = () => (useGoogleApi ? <SearchGoogleView /> : <FallbackView />);
+
     return (
         <Modal
             title={StringConstant.default.MYBOOKSHELVE_ADD_NEW_BOOK_TITLE}
@@ -82,56 +181,7 @@ const AddNewBookComponent = (props: Props) => {
             onOk={onSaveButtonPressed}
             onCancel={() => props.callback()}
         >
-            <div>
-                <InputGroup>
-                    <Input
-                        placeholder="Title"
-                        onChange={element => {
-                            setTitle(element.target.value);
-                            currentBook.title = element.target.value;
-                        }}
-                        value={title}
-                    />
-                    <Input
-                        placeholder="Author"
-                        onChange={element => {
-                            setAuthor(element.target.value);
-                            currentBook.author = element.target.value;
-                        }}
-                        value={author}
-                    />
-                    <Input
-                        placeholder="Isbn"
-                        onChange={element => {
-                            setIsbn(element.target.value);
-                            currentBook.isbn = element.target.value;
-                        }}
-                        value={isbn}
-                    />
-                    <Select
-                        style={{ width: 200 }}
-                        placeholder="Select language"
-                        onChange={(value: number) => {
-                            return onLanguageSelected(value);
-                        }}
-                    >
-                        {props.languages.map(language => (
-                            <Option key={language.id}>{language.title}</Option>
-                        ))}
-                    </Select>
-                    <Select
-                        style={{ width: 200 }}
-                        placeholder="Select category"
-                        onChange={(value: number) => {
-                            return onCategorySelected(value);
-                        }}
-                    >
-                        {props.categories.map(category => (
-                            <Option key={category.id}>{category.title}</Option>
-                        ))}
-                    </Select>
-                </InputGroup>
-            </div>
+            <ContentView />
         </Modal>
     );
 };
