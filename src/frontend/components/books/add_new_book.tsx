@@ -104,19 +104,7 @@ const AddNewBookComponent = (props: Props) => {
         const onSuccess = (response: any) => {
             if (response.items.length > 0) {
                 const volumeInfo = response.items[0].volumeInfo;
-                const title = volumeInfo.title;
-                const authors = volumeInfo.authors;
-                const publisher = volumeInfo.publisher;
-                const publishedDate = volumeInfo.publishedDate;
-                const description = volumeInfo.description;
-                const pageCount = volumeInfo.pageCount;
-                const printType = volumeInfo.printType;
-                const categories = volumeInfo.categories[0];
-                const imageLinks: { smallThumbnail: string; thumbnail: string } = volumeInfo.imageLinks;
-                const language = volumeInfo.language;
-                const visible = true;
-
-                setVolumeInformation({ ...volumeInfo, visible: visible });
+                setVolumeInformation({ ...volumeInfo, visible: true });
             }
         };
 
