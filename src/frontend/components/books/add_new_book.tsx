@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { Select, Input, message, Modal, Button } from 'antd';
 import * as DataTypes from '../../../shared/types';
 import * as BookStates from '../../../shared/constants/book_states_constant';
 import * as StringConstant from '../../../shared/constants/string_constant';
-import { Select, Input, message, Modal, Button } from 'antd';
+import BookPreview from './book_preview';
 
 const { Option } = Select;
 const InputGroup = Input.Group;
@@ -19,6 +20,7 @@ interface Props {
 }
 const defaultImage =
     'https://vignette.wikia.nocookie.net/superfriends/images/a/a5/No_Photo_Available.jpg/revision/latest?cb=20090329133959';
+
 let currentBook: DataTypes.BookValueType = {
     title: '',
     author: '',
@@ -80,6 +82,12 @@ const AddNewBookComponent = (props: Props) => {
     currentBook.space = props.spaceId;
 
     const SearchGoogleView = () => {
+        const [informationAvailable, setInformationAvailable] = useState(false);
+        const [thumbnail, setThumbnail] = useState('');
+        const [title, setTitle] = useState('');
+        const [authors, setAuthors] = useState(['']);
+        const [description, setDescription] = useState('');
+
         async function fetchBook(
             isbn: string,
             onFailure: (error: any) => void,
@@ -90,7 +98,7 @@ const AddNewBookComponent = (props: Props) => {
             await axios
                 .get(url)
                 .then(response => {
-                    result = response;
+                    result = response.data;
                     onSuccess(result);
                 })
                 .catch(error => onFailure(error));
@@ -98,8 +106,28 @@ const AddNewBookComponent = (props: Props) => {
         }
 
         const onSuccess = (response: any) => {
-            alert(JSON.stringify(response));
+            if (response.items.length > 0) {
+                const volumeInfo = response.items[0].volumeInfo;
+                const title = volumeInfo.title;
+                const authors = volumeInfo.authors;
+                const publisher = volumeInfo.publisher;
+                const publishedDate = volumeInfo.publishedDate;
+                const description = volumeInfo.description;
+                const pageCount = volumeInfo.pageCount;
+                const printType = volumeInfo.printType;
+                const categories = volumeInfo.categories[0];
+                const imageLinks: { smallThumbnail: string; thumbnail: string } = volumeInfo.imageLinks;
+                const language = volumeInfo.language;
+
+                setThumbnail(imageLinks.thumbnail);
+                setTitle(title);
+                setAuthors(authors);
+                setDescription(description);
+            }
+
+            setInformationAvailable(response.items.length > 0);
         };
+
         const onFailure = (error: any) => {};
 
         return (
@@ -112,6 +140,15 @@ const AddNewBookComponent = (props: Props) => {
                     }}
                     value={isbn}
                 />
+
+                <BookPreview
+                    visible={informationAvailable}
+                    image={thumbnail}
+                    title={title}
+                    authors={authors}
+                    description={description}
+                />
+
                 <Button icon="search" onClick={() => fetchBook(isbn, onFailure, onSuccess)}>
                     Search
                 </Button>
