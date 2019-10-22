@@ -39,7 +39,7 @@ export async function getCategoryRecordTypeFromTitle(
     await axios
         .get(`${urlCategory}?title=${title}`)
         .then(response => {
-            category = response.data[0];
+            if (response.data.length > 0) category = response.data[0];
         })
         .catch(error => onError(error));
     return category;
@@ -57,7 +57,6 @@ export async function addCategory(
             })
             .then(result => {
                 category = result.data;
-                alert(JSON.stringify(category));
             })
             .catch(error => onError(error));
     }

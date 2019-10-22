@@ -39,7 +39,7 @@ export async function getLanguageRecordTypeFromTitle(
     await axios
         .get(`${urlLanguages}?title=${title}`)
         .then(response => {
-            language = response.data;
+            if (response.data.length > 0) language = response.data[0];
         })
         .catch(error => onError(error));
     return language;

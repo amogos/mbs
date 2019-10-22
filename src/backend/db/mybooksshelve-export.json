@@ -1,370 +1,390 @@
 {
-    "users": [
-        {
-            "name": "Iulia Mogos",
-            "email": "daosmistique@yahoo.com",
-            "picture": "https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=2223056511038248&height=50&width=50&ext=1566812071&hash=AeSiTV7UwEZToD2h",
-            "following": [2],
-            "rating": 0,
-            "id": 1
-        },
-        {
-            "id": 2,
-            "name": "Florin Mogos",
-            "email": "florin.mogos@gmail.com",
-            "picture": "https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png",
-            "following": [],
-            "rating": 0
-        },
-        {
-            "id": 3,
-            "name": "Varza Murata",
-            "email": "varzamurata@gmail.com",
-            "picture": "https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png",
-            "following": [],
-            "rating": 0
-        }
-    ],
-    "queues": [
-        {
-            "id": 1,
-            "userId": 3,
-            "bookId": 3,
-            "ownerId": 1,
-            "duration": 2
-        }
-    ],
-    "returns": [
-        {
-            "id": 1,
-            "userId": 2,
-            "bookId": 3,
-            "ownerId": 1
-        }
-    ],
-    "languages": [
-        {
-            "id": 1,
-            "title": "EN"
-        },
-        {
-            "id": 2,
-            "title": "DE"
-        }
-    ],
-    "books": [
-        {
-            "id": 1,
-            "author": "Susanne Schotz",
-            "image": "https://images-eu.ssl-images-amazon.com/images/I/51UkIlAOwEL._SY90_.jpg",
-            "language": 1,
-            "owner": 2,
-            "holder": 1,
-            "title": "The Secret Language of Cats: How to Understand Your Cat for a Better, Happier Relationship",
-            "state": "state.book.idle",
-            "category": 26,
-            "space": 2,
-            "format": 1,
-            "isbn": "978-3734820211",
-            "return": 1565937976485
-        },
-        {
-            "id": 2,
-            "author": "Eric Carle",
-            "image": "https://images-na.ssl-images-amazon.com/images/I/51lsugWtCvL._SY498_BO1,204,203,200_.jpg",
-            "language": 1,
-            "owner": 1,
-            "holder": 2,
-            "title": "The Very Hungry Caterpillar's ABC",
-            "state": "state.book.in.transit.to.holder",
-            "category": 4,
-            "space": 1,
-            "format": 1,
-            "isbn": "978-3734820212",
-            "return": 1565937976485
-        },
-        {
-            "id": 3,
-            "author": "Julia Donaldson",
-            "image": "https://images-na.ssl-images-amazon.com/images/I/51Zm3fBs0PL._SY446_BO1,204,203,200_.jpg",
-            "language": 1,
-            "owner": 1,
-            "holder": -1,
-            "title": "Room on the Broom Board Book",
-            "state": "state.book.idle",
-            "category": 4,
-            "space": 1,
-            "format": 1,
-            "isbn": "978-3734820213"
-        },
-        {
-            "id": 4,
-            "author": "Julia Donaldson",
-            "image": "https://images-na.ssl-images-amazon.com/images/I/61YDHV-%2B-VL._SY448_BO1,204,203,200_.jpg",
-            "language": 1,
-            "owner": 1,
-            "holder": -1,
-            "title": "The Snail and the Whale",
-            "state": "state.book.idle",
-            "category": 4,
-            "space": 1,
-            "format": 1,
-            "isbn": "978-3734820214"
-        },
-        {
-            "id": 5,
-            "author": " Yuval Noah Harari",
-            "image": "https://images-na.ssl-images-amazon.com/images/I/417lbqaSihL._SX318_BO1,204,203,200_.jpg",
-            "language": 2,
-            "owner": 2,
-            "holder": -1,
-            "title": "Homo Deus: Eine Geschichte von Morgen ",
-            "state": "state.book.idle",
-            "category": 11,
-            "space": 2,
-            "format": 1,
-            "isbn": "978-3734820215"
-        },
-        {
-            "author": "me",
-            "image": "https://vignette.wikia.nocookie.net/superfriends/images/a/a5/No_Photo_Available.jpg/revision/latest?cb=20090329133959",
-            "language": 1,
-            "owner": 1,
-            "holder": -1,
-            "title": "business book",
-            "state": "state.book.idle",
-            "category": 3,
-            "space": 1,
-            "id": 6,
-            "format": 1,
-            "isbn": "978-3734820216"
-        },
-        {
-            "author": "qweqwe",
-            "image": "https://vignette.wikia.nocookie.net/superfriends/images/a/a5/No_Photo_Available.jpg/revision/latest?cb=20090329133959",
-            "language": 2,
-            "owner": 1,
-            "holder": -1,
-            "title": "qeqwewq",
-            "state": "state.book.idle",
-            "isbn": "q142314124",
-            "category": 3,
-            "format": "1",
-            "space": 1,
-            "id": 7
-        }
-    ],
-    "book_reviews": [
-        {
-            "id": 1,
-            "bookId": 1,
-            "userId": 1,
-            "comment": "Good spelling practice but sometimes too many exercises and not enough explanation.",
-            "contentScore": 4.5,
-            "stateScore": 4.5
-        },
-        {
-            "id": 1,
-            "bookId": 1,
-            "userId": 2,
-            "comment": "Unsere Tochter kommt in die 3. Klasse und nutzt das Buch schon mal zur Vorbereitung. Sie findet es klasse. Wir sind der Meinung das die Qualität sehr gut ist und genau das richtige ist zum Üben. Wir können das Buch nur weiterempfehlen.",
-            "contentScore": 4.1,
-            "stateScore": 4
-        }
-    ],
-    "user_reviews": [
-        {
-            "bookId": 3,
-            "userId": 3,
-            "comment": "Book came back in good conditions.",
-            "stateScore": 4,
-            "id": 1
-        }
-    ],
-    "orders": [],
-    "categories": [
-        {
-            "id": 1,
-            "title": "art & music"
-        },
-        {
-            "id": 2,
-            "title": "biographies"
-        },
-        {
-            "id": 3,
-            "title": "business"
-        },
-        {
-            "id": 4,
-            "title": "kids"
-        },
-        {
-            "id": 5,
-            "title": "comics"
-        },
-        {
-            "id": 6,
-            "title": "computer & tech"
-        },
-        {
-            "id": 7,
-            "title": "cooking"
-        },
-        {
-            "id": 8,
-            "title": "hobbies & crafts"
-        },
-        {
-            "id": 9,
-            "title": "gay & lesbian"
-        },
-        {
-            "id": 10,
-            "title": "health & fitness"
-        },
-        {
-            "id": 11,
-            "title": "history"
-        },
-        {
-            "id": 12,
-            "title": "home & garden"
-        },
-        {
-            "id": 13,
-            "title": "horror"
-        },
-        {
-            "id": 14,
-            "title": "entertainment"
-        },
-        {
-            "id": 15,
-            "title": "literture & fiction"
-        },
-        {
-            "id": 16,
-            "title": "medical"
-        },
-        {
-            "id": 14,
-            "title": "mysteries"
-        },
-        {
-            "id": 15,
-            "title": "parenting"
-        },
-        {
-            "id": 16,
-            "title": "social sciences"
-        },
-        {
-            "id": 17,
-            "title": "religion"
-        },
-        {
-            "id": 18,
-            "title": "romance & sexuality"
-        },
-        {
-            "id": 19,
-            "title": "science & math"
-        },
-        {
-            "id": 20,
-            "title": "sci-fi & fantasy"
-        },
-        {
-            "id": 21,
-            "title": "sports"
-        },
-        {
-            "id": 22,
-            "title": "teens"
-        },
-        {
-            "id": 21,
-            "title": "travel"
-        },
-        {
-            "id": 22,
-            "title": "true crime"
-        },
-        {
-            "id": 23,
-            "title": "philosophy"
-        },
-        {
-            "id": 24,
-            "title": "photography"
-        },
-        {
-            "id": 25,
-            "title": "family & care"
-        },
-        {
-            "id": 26,
-            "title": "animal rights & pets"
-        },
-        {
-            "id": 27,
-            "title": "engineering"
-        },
-        {
-            "id": 28,
-            "title": "architecture & interior design"
-        },
-        {
-            "id": 29,
-            "title": "poetry"
-        },
-        {
-            "id": 30,
-            "title": "nonfiction(general)"
-        }
-    ],
-    "spaces": [
-        {
-            "id": 1,
-            "owner": 1,
-            "subscription": 0,
-            "title": "daosmistique@yahoo.com",
-            "description": "Iulia Mogos Default",
-            "transport": 0,
-            "picture": "https://www.berlin.de/converjon/?ts=1429660132&width=166&height=125&url=https%3A%2F%2Fwww.berlin.de%2Fba-lichtenberg%2Fauf-einen-blick%2Fbuergerservice%2Fbildung%2Fmdb-balichtenberghohenschoenhausen-bibliotheken-kisch_aussen.jpg"
-        },
-        {
-            "id": 2,
-            "owner": 2,
-            "subscription": 0,
-            "title": "THE NUANCE",
-            "description": "The Unsettling Ways Tech Is Changing Your Personal Reality",
-            "transport": 0,
-            "picture": "https://www.berlin.de/converjon/?ts=1429660132&width=166&height=125&url=https%3A%2F%2Fwww.berlin.de%2Fba-lichtenberg%2Fauf-einen-blick%2Fbuergerservice%2Fbildung%2Fmdb-balichtenberghohenschoenhausen-bibliotheken-kisch_aussen.jpg"
-        },
-        {
-            "id": 3,
-            "owner": 3,
-            "subscription": 0,
-            "title": "OneZero",
-            "description": "The Illegal Wildlife Market Is Booming. Encrypted Messaging Makes It Worse.The Illegal Wildlife Market Is Booming. Encrypted Messaging Makes It Worse.",
-            "transport": 0,
-            "picture": "https://www.google.com/search?q=spaces&rlz=1C1CHBF_enDE750DE750&sxsrf=ACYBGNRleGx6Q7ZoTRX3vN_75uHUaGHG1A:1569381920271&source=lnms&tbm=isch&sa=X&ved=0ahUKEwi0qP-eg-vkAhWFLlAKHTGqCzIQ_AUIEygC&biw=1920&bih=937#imgrc=Mj4n4nKAbjgIZM:"
-        }
-    ],
-    "formats": [
-        {
-            "id": 1,
-            "type": "hardcover"
-        },
-        {
-            "id": 2,
-            "type": "e-book"
-        },
-        {
-            "id": 3,
-            "type": "audio-book"
-        }
-    ]
+  "users": [
+    {
+      "name": "Iulia Mogos",
+      "email": "daosmistique@yahoo.com",
+      "picture": "https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=2223056511038248&height=50&width=50&ext=1566812071&hash=AeSiTV7UwEZToD2h",
+      "following": [
+        2
+      ],
+      "rating": 0,
+      "id": 1
+    },
+    {
+      "id": 2,
+      "name": "Florin Mogos",
+      "email": "florin.mogos@gmail.com",
+      "picture": "https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png",
+      "following": [],
+      "rating": 0
+    },
+    {
+      "id": 3,
+      "name": "Varza Murata",
+      "email": "varzamurata@gmail.com",
+      "picture": "https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png",
+      "following": [],
+      "rating": 0
+    }
+  ],
+  "queues": [
+    {
+      "id": 1,
+      "userId": 3,
+      "bookId": 3,
+      "ownerId": 1,
+      "duration": 2
+    }
+  ],
+  "returns": [
+    {
+      "id": 1,
+      "userId": 2,
+      "bookId": 3,
+      "ownerId": 1
+    }
+  ],
+  "languages": [
+    {
+      "id": 1,
+      "title": "EN"
+    },
+    {
+      "id": 2,
+      "title": "DE"
+    }
+  ],
+  "books": [
+    {
+      "id": 1,
+      "author": "Susanne Schotz",
+      "image": "https://images-eu.ssl-images-amazon.com/images/I/51UkIlAOwEL._SY90_.jpg",
+      "language": 1,
+      "owner": 2,
+      "holder": 1,
+      "title": "The Secret Language of Cats: How to Understand Your Cat for a Better, Happier Relationship",
+      "state": "state.book.idle",
+      "category": 26,
+      "space": 2,
+      "format": 1,
+      "isbn": "978-3734820211",
+      "return": 1565937976485
+    },
+    {
+      "id": 2,
+      "author": "Eric Carle",
+      "image": "https://images-na.ssl-images-amazon.com/images/I/51lsugWtCvL._SY498_BO1,204,203,200_.jpg",
+      "language": 1,
+      "owner": 1,
+      "holder": 2,
+      "title": "The Very Hungry Caterpillar's ABC",
+      "state": "state.book.in.transit.to.holder",
+      "category": 4,
+      "space": 1,
+      "format": 1,
+      "isbn": "978-3734820212",
+      "return": 1565937976485
+    },
+    {
+      "id": 3,
+      "author": "Julia Donaldson",
+      "image": "https://images-na.ssl-images-amazon.com/images/I/51Zm3fBs0PL._SY446_BO1,204,203,200_.jpg",
+      "language": 1,
+      "owner": 1,
+      "holder": -1,
+      "title": "Room on the Broom Board Book",
+      "state": "state.book.idle",
+      "category": 4,
+      "space": 1,
+      "format": 1,
+      "isbn": "978-3734820213"
+    },
+    {
+      "id": 4,
+      "author": "Julia Donaldson",
+      "image": "https://images-na.ssl-images-amazon.com/images/I/61YDHV-%2B-VL._SY448_BO1,204,203,200_.jpg",
+      "language": 1,
+      "owner": 1,
+      "holder": -1,
+      "title": "The Snail and the Whale",
+      "state": "state.book.idle",
+      "category": 4,
+      "space": 1,
+      "format": 1,
+      "isbn": "978-3734820214"
+    },
+    {
+      "id": 5,
+      "author": " Yuval Noah Harari",
+      "image": "https://images-na.ssl-images-amazon.com/images/I/417lbqaSihL._SX318_BO1,204,203,200_.jpg",
+      "language": 2,
+      "owner": 2,
+      "holder": -1,
+      "title": "Homo Deus: Eine Geschichte von Morgen ",
+      "state": "state.book.idle",
+      "category": 11,
+      "space": 2,
+      "format": 1,
+      "isbn": "978-3734820215"
+    },
+    {
+      "author": "me",
+      "image": "https://vignette.wikia.nocookie.net/superfriends/images/a/a5/No_Photo_Available.jpg/revision/latest?cb=20090329133959",
+      "language": 1,
+      "owner": 1,
+      "holder": -1,
+      "title": "business book",
+      "state": "state.book.idle",
+      "category": 3,
+      "space": 1,
+      "id": 6,
+      "format": 1,
+      "isbn": "978-3734820216"
+    },
+    {
+      "author": "qweqwe",
+      "image": "https://vignette.wikia.nocookie.net/superfriends/images/a/a5/No_Photo_Available.jpg/revision/latest?cb=20090329133959",
+      "language": 2,
+      "owner": 1,
+      "holder": -1,
+      "title": "qeqwewq",
+      "state": "state.book.idle",
+      "isbn": "q142314124",
+      "category": 3,
+      "format": "1",
+      "space": 1,
+      "id": 7
+    },
+    {
+      "author": "Linda Bayerl",
+      "image": "http://books.google.com/books/content?id=oF4ZDAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+      "language": 2,
+      "owner": 1,
+      "holder": -1,
+      "title": "Vorschulblock - Logisches Denken, rätseln und knobeln ab 5 Jahre",
+      "state": "state.book.idle",
+      "isbn": "9783881006248",
+      "category": 31,
+      "format": "1",
+      "space": 1,
+      "id": 8
+    }
+  ],
+  "book_reviews": [
+    {
+      "id": 1,
+      "bookId": 1,
+      "userId": 1,
+      "comment": "Good spelling practice but sometimes too many exercises and not enough explanation.",
+      "contentScore": 4.5,
+      "stateScore": 4.5
+    },
+    {
+      "id": 1,
+      "bookId": 1,
+      "userId": 2,
+      "comment": "Unsere Tochter kommt in die 3. Klasse und nutzt das Buch schon mal zur Vorbereitung. Sie findet es klasse. Wir sind der Meinung das die Qualität sehr gut ist und genau das richtige ist zum Üben. Wir können das Buch nur weiterempfehlen.",
+      "contentScore": 4.1,
+      "stateScore": 4
+    }
+  ],
+  "user_reviews": [
+    {
+      "bookId": 3,
+      "userId": 3,
+      "comment": "Book came back in good conditions.",
+      "stateScore": 4,
+      "id": 1
+    }
+  ],
+  "orders": [],
+  "categories": [
+    {
+      "id": 1,
+      "title": "art & music"
+    },
+    {
+      "id": 2,
+      "title": "biographies"
+    },
+    {
+      "id": 3,
+      "title": "business"
+    },
+    {
+      "id": 4,
+      "title": "kids"
+    },
+    {
+      "id": 5,
+      "title": "comics"
+    },
+    {
+      "id": 6,
+      "title": "computer & tech"
+    },
+    {
+      "id": 7,
+      "title": "cooking"
+    },
+    {
+      "id": 8,
+      "title": "hobbies & crafts"
+    },
+    {
+      "id": 9,
+      "title": "gay & lesbian"
+    },
+    {
+      "id": 10,
+      "title": "health & fitness"
+    },
+    {
+      "id": 11,
+      "title": "history"
+    },
+    {
+      "id": 12,
+      "title": "home & garden"
+    },
+    {
+      "id": 13,
+      "title": "horror"
+    },
+    {
+      "id": 14,
+      "title": "entertainment"
+    },
+    {
+      "id": 15,
+      "title": "literture & fiction"
+    },
+    {
+      "id": 16,
+      "title": "medical"
+    },
+    {
+      "id": 14,
+      "title": "mysteries"
+    },
+    {
+      "id": 15,
+      "title": "parenting"
+    },
+    {
+      "id": 16,
+      "title": "social sciences"
+    },
+    {
+      "id": 17,
+      "title": "religion"
+    },
+    {
+      "id": 18,
+      "title": "romance & sexuality"
+    },
+    {
+      "id": 19,
+      "title": "science & math"
+    },
+    {
+      "id": 20,
+      "title": "sci-fi & fantasy"
+    },
+    {
+      "id": 21,
+      "title": "sports"
+    },
+    {
+      "id": 22,
+      "title": "teens"
+    },
+    {
+      "id": 21,
+      "title": "travel"
+    },
+    {
+      "id": 22,
+      "title": "true crime"
+    },
+    {
+      "id": 23,
+      "title": "philosophy"
+    },
+    {
+      "id": 24,
+      "title": "photography"
+    },
+    {
+      "id": 25,
+      "title": "family & care"
+    },
+    {
+      "id": 26,
+      "title": "animal rights & pets"
+    },
+    {
+      "id": 27,
+      "title": "engineering"
+    },
+    {
+      "id": 28,
+      "title": "architecture & interior design"
+    },
+    {
+      "id": 29,
+      "title": "poetry"
+    },
+    {
+      "id": 30,
+      "title": "nonfiction(general)"
+    },
+    {
+      "title": "education",
+      "id": 31
+    }
+  ],
+  "spaces": [
+    {
+      "id": 1,
+      "owner": 1,
+      "subscription": 0,
+      "title": "daosmistique@yahoo.com",
+      "description": "Iulia Mogos Default",
+      "transport": 0,
+      "picture": "https://www.berlin.de/converjon/?ts=1429660132&width=166&height=125&url=https%3A%2F%2Fwww.berlin.de%2Fba-lichtenberg%2Fauf-einen-blick%2Fbuergerservice%2Fbildung%2Fmdb-balichtenberghohenschoenhausen-bibliotheken-kisch_aussen.jpg"
+    },
+    {
+      "id": 2,
+      "owner": 2,
+      "subscription": 0,
+      "title": "THE NUANCE",
+      "description": "The Unsettling Ways Tech Is Changing Your Personal Reality",
+      "transport": 0,
+      "picture": "https://www.berlin.de/converjon/?ts=1429660132&width=166&height=125&url=https%3A%2F%2Fwww.berlin.de%2Fba-lichtenberg%2Fauf-einen-blick%2Fbuergerservice%2Fbildung%2Fmdb-balichtenberghohenschoenhausen-bibliotheken-kisch_aussen.jpg"
+    },
+    {
+      "id": 3,
+      "owner": 3,
+      "subscription": 0,
+      "title": "OneZero",
+      "description": "The Illegal Wildlife Market Is Booming. Encrypted Messaging Makes It Worse.The Illegal Wildlife Market Is Booming. Encrypted Messaging Makes It Worse.",
+      "transport": 0,
+      "picture": "https://www.google.com/search?q=spaces&rlz=1C1CHBF_enDE750DE750&sxsrf=ACYBGNRleGx6Q7ZoTRX3vN_75uHUaGHG1A:1569381920271&source=lnms&tbm=isch&sa=X&ved=0ahUKEwi0qP-eg-vkAhWFLlAKHTGqCzIQ_AUIEygC&biw=1920&bih=937#imgrc=Mj4n4nKAbjgIZM:"
+    }
+  ],
+  "formats": [
+    {
+      "id": 1,
+      "type": "hardcover"
+    },
+    {
+      "id": 2,
+      "type": "e-book"
+    },
+    {
+      "id": 3,
+      "type": "audio-book"
+    }
+  ]
 }
