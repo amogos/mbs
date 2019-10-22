@@ -55,7 +55,7 @@ export async function addLanguage(
             .post(urlLanguages, {
                 title: title,
             })
-            .then(result => (language = result.data[0]))
+            .then(result => (language = result.data))
             .catch(error => onError(error));
     }
 

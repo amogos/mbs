@@ -185,143 +185,143 @@
     "categories": [
         {
             "id": 1,
-            "title": "Art & Music"
+            "title": "art & music"
         },
         {
             "id": 2,
-            "title": "Biographies"
+            "title": "biographies"
         },
         {
             "id": 3,
-            "title": "Business"
+            "title": "business"
         },
         {
             "id": 4,
-            "title": "Kids"
+            "title": "kids"
         },
         {
             "id": 5,
-            "title": "Comics"
+            "title": "comics"
         },
         {
             "id": 6,
-            "title": "Computer & Tech"
+            "title": "computer & tech"
         },
         {
             "id": 7,
-            "title": "Cooking"
+            "title": "cooking"
         },
         {
             "id": 8,
-            "title": "Hobbies & Crafts"
+            "title": "hobbies & crafts"
         },
         {
             "id": 9,
-            "title": "Gay & Lesbian"
+            "title": "gay & lesbian"
         },
         {
             "id": 10,
-            "title": "Health & Fitness"
+            "title": "health & fitness"
         },
         {
             "id": 11,
-            "title": "History"
+            "title": "history"
         },
         {
             "id": 12,
-            "title": "Home & Garden"
+            "title": "home & garden"
         },
         {
             "id": 13,
-            "title": "Horror"
+            "title": "horror"
         },
         {
             "id": 14,
-            "title": "Entertainment"
+            "title": "entertainment"
         },
         {
             "id": 15,
-            "title": "Literture & Fiction"
+            "title": "literture & fiction"
         },
         {
             "id": 16,
-            "title": "Medical"
+            "title": "medical"
         },
         {
             "id": 14,
-            "title": "Mysteries"
+            "title": "mysteries"
         },
         {
             "id": 15,
-            "title": "Parenting"
+            "title": "parenting"
         },
         {
             "id": 16,
-            "title": "Social Sciences"
+            "title": "social sciences"
         },
         {
             "id": 17,
-            "title": "Religion"
+            "title": "religion"
         },
         {
             "id": 18,
-            "title": "Romance & Sexuality"
+            "title": "romance & sexuality"
         },
         {
             "id": 19,
-            "title": "Science & Math"
+            "title": "science & math"
         },
         {
             "id": 20,
-            "title": "Sci-Fi & Fantasy"
+            "title": "sci-fi & fantasy"
         },
         {
             "id": 21,
-            "title": "Sports"
+            "title": "sports"
         },
         {
             "id": 22,
-            "title": "Teens"
+            "title": "teens"
         },
         {
             "id": 21,
-            "title": "Travel"
+            "title": "travel"
         },
         {
             "id": 22,
-            "title": "True Crime"
+            "title": "true crime"
         },
         {
             "id": 23,
-            "title": "Philosophy"
+            "title": "philosophy"
         },
         {
             "id": 24,
-            "title": "Photography"
+            "title": "photography"
         },
         {
             "id": 25,
-            "title": "Family & Care"
+            "title": "family & care"
         },
         {
             "id": 26,
-            "title": "Animal rights & Pets"
+            "title": "animal rights & pets"
         },
         {
             "id": 27,
-            "title": "Engineering"
+            "title": "engineering"
         },
         {
             "id": 28,
-            "title": "Architecture & Interior Design"
+            "title": "architecture & interior design"
         },
         {
             "id": 29,
-            "title": "Poetry"
+            "title": "poetry"
         },
         {
             "id": 30,
-            "title": "NonFiction(General)"
+            "title": "nonfiction(general)"
         }
     ],
     "spaces": [

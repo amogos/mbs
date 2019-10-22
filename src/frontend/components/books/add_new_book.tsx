@@ -73,8 +73,8 @@ const AddNewBookComponent = (props: Props) => {
             currentBook.title = volumeInformation.title;
             currentBook.author = volumeInformation.authors.toString();
             currentBook.image = volumeInformation.imageLinks.thumbnail;
-            currentBook.language.title = volumeInformation.language;
-            currentBook.category.title = volumeInformation.categories[0];
+            currentBook.language.title = volumeInformation.language.toUpperCase();
+            currentBook.category.title = volumeInformation.categories[0].toLowerCase();
             props.addBook(currentBook);
         } else {
             if (!fieldsValid()) {

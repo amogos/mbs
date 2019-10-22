@@ -39,7 +39,7 @@ export async function getCategoryRecordTypeFromTitle(
     await axios
         .get(`${urlCategory}?title=${title}`)
         .then(response => {
-            category = { id: response.data.id, title: response.data.title };
+            category = response.data[0];
         })
         .catch(error => onError(error));
     return category;
@@ -55,7 +55,10 @@ export async function addCategory(
             .post(urlCategory, {
                 title: title,
             })
-            .then(result => (category = result.data[0]))
+            .then(result => {
+                category = result.data;
+                alert(JSON.stringify(category));
+            })
             .catch(error => onError(error));
     }
     return category;
