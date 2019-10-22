@@ -42,6 +42,7 @@ const AddNewBookComponent = (props: Props) => {
     const [category, setCategory] = useState(0);
     const [isbn, setIsbn] = useState('');
     const [useGoogleApi, setUseGoogleApi] = useState(true);
+    const [volumeInformation, setVolumeInformation] = useState(NullBookPreviewProps);
 
     const onLanguageSelected = (value: number) => {
         const validLanguageSelection = value > 0 && value <= props.languages.length;
@@ -80,8 +81,6 @@ const AddNewBookComponent = (props: Props) => {
     currentBook.space = props.spaceId;
 
     const SearchGoogleView = () => {
-        const [volumeInformation, setVolumeInformation] = useState(NullBookPreviewProps);
-
         async function fetchBook(
             isbn: string,
             onFailure: (error: any) => void,

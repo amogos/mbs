@@ -30,3 +30,17 @@ export async function getCategoryRecordTypeFromId(
         .catch(error => onError(error));
     return category;
 }
+
+export async function addCategory(
+    title: string,
+    onError: (resultCode: number) => void,
+): Promise<DataTypes.CategoryRecordType> {
+    let category = DataTypes.NullCategory;
+    await axios
+        .post(urlCategory, {
+            title: title,
+        })
+        .then(result => (category = result.data[0]))
+        .catch(error => onError(error));
+    return category;
+}
