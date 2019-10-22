@@ -69,12 +69,21 @@ const AddNewBookComponent = (props: Props) => {
     };
 
     const onSaveButtonPressed = () => {
-        if (!fieldsValid()) {
-            message.error(StringConstant.default.MYBOOKSHELVE_INVALID_FIELDS);
-            return;
+        if (useGoogleApi) {
+            currentBook.title = volumeInformation.title;
+            currentBook.author = volumeInformation.authors.toString();
+            currentBook.image = volumeInformation.imageLinks.thumbnail;
+            currentBook.language.title = volumeInformation.language;
+            currentBook.category.title = volumeInformation.categories[0];
+            props.addBook(currentBook);
+        } else {
+            if (!fieldsValid()) {
+                message.error(StringConstant.default.MYBOOKSHELVE_INVALID_FIELDS);
+                return;
+            }
+            props.addBook(currentBook);
+            clearFields();
         }
-        props.addBook(currentBook);
-        clearFields();
     };
 
     currentBook.owner = props.userdata;

@@ -30,3 +30,34 @@ export async function getLanguageRecordTypeFromId(
         .catch(error => onError(error));
     return language;
 }
+
+export async function getLanguageRecordTypeFromTitle(
+    title: string,
+    onError: (resultCode: number) => void,
+): Promise<DataTypes.LanguageRecordType> {
+    let language = DataTypes.NullLanguage;
+    await axios
+        .get(`${urlLanguages}?title=${title}`)
+        .then(response => {
+            language = response.data;
+        })
+        .catch(error => onError(error));
+    return language;
+}
+
+export async function addLanguage(
+    title: string,
+    onError: (resultCode: number) => void,
+): Promise<DataTypes.LanguageRecordType> {
+    let language = await getLanguageRecordTypeFromTitle(title, onError);
+    if (language.id <= 0) {
+        await axios
+            .post(urlLanguages, {
+                title: title,
+            })
+            .then(result => (language = result.data[0]))
+            .catch(error => onError(error));
+    }
+
+    return language;
+}

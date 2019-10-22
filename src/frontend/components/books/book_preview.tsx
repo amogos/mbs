@@ -11,6 +11,7 @@ export interface BookPreviewProps {
     publishedDate: string;
     pageCount: string;
     language: string;
+    categories: string[];
 }
 
 export const NullBookPreviewProps: BookPreviewProps = {
@@ -23,6 +24,7 @@ export const NullBookPreviewProps: BookPreviewProps = {
     publishedDate: '',
     pageCount: '',
     language: '',
+    categories: [],
 };
 
 const BookPreview = (props: BookPreviewProps) => {
@@ -42,6 +44,8 @@ const BookPreview = (props: BookPreviewProps) => {
                 <br />
                 Publisher: {props.publisher}
                 <span>({props.publishedDate}) </span>
+                <br />
+                Category: {props.categories[0]}
                 <br />
                 Length: {props.pageCount}
             </div>

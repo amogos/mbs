@@ -31,16 +31,32 @@ export async function getCategoryRecordTypeFromId(
     return category;
 }
 
-export async function addCategory(
+export async function getCategoryRecordTypeFromTitle(
     title: string,
     onError: (resultCode: number) => void,
 ): Promise<DataTypes.CategoryRecordType> {
     let category = DataTypes.NullCategory;
     await axios
-        .post(urlCategory, {
-            title: title,
+        .get(`${urlCategory}?title=${title}`)
+        .then(response => {
+            category = { id: response.data.id, title: response.data.title };
         })
-        .then(result => (category = result.data[0]))
         .catch(error => onError(error));
+    return category;
+}
+
+export async function addCategory(
+    title: string,
+    onError: (resultCode: number) => void,
+): Promise<DataTypes.CategoryRecordType> {
+    let category = await getCategoryRecordTypeFromTitle(title, onError);
+    if (category.id <= 0) {
+        await axios
+            .post(urlCategory, {
+                title: title,
+            })
+            .then(result => (category = result.data[0]))
+            .catch(error => onError(error));
+    }
     return category;
 }
