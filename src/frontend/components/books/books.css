@@ -30,3 +30,27 @@
     margin-right: 35%;
     z-index: 1;
 }
+
+.book_preview {
+    margin-top: 65px;
+}
+
+.book_preview img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    border-radius: 4px;
+}
+
+.book_preview .details {
+    padding-top: 25px;
+    padding-bottom: 15px;
+
+    font-size: 16px;
+}
+
+.book_preview .description {
+    padding-bottom: 15px;
+    margin-top: 15px;
+}

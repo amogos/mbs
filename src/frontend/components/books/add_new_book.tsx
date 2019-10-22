@@ -35,8 +35,6 @@ let currentBook: DataTypes.BookValueType = {
     space: 0,
 };
 
-//  https://www.googleapis.com/books/v1/volumes?q=isbn:9783314103483
-
 const AddNewBookComponent = (props: Props) => {
     const [title, setTitle] = useState('');
     const [author, setAuthor] = useState('');
@@ -102,9 +100,11 @@ const AddNewBookComponent = (props: Props) => {
         }
 
         const onSuccess = (response: any) => {
-            if (response.items.length > 0) {
+            if (response.items && response.items.length > 0) {
                 const volumeInfo = response.items[0].volumeInfo;
                 setVolumeInformation({ ...volumeInfo, visible: true });
+            } else {
+                setUseGoogleApi(false);
             }
         };
 
@@ -120,10 +120,11 @@ const AddNewBookComponent = (props: Props) => {
                     }}
                     value={isbn}
                 />
-                <BookPreview {...volumeInformation} />
+
                 <Button icon="search" onClick={() => fetchBook(isbn, onFailure, onSuccess)}>
                     Search
                 </Button>
+                <BookPreview {...volumeInformation} />
             </InputGroup>
         );
     };

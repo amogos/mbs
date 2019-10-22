@@ -1,4 +1,5 @@
 import React from 'react';
+import Aux, { withStyle } from './../aux_component';
 
 export interface BookPreviewProps {
     visible: boolean;
@@ -9,6 +10,7 @@ export interface BookPreviewProps {
     publisher: string;
     publishedDate: string;
     pageCount: string;
+    language: string;
 }
 
 export const NullBookPreviewProps: BookPreviewProps = {
@@ -20,25 +22,32 @@ export const NullBookPreviewProps: BookPreviewProps = {
     publisher: '',
     publishedDate: '',
     pageCount: '',
+    language: '',
 };
 
 const BookPreview = (props: BookPreviewProps) => {
     if (!props.visible) return null;
 
     return (
-        <div>
-            <img width={200} alt="logo" src={props.imageLinks.thumbnail} />
-            <p>Title: {props.title}</p>
-            Author:
-            {props.authors.map(item => (
-                <span>{item}</span>
-            ))}
-            <p>Publisher: {props.publisher}</p>
-            <span>({props.publishedDate}) </span>
-            <p>Length: {props.pageCount}</p>
-            <p>{props.description}</p>
-        </div>
+        <Aux>
+            <img alt="logo" src={props.imageLinks.smallThumbnail} />
+
+            <div className="details">
+                Title: {props.title} <br />
+                Language: {props.language.toUpperCase()} <br />
+                <span>Author:</span>
+                {props.authors.map(item => (
+                    <span>{item}</span>
+                ))}
+                <br />
+                Publisher: {props.publisher}
+                <span>({props.publishedDate}) </span>
+                <br />
+                Length: {props.pageCount}
+            </div>
+            <div className="description">{props.description}</div>
+        </Aux>
     );
 };
 
-export default BookPreview;
+export default withStyle(BookPreview, 'book_preview');
