@@ -4,7 +4,7 @@ import { Select, Input, message, Modal, Button } from 'antd';
 import * as DataTypes from '../../../shared/types';
 import * as BookStates from '../../../shared/constants/book_states_constant';
 import * as StringConstant from '../../../shared/constants/string_constant';
-import BookPreview from './book_preview';
+import BookPreview, { NullBookPreviewProps } from './book_preview';
 
 const { Option } = Select;
 const InputGroup = Input.Group;
@@ -82,11 +82,7 @@ const AddNewBookComponent = (props: Props) => {
     currentBook.space = props.spaceId;
 
     const SearchGoogleView = () => {
-        const [informationAvailable, setInformationAvailable] = useState(false);
-        const [thumbnail, setThumbnail] = useState('');
-        const [title, setTitle] = useState('');
-        const [authors, setAuthors] = useState(['']);
-        const [description, setDescription] = useState('');
+        const [volumeInformation, setVolumeInformation] = useState(NullBookPreviewProps);
 
         async function fetchBook(
             isbn: string,
@@ -118,14 +114,10 @@ const AddNewBookComponent = (props: Props) => {
                 const categories = volumeInfo.categories[0];
                 const imageLinks: { smallThumbnail: string; thumbnail: string } = volumeInfo.imageLinks;
                 const language = volumeInfo.language;
+                const visible = true;
 
-                setThumbnail(imageLinks.thumbnail);
-                setTitle(title);
-                setAuthors(authors);
-                setDescription(description);
+                setVolumeInformation({ ...volumeInfo, visible: visible });
             }
-
-            setInformationAvailable(response.items.length > 0);
         };
 
         const onFailure = (error: any) => {};
@@ -140,15 +132,7 @@ const AddNewBookComponent = (props: Props) => {
                     }}
                     value={isbn}
                 />
-
-                <BookPreview
-                    visible={informationAvailable}
-                    image={thumbnail}
-                    title={title}
-                    authors={authors}
-                    description={description}
-                />
-
+                <BookPreview {...volumeInformation} />
                 <Button icon="search" onClick={() => fetchBook(isbn, onFailure, onSuccess)}>
                     Search
                 </Button>
