@@ -45,30 +45,6 @@ const AddNewBookComponent = (props: Props) => {
     const [useGoogleApi, setUseGoogleApi] = useState(true);
     const [volumeInformation, setVolumeInformation] = useState(NullBookPreviewProps);
 
-    const onLanguageSelected = (value: number) => {
-        const validLanguageSelection = value > 0 && value <= props.languages.length;
-        if (!validLanguageSelection) return;
-        setLanguage(value);
-        currentBook.language = props.languages[value - 1];
-    };
-
-    const onCategorySelected = (value: number) => {
-        const validCategorySelection = value > 0 && value <= props.categories.length;
-        if (!validCategorySelection) return;
-        setCategory(value);
-        currentBook.category = props.categories[value - 1];
-    };
-
-    const fieldsValid = () => {
-        return title !== '' && author !== '' && language !== 0 && category !== 0 && isbn !== '';
-    };
-
-    const clearFields = () => {
-        setTitle('');
-        setAuthor('');
-        setIsbn('');
-    };
-
     const onSaveButtonPressed = () => {
         if (useGoogleApi) {
             currentBook.title = volumeInformation.title;
@@ -79,7 +55,13 @@ const AddNewBookComponent = (props: Props) => {
             currentBook.description = volumeInformation.description;
             props.addBook(currentBook);
         } else {
-            if (!fieldsValid()) {
+            const clearFields = () => {
+                setTitle('');
+                setAuthor('');
+                setIsbn('');
+            };
+            const fieldsValid = title !== '' && author !== '' && language !== 0 && category !== 0 && isbn !== '';
+            if (!fieldsValid) {
                 message.error(StringConstant.default.MYBOOKSHELVE_INVALID_FIELDS);
                 return;
             }
@@ -111,7 +93,9 @@ const AddNewBookComponent = (props: Props) => {
 
         const onSuccess = (response: any) => {
             if (response.items && response.items.length > 0) {
-                const volumeInfo = response.items[0].volumeInfo;
+                let volumeInfo = response.items[0].volumeInfo;
+                if (!volumeInfo.publisher) volumeInfo.publisher = '';
+                if (!volumeInfo.categories) volumeInfo.categories = ['nonfiction(general)'];
                 setVolumeInformation({ ...volumeInfo, visible: true });
             } else {
                 setUseGoogleApi(false);
@@ -140,6 +124,20 @@ const AddNewBookComponent = (props: Props) => {
     };
 
     const FallbackView = () => {
+        const onLanguageSelected = (value: number) => {
+            const validLanguageSelection = value > 0 && value <= props.languages.length;
+            if (!validLanguageSelection) return;
+            setLanguage(value);
+            currentBook.language = props.languages[value - 1];
+        };
+
+        const onCategorySelected = (value: number) => {
+            const validCategorySelection = value > 0 && value <= props.categories.length;
+            if (!validCategorySelection) return;
+            setCategory(value);
+            currentBook.category = props.categories[value - 1];
+        };
+
         return (
             <InputGroup>
                 <Input

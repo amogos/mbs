@@ -209,6 +209,40 @@
       "space": 1,
       "description": "The Danish word hygge is one of those beautiful words that doesn't directly translate into English, but it more or less means comfort, warmth or togetherness. Hygge is the feeling you get when you are cuddled up on a sofa with a loved one, in warm knitted socks, in front of the fire, when it is dark, cold and stormy outside. It that feeling when you are sharing good, comfort food with your closest friends, by candle light and exchanging easy conversation. It is those cold, crisp blue sky mornings when the light through your window is just right. Denmark is the happiest nation in the world and Meik puts this largely down to them living the hygge way. They focus on the small things that really matter, spend more quality time with friends and family and enjoy the good things in life. \"The Little Book of Hygge\" will give you practical steps and tips to become more hygge",
       "id": 9
+    },
+    {
+      "author": [
+        "Meik Wiking"
+      ],
+      "image": "http://books.google.com/books/content?id=n-O2jwEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+      "language": 1,
+      "owner": 1,
+      "holder": -1,
+      "title": "The Little Book of Hygge",
+      "state": "state.book.idle",
+      "isbn": "0241283914",
+      "category": 32,
+      "format": "1",
+      "space": 1,
+      "description": "The Danish word hygge is one of those beautiful words that doesn't directly translate into English, but it more or less means comfort, warmth or togetherness. Hygge is the feeling you get when you are cuddled up on a sofa with a loved one, in warm knitted socks, in front of the fire, when it is dark, cold and stormy outside. It that feeling when you are sharing good, comfort food with your closest friends, by candle light and exchanging easy conversation. It is those cold, crisp blue sky mornings when the light through your window is just right. Denmark is the happiest nation in the world and Meik puts this largely down to them living the hygge way. They focus on the small things that really matter, spend more quality time with friends and family and enjoy the good things in life. \"The Little Book of Hygge\" will give you practical steps and tips to become more hygge",
+      "id": 10
+    },
+    {
+      "author": [
+        "Schoolkidix"
+      ],
+      "image": "https://vignette.wikia.nocookie.net/superfriends/images/a/a5/No_Photo_Available.jpg/revision/latest?cb=20090329133959",
+      "language": 2,
+      "owner": 1,
+      "holder": -1,
+      "title": "Das Vorschulbuch Für Kinder",
+      "state": "state.book.idle",
+      "isbn": "1729196896",
+      "category": 30,
+      "format": "1",
+      "space": 1,
+      "description": "Das große Buch für die kleinen Einsteins von morgen Man kann den Nachwuchs gar nicht früh genug an Bücher und Lernen heranführen. Die Weichen für eine erfolgreiche Schulzeit, eine wirksame Ausbildung oder ein gutes Studium werden bereits in der Vorschule gestellt. Dank diverser Vorschulbücher lernen bereits die Kleinsten spielerisch grundlegende Dinge im Hinblick auf optische Wahrnehmung, Konzentration und Vorstellungskraft. Anhand simpler Rätsel und ansprechender Bilder werden das Denkvermögen der Vorschüler angekurbelt und die ersten Lern- und Übungseinheiten mit Bravur gemeistert. Vorschulbücher sind mehr als nur Lern- und Lehrbücher. Sie sind die perfekte Kombination aus Malbuch, Puzzlebuch und Rätselbuch. Es ist für das weitere Leben von Vorteil, wenn Kinder bereits vor dem Schuleintritt über erste Erfahrungen auf dem Gebiet Lernen und Arbeiten verfügen. Ein Vorschulbuch kann hierbei eine optimale Hilfe sein. Es ist der ideale Lernspaß für Kinder und garantiert seitenweise Spiel, Spaß und Zeitvertreib. In diesem Lern- und Lehrbuch geht es allerdings noch nicht primär um Zahlen oder Buchstaben. Vielmehr beinhalten es altersgerechte Vorschulübungen in Form von Schwungübungen, Malaufgaben, Puzzles sowie anderweitige knifflige Rätsel für Rätsel-Anfänger oder eingefleischte Ratefüchse. Ein Vorschulheft ist ein Gewinn für alle Beteiligten. Dein Kind hat Spaß, ist beschätigt und lernt etwas dabei.",
+      "id": 11
     }
   ],
   "book_reviews": [
