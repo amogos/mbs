@@ -24,7 +24,7 @@ function propsEqual(prevProps: Props, nextProps: Props) {
 }
 
 function nextBooks(props: Props, force: boolean) {
-    const limit = 50;
+    const limit = 5;
     const endOfContent =
         window.innerHeight + document.documentElement.scrollTop >= document.documentElement.scrollHeight;
 
