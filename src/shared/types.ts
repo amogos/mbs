@@ -30,7 +30,7 @@ export interface CategoryRecordType {
 
 export interface BookValueType {
     title: string;
-    author: string;
+    author: string[];
     language: LanguageRecordType;
     image: string;
     owner: UserRecordType;
@@ -49,7 +49,7 @@ export interface BookValueType {
 export interface BookRecordType {
     id: number;
     title: string;
-    author: string;
+    author: string[];
     language: LanguageRecordType;
     image: string;
     owner: UserRecordType;
@@ -68,7 +68,7 @@ export interface BookRecordType {
 export interface BookRawRecordType {
     id: number;
     title: string;
-    author: string;
+    author: string[];
     language: number;
     image: string;
     owner: number;
@@ -85,7 +85,7 @@ export interface BookRawRecordType {
 export const NullRawBookRecordType: BookRawRecordType = {
     id: 0,
     title: '',
-    author: '',
+    author: [],
     language: 0,
     image: '',
     owner: 0,

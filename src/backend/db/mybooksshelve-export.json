@@ -55,7 +55,7 @@
     "books": [
         {
             "id": 1,
-            "author": "Susanne Schotz",
+            "author": ["Susanne Schotz"],
             "image": "https://images-eu.ssl-images-amazon.com/images/I/51UkIlAOwEL._SY90_.jpg",
             "language": 1,
             "owner": 2,
@@ -71,7 +71,7 @@
         },
         {
             "id": 2,
-            "author": "Eric Carle",
+            "author": ["Eric Carle"],
             "image": "https://images-na.ssl-images-amazon.com/images/I/51lsugWtCvL._SY498_BO1,204,203,200_.jpg",
             "language": 1,
             "owner": 1,
@@ -87,7 +87,7 @@
         },
         {
             "id": 3,
-            "author": "Julia Donaldson",
+            "author": ["Julia Donaldson"],
             "image": "https://images-na.ssl-images-amazon.com/images/I/51Zm3fBs0PL._SY446_BO1,204,203,200_.jpg",
             "language": 1,
             "owner": 1,
@@ -102,7 +102,7 @@
         },
         {
             "id": 4,
-            "author": "Julia Donaldson",
+            "author": ["Julia Donaldson"],
             "image": "https://images-na.ssl-images-amazon.com/images/I/61YDHV-%2B-VL._SY448_BO1,204,203,200_.jpg",
             "language": 1,
             "owner": 1,
@@ -117,7 +117,7 @@
         },
         {
             "id": 5,
-            "author": " Yuval Noah Harari",
+            "author": [" Yuval Noah Harari"],
             "image": "https://images-na.ssl-images-amazon.com/images/I/417lbqaSihL._SX318_BO1,204,203,200_.jpg",
             "language": 2,
             "owner": 2,
@@ -131,7 +131,7 @@
             "description": "no description available"
         },
         {
-            "author": "me",
+            "author": ["me"],
             "image": "https://vignette.wikia.nocookie.net/superfriends/images/a/a5/No_Photo_Available.jpg/revision/latest?cb=20090329133959",
             "language": 1,
             "owner": 1,
@@ -146,7 +146,7 @@
             "description": "no description available"
         },
         {
-            "author": "qweqwe",
+            "author": ["qweqwe"],
             "image": "https://vignette.wikia.nocookie.net/superfriends/images/a/a5/No_Photo_Available.jpg/revision/latest?cb=20090329133959",
             "language": 2,
             "owner": 1,
@@ -161,7 +161,7 @@
             "description": "no description available"
         },
         {
-            "author": "Linda Bayerl",
+            "author": ["Linda Bayerl"],
             "image": "http://books.google.com/books/content?id=oF4ZDAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
             "language": 2,
             "owner": 1,

@@ -23,7 +23,7 @@ const defaultImage =
 
 let currentBook: DataTypes.BookValueType = {
     title: '',
-    author: '',
+    author: [],
     language: DataTypes.NullLanguage,
     image: defaultImage,
     owner: DataTypes.NullUser,
@@ -72,7 +72,7 @@ const AddNewBookComponent = (props: Props) => {
     const onSaveButtonPressed = () => {
         if (useGoogleApi) {
             currentBook.title = volumeInformation.title;
-            currentBook.author = volumeInformation.authors.toString();
+            currentBook.author = volumeInformation.authors;
             currentBook.image = volumeInformation.imageLinks.thumbnail;
             currentBook.language.title = volumeInformation.language.toUpperCase();
             currentBook.category.title = volumeInformation.categories[0].toLowerCase();
@@ -154,7 +154,7 @@ const AddNewBookComponent = (props: Props) => {
                     placeholder="Author"
                     onChange={element => {
                         setAuthor(element.target.value);
-                        currentBook.author = element.target.value;
+                        currentBook.author.push(element.target.value);
                     }}
                     value={author}
                 />
