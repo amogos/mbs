@@ -1,17 +1,19 @@
 .section_divider_small {
-    width: 450px;
+    width: 550px;
 }
 .book_icon_small {
     display: table-cell;
-    width: 20%;
     padding-left: 60px;
-    transform: translate(0%, 10%);
+}
+
+.book_icon_small img {
+    width: 128px;
 }
 
 .book_details {
     display: table-cell;
-    width: 63%;
-    transform: translate(0%, -15%);
+    vertical-align: super;
+    width: 35%;
 }
 
 .customer_reviews {
@@ -22,13 +24,6 @@
 }
 
 .list_book_component {
-}
-
-.filter_category {
-    margin-top: 3%;
-    margin-left: 15%;
-    margin-right: 35%;
-    z-index: 1;
 }
 
 .book_preview {

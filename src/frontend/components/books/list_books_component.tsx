@@ -91,9 +91,6 @@ const ListBooksComponent = (props: Props) => {
     const BookComponent = (item: DataTypes.BookRecordType) => {
         return (
             <Aux key={`k${item.id}`}>
-                <div className="book_icon_small">
-                    <img width={200} alt="logo" src={item.image} />
-                </div>
                 <div className="book_details">
                     {item.title}
                     <i> ({item.language.title})</i> <br />
@@ -112,15 +109,17 @@ const ListBooksComponent = (props: Props) => {
                         visible={getVisibilityFromState(item.id)}
                         onClick={() => closeComments(item.id)}
                     />
-                    <SectionDivider />
                     <div>
                         <Avatar src={item.space.picture} size="large" />
                         Space: {item.space.description} <br />
                     </div>
-                    <SectionDivider />
                     <BookStateComponent {...props} book={item} />
                 </div>
+                <div className="book_icon_small">
+                    <img alt="logo" src={item.image} />
+                </div>
                 <br />
+                <SectionDivider />
             </Aux>
         );
     };
