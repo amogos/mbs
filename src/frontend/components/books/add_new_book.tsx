@@ -73,7 +73,7 @@ const AddNewBookComponent = (props: Props) => {
         if (useGoogleApi) {
             currentBook.title = volumeInformation.title;
             currentBook.author = volumeInformation.authors;
-            currentBook.image = volumeInformation.imageLinks.thumbnail;
+            currentBook.image = volumeInformation.imageLinks ? volumeInformation.imageLinks.thumbnail : defaultImage;
             currentBook.language.title = volumeInformation.language.toUpperCase();
             currentBook.category.title = volumeInformation.categories[0].toLowerCase();
             currentBook.description = volumeInformation.description;

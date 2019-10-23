@@ -32,7 +32,7 @@ const BookPreview = (props: BookPreviewProps) => {
 
     return (
         <Aux>
-            <img alt="logo" src={props.imageLinks.smallThumbnail} />
+            <img alt="logo" src={props.imageLinks ? props.imageLinks.smallThumbnail : ''} />
 
             <div className="details">
                 Title: {props.title} <br />
