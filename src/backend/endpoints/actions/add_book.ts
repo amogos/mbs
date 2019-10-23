@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { urlBooks, urlCategory, urlLanguages } from '../constants';
+import { urlBooks } from '../constants';
 import { addCategory } from './../../endpoints/categories';
 import { addLanguage } from './../../endpoints/languages';
 import * as DataTypes from '../../../shared/types';
@@ -28,6 +28,7 @@ export async function addBook(value: DataTypes.BookValueType, onError: (resultCo
             category: value.category.id,
             format: value.format,
             space: value.space,
+            description: value.description,
         })
         .catch(error => onError(error));
 }

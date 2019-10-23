@@ -56,6 +56,7 @@ export async function getBooks(
                 return: returnDateMilliseconds,
                 contentScore: reviewStatistics.contentScore,
                 numReviews: reviewStatistics.numReviews,
+                description: item.description,
             };
 
             booksArray.push(bookRecord);

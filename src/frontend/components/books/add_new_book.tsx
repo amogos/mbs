@@ -33,6 +33,7 @@ let currentBook: DataTypes.BookValueType = {
     category: DataTypes.NullCategory,
     format: '1',
     space: 0,
+    description: '',
 };
 
 const AddNewBookComponent = (props: Props) => {
@@ -75,6 +76,7 @@ const AddNewBookComponent = (props: Props) => {
             currentBook.image = volumeInformation.imageLinks.thumbnail;
             currentBook.language.title = volumeInformation.language.toUpperCase();
             currentBook.category.title = volumeInformation.categories[0].toLowerCase();
+            currentBook.description = volumeInformation.description;
             props.addBook(currentBook);
         } else {
             if (!fieldsValid()) {
