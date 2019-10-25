@@ -27,6 +27,8 @@ function propsEqual(prevProps: Props, nextProps: Props) {
 }
 
 function nextBooks(props: Props, force: boolean) {
+    if (force) navigation.index = 0;
+
     const endOfContent =
         window.innerHeight + document.documentElement.scrollTop >= document.documentElement.scrollHeight;
 
@@ -55,11 +57,13 @@ function BooksList(props: Props) {
 }
 
 function nextSpaces(props: Props, force: boolean) {
+    if (force) navigation.index = 0;
+
     const endOfContent =
         window.innerHeight + document.documentElement.scrollTop >= document.documentElement.scrollHeight;
-    const queryFilters: string[] = [];
 
     if (force || endOfContent) {
+        const queryFilters: string[] = [];
         queryFilters.push(`_start=${navigation.index}`);
         queryFilters.push(`_limit=${navigation.limit}`);
         navigation.index += navigation.limit;
