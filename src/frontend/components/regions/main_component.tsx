@@ -15,16 +15,18 @@ interface Props {
     getSpaces(filters: string[]): void;
 }
 
-function propsEqual(prevProps: Props, nextProps: Props) {
-    if (prevProps.otherSpaces && prevProps.otherSpaces.length != nextProps.otherSpaces.length) {
-        return false;
-    }
+interface Navigation {
+    index: number;
+    limit: number;
+}
 
+let navigation: Navigation = { index: 0, limit: 5 };
+
+function propsEqual(prevProps: Props, nextProps: Props) {
     return nextProps.urlparams === prevProps.urlparams;
 }
 
 function nextBooks(props: Props, force: boolean) {
-    const limit = 5;
     const endOfContent =
         window.innerHeight + document.documentElement.scrollTop >= document.documentElement.scrollHeight;
 
@@ -39,10 +41,9 @@ function nextBooks(props: Props, force: boolean) {
             queryFilters.push(`space=${props.urlparams.query.space}`);
         }
 
-        const lastVisibleBookId = props.booksArray.length > 0 ? props.booksArray[props.booksArray.length - 1].id : -1;
-        const index = lastVisibleBookId + 1;
-        queryFilters.push(`_start=${index}`);
-        queryFilters.push(`_limit=${limit}`);
+        queryFilters.push(`_start=${navigation.index}`);
+        queryFilters.push(`_limit=${navigation.limit}`);
+        navigation.index += navigation.limit;
         props.getBooks(queryFilters, []);
     }
 }
@@ -54,20 +55,14 @@ function BooksList(props: Props) {
 }
 
 function nextSpaces(props: Props, force: boolean) {
-    const limit = 50;
     const endOfContent =
         window.innerHeight + document.documentElement.scrollTop >= document.documentElement.scrollHeight;
     const queryFilters: string[] = [];
 
     if (force || endOfContent) {
-        let index = 0;
-        if (props.otherSpaces) {
-            const lastVisibleSpaceId =
-                props.otherSpaces.length > 0 ? props.otherSpaces[props.otherSpaces.length - 1].id : -1;
-            index = lastVisibleSpaceId + 1;
-        }
-        queryFilters.push(`_start=${index}`);
-        queryFilters.push(`_limit=${limit}`);
+        queryFilters.push(`_start=${navigation.index}`);
+        queryFilters.push(`_limit=${navigation.limit}`);
+        navigation.index += navigation.limit;
         props.getSpaces(queryFilters);
     }
 }
@@ -80,6 +75,7 @@ function SpacesList(props: Props) {
 
 const MainComponent = React.memo((props: Props) => {
     window.scrollTo(0, 0);
+
     const { id } = props.urlparams;
 
     switch (id) {
