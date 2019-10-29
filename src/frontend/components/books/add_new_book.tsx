@@ -133,30 +133,9 @@ const AddNewBookComponent = (props: Props) => {
 
         return (
             <InputGroup>
-                <Input
-                    placeholder="Title"
-                    onChange={element => {
-                        setTitle(element.target.value);
-                        currentBook.title = element.target.value;
-                    }}
-                    value={title}
-                />
-                <Input
-                    placeholder="Author"
-                    onChange={element => {
-                        setAuthor(element.target.value);
-                        currentBook.author.push(element.target.value);
-                    }}
-                    value={author}
-                />
-                <Input
-                    placeholder="Isbn"
-                    onChange={element => {
-                        setIsbn(element.target.value);
-                        currentBook.isbn = element.target.value;
-                    }}
-                    value={isbn}
-                />
+                <Input {...useInput('title', (value: string) => (currentBook.title = value))} />
+                <Input {...useInput('author', (value: string) => currentBook.author.push(value))} />
+                <Input {...useInput('isbn', (value: string) => (currentBook.isbn = value))} />
                 <Select
                     style={{ width: 200 }}
                     placeholder="Select language"
