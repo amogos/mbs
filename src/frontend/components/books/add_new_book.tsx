@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useInput, useSelect } from './../hooks/hooks';
-import { Select, Input, message, Modal, Button } from 'antd';
+import { Select, Input, Modal, Button } from 'antd';
 import * as DataTypes from '../../../shared/types';
 import * as BookStates from '../../../shared/constants/book_states_constant';
 import * as StringConstant from '../../../shared/constants/string_constant';
@@ -99,16 +99,18 @@ const AddNewBookComponent = (props: Props) => {
     };
 
     const FallbackView = () => {
-        const onLanguageSelected = (value: number) => {
-            const validLanguageSelection = value > 0 && value <= props.languages.length;
+        const onLanguageSelected = (value: string) => {
+            const languageIndex = parseInt(value);
+            const validLanguageSelection = languageIndex > 0 && languageIndex <= props.languages.length;
             if (!validLanguageSelection) return;
-            currentBook.language = props.languages[value - 1];
+            currentBook.language = props.languages[languageIndex];
         };
 
-        const onCategorySelected = (value: number) => {
-            const validCategorySelection = value > 0 && value <= props.categories.length;
+        const onCategorySelected = (value: string) => {
+            const categoryIndex = parseInt(value);
+            const validCategorySelection = categoryIndex > 0 && categoryIndex <= props.categories.length;
             if (!validCategorySelection) return;
-            currentBook.category = props.categories[value - 1];
+            currentBook.category = props.categories[categoryIndex];
         };
 
         return (
@@ -118,7 +120,7 @@ const AddNewBookComponent = (props: Props) => {
                 <Input {...useInput('isbn', (value: string) => (currentBook.isbn = value))} />
                 <Select
                     style={{ width: 200 }}
-                    {...useSelect('Select language', (value: number) => onLanguageSelected(value))}
+                    {...useSelect('Select language', (value: string) => onLanguageSelected(value))}
                 >
                     {props.languages.map(language => (
                         <Option key={language.id}>{language.title}</Option>
@@ -126,7 +128,7 @@ const AddNewBookComponent = (props: Props) => {
                 </Select>
                 <Select
                     style={{ width: 200 }}
-                    {...useSelect('Select category', (value: number) => onCategorySelected(value))}
+                    {...useSelect('Select category', (value: string) => onCategorySelected(value))}
                 >
                     {props.categories.map(category => (
                         <Option key={category.id}>{category.title}</Option>
