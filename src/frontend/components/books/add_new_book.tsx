@@ -38,11 +38,6 @@ let currentBook: DataTypes.BookValueType = {
 };
 
 const AddNewBookComponent = (props: Props) => {
-    const [title, setTitle] = useState('');
-    const [author, setAuthor] = useState('');
-    const [language, setLanguage] = useState(0);
-    const [category, setCategory] = useState(0);
-    const [isbn, setIsbn] = useState('');
     const [useGoogleApi, setUseGoogleApi] = useState(true);
     const [volumeInformation, setVolumeInformation] = useState(NullBookPreviewProps);
 
@@ -81,7 +76,7 @@ const AddNewBookComponent = (props: Props) => {
             onSuccess: (response: any) => void,
         ): Promise<any> {
             let result = {};
-            let url = `https://www.googleapis.com/books/v1/volumes?q=isbn:${currentBook.isbn}`;
+            let url = `https://www.googleapis.com/books/v1/volumes?q=isbn:${isbn}`;
             await axios
                 .get(url)
                 .then(response => {
@@ -108,7 +103,7 @@ const AddNewBookComponent = (props: Props) => {
         return (
             <InputGroup>
                 <Input {...useInput('isbn', (value: string) => (currentBook.isbn = value))} />
-                <Button icon="search" onClick={() => fetchBook(isbn, onFailure, onSuccess)}>
+                <Button icon="search" onClick={() => fetchBook(currentBook.isbn, onFailure, onSuccess)}>
                     Search
                 </Button>
                 <BookPreview {...volumeInformation} />
