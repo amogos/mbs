@@ -49,21 +49,8 @@ const AddNewBookComponent = (props: Props) => {
             currentBook.language.title = volumeInformation.language.toUpperCase();
             currentBook.category.title = volumeInformation.categories[0].toLowerCase();
             currentBook.description = volumeInformation.description;
-            props.addBook(currentBook);
-        } else {
-            const clearFields = () => {
-                setTitle('');
-                setAuthor('');
-                setIsbn('');
-            };
-            const fieldsValid = title !== '' && author !== '' && language !== 0 && category !== 0 && isbn !== '';
-            if (!fieldsValid) {
-                message.error(StringConstant.default.MYBOOKSHELVE_INVALID_FIELDS);
-                return;
-            }
-            props.addBook(currentBook);
-            clearFields();
         }
+        props.addBook(currentBook);
     };
 
     currentBook.owner = props.userdata;
