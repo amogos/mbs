@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useInput } from './../hooks/hooks';
 import { Select, Input, message, Modal, Button } from 'antd';
 import * as DataTypes from '../../../shared/types';
 import * as BookStates from '../../../shared/constants/book_states_constant';
@@ -35,15 +36,6 @@ let currentBook: DataTypes.BookValueType = {
     space: 0,
     description: '',
 };
-
-export function useInput(placeholder: string, storeValue: (value: string) => void) {
-    const [value, setValue] = useState('');
-    const onChange = (e: any) => {
-        setValue(e.target.value);
-        storeValue(e.target.value);
-    };
-    return { onChange, value, placeholder };
-}
 
 const AddNewBookComponent = (props: Props) => {
     const [title, setTitle] = useState('');
