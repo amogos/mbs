@@ -243,6 +243,23 @@
       "space": 1,
       "description": "Das große Buch für die kleinen Einsteins von morgen Man kann den Nachwuchs gar nicht früh genug an Bücher und Lernen heranführen. Die Weichen für eine erfolgreiche Schulzeit, eine wirksame Ausbildung oder ein gutes Studium werden bereits in der Vorschule gestellt. Dank diverser Vorschulbücher lernen bereits die Kleinsten spielerisch grundlegende Dinge im Hinblick auf optische Wahrnehmung, Konzentration und Vorstellungskraft. Anhand simpler Rätsel und ansprechender Bilder werden das Denkvermögen der Vorschüler angekurbelt und die ersten Lern- und Übungseinheiten mit Bravur gemeistert. Vorschulbücher sind mehr als nur Lern- und Lehrbücher. Sie sind die perfekte Kombination aus Malbuch, Puzzlebuch und Rätselbuch. Es ist für das weitere Leben von Vorteil, wenn Kinder bereits vor dem Schuleintritt über erste Erfahrungen auf dem Gebiet Lernen und Arbeiten verfügen. Ein Vorschulbuch kann hierbei eine optimale Hilfe sein. Es ist der ideale Lernspaß für Kinder und garantiert seitenweise Spiel, Spaß und Zeitvertreib. In diesem Lern- und Lehrbuch geht es allerdings noch nicht primär um Zahlen oder Buchstaben. Vielmehr beinhalten es altersgerechte Vorschulübungen in Form von Schwungübungen, Malaufgaben, Puzzles sowie anderweitige knifflige Rätsel für Rätsel-Anfänger oder eingefleischte Ratefüchse. Ein Vorschulheft ist ein Gewinn für alle Beteiligten. Dein Kind hat Spaß, ist beschätigt und lernt etwas dabei.",
       "id": 11
+    },
+    {
+      "author": [
+        "Frank Rösner"
+      ],
+      "image": "http://books.google.com/books/content?id=ldhvDQAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+      "language": 2,
+      "owner": 1,
+      "holder": -1,
+      "title": "Die Krux mit der ISBN",
+      "state": "state.book.idle",
+      "isbn": "1409551652",
+      "category": 33,
+      "format": "1",
+      "space": 1,
+      "description": "Der Beitrag hat einen veralteten Rechtsstand September 2016 soweit es sich um das Erfordernis einer Gewerbeanmeldung für den Bezug von ISBNs handelt. Für Interessierte wird der Beitrag jedoch weiterhin angeboten. Die ISBN-Agentur vergab preiswerte ISBN-Kontingente seinerzeit nur nach Vorlage einer Gewerbeanmeldung als Verlag. Die Krux dieser Vergabepraxis ist wesentlicher Inhalt dieses Aufsatzes. Zur Einführung werden die Grundlagen des ISB-Nummernsystems erläutert. Danach geht der Autor auf den Zusammenhang zwischen ISBN und dem Verzeichnis lieferbarer Bücher (VLB) ein. Es folgt die kritische Auseinandersetzung mit der seinerzeitigen ISBN-Vergabepraxis. Nicht zuletzt werden auch steuerliche Hinweise im Zusammenhang mit der Gewerbeanmeldung gegeben. Abschließend geht der Autor auf den Eintrag im Adressbuch für den deutschsprachigen Buchhandel (AdB) ein.",
+      "id": 12
     }
   ],
   "book_reviews": [
@@ -421,6 +438,10 @@
     {
       "title": "self-help",
       "id": 32
+    },
+    {
+      "title": "business & economics",
+      "id": 33
     }
   ],
   "spaces": [

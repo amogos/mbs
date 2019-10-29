@@ -36,6 +36,15 @@ let currentBook: DataTypes.BookValueType = {
     description: '',
 };
 
+export function useInput(placeholder: string, storeValue: (value: string) => void) {
+    const [value, setValue] = useState('');
+    const onChange = (e: any) => {
+        setValue(e.target.value);
+        storeValue(e.target.value);
+    };
+    return { onChange, value, placeholder };
+}
+
 const AddNewBookComponent = (props: Props) => {
     const [title, setTitle] = useState('');
     const [author, setAuthor] = useState('');
@@ -106,15 +115,7 @@ const AddNewBookComponent = (props: Props) => {
 
         return (
             <InputGroup>
-                <Input
-                    placeholder="Isbn"
-                    onChange={element => {
-                        setIsbn(element.target.value);
-                        currentBook.isbn = element.target.value;
-                    }}
-                    value={isbn}
-                />
-
+                <Input {...useInput('isbn', (value: string) => (currentBook.isbn = value))} />
                 <Button icon="search" onClick={() => fetchBook(isbn, onFailure, onSuccess)}>
                     Search
                 </Button>
