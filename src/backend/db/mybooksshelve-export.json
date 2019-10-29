@@ -260,6 +260,99 @@
       "space": 1,
       "description": "Der Beitrag hat einen veralteten Rechtsstand September 2016 soweit es sich um das Erfordernis einer Gewerbeanmeldung für den Bezug von ISBNs handelt. Für Interessierte wird der Beitrag jedoch weiterhin angeboten. Die ISBN-Agentur vergab preiswerte ISBN-Kontingente seinerzeit nur nach Vorlage einer Gewerbeanmeldung als Verlag. Die Krux dieser Vergabepraxis ist wesentlicher Inhalt dieses Aufsatzes. Zur Einführung werden die Grundlagen des ISB-Nummernsystems erläutert. Danach geht der Autor auf den Zusammenhang zwischen ISBN und dem Verzeichnis lieferbarer Bücher (VLB) ein. Es folgt die kritische Auseinandersetzung mit der seinerzeitigen ISBN-Vergabepraxis. Nicht zuletzt werden auch steuerliche Hinweise im Zusammenhang mit der Gewerbeanmeldung gegeben. Abschließend geht der Autor auf den Eintrag im Adressbuch für den deutschsprachigen Buchhandel (AdB) ein.",
       "id": 12
+    },
+    {
+      "author": [
+        "e",
+        "er",
+        "ert",
+        "erte",
+        "erter",
+        "ertert",
+        "erterte",
+        "erterter",
+        "ertertert"
+      ],
+      "image": "https://vignette.wikia.nocookie.net/superfriends/images/a/a5/No_Photo_Available.jpg/revision/latest?cb=20090329133959",
+      "language": 2,
+      "owner": 1,
+      "holder": -1,
+      "title": "tztzrtz",
+      "state": "state.book.idle",
+      "isbn": "1234",
+      "category": 6,
+      "format": "1",
+      "space": 1,
+      "description": "",
+      "id": 13
+    },
+    {
+      "author": [
+        "e",
+        "er",
+        "ert",
+        "erte",
+        "erter",
+        "ertert",
+        "erterte",
+        "erterter",
+        "ertertert"
+      ],
+      "image": "https://vignette.wikia.nocookie.net/superfriends/images/a/a5/No_Photo_Available.jpg/revision/latest?cb=20090329133959",
+      "language": 2,
+      "owner": 1,
+      "holder": -1,
+      "title": "tztzrtz",
+      "state": "state.book.idle",
+      "isbn": "1234",
+      "category": 6,
+      "format": "1",
+      "space": 1,
+      "description": "",
+      "id": 14
+    },
+    {
+      "author": [
+        "e",
+        "er",
+        "ert",
+        "erte",
+        "erter",
+        "ertert",
+        "erterte",
+        "erterter",
+        "ertertert",
+        "w"
+      ],
+      "image": "https://vignette.wikia.nocookie.net/superfriends/images/a/a5/No_Photo_Available.jpg/revision/latest?cb=20090329133959",
+      "language": 2,
+      "owner": 1,
+      "holder": -1,
+      "title": "eq",
+      "state": "state.book.idle",
+      "isbn": "qwq",
+      "category": 3,
+      "format": "1",
+      "space": 1,
+      "description": "",
+      "id": 15
+    },
+    {
+      "author": [
+        "Aurélien Géron"
+      ],
+      "image": "http://books.google.com/books/content?id=OCS1twEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+      "language": 1,
+      "owner": 1,
+      "holder": -1,
+      "title": "Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow",
+      "state": "state.book.idle",
+      "isbn": "1492032646",
+      "category": 34,
+      "format": "1",
+      "space": 1,
+      "description": "Through a series of recent breakthroughs, deep learning has boosted the entire field of machine learning. Now, even programmers who know close to nothing about this technology can use simple, efficient tools to implement programs capable of learning from data. The updated edition of this best-selling book uses concrete examples, minimal theory, and two production-ready Python frameworks--Scikit-Learn and TensorFlow 2--to help you gain an intuitive understanding of the concepts and tools for building intelligent systems. Practitioners will learn a range of techniques that they can quickly put to use on the job. Part 1 employs Scikit-Learn to introduce fundamental machine learning tasks, such as simple linear regression. Part 2, which has been significantly updated, employs Keras and TensorFlow 2 to guide the reader through more advanced machine learning methods using deep neural networks. With exercises in each chapter to help you apply what you've learned, all you need is programming experience to get started. NEW FOR THE SECOND EDITION:Updated all code to TensorFlow 2Introduced the high-level Keras APINew and expanded coverage including TensorFlow's Data API, Eager Execution, Estimators API, deploying on Google Cloud ML, handling time series, embeddings and more With Early Release ebooks, you get books in their earliest form--the author's raw and unedited content as he or she writes--so you can take advantage of these technologies long before the official release of these titles. You'll also receive updates when significant changes are made, new chapters are available, and the final ebook bundle is released.",
+      "id": 16
     }
   ],
   "book_reviews": [
@@ -442,6 +535,10 @@
     {
       "title": "business & economics",
       "id": 33
+    },
+    {
+      "title": "computers",
+      "id": 34
     }
   ],
   "spaces": [

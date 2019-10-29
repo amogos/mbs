@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useInput, useSelect } from './../hooks/hooks';
-import { Select, Input, Modal, Button } from 'antd';
+import { Select, Input, Modal, Button, message } from 'antd';
 import * as DataTypes from '../../../shared/types';
 import * as BookStates from '../../../shared/constants/book_states_constant';
 import * as StringConstant from '../../../shared/constants/string_constant';
@@ -37,6 +37,16 @@ let currentBook: DataTypes.BookValueType = {
     description: '',
 };
 
+function isValid(data: DataTypes.BookValueType): boolean {
+    return (
+        data.title !== '' &&
+        data.author.length > 0 &&
+        data.isbn !== '' &&
+        data.category.title !== '' &&
+        data.language.title != ''
+    );
+}
+
 const AddNewBookComponent = (props: Props) => {
     const [useGoogleApi, setUseGoogleApi] = useState(true);
     const [volumeInformation, setVolumeInformation] = useState(NullBookPreviewProps);
@@ -50,7 +60,12 @@ const AddNewBookComponent = (props: Props) => {
             currentBook.category.title = volumeInformation.categories[0].toLowerCase();
             currentBook.description = volumeInformation.description;
         }
-        props.addBook(currentBook);
+        if (isValid(currentBook)) {
+            props.addBook(currentBook);
+            message.success('Book added successfully');
+        } else {
+            message.error('Invalid fields');
+        }
     };
 
     currentBook.owner = props.userdata;
