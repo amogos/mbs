@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useInput } from './../hooks/hooks';
+import { useInput, useSelect } from './../hooks/hooks';
 import { Select, Input, message, Modal, Button } from 'antd';
 import * as DataTypes from '../../../shared/types';
 import * as BookStates from '../../../shared/constants/book_states_constant';
@@ -81,7 +81,7 @@ const AddNewBookComponent = (props: Props) => {
             onSuccess: (response: any) => void,
         ): Promise<any> {
             let result = {};
-            let url = `https://www.googleapis.com/books/v1/volumes?q=isbn:${isbn}`;
+            let url = `https://www.googleapis.com/books/v1/volumes?q=isbn:${currentBook.isbn}`;
             await axios
                 .get(url)
                 .then(response => {
@@ -120,14 +120,12 @@ const AddNewBookComponent = (props: Props) => {
         const onLanguageSelected = (value: number) => {
             const validLanguageSelection = value > 0 && value <= props.languages.length;
             if (!validLanguageSelection) return;
-            setLanguage(value);
             currentBook.language = props.languages[value - 1];
         };
 
         const onCategorySelected = (value: number) => {
             const validCategorySelection = value > 0 && value <= props.categories.length;
             if (!validCategorySelection) return;
-            setCategory(value);
             currentBook.category = props.categories[value - 1];
         };
 
@@ -138,10 +136,7 @@ const AddNewBookComponent = (props: Props) => {
                 <Input {...useInput('isbn', (value: string) => (currentBook.isbn = value))} />
                 <Select
                     style={{ width: 200 }}
-                    placeholder="Select language"
-                    onChange={(value: number) => {
-                        return onLanguageSelected(value);
-                    }}
+                    {...useSelect('Select language', (value: number) => onLanguageSelected(value))}
                 >
                     {props.languages.map(language => (
                         <Option key={language.id}>{language.title}</Option>
@@ -149,10 +144,7 @@ const AddNewBookComponent = (props: Props) => {
                 </Select>
                 <Select
                     style={{ width: 200 }}
-                    placeholder="Select category"
-                    onChange={(value: number) => {
-                        return onCategorySelected(value);
-                    }}
+                    {...useSelect('Select category', (value: number) => onCategorySelected(value))}
                 >
                     {props.categories.map(category => (
                         <Option key={category.id}>{category.title}</Option>
