@@ -129,7 +129,7 @@ const AddNewBookComponent = (props: Props) => {
         return (
             <InputGroup>
                 <Input {...useInput('title', (value: string) => (currentBook.title = value))} />
-                <Input {...useInput('author', (value: string) => currentBook.author.push(value))} />
+                <Input {...useInput('author', (value: string) => (currentBook.author = value.split(',')))} />
                 <Input {...useInput('isbn', (value: string) => (currentBook.isbn = value))} />
                 <Select
                     style={{ width: 200 }}
