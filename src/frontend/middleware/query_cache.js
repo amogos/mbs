@@ -5,6 +5,11 @@ export default class QueryCache {
         this.data = [];
     }
 
+    invalidate() {
+        this.size = 0;
+        this.data = [];
+    }
+
     addEntry(key, value) {
         for (let i = 0; i < this.size; i++) {
             if (this.data[i].key === key) {

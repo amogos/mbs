@@ -1,7 +1,7 @@
 import * as ActionConstants from './../../shared/constants/action_constant';
 import QueryCache from './query_cache';
 import { pageAction } from './../actions';
-const { PageActionConstant } = ActionConstants.default;
+const { PageActionConstant, BookActionConstant } = ActionConstants.default;
 
 let bookCache = new QueryCache(10);
 
@@ -13,10 +13,14 @@ const dispatchCacher = store => next => action => {
     }
 
     switch (action.type) {
+        case BookActionConstant.ACTION_ADD_BOOK:
+            {
+                bookCache.invalidate();
+            }
+            break;
         case PageActionConstant.ACTION_GOTO_LIST_BOOKS:
             {
                 const cacheEntry = bookCache.getEntry(cacheKey);
-
                 if (cacheEntry) {
                     return store.dispatch(
                         pageAction.refreshState({

@@ -37,16 +37,6 @@ let currentBook: DataTypes.BookValueType = {
     description: '',
 };
 
-function isValid(data: DataTypes.BookValueType): boolean {
-    return (
-        data.title !== '' &&
-        data.author.length > 0 &&
-        data.isbn !== '' &&
-        data.category.title !== '' &&
-        data.language.title != ''
-    );
-}
-
 const AddNewBookComponent = (props: Props) => {
     const [useGoogleApi, setUseGoogleApi] = useState(true);
     const [volumeInformation, setVolumeInformation] = useState(NullBookPreviewProps);
@@ -60,7 +50,15 @@ const AddNewBookComponent = (props: Props) => {
             currentBook.category.title = volumeInformation.categories[0].toLowerCase();
             currentBook.description = volumeInformation.description;
         }
-        if (isValid(currentBook)) {
+
+        const isValid: boolean =
+            currentBook.isbn !== '' &&
+            currentBook.title !== '' &&
+            currentBook.author.length > 0 &&
+            currentBook.category.title !== '' &&
+            currentBook.language.title !== '';
+
+        if (isValid) {
             props.addBook(currentBook);
             message.success('Book added successfully');
         } else {
@@ -115,15 +113,15 @@ const AddNewBookComponent = (props: Props) => {
 
     const FallbackView = () => {
         const onLanguageSelected = (value: string) => {
-            const languageIndex = parseInt(value);
-            const validLanguageSelection = languageIndex > 0 && languageIndex <= props.languages.length;
+            const languageIndex = parseInt(value) - 1;
+            const validLanguageSelection = languageIndex >= 0 && languageIndex < props.languages.length;
             if (!validLanguageSelection) return;
             currentBook.language = props.languages[languageIndex];
         };
 
         const onCategorySelected = (value: string) => {
-            const categoryIndex = parseInt(value);
-            const validCategorySelection = categoryIndex > 0 && categoryIndex <= props.categories.length;
+            const categoryIndex = parseInt(value) - 1;
+            const validCategorySelection = categoryIndex >= 0 && categoryIndex < props.categories.length;
             if (!validCategorySelection) return;
             currentBook.category = props.categories[categoryIndex];
         };
