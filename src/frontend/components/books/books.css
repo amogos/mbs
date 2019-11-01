@@ -16,6 +16,9 @@
     width: 35%;
 }
 
+.book_description {
+}
+
 .customer_reviews {
     transform: translate(-20%, 0%);
 }

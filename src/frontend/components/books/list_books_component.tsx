@@ -5,6 +5,7 @@ import BookStateComponent from './book_state';
 import BookAvailabilityComponent from './book_availability';
 import BookReviewsComponent from './book_reviews';
 import BookRatingComponent from './book_rating';
+import BooksDescription from './book_description';
 import Aux, { withStyle } from './../aux_component';
 
 interface Props {
@@ -96,8 +97,7 @@ const ListBooksComponent = (props: Props) => {
                     <i> ({item.language.title})</i> <br />
                     Author: {item.author.toString()} <br />
                     Format: {item.format} <br />
-                    <p>{item.description}</p> <br />
-                    {item.description}
+                    <BooksDescription description={item.description} length={200} />
                     <BookRatingComponent
                         contentRating={item.contentScore}
                         numReviews={item.numReviews}
