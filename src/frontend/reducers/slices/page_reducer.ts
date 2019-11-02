@@ -12,20 +12,21 @@ const { PageActionConstant } = ActionConstants.default;
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default function pageReducer(state: any, action: any): any {
     switch (action.type) {
-        case PageActionConstant.ACTION_GOTO_LIST_SPACES:
-            databseInstance.getUserSpaces(state.userdata, handleError).then((result: DataTypes.SpaceType[]) => {
-                Store.dispatch(pageAction.refreshState({ userSpaces: result, append: false }));
-            });
+        case PageActionConstant.ACTION_GOTO_LIST_SPACES: {
+            const progressSpinner = message.loading(Strings.MYBOOKSHELVE_ACTION_IN_PROGRESS);
             databseInstance
-                .getOtherSpaces(state.userdata, action.filters, handleError)
-                .then((result: DataTypes.SpaceType[]) => {
-                    Store.dispatch(pageAction.refreshState({ otherSpaces: result, append: true }));
+                .getSplitSpaces(state.userdata, action.filters, handleError)
+                .then((result: { userSpaces: DataTypes.SpaceType[]; otherSpaces: DataTypes.SpaceType[] }) => {
+                    setTimeout(progressSpinner, 0);
+                    Store.dispatch(pageAction.refreshState({ userSpaces: result.userSpaces, append: false }));
+                    Store.dispatch(pageAction.refreshState({ otherSpaces: result.otherSpaces, append: true }));
                 });
 
             return Object.assign({}, state, {
                 action: ActionConstants.default.PageActionConstant.ACTION_GOTO_LIST_SPACES,
             });
-        case PageActionConstant.ACTION_GOTO_LIST_BOOKS:
+        }
+        case PageActionConstant.ACTION_GOTO_LIST_BOOKS: {
             const progressSpinner = message.loading(Strings.MYBOOKSHELVE_ACTION_IN_PROGRESS);
             databseInstance.getQueue(state.userdata.id, handleError).then((result1: DataTypes.QueueRecordType[]) => {
                 databseInstance.getBooks(action.filters, handleError).then(result2 => {
@@ -41,8 +42,9 @@ export default function pageReducer(state: any, action: any): any {
             return Object.assign({}, state, {
                 action: PageActionConstant.ACTION_GOTO_LIST_BOOKS,
             });
+        }
 
-        case PageActionConstant.ACTION_ADD_URL_PARAMS:
+        case PageActionConstant.ACTION_ADD_URL_PARAMS: {
             let shouldResetBooksArray = false;
             let shouldResetSpacesArray = false;
 
@@ -73,8 +75,9 @@ export default function pageReducer(state: any, action: any): any {
             }
 
             return Object.assign({}, state, stateAppend);
+        }
 
-        case PageActionConstant.ACTION_REFRESH_STATE:
+        case PageActionConstant.ACTION_REFRESH_STATE: {
             const shouldAppendBooks: boolean =
                 action.params.booksArray && state.booksArray && action.params.append === true;
             if (shouldAppendBooks) {
@@ -96,6 +99,7 @@ export default function pageReducer(state: any, action: any): any {
             }
 
             return Object.assign({}, state, action.params);
+        }
         default:
             return null;
     }

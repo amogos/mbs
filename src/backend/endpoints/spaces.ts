@@ -86,6 +86,16 @@ export async function getOtherSpaces(
     return await _getSpaces(`${urlSpaces}?` + filters.join('&'), onError);
 }
 
+export async function getSplitSpaces(
+    user: DataTypes.UserRecordType,
+    filters: string[],
+    onError: (resultCode: number) => void,
+): Promise<{ userSpaces: DataTypes.SpaceType[]; otherSpaces: DataTypes.SpaceType[] }> {
+    const userSpaces = await getUserSpaces(user, onError);
+    const otherSpaces = await getOtherSpaces(user, filters, onError);
+    return { userSpaces: userSpaces, otherSpaces: otherSpaces };
+}
+
 export async function getSpaceTypeFromId(
     id: number,
     onError: (resultCode: number) => void,

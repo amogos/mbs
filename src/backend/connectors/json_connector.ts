@@ -1,6 +1,6 @@
 export { getLanguages } from '../endpoints/languages';
 export { getCategories, addCategory } from '../endpoints/categories';
-export { getSpaces, getUserSpaces, getOtherSpaces } from '../endpoints/spaces';
+export { getSpaces, getUserSpaces, getOtherSpaces, getSplitSpaces } from '../endpoints/spaces';
 export { getBooks } from '../endpoints/books';
 export { confirmRental } from '../endpoints/actions/confirm_rental';
 export { rejectRental } from '../endpoints/actions/reject_rental';
