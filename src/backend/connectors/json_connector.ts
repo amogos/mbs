@@ -1,50 +1,18 @@
-import { getLanguages } from '../endpoints/languages';
-import { getCategories, addCategory } from '../endpoints/categories';
-import { getSpaces, getUserSpaces, getOtherSpaces } from '../endpoints/spaces';
-import { getBooks } from '../endpoints/books';
-import { confirmRental } from '../endpoints/actions/confirm_rental';
-import { rejectRental } from '../endpoints/actions/reject_rental';
-import { returnBook } from '../endpoints/actions/return_book';
-import { askBook } from '../endpoints/actions/ask_book';
-import { deleteBook } from '../endpoints/actions/delete_book';
-import { getUserRecordTypeFromValueType, getUserRecordTypeFromId } from '../endpoints/user';
-import { addBook } from '../endpoints/actions/add_book';
-import { reviewUser } from '../endpoints/actions/review_user';
-import { reviewBook } from '../endpoints/actions/review_book';
-import { getQueue } from '../endpoints/queue';
-import { getReturnNotifications } from '../endpoints/return_notifications';
-import { getQueueNotifications } from '../endpoints/queue_notifications';
-import { getReviewsForBook } from '../endpoints/book_reviews';
-import { followSpace, unfollowSpace } from '../endpoints/actions/follow_space';
-
-export default class JSONConnector {
-    public getLanguages = getLanguages;
-    public getCategories = getCategories;
-    public addCategory = addCategory;
-    public getSpaces = getSpaces;
-    public getUserSpaces = getUserSpaces;
-    public getOtherSpaces = getOtherSpaces;
-    public followSpace = followSpace;
-    public unfollowSpace = unfollowSpace;
-    public getBooks = getBooks;
-    public confirmRental = confirmRental;
-    public rejectRental = rejectRental;
-    public returnBook = returnBook;
-    public askBook = askBook;
-    public deleteBook = deleteBook;
-    public getUserRecordTypeFromValueType = getUserRecordTypeFromValueType;
-    public getUserRecordTypeFromId = getUserRecordTypeFromId;
-    public addBook = addBook;
-    public reviewUser = reviewUser;
-    public reviewBook = reviewBook;
-    public getQueue = getQueue;
-    public getReturnNotifications = getReturnNotifications;
-    public getQueueNotifications = getQueueNotifications;
-    public getReviewsForBook = getReviewsForBook;
-
-    public constructor() {
-        this.init();
-    }
-
-    private init() {}
-}
+export { getLanguages } from '../endpoints/languages';
+export { getCategories, addCategory } from '../endpoints/categories';
+export { getSpaces, getUserSpaces, getOtherSpaces } from '../endpoints/spaces';
+export { getBooks } from '../endpoints/books';
+export { confirmRental } from '../endpoints/actions/confirm_rental';
+export { rejectRental } from '../endpoints/actions/reject_rental';
+export { returnBook } from '../endpoints/actions/return_book';
+export { askBook } from '../endpoints/actions/ask_book';
+export { deleteBook } from '../endpoints/actions/delete_book';
+export { getUserRecordTypeFromValueType, getUserRecordTypeFromId } from '../endpoints/user';
+export { addBook } from '../endpoints/actions/add_book';
+export { reviewUser } from '../endpoints/actions/review_user';
+export { reviewBook } from '../endpoints/actions/review_book';
+export { getQueue } from '../endpoints/queue';
+export { getReturnNotifications } from '../endpoints/return_notifications';
+export { getQueueNotifications } from '../endpoints/queue_notifications';
+export { getReviewsForBook } from '../endpoints/book_reviews';
+export { followSpace, unfollowSpace } from '../endpoints/actions/follow_space';
