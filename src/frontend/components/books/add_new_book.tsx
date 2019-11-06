@@ -22,7 +22,7 @@ interface Props {
 const defaultImage =
     'https://vignette.wikia.nocookie.net/superfriends/images/a/a5/No_Photo_Available.jpg/revision/latest?cb=20090329133959';
 
-let currentBook: DataTypes.BookValueType = {
+const currentBook: DataTypes.BookValueType = {
     title: '',
     author: [],
     language: DataTypes.NullLanguage,
@@ -76,7 +76,7 @@ const AddNewBookComponent = (props: Props) => {
             onSuccess: (response: any) => void,
         ): Promise<any> {
             let result = {};
-            let url = `https://www.googleapis.com/books/v1/volumes?q=isbn:${isbn}`;
+            const url = `https://www.googleapis.com/books/v1/volumes?q=isbn:${isbn}`;
             await axios
                 .get(url)
                 .then(response => {
@@ -89,7 +89,7 @@ const AddNewBookComponent = (props: Props) => {
 
         const onSuccess = (response: any) => {
             if (response.items && response.items.length > 0) {
-                let volumeInfo = response.items[0].volumeInfo;
+                const volumeInfo = response.items[0].volumeInfo;
                 if (!volumeInfo.publisher) volumeInfo.publisher = '';
                 if (!volumeInfo.categories) volumeInfo.categories = ['nonfiction(general)'];
                 setVolumeInformation({ ...volumeInfo, visible: true });
