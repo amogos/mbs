@@ -236,6 +236,24 @@
       "space": 1,
       "description": "Insane Energy for Lazy People is a comprehensive, step-by-step system for becoming incredibly energetic. It is based on 10 years of research and experiments to figure out what can increase the personal energy of an average lazy person several times. Elements of this system are used by the most energetic people in the world including entrepreneurs, athletes and children. You will gain numerous insights and learn energy techniques accompanied by engaging stories, scientific researches and real-life examples. The concepts of the system are aimed at changing your mindset, maximizing your personal energy and increasing the amount of happy moments in your life. Once you become more energetic you may feel like you have a jet engine inside and can accomplish within a day more than an average person can within a week.",
       "id": 17
+    },
+    {
+      "author": [
+        "Jonas Salzgeber"
+      ],
+      "image": "http://books.google.com/books/content?id=ypBbwQEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+      "language": 1,
+      "owner": 1,
+      "holder": -1,
+      "title": "Timeless Wisdom to Gain Resilience, Confidence, and Calmness",
+      "state": "state.book.idle",
+      "isbn10": "3952506907",
+      "isbn13": "9783952506905",
+      "category": 35,
+      "format": "1",
+      "space": 1,
+      "description": "This compelling, highly actionable guide shows you how to deal more effectively with whatever life throws at you and live up to your best self. A mix of timeless wisdom and empowering advice, The Little Book of Stoicism will point the way to anyone seeking a calm and wise life in a chaotic world.",
+      "id": 18
     }
   ],
   "book_reviews": [
@@ -422,6 +440,10 @@
     {
       "title": "computers",
       "id": 34
+    },
+    {
+      "title": "stoics",
+      "id": 35
     }
   ],
   "spaces": [

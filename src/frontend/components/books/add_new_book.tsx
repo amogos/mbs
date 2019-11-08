@@ -5,7 +5,7 @@ import { Select, Input, Modal, Button, message } from 'antd';
 import * as DataTypes from '../../../shared/types';
 import * as BookStates from '../../../shared/constants/book_states_constant';
 import * as StringConstant from '../../../shared/constants/string_constant';
-import BookPreview, { NullBookPreviewProps } from './book_preview';
+import BookPreview, { NullBookPreviewProps, BookPreviewProps } from './book_preview';
 
 const { Option } = Select;
 const InputGroup = Input.Group;
@@ -40,41 +40,49 @@ const currentBook: DataTypes.BookValueType = {
     description: '',
 };
 
+const ReadVolumeInformationFromGoogle = (volumeInformation: BookPreviewProps) => {
+    currentBook.title = volumeInformation.title;
+    currentBook.title = volumeInformation.subtitle;
+    currentBook.author = volumeInformation.authors;
+    currentBook.image = volumeInformation.imageLinks ? volumeInformation.imageLinks.thumbnail : defaultImage;
+    currentBook.language.title = volumeInformation.language.toUpperCase();
+    currentBook.category.title = volumeInformation.categories[0].toLowerCase();
+    currentBook.description = volumeInformation.description;
+
+    if (volumeInformation.industryIdentifiers) {
+        currentBook.isbn10 = volumeInformation.industryIdentifiers[0].identifier;
+        currentBook.isbn13 = volumeInformation.industryIdentifiers[1].identifier;
+    }
+};
+
+const ValidFields = (): boolean => {
+    const ValidIsbn = (): boolean => {
+        let validIsbn = true;
+        currentBook.isbn = currentBook.isbn.replace('/D/g', '');
+        if (currentBook.isbn.length === 10) currentBook.isbn10 = currentBook.isbn;
+        else if (currentBook.isbn.length === 13) currentBook.isbn13 = currentBook.isbn;
+        else validIsbn = false;
+        return validIsbn;
+    };
+    return (
+        ValidIsbn() &&
+        currentBook.title !== '' &&
+        currentBook.author.length > 0 &&
+        currentBook.category.title !== '' &&
+        currentBook.language.title !== ''
+    );
+};
+
 const AddNewBookComponent = (props: Props) => {
     const [useGoogleApi, setUseGoogleApi] = useState(true);
     const [volumeInformation, setVolumeInformation] = useState(NullBookPreviewProps);
 
     const onSaveButtonPressed = () => {
-        let validIsbn = true;
-
         if (useGoogleApi) {
-            currentBook.title = volumeInformation.title;
-            currentBook.title = volumeInformation.subtitle;
-            currentBook.author = volumeInformation.authors;
-            currentBook.image = volumeInformation.imageLinks ? volumeInformation.imageLinks.thumbnail : defaultImage;
-            currentBook.language.title = volumeInformation.language.toUpperCase();
-            currentBook.category.title = volumeInformation.categories[0].toLowerCase();
-            currentBook.description = volumeInformation.description;
-
-            if (volumeInformation.industryIdentifiers) {
-                currentBook.isbn10 = volumeInformation.industryIdentifiers[0].identifier;
-                currentBook.isbn13 = volumeInformation.industryIdentifiers[1].identifier;
-            }
-        } else {
-            currentBook.isbn = currentBook.isbn.replace('/D/g', '');
-            if (currentBook.isbn.length === 10) currentBook.isbn10 = currentBook.isbn;
-            else if (currentBook.isbn.length === 13) currentBook.isbn13 = currentBook.isbn;
-            else validIsbn = false;
+            ReadVolumeInformationFromGoogle(volumeInformation);
         }
 
-        const isValid: boolean =
-            validIsbn &&
-            currentBook.title !== '' &&
-            currentBook.author.length > 0 &&
-            currentBook.category.title !== '' &&
-            currentBook.language.title !== '';
-
-        if (isValid) {
+        if (ValidFields()) {
             props.addBook(currentBook);
             message.success('Book added successfully');
         } else {
