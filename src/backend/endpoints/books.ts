@@ -13,7 +13,7 @@ export async function getBooks(
     filters: string[],
     onError: (resultCode: number) => void,
 ): Promise<DataTypes.BookRecordType[]> {
-    let booksArray: DataTypes.BookRecordType[] = [];
+    const booksArray: DataTypes.BookRecordType[] = [];
     let filterdBooksUrl = urlBooks;
     const applyFilters = filters && filters.length > 0;
 
@@ -51,7 +51,8 @@ export async function getBooks(
                 state: item.state,
                 category: category,
                 space: space,
-                isbn: item.isbn,
+                isbn10: item.isbn10,
+                isbn13: item.isbn13,
                 format: format.type,
                 return: returnDateMilliseconds,
                 contentScore: reviewStatistics.contentScore,

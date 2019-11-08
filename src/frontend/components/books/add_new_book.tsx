@@ -24,12 +24,15 @@ const defaultImage =
 
 const currentBook: DataTypes.BookValueType = {
     title: '',
+    subtitle: '',
     author: [],
     language: DataTypes.NullLanguage,
     image: defaultImage,
     owner: DataTypes.NullUser,
     state: BookStates.default.STATE_BOOK_IDLE,
     isbn: '',
+    isbn10: '',
+    isbn13: '',
     holder: DataTypes.NullUser,
     category: DataTypes.NullCategory,
     format: '1',
@@ -42,17 +45,30 @@ const AddNewBookComponent = (props: Props) => {
     const [volumeInformation, setVolumeInformation] = useState(NullBookPreviewProps);
 
     const onSaveButtonPressed = () => {
+        let validIsbn = true;
+
         if (useGoogleApi) {
             currentBook.title = volumeInformation.title;
+            currentBook.title = volumeInformation.subtitle;
             currentBook.author = volumeInformation.authors;
             currentBook.image = volumeInformation.imageLinks ? volumeInformation.imageLinks.thumbnail : defaultImage;
             currentBook.language.title = volumeInformation.language.toUpperCase();
             currentBook.category.title = volumeInformation.categories[0].toLowerCase();
             currentBook.description = volumeInformation.description;
+
+            if (volumeInformation.industryIdentifiers) {
+                currentBook.isbn10 = volumeInformation.industryIdentifiers[0].identifier;
+                currentBook.isbn13 = volumeInformation.industryIdentifiers[1].identifier;
+            }
+        } else {
+            currentBook.isbn = currentBook.isbn.replace('/D/g', '');
+            if (currentBook.isbn.length === 10) currentBook.isbn10 = currentBook.isbn;
+            else if (currentBook.isbn.length === 13) currentBook.isbn13 = currentBook.isbn;
+            else validIsbn = false;
         }
 
         const isValid: boolean =
-            currentBook.isbn !== '' &&
+            validIsbn &&
             currentBook.title !== '' &&
             currentBook.author.length > 0 &&
             currentBook.category.title !== '' &&

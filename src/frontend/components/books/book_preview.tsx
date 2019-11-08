@@ -1,10 +1,20 @@
 import React from 'react';
 import Aux, { withStyle } from './../aux_component';
 
+export interface BookIsbn {
+    type: string;
+    identifier: string;
+}
+export const NullIsbn: BookIsbn = {
+    type: '',
+    identifier: '',
+};
+
 export interface BookPreviewProps {
     visible: boolean;
     imageLinks: { smallThumbnail: string; thumbnail: string };
     title: string;
+    subtitle: string;
     authors: string[];
     description: string;
     publisher: string;
@@ -12,12 +22,14 @@ export interface BookPreviewProps {
     pageCount: string;
     language: string;
     categories: string[];
+    industryIdentifiers: BookIsbn[];
 }
 
 export const NullBookPreviewProps: BookPreviewProps = {
     visible: false,
     imageLinks: { smallThumbnail: '', thumbnail: '' },
     title: '',
+    subtitle: '',
     authors: [],
     description: '',
     publisher: '',
@@ -25,6 +37,7 @@ export const NullBookPreviewProps: BookPreviewProps = {
     pageCount: '',
     language: '',
     categories: [],
+    industryIdentifiers: [NullIsbn, NullIsbn],
 };
 
 const BookPreview = (props: BookPreviewProps) => {
@@ -38,16 +51,14 @@ const BookPreview = (props: BookPreviewProps) => {
                 Title: {props.title} <br />
                 Language: {props.language.toUpperCase()} <br />
                 <span>Author:</span>
-                {props.authors.map(item => (
-                    <span>{item}</span>
-                ))}
+                {props.authors ? props.authors.map(item => <span>{item}</span>) : 'NAN'}
                 <br />
                 Publisher: {props.publisher}
                 <span>({props.publishedDate}) </span>
                 <br />
                 Category: {props.categories[0]}
                 <br />
-                Length: {props.pageCount}
+                Length: {props.pageCount ? props.pageCount : 'NAN'}
             </div>
             <div className="description">{props.description}</div>
         </Aux>

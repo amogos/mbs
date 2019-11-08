@@ -30,6 +30,7 @@ export interface CategoryRecordType {
 
 export interface BookValueType {
     title: string;
+    subtitle: string;
     author: string[];
     language: LanguageRecordType;
     image: string;
@@ -37,6 +38,8 @@ export interface BookValueType {
     holder: UserRecordType;
     state: string;
     isbn: string;
+    isbn10: string;
+    isbn13: string;
     category: CategoryRecordType;
     return?: number;
     contentScore?: number;
@@ -58,7 +61,8 @@ export interface BookRecordType {
     category: CategoryRecordType;
     format: string;
     space: SpaceType;
-    isbn: string;
+    isbn10: string;
+    isbn13: string;
     return?: number;
     contentScore?: number;
     numReviews?: number;
@@ -76,7 +80,8 @@ export interface BookRawRecordType {
     state: string;
     category: number;
     space: number;
-    isbn: string;
+    isbn10: string;
+    isbn13: string;
     return?: number;
     format: number;
     description: string;
@@ -94,7 +99,8 @@ export const NullRawBookRecordType: BookRawRecordType = {
     category: 0,
     space: 0,
     format: 0,
-    isbn: '',
+    isbn10: '',
+    isbn13: '',
     description: '',
 };
 
