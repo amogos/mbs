@@ -6,6 +6,7 @@ import { getLanguageRecordTypeFromId } from './languages';
 import { getCategoryRecordTypeFromId } from './categories';
 import { getFutureAvailabilityForBookInMilliseconds } from './queue';
 import { getReviewStatisticsForBook } from './book_reviews';
+import { getDescriptionForISBN } from './books_descriptions';
 import { getFormatRecordTypeFromId } from './format';
 import { getSpaceTypeFromId } from './spaces';
 
@@ -40,6 +41,8 @@ export async function getBooks(
             const reviewStatistics = await getReviewStatisticsForBook(item.id, onError);
             const space = await getSpaceTypeFromId(item.space, onError);
             const format = await getFormatRecordTypeFromId(item.format, onError);
+            const description = await getDescriptionForISBN(item.isbn10, item.isbn13, onError);
+
             const bookRecord: DataTypes.BookRecordType = {
                 id: item.id,
                 title: item.title,
@@ -57,7 +60,7 @@ export async function getBooks(
                 return: returnDateMilliseconds,
                 contentScore: reviewStatistics.contentScore,
                 numReviews: reviewStatistics.numReviews,
-                description: item.description,
+                description: description,
             };
 
             booksArray.push(bookRecord);

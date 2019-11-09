@@ -49,6 +49,20 @@ export interface BookValueType {
     description: string;
 }
 
+export interface BookDescriptionRecordType {
+    id: number;
+    isbn10: string;
+    isbn13: string;
+    description: string;
+}
+
+export const NullBookDescriptionRecordType: BookDescriptionRecordType = {
+    id: 0,
+    isbn10: '',
+    isbn13: '',
+    description: '',
+};
+
 export interface BookRecordType {
     id: number;
     title: string;
@@ -66,7 +80,7 @@ export interface BookRecordType {
     return?: number;
     contentScore?: number;
     numReviews?: number;
-    description: string;
+    description: BookDescriptionRecordType;
 }
 
 export interface BookRawRecordType {
@@ -84,7 +98,6 @@ export interface BookRawRecordType {
     isbn13: string;
     return?: number;
     format: number;
-    description: string;
 }
 
 export const NullRawBookRecordType: BookRawRecordType = {
@@ -101,7 +114,6 @@ export const NullRawBookRecordType: BookRawRecordType = {
     format: 0,
     isbn10: '',
     isbn13: '',
-    description: '',
 };
 
 export interface LanguageRecordType {

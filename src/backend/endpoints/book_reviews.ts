@@ -6,7 +6,7 @@ export async function getReviewsForBook(
     bookId: number,
     onError: (resultCode: number) => void,
 ): Promise<DataTypes.BookReviewRecordType[]> {
-    let reviewsArray: DataTypes.BookReviewRecordType[] = [];
+    const reviewsArray: DataTypes.BookReviewRecordType[] = [];
     const url = `${urlBookReviews}?bookId=${bookId}`;
     await axios
         .get(url)

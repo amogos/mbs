@@ -8,7 +8,7 @@ export async function getReturnNotifications(
     user: DataTypes.UserRecordType,
     onError: (resultCode: number) => void,
 ): Promise<DataTypes.ReturnNotificationType[]> {
-    let returnNotifications: DataTypes.ReturnNotificationType[] = [];
+    const returnNotifications: DataTypes.ReturnNotificationType[] = [];
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     let responseArray: any = null;
 

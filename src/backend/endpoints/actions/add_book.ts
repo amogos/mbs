@@ -2,6 +2,7 @@ import axios from 'axios';
 import { urlBooks } from '../constants';
 import { addCategory } from './../../endpoints/categories';
 import { addLanguage } from './../../endpoints/languages';
+import { addDescriptionForISBN } from './../../endpoints/books_descriptions';
 import * as DataTypes from '../../../shared/types';
 
 export async function addBook(value: DataTypes.BookValueType, onError: (resultCode: number) => void) {
@@ -29,7 +30,8 @@ export async function addBook(value: DataTypes.BookValueType, onError: (resultCo
             category: value.category.id,
             format: value.format,
             space: value.space,
-            description: value.description,
         })
         .catch(error => onError(error));
+
+    if (value.description !== '') await addDescriptionForISBN(value.isbn10, value.isbn13, value.description, onError);
 }

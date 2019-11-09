@@ -8,7 +8,7 @@ export async function getQueueNotifications(
     user: DataTypes.UserRecordType,
     onError: (resultCode: number) => void,
 ): Promise<DataTypes.QueueNotificationRecordType[]> {
-    let rentalNotifications: DataTypes.QueueNotificationRecordType[] = [];
+    const rentalNotifications: DataTypes.QueueNotificationRecordType[] = [];
     let responseArray: any = null;
 
     await axios
@@ -28,7 +28,7 @@ export async function getQueueNotifications(
             notifiction => notifiction.bookId === item.bookId,
         );
         if (notAssigned && !alreadyOneRequestForBookIdProcessed) {
-            let notification: DataTypes.QueueNotificationRecordType = {
+            const notification: DataTypes.QueueNotificationRecordType = {
                 id: item.id,
                 bookTitle: rawBook.title,
                 bookId: item.bookId,

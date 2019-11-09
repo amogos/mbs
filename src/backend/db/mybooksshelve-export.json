@@ -1,325 +1,341 @@
 {
-  "users": [
-    {
-      "name": "Iulia Mogos",
-      "email": "daosmistique@yahoo.com",
-      "picture": "https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=2223056511038248&height=50&width=50&ext=1566812071&hash=AeSiTV7UwEZToD2h",
-      "following": [
-        2
-      ],
-      "rating": 0,
-      "id": 1
-    },
-    {
-      "id": 2,
-      "name": "Florin Mogos",
-      "email": "florin.mogos@gmail.com",
-      "picture": "https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png",
-      "following": [],
-      "rating": 0
-    },
-    {
-      "id": 3,
-      "name": "Varza Murata",
-      "email": "varzamurata@gmail.com",
-      "picture": "https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png",
-      "following": [],
-      "rating": 0
-    }
-  ],
-  "queues": [],
-  "returns": [],
-  "languages": [
-    {
-      "id": 1,
-      "title": "EN"
-    },
-    {
-      "id": 2,
-      "title": "DE"
-    }
-  ],
-  "books": [
-    {
-      "id": 1,
-      "author": [
-        "Susanne Schotz"
-      ],
-      "image": "https://images-eu.ssl-images-amazon.com/images/I/51UkIlAOwEL._SY90_.jpg",
-      "language": 1,
-      "owner": 2,
-      "holder": 1,
-      "title": "The Secret Language of Cats: How to Understand Your Cat for a Better, Happier Relationship",
-      "state": "state.book.idle",
-      "category": 26,
-      "space": 2,
-      "format": 1,
-      "isbn10": "",
-      "isbn13": "9783734820211",
-      "return": 1565937976485,
-      "description": "no description available"
-    },
-    {
-      "id": 2,
-      "author": [
-        "Eric Carle"
-      ],
-      "image": "https://images-na.ssl-images-amazon.com/images/I/51lsugWtCvL._SY498_BO1,204,203,200_.jpg",
-      "language": 1,
-      "owner": 1,
-      "holder": 2,
-      "title": "The Very Hungry Caterpillar's ABC",
-      "state": "state.book.in.transit.to.holder",
-      "category": 4,
-      "space": 1,
-      "format": 1,
-      "isbn10": "",
-      "isbn13": "9783734820212",
-      "return": 1565937976485,
-      "description": "no description available"
-    },
-    {
-      "id": 5,
-      "author": [
-        " Yuval Noah Harari"
-      ],
-      "image": "https://images-na.ssl-images-amazon.com/images/I/417lbqaSihL._SX318_BO1,204,203,200_.jpg",
-      "language": 2,
-      "owner": 2,
-      "holder": -1,
-      "title": "Homo Deus: Eine Geschichte von Morgen ",
-      "state": "state.book.idle",
-      "category": 11,
-      "space": 2,
-      "format": 1,
-      "isbn10": "",
-      "isbn13": "9783734820215",
-      "description": "no description available"
-    }
-  ],
-  "book_reviews": [
-    {
-      "id": 1,
-      "bookId": 1,
-      "userId": 1,
-      "comment": "Good spelling practice but sometimes too many exercises and not enough explanation.",
-      "contentScore": 4.5,
-      "stateScore": 4.5
-    },
-    {
-      "id": 1,
-      "bookId": 1,
-      "userId": 2,
-      "comment": "Unsere Tochter kommt in die 3. Klasse und nutzt das Buch schon mal zur Vorbereitung. Sie findet es klasse. Wir sind der Meinung das die Qualität sehr gut ist und genau das richtige ist zum Üben. Wir können das Buch nur weiterempfehlen.",
-      "contentScore": 4.1,
-      "stateScore": 4
-    }
-  ],
-  "user_reviews": [],
-  "orders": [],
-  "categories": [
-    {
-      "id": 1,
-      "title": "art & music"
-    },
-    {
-      "id": 2,
-      "title": "biographies"
-    },
-    {
-      "id": 3,
-      "title": "business"
-    },
-    {
-      "id": 4,
-      "title": "kids"
-    },
-    {
-      "id": 5,
-      "title": "comics"
-    },
-    {
-      "id": 6,
-      "title": "computer & tech"
-    },
-    {
-      "id": 7,
-      "title": "cooking"
-    },
-    {
-      "id": 8,
-      "title": "hobbies & crafts"
-    },
-    {
-      "id": 9,
-      "title": "gay & lesbian"
-    },
-    {
-      "id": 10,
-      "title": "health & fitness"
-    },
-    {
-      "id": 11,
-      "title": "history"
-    },
-    {
-      "id": 12,
-      "title": "home & garden"
-    },
-    {
-      "id": 13,
-      "title": "horror"
-    },
-    {
-      "id": 14,
-      "title": "entertainment"
-    },
-    {
-      "id": 15,
-      "title": "literture & fiction"
-    },
-    {
-      "id": 16,
-      "title": "medical"
-    },
-    {
-      "id": 14,
-      "title": "mysteries"
-    },
-    {
-      "id": 15,
-      "title": "parenting"
-    },
-    {
-      "id": 16,
-      "title": "social sciences"
-    },
-    {
-      "id": 17,
-      "title": "religion"
-    },
-    {
-      "id": 18,
-      "title": "romance & sexuality"
-    },
-    {
-      "id": 19,
-      "title": "science & math"
-    },
-    {
-      "id": 20,
-      "title": "sci-fi & fantasy"
-    },
-    {
-      "id": 21,
-      "title": "sports"
-    },
-    {
-      "id": 22,
-      "title": "teens"
-    },
-    {
-      "id": 21,
-      "title": "travel"
-    },
-    {
-      "id": 22,
-      "title": "true crime"
-    },
-    {
-      "id": 23,
-      "title": "philosophy"
-    },
-    {
-      "id": 24,
-      "title": "photography"
-    },
-    {
-      "id": 25,
-      "title": "family & care"
-    },
-    {
-      "id": 26,
-      "title": "animal rights & pets"
-    },
-    {
-      "id": 27,
-      "title": "engineering"
-    },
-    {
-      "id": 28,
-      "title": "architecture & interior design"
-    },
-    {
-      "id": 29,
-      "title": "poetry"
-    },
-    {
-      "id": 30,
-      "title": "nonfiction(general)"
-    },
-    {
-      "title": "education",
-      "id": 31
-    },
-    {
-      "title": "self-help",
-      "id": 32
-    },
-    {
-      "title": "business & economics",
-      "id": 33
-    },
-    {
-      "title": "computers",
-      "id": 34
-    },
-    {
-      "title": "stoics",
-      "id": 35
-    }
-  ],
-  "spaces": [
-    {
-      "id": 1,
-      "owner": 1,
-      "subscription": 0,
-      "title": "daosmistique@yahoo.com",
-      "description": "Iulia Mogos Default",
-      "transport": 0,
-      "picture": "https://www.berlin.de/converjon/?ts=1429660132&width=166&height=125&url=https%3A%2F%2Fwww.berlin.de%2Fba-lichtenberg%2Fauf-einen-blick%2Fbuergerservice%2Fbildung%2Fmdb-balichtenberghohenschoenhausen-bibliotheken-kisch_aussen.jpg"
-    },
-    {
-      "id": 2,
-      "owner": 2,
-      "subscription": 0,
-      "title": "THE NUANCE",
-      "description": "The Unsettling Ways Tech Is Changing Your Personal Reality",
-      "transport": 0,
-      "picture": "https://www.berlin.de/converjon/?ts=1429660132&width=166&height=125&url=https%3A%2F%2Fwww.berlin.de%2Fba-lichtenberg%2Fauf-einen-blick%2Fbuergerservice%2Fbildung%2Fmdb-balichtenberghohenschoenhausen-bibliotheken-kisch_aussen.jpg"
-    },
-    {
-      "id": 3,
-      "owner": 3,
-      "subscription": 0,
-      "title": "OneZero",
-      "description": "The Illegal Wildlife Market Is Booming. Encrypted Messaging Makes It Worse.The Illegal Wildlife Market Is Booming. Encrypted Messaging Makes It Worse.",
-      "transport": 0,
-      "picture": "https://www.google.com/search?q=spaces&rlz=1C1CHBF_enDE750DE750&sxsrf=ACYBGNRleGx6Q7ZoTRX3vN_75uHUaGHG1A:1569381920271&source=lnms&tbm=isch&sa=X&ved=0ahUKEwi0qP-eg-vkAhWFLlAKHTGqCzIQ_AUIEygC&biw=1920&bih=937#imgrc=Mj4n4nKAbjgIZM:"
-    }
-  ],
-  "formats": [
-    {
-      "id": 1,
-      "type": "hardcover"
-    },
-    {
-      "id": 2,
-      "type": "e-book"
-    },
-    {
-      "id": 3,
-      "type": "audio-book"
-    }
-  ]
+    "users": [
+        {
+            "name": "Iulia Mogos",
+            "email": "daosmistique@yahoo.com",
+            "picture": "https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=2223056511038248&height=50&width=50&ext=1566812071&hash=AeSiTV7UwEZToD2h",
+            "following": [2],
+            "rating": 0,
+            "id": 1
+        },
+        {
+            "id": 2,
+            "name": "Florin Mogos",
+            "email": "florin.mogos@gmail.com",
+            "picture": "https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png",
+            "following": [],
+            "rating": 0
+        },
+        {
+            "id": 3,
+            "name": "Varza Murata",
+            "email": "varzamurata@gmail.com",
+            "picture": "https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png",
+            "following": [],
+            "rating": 0
+        }
+    ],
+    "queues": [],
+    "returns": [],
+    "languages": [
+        {
+            "id": 1,
+            "title": "EN"
+        },
+        {
+            "id": 2,
+            "title": "DE"
+        }
+    ],
+    "books": [
+        {
+            "id": 1,
+            "author": ["Susanne Schotz"],
+            "image": "https://images-eu.ssl-images-amazon.com/images/I/51UkIlAOwEL._SY90_.jpg",
+            "language": 1,
+            "owner": 2,
+            "holder": 1,
+            "title": "The Secret Language of Cats: How to Understand Your Cat for a Better, Happier Relationship",
+            "state": "state.book.idle",
+            "category": 26,
+            "space": 2,
+            "format": 1,
+            "isbn10": "",
+            "isbn13": "9783734820211",
+            "return": 1565937976485
+        },
+        {
+            "id": 2,
+            "author": ["Eric Carle"],
+            "image": "https://images-na.ssl-images-amazon.com/images/I/51lsugWtCvL._SY498_BO1,204,203,200_.jpg",
+            "language": 1,
+            "owner": 1,
+            "holder": 2,
+            "title": "The Very Hungry Caterpillar's ABC",
+            "state": "state.book.in.transit.to.holder",
+            "category": 4,
+            "space": 1,
+            "format": 1,
+            "isbn10": "",
+            "isbn13": "9783734820212",
+            "return": 1565937976485
+        },
+        {
+            "id": 5,
+            "author": [" Yuval Noah Harari"],
+            "image": "https://images-na.ssl-images-amazon.com/images/I/417lbqaSihL._SX318_BO1,204,203,200_.jpg",
+            "language": 2,
+            "owner": 2,
+            "holder": -1,
+            "title": "Homo Deus: Eine Geschichte von Morgen ",
+            "state": "state.book.idle",
+            "category": 11,
+            "space": 2,
+            "format": 1,
+            "isbn10": "",
+            "isbn13": "9783734820215"
+        },
+        {
+            "author": ["Jane McGonigal"],
+            "image": "http://books.google.com/books/content?id=-EXbwAEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+            "language": 1,
+            "owner": 1,
+            "holder": -1,
+            "title": "Why Games Make Us Better and how They Can Change the World",
+            "state": "state.book.idle",
+            "isbn10": "0099540282",
+            "isbn13": "9780099540281",
+            "category": 36,
+            "format": "1",
+            "space": 1,
+            "id": 6
+        }
+    ],
+    "book_reviews": [
+        {
+            "id": 1,
+            "bookId": 1,
+            "userId": 1,
+            "comment": "Good spelling practice but sometimes too many exercises and not enough explanation.",
+            "contentScore": 4.5,
+            "stateScore": 4.5
+        },
+        {
+            "id": 1,
+            "bookId": 1,
+            "userId": 2,
+            "comment": "Unsere Tochter kommt in die 3. Klasse und nutzt das Buch schon mal zur Vorbereitung. Sie findet es klasse. Wir sind der Meinung das die Qualität sehr gut ist und genau das richtige ist zum Üben. Wir können das Buch nur weiterempfehlen.",
+            "contentScore": 4.1,
+            "stateScore": 4
+        }
+    ],
+    "user_reviews": [],
+    "orders": [],
+    "categories": [
+        {
+            "id": 1,
+            "title": "art & music"
+        },
+        {
+            "id": 2,
+            "title": "biographies"
+        },
+        {
+            "id": 3,
+            "title": "business"
+        },
+        {
+            "id": 4,
+            "title": "kids"
+        },
+        {
+            "id": 5,
+            "title": "comics"
+        },
+        {
+            "id": 6,
+            "title": "computer & tech"
+        },
+        {
+            "id": 7,
+            "title": "cooking"
+        },
+        {
+            "id": 8,
+            "title": "hobbies & crafts"
+        },
+        {
+            "id": 9,
+            "title": "gay & lesbian"
+        },
+        {
+            "id": 10,
+            "title": "health & fitness"
+        },
+        {
+            "id": 11,
+            "title": "history"
+        },
+        {
+            "id": 12,
+            "title": "home & garden"
+        },
+        {
+            "id": 13,
+            "title": "horror"
+        },
+        {
+            "id": 14,
+            "title": "entertainment"
+        },
+        {
+            "id": 15,
+            "title": "literture & fiction"
+        },
+        {
+            "id": 16,
+            "title": "medical"
+        },
+        {
+            "id": 14,
+            "title": "mysteries"
+        },
+        {
+            "id": 15,
+            "title": "parenting"
+        },
+        {
+            "id": 16,
+            "title": "social sciences"
+        },
+        {
+            "id": 17,
+            "title": "religion"
+        },
+        {
+            "id": 18,
+            "title": "romance & sexuality"
+        },
+        {
+            "id": 19,
+            "title": "science & math"
+        },
+        {
+            "id": 20,
+            "title": "sci-fi & fantasy"
+        },
+        {
+            "id": 21,
+            "title": "sports"
+        },
+        {
+            "id": 22,
+            "title": "teens"
+        },
+        {
+            "id": 21,
+            "title": "travel"
+        },
+        {
+            "id": 22,
+            "title": "true crime"
+        },
+        {
+            "id": 23,
+            "title": "philosophy"
+        },
+        {
+            "id": 24,
+            "title": "photography"
+        },
+        {
+            "id": 25,
+            "title": "family & care"
+        },
+        {
+            "id": 26,
+            "title": "animal rights & pets"
+        },
+        {
+            "id": 27,
+            "title": "engineering"
+        },
+        {
+            "id": 28,
+            "title": "architecture & interior design"
+        },
+        {
+            "id": 29,
+            "title": "poetry"
+        },
+        {
+            "id": 30,
+            "title": "nonfiction(general)"
+        },
+        {
+            "title": "education",
+            "id": 31
+        },
+        {
+            "title": "self-help",
+            "id": 32
+        },
+        {
+            "title": "business & economics",
+            "id": 33
+        },
+        {
+            "title": "computers",
+            "id": 34
+        },
+        {
+            "title": "stoics",
+            "id": 35
+        },
+        {
+            "title": "computer games",
+            "id": 36
+        }
+    ],
+    "spaces": [
+        {
+            "id": 1,
+            "owner": 1,
+            "subscription": 0,
+            "title": "daosmistique@yahoo.com",
+            "description": "Iulia Mogos Default",
+            "transport": 0,
+            "picture": "https://www.berlin.de/converjon/?ts=1429660132&width=166&height=125&url=https%3A%2F%2Fwww.berlin.de%2Fba-lichtenberg%2Fauf-einen-blick%2Fbuergerservice%2Fbildung%2Fmdb-balichtenberghohenschoenhausen-bibliotheken-kisch_aussen.jpg"
+        },
+        {
+            "id": 2,
+            "owner": 2,
+            "subscription": 0,
+            "title": "THE NUANCE",
+            "description": "The Unsettling Ways Tech Is Changing Your Personal Reality",
+            "transport": 0,
+            "picture": "https://www.berlin.de/converjon/?ts=1429660132&width=166&height=125&url=https%3A%2F%2Fwww.berlin.de%2Fba-lichtenberg%2Fauf-einen-blick%2Fbuergerservice%2Fbildung%2Fmdb-balichtenberghohenschoenhausen-bibliotheken-kisch_aussen.jpg"
+        },
+        {
+            "id": 3,
+            "owner": 3,
+            "subscription": 0,
+            "title": "OneZero",
+            "description": "The Illegal Wildlife Market Is Booming. Encrypted Messaging Makes It Worse.The Illegal Wildlife Market Is Booming. Encrypted Messaging Makes It Worse.",
+            "transport": 0,
+            "picture": "https://www.google.com/search?q=spaces&rlz=1C1CHBF_enDE750DE750&sxsrf=ACYBGNRleGx6Q7ZoTRX3vN_75uHUaGHG1A:1569381920271&source=lnms&tbm=isch&sa=X&ved=0ahUKEwi0qP-eg-vkAhWFLlAKHTGqCzIQ_AUIEygC&biw=1920&bih=937#imgrc=Mj4n4nKAbjgIZM:"
+        }
+    ],
+    "formats": [
+        {
+            "id": 1,
+            "type": "hardcover"
+        },
+        {
+            "id": 2,
+            "type": "e-book"
+        },
+        {
+            "id": 3,
+            "type": "audio-book"
+        }
+    ],
+    "books_descriptions": [
+        {
+            "isbn10": "0099540282",
+            "isbn13": "9780099540281",
+            "description": "More than 31 million people in the UK are gamers.The average young person in the UK will spend 10,000 hours gaming by the age of twenty-one. The future will belong to those who can understand, design and play games.World-renowned game designer Jane McGonigal knows that videogames are fulfilling genuine human needs, and in Reality is Broken she shows how game designers have hit on core truths about what makes us happy, and utilized these discoveries to astonishing effect in virtual environments. But why, McGonigal asks, should we use the power of games for escapist entertainment alone? In this groundbreaking exploration of the power and future of gaming, she reveals how gamers have become expert problem solvers and collaborators, and shows how we can use the lessons of game design to socially positive ends, be it in our own lives, our communities or our businesses.",
+            "id": 1
+        }
+    ]
 }
