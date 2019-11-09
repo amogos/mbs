@@ -27,23 +27,8 @@
       "rating": 0
     }
   ],
-  "queues": [
-    {
-      "id": 1,
-      "userId": 3,
-      "bookId": 3,
-      "ownerId": 1,
-      "duration": 2
-    }
-  ],
-  "returns": [
-    {
-      "id": 1,
-      "userId": 2,
-      "bookId": 3,
-      "ownerId": 1
-    }
-  ],
+  "queues": [],
+  "returns": [],
   "languages": [
     {
       "id": 1,
@@ -94,42 +79,6 @@
       "description": "no description available"
     },
     {
-      "id": 3,
-      "author": [
-        "Julia Donaldson"
-      ],
-      "image": "https://images-na.ssl-images-amazon.com/images/I/51Zm3fBs0PL._SY446_BO1,204,203,200_.jpg",
-      "language": 1,
-      "owner": 1,
-      "holder": -1,
-      "title": "Room on the Broom Board Book",
-      "state": "state.book.idle",
-      "category": 4,
-      "space": 1,
-      "format": 1,
-      "isbn10": "",
-      "isbn13": "9783734820213",
-      "description": "no description available"
-    },
-    {
-      "id": 4,
-      "author": [
-        "Julia Donaldson"
-      ],
-      "image": "https://images-na.ssl-images-amazon.com/images/I/61YDHV-%2B-VL._SY448_BO1,204,203,200_.jpg",
-      "language": 1,
-      "owner": 1,
-      "holder": -1,
-      "title": "The Snail and the Whale",
-      "state": "state.book.idle",
-      "category": 4,
-      "space": 1,
-      "format": 1,
-      "isbn10": "",
-      "isbn13": "9783734820214",
-      "description": "no description available"
-    },
-    {
       "id": 5,
       "author": [
         " Yuval Noah Harari"
@@ -146,114 +95,6 @@
       "isbn10": "",
       "isbn13": "9783734820215",
       "description": "no description available"
-    },
-    {
-      "author": [
-        "Linda Bayerl"
-      ],
-      "image": "http://books.google.com/books/content?id=oF4ZDAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
-      "language": 2,
-      "owner": 1,
-      "holder": -1,
-      "title": "Vorschulblock - Logisches Denken, rätseln und knobeln ab 5 Jahre",
-      "state": "state.book.idle",
-      "isbn10": "",
-      "isbn13": "9783881006248",
-      "category": 31,
-      "format": "1",
-      "space": 1,
-      "id": 8,
-      "description": "no description available"
-    },
-    {
-      "author": [
-        "Meik Wiking"
-      ],
-      "image": "http://books.google.com/books/content?id=n-O2jwEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
-      "language": 1,
-      "owner": 1,
-      "holder": -1,
-      "title": "The Little Book of Hygge",
-      "state": "state.book.idle",
-      "isbn10": "",
-      "isbn13": "0241283914",
-      "category": 32,
-      "format": "1",
-      "space": 1,
-      "description": "The Danish word hygge is one of those beautiful words that doesn't directly translate into English, but it more or less means comfort, warmth or togetherness. Hygge is the feeling you get when you are cuddled up on a sofa with a loved one, in warm knitted socks, in front of the fire, when it is dark, cold and stormy outside. It that feeling when you are sharing good, comfort food with your closest friends, by candle light and exchanging easy conversation. It is those cold, crisp blue sky mornings when the light through your window is just right. Denmark is the happiest nation in the world and Meik puts this largely down to them living the hygge way. They focus on the small things that really matter, spend more quality time with friends and family and enjoy the good things in life. \"The Little Book of Hygge\" will give you practical steps and tips to become more hygge",
-      "id": 9
-    },
-    {
-      "author": [
-        "Frank Rösner"
-      ],
-      "image": "http://books.google.com/books/content?id=ldhvDQAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
-      "language": 2,
-      "owner": 1,
-      "holder": -1,
-      "title": "Die Krux mit der ISBN",
-      "state": "state.book.idle",
-      "isbn10": "",
-      "isbn13": "1409551652",
-      "category": 33,
-      "format": "1",
-      "space": 1,
-      "description": "Der Beitrag hat einen veralteten Rechtsstand September 2016 soweit es sich um das Erfordernis einer Gewerbeanmeldung für den Bezug von ISBNs handelt. Für Interessierte wird der Beitrag jedoch weiterhin angeboten. Die ISBN-Agentur vergab preiswerte ISBN-Kontingente seinerzeit nur nach Vorlage einer Gewerbeanmeldung als Verlag. Die Krux dieser Vergabepraxis ist wesentlicher Inhalt dieses Aufsatzes. Zur Einführung werden die Grundlagen des ISB-Nummernsystems erläutert. Danach geht der Autor auf den Zusammenhang zwischen ISBN und dem Verzeichnis lieferbarer Bücher (VLB) ein. Es folgt die kritische Auseinandersetzung mit der seinerzeitigen ISBN-Vergabepraxis. Nicht zuletzt werden auch steuerliche Hinweise im Zusammenhang mit der Gewerbeanmeldung gegeben. Abschließend geht der Autor auf den Eintrag im Adressbuch für den deutschsprachigen Buchhandel (AdB) ein.",
-      "id": 12
-    },
-    {
-      "author": [
-        "Aurélien Géron"
-      ],
-      "image": "http://books.google.com/books/content?id=OCS1twEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
-      "language": 1,
-      "owner": 1,
-      "holder": -1,
-      "title": "Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow",
-      "state": "state.book.idle",
-      "isbn10": "",
-      "isbn13": "1492032646",
-      "category": 34,
-      "format": "1",
-      "space": 1,
-      "description": "Through a series of recent breakthroughs, deep learning has boosted the entire field of machine learning. Now, even programmers who know close to nothing about this technology can use simple, efficient tools to implement programs capable of learning from data. The updated edition of this best-selling book uses concrete examples, minimal theory, and two production-ready Python frameworks--Scikit-Learn and TensorFlow 2--to help you gain an intuitive understanding of the concepts and tools for building intelligent systems. Practitioners will learn a range of techniques that they can quickly put to use on the job. Part 1 employs Scikit-Learn to introduce fundamental machine learning tasks, such as simple linear regression. Part 2, which has been significantly updated, employs Keras and TensorFlow 2 to guide the reader through more advanced machine learning methods using deep neural networks. With exercises in each chapter to help you apply what you've learned, all you need is programming experience to get started. NEW FOR THE SECOND EDITION:Updated all code to TensorFlow 2Introduced the high-level Keras APINew and expanded coverage including TensorFlow's Data API, Eager Execution, Estimators API, deploying on Google Cloud ML, handling time series, embeddings and more With Early Release ebooks, you get books in their earliest form--the author's raw and unedited content as he or she writes--so you can take advantage of these technologies long before the official release of these titles. You'll also receive updates when significant changes are made, new chapters are available, and the final ebook bundle is released.",
-      "id": 16
-    },
-    {
-      "author": [
-        "Andrii Sedniev"
-      ],
-      "image": "http://books.google.com/books/content?id=4hyaxgEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
-      "language": 2,
-      "owner": 1,
-      "holder": -1,
-      "title": "A Complete System for Becoming Incredibly Energetic",
-      "state": "state.book.idle",
-      "isbn10": "1074402650",
-      "isbn13": "9781074402655",
-      "category": 2,
-      "format": "1",
-      "space": 1,
-      "description": "Insane Energy for Lazy People is a comprehensive, step-by-step system for becoming incredibly energetic. It is based on 10 years of research and experiments to figure out what can increase the personal energy of an average lazy person several times. Elements of this system are used by the most energetic people in the world including entrepreneurs, athletes and children. You will gain numerous insights and learn energy techniques accompanied by engaging stories, scientific researches and real-life examples. The concepts of the system are aimed at changing your mindset, maximizing your personal energy and increasing the amount of happy moments in your life. Once you become more energetic you may feel like you have a jet engine inside and can accomplish within a day more than an average person can within a week.",
-      "id": 17
-    },
-    {
-      "author": [
-        "Jonas Salzgeber"
-      ],
-      "image": "http://books.google.com/books/content?id=ypBbwQEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
-      "language": 1,
-      "owner": 1,
-      "holder": -1,
-      "title": "Timeless Wisdom to Gain Resilience, Confidence, and Calmness",
-      "state": "state.book.idle",
-      "isbn10": "3952506907",
-      "isbn13": "9783952506905",
-      "category": 35,
-      "format": "1",
-      "space": 1,
-      "description": "This compelling, highly actionable guide shows you how to deal more effectively with whatever life throws at you and live up to your best self. A mix of timeless wisdom and empowering advice, The Little Book of Stoicism will point the way to anyone seeking a calm and wise life in a chaotic world.",
-      "id": 18
     }
   ],
   "book_reviews": [
@@ -274,15 +115,7 @@
       "stateScore": 4
     }
   ],
-  "user_reviews": [
-    {
-      "bookId": 3,
-      "userId": 3,
-      "comment": "Book came back in good conditions.",
-      "stateScore": 4,
-      "id": 1
-    }
-  ],
+  "user_reviews": [],
   "orders": [],
   "categories": [
     {
