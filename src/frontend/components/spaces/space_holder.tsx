@@ -16,7 +16,7 @@ interface Props {
     getBookDescription(
         isbn10: string,
         isbn13: string,
-        callbacks: (result: DataTypes.BookDescriptionRecordType) => void,
+        callback: (result: DataTypes.BookDescriptionRecordType) => void,
     ): void;
     onClick: () => void;
     followSpace: (spaceId: number, callback: () => void) => void;

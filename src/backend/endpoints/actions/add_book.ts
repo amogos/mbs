@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { urlBooks } from '../constants';
-import { addCategory } from './../../endpoints/categories';
+import { addCategory, getCategoryRecordTypeFromId } from './../../endpoints/categories';
 import { addLanguage } from './../../endpoints/languages';
 import {
     addBookDescription,
@@ -36,7 +36,7 @@ export async function addBook(value: DataTypes.BookValueType, onError: (resultCo
         isbn10: value.isbn10,
         isbn13: value.isbn13,
         format: value.format,
-        category: value.category.id,
+        category: [value.category],
         author: value.author,
         length: value.length,
         image: value.image,

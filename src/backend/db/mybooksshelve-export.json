@@ -39,44 +39,8 @@
       "title": "DE"
     }
   ],
-  "books": [
-    {
-      "owner": 1,
-      "holder": -1,
-      "state": "state.book.idle",
-      "isbn10": "3314103484",
-      "isbn13": "9783314103483",
-      "space": 1,
-      "id": 1
-    },
-    {
-      "owner": 1,
-      "holder": -1,
-      "state": "state.book.idle",
-      "isbn10": "1234567890",
-      "isbn13": "",
-      "space": 1,
-      "id": 2
-    }
-  ],
-  "book_reviews": [
-    {
-      "id": 1,
-      "bookId": 1,
-      "userId": 1,
-      "comment": "Good spelling practice but sometimes too many exercises and not enough explanation.",
-      "contentScore": 4.5,
-      "stateScore": 4.5
-    },
-    {
-      "id": 1,
-      "bookId": 1,
-      "userId": 2,
-      "comment": "Unsere Tochter kommt in die 3. Klasse und nutzt das Buch schon mal zur Vorbereitung. Sie findet es klasse. Wir sind der Meinung das die Qualität sehr gut ist und genau das richtige ist zum Üben. Wir können das Buch nur weiterempfehlen.",
-      "contentScore": 4.1,
-      "stateScore": 4
-    }
-  ],
+  "books": [],
+  "book_reviews": [],
   "user_reviews": [],
   "orders": [],
   "categories": [
@@ -294,14 +258,8 @@
   ],
   "books_descriptions": [
     {
-      "isbn10": "0099540282",
-      "isbn13": "9780099540281",
-      "description": "More than 31 million people in the UK are gamers.The average young person in the UK will spend 10,000 hours gaming by the age of twenty-one. The future will belong to those who can understand, design and play games.World-renowned game designer Jane McGonigal knows that videogames are fulfilling genuine human needs, and in Reality is Broken she shows how game designers have hit on core truths about what makes us happy, and utilized these discoveries to astonishing effect in virtual environments. But why, McGonigal asks, should we use the power of games for escapist entertainment alone? In this groundbreaking exploration of the power and future of gaming, she reveals how gamers have become expert problem solvers and collaborators, and shows how we can use the lessons of game design to socially positive ends, be it in our own lives, our communities or our businesses.",
-      "id": 1
-    },
-    {
       "title": "Armstrong (German Edition)",
-      "subtitle": "",
+      "subtitle": "Armstrong (German Edition)",
       "language": {
         "id": 1,
         "title": "EN"
@@ -309,17 +267,22 @@
       "isbn10": "3314103484",
       "isbn13": "9783314103483",
       "format": 1,
-      "category": 37,
+      "category": [
+        {
+          "id": 37,
+          "title": "juvenile fiction"
+        }
+      ],
       "author": [
         "Torben Kuhlmann"
       ],
       "length": 128,
       "image": "http://books.google.com/books/content?id=ccCYDAEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
       "description": "Praise for Armstrong—The Adventurous Journey of a Mouse to the Moon “‘One Small Step for a Mouse’ indeed.”—Kirkus Reviews, Starred Review “This beautifully illustrated story is a feast for mind and eyes and a strong selection to complement STEAM curricula.”—School Library Journal, Starred Review",
-      "id": 2
+      "id": 1
     },
     {
-      "title": "Some title",
+      "title": "weqweqw",
       "subtitle": "",
       "language": {
         "id": 2,
@@ -328,14 +291,19 @@
       "isbn10": "1234567890",
       "isbn13": "",
       "format": 1,
-      "category": 3,
-      "author": [
-        "Some author"
+      "category": [
+        {
+          "id": 2,
+          "title": "biographies"
+        }
       ],
-      "length": 128,
+      "author": [
+        "qwewqeqwe"
+      ],
+      "length": 123,
       "image": "https://vignette.wikia.nocookie.net/superfriends/images/a/a5/No_Photo_Available.jpg/revision/latest?cb=20090329133959",
       "description": "",
-      "id": 3
+      "id": 2
     }
   ]
 }

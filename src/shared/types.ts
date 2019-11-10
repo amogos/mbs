@@ -61,7 +61,7 @@ export interface BookDescriptionValueType {
     isbn10: string;
     isbn13: string;
     description: string;
-    category: number;
+    category: CategoryRecordType[];
     length: number;
     format: number;
 }
@@ -78,7 +78,7 @@ export interface BookDescriptionRecordType {
     description: string;
     length: number;
     format: number;
-    category: number;
+    category: CategoryRecordType[];
 }
 
 export const NullBookDescriptionRecordType: BookDescriptionRecordType = {
@@ -93,7 +93,7 @@ export const NullBookDescriptionRecordType: BookDescriptionRecordType = {
     description: '',
     length: 0,
     format: 0,
-    category: 0,
+    category: [],
 };
 
 export interface BookRecordType {

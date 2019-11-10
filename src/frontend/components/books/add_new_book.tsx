@@ -18,7 +18,7 @@ interface Props {
     getBookDescription(
         isbn10: string,
         isbn13: string,
-        callbacks: (result: DataTypes.BookDescriptionRecordType) => void,
+        callback: (result: DataTypes.BookDescriptionRecordType) => void,
     ): void;
     spaceId: number;
     visible: boolean;
@@ -48,7 +48,7 @@ const currentBook: DataTypes.BookValueType = {
 
 const ReadVolumeInformationFromGoogle = (volumeInformation: BookPreviewProps) => {
     currentBook.title = volumeInformation.title;
-    currentBook.title = volumeInformation.subtitle;
+    currentBook.subtitle = volumeInformation.subtitle;
     currentBook.author = volumeInformation.authors;
     currentBook.image = volumeInformation.imageLinks ? volumeInformation.imageLinks.thumbnail : defaultImage;
     currentBook.language.title = volumeInformation.language.toUpperCase();
@@ -144,7 +144,10 @@ const AddNewBookComponent = (props: Props) => {
                             publishedDate: '',
                             pageCount: bookDescription.length.toString(),
                             language: bookDescription.language.title,
-                            categories: [],
+                            categories:
+                                bookDescription.category.length > 0
+                                    ? [bookDescription.category[0].title]
+                                    : ['nonfiction(general)'],
                             industryIdentifiers: [
                                 { type: 'isbn10', identifier: isbn10 },
                                 { type: 'isbn13', identifier: isbn13 },

@@ -37,7 +37,7 @@ export async function getBooks(
             const holder = await getUserRecordTypeFromId(item.holder, onError);
             const owner = await getUserRecordTypeFromId(item.owner, onError);
             const language = await getLanguageRecordTypeFromId(description.language.id, onError);
-            const category = await getCategoryRecordTypeFromId(description.category, onError);
+            const category = await getCategoryRecordTypeFromId(description.category[0].id, onError);
             const returnDateMilliseconds = await getFutureAvailabilityForBookInMilliseconds(item, onError);
             const reviewStatistics = await getReviewStatisticsForBook(item.id, onError);
             const space = await getSpaceTypeFromId(item.space, onError);
