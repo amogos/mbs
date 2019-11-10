@@ -6,6 +6,7 @@ import * as DataTypes from '../../../shared/types';
 import * as BookStates from '../../../shared/constants/book_states_constant';
 import * as StringConstant from '../../../shared/constants/string_constant';
 import BookPreview, { NullBookPreviewProps, BookPreviewProps } from './book_preview';
+import { parse } from 'semver';
 
 const { Option } = Select;
 const InputGroup = Input.Group;
@@ -35,9 +36,10 @@ const currentBook: DataTypes.BookValueType = {
     isbn13: '',
     holder: DataTypes.NullUser,
     category: DataTypes.NullCategory,
-    format: '1',
+    format: 1,
     space: 0,
     description: '',
+    length: 0,
 };
 
 const ReadVolumeInformationFromGoogle = (volumeInformation: BookPreviewProps) => {
@@ -48,6 +50,7 @@ const ReadVolumeInformationFromGoogle = (volumeInformation: BookPreviewProps) =>
     currentBook.language.title = volumeInformation.language.toUpperCase();
     currentBook.category.title = volumeInformation.categories[0].toLowerCase();
     currentBook.description = volumeInformation.description;
+    currentBook.length = parseInt(volumeInformation.pageCount);
 
     if (volumeInformation.industryIdentifiers) {
         currentBook.isbn10 = volumeInformation.industryIdentifiers[0].identifier;

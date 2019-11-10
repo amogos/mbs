@@ -23,6 +23,8 @@ export const NullUser: UserRecordType = {
     rating: 0,
 };
 
+export const NullLanguage: LanguageRecordType = { id: 0, title: '' };
+
 export interface CategoryRecordType {
     id: number;
     title: string;
@@ -44,28 +46,60 @@ export interface BookValueType {
     return?: number;
     contentScore?: number;
     numReviews?: number;
-    format: string;
+    format: number;
     space: number;
     description: string;
+    length: number;
+}
+
+export interface BookDescriptionValueType {
+    title: string;
+    subtitle: string;
+    language: LanguageRecordType;
+    image: string;
+    author: string[];
+    isbn10: string;
+    isbn13: string;
+    description: string;
+    category: number;
+    length: number;
+    format: number;
 }
 
 export interface BookDescriptionRecordType {
     id: number;
+    title: string;
+    subtitle: string;
+    language: LanguageRecordType;
+    image: string;
+    author: string[];
     isbn10: string;
     isbn13: string;
     description: string;
+    length: number;
+    format: number;
+    category: number;
 }
 
 export const NullBookDescriptionRecordType: BookDescriptionRecordType = {
     id: 0,
+    title: '',
+    subtitle: '',
+    language: NullLanguage,
+    image: '',
+    author: [],
     isbn10: '',
     isbn13: '',
     description: '',
+    length: 0,
+    format: 0,
+    category: 0,
 };
 
 export interface BookRecordType {
     id: number;
     title: string;
+    subtitle: string;
     author: string[];
     language: LanguageRecordType;
     image: string;
@@ -80,38 +114,36 @@ export interface BookRecordType {
     return?: number;
     contentScore?: number;
     numReviews?: number;
-    description: BookDescriptionRecordType;
+    description: string;
+}
+
+export interface BookRawValueType {
+    isbn10: string;
+    isbn13: string;
+    owner: number;
+    holder: number;
+    state: string;
+    space: number;
+    return?: number;
 }
 
 export interface BookRawRecordType {
     id: number;
-    title: string;
-    author: string[];
-    language: number;
-    image: string;
+    isbn10: string;
+    isbn13: string;
     owner: number;
     holder: number;
     state: string;
-    category: number;
     space: number;
-    isbn10: string;
-    isbn13: string;
     return?: number;
-    format: number;
 }
 
 export const NullRawBookRecordType: BookRawRecordType = {
     id: 0,
-    title: '',
-    author: [],
-    language: 0,
-    image: '',
     owner: 0,
     holder: 0,
     state: '',
-    category: 0,
     space: 0,
-    format: 0,
     isbn10: '',
     isbn13: '',
 };
@@ -170,8 +202,6 @@ export interface QueueRecordType {
     ownerId: number;
     duration: number;
 }
-
-export const NullLanguage: LanguageRecordType = { id: 0, title: '' };
 
 export const NullCategory: CategoryRecordType = { id: 0, title: '' };
 

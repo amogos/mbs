@@ -22,18 +22,12 @@ export async function getDescriptionForISBN(
 }
 
 export async function addDescriptionForISBN(
-    isbn10: string,
-    isbn13: string,
-    description: string,
+    description: DataTypes.BookDescriptionValueType,
     onError: (resultCode: number) => void,
 ): Promise<DataTypes.BookDescriptionRecordType> {
     let newRecord: DataTypes.BookDescriptionRecordType = DataTypes.NullBookDescriptionRecordType;
     await axios
-        .post(urlBooksDescriptions, {
-            isbn10: isbn10,
-            isbn13: isbn13,
-            description: description,
-        })
+        .post(urlBooksDescriptions, description)
         .then(result => (newRecord = result.data))
         .catch(error => onError(error));
     return newRecord;

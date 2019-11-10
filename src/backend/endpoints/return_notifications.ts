@@ -2,7 +2,7 @@ import axios from 'axios';
 import { urlReturns } from './constants';
 import * as DataTypes from '../../shared/types';
 import * as UsersEndpoint from './user';
-import * as BooksEndpoint from './books';
+import * as BooksDescriptions from './books_descriptions';
 
 export async function getReturnNotifications(
     user: DataTypes.UserRecordType,
@@ -20,12 +20,12 @@ export async function getReturnNotifications(
     if (responseArray) {
         for (let i = 0; i < responseArray.length; i++) {
             const item = responseArray[i];
+            const description = await BooksDescriptions.getDescriptionForISBN(item.isbn10, item.isbn13, onError);
             const user = await UsersEndpoint.getUserRecordTypeFromId(item.userId, onError);
-            const book = await BooksEndpoint.getBookRawRecordTypeFromId(item.bookId, onError);
             const notification: DataTypes.ReturnNotificationType = {
                 returnId: item.id,
                 bookId: item.bookId,
-                bookTitle: book.title,
+                bookTitle: description.title,
                 user: user,
             };
             returnNotifications.push(notification);

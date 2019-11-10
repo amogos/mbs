@@ -16,22 +16,30 @@ export async function addBook(value: DataTypes.BookValueType, onError: (resultCo
         value.language.id = newLanguage.id;
     }
 
-    await axios
-        .post(urlBooks, {
-            author: value.author,
-            image: value.image,
-            language: value.language.id,
-            owner: value.owner.id,
-            holder: -1,
-            title: value.title,
-            state: 'state.book.idle',
-            isbn10: value.isbn10,
-            isbn13: value.isbn13,
-            category: value.category.id,
-            format: value.format,
-            space: value.space,
-        })
-        .catch(error => onError(error));
+    const bookDescription: DataTypes.BookDescriptionValueType = {
+        title: value.title,
+        subtitle: value.subtitle,
+        language: value.language,
+        isbn10: value.isbn10,
+        isbn13: value.isbn13,
+        format: value.format,
+        category: value.category.id,
+        author: value.author,
+        length: value.length,
+        image: value.image,
+        description: value.description,
+    };
 
-    if (value.description !== '') await addDescriptionForISBN(value.isbn10, value.isbn13, value.description, onError);
+    const bookRecord: DataTypes.BookRawValueType = {
+        owner: value.owner.id,
+        holder: -1,
+        state: 'state.book.idle',
+        isbn10: value.isbn10,
+        isbn13: value.isbn13,
+        space: value.space,
+    };
+
+    await axios.post(urlBooks, bookRecord).catch(error => onError(error));
+
+    if (value.description !== '') await addDescriptionForISBN(bookDescription, onError);
 }
