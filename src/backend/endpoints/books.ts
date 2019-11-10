@@ -6,7 +6,7 @@ import { getLanguageRecordTypeFromId } from './languages';
 import { getCategoryRecordTypeFromId } from './categories';
 import { getFutureAvailabilityForBookInMilliseconds } from './queue';
 import { getReviewStatisticsForBook } from './book_reviews';
-import { getDescriptionForISBN } from './books_descriptions';
+import { getBookDescriptionForISBN } from './books_descriptions';
 import { getFormatRecordTypeFromId } from './format';
 import { getSpaceTypeFromId } from './spaces';
 
@@ -33,7 +33,7 @@ export async function getBooks(
     if (responseArray.length > 0) {
         for (let i = 0; i < responseArray.length; i++) {
             const item = responseArray[i];
-            const description = await getDescriptionForISBN(item.isbn10, item.isbn13, onError);
+            const description = await getBookDescriptionForISBN(item.isbn10, item.isbn13, onError);
             const holder = await getUserRecordTypeFromId(item.holder, onError);
             const owner = await getUserRecordTypeFromId(item.owner, onError);
             const language = await getLanguageRecordTypeFromId(description.language.id, onError);

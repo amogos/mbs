@@ -3,7 +3,7 @@ import { urlQueues } from './constants';
 import * as DataTypes from '../../shared/types';
 import { getUserRecordTypeFromId } from './user';
 import { getBookRawRecordTypeFromId } from './books';
-import { getDescriptionForISBN } from './books_descriptions';
+import { getBookDescriptionForISBN } from './books_descriptions';
 
 export async function getQueueNotifications(
     user: DataTypes.UserRecordType,
@@ -22,7 +22,7 @@ export async function getQueueNotifications(
 
     for (let i = 0; i < responseArray.length; i++) {
         const item = responseArray[i];
-        const description = await getDescriptionForISBN(item.isbn10, item.isbn13, onError);
+        const description = await getBookDescriptionForISBN(item.isbn10, item.isbn13, onError);
         const user = await getUserRecordTypeFromId(item.userId, onError);
         const rawBook = await getBookRawRecordTypeFromId(item.bookId, onError);
         const notAssigned = rawBook.holder < 0;

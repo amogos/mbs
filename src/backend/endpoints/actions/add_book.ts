@@ -2,7 +2,11 @@ import axios from 'axios';
 import { urlBooks } from '../constants';
 import { addCategory } from './../../endpoints/categories';
 import { addLanguage } from './../../endpoints/languages';
-import { addDescriptionForISBN } from './../../endpoints/books_descriptions';
+import {
+    addBookDescription,
+    getBookDescriptionForISBN,
+    updateBookDescription,
+} from './../../endpoints/books_descriptions';
 import * as DataTypes from '../../../shared/types';
 
 export async function addBook(value: DataTypes.BookValueType, onError: (resultCode: number) => void) {
@@ -16,7 +20,16 @@ export async function addBook(value: DataTypes.BookValueType, onError: (resultCo
         value.language.id = newLanguage.id;
     }
 
-    const bookDescription: DataTypes.BookDescriptionValueType = {
+    const bookRecord: DataTypes.BookRawValueType = {
+        owner: value.owner.id,
+        holder: -1,
+        state: 'state.book.idle',
+        isbn10: value.isbn10,
+        isbn13: value.isbn13,
+        space: value.space,
+    };
+
+    const newBookDescription: DataTypes.BookDescriptionValueType = {
         title: value.title,
         subtitle: value.subtitle,
         language: value.language,
@@ -30,16 +43,13 @@ export async function addBook(value: DataTypes.BookValueType, onError: (resultCo
         description: value.description,
     };
 
-    const bookRecord: DataTypes.BookRawValueType = {
-        owner: value.owner.id,
-        holder: -1,
-        state: 'state.book.idle',
-        isbn10: value.isbn10,
-        isbn13: value.isbn13,
-        space: value.space,
-    };
-
     await axios.post(urlBooks, bookRecord).catch(error => onError(error));
 
-    if (value.description !== '') await addDescriptionForISBN(bookDescription, onError);
+    const previousDescription = await getBookDescriptionForISBN(value.isbn10, value.isbn13, onError);
+    if (previousDescription.id === 0) {
+        await addBookDescription(newBookDescription, onError);
+    } else {
+        if (previousDescription !== newBookDescription)
+            await updateBookDescription(previousDescription.id, newBookDescription, onError);
+    }
 }

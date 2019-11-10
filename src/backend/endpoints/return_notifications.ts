@@ -20,7 +20,7 @@ export async function getReturnNotifications(
     if (responseArray) {
         for (let i = 0; i < responseArray.length; i++) {
             const item = responseArray[i];
-            const description = await BooksDescriptions.getDescriptionForISBN(item.isbn10, item.isbn13, onError);
+            const description = await BooksDescriptions.getBookDescriptionForISBN(item.isbn10, item.isbn13, onError);
             const user = await UsersEndpoint.getUserRecordTypeFromId(item.userId, onError);
             const notification: DataTypes.ReturnNotificationType = {
                 returnId: item.id,

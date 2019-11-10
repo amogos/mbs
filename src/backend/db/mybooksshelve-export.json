@@ -48,6 +48,15 @@
       "isbn13": "9783314103483",
       "space": 1,
       "id": 1
+    },
+    {
+      "owner": 1,
+      "holder": -1,
+      "state": "state.book.idle",
+      "isbn10": "1234567890",
+      "isbn13": "",
+      "space": 1,
+      "id": 2
     }
   ],
   "book_reviews": [
@@ -308,6 +317,25 @@
       "image": "http://books.google.com/books/content?id=ccCYDAEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
       "description": "Praise for Armstrong—The Adventurous Journey of a Mouse to the Moon “‘One Small Step for a Mouse’ indeed.”—Kirkus Reviews, Starred Review “This beautifully illustrated story is a feast for mind and eyes and a strong selection to complement STEAM curricula.”—School Library Journal, Starred Review",
       "id": 2
+    },
+    {
+      "title": "Some title",
+      "subtitle": "",
+      "language": {
+        "id": 2,
+        "title": "DE"
+      },
+      "isbn10": "1234567890",
+      "isbn13": "",
+      "format": 1,
+      "category": 3,
+      "author": [
+        "Some author"
+      ],
+      "length": 128,
+      "image": "https://vignette.wikia.nocookie.net/superfriends/images/a/a5/No_Photo_Available.jpg/revision/latest?cb=20090329133959",
+      "description": "",
+      "id": 3
     }
   ]
 }

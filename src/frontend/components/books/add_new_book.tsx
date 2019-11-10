@@ -158,6 +158,7 @@ const AddNewBookComponent = (props: Props) => {
                 <Input {...useInput('title', (value: string) => (currentBook.title = value))} />
                 <Input {...useInput('author', (value: string) => (currentBook.author = value.split(',')))} />
                 <Input {...useInput('isbn', (value: string) => (currentBook.isbn = value))} />
+                <Input {...useInput('pageCount', (value: string) => (currentBook.length = parseInt(value)))} />
                 <Select
                     style={{ width: 200 }}
                     {...useSelect('Select language', (value: string) => onLanguageSelected(value))}

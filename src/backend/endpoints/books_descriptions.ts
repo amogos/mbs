@@ -2,7 +2,7 @@ import axios from 'axios';
 import { urlBooksDescriptions } from './constants';
 import * as DataTypes from '../../shared/types';
 
-export async function getDescriptionForISBN(
+export async function getBookDescriptionForISBN(
     isbn10: string,
     isbn13: string,
     onError: (resultCode: number) => void,
@@ -21,13 +21,26 @@ export async function getDescriptionForISBN(
     return result;
 }
 
-export async function addDescriptionForISBN(
+export async function addBookDescription(
     description: DataTypes.BookDescriptionValueType,
     onError: (resultCode: number) => void,
 ): Promise<DataTypes.BookDescriptionRecordType> {
     let newRecord: DataTypes.BookDescriptionRecordType = DataTypes.NullBookDescriptionRecordType;
     await axios
         .post(urlBooksDescriptions, description)
+        .then(result => (newRecord = result.data))
+        .catch(error => onError(error));
+    return newRecord;
+}
+
+export async function updateBookDescription(
+    id: number,
+    description: DataTypes.BookDescriptionValueType,
+    onError: (resultCode: number) => void,
+): Promise<DataTypes.BookDescriptionRecordType> {
+    let newRecord: DataTypes.BookDescriptionRecordType = DataTypes.NullBookDescriptionRecordType;
+    await axios
+        .put(`${urlBooksDescriptions}/${id}`, description)
         .then(result => (newRecord = result.data))
         .catch(error => onError(error));
     return newRecord;
