@@ -15,6 +15,7 @@ function mapStateToProps(state) {
 const mapDispatchToProps = dispatch => {
     return {
         getBooks: (filters, callbacks) => dispatch(pageAction.getBooks(filters, callbacks)),
+        getBookDescription: (isbn10, isbn13, callback) => bookAction.getBookDescription(isbn10, isbn13, callback),
         followSpace: (spaceId, callback) => dispatch(spaceAction.followSpace(spaceId, callback)),
         unfollowSpace: (spaceId, callback) => dispatch(spaceAction.unfollowSpace(spaceId, callback)),
         addBook: data => dispatch(bookAction.addBook(data)),

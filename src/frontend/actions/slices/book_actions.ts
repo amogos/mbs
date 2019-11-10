@@ -7,6 +7,17 @@ class BookAction {
         data,
     });
 
+    public getBookDescription = (
+        isbn10: string,
+        isbn13: string,
+        callback: (description: DataTypes.BookDescriptionRecordType) => void,
+    ) => ({
+        type: ActionTypes.default.BookActionConstant.ACTION_GET_BOOK_DESCRIPTION,
+        isbn10,
+        isbn13,
+        callback,
+    });
+
     public askBook = (bookId: number, ownerId: number, duration: number) => ({
         type: ActionTypes.default.BookActionConstant.ACTION_ASK_BOOK,
         bookId,

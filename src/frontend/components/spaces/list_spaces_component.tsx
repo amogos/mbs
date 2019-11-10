@@ -12,6 +12,11 @@ interface Props {
     categories: DataTypes.CategoryRecordType[];
     addBook(book: DataTypes.BookValueType): void;
     getBooks(filters: string[], callbacks: ((books: DataTypes.BookRecordType[]) => void)[]): void;
+    getBookDescription(
+        isbn10: string,
+        isbn13: string,
+        callbacks: (result: DataTypes.BookDescriptionRecordType) => void,
+    ): void;
     followSpace: (spaceId: number, callback: () => void) => void;
     unfollowSpace: (spaceId: number, callback: () => void) => void;
     history: any;

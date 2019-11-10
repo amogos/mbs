@@ -16,6 +16,12 @@ export default function bookReducer(state: any, action: any): any {
             databseInstance.addBook(action.data, handleError);
             return state;
         }
+        case BookActionConstant.ACTION_GET_BOOK_DESCRIPTION: {
+            databseInstance
+                .getBookDescriptionForISBN(action.isbn10, action.isbn13, handleError)
+                .then(result => action.callback(result));
+            return state;
+        }
         case BookActionConstant.ACTION_ASK_BOOK: {
             const bookId: number = action.bookId;
             const ownerId: number = action.ownerId;
@@ -60,7 +66,7 @@ export default function bookReducer(state: any, action: any): any {
                 message.success(Strings.MYBOOKSHELVE_STRING_BOOK_REMOVED);
                 let booksArray: DataTypes.BookRecordType[] = state.booksArray;
                 const index = booksArray.findIndex(book => book.id === action.bookId);
-                let temp = [...booksArray];
+                const temp = [...booksArray];
                 temp.splice(index, 1);
                 booksArray = temp;
                 Store.dispatch(pageAction.refreshState({ booksArray: booksArray }));

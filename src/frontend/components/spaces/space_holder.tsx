@@ -13,6 +13,11 @@ interface Props {
     languages: DataTypes.LanguageRecordType[];
     categories: DataTypes.CategoryRecordType[];
     addBook(book: DataTypes.BookValueType): void;
+    getBookDescription(
+        isbn10: string,
+        isbn13: string,
+        callbacks: (result: DataTypes.BookDescriptionRecordType) => void,
+    ): void;
     onClick: () => void;
     followSpace: (spaceId: number, callback: () => void) => void;
     unfollowSpace: (spaceId: number, callback: () => void) => void;

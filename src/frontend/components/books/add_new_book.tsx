@@ -15,6 +15,11 @@ interface Props {
     categories: DataTypes.CategoryRecordType[];
     userdata: DataTypes.UserRecordType;
     addBook(book: DataTypes.BookValueType): void;
+    getBookDescription(
+        isbn10: string,
+        isbn13: string,
+        callbacks: (result: DataTypes.BookDescriptionRecordType) => void,
+    ): void;
     spaceId: number;
     visible: boolean;
     callback: () => void;
@@ -120,7 +125,34 @@ const AddNewBookComponent = (props: Props) => {
                 if (!volumeInfo.categories) volumeInfo.categories = ['nonfiction(general)'];
                 setVolumeInformation({ ...volumeInfo, visible: true });
             } else {
-                setUseGoogleApi(false);
+                const isbn10 = currentBook.isbn.length === 10 ? currentBook.isbn : '';
+                const isbn13 = currentBook.isbn.length === 13 ? currentBook.isbn : '';
+                let bookDescription = DataTypes.NullBookDescriptionRecordType;
+                props.getBookDescription(isbn10, isbn13, (result: DataTypes.BookDescriptionRecordType) => {
+                    bookDescription = result;
+                    if (bookDescription.id === 0) {
+                        setUseGoogleApi(false);
+                    } else {
+                        const volumeInformation: BookPreviewProps = {
+                            visible: true,
+                            imageLinks: { smallThumbnail: bookDescription.image, thumbnail: bookDescription.image },
+                            title: bookDescription.title,
+                            subtitle: bookDescription.subtitle,
+                            authors: bookDescription.author,
+                            description: bookDescription.description,
+                            publisher: '',
+                            publishedDate: '',
+                            pageCount: bookDescription.length.toString(),
+                            language: bookDescription.language.title,
+                            categories: [],
+                            industryIdentifiers: [
+                                { type: 'isbn10', identifier: isbn10 },
+                                { type: 'isbn13', identifier: isbn13 },
+                            ],
+                        };
+                        setVolumeInformation(volumeInformation);
+                    }
+                });
             }
         };
 
