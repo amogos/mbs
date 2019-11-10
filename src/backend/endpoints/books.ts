@@ -62,6 +62,7 @@ export async function getBooks(
                 contentScore: reviewStatistics.contentScore,
                 numReviews: reviewStatistics.numReviews,
                 description: description.description,
+                length: description.length,
             };
 
             booksArray.push(bookRecord);

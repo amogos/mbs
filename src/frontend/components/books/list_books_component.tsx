@@ -97,6 +97,7 @@ const ListBooksComponent = (props: Props) => {
                     <i> ({item.language.title})</i> <br />
                     Author: {item.author.toString()} <br />
                     Format: {item.format} <br />
+                    PageCount: {item.length} <br />
                     <BooksDescription description={item.description} length={200} />
                     <BookRatingComponent
                         contentRating={item.contentScore}

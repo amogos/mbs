@@ -115,6 +115,7 @@ export interface BookRecordType {
     contentScore?: number;
     numReviews?: number;
     description: string;
+    length: number;
 }
 
 export interface BookRawValueType {
