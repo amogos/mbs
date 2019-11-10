@@ -6,7 +6,6 @@ import * as DataTypes from '../../../shared/types';
 import * as BookStates from '../../../shared/constants/book_states_constant';
 import * as StringConstant from '../../../shared/constants/string_constant';
 import BookPreview, { NullBookPreviewProps, BookPreviewProps } from './book_preview';
-import { parse } from 'semver';
 
 const { Option } = Select;
 const InputGroup = Input.Group;
