@@ -3,7 +3,6 @@ import axios from 'axios';
 import { useInput, useSelect } from './../hooks/hooks';
 import { Select, Input, Modal, Button, message } from 'antd';
 import * as DataTypes from '../../../shared/types';
-import * as BookStates from '../../../shared/constants/book_states_constant';
 import * as StringConstant from '../../../shared/constants/string_constant';
 import BookPreview, { NullBookPreviewProps, BookPreviewProps } from './book_preview';
 
@@ -106,10 +105,16 @@ const AddNewBookComponent = (props: Props) => {
         function fetchBookFromRecord() {
             const isbn10 = currentBook.isbn.length === 10 ? currentBook.isbn : '';
             const isbn13 = currentBook.isbn.length === 13 ? currentBook.isbn : '';
-            let bookDescription = DataTypes.NullBookDescriptionRecordType;
+
+            if (isbn10 === '' && isbn13 === '') {
+                currentBook = DataTypes.EmptyBookValueType();
+                setUseVolumeInformation(false);
+                return;
+            }
 
             props.getBookDescription(isbn10, isbn13, (result: DataTypes.BookDescriptionRecordType) => {
-                bookDescription = result;
+                const bookDescription = result;
+
                 if (bookDescription.id === 0) {
                     currentBook = DataTypes.EmptyBookValueType();
                     setUseVolumeInformation(false);
