@@ -27,7 +27,7 @@ interface Props {
 const defaultImage =
     'https://vignette.wikia.nocookie.net/superfriends/images/a/a5/No_Photo_Available.jpg/revision/latest?cb=20090329133959';
 
-const currentBook: DataTypes.BookValueType = {
+const defaultBook: DataTypes.BookValueType = {
     title: '',
     subtitle: '',
     author: [],
@@ -46,7 +46,9 @@ const currentBook: DataTypes.BookValueType = {
     length: 0,
 };
 
-const ReadVolumeInformationFromGoogle = (volumeInformation: BookPreviewProps) => {
+let currentBook: DataTypes.BookValueType = defaultBook;
+
+const ReadVolumeInformation = (volumeInformation: BookPreviewProps) => {
     currentBook.title = volumeInformation.title;
     currentBook.subtitle = volumeInformation.subtitle;
     currentBook.author = volumeInformation.authors;
@@ -81,12 +83,12 @@ const ValidFields = (): boolean => {
 };
 
 const AddNewBookComponent = (props: Props) => {
-    const [useGoogleApi, setUseGoogleApi] = useState(true);
+    const [useVolumeInformation, setUseVolumeInformation] = useState(true);
     const [volumeInformation, setVolumeInformation] = useState(NullBookPreviewProps);
 
     const onSaveButtonPressed = () => {
-        if (useGoogleApi) {
-            ReadVolumeInformationFromGoogle(volumeInformation);
+        if (useVolumeInformation) {
+            ReadVolumeInformation(volumeInformation);
         }
 
         if (ValidFields()) {
@@ -100,7 +102,7 @@ const AddNewBookComponent = (props: Props) => {
     currentBook.owner = props.userdata;
     currentBook.space = props.spaceId;
 
-    const SearchGoogleView = () => {
+    const SearchVolumeView = () => {
         async function fetchBook(
             isbn: string,
             onFailure: (error: any) => void,
@@ -128,10 +130,12 @@ const AddNewBookComponent = (props: Props) => {
                 const isbn10 = currentBook.isbn.length === 10 ? currentBook.isbn : '';
                 const isbn13 = currentBook.isbn.length === 13 ? currentBook.isbn : '';
                 let bookDescription = DataTypes.NullBookDescriptionRecordType;
+
                 props.getBookDescription(isbn10, isbn13, (result: DataTypes.BookDescriptionRecordType) => {
                     bookDescription = result;
                     if (bookDescription.id === 0) {
-                        setUseGoogleApi(false);
+                        currentBook = defaultBook;
+                        setUseVolumeInformation(false);
                     } else {
                         const volumeInformation: BookPreviewProps = {
                             visible: true,
@@ -213,7 +217,7 @@ const AddNewBookComponent = (props: Props) => {
         );
     };
 
-    const ContentView = () => (useGoogleApi ? <SearchGoogleView /> : <FallbackView />);
+    const ContentView = () => (useVolumeInformation ? <SearchVolumeView /> : <FallbackView />);
 
     return (
         <Modal
