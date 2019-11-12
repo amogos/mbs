@@ -6,6 +6,7 @@ import { getLanguageRecordTypeFromId } from './languages';
 import { getCategoryRecordTypeFromId } from './categories';
 import { getFutureAvailabilityForBookInMilliseconds } from './queue';
 import { getReviewStatisticsForBook } from './book_reviews';
+import { getBookDescriptionForISBN } from './books_descriptions';
 import { getFormatRecordTypeFromId } from './format';
 import { getSpaceTypeFromId } from './spaces';
 
@@ -13,7 +14,7 @@ export async function getBooks(
     filters: string[],
     onError: (resultCode: number) => void,
 ): Promise<DataTypes.BookRecordType[]> {
-    let booksArray: DataTypes.BookRecordType[] = [];
+    const booksArray: DataTypes.BookRecordType[] = [];
     let filterdBooksUrl = urlBooks;
     const applyFilters = filters && filters.length > 0;
 
@@ -32,31 +33,36 @@ export async function getBooks(
     if (responseArray.length > 0) {
         for (let i = 0; i < responseArray.length; i++) {
             const item = responseArray[i];
+            const description = await getBookDescriptionForISBN(item.isbn10, item.isbn13, onError);
             const holder = await getUserRecordTypeFromId(item.holder, onError);
             const owner = await getUserRecordTypeFromId(item.owner, onError);
-            const language = await getLanguageRecordTypeFromId(item.language, onError);
-            const category = await getCategoryRecordTypeFromId(item.category, onError);
+            const language = await getLanguageRecordTypeFromId(description.language.id, onError);
+            const category = await getCategoryRecordTypeFromId(description.category[0].id, onError);
             const returnDateMilliseconds = await getFutureAvailabilityForBookInMilliseconds(item, onError);
             const reviewStatistics = await getReviewStatisticsForBook(item.id, onError);
             const space = await getSpaceTypeFromId(item.space, onError);
-            const format = await getFormatRecordTypeFromId(item.format, onError);
+            const format = await getFormatRecordTypeFromId(description.format, onError);
+
             const bookRecord: DataTypes.BookRecordType = {
                 id: item.id,
-                title: item.title,
-                image: item.image,
-                author: item.author,
+                title: description.title,
+                subtitle: description.subtitle,
+                image: description.image,
+                author: description.author,
                 language: language,
                 owner: owner,
                 holder: holder,
                 state: item.state,
                 category: category,
                 space: space,
-                isbn: item.isbn,
+                isbn10: item.isbn10,
+                isbn13: item.isbn13,
                 format: format.type,
                 return: returnDateMilliseconds,
                 contentScore: reviewStatistics.contentScore,
                 numReviews: reviewStatistics.numReviews,
-                description: item.description,
+                description: description.description,
+                length: description.length,
             };
 
             booksArray.push(bookRecord);

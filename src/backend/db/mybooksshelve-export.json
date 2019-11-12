@@ -27,23 +27,8 @@
       "rating": 0
     }
   ],
-  "queues": [
-    {
-      "id": 1,
-      "userId": 3,
-      "bookId": 3,
-      "ownerId": 1,
-      "duration": 2
-    }
-  ],
-  "returns": [
-    {
-      "id": 1,
-      "userId": 2,
-      "bookId": 3,
-      "ownerId": 1
-    }
-  ],
+  "queues": [],
+  "returns": [],
   "languages": [
     {
       "id": 1,
@@ -56,332 +41,35 @@
   ],
   "books": [
     {
-      "id": 1,
-      "author": [
-        "Susanne Schotz"
-      ],
-      "image": "https://images-eu.ssl-images-amazon.com/images/I/51UkIlAOwEL._SY90_.jpg",
-      "language": 1,
-      "owner": 2,
-      "holder": 1,
-      "title": "The Secret Language of Cats: How to Understand Your Cat for a Better, Happier Relationship",
-      "state": "state.book.idle",
-      "category": 26,
-      "space": 2,
-      "format": 1,
-      "isbn": "978-3734820211",
-      "return": 1565937976485,
-      "description": "no description available"
-    },
-    {
-      "id": 2,
-      "author": [
-        "Eric Carle"
-      ],
-      "image": "https://images-na.ssl-images-amazon.com/images/I/51lsugWtCvL._SY498_BO1,204,203,200_.jpg",
-      "language": 1,
-      "owner": 1,
-      "holder": 2,
-      "title": "The Very Hungry Caterpillar's ABC",
-      "state": "state.book.in.transit.to.holder",
-      "category": 4,
-      "space": 1,
-      "format": 1,
-      "isbn": "978-3734820212",
-      "return": 1565937976485,
-      "description": "no description available"
-    },
-    {
-      "id": 3,
-      "author": [
-        "Julia Donaldson"
-      ],
-      "image": "https://images-na.ssl-images-amazon.com/images/I/51Zm3fBs0PL._SY446_BO1,204,203,200_.jpg",
-      "language": 1,
       "owner": 1,
       "holder": -1,
-      "title": "Room on the Broom Board Book",
       "state": "state.book.idle",
-      "category": 4,
+      "isbn10": "3314103484",
+      "isbn13": "9783314103483",
       "space": 1,
-      "format": 1,
-      "isbn": "978-3734820213",
-      "description": "no description available"
-    },
-    {
-      "id": 4,
-      "author": [
-        "Julia Donaldson"
-      ],
-      "image": "https://images-na.ssl-images-amazon.com/images/I/61YDHV-%2B-VL._SY448_BO1,204,203,200_.jpg",
-      "language": 1,
-      "owner": 1,
-      "holder": -1,
-      "title": "The Snail and the Whale",
-      "state": "state.book.idle",
-      "category": 4,
-      "space": 1,
-      "format": 1,
-      "isbn": "978-3734820214",
-      "description": "no description available"
-    },
-    {
-      "id": 5,
-      "author": [
-        " Yuval Noah Harari"
-      ],
-      "image": "https://images-na.ssl-images-amazon.com/images/I/417lbqaSihL._SX318_BO1,204,203,200_.jpg",
-      "language": 2,
-      "owner": 2,
-      "holder": -1,
-      "title": "Homo Deus: Eine Geschichte von Morgen ",
-      "state": "state.book.idle",
-      "category": 11,
-      "space": 2,
-      "format": 1,
-      "isbn": "978-3734820215",
-      "description": "no description available"
-    },
-    {
-      "author": [
-        "me"
-      ],
-      "image": "https://vignette.wikia.nocookie.net/superfriends/images/a/a5/No_Photo_Available.jpg/revision/latest?cb=20090329133959",
-      "language": 1,
-      "owner": 1,
-      "holder": -1,
-      "title": "business book",
-      "state": "state.book.idle",
-      "category": 3,
-      "space": 1,
-      "id": 6,
-      "format": 1,
-      "isbn": "978-3734820216",
-      "description": "no description available"
-    },
-    {
-      "author": [
-        "qweqwe"
-      ],
-      "image": "https://vignette.wikia.nocookie.net/superfriends/images/a/a5/No_Photo_Available.jpg/revision/latest?cb=20090329133959",
-      "language": 2,
-      "owner": 1,
-      "holder": -1,
-      "title": "qeqwewq",
-      "state": "state.book.idle",
-      "isbn": "q142314124",
-      "category": 3,
-      "format": "1",
-      "space": 1,
-      "id": 7,
-      "description": "no description available"
-    },
-    {
-      "author": [
-        "Linda Bayerl"
-      ],
-      "image": "http://books.google.com/books/content?id=oF4ZDAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
-      "language": 2,
-      "owner": 1,
-      "holder": -1,
-      "title": "Vorschulblock - Logisches Denken, rätseln und knobeln ab 5 Jahre",
-      "state": "state.book.idle",
-      "isbn": "9783881006248",
-      "category": 31,
-      "format": "1",
-      "space": 1,
-      "id": 8,
-      "description": "no description available"
-    },
-    {
-      "author": [
-        "Meik Wiking"
-      ],
-      "image": "http://books.google.com/books/content?id=n-O2jwEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
-      "language": 1,
-      "owner": 1,
-      "holder": -1,
-      "title": "The Little Book of Hygge",
-      "state": "state.book.idle",
-      "isbn": "0241283914",
-      "category": 32,
-      "format": "1",
-      "space": 1,
-      "description": "The Danish word hygge is one of those beautiful words that doesn't directly translate into English, but it more or less means comfort, warmth or togetherness. Hygge is the feeling you get when you are cuddled up on a sofa with a loved one, in warm knitted socks, in front of the fire, when it is dark, cold and stormy outside. It that feeling when you are sharing good, comfort food with your closest friends, by candle light and exchanging easy conversation. It is those cold, crisp blue sky mornings when the light through your window is just right. Denmark is the happiest nation in the world and Meik puts this largely down to them living the hygge way. They focus on the small things that really matter, spend more quality time with friends and family and enjoy the good things in life. \"The Little Book of Hygge\" will give you practical steps and tips to become more hygge",
-      "id": 9
-    },
-    {
-      "author": [
-        "Meik Wiking"
-      ],
-      "image": "http://books.google.com/books/content?id=n-O2jwEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
-      "language": 1,
-      "owner": 1,
-      "holder": -1,
-      "title": "The Little Book of Hygge",
-      "state": "state.book.idle",
-      "isbn": "0241283914",
-      "category": 32,
-      "format": "1",
-      "space": 1,
-      "description": "The Danish word hygge is one of those beautiful words that doesn't directly translate into English, but it more or less means comfort, warmth or togetherness. Hygge is the feeling you get when you are cuddled up on a sofa with a loved one, in warm knitted socks, in front of the fire, when it is dark, cold and stormy outside. It that feeling when you are sharing good, comfort food with your closest friends, by candle light and exchanging easy conversation. It is those cold, crisp blue sky mornings when the light through your window is just right. Denmark is the happiest nation in the world and Meik puts this largely down to them living the hygge way. They focus on the small things that really matter, spend more quality time with friends and family and enjoy the good things in life. \"The Little Book of Hygge\" will give you practical steps and tips to become more hygge",
-      "id": 10
-    },
-    {
-      "author": [
-        "Schoolkidix"
-      ],
-      "image": "https://vignette.wikia.nocookie.net/superfriends/images/a/a5/No_Photo_Available.jpg/revision/latest?cb=20090329133959",
-      "language": 2,
-      "owner": 1,
-      "holder": -1,
-      "title": "Das Vorschulbuch Für Kinder",
-      "state": "state.book.idle",
-      "isbn": "1729196896",
-      "category": 30,
-      "format": "1",
-      "space": 1,
-      "description": "Das große Buch für die kleinen Einsteins von morgen Man kann den Nachwuchs gar nicht früh genug an Bücher und Lernen heranführen. Die Weichen für eine erfolgreiche Schulzeit, eine wirksame Ausbildung oder ein gutes Studium werden bereits in der Vorschule gestellt. Dank diverser Vorschulbücher lernen bereits die Kleinsten spielerisch grundlegende Dinge im Hinblick auf optische Wahrnehmung, Konzentration und Vorstellungskraft. Anhand simpler Rätsel und ansprechender Bilder werden das Denkvermögen der Vorschüler angekurbelt und die ersten Lern- und Übungseinheiten mit Bravur gemeistert. Vorschulbücher sind mehr als nur Lern- und Lehrbücher. Sie sind die perfekte Kombination aus Malbuch, Puzzlebuch und Rätselbuch. Es ist für das weitere Leben von Vorteil, wenn Kinder bereits vor dem Schuleintritt über erste Erfahrungen auf dem Gebiet Lernen und Arbeiten verfügen. Ein Vorschulbuch kann hierbei eine optimale Hilfe sein. Es ist der ideale Lernspaß für Kinder und garantiert seitenweise Spiel, Spaß und Zeitvertreib. In diesem Lern- und Lehrbuch geht es allerdings noch nicht primär um Zahlen oder Buchstaben. Vielmehr beinhalten es altersgerechte Vorschulübungen in Form von Schwungübungen, Malaufgaben, Puzzles sowie anderweitige knifflige Rätsel für Rätsel-Anfänger oder eingefleischte Ratefüchse. Ein Vorschulheft ist ein Gewinn für alle Beteiligten. Dein Kind hat Spaß, ist beschätigt und lernt etwas dabei.",
-      "id": 11
-    },
-    {
-      "author": [
-        "Frank Rösner"
-      ],
-      "image": "http://books.google.com/books/content?id=ldhvDQAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
-      "language": 2,
-      "owner": 1,
-      "holder": -1,
-      "title": "Die Krux mit der ISBN",
-      "state": "state.book.idle",
-      "isbn": "1409551652",
-      "category": 33,
-      "format": "1",
-      "space": 1,
-      "description": "Der Beitrag hat einen veralteten Rechtsstand September 2016 soweit es sich um das Erfordernis einer Gewerbeanmeldung für den Bezug von ISBNs handelt. Für Interessierte wird der Beitrag jedoch weiterhin angeboten. Die ISBN-Agentur vergab preiswerte ISBN-Kontingente seinerzeit nur nach Vorlage einer Gewerbeanmeldung als Verlag. Die Krux dieser Vergabepraxis ist wesentlicher Inhalt dieses Aufsatzes. Zur Einführung werden die Grundlagen des ISB-Nummernsystems erläutert. Danach geht der Autor auf den Zusammenhang zwischen ISBN und dem Verzeichnis lieferbarer Bücher (VLB) ein. Es folgt die kritische Auseinandersetzung mit der seinerzeitigen ISBN-Vergabepraxis. Nicht zuletzt werden auch steuerliche Hinweise im Zusammenhang mit der Gewerbeanmeldung gegeben. Abschließend geht der Autor auf den Eintrag im Adressbuch für den deutschsprachigen Buchhandel (AdB) ein.",
-      "id": 12
-    },
-    {
-      "author": [
-        "e",
-        "er",
-        "ert",
-        "erte",
-        "erter",
-        "ertert",
-        "erterte",
-        "erterter",
-        "ertertert"
-      ],
-      "image": "https://vignette.wikia.nocookie.net/superfriends/images/a/a5/No_Photo_Available.jpg/revision/latest?cb=20090329133959",
-      "language": 2,
-      "owner": 1,
-      "holder": -1,
-      "title": "tztzrtz",
-      "state": "state.book.idle",
-      "isbn": "1234",
-      "category": 6,
-      "format": "1",
-      "space": 1,
-      "description": "",
-      "id": 13
-    },
-    {
-      "author": [
-        "e",
-        "er",
-        "ert",
-        "erte",
-        "erter",
-        "ertert",
-        "erterte",
-        "erterter",
-        "ertertert"
-      ],
-      "image": "https://vignette.wikia.nocookie.net/superfriends/images/a/a5/No_Photo_Available.jpg/revision/latest?cb=20090329133959",
-      "language": 2,
-      "owner": 1,
-      "holder": -1,
-      "title": "tztzrtz",
-      "state": "state.book.idle",
-      "isbn": "1234",
-      "category": 6,
-      "format": "1",
-      "space": 1,
-      "description": "",
-      "id": 14
-    },
-    {
-      "author": [
-        "e",
-        "er",
-        "ert",
-        "erte",
-        "erter",
-        "ertert",
-        "erterte",
-        "erterter",
-        "ertertert",
-        "w"
-      ],
-      "image": "https://vignette.wikia.nocookie.net/superfriends/images/a/a5/No_Photo_Available.jpg/revision/latest?cb=20090329133959",
-      "language": 2,
-      "owner": 1,
-      "holder": -1,
-      "title": "eq",
-      "state": "state.book.idle",
-      "isbn": "qwq",
-      "category": 3,
-      "format": "1",
-      "space": 1,
-      "description": "",
-      "id": 15
-    },
-    {
-      "author": [
-        "Aurélien Géron"
-      ],
-      "image": "http://books.google.com/books/content?id=OCS1twEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
-      "language": 1,
-      "owner": 1,
-      "holder": -1,
-      "title": "Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow",
-      "state": "state.book.idle",
-      "isbn": "1492032646",
-      "category": 34,
-      "format": "1",
-      "space": 1,
-      "description": "Through a series of recent breakthroughs, deep learning has boosted the entire field of machine learning. Now, even programmers who know close to nothing about this technology can use simple, efficient tools to implement programs capable of learning from data. The updated edition of this best-selling book uses concrete examples, minimal theory, and two production-ready Python frameworks--Scikit-Learn and TensorFlow 2--to help you gain an intuitive understanding of the concepts and tools for building intelligent systems. Practitioners will learn a range of techniques that they can quickly put to use on the job. Part 1 employs Scikit-Learn to introduce fundamental machine learning tasks, such as simple linear regression. Part 2, which has been significantly updated, employs Keras and TensorFlow 2 to guide the reader through more advanced machine learning methods using deep neural networks. With exercises in each chapter to help you apply what you've learned, all you need is programming experience to get started. NEW FOR THE SECOND EDITION:Updated all code to TensorFlow 2Introduced the high-level Keras APINew and expanded coverage including TensorFlow's Data API, Eager Execution, Estimators API, deploying on Google Cloud ML, handling time series, embeddings and more With Early Release ebooks, you get books in their earliest form--the author's raw and unedited content as he or she writes--so you can take advantage of these technologies long before the official release of these titles. You'll also receive updates when significant changes are made, new chapters are available, and the final ebook bundle is released.",
-      "id": 16
-    }
-  ],
-  "book_reviews": [
-    {
-      "id": 1,
-      "bookId": 1,
-      "userId": 1,
-      "comment": "Good spelling practice but sometimes too many exercises and not enough explanation.",
-      "contentScore": 4.5,
-      "stateScore": 4.5
-    },
-    {
-      "id": 1,
-      "bookId": 1,
-      "userId": 2,
-      "comment": "Unsere Tochter kommt in die 3. Klasse und nutzt das Buch schon mal zur Vorbereitung. Sie findet es klasse. Wir sind der Meinung das die Qualität sehr gut ist und genau das richtige ist zum Üben. Wir können das Buch nur weiterempfehlen.",
-      "contentScore": 4.1,
-      "stateScore": 4
-    }
-  ],
-  "user_reviews": [
-    {
-      "bookId": 3,
-      "userId": 3,
-      "comment": "Book came back in good conditions.",
-      "stateScore": 4,
       "id": 1
+    },
+    {
+      "owner": 1,
+      "holder": -1,
+      "state": "state.book.idle",
+      "isbn10": "1234567890",
+      "isbn13": "",
+      "space": 1,
+      "id": 2
+    },
+    {
+      "owner": 1,
+      "holder": -1,
+      "state": "state.book.idle",
+      "isbn10": "1234567890",
+      "isbn13": "",
+      "space": 1,
+      "id": 3
     }
   ],
+  "book_reviews": [],
+  "user_reviews": [],
   "orders": [],
   "categories": [
     {
@@ -539,6 +227,18 @@
     {
       "title": "computers",
       "id": 34
+    },
+    {
+      "title": "stoics",
+      "id": 35
+    },
+    {
+      "title": "computer games",
+      "id": 36
+    },
+    {
+      "title": "juvenile fiction",
+      "id": 37
     }
   ],
   "spaces": [
@@ -582,6 +282,56 @@
     {
       "id": 3,
       "type": "audio-book"
+    }
+  ],
+  "books_descriptions": [
+    {
+      "title": "Armstrong (German Edition)",
+      "subtitle": "Armstrong (German Edition)",
+      "language": {
+        "id": 1,
+        "title": "EN"
+      },
+      "isbn10": "3314103484",
+      "isbn13": "9783314103483",
+      "format": 1,
+      "category": [
+        {
+          "id": 37,
+          "title": "juvenile fiction"
+        }
+      ],
+      "author": [
+        "Torben Kuhlmann"
+      ],
+      "length": 128,
+      "image": "http://books.google.com/books/content?id=ccCYDAEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+      "description": "Praise for Armstrong—The Adventurous Journey of a Mouse to the Moon “‘One Small Step for a Mouse’ indeed.”—Kirkus Reviews, Starred Review “This beautifully illustrated story is a feast for mind and eyes and a strong selection to complement STEAM curricula.”—School Library Journal, Starred Review",
+      "id": 1
+    },
+    {
+      "title": "ttttt",
+      "subtitle": "",
+      "language": {
+        "id": 2,
+        "title": "DE"
+      },
+      "isbn10": "1234567890",
+      "isbn13": "",
+      "format": 1,
+      "category": [
+        {
+          "id": 6,
+          "title": "computer & tech"
+        }
+      ],
+      "author": [
+        "jjjjjj"
+      ],
+      "length": 56,
+      "image": "https://vignette.wikia.nocookie.net/superfriends/images/a/a5/No_Photo_Available.jpg/revision/latest?cb=20090329133959",
+      "description": "",
+      "id": 2
     }
   ]
 }

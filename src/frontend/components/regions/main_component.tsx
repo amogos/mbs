@@ -20,7 +20,7 @@ interface Navigation {
     limit: number;
 }
 
-let navigation: Navigation = { index: 0, limit: 5 };
+const navigation: Navigation = { index: 0, limit: 5 };
 
 function propsEqual(prevProps: Props, nextProps: Props) {
     return nextProps.urlparams === prevProps.urlparams;

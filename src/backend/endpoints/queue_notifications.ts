@@ -3,12 +3,13 @@ import { urlQueues } from './constants';
 import * as DataTypes from '../../shared/types';
 import { getUserRecordTypeFromId } from './user';
 import { getBookRawRecordTypeFromId } from './books';
+import { getBookDescriptionForISBN } from './books_descriptions';
 
 export async function getQueueNotifications(
     user: DataTypes.UserRecordType,
     onError: (resultCode: number) => void,
 ): Promise<DataTypes.QueueNotificationRecordType[]> {
-    let rentalNotifications: DataTypes.QueueNotificationRecordType[] = [];
+    const rentalNotifications: DataTypes.QueueNotificationRecordType[] = [];
     let responseArray: any = null;
 
     await axios
@@ -21,6 +22,7 @@ export async function getQueueNotifications(
 
     for (let i = 0; i < responseArray.length; i++) {
         const item = responseArray[i];
+        const description = await getBookDescriptionForISBN(item.isbn10, item.isbn13, onError);
         const user = await getUserRecordTypeFromId(item.userId, onError);
         const rawBook = await getBookRawRecordTypeFromId(item.bookId, onError);
         const notAssigned = rawBook.holder < 0;
@@ -28,9 +30,9 @@ export async function getQueueNotifications(
             notifiction => notifiction.bookId === item.bookId,
         );
         if (notAssigned && !alreadyOneRequestForBookIdProcessed) {
-            let notification: DataTypes.QueueNotificationRecordType = {
+            const notification: DataTypes.QueueNotificationRecordType = {
                 id: item.id,
-                bookTitle: rawBook.title,
+                bookTitle: description.title,
                 bookId: item.bookId,
                 user: user,
                 duration: item.duration,

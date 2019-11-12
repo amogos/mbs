@@ -15,4 +15,5 @@ export * from '../endpoints/queue';
 export * from '../endpoints/return_notifications';
 export * from '../endpoints/queue_notifications';
 export * from '../endpoints/book_reviews';
+export * from '../endpoints/books_descriptions';
 export * from '../endpoints/actions/follow_space';
