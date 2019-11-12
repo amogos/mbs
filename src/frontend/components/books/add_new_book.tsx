@@ -27,64 +27,69 @@ interface Props {
 const defaultImage =
     'https://vignette.wikia.nocookie.net/superfriends/images/a/a5/No_Photo_Available.jpg/revision/latest?cb=20090329133959';
 
-const defaultBook: DataTypes.BookValueType = {
-    title: '',
-    subtitle: '',
-    author: [],
-    language: DataTypes.NullLanguage,
-    image: defaultImage,
-    owner: DataTypes.NullUser,
-    state: BookStates.default.STATE_BOOK_IDLE,
-    isbn: '',
-    isbn10: '',
-    isbn13: '',
-    holder: DataTypes.NullUser,
-    category: DataTypes.NullCategory,
-    format: 1,
-    space: 0,
-    description: '',
-    length: 0,
-};
-
-let currentBook: DataTypes.BookValueType = defaultBook;
-
-const ReadVolumeInformation = (volumeInformation: BookPreviewProps) => {
-    currentBook.title = volumeInformation.title;
-    currentBook.subtitle = volumeInformation.subtitle;
-    currentBook.author = volumeInformation.authors;
-    currentBook.image = volumeInformation.imageLinks ? volumeInformation.imageLinks.thumbnail : defaultImage;
-    currentBook.language.title = volumeInformation.language.toUpperCase();
-    currentBook.category.title = volumeInformation.categories[0].toLowerCase();
-    currentBook.description = volumeInformation.description;
-    currentBook.length = parseInt(volumeInformation.pageCount);
-
-    if (volumeInformation.industryIdentifiers) {
-        currentBook.isbn10 = volumeInformation.industryIdentifiers[0].identifier;
-        currentBook.isbn13 = volumeInformation.industryIdentifiers[1].identifier;
-    }
-};
-
-const ValidFields = (): boolean => {
-    const ValidIsbn = (): boolean => {
-        let validIsbn = true;
-        currentBook.isbn = currentBook.isbn.replace('/D/g', '');
-        if (currentBook.isbn.length === 10) currentBook.isbn10 = currentBook.isbn;
-        else if (currentBook.isbn.length === 13) currentBook.isbn13 = currentBook.isbn;
-        else validIsbn = false;
-        return validIsbn;
+const EmptyBook = () => {
+    return {
+        title: '',
+        subtitle: '',
+        author: [],
+        language: DataTypes.NullLanguage,
+        image: defaultImage,
+        owner: DataTypes.NullUser,
+        state: BookStates.default.STATE_BOOK_IDLE,
+        isbn: '',
+        isbn10: '',
+        isbn13: '',
+        holder: DataTypes.NullUser,
+        category: DataTypes.NullCategory,
+        format: 1,
+        space: 0,
+        description: '',
+        length: 0,
     };
-    return (
-        ValidIsbn() &&
-        currentBook.title !== '' &&
-        currentBook.author.length > 0 &&
-        currentBook.category.title !== '' &&
-        currentBook.language.title !== ''
-    );
 };
+
+let currentBook: DataTypes.BookValueType = EmptyBook();
 
 const AddNewBookComponent = (props: Props) => {
     const [useVolumeInformation, setUseVolumeInformation] = useState(true);
     const [volumeInformation, setVolumeInformation] = useState(NullBookPreviewProps);
+
+    currentBook.owner = props.userdata;
+    currentBook.space = props.spaceId;
+
+    const ReadVolumeInformation = (volumeInformation: BookPreviewProps) => {
+        currentBook.title = volumeInformation.title;
+        currentBook.subtitle = volumeInformation.subtitle;
+        currentBook.author = volumeInformation.authors;
+        currentBook.image = volumeInformation.imageLinks ? volumeInformation.imageLinks.thumbnail : defaultImage;
+        currentBook.language.title = volumeInformation.language.toUpperCase();
+        currentBook.category.title = volumeInformation.categories[0].toLowerCase();
+        currentBook.description = volumeInformation.description;
+        currentBook.length = parseInt(volumeInformation.pageCount);
+
+        if (volumeInformation.industryIdentifiers) {
+            currentBook.isbn10 = volumeInformation.industryIdentifiers[0].identifier;
+            currentBook.isbn13 = volumeInformation.industryIdentifiers[1].identifier;
+        }
+    };
+
+    const ValidFields = (): boolean => {
+        const ValidIsbn = (): boolean => {
+            let validIsbn = true;
+            currentBook.isbn = currentBook.isbn.replace('/D/g', '');
+            if (currentBook.isbn.length === 10) currentBook.isbn10 = currentBook.isbn;
+            else if (currentBook.isbn.length === 13) currentBook.isbn13 = currentBook.isbn;
+            else validIsbn = false;
+            return validIsbn;
+        };
+        return (
+            ValidIsbn() &&
+            currentBook.title !== '' &&
+            currentBook.author.length > 0 &&
+            currentBook.category.title !== '' &&
+            currentBook.language.title !== ''
+        );
+    };
 
     const onSaveButtonPressed = () => {
         if (useVolumeInformation) {
@@ -99,14 +104,11 @@ const AddNewBookComponent = (props: Props) => {
         }
     };
 
-    currentBook.owner = props.userdata;
-    currentBook.space = props.spaceId;
-
     const SearchVolumeView = () => {
-        async function fetchBook(
+        async function fetchBookFromGoogle(
             isbn: string,
-            onFailure: (error: any) => void,
-            onSuccess: (response: any) => void,
+            onGoogleResponseFail: (error: any) => void,
+            onGoogleResponseSuccess: (response: any) => void,
         ): Promise<any> {
             let result = {};
             const url = `https://www.googleapis.com/books/v1/volumes?q=isbn:${isbn}`;
@@ -114,61 +116,68 @@ const AddNewBookComponent = (props: Props) => {
                 .get(url)
                 .then(response => {
                     result = response.data;
-                    onSuccess(result);
+                    onGoogleResponseSuccess(result);
                 })
-                .catch(error => onFailure(error));
+                .catch(error => onGoogleResponseFail(error));
             return result;
         }
 
-        const onSuccess = (response: any) => {
+        function fetchBookFromRecord() {
+            const isbn10 = currentBook.isbn.length === 10 ? currentBook.isbn : '';
+            const isbn13 = currentBook.isbn.length === 13 ? currentBook.isbn : '';
+            let bookDescription = DataTypes.NullBookDescriptionRecordType;
+
+            props.getBookDescription(isbn10, isbn13, (result: DataTypes.BookDescriptionRecordType) => {
+                bookDescription = result;
+                if (bookDescription.id === 0) {
+                    currentBook = EmptyBook();
+                    setUseVolumeInformation(false);
+                } else {
+                    const volumeInformation: BookPreviewProps = {
+                        visible: true,
+                        imageLinks: { smallThumbnail: bookDescription.image, thumbnail: bookDescription.image },
+                        title: bookDescription.title,
+                        subtitle: bookDescription.subtitle,
+                        authors: bookDescription.author,
+                        description: bookDescription.description,
+                        publisher: '',
+                        publishedDate: '',
+                        pageCount: bookDescription.length.toString(),
+                        language: bookDescription.language.title,
+                        categories:
+                            bookDescription.category.length > 0
+                                ? [bookDescription.category[0].title]
+                                : ['nonfiction(general)'],
+                        industryIdentifiers: [
+                            { type: 'isbn10', identifier: isbn10 },
+                            { type: 'isbn13', identifier: isbn13 },
+                        ],
+                    };
+                    setVolumeInformation(volumeInformation);
+                }
+            });
+        }
+
+        const onGoogleResponseSuccess = (response: any) => {
             if (response.items && response.items.length > 0) {
                 const volumeInfo = response.items[0].volumeInfo;
                 if (!volumeInfo.publisher) volumeInfo.publisher = '';
                 if (!volumeInfo.categories) volumeInfo.categories = ['nonfiction(general)'];
                 setVolumeInformation({ ...volumeInfo, visible: true });
             } else {
-                const isbn10 = currentBook.isbn.length === 10 ? currentBook.isbn : '';
-                const isbn13 = currentBook.isbn.length === 13 ? currentBook.isbn : '';
-                let bookDescription = DataTypes.NullBookDescriptionRecordType;
-
-                props.getBookDescription(isbn10, isbn13, (result: DataTypes.BookDescriptionRecordType) => {
-                    bookDescription = result;
-                    if (bookDescription.id === 0) {
-                        currentBook = defaultBook;
-                        setUseVolumeInformation(false);
-                    } else {
-                        const volumeInformation: BookPreviewProps = {
-                            visible: true,
-                            imageLinks: { smallThumbnail: bookDescription.image, thumbnail: bookDescription.image },
-                            title: bookDescription.title,
-                            subtitle: bookDescription.subtitle,
-                            authors: bookDescription.author,
-                            description: bookDescription.description,
-                            publisher: '',
-                            publishedDate: '',
-                            pageCount: bookDescription.length.toString(),
-                            language: bookDescription.language.title,
-                            categories:
-                                bookDescription.category.length > 0
-                                    ? [bookDescription.category[0].title]
-                                    : ['nonfiction(general)'],
-                            industryIdentifiers: [
-                                { type: 'isbn10', identifier: isbn10 },
-                                { type: 'isbn13', identifier: isbn13 },
-                            ],
-                        };
-                        setVolumeInformation(volumeInformation);
-                    }
-                });
+                fetchBookFromRecord();
             }
         };
 
-        const onFailure = (error: any) => {};
+        const onGoogleResponseFail = (error: any) => {};
 
         return (
             <InputGroup>
                 <Input {...useInput('isbn', (value: string) => (currentBook.isbn = value))} />
-                <Button icon="search" onClick={() => fetchBook(currentBook.isbn, onFailure, onSuccess)}>
+                <Button
+                    icon="search"
+                    onClick={() => fetchBookFromGoogle(currentBook.isbn, onGoogleResponseFail, onGoogleResponseSuccess)}
+                >
                     Search
                 </Button>
                 <BookPreview {...volumeInformation} />
