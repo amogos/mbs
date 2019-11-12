@@ -1,7 +1,8 @@
 import { LanguageRecordType, NullLanguage } from './language_types';
-import { CategoryRecordType } from './category_types';
-import { UserRecordType } from './user_types';
+import { CategoryRecordType, NullCategory } from './category_types';
+import { UserRecordType, NullUser } from './user_types';
 import { SpaceType } from './space_types';
+import * as BookStates from './../constants/book_states_constant';
 
 export interface BookValueType {
     title: string;
@@ -24,6 +25,28 @@ export interface BookValueType {
     description: string;
     length: number;
 }
+
+export const EmptyBookValueType = () => {
+    return {
+        title: '',
+        subtitle: '',
+        author: [],
+        language: NullLanguage,
+        image:
+            'https://vignette.wikia.nocookie.net/superfriends/images/a/a5/No_Photo_Available.jpg/revision/latest?cb=20090329133959',
+        owner: NullUser,
+        state: BookStates.default.STATE_BOOK_IDLE,
+        isbn: '',
+        isbn10: '',
+        isbn13: '',
+        holder: NullUser,
+        category: NullCategory,
+        format: 1,
+        space: 0,
+        description: '',
+        length: 0,
+    };
+};
 
 export interface BookDescriptionValueType {
     title: string;

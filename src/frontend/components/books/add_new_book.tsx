@@ -24,31 +24,8 @@ interface Props {
     visible: boolean;
     callback: () => void;
 }
-const defaultImage =
-    'https://vignette.wikia.nocookie.net/superfriends/images/a/a5/No_Photo_Available.jpg/revision/latest?cb=20090329133959';
 
-const EmptyBook = () => {
-    return {
-        title: '',
-        subtitle: '',
-        author: [],
-        language: DataTypes.NullLanguage,
-        image: defaultImage,
-        owner: DataTypes.NullUser,
-        state: BookStates.default.STATE_BOOK_IDLE,
-        isbn: '',
-        isbn10: '',
-        isbn13: '',
-        holder: DataTypes.NullUser,
-        category: DataTypes.NullCategory,
-        format: 1,
-        space: 0,
-        description: '',
-        length: 0,
-    };
-};
-
-let currentBook: DataTypes.BookValueType = EmptyBook();
+let currentBook: DataTypes.BookValueType = DataTypes.EmptyBookValueType();
 
 const AddNewBookComponent = (props: Props) => {
     const [useVolumeInformation, setUseVolumeInformation] = useState(true);
@@ -62,7 +39,9 @@ const AddNewBookComponent = (props: Props) => {
             currentBook.title = volumeInformation.title;
             currentBook.subtitle = volumeInformation.subtitle;
             currentBook.author = volumeInformation.authors;
-            currentBook.image = volumeInformation.imageLinks ? volumeInformation.imageLinks.thumbnail : defaultImage;
+            currentBook.image = volumeInformation.imageLinks
+                ? volumeInformation.imageLinks.thumbnail
+                : currentBook.image;
             currentBook.language.title = volumeInformation.language.toUpperCase();
             currentBook.category.title = volumeInformation.categories[0].toLowerCase();
             currentBook.description = volumeInformation.description;
@@ -132,7 +111,7 @@ const AddNewBookComponent = (props: Props) => {
             props.getBookDescription(isbn10, isbn13, (result: DataTypes.BookDescriptionRecordType) => {
                 bookDescription = result;
                 if (bookDescription.id === 0) {
-                    currentBook = EmptyBook();
+                    currentBook = DataTypes.EmptyBookValueType();
                     setUseVolumeInformation(false);
                 } else {
                     const volumeInformation: BookPreviewProps = {
