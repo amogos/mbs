@@ -91,6 +91,8 @@ const AddNewBookComponent = (props: Props) => {
             onGoogleResponseSuccess: (response: any) => void,
         ): Promise<any> {
             let result = {};
+            const validISBN = isbn.length === 10 || isbn.length === 13;
+            if (!validISBN) return result;
             const url = `https://www.googleapis.com/books/v1/volumes?q=isbn:${isbn}`;
             await axios
                 .get(url)
