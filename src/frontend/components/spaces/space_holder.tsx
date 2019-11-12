@@ -12,7 +12,7 @@ interface Props {
     userdata: DataTypes.UserRecordType;
     languages: DataTypes.LanguageRecordType[];
     categories: DataTypes.CategoryRecordType[];
-    addBook(book: DataTypes.BookValueType): void;
+    addBook(book: DataTypes.BookValueType, onSuccess: () => void): void;
     getBookDescription(
         isbn10: string,
         isbn13: string,

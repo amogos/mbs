@@ -13,7 +13,7 @@ const { BookActionConstant } = ActionConstants.default;
 export default function bookReducer(state: any, action: any): any {
     switch (action.type) {
         case BookActionConstant.ACTION_ADD_BOOK: {
-            databseInstance.addBook(action.data, handleError);
+            databseInstance.addBook(action.data, action.onSuccess, handleError);
             return state;
         }
         case BookActionConstant.ACTION_GET_BOOK_DESCRIPTION: {

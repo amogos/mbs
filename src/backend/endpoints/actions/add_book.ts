@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { urlBooks } from '../constants';
-import { addCategory, getCategoryRecordTypeFromId } from './../../endpoints/categories';
+import { addCategory } from './../../endpoints/categories';
 import { addLanguage } from './../../endpoints/languages';
 import {
     addBookDescription,
@@ -9,7 +9,11 @@ import {
 } from './../../endpoints/books_descriptions';
 import * as DataTypes from '../../../shared/types';
 
-export async function addBook(value: DataTypes.BookValueType, onError: (resultCode: number) => void) {
+export async function addBook(
+    value: DataTypes.BookValueType,
+    onSuccess: () => void,
+    onError: (resultCode: number) => void,
+) {
     if (value.category.id <= 0) {
         const newCategory = await addCategory(value.category.title, onError);
         value.category.id = newCategory.id;
@@ -43,7 +47,10 @@ export async function addBook(value: DataTypes.BookValueType, onError: (resultCo
         description: value.description,
     };
 
-    await axios.post(urlBooks, bookRecord).catch(error => onError(error));
+    await axios
+        .post(urlBooks, bookRecord)
+        .then(() => onSuccess())
+        .catch(error => onError(error));
 
     const previousDescription = await getBookDescriptionForISBN(value.isbn10, value.isbn13, onError);
     if (previousDescription.id === 0) {

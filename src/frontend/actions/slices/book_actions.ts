@@ -2,9 +2,10 @@ import * as ActionTypes from '../../../shared/constants/action_constant';
 import * as DataTypes from '../../../shared/types';
 
 class BookAction {
-    public addBook = (data: DataTypes.BookValueType) => ({
+    public addBook = (data: DataTypes.BookValueType, onSuccess: () => void) => ({
         type: ActionTypes.default.BookActionConstant.ACTION_ADD_BOOK,
         data,
+        onSuccess,
     });
 
     public getBookDescription = (

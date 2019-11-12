@@ -10,7 +10,7 @@ interface Props {
     userdata: DataTypes.UserRecordType;
     languages: DataTypes.LanguageRecordType[];
     categories: DataTypes.CategoryRecordType[];
-    addBook(book: DataTypes.BookValueType): void;
+    addBook(book: DataTypes.BookValueType, onSuccess: () => void): void;
     getBooks(filters: string[], callbacks: ((books: DataTypes.BookRecordType[]) => void)[]): void;
     getBookDescription(
         isbn10: string,

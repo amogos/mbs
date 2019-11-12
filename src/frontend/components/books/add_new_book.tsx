@@ -14,7 +14,7 @@ interface Props {
     languages: DataTypes.LanguageRecordType[];
     categories: DataTypes.CategoryRecordType[];
     userdata: DataTypes.UserRecordType;
-    addBook(book: DataTypes.BookValueType): void;
+    addBook(book: DataTypes.BookValueType, onSuccess: () => void): void;
     getBookDescription(
         isbn10: string,
         isbn13: string,
@@ -58,19 +58,21 @@ const AddNewBookComponent = (props: Props) => {
     currentBook.space = props.spaceId;
 
     const ReadVolumeInformation = (volumeInformation: BookPreviewProps) => {
-        currentBook.title = volumeInformation.title;
-        currentBook.subtitle = volumeInformation.subtitle;
-        currentBook.author = volumeInformation.authors;
-        currentBook.image = volumeInformation.imageLinks ? volumeInformation.imageLinks.thumbnail : defaultImage;
-        currentBook.language.title = volumeInformation.language.toUpperCase();
-        currentBook.category.title = volumeInformation.categories[0].toLowerCase();
-        currentBook.description = volumeInformation.description;
-        currentBook.length = parseInt(volumeInformation.pageCount);
+        try {
+            currentBook.title = volumeInformation.title;
+            currentBook.subtitle = volumeInformation.subtitle;
+            currentBook.author = volumeInformation.authors;
+            currentBook.image = volumeInformation.imageLinks ? volumeInformation.imageLinks.thumbnail : defaultImage;
+            currentBook.language.title = volumeInformation.language.toUpperCase();
+            currentBook.category.title = volumeInformation.categories[0].toLowerCase();
+            currentBook.description = volumeInformation.description;
+            currentBook.length = parseInt(volumeInformation.pageCount);
 
-        if (volumeInformation.industryIdentifiers) {
-            currentBook.isbn10 = volumeInformation.industryIdentifiers[0].identifier;
-            currentBook.isbn13 = volumeInformation.industryIdentifiers[1].identifier;
-        }
+            if (volumeInformation.industryIdentifiers) {
+                currentBook.isbn10 = volumeInformation.industryIdentifiers[0].identifier;
+                currentBook.isbn13 = volumeInformation.industryIdentifiers[1].identifier;
+            }
+        } catch (error) {}
     };
 
     const ValidFields = (): boolean => {
@@ -96,12 +98,12 @@ const AddNewBookComponent = (props: Props) => {
             ReadVolumeInformation(volumeInformation);
         }
 
-        if (ValidFields()) {
-            props.addBook(currentBook);
-            message.success('Book added successfully');
-        } else {
+        if (!ValidFields()) {
             message.error('Invalid fields');
+            return;
         }
+
+        props.addBook(currentBook, () => message.success('Book added successfully'));
     };
 
     const SearchVolumeView = () => {
