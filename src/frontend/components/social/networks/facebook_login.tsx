@@ -2,6 +2,7 @@ import React from 'react';
 import FacebookLoginComponent from 'react-facebook-login';
 import * as DataTypes from '../../../../shared/types';
 import { withStyle } from '../../aux_component';
+import { Button } from 'antd';
 
 interface Props {
     loginUser(userInfo: DataTypes.UserValueType): void;
@@ -42,3 +43,20 @@ const Login = (props: Props) => {
 };
 
 export default withStyle(Login, 'login');
+
+declare global {
+    interface Window {
+        FB: any;
+    }
+}
+
+export const Logout = (props: Props) => {
+    const onSignOutPressed = (props: Props) => {
+        window.FB.logout();
+    };
+    return (
+        <Button type="link" onClick={() => onSignOutPressed}>
+            Logout
+        </Button>
+    );
+};
