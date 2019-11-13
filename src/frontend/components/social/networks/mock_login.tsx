@@ -14,6 +14,7 @@ const MockLogin = (props: Props) => {
                     name: 'Iulia Mogos',
                     email: 'daosmistique@yahoo.com',
                     picture: '',
+                    following: [],
                     rating: 0,
                 };
                 props.loginUser(userInfo);

@@ -28,7 +28,7 @@ export default function socialReducer(state: any, action: any): any {
                 Store.dispatch(pageAction.refreshState({ categories: result }));
             });
 
-            let stateAppend: {
+            const stateAppend: {
                 userdata: DataTypes.UserValueType;
                 userSpaces: DataTypes.SpaceType[];
                 otherSpaces: DataTypes.SpaceType[];

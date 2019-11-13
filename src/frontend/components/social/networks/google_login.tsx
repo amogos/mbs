@@ -14,6 +14,7 @@ const Login = (props: Props) => {
                 name: response.profileObj.name,
                 email: response.profileObj.email,
                 picture: response.profileObj.imageUrl,
+                following: [],
                 rating: 0,
             };
             props.loginUser(loggedUser);
@@ -23,11 +24,6 @@ const Login = (props: Props) => {
         <GoogleLogin
             clientId="627289196388-rldfh2n0j649bh2qovuqvtf4a038louo.apps.googleusercontent.com"
             buttonText="GoogleLogin"
-            render={renderProps => (
-                <button onClick={renderProps.onClick} disabled={renderProps.disabled}>
-                    This is my custom Google button
-                </button>
-            )}
             scope="email"
             onSuccess={responseGoogle}
             onFailure={responseGoogle}

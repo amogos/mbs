@@ -11,6 +11,7 @@ export interface UserValueType {
     name: string | undefined;
     email: string;
     picture: string;
+    following: number[];
     rating: number;
 }
 

@@ -19,6 +19,7 @@ const responseFacebook = (response: any, props: Props) => {
         name: response.name,
         email: email,
         picture: response.picture.data.url,
+        following: [],
         rating: 0,
     };
     props.loginUser(userInfo);
@@ -40,4 +41,4 @@ const Login = (props: Props) => {
     );
 };
 
-export default withStyle(Login, 'facebook_login');
+export default withStyle(Login, 'login');
