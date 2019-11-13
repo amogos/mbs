@@ -26,3 +26,12 @@ const MockLogin = (props: Props) => {
 };
 
 export default withStyle(MockLogin, 'mock_login');
+
+export const Logout = (props: Props) => {
+    const onLogoutSuccess = () => {};
+    return (
+        <Button type="link" onClick={onLogoutSuccess}>
+            Logout
+        </Button>
+    );
+};
