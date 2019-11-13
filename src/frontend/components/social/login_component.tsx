@@ -1,5 +1,5 @@
 import React from 'react';
-import FacebookLogin from './networks/facebook_login';
+import FacebookLogin, { FacebookLogout } from './networks/facebook_login';
 import GoogleLogin from './networks/google_login';
 import MockLogin from './networks/mock_login';
 import * as DataTypes from './../../../shared/types';
@@ -20,3 +20,5 @@ const Login = (props: Props) => {
 };
 
 export default withStyle(Login, 'login');
+
+export const Logout = FacebookLogout;

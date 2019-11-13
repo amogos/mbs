@@ -9,6 +9,7 @@ interface Props {
 }
 
 const responseFacebook = (response: any, props: Props) => {
+    if (!response.name) return;
     const testUserEmail = (response.name as string)
         .trim()
         .toLowerCase()
@@ -28,7 +29,7 @@ const responseFacebook = (response: any, props: Props) => {
 
 const componentClicked = () => {};
 
-const Login = (props: Props) => {
+const FacebookLogin = (props: Props) => {
     return (
         <FacebookLoginComponent
             appId="298690497437467"
@@ -42,7 +43,7 @@ const Login = (props: Props) => {
     );
 };
 
-export default withStyle(Login, 'login');
+export default withStyle(FacebookLogin, 'login');
 
 declare global {
     interface Window {
@@ -50,12 +51,12 @@ declare global {
     }
 }
 
-export const Logout = (props: Props) => {
-    const onSignOutPressed = (props: Props) => {
+export const FacebookLogout = (props: Props) => {
+    const onSignOutPressed = () => {
         window.FB.logout();
     };
     return (
-        <Button type="link" onClick={() => onSignOutPressed}>
+        <Button type="link" onClick={() => onSignOutPressed()}>
             Logout
         </Button>
     );
