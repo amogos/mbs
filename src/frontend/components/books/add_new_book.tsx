@@ -57,7 +57,6 @@ const AddNewBookComponent = (props: Props) => {
     const ValidFields = (): boolean => {
         const ValidIsbn = (): boolean => {
             let validIsbn = true;
-            currentBook.isbn = currentBook.isbn.replace('/D/g', '');
             if (currentBook.isbn.length === 10) currentBook.isbn10 = currentBook.isbn;
             else if (currentBook.isbn.length === 13) currentBook.isbn13 = currentBook.isbn;
             else validIsbn = false;
@@ -92,9 +91,10 @@ const AddNewBookComponent = (props: Props) => {
             onGoogleResponseSuccess: (response: any) => void,
         ): Promise<any> {
             let result = {};
-            const validISBN = isbn.length === 10 || isbn.length === 13;
+            const digitsISBN = isbn.replace('/D/g', '');
+            const validISBN = digitsISBN.length === 10 || digitsISBN.length === 13;
             if (!validISBN) return result;
-            const url = `https://www.googleapis.com/books/v1/volumes?q=isbn:${isbn}`;
+            const url = `https://www.googleapis.com/books/v1/volumes?q=isbn:${digitsISBN}`;
             await axios
                 .get(url)
                 .then(response => {
@@ -106,14 +106,17 @@ const AddNewBookComponent = (props: Props) => {
         }
 
         function fetchBookFromRecord() {
-            const isbn10 = currentBook.isbn.length === 10 ? currentBook.isbn : '';
-            const isbn13 = currentBook.isbn.length === 13 ? currentBook.isbn : '';
+            currentBook.isbn = currentBook.isbn.replace('/D/g', '');
+            const validISBN = currentBook.isbn.length === 10 || currentBook.isbn.length === 13;
 
-            if (isbn10 === '' && isbn13 === '') {
+            if (!validISBN) {
                 currentBook = DataTypes.EmptyBookValueType();
                 setUseVolumeInformation(false);
                 return;
             }
+
+            const isbn10 = currentBook.isbn.length === 10 ? currentBook.isbn : '';
+            const isbn13 = currentBook.isbn.length === 13 ? currentBook.isbn : '';
 
             props.getBookDescription(isbn10, isbn13, (result: DataTypes.BookDescriptionRecordType) => {
                 const bookDescription = result;
@@ -189,6 +192,8 @@ const AddNewBookComponent = (props: Props) => {
             if (!validCategorySelection) return;
             currentBook.category = props.categories[categoryIndex];
         };
+
+        currentBook.isbn = isbn;
 
         return (
             <InputGroup>
