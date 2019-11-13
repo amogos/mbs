@@ -1,0 +1,5 @@
+google web client id
+627289196388-0bfojj3tg8pmm9h178f0751mi3j9oibe.apps.googleusercontent.com
+
+client secret
+627289196388-0bfojj3tg8pmm9h178f0751mi3j9oibe.apps.googleusercontent.com

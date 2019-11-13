@@ -42,6 +42,7 @@
         "react-art": "^16.11.0",
         "react-dom": "^16.11.0",
         "react-facebook-login": "^4.1.1",
+        "react-google-login": "^5.0.7",
         "react-moment": "^0.9.6",
         "react-native": "^0.61.3",
         "react-native-form-builder": "^1.0.16",

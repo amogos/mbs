@@ -1,15 +1,14 @@
 import React from 'react';
 import FacebookLoginComponent from 'react-facebook-login';
-import * as DataTypes from '../../../shared/types';
-import { Button } from 'antd';
-import { withStyle } from './../aux_component';
+import * as DataTypes from '../../../../shared/types';
+import { withStyle } from '../../aux_component';
 
 interface Props {
     loginUser(userInfo: DataTypes.UserValueType): void;
 }
 
 const responseFacebook = (response: any, props: Props) => {
-    let testUserEmail = (response.name as string)
+    const testUserEmail = (response.name as string)
         .trim()
         .toLowerCase()
         .concat('@gmail.com')
@@ -27,24 +26,6 @@ const responseFacebook = (response: any, props: Props) => {
 
 const componentClicked = () => {};
 
-const MockLogin = (props: Props) => {
-    return (
-        <Button
-            onClick={() => {
-                const userInfo: DataTypes.UserValueType = {
-                    name: 'Iulia Mogos',
-                    email: 'daosmistique@yahoo.com',
-                    picture: '',
-                    rating: 0,
-                };
-                props.loginUser(userInfo);
-            }}
-        >
-            MockLogin
-        </Button>
-    );
-};
-
 const Login = (props: Props) => {
     return (
         <FacebookLoginComponent
@@ -59,5 +40,4 @@ const Login = (props: Props) => {
     );
 };
 
-export default withStyle(MockLogin, 'login');
-//export default withStyle(Login, 'login');
+export default withStyle(Login, 'facebook_login');

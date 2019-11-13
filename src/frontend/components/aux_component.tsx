@@ -18,7 +18,7 @@ export function withStyle(WrappedComponent: any, classname: string) {
 export function requiresLogin(WrappedComponent: any, FallbackComponent?: any) {
     return class extends React.Component<any, any> {
         public render() {
-            let fallback = FallbackComponent ? <FallbackComponent {...this.props} /> : null;
+            const fallback = FallbackComponent ? <FallbackComponent {...this.props} /> : null;
             if (this.props.userdata) {
                 return <WrappedComponent {...this.props} />;
             }
