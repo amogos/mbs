@@ -12,6 +12,7 @@ interface Props {
 const Login = (props: Props) => {
     return (
         <Aux>
+            <FacebookLogin {...props} />
             <GoogleLogin {...props} />
             <MockLogin {...props} />
         </Aux>
