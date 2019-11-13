@@ -29,6 +29,7 @@ let currentBook: DataTypes.BookValueType = DataTypes.EmptyBookValueType();
 const AddNewBookComponent = (props: Props) => {
     const [useVolumeInformation, setUseVolumeInformation] = useState(true);
     const [volumeInformation, setVolumeInformation] = useState(NullBookPreviewProps);
+    const [isbn, setIsbn] = useState('');
 
     currentBook.owner = props.userdata;
     currentBook.space = props.spaceId;
@@ -118,6 +119,7 @@ const AddNewBookComponent = (props: Props) => {
                 const bookDescription = result;
 
                 if (bookDescription.id === 0) {
+                    setIsbn(currentBook.isbn);
                     currentBook = DataTypes.EmptyBookValueType();
                     setUseVolumeInformation(false);
                 } else {
@@ -161,7 +163,7 @@ const AddNewBookComponent = (props: Props) => {
 
         return (
             <InputGroup>
-                <Input {...useInput('isbn', (value: string) => (currentBook.isbn = value))} />
+                <Input {...useInput('isbn', '', (value: string) => (currentBook.isbn = value))} />
                 <Button
                     icon="search"
                     onClick={() => fetchBookFromGoogle(currentBook.isbn, onGoogleResponseFail, onGoogleResponseSuccess)}
@@ -190,10 +192,10 @@ const AddNewBookComponent = (props: Props) => {
 
         return (
             <InputGroup>
-                <Input {...useInput('title', (value: string) => (currentBook.title = value))} />
-                <Input {...useInput('author', (value: string) => (currentBook.author = value.split(',')))} />
-                <Input {...useInput('isbn', (value: string) => (currentBook.isbn = value))} />
-                <Input {...useInput('pageCount', (value: string) => (currentBook.length = parseInt(value)))} />
+                <Input {...useInput('title', '', (value: string) => (currentBook.title = value))} />
+                <Input {...useInput('author', '', (value: string) => (currentBook.author = value.split(',')))} />
+                <Input {...useInput('isbn', isbn, (value: string) => (currentBook.isbn = value))} />
+                <Input {...useInput('pageCount', '', (value: string) => (currentBook.length = parseInt(value)))} />
                 <Select
                     style={{ width: 200 }}
                     {...useSelect('Select language', (value: string) => onLanguageSelected(value))}
