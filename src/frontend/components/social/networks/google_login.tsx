@@ -7,15 +7,28 @@ interface Props {
     loginUser(userInfo: DataTypes.UserValueType): void;
 }
 
-const responseGoogle = (response: any) => {
-    alert(response);
-};
-
 const Login = (props: Props) => {
+    const responseGoogle = (response: any) => {
+        if (response.profileObj) {
+            const loggedUser: DataTypes.UserValueType = {
+                name: response.profileObj.name,
+                email: response.profileObj.email,
+                picture: response.profileObj.imageUrl,
+                rating: 0,
+            };
+            props.loginUser(loggedUser);
+        }
+    };
     return (
         <GoogleLogin
-            clientId="627289196388-0bfojj3tg8pmm9h178f0751mi3j9oibe.apps.googleusercontent.com"
+            clientId="627289196388-rldfh2n0j649bh2qovuqvtf4a038louo.apps.googleusercontent.com"
             buttonText="GoogleLogin"
+            render={renderProps => (
+                <button onClick={renderProps.onClick} disabled={renderProps.disabled}>
+                    This is my custom Google button
+                </button>
+            )}
+            scope="email"
             onSuccess={responseGoogle}
             onFailure={responseGoogle}
             cookiePolicy={'single_host_origin'}

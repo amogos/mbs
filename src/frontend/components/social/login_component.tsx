@@ -1,3 +1,4 @@
+import React from 'react';
 import FacebookLogin from './networks/facebook_login';
 import GoogleLogin from './networks/google_login';
 import MockLogin from './networks/mock_login';
@@ -11,7 +12,6 @@ interface Props {
 const Login = (props: Props) => {
     return (
         <Aux>
-            <FacebookLogin {...props} />
             <GoogleLogin {...props} />
             <MockLogin {...props} />
         </Aux>
