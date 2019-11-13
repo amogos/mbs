@@ -33,7 +33,7 @@ const FacebookLogin = (props: Props) => {
     return (
         <FacebookLoginComponent
             appId="298690497437467"
-            autoLoad={true}
+            autoLoad={false}
             fields="name,email,picture"
             scope="public_profile,user_friends,user_actions.books"
             onClick={componentClicked}
@@ -53,7 +53,8 @@ declare global {
 
 export const FacebookLogout = (props: Props) => {
     const onSignOutPressed = () => {
-        window.FB.logout();
+        // eslint-disable-next-line @typescript-eslint/no-empty-function
+        window.FB.logout(function(response: any) {});
     };
     return (
         <Button type="link" onClick={() => onSignOutPressed()}>
