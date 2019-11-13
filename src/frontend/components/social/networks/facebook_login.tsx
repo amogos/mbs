@@ -35,7 +35,7 @@ const FacebookLogin = (props: Props) => {
             appId="298690497437467"
             autoLoad={false}
             fields="name,email,picture"
-            scope="public_profile,user_friends,user_actions.books"
+            scope="public_profile"
             onClick={componentClicked}
             callback={response => responseFacebook(response, props)}
             icon="fa-facebook"
