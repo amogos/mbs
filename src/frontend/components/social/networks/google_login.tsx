@@ -1,7 +1,8 @@
 import React from 'react';
-import GoogleLogin from 'react-google-login';
+import GoogleLogin, { GoogleLogout } from 'react-google-login';
 import * as DataTypes from '../../../../shared/types';
 import { withStyle } from '../../aux_component';
+import { Button } from 'antd';
 
 interface Props {
     loginUser(userInfo: DataTypes.UserValueType): void;
@@ -33,3 +34,18 @@ const Login = (props: Props) => {
 };
 
 export default withStyle(Login, 'google_login');
+
+export const Logout = (props: Props) => {
+    const onLogoutSuccess = () => {};
+    return (
+        <GoogleLogout
+            clientId="627289196388-rldfh2n0j649bh2qovuqvtf4a038louo.apps.googleusercontent.com"
+            onLogoutSuccess={onLogoutSuccess}
+            render={renderProps => (
+                <Button type="link" onClick={renderProps.onClick} disabled={renderProps.disabled}>
+                    Logout
+                </Button>
+            )}
+        ></GoogleLogout>
+    );
+};
