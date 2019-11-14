@@ -41,9 +41,9 @@ const FacebookLogin = (props: Props) => {
             scope="public_profile"
             onClick={componentClicked}
             callback={response => responseFacebook(response, props)}
-            icon="fa-facebook"
             textButton="Facebook"
             cssClass="facebook_button"
+            icon="fa-facebook"
         />
     );
 };
@@ -58,7 +58,6 @@ declare global {
 
 export const FacebookLogout = (props: Props) => {
     const onSignOutPressed = () => {
-        // eslint-disable-next-line @typescript-eslint/no-empty-function
         props.logoutUser();
     };
     return (
