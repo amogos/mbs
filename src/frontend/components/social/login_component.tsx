@@ -4,7 +4,7 @@ import GoogleLoginComponent, { GoogleLogoutComponent } from './networks/google_l
 import MockLogin, { MockLogout } from './networks/mock_login';
 import * as DataTypes from './../../../shared/types';
 import { SocialNetwork } from './../../../shared/constants/social_networks_constants';
-
+import { Divider } from 'antd';
 interface Props {
     userdata: DataTypes.UserRecordType;
     loginUser(userInfo: DataTypes.UserValueType): void;
@@ -14,6 +14,8 @@ interface Props {
 const Login = (props: Props) => {
     return (
         <div className="login">
+            <Divider />
+            <p>OR Login with social media account</p>
             <FacebookLogin {...props} />
             <GoogleLoginComponent {...props} />
             <MockLogin {...props} />
