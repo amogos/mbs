@@ -17,7 +17,7 @@ const Login = (props: Props) => {
     return (
         <div className="login">
             <p>Sign In</p>
-            <CustomLogin />
+            <CustomLogin {...props} />
             <Divider />
             <p>OR Login with social media account</p>
             <FacebookLogin {...props} />

@@ -1,5 +1,5 @@
 .login {
-    top: 40%;
+    top: 10%;
     right: 40%;
     position: absolute;
     display: flex;
@@ -13,6 +13,14 @@
 }
 
 .google_login {
+}
+
+.custom_login {
+    display: flex;
+    flex-direction: column;
+    margin: 5px;
+    justify-content: space-between;
+    padding-top: 10px;
 }
 
 .custom_button {
