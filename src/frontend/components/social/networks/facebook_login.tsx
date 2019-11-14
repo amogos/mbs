@@ -42,11 +42,13 @@ const FacebookLogin = (props: Props) => {
             onClick={componentClicked}
             callback={response => responseFacebook(response, props)}
             icon="fa-facebook"
+            textButton="Facebook"
+            cssClass="facebook_button"
         />
     );
 };
 
-export default withStyle(FacebookLogin, 'login');
+export default withStyle(FacebookLogin, 'facebook_login');
 
 declare global {
     interface Window {

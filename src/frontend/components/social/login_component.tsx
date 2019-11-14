@@ -3,7 +3,6 @@ import FacebookLogin, { FacebookLogout } from './networks/facebook_login';
 import GoogleLoginComponent, { GoogleLogoutComponent } from './networks/google_login';
 import MockLogin, { MockLogout } from './networks/mock_login';
 import * as DataTypes from './../../../shared/types';
-import Aux, { withStyle } from './../aux_component';
 import { SocialNetwork } from './../../../shared/constants/social_networks_constants';
 
 interface Props {
@@ -14,15 +13,15 @@ interface Props {
 
 const Login = (props: Props) => {
     return (
-        <Aux>
+        <div className="login">
             <FacebookLogin {...props} />
             <GoogleLoginComponent {...props} />
             <MockLogin {...props} />
-        </Aux>
+        </div>
     );
 };
 
-export default withStyle(Login, 'login');
+export default Login;
 
 export const Logout = (props: Props) => {
     switch (props.userdata.socialnetwork) {
