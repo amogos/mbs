@@ -16,12 +16,31 @@
 }
 
 .facebook_button {
-    width: 235px;
-    height: 35px;
+    width: 335px;
+    height: 45px;
     border-radius: 4px;
     background: #3b5998;
     color: white;
     border: 0px transparent;
+    text-align: center;
+    margin: 5px;
+}
+
+.google_button {
+    width: 335px;
+    height: 45px;
+    border-radius: 0px;
+    background: #c71e3a;
+    color: white;
+    text-align: center;
+    margin: 5px;
+}
+
+.mock_button {
+    width: 335px;
+    height: 45px;
+    border-radius: 4px;
+    background: white;
     text-align: center;
     margin: 5px;
 }

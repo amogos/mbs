@@ -32,6 +32,7 @@ const GoogleLoginComponent = (props: Props) => {
             onSuccess={responseGoogle}
             onFailure={responseGoogle}
             cookiePolicy={'single_host_origin'}
+            className="google_button"
         />
     );
 };

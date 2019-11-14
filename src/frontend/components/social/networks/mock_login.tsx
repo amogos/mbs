@@ -11,6 +11,7 @@ interface Props {
 const MockLogin = (props: Props) => {
     return (
         <Button
+            className="mock_button"
             onClick={() => {
                 const userInfo: DataTypes.UserValueType = {
                     name: 'Iulia Mogos',
