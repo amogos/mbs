@@ -19,6 +19,8 @@ const Login = (props: Props) => {
             <FacebookLogin {...props} />
             <GoogleLoginComponent {...props} />
             <MockLogin {...props} />
+            <p></p>
+            <p>Don't have an account? Sign up here!</p>
         </div>
     );
 };
