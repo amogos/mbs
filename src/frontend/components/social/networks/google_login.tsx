@@ -10,7 +10,7 @@ interface Props {
     logoutUser(): void;
 }
 
-const Login = (props: Props) => {
+const GoogleLoginComponent = (props: Props) => {
     const responseGoogle = (response: any) => {
         if (response.profileObj) {
             const loggedUser: DataTypes.UserValueType = {
@@ -36,9 +36,9 @@ const Login = (props: Props) => {
     );
 };
 
-export default withStyle(Login, 'google_login');
+export default withStyle(GoogleLoginComponent, 'google_login');
 
-export const Logout = (props: Props) => {
+export const GoogleLogoutComponent = (props: Props) => {
     const onLogoutSuccess = () => {
         props.logoutUser();
     };
