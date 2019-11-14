@@ -2,9 +2,11 @@ import React from 'react';
 import FacebookLogin, { FacebookLogout } from './networks/facebook_login';
 import GoogleLoginComponent, { GoogleLogoutComponent } from './networks/google_login';
 import MockLogin, { MockLogout } from './networks/mock_login';
+import CustomLogin, { CustomLogout } from './networks/custom_login';
 import * as DataTypes from './../../../shared/types';
 import { SocialNetwork } from './../../../shared/constants/social_networks_constants';
 import { Divider } from 'antd';
+
 interface Props {
     userdata: DataTypes.UserRecordType;
     loginUser(userInfo: DataTypes.UserValueType): void;
@@ -14,6 +16,8 @@ interface Props {
 const Login = (props: Props) => {
     return (
         <div className="login">
+            <p>Sign In</p>
+            <CustomLogin />
             <Divider />
             <p>OR Login with social media account</p>
             <FacebookLogin {...props} />
@@ -35,6 +39,8 @@ export const Logout = (props: Props) => {
             return <GoogleLogoutComponent {...props} />;
         case SocialNetwork.mock:
             return <MockLogout {...props} />;
+        case SocialNetwork.custom:
+            return <CustomLogout {...props} />;
     }
     return null;
 };
