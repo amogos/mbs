@@ -20,6 +20,12 @@ export default function socialReducer(state: any, action: any): any {
                 action: SocialActionConstant.ACTION_LOGIN_USER,
             });
         }
+        case ActionConstants.default.SocialActionConstant.ACTION_LOGOUT_USER: {
+            return Object.assign({}, state, {
+                action: SocialActionConstant.ACTION_LOGOUT_USER,
+                userdata: DataTypes.NullUser,
+            });
+        }
         case SocialActionConstant.ACTION_USER_DATA:
             databseInstance.getLanguages(handleError).then((result: DataTypes.LanguageRecordType[]) => {
                 Store.dispatch(pageAction.refreshState({ languages: result }));

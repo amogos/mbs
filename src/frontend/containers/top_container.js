@@ -7,7 +7,4 @@ function mapStateToProps(state) {
     };
 }
 
-export default connect(
-    mapStateToProps,
-    null,
-)(TopComponent);
+export default connect(mapStateToProps, null)(TopComponent);

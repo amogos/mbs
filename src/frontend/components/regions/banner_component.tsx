@@ -12,6 +12,7 @@ interface Props {
     getSpaces(filters: string[]): void;
     gotoNotifications(): void;
     loginUser(userInfo: DataTypes.UserValueType): void;
+    logoutUser(): void;
     userdata: DataTypes.UserRecordType;
     categories: DataTypes.CategoryRecordType[];
     languages: DataTypes.LanguageRecordType[];

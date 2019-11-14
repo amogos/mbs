@@ -23,7 +23,7 @@ interface Navigation {
 const navigation: Navigation = { index: 0, limit: 5 };
 
 function propsEqual(prevProps: Props, nextProps: Props) {
-    return nextProps.urlparams === prevProps.urlparams;
+    return nextProps.urlparams === prevProps.urlparams && nextProps.userdata === prevProps.userdata;
 }
 
 function nextBooks(props: Props, force: boolean) {

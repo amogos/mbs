@@ -6,6 +6,7 @@ import { Button } from 'antd';
 
 interface Props {
     loginUser(userInfo: DataTypes.UserValueType): void;
+    logoutUser(): void;
 }
 
 const Login = (props: Props) => {
@@ -36,7 +37,9 @@ const Login = (props: Props) => {
 export default withStyle(Login, 'google_login');
 
 export const Logout = (props: Props) => {
-    const onLogoutSuccess = () => {};
+    const onLogoutSuccess = () => {
+        props.logoutUser();
+    };
     return (
         <GoogleLogout
             clientId="627289196388-rldfh2n0j649bh2qovuqvtf4a038louo.apps.googleusercontent.com"

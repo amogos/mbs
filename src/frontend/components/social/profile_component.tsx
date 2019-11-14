@@ -7,6 +7,7 @@ import { Logout } from './login_component';
 interface Props {
     userdata: DataTypes.UserRecordType;
     loginUser(userInfo: DataTypes.UserValueType): void;
+    logoutUser(): void;
 }
 
 const ProfileComponent = (props: Props) => {

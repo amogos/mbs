@@ -5,6 +5,7 @@ import { withStyle } from '../../aux_component';
 
 interface Props {
     loginUser(userInfo: DataTypes.UserValueType): void;
+    logoutUser(): void;
 }
 const MockLogin = (props: Props) => {
     return (
@@ -28,7 +29,9 @@ const MockLogin = (props: Props) => {
 export default withStyle(MockLogin, 'mock_login');
 
 export const Logout = (props: Props) => {
-    const onLogoutSuccess = () => {};
+    const onLogoutSuccess = () => {
+        props.logoutUser();
+    };
     return (
         <Button type="link" onClick={onLogoutSuccess}>
             Logout

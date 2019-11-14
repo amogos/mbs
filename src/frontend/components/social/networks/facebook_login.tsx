@@ -6,6 +6,7 @@ import { Button } from 'antd';
 
 interface Props {
     loginUser(userInfo: DataTypes.UserValueType): void;
+    logoutUser(): void;
 }
 
 const responseFacebook = (response: any, props: Props) => {
@@ -54,7 +55,7 @@ declare global {
 export const FacebookLogout = (props: Props) => {
     const onSignOutPressed = () => {
         // eslint-disable-next-line @typescript-eslint/no-empty-function
-        window.FB.logout(function(response: any) {});
+        props.logoutUser();
     };
     return (
         <Button type="link" onClick={() => onSignOutPressed()}>

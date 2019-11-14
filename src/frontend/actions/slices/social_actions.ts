@@ -12,6 +12,7 @@ class SocialAction {
         type: SocialActionConstant.ACTION_LOGIN_USER,
         user,
     });
+    public logoutUser = () => ({ type: SocialActionConstant.ACTION_LOGOUT_USER });
 }
 
 export default SocialAction;

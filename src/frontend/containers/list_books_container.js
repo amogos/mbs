@@ -25,7 +25,4 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps,
-)(ListBooksComponent);
+export default connect(mapStateToProps, mapDispatchToProps)(ListBooksComponent);

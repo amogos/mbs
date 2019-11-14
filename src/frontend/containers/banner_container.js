@@ -16,11 +16,9 @@ const mapDispatchToProps = dispatch => {
         gotoNotifications: () => dispatch(pageAction.gotoNotifications()),
         addBook: data => dispatch(pageAction.addBook(data)),
         loginUser: user => dispatch(socialAction.loginUser(user)),
+        logoutUser: () => dispatch(socialAction.logoutUser()),
         dispatch,
     };
 };
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps,
-)(BannerComponent);
+export default connect(mapStateToProps, mapDispatchToProps)(BannerComponent);

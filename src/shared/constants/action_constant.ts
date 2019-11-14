@@ -24,6 +24,7 @@ export default {
     SocialActionConstant: {
         ACTION_USER_DATA: 'ACTION_USER_DATA',
         ACTION_LOGIN_USER: 'ACTION_LOGIN_USER',
+        ACTION_LOGOUT_USER: 'ACTION_LOGOUT_USER',
     },
     PageActionConstant: {
         ACTION_GOTO_LIST_SPACES: 'ACTION_GOTO_LIST_SPACES',
