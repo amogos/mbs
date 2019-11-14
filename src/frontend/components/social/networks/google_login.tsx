@@ -3,6 +3,7 @@ import GoogleLogin, { GoogleLogout } from 'react-google-login';
 import * as DataTypes from '../../../../shared/types';
 import { withStyle } from '../../aux_component';
 import { Button } from 'antd';
+import { SocialNetwork } from './../../../../shared/constants/social_networks_constants';
 
 interface Props {
     loginUser(userInfo: DataTypes.UserValueType): void;
@@ -18,6 +19,7 @@ const Login = (props: Props) => {
                 picture: response.profileObj.imageUrl,
                 following: [],
                 rating: 0,
+                socialnetwork: SocialNetwork.google,
             };
             props.loginUser(loggedUser);
         }

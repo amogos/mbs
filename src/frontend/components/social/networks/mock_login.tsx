@@ -2,6 +2,7 @@ import React from 'react';
 import * as DataTypes from '../../../../shared/types';
 import { Button } from 'antd';
 import { withStyle } from '../../aux_component';
+import { SocialNetwork } from './../../../../shared/constants/social_networks_constants';
 
 interface Props {
     loginUser(userInfo: DataTypes.UserValueType): void;
@@ -17,6 +18,7 @@ const MockLogin = (props: Props) => {
                     picture: '',
                     following: [],
                     rating: 0,
+                    socialnetwork: SocialNetwork.mock,
                 };
                 props.loginUser(userInfo);
             }}

@@ -5,6 +5,7 @@ export interface UserRecordType {
     picture: string;
     following: number[];
     rating: number;
+    socialnetwork: number;
 }
 
 export interface UserValueType {
@@ -13,6 +14,7 @@ export interface UserValueType {
     picture: string;
     following: number[];
     rating: number;
+    socialnetwork: number;
 }
 
 export const NullUser: UserRecordType = {
@@ -22,4 +24,5 @@ export const NullUser: UserRecordType = {
     picture: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
     following: [],
     rating: 0,
+    socialnetwork: 0,
 };

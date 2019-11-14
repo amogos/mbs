@@ -3,6 +3,7 @@ import FacebookLoginComponent from 'react-facebook-login';
 import * as DataTypes from '../../../../shared/types';
 import { withStyle } from '../../aux_component';
 import { Button } from 'antd';
+import { SocialNetwork } from './../../../../shared/constants/social_networks_constants';
 
 interface Props {
     loginUser(userInfo: DataTypes.UserValueType): void;
@@ -24,6 +25,7 @@ const responseFacebook = (response: any, props: Props) => {
         picture: response.picture.data.url,
         following: [],
         rating: 0,
+        socialnetwork: SocialNetwork.facebook,
     };
     props.loginUser(userInfo);
 };
