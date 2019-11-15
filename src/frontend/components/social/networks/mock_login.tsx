@@ -14,8 +14,8 @@ const MockLogin = (props: Props) => {
             className="mock_button"
             onClick={() => {
                 const userInfo: DataTypes.UserValueType = DataTypes.NullUser;
-                userInfo.name = 'Iulia Mogos';
-                userInfo.email = 'daosmistique@yahoo.com';
+                userInfo.name = 'Mock';
+                userInfo.email = 'Mock@yahoo.com';
                 userInfo.socialnetwork = SocialNetwork.mock;
                 props.loginUser(userInfo);
             }}
