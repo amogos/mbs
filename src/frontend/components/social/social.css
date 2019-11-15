@@ -6,6 +6,14 @@
     flex-direction: column;
 }
 
+.signup_form {
+    top: 10%;
+    right: 40%;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+}
+
 .mock_login {
 }
 
