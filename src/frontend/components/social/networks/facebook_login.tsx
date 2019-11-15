@@ -6,7 +6,7 @@ import { Button } from 'antd';
 import { SocialNetwork } from './../../../../shared/constants/social_networks_constants';
 
 interface Props {
-    loginUser(userInfo: DataTypes.UserValueType): void;
+    loginUser(userInfo: DataTypes.UserValueType, onError?: () => void): void;
     logoutUser(): void;
 }
 

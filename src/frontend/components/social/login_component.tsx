@@ -9,7 +9,7 @@ import { Divider } from 'antd';
 
 interface Props {
     userdata: DataTypes.UserRecordType;
-    loginUser(userInfo: DataTypes.UserValueType): void;
+    loginUser(userInfo: DataTypes.UserValueType, onError?: () => void): void;
     logoutUser(): void;
 }
 

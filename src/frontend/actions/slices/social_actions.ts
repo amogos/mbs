@@ -8,9 +8,10 @@ class SocialAction {
         type: SocialActionConstant.ACTION_USER_DATA,
         userdata,
     });
-    public loginUser = (user: DataTypes.UserValueType) => ({
+    public loginUser = (user: DataTypes.UserValueType, onError?: () => void) => ({
         type: SocialActionConstant.ACTION_LOGIN_USER,
         user,
+        onError,
     });
     public logoutUser = () => ({ type: SocialActionConstant.ACTION_LOGOUT_USER });
 }

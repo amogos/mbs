@@ -15,7 +15,7 @@ const mapDispatchToProps = dispatch => {
         getSpaces: filters => dispatch(pageAction.getSpaces(filters)),
         gotoNotifications: () => dispatch(pageAction.gotoNotifications()),
         addBook: data => dispatch(pageAction.addBook(data)),
-        loginUser: user => dispatch(socialAction.loginUser(user)),
+        loginUser: (user, onError) => dispatch(socialAction.loginUser(user, onError)),
         logoutUser: () => dispatch(socialAction.logoutUser()),
         dispatch,
     };

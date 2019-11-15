@@ -1,11 +1,11 @@
 import React from 'react';
 import * as DataTypes from '../../../../shared/types';
-import { Button, Input, Icon } from 'antd';
+import { Button, Input, Icon, message } from 'antd';
 import { SocialNetwork } from './../../../../shared/constants/social_networks_constants';
 import { useInput } from './../../hooks/use_input';
 
 interface Props {
-    loginUser(userInfo: DataTypes.UserValueType): void;
+    loginUser(userInfo: DataTypes.UserValueType, onError?: () => void): void;
     logoutUser(): void;
 }
 
@@ -36,7 +36,7 @@ const CustomLogin = (props: Props) => {
                     userInfo.email = fields.username;
                     userInfo.password = fields.password;
                     userInfo.socialnetwork = SocialNetwork.custom;
-                    props.loginUser(userInfo);
+                    props.loginUser(userInfo, () => message.error('Account does not exist.'));
                 }}
             >
                 LogIn
