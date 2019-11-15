@@ -26,12 +26,6 @@
 .custom_button {
     width: 335px;
     height: 45px;
-    border-radius: 4px;
-    background: #20a35b;
-    color: white;
-    border: 0px transparent;
-    text-align: center;
-    margin: 5px;
 }
 
 .facebook_button {
