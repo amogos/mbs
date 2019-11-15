@@ -6,6 +6,7 @@ export interface UserRecordType {
     following: number[];
     rating: number;
     socialnetwork: number;
+    password: string;
 }
 
 export interface UserValueType {
@@ -15,6 +16,7 @@ export interface UserValueType {
     following: number[];
     rating: number;
     socialnetwork: number;
+    password: string;
 }
 
 export const NullUser: UserRecordType = {
@@ -25,4 +27,5 @@ export const NullUser: UserRecordType = {
     following: [],
     rating: 0,
     socialnetwork: 0,
+    password: '',
 };

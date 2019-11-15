@@ -13,15 +13,12 @@ interface Props {
 const GoogleLoginComponent = (props: Props) => {
     const responseGoogle = (response: any) => {
         if (response.profileObj) {
-            const loggedUser: DataTypes.UserValueType = {
-                name: response.profileObj.name,
-                email: response.profileObj.email,
-                picture: response.profileObj.imageUrl,
-                following: [],
-                rating: 0,
-                socialnetwork: SocialNetwork.google,
-            };
-            props.loginUser(loggedUser);
+            const userInfo: DataTypes.UserValueType = DataTypes.NullUser;
+            userInfo.name = response.profileObj.name;
+            userInfo.email = response.profileObj.email;
+            userInfo.picture = response.profileObj.imageUrl;
+            userInfo.socialnetwork = SocialNetwork.google;
+            props.loginUser(userInfo);
         }
     };
     return (

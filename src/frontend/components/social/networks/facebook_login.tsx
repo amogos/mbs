@@ -19,14 +19,11 @@ const responseFacebook = (response: any, props: Props) => {
         .split(' ')
         .join('');
     const email = response.email === undefined ? testUserEmail : response.email;
-    const userInfo: DataTypes.UserValueType = {
-        name: response.name,
-        email: email,
-        picture: response.picture.data.url,
-        following: [],
-        rating: 0,
-        socialnetwork: SocialNetwork.facebook,
-    };
+    const userInfo: DataTypes.UserValueType = DataTypes.NullUser;
+    userInfo.name = response.name;
+    userInfo.email = email;
+    userInfo.picture = response.picture.data.url;
+    userInfo.socialnetwork = SocialNetwork.facebook;
     props.loginUser(userInfo);
 };
 

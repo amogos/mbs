@@ -32,14 +32,10 @@ const CustomLogin = (props: Props) => {
             <Button
                 className="custom_button"
                 onClick={() => {
-                    const userInfo: DataTypes.UserValueType = {
-                        name: 'Iulia Mogos',
-                        email: 'daosmistique@yahoo.com',
-                        picture: '',
-                        following: [],
-                        rating: 0,
-                        socialnetwork: SocialNetwork.mock,
-                    };
+                    const userInfo: DataTypes.UserValueType = DataTypes.NullUser;
+                    userInfo.email = fields.username;
+                    userInfo.password = fields.password;
+                    userInfo.socialnetwork = SocialNetwork.custom;
                     props.loginUser(userInfo);
                 }}
             >
