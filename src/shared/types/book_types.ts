@@ -121,6 +121,7 @@ export interface BookRawValueType {
     holder: number;
     state: string;
     space: number;
+    category: number;
     return?: number;
 }
 
@@ -132,6 +133,7 @@ export interface BookRawRecordType {
     holder: number;
     state: string;
     space: number;
+    category: number;
     return?: number;
 }
 
@@ -141,6 +143,7 @@ export const NullRawBookRecordType: BookRawRecordType = {
     holder: 0,
     state: '',
     space: 0,
+    category: 0,
     isbn10: '',
     isbn13: '',
 };

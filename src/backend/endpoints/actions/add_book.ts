@@ -31,6 +31,7 @@ export async function addBook(
         isbn10: value.isbn10,
         isbn13: value.isbn13,
         space: value.space,
+        category: value.category.id,
     };
 
     const newBookDescription: DataTypes.BookDescriptionValueType = {
