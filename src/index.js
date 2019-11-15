@@ -20,6 +20,11 @@ import { pageAction } from './frontend/actions';
 const Pages = ['spaces', 'books'];
 
 const App = routeParams => {
+    if (!Object.fromEntries) {
+        //  compatibility with ie, edge, opera android
+        Object.fromEntries = arr => Object.assign({}, ...Array.from(arr, ([k, v]) => ({ [k]: v })));
+    }
+
     const query = Object.fromEntries(new URLSearchParams(useLocation().search));
     const id = routeParams.match.params.id;
     const urlparams = { id, query };
