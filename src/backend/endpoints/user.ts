@@ -108,8 +108,12 @@ export async function loginUser(
                 userData.picture = user.picture;
             }
         }
-    } else if (userData.socialnetwork === SocialNetwork.custom) {
-        if (user.password !== userData.password) {
+    } else {
+        const customAccountWithPasswordMismatch =
+            userData.socialnetwork === SocialNetwork.custom && user.password !== userData.password;
+        const socialNetworkMismatch = user.socialnetwork !== userData.socialnetwork;
+
+        if (customAccountWithPasswordMismatch || socialNetworkMismatch) {
             if (onUserError) onUserError();
             userData = NullUser;
         }

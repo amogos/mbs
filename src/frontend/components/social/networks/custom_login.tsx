@@ -36,7 +36,7 @@ const CustomLogin = (props: Props) => {
                     userInfo.email = fields.username;
                     userInfo.password = fields.password;
                     userInfo.socialnetwork = SocialNetwork.custom;
-                    props.loginUser(userInfo, () => message.error('Account does not exist.'));
+                    props.loginUser(userInfo, () => message.error('Email or password do not match.'));
                 }}
             >
                 LogIn
