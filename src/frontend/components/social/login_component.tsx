@@ -5,22 +5,17 @@ import MockLogin, { MockLogout } from './networks/mock_login';
 import CustomLogin, { CustomLogout } from './networks/custom_login';
 import * as DataTypes from './../../../shared/types';
 import { SocialNetwork } from './../../../shared/constants/social_networks_constants';
-import { Divider, Button, Input, Icon } from 'antd';
+import { Divider, Button, Input, Icon, message } from 'antd';
 import { useInput } from './../hooks/use_input';
 
 interface Props {
     userdata: DataTypes.UserRecordType;
+    signUpUser(userInfo: DataTypes.UserValueType): void;
     loginUser(userInfo: DataTypes.UserValueType, onError?: () => void): void;
     logoutUser(): void;
     onSignUpClick?: () => void;
     onSignInClick?: () => void;
 }
-
-const inputFields = {
-    name: '',
-    email: '',
-    password: '',
-};
 
 const SignIn = (props: Props) => {
     return (
@@ -41,6 +36,24 @@ const SignIn = (props: Props) => {
         </div>
     );
 };
+
+class FormData {
+    public name: string;
+    public email: string;
+    public password: string;
+
+    constructor() {
+        this.name = '';
+        this.email = '';
+        this.password = '';
+    }
+
+    public isValid() {
+        return this.name !== '' && this.email !== '' && this.password != '';
+    }
+}
+
+const inputFields = new FormData();
 
 const SignUp = (props: Props) => {
     return (
@@ -75,6 +88,8 @@ const SignUp = (props: Props) => {
                     userInfo.email = inputFields.email;
                     userInfo.password = inputFields.password;
                     userInfo.socialnetwork = SocialNetwork.custom;
+                    if (inputFields.isValid()) props.signUpUser(userInfo);
+                    else message.error('Invalid data');
                 }}
             >
                 SignUp

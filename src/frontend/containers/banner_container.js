@@ -16,6 +16,7 @@ const mapDispatchToProps = dispatch => {
         gotoNotifications: () => dispatch(pageAction.gotoNotifications()),
         addBook: data => dispatch(pageAction.addBook(data)),
         loginUser: (user, onError) => dispatch(socialAction.loginUser(user, onError)),
+        signUpUser: user => dispatch(socialAction.signUpUser(user)),
         logoutUser: () => dispatch(socialAction.logoutUser()),
         dispatch,
     };

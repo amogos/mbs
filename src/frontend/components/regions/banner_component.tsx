@@ -11,6 +11,7 @@ import ProfileComponent from '../../components/social/profile_component';
 interface Props {
     getSpaces(filters: string[]): void;
     gotoNotifications(): void;
+    signUpUser(userInfo: DataTypes.UserValueType): void;
     loginUser(userInfo: DataTypes.UserValueType, onError?: () => void): void;
     logoutUser(): void;
     userdata: DataTypes.UserRecordType;

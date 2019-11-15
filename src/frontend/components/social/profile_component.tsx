@@ -6,6 +6,7 @@ import { Logout } from './login_component';
 
 interface Props {
     userdata: DataTypes.UserRecordType;
+    signUpUser(userInfo: DataTypes.UserValueType): void;
     loginUser(userInfo: DataTypes.UserValueType, onError?: () => void): void;
     logoutUser(): void;
 }

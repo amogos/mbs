@@ -8,6 +8,12 @@ class SocialAction {
         type: SocialActionConstant.ACTION_USER_DATA,
         userdata,
     });
+
+    public signUpUser = (user: DataTypes.UserValueType) => ({
+        type: SocialActionConstant.ACTION_SIGN_UP_USER,
+        user,
+    });
+
     public loginUser = (user: DataTypes.UserValueType, onError?: () => void) => ({
         type: SocialActionConstant.ACTION_LOGIN_USER,
         user,

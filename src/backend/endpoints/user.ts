@@ -3,6 +3,7 @@ import * as DataTypes from '../../shared/types';
 import { urlUsers, urlUserReviews } from './constants';
 import * as SpacesEndpoint from './spaces';
 import { SocialNetwork } from '../../shared/constants/social_networks_constants';
+import { NullUser } from '../../shared/types';
 
 async function addNewUser(
     user: DataTypes.UserValueType,
@@ -74,6 +75,13 @@ export async function getUserRecordTypeFromEmail(
     return userData;
 }
 
+export async function signUpUser(
+    user: DataTypes.UserValueType,
+    onError: (resultCode: number) => void,
+): Promise<DataTypes.UserRecordType> {
+    return await addNewUser(user, onError);
+}
+
 export async function loginUser(
     user: DataTypes.UserValueType,
     onUserError: () => void,
@@ -99,6 +107,11 @@ export async function loginUser(
             if (!profilePictureAvailable) {
                 userData.picture = user.picture;
             }
+        }
+    } else if (userData.socialnetwork === SocialNetwork.custom) {
+        if (user.password !== userData.password) {
+            if (onUserError) onUserError();
+            userData = NullUser;
         }
     }
     return userData;
