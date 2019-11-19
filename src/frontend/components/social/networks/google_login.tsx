@@ -13,7 +13,7 @@ interface Props {
 const GoogleLoginComponent = (props: Props) => {
     const responseGoogle = (response: any) => {
         if (response.profileObj) {
-            const userInfo: DataTypes.UserValueType = DataTypes.NullUser;
+            const userInfo: DataTypes.UserValueType = DataTypes.NullUserRecordType;
             userInfo.name = response.profileObj.name;
             userInfo.email = response.profileObj.email;
             userInfo.picture = response.profileObj.imageUrl;

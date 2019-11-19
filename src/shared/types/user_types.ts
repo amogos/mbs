@@ -9,6 +9,17 @@ export interface UserRecordType {
     password: string;
 }
 
+export const NullUserRecordType: UserRecordType = {
+    id: 0,
+    name: '',
+    email: '',
+    picture: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
+    following: [],
+    rating: 0,
+    socialnetwork: 0,
+    password: '',
+};
+
 export interface UserValueType {
     name: string | undefined;
     email: string;
@@ -19,8 +30,7 @@ export interface UserValueType {
     password: string;
 }
 
-export const NullUser: UserRecordType = {
-    id: 0,
+export const NullUserValueType: UserValueType = {
     name: '',
     email: '',
     picture: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',

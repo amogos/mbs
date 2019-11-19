@@ -83,7 +83,7 @@ const SignUp = (props: Props) => {
             <Button
                 className="custom_button"
                 onClick={() => {
-                    const userInfo: DataTypes.UserValueType = DataTypes.NullUser;
+                    const userInfo: DataTypes.UserValueType = DataTypes.NullUserRecordType;
                     userInfo.name = inputFields.name;
                     userInfo.email = inputFields.email;
                     userInfo.password = inputFields.password;

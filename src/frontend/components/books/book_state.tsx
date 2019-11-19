@@ -84,7 +84,7 @@ const BookStateReturn = (props: Props) => {
         review.score = contentRating;
         props.reviewBook(review);
 
-        props.book.holder = DataTypes.NullUser;
+        props.book.holder = DataTypes.NullUserRecordType;
         props.returnBook(props.book.id);
     };
 

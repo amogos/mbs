@@ -19,7 +19,7 @@ const responseFacebook = (response: any, props: Props) => {
         .split(' ')
         .join('');
     const email = response.email === undefined ? testUserEmail : response.email;
-    const userInfo: DataTypes.UserValueType = DataTypes.NullUser;
+    const userInfo: DataTypes.UserValueType = DataTypes.NullUserRecordType;
     userInfo.name = response.name;
     userInfo.email = email;
     userInfo.picture = response.picture.data.url;

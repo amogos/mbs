@@ -3,13 +3,13 @@ import * as DataTypes from '../../shared/types';
 import { urlUsers, urlUserReviews } from './constants';
 import * as SpacesEndpoint from './spaces';
 import { SocialNetwork } from '../../shared/constants/social_networks_constants';
-import { NullUser } from '../../shared/types';
+import { NullUserRecordType } from '../../shared/types';
 
 async function addNewUser(
     user: DataTypes.UserValueType,
     onError: (resultCode: number) => void,
 ): Promise<DataTypes.UserRecordType> {
-    let newUserData = DataTypes.NullUser;
+    let newUserData = DataTypes.NullUserRecordType;
     await axios
         .post(urlUsers, user)
         .then(response => {
@@ -47,7 +47,7 @@ export async function getUserRecordTypeFromId(
     id: number,
     onError: (resultCode: number) => void,
 ): Promise<DataTypes.UserRecordType> {
-    let userRecord: DataTypes.UserRecordType = DataTypes.NullUser;
+    let userRecord: DataTypes.UserRecordType = DataTypes.NullUserRecordType;
     await axios
         .get(`${urlUsers}?id=${id}`)
         .then(response => {
@@ -63,7 +63,7 @@ export async function getUserRecordTypeFromEmail(
     email: string,
     onError: (resultCode: number) => void,
 ): Promise<DataTypes.UserRecordType> {
-    let userData = DataTypes.NullUser;
+    let userData = DataTypes.NullUserRecordType;
 
     await axios
         .get(`${urlUsers}?email=${email}`)
@@ -103,7 +103,7 @@ export async function loginUser(
                 await axios.put(userIdUrl, userData).catch(error => onError(error));
             }
             //  set some profile pic...if none set on our platform put the social media one ?????
-            const profilePictureAvailable = userData.picture !== DataTypes.NullUser.picture;
+            const profilePictureAvailable = userData.picture !== DataTypes.NullUserRecordType.picture;
             if (!profilePictureAvailable) {
                 userData.picture = user.picture;
             }
@@ -115,7 +115,7 @@ export async function loginUser(
 
         if (customAccountWithPasswordMismatch || socialNetworkMismatch) {
             if (onUserError) onUserError();
-            userData = NullUser;
+            userData = NullUserRecordType;
         }
     }
     return userData;

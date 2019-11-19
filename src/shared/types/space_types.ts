@@ -1,4 +1,4 @@
-import { UserRecordType, NullUser } from './user_types';
+import { UserRecordType, NullUserRecordType } from './user_types';
 
 export interface SpaceType {
     id: number;
@@ -15,7 +15,7 @@ export interface SpaceType {
 
 export const NullSpace: SpaceType = {
     id: 0,
-    user: NullUser,
+    user: NullUserRecordType,
     numberOfBooks: 0,
     numberOfFollowers: 0,
     rating: 0,

@@ -31,7 +31,7 @@ export default function socialReducer(state: any, action: any): any {
         case ActionConstants.default.SocialActionConstant.ACTION_LOGOUT_USER: {
             return Object.assign({}, state, {
                 action: SocialActionConstant.ACTION_LOGOUT_USER,
-                userdata: DataTypes.NullUser,
+                userdata: DataTypes.NullUserRecordType,
             });
         }
         case SocialActionConstant.ACTION_USER_DATA:
