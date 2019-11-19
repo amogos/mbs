@@ -1,363 +1,372 @@
 {
-    "users": [
+  "users": [
+    {
+      "name": "Iulia Mogos",
+      "email": "daosmistique@yahoo.com",
+      "picture": "https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=2223056511038248&height=50&width=50&ext=1566812071&hash=AeSiTV7UwEZToD2h",
+      "following": [
+        2
+      ],
+      "rating": 0,
+      "socialnetwork": 1,
+      "id": 1
+    },
+    {
+      "id": 2,
+      "name": "Florin Mogos",
+      "email": "florin.mogos@gmail.com",
+      "picture": "https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png",
+      "following": [],
+      "rating": 0,
+      "socialnetwork": 2
+    },
+    {
+      "id": 3,
+      "name": "Varza Murata",
+      "email": "varzamurata@gmail.com",
+      "picture": "https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png",
+      "following": [],
+      "rating": 0,
+      "socialnetwork": 2
+    },
+    {
+      "name": "Iulia enes5",
+      "email": "iulia.enes5@gmail.com",
+      "picture": "https://lh3.googleusercontent.com/a-/AAuE7mAjn_8ZJ9TIQOFXF7qG-z1sTmn79Q5TivauPPvvmA=s96-c",
+      "following": [],
+      "rating": 0,
+      "socialnetwork": 2,
+      "id": 4
+    },
+    {
+      "name": "Mock",
+      "email": "Mock@yahoo.com",
+      "picture": "https://image.flaticon.com/icons/svg/1814/1814777.svg",
+      "following": [
+        2
+      ],
+      "rating": 0,
+      "socialnetwork": 4,
+      "id": 5
+    }
+  ],
+  "queues": [],
+  "returns": [],
+  "languages": [
+    {
+      "id": 1,
+      "title": "EN"
+    },
+    {
+      "id": 2,
+      "title": "DE"
+    }
+  ],
+  "books": [
+    {
+      "owner": 1,
+      "holder": 4,
+      "state": "state.book.in.transit.to.holder",
+      "isbn10": "3314103484",
+      "isbn13": "9783314103483",
+      "space": 1,
+      "category": 37,
+      "id": 1,
+      "return": 1574484309158
+    },
+    {
+      "owner": 1,
+      "holder": -1,
+      "state": "state.book.idle",
+      "isbn10": "1234567890",
+      "isbn13": "",
+      "space": 1,
+      "category": 7,
+      "id": 2
+    }
+  ],
+  "book_reviews": [],
+  "user_reviews": [],
+  "orders": [],
+  "categories": [
+    {
+      "id": 1,
+      "title": "art & music"
+    },
+    {
+      "id": 2,
+      "title": "biographies"
+    },
+    {
+      "id": 3,
+      "title": "business"
+    },
+    {
+      "id": 4,
+      "title": "kids"
+    },
+    {
+      "id": 5,
+      "title": "comics"
+    },
+    {
+      "id": 6,
+      "title": "computer & tech"
+    },
+    {
+      "id": 7,
+      "title": "cooking"
+    },
+    {
+      "id": 8,
+      "title": "hobbies & crafts"
+    },
+    {
+      "id": 9,
+      "title": "gay & lesbian"
+    },
+    {
+      "id": 10,
+      "title": "health & fitness"
+    },
+    {
+      "id": 11,
+      "title": "history"
+    },
+    {
+      "id": 12,
+      "title": "home & garden"
+    },
+    {
+      "id": 13,
+      "title": "horror"
+    },
+    {
+      "id": 14,
+      "title": "entertainment"
+    },
+    {
+      "id": 15,
+      "title": "literture & fiction"
+    },
+    {
+      "id": 16,
+      "title": "medical"
+    },
+    {
+      "id": 14,
+      "title": "mysteries"
+    },
+    {
+      "id": 15,
+      "title": "parenting"
+    },
+    {
+      "id": 16,
+      "title": "social sciences"
+    },
+    {
+      "id": 17,
+      "title": "religion"
+    },
+    {
+      "id": 18,
+      "title": "romance & sexuality"
+    },
+    {
+      "id": 19,
+      "title": "science & math"
+    },
+    {
+      "id": 20,
+      "title": "sci-fi & fantasy"
+    },
+    {
+      "id": 21,
+      "title": "sports"
+    },
+    {
+      "id": 22,
+      "title": "teens"
+    },
+    {
+      "id": 21,
+      "title": "travel"
+    },
+    {
+      "id": 22,
+      "title": "true crime"
+    },
+    {
+      "id": 23,
+      "title": "philosophy"
+    },
+    {
+      "id": 24,
+      "title": "photography"
+    },
+    {
+      "id": 25,
+      "title": "family & care"
+    },
+    {
+      "id": 26,
+      "title": "animal rights & pets"
+    },
+    {
+      "id": 27,
+      "title": "engineering"
+    },
+    {
+      "id": 28,
+      "title": "architecture & interior design"
+    },
+    {
+      "id": 29,
+      "title": "poetry"
+    },
+    {
+      "id": 30,
+      "title": "nonfiction(general)"
+    },
+    {
+      "title": "education",
+      "id": 31
+    },
+    {
+      "title": "self-help",
+      "id": 32
+    },
+    {
+      "title": "business & economics",
+      "id": 33
+    },
+    {
+      "title": "computers",
+      "id": 34
+    },
+    {
+      "title": "stoics",
+      "id": 35
+    },
+    {
+      "title": "computer games",
+      "id": 36
+    },
+    {
+      "title": "juvenile fiction",
+      "id": 37
+    }
+  ],
+  "spaces": [
+    {
+      "id": 1,
+      "owner": 1,
+      "subscription": 0,
+      "title": "daosmistique@yahoo.com",
+      "description": "Iulia Mogos Default",
+      "transport": 0,
+      "picture": "https://www.berlin.de/converjon/?ts=1429660132&width=166&height=125&url=https%3A%2F%2Fwww.berlin.de%2Fba-lichtenberg%2Fauf-einen-blick%2Fbuergerservice%2Fbildung%2Fmdb-balichtenberghohenschoenhausen-bibliotheken-kisch_aussen.jpg"
+    },
+    {
+      "id": 2,
+      "owner": 2,
+      "subscription": 0,
+      "title": "THE NUANCE",
+      "description": "The Unsettling Ways Tech Is Changing Your Personal Reality",
+      "transport": 0,
+      "picture": "https://www.berlin.de/converjon/?ts=1429660132&width=166&height=125&url=https%3A%2F%2Fwww.berlin.de%2Fba-lichtenberg%2Fauf-einen-blick%2Fbuergerservice%2Fbildung%2Fmdb-balichtenberghohenschoenhausen-bibliotheken-kisch_aussen.jpg"
+    },
+    {
+      "id": 3,
+      "owner": 3,
+      "subscription": 0,
+      "title": "OneZero",
+      "description": "The Illegal Wildlife Market Is Booming. Encrypted Messaging Makes It Worse.The Illegal Wildlife Market Is Booming. Encrypted Messaging Makes It Worse.",
+      "transport": 0,
+      "picture": "https://www.google.com/search?q=spaces&rlz=1C1CHBF_enDE750DE750&sxsrf=ACYBGNRleGx6Q7ZoTRX3vN_75uHUaGHG1A:1569381920271&source=lnms&tbm=isch&sa=X&ved=0ahUKEwi0qP-eg-vkAhWFLlAKHTGqCzIQ_AUIEygC&biw=1920&bih=937#imgrc=Mj4n4nKAbjgIZM:"
+    },
+    {
+      "owner": 4,
+      "subscription": 0,
+      "title": "iulia.enes5@gmail.com",
+      "description": "Iulia enes5 Default",
+      "transport": 0,
+      "picture": "",
+      "id": 4
+    },
+    {
+      "owner": 5,
+      "subscription": 0,
+      "title": "Mock@yahoo.com",
+      "description": "Mock",
+      "transport": 0,
+      "picture": "",
+      "id": 5
+    }
+  ],
+  "formats": [
+    {
+      "id": 1,
+      "type": "hardcover"
+    },
+    {
+      "id": 2,
+      "type": "e-book"
+    },
+    {
+      "id": 3,
+      "type": "audio-book"
+    }
+  ],
+  "books_descriptions": [
+    {
+      "title": "Armstrong (German Edition)",
+      "subtitle": "Armstrong (German Edition)",
+      "language": {
+        "id": 1,
+        "title": "EN"
+      },
+      "isbn10": "3314103484",
+      "isbn13": "9783314103483",
+      "format": 1,
+      "category": [
         {
-            "name": "Iulia Mogos",
-            "email": "daosmistique@yahoo.com",
-            "picture": "https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=2223056511038248&height=50&width=50&ext=1566812071&hash=AeSiTV7UwEZToD2h",
-            "following": [2],
-            "rating": 0,
-            "socialnetwork": 1,
-            "id": 1
-        },
-        {
-            "id": 2,
-            "name": "Florin Mogos",
-            "email": "florin.mogos@gmail.com",
-            "picture": "https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png",
-            "following": [],
-            "rating": 0,
-            "socialnetwork": 2
-        },
-        {
-            "id": 3,
-            "name": "Varza Murata",
-            "email": "varzamurata@gmail.com",
-            "picture": "https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png",
-            "following": [],
-            "rating": 0,
-            "socialnetwork": 2
-        },
-        {
-            "name": "Iulia enes5",
-            "email": "iulia.enes5@gmail.com",
-            "picture": "https://lh3.googleusercontent.com/a-/AAuE7mAjn_8ZJ9TIQOFXF7qG-z1sTmn79Q5TivauPPvvmA=s96-c",
-            "following": [],
-            "rating": 0,
-            "socialnetwork": 2,
-            "id": 4
-        },
-        {
-            "name": "Mock",
-            "email": "Mock@yahoo.com",
-            "picture": "https://image.flaticon.com/icons/svg/1814/1814777.svg",
-            "following": [2],
-            "rating": 0,
-            "socialnetwork": 4,
-            "id": 5
+          "id": 37,
+          "title": "juvenile fiction"
         }
-    ],
-    "queues": [],
-    "returns": [],
-    "languages": [
+      ],
+      "author": [
+        "Torben Kuhlmann"
+      ],
+      "length": 128,
+      "image": "http://books.google.com/books/content?id=ccCYDAEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+      "description": "Praise for Armstrong—The Adventurous Journey of a Mouse to the Moon “‘One Small Step for a Mouse’ indeed.”—Kirkus Reviews, Starred Review “This beautifully illustrated story is a feast for mind and eyes and a strong selection to complement STEAM curricula.”—School Library Journal, Starred Review",
+      "id": 1
+    },
+    {
+      "title": "business book",
+      "subtitle": "",
+      "language": {
+        "id": 1,
+        "title": "EN"
+      },
+      "isbn10": "1234567890",
+      "isbn13": "",
+      "format": 1,
+      "category": [
         {
-            "id": 1,
-            "title": "EN"
-        },
-        {
-            "id": 2,
-            "title": "DE"
+          "id": 7,
+          "title": "cooking"
         }
-    ],
-    "books": [
-        {
-            "owner": 1,
-            "holder": -1,
-            "state": "state.book.idle",
-            "isbn10": "3314103484",
-            "isbn13": "9783314103483",
-            "space": 1,
-            "category": 37,
-            "id": 1
-        },
-        {
-            "owner": 1,
-            "holder": -1,
-            "state": "state.book.idle",
-            "isbn10": "1234567890",
-            "isbn13": "",
-            "space": 1,
-            "category": 7,
-            "id": 2
-        }
-    ],
-    "book_reviews": [],
-    "user_reviews": [],
-    "orders": [],
-    "categories": [
-        {
-            "id": 1,
-            "title": "art & music"
-        },
-        {
-            "id": 2,
-            "title": "biographies"
-        },
-        {
-            "id": 3,
-            "title": "business"
-        },
-        {
-            "id": 4,
-            "title": "kids"
-        },
-        {
-            "id": 5,
-            "title": "comics"
-        },
-        {
-            "id": 6,
-            "title": "computer & tech"
-        },
-        {
-            "id": 7,
-            "title": "cooking"
-        },
-        {
-            "id": 8,
-            "title": "hobbies & crafts"
-        },
-        {
-            "id": 9,
-            "title": "gay & lesbian"
-        },
-        {
-            "id": 10,
-            "title": "health & fitness"
-        },
-        {
-            "id": 11,
-            "title": "history"
-        },
-        {
-            "id": 12,
-            "title": "home & garden"
-        },
-        {
-            "id": 13,
-            "title": "horror"
-        },
-        {
-            "id": 14,
-            "title": "entertainment"
-        },
-        {
-            "id": 15,
-            "title": "literture & fiction"
-        },
-        {
-            "id": 16,
-            "title": "medical"
-        },
-        {
-            "id": 14,
-            "title": "mysteries"
-        },
-        {
-            "id": 15,
-            "title": "parenting"
-        },
-        {
-            "id": 16,
-            "title": "social sciences"
-        },
-        {
-            "id": 17,
-            "title": "religion"
-        },
-        {
-            "id": 18,
-            "title": "romance & sexuality"
-        },
-        {
-            "id": 19,
-            "title": "science & math"
-        },
-        {
-            "id": 20,
-            "title": "sci-fi & fantasy"
-        },
-        {
-            "id": 21,
-            "title": "sports"
-        },
-        {
-            "id": 22,
-            "title": "teens"
-        },
-        {
-            "id": 21,
-            "title": "travel"
-        },
-        {
-            "id": 22,
-            "title": "true crime"
-        },
-        {
-            "id": 23,
-            "title": "philosophy"
-        },
-        {
-            "id": 24,
-            "title": "photography"
-        },
-        {
-            "id": 25,
-            "title": "family & care"
-        },
-        {
-            "id": 26,
-            "title": "animal rights & pets"
-        },
-        {
-            "id": 27,
-            "title": "engineering"
-        },
-        {
-            "id": 28,
-            "title": "architecture & interior design"
-        },
-        {
-            "id": 29,
-            "title": "poetry"
-        },
-        {
-            "id": 30,
-            "title": "nonfiction(general)"
-        },
-        {
-            "title": "education",
-            "id": 31
-        },
-        {
-            "title": "self-help",
-            "id": 32
-        },
-        {
-            "title": "business & economics",
-            "id": 33
-        },
-        {
-            "title": "computers",
-            "id": 34
-        },
-        {
-            "title": "stoics",
-            "id": 35
-        },
-        {
-            "title": "computer games",
-            "id": 36
-        },
-        {
-            "title": "juvenile fiction",
-            "id": 37
-        }
-    ],
-    "spaces": [
-        {
-            "id": 1,
-            "owner": 1,
-            "subscription": 0,
-            "title": "daosmistique@yahoo.com",
-            "description": "Iulia Mogos Default",
-            "transport": 0,
-            "picture": "https://www.berlin.de/converjon/?ts=1429660132&width=166&height=125&url=https%3A%2F%2Fwww.berlin.de%2Fba-lichtenberg%2Fauf-einen-blick%2Fbuergerservice%2Fbildung%2Fmdb-balichtenberghohenschoenhausen-bibliotheken-kisch_aussen.jpg"
-        },
-        {
-            "id": 2,
-            "owner": 2,
-            "subscription": 0,
-            "title": "THE NUANCE",
-            "description": "The Unsettling Ways Tech Is Changing Your Personal Reality",
-            "transport": 0,
-            "picture": "https://www.berlin.de/converjon/?ts=1429660132&width=166&height=125&url=https%3A%2F%2Fwww.berlin.de%2Fba-lichtenberg%2Fauf-einen-blick%2Fbuergerservice%2Fbildung%2Fmdb-balichtenberghohenschoenhausen-bibliotheken-kisch_aussen.jpg"
-        },
-        {
-            "id": 3,
-            "owner": 3,
-            "subscription": 0,
-            "title": "OneZero",
-            "description": "The Illegal Wildlife Market Is Booming. Encrypted Messaging Makes It Worse.The Illegal Wildlife Market Is Booming. Encrypted Messaging Makes It Worse.",
-            "transport": 0,
-            "picture": "https://www.google.com/search?q=spaces&rlz=1C1CHBF_enDE750DE750&sxsrf=ACYBGNRleGx6Q7ZoTRX3vN_75uHUaGHG1A:1569381920271&source=lnms&tbm=isch&sa=X&ved=0ahUKEwi0qP-eg-vkAhWFLlAKHTGqCzIQ_AUIEygC&biw=1920&bih=937#imgrc=Mj4n4nKAbjgIZM:"
-        },
-        {
-            "owner": 4,
-            "subscription": 0,
-            "title": "iulia.enes5@gmail.com",
-            "description": "Iulia enes5 Default",
-            "transport": 0,
-            "picture": "",
-            "id": 4
-        },
-        {
-            "owner": 5,
-            "subscription": 0,
-            "title": "Mock@yahoo.com",
-            "description": "Mock",
-            "transport": 0,
-            "picture": "",
-            "id": 5
-        }
-    ],
-    "formats": [
-        {
-            "id": 1,
-            "type": "hardcover"
-        },
-        {
-            "id": 2,
-            "type": "e-book"
-        },
-        {
-            "id": 3,
-            "type": "audio-book"
-        }
-    ],
-    "books_descriptions": [
-        {
-            "title": "Armstrong (German Edition)",
-            "subtitle": "Armstrong (German Edition)",
-            "language": {
-                "id": 1,
-                "title": "EN"
-            },
-            "isbn10": "3314103484",
-            "isbn13": "9783314103483",
-            "format": 1,
-            "category": [
-                {
-                    "id": 37,
-                    "title": "juvenile fiction"
-                }
-            ],
-            "author": ["Torben Kuhlmann"],
-            "length": 128,
-            "image": "http://books.google.com/books/content?id=ccCYDAEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
-            "description": "Praise for Armstrong—The Adventurous Journey of a Mouse to the Moon “‘One Small Step for a Mouse’ indeed.”—Kirkus Reviews, Starred Review “This beautifully illustrated story is a feast for mind and eyes and a strong selection to complement STEAM curricula.”—School Library Journal, Starred Review",
-            "id": 1
-        },
-        {
-            "title": "business book",
-            "subtitle": "",
-            "language": {
-                "id": 1,
-                "title": "EN"
-            },
-            "isbn10": "1234567890",
-            "isbn13": "",
-            "format": 1,
-            "category": [
-                {
-                    "id": 7,
-                    "title": "cooking"
-                }
-            ],
-            "author": ["me"],
-            "length": 123,
-            "image": "https://vignette.wikia.nocookie.net/superfriends/images/a/a5/No_Photo_Available.jpg/revision/latest?cb=20090329133959",
-            "description": "",
-            "id": 2
-        }
-    ]
+      ],
+      "author": [
+        "me"
+      ],
+      "length": 123,
+      "image": "https://vignette.wikia.nocookie.net/superfriends/images/a/a5/No_Photo_Available.jpg/revision/latest?cb=20090329133959",
+      "description": "",
+      "id": 2
+    }
+  ]
 }

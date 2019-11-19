@@ -10,7 +10,7 @@ export async function getQueueNotifications(
     onError: (resultCode: number) => void,
 ): Promise<DataTypes.QueueNotificationRecordType[]> {
     const rentalNotifications: DataTypes.QueueNotificationRecordType[] = [];
-    let responseArray: any = null;
+    let responseArray: DataTypes.QueueRecordType[] = [];
 
     await axios
         .get(urlQueues + '?ownerId=' + user.id)
@@ -22,21 +22,20 @@ export async function getQueueNotifications(
 
     for (let i = 0; i < responseArray.length; i++) {
         const item = responseArray[i];
-        const description = await getBookDescriptionForISBN(item.isbn10, item.isbn13, onError);
-        const user = await getUserRecordTypeFromId(item.userId, onError);
         const rawBook = await getBookRawRecordTypeFromId(item.bookId, onError);
+        const description = await getBookDescriptionForISBN(rawBook.isbn10, rawBook.isbn13, onError);
+        const user = await getUserRecordTypeFromId(item.userId, onError);
         const notAssigned = rawBook.holder < 0;
         const alreadyOneRequestForBookIdProcessed = rentalNotifications.find(
             notifiction => notifiction.bookId === item.bookId,
         );
         if (notAssigned && !alreadyOneRequestForBookIdProcessed) {
             const notification: DataTypes.QueueNotificationRecordType = {
-                id: item.id,
-                bookTitle: description.title,
-                bookId: item.bookId,
+                ...item,
                 user: user,
-                duration: item.duration,
+                bookTitle: description.title,
             };
+
             rentalNotifications.push(notification);
         }
     }
