@@ -1,13 +1,13 @@
 import { UserRecordType } from './user_types';
 
-export interface ReturnRecordType {
+export interface ReturnNotificationRecordType {
     id: number;
     bookId: number;
     userId: number;
     ownerId: number;
 }
 
-export interface ReturnValueType {
+export interface ReturnNotificationValueType {
     bookId: number;
     userId: number;
     ownerId: number;
