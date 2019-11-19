@@ -35,7 +35,7 @@ class NotificationAction {
         callback,
     });
 
-    public getQueueForUser = (callback: (reviews: DataTypes.QueueNotificationRecordType[]) => void) => ({
+    public getQueueForUser = (callback: (reviews: DataTypes.QueueNotificationType[]) => void) => ({
         type: ActionTypes.default.NotificationActionConstant.ACTION_GET_QUEUE,
         callback,
     });

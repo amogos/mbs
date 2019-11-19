@@ -8,9 +8,9 @@ import { getBookDescriptionForISBN } from './books_descriptions';
 export async function getQueueNotifications(
     user: DataTypes.UserRecordType,
     onError: (resultCode: number) => void,
-): Promise<DataTypes.QueueNotificationRecordType[]> {
-    const rentalNotifications: DataTypes.QueueNotificationRecordType[] = [];
-    let responseArray: DataTypes.QueueRecordType[] = [];
+): Promise<DataTypes.QueueNotificationType[]> {
+    const rentalNotifications: DataTypes.QueueNotificationType[] = [];
+    let responseArray: DataTypes.QueueNotificationRecordType[] = [];
 
     await axios
         .get(urlQueues + '?ownerId=' + user.id)
@@ -30,7 +30,7 @@ export async function getQueueNotifications(
             notifiction => notifiction.bookId === item.bookId,
         );
         if (notAssigned && !alreadyOneRequestForBookIdProcessed) {
-            const notification: DataTypes.QueueNotificationRecordType = {
+            const notification: DataTypes.QueueNotificationType = {
                 ...item,
                 user: user,
                 bookTitle: description.title,

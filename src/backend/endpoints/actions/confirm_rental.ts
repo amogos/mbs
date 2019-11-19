@@ -24,7 +24,7 @@ export async function confirmRental(
     const value = {
         ...bookResponse.data,
         state: BookStateTypes.default.STATE_BOOK_IN_TRANSIT_TO_HOLDER,
-        holder: rental.user.id,
+        holder: rental.userId,
         return: Date.now() + rental.duration * OneDayMilliseconds,
     };
     await axios.put(bookIdUrl, value).catch(error => {

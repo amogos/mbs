@@ -2,10 +2,11 @@ export * from './types/user_types';
 export * from './types/book_types';
 export * from './types/language_types';
 export * from './types/category_types';
-export * from './types/notification_types';
+export * from './types/return_notification_types';
 export * from './types/space_types';
 export * from './types/review_types';
 export * from './types/format_types';
+export * from './types/queue_notification_types';
 
 export interface BannerAttributes {
     showCategoryFiltering: boolean;

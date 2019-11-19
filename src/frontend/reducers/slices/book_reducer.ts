@@ -23,7 +23,7 @@ export default function bookReducer(state: any, action: any): any {
             return state;
         }
         case BookActionConstant.ACTION_ASK_BOOK: {
-            const notification: DataTypes.QueueNotificationType = DataTypes.NullQueueNotificationValue;
+            const notification: DataTypes.QueueNotificationValueType = DataTypes.NullQueueNotificationValue;
             notification.bookId = action.bookId;
             notification.ownerId = action.ownerId;
             notification.userId = state.userdata.id;

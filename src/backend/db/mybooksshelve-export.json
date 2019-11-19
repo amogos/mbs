@@ -50,15 +50,7 @@
       "id": 5
     }
   ],
-  "queues": [
-    {
-      "userId": 4,
-      "ownerId": 1,
-      "bookId": 1,
-      "duration": "4",
-      "id": 1
-    }
-  ],
+  "queues": [],
   "returns": [],
   "languages": [
     {
@@ -80,7 +72,7 @@
       "space": 1,
       "category": 37,
       "id": 1,
-      "return": 1574484309158
+      "return": 1574513951942
     },
     {
       "owner": 1,
@@ -100,6 +92,13 @@
       "comment": "qwqewqe",
       "score": 4,
       "id": 1
+    },
+    {
+      "isbn10": "3314103484",
+      "isbn13": "9783314103483",
+      "comment": "best ever",
+      "score": 5,
+      "id": 2
     }
   ],
   "user_reviews": [],

@@ -5,13 +5,13 @@ import * as DataTypes from '../../shared/types';
 export async function getQueue(
     userId: number,
     onError: (resultCode: number) => void,
-): Promise<DataTypes.QueueRecordType[]> {
-    let queueArray: DataTypes.QueueRecordType[] = [];
+): Promise<DataTypes.QueueNotificationRecordType[]> {
+    const queueArray: DataTypes.QueueNotificationRecordType[] = [];
 
     await axios
         .get(urlQueues + '?userId=' + userId)
         .then(response =>
-            response.data.forEach(async (item: DataTypes.QueueRecordType) => {
+            response.data.forEach(async (item: DataTypes.QueueNotificationRecordType) => {
                 queueArray.push(item);
             }),
         )
@@ -30,7 +30,8 @@ export async function getFutureAvailabilityForBookInMilliseconds(
         .then(response => {
             if (response.data.length > 0) {
                 response.data.forEach(
-                    (item: DataTypes.QueueRecordType) => (returnDateMilliseconds += OneDayMilliseconds * item.duration),
+                    (item: DataTypes.QueueNotificationRecordType) =>
+                        (returnDateMilliseconds += OneDayMilliseconds * item.duration),
                 );
             }
         })

@@ -28,16 +28,18 @@ export default function pageReducer(state: any, action: any): any {
         }
         case PageActionConstant.ACTION_GOTO_LIST_BOOKS: {
             const progressSpinner = message.loading(Strings.MYBOOKSHELVE_ACTION_IN_PROGRESS);
-            databseInstance.getQueue(state.userdata.id, handleError).then((result1: DataTypes.QueueRecordType[]) => {
-                databseInstance.getBooks(action.filters, handleError).then(result2 => {
-                    setTimeout(progressSpinner, 0);
-                    Store.dispatch(pageAction.refreshState({ queueArray: result1, append: false }));
-                    Store.dispatch(pageAction.refreshState({ booksArray: result2, append: true }));
-                    action.callbacks.forEach((callback: (books: DataTypes.BookRecordType[]) => void) =>
-                        callback(result2),
-                    );
+            databseInstance
+                .getQueue(state.userdata.id, handleError)
+                .then((result1: DataTypes.QueueNotificationRecordType[]) => {
+                    databseInstance.getBooks(action.filters, handleError).then(result2 => {
+                        setTimeout(progressSpinner, 0);
+                        Store.dispatch(pageAction.refreshState({ queueArray: result1, append: false }));
+                        Store.dispatch(pageAction.refreshState({ booksArray: result2, append: true }));
+                        action.callbacks.forEach((callback: (books: DataTypes.BookRecordType[]) => void) =>
+                            callback(result2),
+                        );
+                    });
                 });
-            });
 
             return Object.assign({}, state, {
                 action: PageActionConstant.ACTION_GOTO_LIST_BOOKS,

@@ -14,10 +14,10 @@ interface Props {
         comment: string,
         callback: () => void,
     ): void;
-    confirmRental(rental: DataTypes.QueueNotificationRecordType, callback: () => void): void;
-    rejectRental(rental: DataTypes.QueueNotificationRecordType, callback: () => void): void;
+    confirmRental(rental: DataTypes.QueueNotificationType, callback: () => void): void;
+    rejectRental(rental: DataTypes.QueueNotificationType, callback: () => void): void;
     getReturns(callback: (returns: DataTypes.ReturnNotificationType[]) => void): void;
-    getQueue(callback: (returns: DataTypes.QueueNotificationRecordType[]) => void): void;
+    getQueue(callback: (returns: DataTypes.QueueNotificationType[]) => void): void;
 }
 
 interface Notification {
@@ -54,11 +54,11 @@ const NotificationsComponent = (props: Props) => {
         setNotifications(leftNotifications);
     };
 
-    const confirmRental = (queueElement: DataTypes.QueueNotificationRecordType) => {
+    const confirmRental = (queueElement: DataTypes.QueueNotificationType) => {
         props.confirmRental(queueElement, () => resolveNotification(`q${queueElement.id}`));
     };
 
-    const rejectRental = (queueElement: DataTypes.QueueNotificationRecordType) => {
+    const rejectRental = (queueElement: DataTypes.QueueNotificationType) => {
         props.rejectRental(queueElement, () => resolveNotification(`q${queueElement.id}`));
     };
 
@@ -76,8 +76,8 @@ const NotificationsComponent = (props: Props) => {
         setSelection(emptySelection);
     };
 
-    const onQueueReceived = (queue: DataTypes.QueueNotificationRecordType[]) => {
-        let queueNotifications: Notification[] = notifications;
+    const onQueueReceived = (queue: DataTypes.QueueNotificationType[]) => {
+        const queueNotifications: Notification[] = notifications;
         queue.forEach(item => {
             queueNotifications.push({
                 actions: [
@@ -92,12 +92,12 @@ const NotificationsComponent = (props: Props) => {
             });
         });
 
-        let state = [...notifications];
+        const state = [...notifications];
         setNotifications(state);
     };
 
     const onReturnsReceived = (returns: DataTypes.ReturnNotificationType[]) => {
-        let returnsNotifications: Notification[] = notifications;
+        const returnsNotifications: Notification[] = notifications;
         returns.forEach(item => {
             returnsNotifications.push({
                 actions: [<a onClick={() => rateReturn(item)}>rate</a>],
@@ -109,7 +109,7 @@ const NotificationsComponent = (props: Props) => {
             });
         });
 
-        let state = [...notifications];
+        const state = [...notifications];
         setNotifications(state);
     };
 
