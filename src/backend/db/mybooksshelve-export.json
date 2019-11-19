@@ -50,7 +50,15 @@
       "id": 5
     }
   ],
-  "queues": [],
+  "queues": [
+    {
+      "userId": 4,
+      "ownerId": 1,
+      "bookId": 1,
+      "duration": "4",
+      "id": 1
+    }
+  ],
   "returns": [],
   "languages": [
     {
@@ -65,8 +73,8 @@
   "books": [
     {
       "owner": 1,
-      "holder": 4,
-      "state": "state.book.in.transit.to.holder",
+      "holder": -1,
+      "state": "state.book.idle",
       "isbn10": "3314103484",
       "isbn13": "9783314103483",
       "space": 1,
@@ -85,7 +93,15 @@
       "id": 2
     }
   ],
-  "book_reviews": [],
+  "book_reviews": [
+    {
+      "isbn10": "3314103484",
+      "isbn13": "9783314103483",
+      "comment": "qwqewqe",
+      "score": 4,
+      "id": 1
+    }
+  ],
   "user_reviews": [],
   "orders": [],
   "categories": [

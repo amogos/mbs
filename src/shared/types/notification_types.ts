@@ -3,14 +3,22 @@ import { UserRecordType } from './user_types';
 export interface QueueNotificationRecordType {
     id: number;
     user: UserRecordType;
+    ownerId: number;
     bookTitle: string;
     bookId: number;
     duration: number;
 }
 
+export const NullQueueNotificationValue: QueueNotificationType = {
+    userId: 0,
+    ownerId: 0,
+    bookId: 0,
+    duration: 0,
+};
+
 export interface QueueNotificationType {
-    user: UserRecordType;
-    bookTitle: string;
+    userId: number;
+    ownerId: 0;
     bookId: number;
     duration: number;
 }

@@ -23,15 +23,16 @@ export default function bookReducer(state: any, action: any): any {
             return state;
         }
         case BookActionConstant.ACTION_ASK_BOOK: {
-            const bookId: number = action.bookId;
-            const ownerId: number = action.ownerId;
-            const userdata = state.userdata;
-            const duration = action.duration;
+            const notification: DataTypes.QueueNotificationType = DataTypes.NullQueueNotificationValue;
+            notification.bookId = action.bookId;
+            notification.ownerId = action.ownerId;
+            notification.userId = state.userdata.id;
+            notification.duration = action.duration;
 
-            databseInstance.askBook(bookId, ownerId, userdata, duration, handleError).then(() => {});
+            databseInstance.askBook(notification, handleError).then(() => {});
             return Object.assign({}, state, {
                 action: BookActionConstant.ACTION_ASK_BOOK,
-                bookChangingId: bookId,
+                bookChangingId: action.bookId,
             });
         }
         case BookActionConstant.ACTION_RETURN_BOOK: {
