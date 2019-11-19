@@ -29,7 +29,7 @@ export async function getReviewStatisticsForBook(
         .get(`${urlBookReviews}?bookId=${bookId}`)
         .then(response => {
             if (response.data.length > 0) {
-                response.data.forEach((item: DataTypes.BookReviewRecordType) => (contentScore += item.contentScore));
+                response.data.forEach((item: DataTypes.BookReviewRecordType) => (contentScore += item.score));
                 contentScore = contentScore / response.data.length;
                 numReviews = response.data.length;
             }

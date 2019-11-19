@@ -1,17 +1,19 @@
 export interface BookReviewRecordType {
     id: number;
-    bookId: number;
+    isbn10: string;
+    isbn13: string;
     comment: string;
-    contentScore: number;
-    stateScore: number;
+    score: number;
 }
 
 export interface BookReviewValueType {
-    bookId: number;
+    isbn10: string;
+    isbn13: string;
     comment: string;
-    contentScore: number;
-    stateScore: number;
+    score: number;
 }
+
+export const NullReviewValueType: BookReviewValueType = { isbn10: '', isbn13: '', comment: '', score: 0 };
 
 export interface UserReviewRecordType {
     bookId: number;

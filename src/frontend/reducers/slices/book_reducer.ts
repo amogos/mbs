@@ -43,14 +43,7 @@ export default function bookReducer(state: any, action: any): any {
             });
         }
         case BookActionConstant.ACTION_REVIEW_BOOK: {
-            databseInstance.reviewBook(
-                action.bookId,
-                state.userdata.id,
-                action.comment,
-                action.contentScore,
-                action.stateScore,
-                handleError,
-            );
+            databseInstance.reviewBook(action.review, handleError);
             return Object.assign({}, state, {
                 bookChangingId: action.bookId,
             });

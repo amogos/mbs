@@ -36,12 +36,9 @@ class BookAction {
         bookId,
     });
 
-    public reviewBook = (bookId: number, comment: string, contentScore: number, stateScore: number) => ({
+    public reviewBook = (review: DataTypes.BookReviewValueType) => ({
         type: ActionTypes.default.BookActionConstant.ACTION_REVIEW_BOOK,
-        bookId,
-        comment,
-        contentScore,
-        stateScore,
+        review,
     });
 
     public getReviewsForBook = (

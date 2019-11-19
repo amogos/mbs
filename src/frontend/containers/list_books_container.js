@@ -18,8 +18,7 @@ const mapDispatchToProps = dispatch => {
         deleteBook: bookId => dispatch(bookAction.deleteBook(bookId)),
         askBook: (bookId, ownerId, duration) => dispatch(bookAction.askBook(bookId, ownerId, duration)),
         returnBook: bookId => dispatch(bookAction.returnBook(bookId)),
-        reviewBook: (bookId, comment, contentScore, stateScore) =>
-            dispatch(bookAction.reviewBook(bookId, comment, contentScore, stateScore)),
+        reviewBook: review => dispatch(bookAction.reviewBook(review)),
         getReviewsForBook: (bookId, callback) => dispatch(bookAction.getReviewsForBook(bookId, callback)),
         dispatch,
     };

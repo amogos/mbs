@@ -23,7 +23,7 @@ const IconText = (param: Icon) => (
 
 interface Props {
     userdata: DataTypes.UserRecordType;
-    reviewBook(bookId: number, comment: string, contentScore: number, stateScore: number): void;
+    reviewBook(review: DataTypes.BookReviewValueType): void;
     queueArray: DataTypes.QueueRecordType[];
     deleteBook(bookId: number): void;
     askBook(bookId: number, ownerId: number, duration: number): void;
@@ -77,7 +77,13 @@ const BookStateReturn = (props: Props) => {
         stateRating: number,
         comment: string,
     ) => {
-        props.reviewBook(props.book.id, comment, contentRating, stateRating);
+        const review: DataTypes.BookReviewValueType = DataTypes.NullReviewValueType;
+        review.comment = comment;
+        review.isbn10 = book.isbn10;
+        review.isbn13 = book.isbn13;
+        review.score = contentRating;
+        props.reviewBook(review);
+
         props.book.holder = DataTypes.NullUser;
         props.returnBook(props.book.id);
     };
