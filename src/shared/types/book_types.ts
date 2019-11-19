@@ -1,5 +1,5 @@
 import { LanguageRecordType, NullLanguage } from './language_types';
-import { CategoryRecordType, NullCategory } from './category_types';
+import { CategoryRecordType, NullCategoryRecordType } from './category_types';
 import { UserRecordType, NullUserRecordType } from './user_types';
 import { SpaceType } from './space_types';
 import * as BookStates from './../constants/book_states_constant';
@@ -40,7 +40,7 @@ export const EmptyBookValueType = () => {
         isbn10: '',
         isbn13: '',
         holder: NullUserRecordType,
-        category: NullCategory,
+        category: NullCategoryRecordType,
         format: 1,
         space: 0,
         description: '',
