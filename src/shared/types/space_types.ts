@@ -13,7 +13,7 @@ export interface SpaceType {
     picture: string;
 }
 
-export const NullSpace: SpaceType = {
+export const NullSpaceType: SpaceType = {
     id: 0,
     user: NullUserRecordType,
     numberOfBooks: 0,
@@ -26,7 +26,7 @@ export const NullSpace: SpaceType = {
     picture: '',
 };
 
-export interface SpaceRawRecordType {
+export interface SpaceRecordType {
     id: number;
     owner: number;
     subscription: number;
@@ -35,6 +35,16 @@ export interface SpaceRawRecordType {
     transport: number;
     picture: string;
 }
+
+export const NullSpaceRecordType: SpaceRecordType = {
+    id: 0,
+    owner: 0,
+    subscription: 0,
+    title: '',
+    description: '',
+    transport: 0,
+    picture: '',
+};
 
 export interface Spaces {
     userSpaces: SpaceType[];

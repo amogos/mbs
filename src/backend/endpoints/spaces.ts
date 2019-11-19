@@ -8,7 +8,7 @@ export async function getSpaceStatistics(
     onError: (resultCode: number) => void,
 ): Promise<{ size: number; rating: number; format: string[] }> {
     let size = 0;
-    let rating = 0;
+    const rating = 0;
     await axios
         .get(`${urlBooks}?space=${space}`)
         .then(response => (size = response.data.length))
@@ -23,12 +23,12 @@ async function getSpaceNumberOfFollowers(space: number, onError: (resultCode: nu
 }
 
 export async function getSpaceDataFromRawData(
-    item: DataTypes.SpaceRawRecordType,
+    item: DataTypes.SpaceRecordType,
     onError: (resultCode: number) => void,
 ): Promise<DataTypes.SpaceType> {
-    let spaceOwner = await UserEndpoint.getUserRecordTypeFromId(item.owner, onError);
-    let spaceStatistics = await getSpaceStatistics(item.id, onError);
-    let spaceNumberOfFollowers = await getSpaceNumberOfFollowers(item.id, onError);
+    const spaceOwner = await UserEndpoint.getUserRecordTypeFromId(item.owner, onError);
+    const spaceStatistics = await getSpaceStatistics(item.id, onError);
+    const spaceNumberOfFollowers = await getSpaceNumberOfFollowers(item.id, onError);
 
     const space: DataTypes.SpaceType = {
         id: item.id,
@@ -47,8 +47,8 @@ export async function getSpaceDataFromRawData(
 }
 
 async function _getSpaces(url: string, onError: (resultCode: number) => void): Promise<DataTypes.SpaceType[]> {
-    let spacesArray: DataTypes.SpaceType[] = [];
-    let responseArray: DataTypes.SpaceRawRecordType[] = [];
+    const spacesArray: DataTypes.SpaceType[] = [];
+    let responseArray: DataTypes.SpaceRecordType[] = [];
 
     await axios
         .get(url)
