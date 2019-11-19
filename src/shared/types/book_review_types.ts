@@ -15,10 +15,4 @@ export interface BookReviewValueType {
 
 export const NullReviewValueType: BookReviewValueType = { isbn10: '', isbn13: '', comment: '', score: 0 };
 
-export interface UserReviewRecordType {
-    bookId: number;
-    userId: number;
-    comment: string;
-    stateScore: number;
-    id: number;
-}
+
