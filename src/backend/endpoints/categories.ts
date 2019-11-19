@@ -3,7 +3,7 @@ import * as DataTypes from '../../shared/types';
 import { urlCategory } from './constants';
 
 export async function getCategories(onError: (resultCode: number) => void): Promise<DataTypes.CategoryRecordType[]> {
-    let categoryArray: DataTypes.CategoryRecordType[] = [];
+    const categoryArray: DataTypes.CategoryRecordType[] = [];
     await axios
         .get(urlCategory)
         .then(response => {
