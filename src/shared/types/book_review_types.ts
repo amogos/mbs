@@ -16,3 +16,13 @@ export interface BookReviewValueType {
 }
 
 export const NullBookReviewValueType: BookReviewValueType = { isbn10: '', isbn13: '', comment: '', score: 0 };
+
+export interface BookReviewStatisticsType {
+    contentScore: number;
+    numReviews: number;
+}
+
+export const NullBookReviewStatisticsType: BookReviewStatisticsType = {
+    contentScore: 0,
+    numReviews: 0,
+};
