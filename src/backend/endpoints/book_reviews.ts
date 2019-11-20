@@ -35,7 +35,13 @@ export async function getReviewsForBook(
     let reviewsArray: DataTypes.BookReviewRecordType[] = [];
     const reviewsArrayISBN10 = await getReviewsForISBN10(book.isbn10, onError);
     const reviewsArrayISBN13 = await getReviewsForISBN13(book.isbn13, onError);
-    reviewsArray = reviewsArray.concat(reviewsArrayISBN10, reviewsArrayISBN13);
+    reviewsArray = [...reviewsArrayISBN13];
+
+    reviewsArrayISBN10.forEach(review => {
+        if (!reviewsArray.find(element => element.id === review.id)) {
+            reviewsArray.push(review);
+        }
+    });
     return reviewsArray;
 }
 
