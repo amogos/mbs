@@ -51,7 +51,14 @@
     }
   ],
   "queues": [],
-  "returns": [],
+  "returns": [
+    {
+      "bookId": 2,
+      "userId": -1,
+      "ownerId": 1,
+      "id": 1
+    }
+  ],
   "languages": [
     {
       "id": 1,
@@ -82,7 +89,8 @@
       "isbn13": "",
       "space": 1,
       "category": 7,
-      "id": 2
+      "id": 2,
+      "return": 1574746079880
     }
   ],
   "book_reviews": [
@@ -99,6 +107,13 @@
       "comment": "best ever",
       "score": 5,
       "id": 2
+    },
+    {
+      "isbn10": "1234567890",
+      "isbn13": "",
+      "comment": "",
+      "score": 5,
+      "id": 3
     }
   ],
   "user_reviews": [],
