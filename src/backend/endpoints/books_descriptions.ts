@@ -13,9 +13,7 @@ export async function getBookDescriptionForISBN(
 
     await axios
         .get(url)
-        .then(response => {
-            if (response.data.length > 0) result = response.data[0];
-        })
+        .then(response => (result = response.data.length > 0 ? response.data[response.data.length - 1] : result))
         .catch(error => onError(error));
 
     return result;
