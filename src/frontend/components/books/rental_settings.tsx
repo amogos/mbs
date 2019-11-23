@@ -10,7 +10,7 @@ interface Props {
 
 const RentalSettingsComponent = (props: Props) => {
     const [duration, setDuration] = useState(0);
-    let days = Array.from(Array(120).keys());
+    const days = Array.from(Array(120).keys());
     const { Option } = Select;
 
     return (

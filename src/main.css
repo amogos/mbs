@@ -1,7 +1,7 @@
 @import './frontend/components/common.css';
 @import './frontend/components/regions/regions.css';
 @import './frontend/components/banner/banner.css';
-@import './frontend/components/books/books.css';
+@import './frontend/components/books/css/books.css';
 @import './frontend/components/spaces/spaces.css';
 @import './frontend/components/social/social.css';
 @import './frontend/components/errors/errors.css';
