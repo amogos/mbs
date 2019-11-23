@@ -8,11 +8,13 @@ interface Props {
 }
 
 const BookAvailabilityDate = (props: Props) => {
-    if (props.book.return && Date.now() < props.book.return)
+    const shouldBeVisible = props.book.holder.id > 0 && props.book.return && Date.now() < props.book.return;
+
+    if (shouldBeVisible)
         return (
             <Badge count={<Icon type="clock-circle" style={{ color: '#f5222d' }} />}>
                 <Tag color="red">
-                    <Moment format="YYYY/MM/DD" date={new Date(props.book.return)} />
+                    <Moment format="YYYY/MM/DD" date={props.book.return ? new Date(props.book.return) : new Date()} />
                 </Tag>
             </Badge>
         );
