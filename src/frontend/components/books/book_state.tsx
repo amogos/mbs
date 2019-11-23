@@ -23,12 +23,13 @@ const IconText = (param: Icon) => (
 
 interface Props {
     userdata: DataTypes.UserRecordType;
-    reviewBook(review: DataTypes.BookReviewValueType): void;
+    book: DataTypes.BookRecordType;
     queueArray: DataTypes.QueueNotificationRecordType[];
+
+    reviewBook(review: DataTypes.BookReviewValueType): void;
     deleteBook(bookId: number): void;
     askBook(bookId: number, ownerId: number, duration: number): void;
     returnBook(bookId: number): void;
-    book: DataTypes.BookRecordType;
 }
 
 const BookStateDelete = (props: Props) => {
