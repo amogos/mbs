@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import * as DataTypes from '../../../shared/types';
 import { withStyle } from './../aux_component';
-import BookComponent from './book';
+import BookComponent from './book/book';
 
 interface Props {
     action: string;

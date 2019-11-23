@@ -1,6 +1,6 @@
 import React from 'react';
 import { Rate, Button } from 'antd';
-import * as StringConstant from '../../../shared/constants/string_constant';
+import * as StringConstant from '../../../../shared/constants/string_constant';
 
 interface Props {
     contentRating: number | undefined;

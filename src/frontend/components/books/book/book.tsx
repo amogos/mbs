@@ -5,8 +5,8 @@ import BookAvailabilityComponent from './book_availability';
 import BookReviewsComponent from './book_reviews';
 import BookRatingComponent from './book_rating';
 import BooksDescription from './book_description';
-import Aux, { withStyle } from './../aux_component';
-import * as DataTypes from '../../../shared/types';
+import Aux, { withStyle } from '../../aux_component';
+import * as DataTypes from '../../../../shared/types';
 
 const SectionDivider = () => {
     return (

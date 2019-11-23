@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Aux, { withStyle } from './../aux_component';
+import Aux, { withStyle } from '../../aux_component';
 import { Button } from 'antd';
 
 interface Props {

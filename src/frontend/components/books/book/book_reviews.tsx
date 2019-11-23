@@ -1,5 +1,5 @@
 import React from 'react';
-import * as DataTypes from '../../../shared/types';
+import * as DataTypes from '../../../../shared/types';
 import { Comment, Avatar, Tooltip, Card, Button } from 'antd';
 import moment from 'moment';
 

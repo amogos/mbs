@@ -1,5 +1,5 @@
 import React from 'react';
-import * as DataTypes from '../../../shared/types';
+import * as DataTypes from '../../../../shared/types';
 import { Icon, Badge, Tag } from 'antd';
 import Moment from 'react-moment';
 
