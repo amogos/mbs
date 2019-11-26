@@ -34,6 +34,7 @@ export interface BookReviewRawValueType {
     comment: string;
     score: number;
     user: number;
+    date: string;
 }
 
 export const NullBookReviewRawValueType: BookReviewRawValueType = {
@@ -42,6 +43,7 @@ export const NullBookReviewRawValueType: BookReviewRawValueType = {
     comment: '',
     score: 0,
     user: 0,
+    date: '',
 };
 
 export interface BookReviewStatisticsType {

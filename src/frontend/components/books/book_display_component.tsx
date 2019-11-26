@@ -1,8 +1,7 @@
 import React from 'react';
-import { Divider, Comment, Avatar, Tooltip } from 'antd';
+import { Divider, Comment, Avatar } from 'antd';
 import * as DataTypes from '../../../shared/types';
 import Aux from './../aux_component';
-import moment from 'moment';
 import { withStyle } from './../aux_component';
 
 interface Props {
