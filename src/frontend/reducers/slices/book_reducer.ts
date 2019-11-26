@@ -15,10 +15,10 @@ export default function bookReducer(state: any, action: any): any {
     switch (action.type) {
         case BookActionConstant.ACTION_DISPLAY_BOOK: {
             databseInstance.getBookRecordTypeFromId(action.bookId, handleError).then(result => {
-                Store.dispatch(pageAction.refreshState({ displayBook: result }));
+                Store.dispatch(pageAction.refreshState({ displayedBook: result }));
             });
             databseInstance.getReviewsForBook(action.bookId, handleError).then(result => {
-                Store.dispatch(pageAction.refreshState({ displayBookReviews: result }));
+                Store.dispatch(pageAction.refreshState({ displayedBookReviews: result }));
             });
 
             return Object.assign({}, state, {

@@ -13,6 +13,9 @@ interface Props {
 const BookDisplayComponent = (props: Props) => {
     const { displayedBook, displayedBookReviews } = props;
 
+    if (!displayedBook || displayedBook.id === 0) return null;
+    if (!displayedBookReviews) return null;
+
     return (
         <Aux>
             {displayedBook.title}

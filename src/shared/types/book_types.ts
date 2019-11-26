@@ -70,26 +70,28 @@ export interface BookRecordType {
     length: number;
 }
 
-export const NullBookRecordType: BookRecordType = {
-    id: 0,
-    title: '',
-    subtitle: '',
-    author: [],
-    language: NullLanguage,
-    image: '',
-    owner: NullUserRecordType,
-    holder: NullUserRecordType,
-    state: '',
-    category: NullCategoryRecordType,
-    format: '',
-    space: NullSpaceType,
-    isbn10: '',
-    isbn13: '',
-    return: 0,
-    contentScore: 0,
-    numReviews: 0,
-    description: '',
-    length: 0,
+export const NullBookRecordType = (): BookRecordType => {
+    return {
+        id: 0,
+        title: '',
+        subtitle: '',
+        author: [],
+        language: NullLanguage,
+        image: '',
+        owner: NullUserRecordType,
+        holder: NullUserRecordType,
+        state: '',
+        category: NullCategoryRecordType,
+        format: '',
+        space: NullSpaceType,
+        isbn10: '',
+        isbn13: '',
+        return: 0,
+        contentScore: 0,
+        numReviews: 0,
+        description: '',
+        length: 0,
+    };
 };
 
 export interface BookRawValueType {

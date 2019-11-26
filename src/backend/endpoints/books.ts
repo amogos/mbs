@@ -15,7 +15,7 @@ export async function getBookRecordTypeFromRaw(
     item: DataTypes.BookRawRecordType,
     onError: (resultCode: number) => void,
 ): Promise<DataTypes.BookRecordType> {
-    const result: BookRecordType = DataTypes.NullBookRecordType;
+    const result: BookRecordType = DataTypes.NullBookRecordType();
     const description = await getBookDescriptionForISBN(item.isbn10, item.isbn13, onError);
     const holder = await getUserRecordTypeFromId(item.holder, onError);
     const owner = await getUserRecordTypeFromId(item.owner, onError);
