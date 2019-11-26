@@ -1,9 +1,10 @@
 import React from 'react';
+import { withStyle, requiresLogin } from '../aux_component';
+import debounce from 'lodash.debounce';
+import * as DataTypes from './../../../shared/types';
 import ListBooksContainer from '../../containers/list_books_container';
 import ListSpacesContainer from '../../containers/list_spaces_container';
-import { withStyle, requiresLogin } from '../aux_component';
-import * as DataTypes from './../../../shared/types';
-import debounce from 'lodash.debounce';
+import BookDisplayContainer from '../../containers/book_display_container';
 
 interface Props {
     userdata: DataTypes.UserRecordType;
@@ -57,7 +58,9 @@ function BooksList(props: Props) {
 }
 
 function nextSpaces(props: Props, force: boolean) {
-    if (force) navigation.index = 0;
+    if (force) {
+        navigation.index = 0;
+    }
 
     const endOfContent =
         window.innerHeight + document.documentElement.scrollTop >= document.documentElement.scrollHeight;
@@ -77,6 +80,10 @@ function SpacesList(props: Props) {
     return <ListSpacesContainer />;
 }
 
+function DisplayBookDetails(props: Props) {
+    return <BookDisplayContainer />;
+}
+
 const MainComponent = React.memo((props: Props) => {
     window.scrollTo(0, 0);
 
@@ -88,7 +95,7 @@ const MainComponent = React.memo((props: Props) => {
         case 'spaces':
             return SpacesList(props);
         case 'book':
-            return SpacesList(props);
+            return DisplayBookDetails(props);
         default:
             return SpacesList(props);
     }

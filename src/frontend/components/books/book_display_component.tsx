@@ -5,25 +5,25 @@ import Aux from './../aux_component';
 import moment from 'moment';
 
 interface Props {
-    book: DataTypes.BookRecordType;
-    reviews: DataTypes.BookReviewRecordType[];
+    displayedBook: DataTypes.BookRecordType;
+    displayedBookReviews: DataTypes.BookReviewRecordType[];
 }
 
 const BookDisplayComponent = (props: Props) => {
-    const { book, reviews } = props;
+    const { displayedBook, displayedBookReviews } = props;
 
     return (
         <Aux>
-            {book.title}
+            {displayedBook.title}
             <br />
-            Author: {book.author.toString()} <br />
-            Format: {book.format} <br />
-            Language: {book.language.title}
+            Author: {displayedBook.author.toString()} <br />
+            Format: {displayedBook.format} <br />
+            Language: {displayedBook.language.title}
             <br />
-            PageCount: {book.length} <br />
-            <p>{book.description}</p>
+            PageCount: {displayedBook.length} <br />
+            <p>{displayedBook.description}</p>
             <Divider />
-            {reviews.map(entry => (
+            {displayedBookReviews.map(entry => (
                 <Comment
                     author={<a>Han Solo</a>}
                     avatar={
