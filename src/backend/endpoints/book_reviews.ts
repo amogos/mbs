@@ -2,6 +2,8 @@ import axios from 'axios';
 import { urlBookReviews } from './constants';
 import * as DataTypes from '../../shared/types';
 import { getBookRawRecordTypeFromId } from './../endpoints/books';
+import { getUserRecordTypeFromId } from './user';
+import { async } from 'q';
 
 export async function getReviewsForISBN10(isbn10: string, onError: (resultCode: number) => void) {
     let reviewsArray: DataTypes.BookReviewRawRecordType[] = [];
@@ -30,7 +32,7 @@ export async function getReviewsForISBN13(isbn13: string, onError: (resultCode: 
 export async function getReviewsForBook(
     bookId: number,
     onError: (resultCode: number) => void,
-): Promise<DataTypes.BookReviewRawRecordType[]> {
+): Promise<DataTypes.BookReviewRecordType[]> {
     const book: DataTypes.BookRawRecordType = await getBookRawRecordTypeFromId(bookId, onError);
     let reviewsArray: DataTypes.BookReviewRawRecordType[] = [];
     const reviewsArrayISBN10 = await getReviewsForISBN10(book.isbn10, onError);
@@ -42,7 +44,21 @@ export async function getReviewsForBook(
             reviewsArray.push(review);
         }
     });
-    return reviewsArray;
+
+    const result: DataTypes.BookReviewRecordType[] = [];
+
+    reviewsArray.forEach(async item => {
+        const review = DataTypes.NullBookReviewRecordType;
+        review.id = item.id;
+        review.comment = item.comment;
+        review.isbn10 = item.isbn10;
+        review.isbn13 = item.isbn13;
+        review.score = item.score;
+        review.user = await getUserRecordTypeFromId(item.user, onError);
+        result.push(review);
+    });
+
+    return result;
 }
 
 export async function getReviewStatisticsForBook(
@@ -50,10 +66,10 @@ export async function getReviewStatisticsForBook(
     onError: (resultCode: number) => void,
 ): Promise<DataTypes.BookReviewStatisticsType> {
     const statistics: DataTypes.BookReviewStatisticsType = DataTypes.NullBookReviewStatisticsType;
-    const reviewsArray: DataTypes.BookReviewRawRecordType[] = await getReviewsForBook(bookId, onError);
+    const reviewsArray: DataTypes.BookReviewRecordType[] = await getReviewsForBook(bookId, onError);
 
     if (reviewsArray.length > 0) {
-        reviewsArray.forEach((item: DataTypes.BookReviewRawRecordType) => (statistics.contentScore += item.score));
+        reviewsArray.forEach((item: DataTypes.BookReviewRecordType) => (statistics.contentScore += item.score));
         statistics.contentScore = statistics.contentScore / reviewsArray.length;
         statistics.numReviews = reviewsArray.length;
     }

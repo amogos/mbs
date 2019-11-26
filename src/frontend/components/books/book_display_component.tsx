@@ -32,10 +32,8 @@ const BookDisplayComponent = (props: Props) => {
             <Divider />
             {displayedBookReviews.map(entry => (
                 <Comment
-                    author={<a>Han Solo</a>}
-                    avatar={
-                        <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" alt="Han Solo" />
-                    }
+                    author={<a>{entry.user.name}</a>}
+                    avatar={<Avatar src={entry.user.picture} alt={entry.user.name} />}
                     content={<p>{entry.comment}</p>}
                     datetime={
                         <Tooltip title={moment().format('YYYY-MM-DD HH:mm:ss')}>
