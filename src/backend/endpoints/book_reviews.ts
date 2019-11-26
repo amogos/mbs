@@ -48,7 +48,7 @@ export async function getReviewsForBook(
     const result: DataTypes.BookReviewRecordType[] = [];
 
     reviewsArray.forEach(async item => {
-        const review = DataTypes.NullBookReviewRecordType;
+        const review = DataTypes.NullBookReviewRecordType();
         review.id = item.id;
         review.comment = item.comment;
         review.isbn10 = item.isbn10;
