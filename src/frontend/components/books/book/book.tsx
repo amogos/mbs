@@ -27,7 +27,7 @@ interface Props {
     queueArray: DataTypes.QueueNotificationRecordType[];
     book: DataTypes.BookRecordType;
     parentState: any;
-    reviewBook(review: DataTypes.BookReviewValueType): void;
+    reviewBook(review: DataTypes.BookReviewRawValueType): void;
     displayBook(bookId: number): void;
     deleteBook(bookId: number): void;
     askBook(bookId: number, ownerId: number, duration: number): void;

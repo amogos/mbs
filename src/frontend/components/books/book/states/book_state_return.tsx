@@ -10,7 +10,7 @@ import IconText from '../../icon_text';
 interface Props {
     userdata: DataTypes.UserRecordType;
     book: DataTypes.BookRecordType;
-    reviewBook(review: DataTypes.BookReviewValueType): void;
+    reviewBook(review: DataTypes.BookReviewRawValueType): void;
     returnBook(bookId: number): void;
 }
 
@@ -24,11 +24,12 @@ const BookStateReturn = (props: Props) => {
         stateRating: number,
         comment: string,
     ) => {
-        const review: DataTypes.BookReviewValueType = DataTypes.NullBookReviewValueType;
+        const review: DataTypes.BookReviewRawValueType = DataTypes.NullBookReviewRawValueType;
         review.comment = comment;
         review.isbn10 = book.isbn10;
         review.isbn13 = book.isbn13;
         review.score = contentRating;
+        review.user = props.userdata.id;
         props.reviewBook(review);
 
         props.book.holder = DataTypes.NullUserRecordType;

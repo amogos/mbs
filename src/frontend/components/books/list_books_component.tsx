@@ -13,7 +13,7 @@ interface Props {
     deleteBook(bookId: number): void;
     askBook(bookId: number, ownerId: number): void;
     returnBook(bookId: number): void;
-    reviewBook(review: DataTypes.BookReviewValueType): void;
+    reviewBook(review: DataTypes.BookReviewRawValueType): void;
     getReviewsForBook(
         bookId: number,
         callback: (bookId: number, reviews: DataTypes.BookReviewRecordType[]) => void,

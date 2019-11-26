@@ -4,7 +4,7 @@ import * as DataTypes from '../../shared/types';
 import { getBookRawRecordTypeFromId } from './../endpoints/books';
 
 export async function getReviewsForISBN10(isbn10: string, onError: (resultCode: number) => void) {
-    let reviewsArray: DataTypes.BookReviewRecordType[] = [];
+    let reviewsArray: DataTypes.BookReviewRawRecordType[] = [];
     if (isbn10.length === 10) {
         const urlReviews = `${urlBookReviews}?isbn10=${isbn10}`;
         await axios
@@ -16,7 +16,7 @@ export async function getReviewsForISBN10(isbn10: string, onError: (resultCode: 
 }
 
 export async function getReviewsForISBN13(isbn13: string, onError: (resultCode: number) => void) {
-    let reviewsArray: DataTypes.BookReviewRecordType[] = [];
+    let reviewsArray: DataTypes.BookReviewRawRecordType[] = [];
     if (isbn13.length === 13) {
         const urlReviews = `${urlBookReviews}?isbn13=${isbn13}`;
         await axios
@@ -30,9 +30,9 @@ export async function getReviewsForISBN13(isbn13: string, onError: (resultCode: 
 export async function getReviewsForBook(
     bookId: number,
     onError: (resultCode: number) => void,
-): Promise<DataTypes.BookReviewRecordType[]> {
+): Promise<DataTypes.BookReviewRawRecordType[]> {
     const book: DataTypes.BookRawRecordType = await getBookRawRecordTypeFromId(bookId, onError);
-    let reviewsArray: DataTypes.BookReviewRecordType[] = [];
+    let reviewsArray: DataTypes.BookReviewRawRecordType[] = [];
     const reviewsArrayISBN10 = await getReviewsForISBN10(book.isbn10, onError);
     const reviewsArrayISBN13 = await getReviewsForISBN13(book.isbn13, onError);
     reviewsArray = [...reviewsArrayISBN13];
@@ -50,10 +50,10 @@ export async function getReviewStatisticsForBook(
     onError: (resultCode: number) => void,
 ): Promise<DataTypes.BookReviewStatisticsType> {
     const statistics: DataTypes.BookReviewStatisticsType = DataTypes.NullBookReviewStatisticsType;
-    const reviewsArray: DataTypes.BookReviewRecordType[] = await getReviewsForBook(bookId, onError);
+    const reviewsArray: DataTypes.BookReviewRawRecordType[] = await getReviewsForBook(bookId, onError);
 
     if (reviewsArray.length > 0) {
-        reviewsArray.forEach((item: DataTypes.BookReviewRecordType) => (statistics.contentScore += item.score));
+        reviewsArray.forEach((item: DataTypes.BookReviewRawRecordType) => (statistics.contentScore += item.score));
         statistics.contentScore = statistics.contentScore / reviewsArray.length;
         statistics.numReviews = reviewsArray.length;
     }

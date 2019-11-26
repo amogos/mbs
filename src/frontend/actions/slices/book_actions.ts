@@ -36,7 +36,7 @@ class BookAction {
         bookId,
     });
 
-    public reviewBook = (review: DataTypes.BookReviewValueType) => ({
+    public reviewBook = (review: DataTypes.BookReviewRawValueType) => ({
         type: ActionTypes.default.BookActionConstant.ACTION_REVIEW_BOOK,
         review,
     });
