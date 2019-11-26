@@ -3,6 +3,7 @@ import { Divider, Comment, Avatar, Tooltip } from 'antd';
 import * as DataTypes from '../../../shared/types';
 import Aux from './../aux_component';
 import moment from 'moment';
+import { withStyle } from './../aux_component';
 
 interface Props {
     displayedBook: DataTypes.BookRecordType;
@@ -41,4 +42,4 @@ const BookDisplayComponent = (props: Props) => {
     );
 };
 
-export default BookDisplayComponent;
+export default withStyle(BookDisplayComponent, 'book_display_component');

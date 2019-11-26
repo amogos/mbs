@@ -41,6 +41,12 @@ class BookAction {
         review,
     });
 
+    public displayBook = (bookId: number) => ({
+        type: ActionTypes.default.BookActionConstant.ACTION_DISPLAY_BOOK,
+        bookId,
+    });
+
+    //  TODO: reevaluate the need of this function.....plus usage of callbacks?!
     public getReviewsForBook = (
         bookId: number,
         callback: (bookId: number, reviews: DataTypes.BookReviewRecordType[]) => void,

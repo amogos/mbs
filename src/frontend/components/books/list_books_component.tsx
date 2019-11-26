@@ -9,6 +9,7 @@ interface Props {
     bookChangingId: number;
     booksArray: DataTypes.BookRecordType[];
     queueArray: DataTypes.QueueNotificationRecordType[];
+    displayBook(bookId: number): void;
     deleteBook(bookId: number): void;
     askBook(bookId: number, ownerId: number): void;
     returnBook(bookId: number): void;

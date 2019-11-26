@@ -28,6 +28,7 @@ interface Props {
     book: DataTypes.BookRecordType;
     parentState: any;
     reviewBook(review: DataTypes.BookReviewValueType): void;
+    displayBook(bookId: number): void;
     deleteBook(bookId: number): void;
     askBook(bookId: number, ownerId: number, duration: number): void;
     returnBook(bookId: number): void;
@@ -88,10 +89,15 @@ const BookComponent = (props: Props) => {
         setState(newstate);
     };
 
+    const onBookTitleCliked = () => {
+        props.displayBook(props.book.id);
+        props.history.push(`/book?id=${item.id}`);
+    };
+
     return (
         <Aux key={`k${item.id}`}>
             <div className="book_details">
-                <Button className="book_title" type="link" onClick={() => props.history.push(`/book?id=${item.id}`)}>
+                <Button className="book_title" type="link" onClick={onBookTitleCliked}>
                     {item.title}
                 </Button>
                 <br />

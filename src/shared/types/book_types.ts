@@ -1,7 +1,7 @@
 import { LanguageRecordType, NullLanguage } from './language_types';
 import { CategoryRecordType, NullCategoryRecordType } from './category_types';
 import { UserRecordType, NullUserRecordType } from './user_types';
-import { SpaceType } from './space_types';
+import { SpaceType, NullSpaceType } from './space_types';
 import * as BookStates from './../constants/book_states_constant';
 
 export interface BookValueType {
@@ -69,6 +69,28 @@ export interface BookRecordType {
     description: string;
     length: number;
 }
+
+export const NullBookRecordType: BookRecordType = {
+    id: 0,
+    title: '',
+    subtitle: '',
+    author: [],
+    language: NullLanguage,
+    image: '',
+    owner: NullUserRecordType,
+    holder: NullUserRecordType,
+    state: '',
+    category: NullCategoryRecordType,
+    format: '',
+    space: NullSpaceType,
+    isbn10: '',
+    isbn13: '',
+    return: 0,
+    contentScore: 0,
+    numReviews: 0,
+    description: '',
+    length: 0,
+};
 
 export interface BookRawValueType {
     isbn10: string;

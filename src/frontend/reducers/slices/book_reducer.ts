@@ -6,12 +6,26 @@ import Strings from '../../../shared/constants/string_constant';
 import { message } from 'antd';
 import { handleError } from './../main_reducer';
 import * as DataTypes from '../../../shared/types';
+import { NullBookRecordType } from '../../../shared/types';
 
 const { BookActionConstant } = ActionConstants.default;
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default function bookReducer(state: any, action: any): any {
     switch (action.type) {
+        case BookActionConstant.ACTION_DISPLAY_BOOK: {
+            databseInstance.getBookRecordTypeFromId(action.bookId, handleError).then(result => {
+                Store.dispatch(pageAction.refreshState({ displayBook: result }));
+            });
+            databseInstance.getReviewsForBook(action.bookId, handleError).then(result => {
+                Store.dispatch(pageAction.refreshState({ displayBookReviews: result }));
+            });
+
+            return Object.assign({}, state, {
+                displayBook: NullBookRecordType,
+                displayBookReviews: [],
+            });
+        }
         case BookActionConstant.ACTION_ADD_BOOK: {
             databseInstance.addBook(action.data, action.onSuccess, handleError);
             return state;
