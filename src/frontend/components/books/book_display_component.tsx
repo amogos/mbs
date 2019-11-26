@@ -18,6 +18,9 @@ const BookDisplayComponent = (props: Props) => {
 
     return (
         <Aux>
+            <div className="book_icon_small">
+                <img alt="logo" src={displayedBook.image} />
+            </div>
             {displayedBook.title}
             <br />
             Author: {displayedBook.author.toString()} <br />
