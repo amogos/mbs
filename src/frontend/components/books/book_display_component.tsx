@@ -35,11 +35,7 @@ const BookDisplayComponent = (props: Props) => {
                     author={<a>{entry.user.name}</a>}
                     avatar={<Avatar src={entry.user.picture} alt={entry.user.name} />}
                     content={<p>{entry.comment}</p>}
-                    datetime={
-                        <Tooltip title={moment().format('YYYY-MM-DD HH:mm:ss')}>
-                            <span>{moment().fromNow()}</span>
-                        </Tooltip>
-                    }
+                    datetime={<span>{entry.date}</span>}
                 />
             ))}
         </Aux>
