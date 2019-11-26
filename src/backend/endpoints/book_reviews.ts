@@ -55,6 +55,7 @@ export async function getReviewsForBook(
         review.isbn13 = item.isbn13;
         review.score = item.score;
         review.user = await getUserRecordTypeFromId(item.user, onError);
+        review.date = item.date;
         result.push(review);
     });
 
