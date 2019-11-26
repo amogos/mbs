@@ -1,5 +1,6 @@
 import React from 'react';
-import { Avatar, Divider } from 'antd';
+import { withRouter } from 'react-router-dom';
+import { Avatar, Divider, Button } from 'antd';
 import BookStateComponent from './book_state';
 import BookAvailabilityComponent from './book_availability';
 import BookReviewsComponent from './book_reviews';
@@ -35,6 +36,7 @@ interface Props {
         callback: (bookId: number, reviews: DataTypes.BookReviewRecordType[]) => void,
     ): void;
     setParentState(state: any): void;
+    history: any;
 }
 
 const BookComponent = (props: Props) => {
@@ -89,10 +91,14 @@ const BookComponent = (props: Props) => {
     return (
         <Aux key={`k${item.id}`}>
             <div className="book_details">
-                {item.title}
-                <i> ({item.language.title})</i> <br />
+                <Button className="book_title" type="link" onClick={() => props.history.push(`/book?id=${item.id}`)}>
+                    {item.title}
+                </Button>
+                <br />
                 Author: {item.author.toString()} <br />
                 Format: {item.format} <br />
+                Language: {item.language.title}
+                <br />
                 PageCount: {item.length} <br />
                 <BooksDescription description={item.description} length={200} />
                 <BookRatingComponent
@@ -123,4 +129,4 @@ const BookComponent = (props: Props) => {
     );
 };
 
-export default withStyle(BookComponent, 'book');
+export default withRouter(withStyle(BookComponent, 'book'));

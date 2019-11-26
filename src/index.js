@@ -17,7 +17,7 @@ import PageNotFound from './frontend/components/errors/page_not_found';
 import Aux from './frontend/components/aux_component';
 import { pageAction } from './frontend/actions';
 
-const Pages = ['spaces', 'books'];
+const Pages = ['spaces', 'books', 'book'];
 
 const App = routeParams => {
     if (!Object.fromEntries) {

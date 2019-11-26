@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { withRouter } from 'react-router-dom';
 import * as DataTypes from '../../../shared/types';
 import { withStyle } from './../aux_component';
 import BookComponent from './book/book';
@@ -18,6 +19,7 @@ interface Props {
         callback: (bookId: number, reviews: DataTypes.BookReviewRecordType[]) => void,
     ): void;
     urlparams: DataTypes.UrlParms;
+    history: any;
 }
 
 const ListBooksComponent = (props: Props) => {

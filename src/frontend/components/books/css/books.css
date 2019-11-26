@@ -52,3 +52,9 @@
     padding-bottom: 15px;
     margin-top: 15px;
 }
+
+.book_title {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color: black;
+    text-align: left;
+}

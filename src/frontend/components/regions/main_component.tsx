@@ -85,6 +85,10 @@ const MainComponent = React.memo((props: Props) => {
     switch (id) {
         case 'books':
             return BooksList(props);
+        case 'spaces':
+            return SpacesList(props);
+        case 'book':
+            return SpacesList(props);
         default:
             return SpacesList(props);
     }
