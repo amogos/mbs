@@ -91,7 +91,7 @@ const BookComponent = (props: Props) => {
 
     const onBookTitleCliked = () => {
         props.displayBook(props.book.id);
-        props.history.push(`/book?id=${item.id}`);
+        props.history.push(`/book`);
     };
 
     return (
