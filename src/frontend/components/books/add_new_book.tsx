@@ -24,7 +24,7 @@ interface Props {
     callback: () => void;
 }
 
-let currentBook: DataTypes.BookValueType = DataTypes.EmptyBookValueType();
+let currentBook: DataTypes.BookValueType = DataTypes.NullBookValueType();
 
 const AddNewBookComponent = (props: Props) => {
     const [useVolumeInformation, setUseVolumeInformation] = useState(true);
@@ -110,7 +110,7 @@ const AddNewBookComponent = (props: Props) => {
             const validISBN = currentBook.isbn.length === 10 || currentBook.isbn.length === 13;
 
             if (!validISBN) {
-                currentBook = DataTypes.EmptyBookValueType();
+                currentBook = DataTypes.NullBookValueType();
                 setUseVolumeInformation(false);
                 return;
             }
@@ -123,7 +123,7 @@ const AddNewBookComponent = (props: Props) => {
 
                 if (bookDescription.id === 0) {
                     setIsbn(currentBook.isbn);
-                    currentBook = DataTypes.EmptyBookValueType();
+                    currentBook = DataTypes.NullBookValueType();
                     setUseVolumeInformation(false);
                 } else {
                     const volumeInformation: BookPreviewProps = {

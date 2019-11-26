@@ -26,7 +26,7 @@ export interface BookValueType {
     length: number;
 }
 
-export const EmptyBookValueType = () => {
+export const NullBookValueType = (): BookValueType => {
     return {
         title: '',
         subtitle: '',
