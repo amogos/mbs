@@ -13,6 +13,10 @@ const { BookActionConstant } = ActionConstants.default;
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default function bookReducer(state: any, action: any): any {
     switch (action.type) {
+        case BookActionConstant.ACTION_LIKE_REVIEW: {
+            databseInstance.updateBookReview(action.review, handleError);
+            return state;
+        }
         case BookActionConstant.ACTION_DISPLAY_BOOK: {
             databseInstance.getBookRecordTypeFromId(action.bookId, handleError).then(result => {
                 Store.dispatch(pageAction.refreshState({ displayedBook: result }));

@@ -3,13 +3,21 @@ import { Divider, Comment, Avatar, Rate, Button } from 'antd';
 import * as DataTypes from '../../../shared/types';
 import Aux from './../aux_component';
 import { withStyle } from './../aux_component';
+import { NullBookPreviewProps } from './book_preview';
 
 interface Props {
     displayedBook: DataTypes.BookRecordType;
     displayedBookReviews: DataTypes.BookReviewRecordType[];
+    likeReview(review: DataTypes.BookReviewRawRecordType): void;
 }
 
-const Review = (entry: DataTypes.BookReviewRecordType) => {
+const Review = (props: Props, entry: DataTypes.BookReviewRecordType) => {
+    const likeReview = () => {
+        const review = DataTypes.ToBookReviewRawRecordType(entry);
+        review.likes++;
+        props.likeReview(review);
+    };
+
     return (
         <Comment
             author={
@@ -22,7 +30,7 @@ const Review = (entry: DataTypes.BookReviewRecordType) => {
             content={
                 <div>
                     <p>{entry.comment}</p>
-                    {entry.likes} likes <Button>Like</Button>
+                    {entry.likes} likes <Button onClick={likeReview}>Like</Button>
                 </div>
             }
             datetime={<span>{entry.date}</span>}
@@ -50,7 +58,7 @@ const BookDisplayComponent = (props: Props) => {
             PageCount: {displayedBook.length} <br />
             <p>{displayedBook.description}</p>
             <Divider />
-            {displayedBookReviews.map(entry => Review(entry))}
+            {displayedBookReviews.map(entry => Review(props, entry))}
         </Aux>
     );
 };

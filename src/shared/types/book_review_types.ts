@@ -52,3 +52,9 @@ export interface BookReviewStatisticsType {
 export const NullBookReviewStatisticsType = (): BookReviewStatisticsType => {
     return { contentScore: 0, numReviews: 0 };
 };
+
+export const ToBookReviewRawRecordType = (from: BookReviewRecordType) => {
+    let to: BookReviewRawRecordType = NullBookReviewRawRecordType();
+    to = { ...from, user: from.user.id };
+    return to;
+};
