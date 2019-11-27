@@ -24,7 +24,7 @@ const BookStateReturn = (props: Props) => {
         stateRating: number,
         comment: string,
     ) => {
-        const review: DataTypes.BookReviewRawValueType = DataTypes.NullBookReviewRawValueType;
+        const review: DataTypes.BookReviewRawValueType = DataTypes.NullBookReviewRawValueType();
         review.comment = comment;
         review.isbn10 = book.isbn10;
         review.isbn13 = book.isbn13;

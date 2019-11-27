@@ -37,13 +37,8 @@ export interface BookReviewRawValueType {
     date: string;
 }
 
-export const NullBookReviewRawValueType: BookReviewRawValueType = {
-    isbn10: '',
-    isbn13: '',
-    comment: '',
-    score: 0,
-    user: 0,
-    date: '',
+export const NullBookReviewRawValueType = (): BookReviewRawValueType => {
+    return { isbn10: '', isbn13: '', comment: '', score: 0, user: 0, date: '' };
 };
 
 export interface BookReviewStatisticsType {
@@ -51,7 +46,6 @@ export interface BookReviewStatisticsType {
     numReviews: number;
 }
 
-export const NullBookReviewStatisticsType: BookReviewStatisticsType = {
-    contentScore: 0,
-    numReviews: 0,
+export const NullBookReviewStatisticsType = (): BookReviewStatisticsType => {
+    return { contentScore: 0, numReviews: 0 };
 };

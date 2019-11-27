@@ -37,6 +37,7 @@ export async function getReviewsForBook(
     let reviewsArray: DataTypes.BookReviewRawRecordType[] = [];
     const reviewsArrayISBN10 = await getReviewsForISBN10(book.isbn10, onError);
     const reviewsArrayISBN13 = await getReviewsForISBN13(book.isbn13, onError);
+
     reviewsArray = [...reviewsArrayISBN13];
 
     reviewsArrayISBN10.forEach(review => {
@@ -47,7 +48,8 @@ export async function getReviewsForBook(
 
     const result: DataTypes.BookReviewRecordType[] = [];
 
-    reviewsArray.forEach(async item => {
+    for (let i = 0; i < reviewsArray.length; i++) {
+        const item = reviewsArray[i];
         const review = DataTypes.NullBookReviewRecordType();
         review.id = item.id;
         review.comment = item.comment;
@@ -57,7 +59,7 @@ export async function getReviewsForBook(
         review.user = await getUserRecordTypeFromId(item.user, onError);
         review.date = item.date;
         result.push(review);
-    });
+    }
 
     return result;
 }
@@ -66,7 +68,7 @@ export async function getReviewStatisticsForBook(
     bookId: number,
     onError: (resultCode: number) => void,
 ): Promise<DataTypes.BookReviewStatisticsType> {
-    const statistics: DataTypes.BookReviewStatisticsType = DataTypes.NullBookReviewStatisticsType;
+    const statistics: DataTypes.BookReviewStatisticsType = DataTypes.NullBookReviewStatisticsType();
     const reviewsArray: DataTypes.BookReviewRecordType[] = await getReviewsForBook(bookId, onError);
 
     if (reviewsArray.length > 0) {
