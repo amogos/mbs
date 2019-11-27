@@ -1,5 +1,5 @@
 import React from 'react';
-import { Divider, Comment, Avatar } from 'antd';
+import { Divider, Comment, Avatar, Rate } from 'antd';
 import * as DataTypes from '../../../shared/types';
 import Aux from './../aux_component';
 import { withStyle } from './../aux_component';
@@ -31,7 +31,12 @@ const BookDisplayComponent = (props: Props) => {
             <Divider />
             {displayedBookReviews.map(entry => (
                 <Comment
-                    author={<a>{entry.user.name}</a>}
+                    author={
+                        <a>
+                            {entry.user.name} rated it
+                            <Rate disabled defaultValue={entry.score} />
+                        </a>
+                    }
                     avatar={<Avatar src={entry.user.picture} alt={entry.user.name} />}
                     content={<p>{entry.comment}</p>}
                     datetime={<span>{entry.date}</span>}
