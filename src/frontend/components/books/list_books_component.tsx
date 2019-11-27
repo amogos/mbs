@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import * as DataTypes from '../../../shared/types';
 import { withStyle } from './../aux_component';
 import BookComponent from './book/book';
@@ -22,15 +22,12 @@ interface Props {
 }
 
 const ListBooksComponent = (props: Props) => {
-    const [state, setState] = useState({});
-
     if (!props.booksArray) {
         return null;
     }
 
     return props.booksArray.map(item => {
-        const setParentState = (state: any) => setState(state);
-        const bookProps = { ...props, parentState: state, book: item, setParentState: setParentState };
+        const bookProps = { ...props, book: item };
         return <BookComponent {...bookProps} />;
     });
 };
