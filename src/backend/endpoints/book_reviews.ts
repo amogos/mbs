@@ -3,7 +3,6 @@ import { urlBookReviews } from './constants';
 import * as DataTypes from '../../shared/types';
 import { getBookRawRecordTypeFromId } from './../endpoints/books';
 import { getUserRecordTypeFromId } from './user';
-import { async } from 'q';
 
 export async function getReviewsForISBN10(isbn10: string, onError: (resultCode: number) => void) {
     let reviewsArray: DataTypes.BookReviewRawRecordType[] = [];
@@ -56,6 +55,7 @@ export async function getReviewsForBook(
         review.isbn10 = item.isbn10;
         review.isbn13 = item.isbn13;
         review.score = item.score;
+        review.likes = item.likes;
         review.user = await getUserRecordTypeFromId(item.user, onError);
         review.date = item.date;
         result.push(review);

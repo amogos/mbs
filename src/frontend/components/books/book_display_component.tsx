@@ -22,7 +22,7 @@ const Review = (entry: DataTypes.BookReviewRecordType) => {
             content={
                 <div>
                     <p>{entry.comment}</p>
-                    279 likes <Button>Like</Button>
+                    {entry.likes} likes <Button>Like</Button>
                 </div>
             }
             datetime={<span>{entry.date}</span>}
