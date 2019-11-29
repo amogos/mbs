@@ -1,5 +1,6 @@
 @import './book_listed.css';
 @import './book_previewed.css';
+@import './book_display.css';
 
 .list_book_component {
 }
