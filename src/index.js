@@ -53,13 +53,10 @@ const DisplayContent = page => {
     switch (page) {
         case 'book':
             return DisplayBook();
-
         case 'books':
             return DisplayBookListing();
-
         case 'spaces':
             return DisplaySpaceListing();
-
         default:
             return <PageNotFound />;
     }
@@ -70,11 +67,9 @@ const App = routeParams => {
         //  compatibility with ie, edge, opera android
         Object.fromEntries = arr => Object.assign({}, ...Array.from(arr, ([k, v]) => ({ [k]: v })));
     }
-
     const query = Object.fromEntries(new URLSearchParams(useLocation().search));
     const id = routeParams.match.params.id;
     const urlparams = { id, query };
-
     Store.dispatch(pageAction.addUrlParams(urlparams));
     return DisplayContent(id);
 };
