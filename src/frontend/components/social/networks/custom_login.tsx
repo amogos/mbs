@@ -32,7 +32,7 @@ const CustomLogin = (props: Props) => {
             <Button
                 className="custom_button"
                 onClick={() => {
-                    const userInfo: DataTypes.UserValueType = DataTypes.NullUserRecordType;
+                    const userInfo: DataTypes.UserValueType = DataTypes.NullUserRecordType();
                     userInfo.email = fields.username;
                     userInfo.password = fields.password;
                     userInfo.socialnetwork = SocialNetwork.custom;

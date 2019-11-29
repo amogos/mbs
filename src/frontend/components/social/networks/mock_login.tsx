@@ -13,7 +13,7 @@ const MockLogin = (props: Props) => {
         <Button
             className="mock_button"
             onClick={() => {
-                const userInfo: DataTypes.UserValueType = DataTypes.NullUserRecordType;
+                const userInfo: DataTypes.UserValueType = DataTypes.NullUserRecordType();
                 userInfo.name = 'Mock';
                 userInfo.email = 'Mock@yahoo.com';
                 userInfo.socialnetwork = SocialNetwork.mock;

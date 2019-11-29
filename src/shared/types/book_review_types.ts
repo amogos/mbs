@@ -12,7 +12,7 @@ export interface BookReviewRecordType {
 }
 
 export const NullBookReviewRecordType = (): BookReviewRecordType => {
-    return { id: 0, isbn10: '', isbn13: '', comment: '', score: 0, user: NullUserRecordType, date: '', likes: 0 };
+    return { id: 0, isbn10: '', isbn13: '', comment: '', score: 0, user: NullUserRecordType(), date: '', likes: 0 };
 };
 
 export interface BookReviewRawRecordType {

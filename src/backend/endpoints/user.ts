@@ -9,7 +9,7 @@ async function addNewUser(
     user: DataTypes.UserValueType,
     onError: (resultCode: number) => void,
 ): Promise<DataTypes.UserRecordType> {
-    let newUserData = DataTypes.NullUserRecordType;
+    let newUserData = DataTypes.NullUserRecordType();
     await axios
         .post(urlUsers, user)
         .then(response => {
@@ -47,7 +47,7 @@ export async function getUserRecordTypeFromId(
     id: number,
     onError: (resultCode: number) => void,
 ): Promise<DataTypes.UserRecordType> {
-    let userRecord: DataTypes.UserRecordType = DataTypes.NullUserRecordType;
+    let userRecord: DataTypes.UserRecordType = DataTypes.NullUserRecordType();
     await axios
         .get(`${urlUsers}?id=${id}`)
         .then(response => {
@@ -63,7 +63,7 @@ export async function getUserRecordTypeFromEmail(
     email: string,
     onError: (resultCode: number) => void,
 ): Promise<DataTypes.UserRecordType> {
-    let userData = DataTypes.NullUserRecordType;
+    let userData = DataTypes.NullUserRecordType();
 
     await axios
         .get(`${urlUsers}?email=${email}`)
@@ -103,7 +103,7 @@ export async function loginUser(
                 await axios.put(userIdUrl, userData).catch(error => onError(error));
             }
             //  set some profile pic...if none set on our platform put the social media one ?????
-            const profilePictureAvailable = userData.picture !== DataTypes.NullUserRecordType.picture;
+            const profilePictureAvailable = userData.picture !== DataTypes.NullUserRecordType().picture;
             if (!profilePictureAvailable) {
                 userData.picture = user.picture;
             }
@@ -115,7 +115,7 @@ export async function loginUser(
 
         if (customAccountWithPasswordMismatch || socialNetworkMismatch) {
             if (onUserError) onUserError();
-            userData = NullUserRecordType;
+            userData = NullUserRecordType();
         }
     }
     return userData;

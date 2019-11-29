@@ -6,12 +6,8 @@ export interface UserReviewRecordType {
     id: number;
 }
 
-export const NullUserReviewRecordType: UserReviewRecordType = {
-    bookId: 0,
-    userId: 0,
-    comment: '',
-    stateScore: 0,
-    id: 0,
+export const NullUserReviewRecordType = (): UserReviewRecordType => {
+    return { bookId: 0, userId: 0, comment: '', stateScore: 0, id: 0 };
 };
 
 export interface UserReviewValueType {
@@ -21,9 +17,6 @@ export interface UserReviewValueType {
     stateScore: number;
 }
 
-export const NullUserReviewValueType: UserReviewValueType = {
-    bookId: 0,
-    userId: 0,
-    comment: '',
-    stateScore: 0,
+export const NullUserReviewValueType = (): UserReviewValueType => {
+    return { bookId: 0, userId: 0, comment: '', stateScore: 0 };
 };

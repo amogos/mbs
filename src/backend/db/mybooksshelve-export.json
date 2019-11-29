@@ -97,14 +97,14 @@
   ],
   "book_reviews": [
     {
+      "id": 1,
       "isbn10": "3314103484",
       "isbn13": "9783314103483",
       "comment": "qwqewqe",
       "score": 4,
       "user": 3,
-      "id": 1,
       "date": "2014-01-01T23:28:56.782Z",
-      "likes": 3
+      "likes": 4
     },
     {
       "isbn10": "3314103484",

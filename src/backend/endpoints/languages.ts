@@ -21,7 +21,7 @@ export async function getLanguageRecordTypeFromId(
     id: number,
     onError: (resultCode: number) => void,
 ): Promise<DataTypes.LanguageRecordType> {
-    let language = DataTypes.NullLanguage;
+    let language = DataTypes.NullLanguage();
     await axios
         .get(`${urlLanguages}/${id}`)
         .then(response => {
@@ -35,7 +35,7 @@ export async function getLanguageRecordTypeFromTitle(
     title: string,
     onError: (resultCode: number) => void,
 ): Promise<DataTypes.LanguageRecordType> {
-    let language = DataTypes.NullLanguage;
+    let language = DataTypes.NullLanguage();
     await axios
         .get(`${urlLanguages}?title=${title}`)
         .then(response => {

@@ -13,17 +13,19 @@ export interface SpaceType {
     picture: string;
 }
 
-export const NullSpaceType: SpaceType = {
-    id: 0,
-    user: NullUserRecordType,
-    numberOfBooks: 0,
-    numberOfFollowers: 0,
-    rating: 0,
-    transport: 0,
-    title: '',
-    description: '',
-    format: [],
-    picture: '',
+export const NullSpaceType = (): SpaceType => {
+    return {
+        id: 0,
+        user: NullUserRecordType(),
+        numberOfBooks: 0,
+        numberOfFollowers: 0,
+        rating: 0,
+        transport: 0,
+        title: '',
+        description: '',
+        format: [],
+        picture: '',
+    };
 };
 
 export interface SpaceRecordType {
@@ -36,14 +38,8 @@ export interface SpaceRecordType {
     picture: string;
 }
 
-export const NullSpaceRecordType: SpaceRecordType = {
-    id: 0,
-    owner: 0,
-    subscription: 0,
-    title: '',
-    description: '',
-    transport: 0,
-    picture: '',
+export const NullSpaceRecordType = (): SpaceRecordType => {
+    return { id: 0, owner: 0, subscription: 0, title: '', description: '', transport: 0, picture: '' };
 };
 
 export interface Spaces {

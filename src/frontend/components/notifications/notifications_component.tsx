@@ -41,7 +41,7 @@ const NotificationsComponent = (props: Props) => {
 
     const emptySelection: Selection = {
         returnId: 0,
-        user: DataTypes.NullUserRecordType,
+        user: DataTypes.NullUserRecordType(),
         bookId: 0,
         showRating: false,
     };

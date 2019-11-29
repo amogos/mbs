@@ -19,7 +19,7 @@ export const NullBookDescriptionValueType = (): BookDescriptionValueType => {
     return {
         title: '',
         subtitle: '',
-        language: NullLanguage,
+        language: NullLanguage(),
         image: '',
         author: [],
         isbn10: '',
@@ -51,7 +51,7 @@ export const NullBookDescriptionRecordType = (): BookDescriptionRecordType => {
         id: 0,
         title: '',
         subtitle: '',
-        language: NullLanguage,
+        language: NullLanguage(),
         image: '',
         author: [],
         isbn10: '',

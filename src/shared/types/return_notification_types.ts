@@ -7,11 +7,8 @@ export interface ReturnNotificationRecordType {
     ownerId: number;
 }
 
-export const NullReturnNotificationRecordType: ReturnNotificationRecordType = {
-    id: 0,
-    bookId: 0,
-    userId: 0,
-    ownerId: 0,
+export const NullReturnNotificationRecordType = (): ReturnNotificationRecordType => {
+    return { id: 0, bookId: 0, userId: 0, ownerId: 0 };
 };
 
 export interface ReturnNotificationValueType {
@@ -20,10 +17,8 @@ export interface ReturnNotificationValueType {
     ownerId: number;
 }
 
-export const NullReturnNotificationValueType: ReturnNotificationValueType = {
-    bookId: 0,
-    userId: 0,
-    ownerId: 0,
+export const NullReturnNotificationValueType = (): ReturnNotificationValueType => {
+    return { bookId: 0, userId: 0, ownerId: 0 };
 };
 
 export interface ReturnNotificationType {
@@ -33,9 +28,6 @@ export interface ReturnNotificationType {
     user: UserRecordType;
 }
 
-export const NullReturnNotificationType: ReturnNotificationType = {
-    returnId: 0,
-    bookId: 0,
-    bookTitle: '',
-    user: NullUserRecordType,
+export const NullReturnNotificationType = (): ReturnNotificationType => {
+    return { returnId: 0, bookId: 0, bookTitle: '', user: NullUserRecordType() };
 };

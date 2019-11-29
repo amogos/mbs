@@ -9,7 +9,7 @@ export async function addReturnNotification(
     notification: DataTypes.ReturnNotificationValueType,
     onError: (resultCode: number) => void,
 ): Promise<DataTypes.ReturnNotificationRecordType> {
-    let result: DataTypes.ReturnNotificationRecordType = DataTypes.NullReturnNotificationRecordType;
+    let result: DataTypes.ReturnNotificationRecordType = DataTypes.NullReturnNotificationRecordType();
     await axios
         .post(urlReturns, notification)
         .then(r => (result = r.data))

@@ -15,7 +15,7 @@ export async function returnBook(bookId: number, onError: (resultCode: number) =
             value.holder = -1;
             await axios.put(bookUrl, value).catch(error => onError(error));
             //  add return notification
-            const returnNotification: DataTypes.ReturnNotificationValueType = DataTypes.NullReturnNotificationValueType;
+            const returnNotification: DataTypes.ReturnNotificationValueType = DataTypes.NullReturnNotificationValueType();
             returnNotification.bookId = result.data.id;
             returnNotification.ownerId = result.data.owner;
             returnNotification.userId = result.data.holder;

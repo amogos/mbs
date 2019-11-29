@@ -16,11 +16,8 @@ export interface QueueNotificationValueType {
     duration: number;
 }
 
-export const NullQueueNotificationValue: QueueNotificationValueType = {
-    userId: 0,
-    ownerId: 0,
-    bookId: 0,
-    duration: 0,
+export const NullQueueNotificationValue = (): QueueNotificationValueType => {
+    return { userId: 0, ownerId: 0, bookId: 0, duration: 0 };
 };
 
 export interface QueueNotificationRecordType {

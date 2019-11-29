@@ -33,7 +33,7 @@ const BookStateReturn = (props: Props) => {
         review.date = JSON.stringify(new Date());
         props.reviewBook(review);
 
-        props.book.holder = DataTypes.NullUserRecordType;
+        props.book.holder = DataTypes.NullUserRecordType();
         props.returnBook(props.book.id);
     };
 
