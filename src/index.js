@@ -21,8 +21,10 @@ const DisplayBook = () => {
     return (
         <div className='app'>
             <BannerContainer />
-            <MainContainer />
-            <RightContainer />
+            <div className='middle_area'>
+                <MainContainer />
+                <RightContainer />
+            </div>
         </div>
     );
 };
@@ -45,11 +47,12 @@ const DisplaySpaceListing = () => {
     return (
         <div className='app'>
             <BannerContainer />
+            <TopContainer />
             <div className='middle_area'>
                 <MainContainer />
                 <RightContainer />
             </div>
-            <TopContainer />
+            
         </div>
     );
 };
