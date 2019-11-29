@@ -1,9 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Divider, Comment, Avatar, Rate, Button } from 'antd';
 import * as DataTypes from '../../../shared/types';
 import Aux from './../aux_component';
 import { withStyle } from './../aux_component';
-import { NullBookPreviewProps } from './book_preview';
 
 interface Props {
     displayedBook: DataTypes.BookRecordType;
@@ -12,10 +11,15 @@ interface Props {
 }
 
 const Review = (props: Props, entry: DataTypes.BookReviewRecordType) => {
+    const [likes, setLikes] = useState(entry.likes);
+    const rawReview = DataTypes.ToBookReviewRawRecordType(entry);
+
     const likeReview = () => {
-        const review = DataTypes.ToBookReviewRawRecordType(entry);
-        review.likes++;
-        props.likeReview(review);
+        const newLikesCount = likes + 1;
+        rawReview.likes = newLikesCount;
+        entry.likes = newLikesCount;
+        setLikes(newLikesCount);
+        props.likeReview(rawReview);
     };
 
     return (
@@ -30,7 +34,7 @@ const Review = (props: Props, entry: DataTypes.BookReviewRecordType) => {
             content={
                 <div>
                     <p>{entry.comment}</p>
-                    {entry.likes} likes <Button onClick={likeReview}>Like</Button>
+                    {likes} likes <Button onClick={likeReview}>Like</Button>
                 </div>
             }
             datetime={<span>{entry.date}</span>}

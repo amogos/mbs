@@ -6,5 +6,5 @@ export async function updateBookReview(
     review: DataTypes.BookReviewRawRecordType,
     onError: (resultCode: number) => void,
 ) {
-    await axios.put(urlBookReviews, review).catch(error => onError(error));
+    await axios.put(`${urlBookReviews}/${review.id}`, review).catch(error => onError(error));
 }
