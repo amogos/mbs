@@ -73,6 +73,26 @@
       "category": 37,
       "id": 1,
       "return": 1574513951942
+    },
+    {
+      "owner": 1,
+      "holder": -1,
+      "state": "state.book.idle",
+      "isbn10": "1594481717",
+      "isbn13": "9781594481710",
+      "space": 1,
+      "category": 38,
+      "id": 2
+    },
+    {
+      "owner": 1,
+      "holder": -1,
+      "state": "state.book.idle",
+      "isbn10": "1784703931",
+      "isbn13": "9781784703936",
+      "space": 1,
+      "category": 38,
+      "id": 3
     }
   ],
   "book_reviews": [
@@ -277,6 +297,10 @@
     {
       "title": "juvenile fiction",
       "id": 37
+    },
+    {
+      "title": "business & economics",
+      "id": 38
     }
   ],
   "spaces": [
@@ -388,6 +412,54 @@
       "image": "https://vignette.wikia.nocookie.net/superfriends/images/a/a5/No_Photo_Available.jpg/revision/latest?cb=20090329133959",
       "description": "",
       "id": 2
+    },
+    {
+      "title": "A Whole New Mind",
+      "subtitle": "Why Right-brainers Will Rule the Future",
+      "language": {
+        "id": 1,
+        "title": "EN"
+      },
+      "isbn10": "1594481717",
+      "isbn13": "9781594481710",
+      "format": 1,
+      "category": [
+        {
+          "id": 38,
+          "title": "business & economics"
+        }
+      ],
+      "author": [
+        "Daniel H. Pink"
+      ],
+      "length": 275,
+      "image": "http://books.google.com/books/content?id=3Xb_MDJQZnYC&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+      "description": "Uses the two sides of the human brain as a metaphor for understanding how the information age came about throughout the course of the past generation, counseling readers on how to survive and find a place in a society that is marked by rising affluence, job outsourcing, and computer technology at the expense of inventiveness, empathy, and meaning. Reprint.",
+      "id": 3
+    },
+    {
+      "title": "Homo Deus",
+      "subtitle": "",
+      "language": {
+        "id": 1,
+        "title": "EN"
+      },
+      "isbn10": "1784703931",
+      "isbn13": "9781784703936",
+      "format": 1,
+      "category": [
+        {
+          "id": 38,
+          "title": "civilization, modern"
+        }
+      ],
+      "author": [
+        "Yuval Noah Harari"
+      ],
+      "length": 513,
+      "image": "http://books.google.com/books/content?id=vbS4wAEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+      "description": "THE MILLION COPY BESTSELLERSapiensshows us where we came from. Homo Deusshows us where we?re going.Yuval Noah Hararienvisions a near future in which we face a new set of challenges. Homo Deusexplores the projects, dreams and nightmares that will shape the twenty-first century and beyond - from overcoming death to creating artificial life.It asks the fundamental questions- how can we protect this fragile world from our own destructive power? And what does our future hold?'Homo Deuswill shock you. It will entertain you. It will make you think in ways you had not thought before? Daniel Kahneman",
+      "id": 4
     }
   ]
 }
