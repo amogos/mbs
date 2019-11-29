@@ -17,9 +17,7 @@
     cursor: pointer;
 }
 .space_image {
-    margin-left: 10%;
-    position: relative;
-    margin-top: 0%;
+    margin-left: 2rem;
 }
 .space_image:hover {
     cursor: pointer;
