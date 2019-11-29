@@ -1,6 +1,5 @@
 import React from 'react';
-import { withStyle, requiresLogin } from '../aux_component';
-import Aux from './../aux_component';
+import { Aux, withStyle, requiresLogin } from '../hooks/hooks';
 import { Divider } from 'antd';
 import * as DataTypes from './../../../shared/types';
 

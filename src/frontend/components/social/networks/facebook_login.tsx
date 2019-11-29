@@ -1,7 +1,7 @@
 import React from 'react';
 import FacebookLoginComponent from 'react-facebook-login';
 import * as DataTypes from '../../../../shared/types';
-import { withStyle } from '../../aux_component';
+import { withStyle } from '../../hooks/hooks';
 import { Button } from 'antd';
 import { SocialNetwork } from './../../../../shared/constants/social_networks_constants';
 

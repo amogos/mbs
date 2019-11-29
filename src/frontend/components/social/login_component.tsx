@@ -6,8 +6,7 @@ import CustomLogin, { CustomLogout } from './networks/custom_login';
 import * as DataTypes from './../../../shared/types';
 import { SocialNetwork } from './../../../shared/constants/social_networks_constants';
 import { Divider, Button, Input, Icon, message } from 'antd';
-import { useInput } from './../hooks/use_input';
-import { withStyle } from './../aux_component';
+import { useInput, withStyle } from './../hooks/hooks';
 
 interface Props {
     userdata: DataTypes.UserRecordType;

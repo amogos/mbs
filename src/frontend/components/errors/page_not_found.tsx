@@ -1,5 +1,5 @@
 import React from 'react';
-import { withStyle } from './../aux_component';
+import { withStyle } from './../hooks/hooks';
 
 const PageNotFound = () => {
     return <p>Page not found</p>;

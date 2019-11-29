@@ -4,7 +4,7 @@ import SpaceImage from './space_image';
 import SpaceActions from './space_actions';
 import SpaceDescription from './space_description';
 import SpaceStatistics from './space_statistics';
-import Aux, { withStyle } from './../aux_component';
+import { Aux, withStyle } from './../hooks/hooks';
 import AddNewBookComponent from '../books/add_new_book';
 
 interface Props {

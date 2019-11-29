@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { List, Avatar, Divider } from 'antd';
 import * as DataTypes from '../../../shared/types';
 import RatingComponent from './rating';
-import Aux, { withStyle } from './../aux_component';
+import { Aux, withStyle } from './../hooks/hooks';
 
 interface Props {
     userdata: DataTypes.UserRecordType;

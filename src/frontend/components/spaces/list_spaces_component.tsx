@@ -2,7 +2,7 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 import * as DataTypes from '../../../shared/types';
 import SpaceHolder from './space_holder';
-import Aux, { withStyle } from './../aux_component';
+import { Aux, withStyle } from './../hooks/hooks';
 
 interface Props {
     userSpaces: DataTypes.SpaceType[];

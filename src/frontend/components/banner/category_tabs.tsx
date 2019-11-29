@@ -3,7 +3,7 @@ import { withRouter } from 'react-router-dom';
 import Tabs, { TabData } from '../banner/tabs';
 import * as DataTypes from '../../../shared/types';
 import * as Strings from '../../../shared/constants/string_constant';
-import { withStyle } from '../aux_component';
+import { withStyle } from '../hooks/hooks';
 
 interface Props {
     getSpaces(filters: string[]): void;

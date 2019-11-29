@@ -1,7 +1,7 @@
 import React from 'react';
 import * as DataTypes from '../../../../shared/types';
 import { Button } from 'antd';
-import { withStyle } from '../../aux_component';
+import { withStyle } from '../../hooks/hooks';
 import { SocialNetwork } from './../../../../shared/constants/social_networks_constants';
 
 interface Props {

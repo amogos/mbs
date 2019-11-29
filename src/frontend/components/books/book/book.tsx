@@ -1,10 +1,10 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
-import { Avatar, Button, Rate } from 'antd';
+import { Button, Rate } from 'antd';
 import BookStateComponent from './book_state';
 import BookAvailabilityComponent from './book_availability';
 import BooksDescription from './book_description';
-import Aux, { withStyle } from '../../aux_component';
+import { Aux, withStyle } from '../../hooks/hooks';
 import * as DataTypes from '../../../../shared/types';
 
 interface ReviewState {

@@ -1,5 +1,5 @@
 import React from 'react';
-import { withStyle } from './../aux_component';
+import { withStyle } from './../hooks/hooks';
 import LogoImage from './../../images/logo.png';
 
 const Logo = () => {

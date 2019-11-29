@@ -1,5 +1,5 @@
 import React from 'react';
-import { withStyle, requiresLogin } from '../aux_component';
+import { withStyle, requiresLogin } from '../hooks/hooks';
 import debounce from 'lodash.debounce';
 import * as DataTypes from './../../../shared/types';
 import ListBooksContainer from '../../containers/list_books_container';

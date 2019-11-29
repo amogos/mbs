@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Popover } from 'antd';
 import * as DataTypes from '../../../shared/types';
-import Aux, { withStyle, requiresLogin } from '../aux_component';
+import { Aux, withStyle, requiresLogin } from '../hooks/hooks';
 import Logo from '../banner/logo';
 import CategoryTabs from '../banner/category_tabs';
 import NotificationsContainer from '../../containers/notifications_component_container';

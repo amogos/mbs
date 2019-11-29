@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button } from 'antd';
-import Aux from '../aux_component';
+import { Aux } from '../hooks/hooks';
 
 export interface TabData {
     id: number;

@@ -1,7 +1,7 @@
 import React from 'react';
 import * as DataTypes from '../../../shared/types';
 import { Avatar } from 'antd';
-import Aux from './../aux_component';
+import { Aux } from './../hooks/hooks';
 import { Logout } from './login_component';
 
 interface Props {

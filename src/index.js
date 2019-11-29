@@ -14,7 +14,6 @@ import RightContainer from './frontend/containers/right_container';
 import TopContainer from './frontend/containers/top_container';
 import PageNotFound from './frontend/components/errors/page_not_found';
 
-import Aux from './frontend/components/aux_component';
 import { pageAction } from './frontend/actions';
 
 const DisplayBook = () => {

@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { Divider, Comment, Avatar, Rate, Button } from 'antd';
 import * as DataTypes from '../../../shared/types';
-import Aux from './../aux_component';
-import { withStyle } from './../aux_component';
+import { Aux, withStyle } from './../hooks/hooks';
 import BookDescription from './book/book_description';
 
 interface Props {
@@ -27,7 +26,8 @@ const Review = (props: Props, entry: DataTypes.BookReviewRecordType) => {
         <Comment
             author={
                 <a>
-                    {entry.user.name} rated it<Rate className='review_rating'disabled defaultValue={entry.score} />
+                    {entry.user.name} rated it
+                    <Rate className="review_rating" disabled defaultValue={entry.score} />
                 </a>
             }
             avatar={<Avatar src={entry.user.picture} alt={entry.user.name} />}
