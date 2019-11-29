@@ -2,7 +2,7 @@ import React from 'react';
 import * as DataTypes from '../../../../shared/types';
 import { Button, Input, Icon, message } from 'antd';
 import { SocialNetwork } from './../../../../shared/constants/social_networks_constants';
-import { useInput } from './../../hooks/use_input';
+import { useInput } from '../../hooks/hooks/use_input';
 
 interface Props {
     loginUser(userInfo: DataTypes.UserValueType, onError?: () => void): void;
