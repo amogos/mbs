@@ -11,8 +11,7 @@
 }
 
 .space_description {
-    position: relative;
-    width: 430px;
+    width: 80%;
 }
 .space_description:hover {
     cursor: pointer;
