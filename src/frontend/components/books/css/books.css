@@ -1,29 +1,41 @@
 .section_divider_small {
     width: 550px;
 }
-.book_icon_small {
-    display: table-cell;
-    padding-left: 60px;
+.book_left {
+    display: grid;
+    justify-content: space-between;
+}
+
+.book_right {
+    padding-left: 20px;
+    display: grid;
+    justify-content: space-between;
+}
+
+.book_rating {
+    transform: scale(0.5);
+}
+
+.book_state {
+    align-self: center;
+}
+
+.book {
+    display: flex;
+    flex-direction: row;
+}
+.book_title {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color: black;
+    text-align: left;
 }
 
 .book_icon_small img {
     width: 128px;
 }
 
-.book_details {
-    display: table-cell;
-    vertical-align: super;
-    width: 35%;
-}
-
-.book_description {
-}
-
-.customer_reviews {
-    transform: translate(-20%, 0%);
-}
-.review_buttons {
-    transform: translate(-1.5%, 0%);
+.book_description p {
+    background-color: blue;
 }
 
 .list_book_component {
@@ -51,10 +63,4 @@
 .book_preview .description {
     padding-bottom: 15px;
     margin-top: 15px;
-}
-
-.book_title {
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    color: black;
-    text-align: left;
 }

@@ -16,7 +16,6 @@ const BookStateAddToCart = (param: Props) => {
     return (
         <div>
             <Button
-                type="link"
                 onClick={() => {
                     setVisible(true);
                 }}

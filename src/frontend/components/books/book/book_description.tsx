@@ -10,19 +10,16 @@ interface Props {
 const BookDescription = (props: Props) => {
     const [expandedText, setExpandedText] = useState(false);
     const contentText = expandedText ? props.description : props.description.substr(0, props.length);
-    const buttonText = expandedText ? 'show less' : 'show more';
+    const buttonText = expandedText ? 'show less' : '...more';
 
     return (
         <Aux>
-            <p>
-                {contentText}
-                {props.description.length > props.length ? (
-                    <Button type="link" onClick={() => setExpandedText(!expandedText)}>
-                        {buttonText}
-                    </Button>
-                ) : null}
-            </p>
-            <br />
+            {contentText}
+            {props.description.length > props.length ? (
+                <Button type="link" onClick={() => setExpandedText(!expandedText)}>
+                    {buttonText}
+                </Button>
+            ) : null}
         </Aux>
     );
 };

@@ -43,7 +43,7 @@ const BookStateReturn = (props: Props) => {
 
     return (
         <Aux>
-            <Button type="link" onClick={() => setShowRatingModal(true)}>
+            <Button onClick={() => setShowRatingModal(true)}>
                 <IconText type="import" text={BookStateStrings.RETURN_BOOK} />
             </Button>
             <DatePicker defaultValue={moment(props.book.return)} disabled />

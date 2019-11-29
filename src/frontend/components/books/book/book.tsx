@@ -1,19 +1,11 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
-import { Avatar, Divider, Button, Rate } from 'antd';
+import { Avatar, Button, Rate } from 'antd';
 import BookStateComponent from './book_state';
 import BookAvailabilityComponent from './book_availability';
 import BooksDescription from './book_description';
 import Aux, { withStyle } from '../../aux_component';
 import * as DataTypes from '../../../../shared/types';
-
-const SectionDivider = () => {
-    return (
-        <div className="section_divider_small">
-            <Divider />
-        </div>
-    );
-};
 
 interface ReviewState {
     reviews: DataTypes.BookReviewRecordType[];
@@ -42,31 +34,23 @@ const BookComponent = (props: Props) => {
 
     return (
         <Aux key={`k${item.id}`}>
-            <div className="book_details">
-                <Button className="book_title" type="link" onClick={onBookTitleCliked}>
-                    {item.title}
-                </Button>
-                <br />
-                Author: {item.author.toString()} <br />
-                Format: {item.format} <br />
-                Language: {item.language.title}
-                <br />
-                PageCount: {item.length} <br />
-                <BooksDescription description={item.description} length={200} />
-                <Rate disabled defaultValue={item.contentScore} />
-                <br />
-                <BookAvailabilityComponent book={item} />
-                <div>
-                    <Avatar src={item.space.picture} size="large" />
-                    Space: {item.space.description} <br />
-                </div>
-                <BookStateComponent {...props} book={item} />
-            </div>
-            <div className="book_icon_small">
+            <div className="book_left">
                 <img alt="logo" src={item.image} />
             </div>
-            <br />
-            <SectionDivider />
+            <div className="book_right">
+                <Button className="book_title" type="link" onClick={onBookTitleCliked}>
+                    {item.title} by {item.author.toString()}{' '}
+                    <span className="book_rating">
+                        <Rate disabled defaultValue={item.contentScore} />{' '}
+                    </span>
+                </Button>
+                <BooksDescription description={item.description} length={200} />
+
+                <BookAvailabilityComponent book={item} />
+                <div className="book_state">
+                    <BookStateComponent {...props} book={item} />
+                </div>
+            </div>
         </Aux>
     );
 };

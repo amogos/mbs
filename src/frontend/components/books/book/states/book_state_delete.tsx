@@ -18,7 +18,7 @@ interface Props {
 const BookStateDelete = (props: Props) => {
     const { BookStateStrings } = Strings.default;
     return (
-        <Button type="link" onClick={() => props.deleteBook(props.book.id)}>
+        <Button onClick={() => props.deleteBook(props.book.id)}>
             <IconText type="transaction" text={BookStateStrings.DELETE_BOOK} />
         </Button>
     );
