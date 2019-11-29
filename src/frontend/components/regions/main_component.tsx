@@ -5,6 +5,7 @@ import * as DataTypes from './../../../shared/types';
 import ListBooksContainer from '../../containers/list_books_container';
 import ListSpacesContainer from '../../containers/list_spaces_container';
 import BookDisplayContainer from '../../containers/book_display_container';
+import LoginComponent from '../social/login_component';
 
 interface Props {
     userdata: DataTypes.UserRecordType;
@@ -12,6 +13,7 @@ interface Props {
     booksArray: DataTypes.BookRecordType[];
     userSpaces: DataTypes.SpaceType[];
     otherSpaces: DataTypes.SpaceType[];
+    loginUser(userInfo: DataTypes.UserValueType, onError?: () => void): void;
     getBooks(filters: string[], callbacks: ((books: DataTypes.BookRecordType[]) => void)[]): void;
     getSpaces(filters: string[]): void;
 }
@@ -101,4 +103,4 @@ const MainComponent = React.memo((props: Props) => {
     }
 }, propsEqual);
 
-export default requiresLogin(withStyle(MainComponent, 'main_component'));
+export default requiresLogin(withStyle(MainComponent, 'main_component'), LoginComponent);

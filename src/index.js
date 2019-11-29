@@ -19,9 +19,9 @@ import { pageAction } from './frontend/actions';
 
 const DisplayBook = () => {
     return (
-        <div className='app'>
+        <div className="app">
             <BannerContainer />
-            <div className='middle_area'>
+            <div className="middle_area">
                 <MainContainer />
                 <RightContainer />
             </div>
@@ -31,34 +31,31 @@ const DisplayBook = () => {
 
 const DisplayBookListing = () => {
     return (
-        <div className='app'>
+        <div className="app">
             <BannerContainer />
             <TopContainer />
-            <div className='middle_area'>
+            <div className="middle_area">
                 <MainContainer />
                 <RightContainer />
             </div>
-           
         </div>
     );
 };
 
 const DisplaySpaceListing = () => {
     return (
-        <div className='app'>
+        <div className="app">
             <BannerContainer />
             <TopContainer />
-            <div className='middle_area'>
+            <div className="middle_area">
                 <MainContainer />
                 <RightContainer />
             </div>
-            
         </div>
     );
 };
 
 const DisplayContent = page => {
-    
     switch (page) {
         case 'book':
             return DisplayBook();

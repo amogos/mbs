@@ -7,6 +7,7 @@ import * as DataTypes from './../../../shared/types';
 import { SocialNetwork } from './../../../shared/constants/social_networks_constants';
 import { Divider, Button, Input, Icon, message } from 'antd';
 import { useInput } from './../hooks/use_input';
+import { withStyle } from './../aux_component';
 
 interface Props {
     userdata: DataTypes.UserRecordType;
@@ -113,7 +114,7 @@ const Login = (props: Props) => {
     );
 };
 
-export default Login;
+export default withStyle(Login, 'login');
 
 export const Logout = (props: Props) => {
     switch (props.userdata.socialnetwork) {

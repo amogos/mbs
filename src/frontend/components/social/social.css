@@ -1,13 +1,13 @@
 .login {
-    top: 10%;
-    right: 40%;
-    display: flex;
-    flex-direction: column;
+    display: inline-block;
+    position: relative;
+    top: 40%;
+    left: 40%;
 }
 
 .signup_form {
     top: 10%;
-    right: 40%;
+    left: 10%;
     display: flex;
     flex-direction: column;
 }

@@ -5,7 +5,6 @@ import Aux, { withStyle, requiresLogin } from '../aux_component';
 import Logo from '../banner/logo';
 import CategoryTabs from '../banner/category_tabs';
 import NotificationsContainer from '../../containers/notifications_component_container';
-import LoginComponent from '../social/login_component';
 import ProfileComponent from '../../components/social/profile_component';
 
 interface Props {
@@ -65,4 +64,4 @@ const BannerComponent = (props: Props) => {
     );
 };
 
-export default requiresLogin(withStyle(BannerComponent, 'banner_component'), LoginComponent);
+export default requiresLogin(withStyle(BannerComponent, 'banner_component'));
