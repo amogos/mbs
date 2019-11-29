@@ -117,13 +117,6 @@ export interface BookRawRecordType {
     return?: number;
 }
 
-export const NullRawBookRecordType: BookRawRecordType = {
-    id: 0,
-    owner: 0,
-    holder: 0,
-    state: '',
-    space: 0,
-    category: 0,
-    isbn10: '',
-    isbn13: '',
+export const NullRawBookRecordType = (): BookRawRecordType => {
+    return { id: 0, owner: 0, holder: 0, state: '', space: 0, category: 0, isbn10: '', isbn13: '' };
 };

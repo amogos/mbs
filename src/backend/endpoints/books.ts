@@ -82,7 +82,7 @@ export async function getBookRawRecordTypeFromId(
     id: number,
     onError: (resultCode: number) => void,
 ): Promise<DataTypes.BookRawRecordType> {
-    let record: DataTypes.BookRawRecordType = DataTypes.NullRawBookRecordType;
+    let record: DataTypes.BookRawRecordType = DataTypes.NullRawBookRecordType();
     await axios
         .get(`${urlBooks}/${id}`)
         .then(response => (record = response.data))
