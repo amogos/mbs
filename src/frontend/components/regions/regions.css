@@ -22,7 +22,7 @@
 
 .main_component {
     margin-left: 15%;
-    margin-top: 2rem;
+    margin-top: 2em;
     width: 50%;
     background-color: white;
     z-index: 0;
@@ -33,14 +33,14 @@
     z-index: 0;
     width: 25%;
     height: 100%;
-    margin-left:5rem;
+    margin-left:5em;
     background-color: white;
 }
 
 .top_component {
     margin-left: 8%;
     margin-right: 15%;
-    margin-top:2rem;
+    margin-top:2em;
     width: 80%;
     height: 20%;
     background-color: white;

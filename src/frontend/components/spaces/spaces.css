@@ -1,6 +1,6 @@
 .list_spaces_component {
-    padding-top: 2rem;
-    padding-right: 5rem;
+    padding-top: 2em;
+    padding-right: 5em;
 }
 
 .space_holder {
@@ -17,7 +17,7 @@
     cursor: pointer;
 }
 .space_image {
-    margin-left: 2rem;
+    margin-left: 2em;
 }
 .space_image:hover {
     cursor: pointer;

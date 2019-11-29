@@ -20,7 +20,7 @@
 .book {
     display: flex;
     flex-direction: row;
-    padding-top: 2rem;
+    padding-top: 2em;
 }
 .book_title {
     font-family: Georgia, 'Times New Roman', Times, serif;
