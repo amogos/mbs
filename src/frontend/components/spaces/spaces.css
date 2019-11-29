@@ -1,8 +1,6 @@
 .list_spaces_component {
-    padding-top: 50px;
-    margin-top: 5%;
-    position: absolute;
-    width: 100%;
+    padding-top: 2rem;
+    padding-right: 5rem;
 }
 
 .space_holder {
