@@ -17,7 +17,53 @@ import PageNotFound from './frontend/components/errors/page_not_found';
 import Aux from './frontend/components/aux_component';
 import { pageAction } from './frontend/actions';
 
-const Pages = ['spaces', 'books', 'book'];
+const DisplayBook = () => {
+    return (
+        <Aux>
+            <BannerContainer />
+            <MainContainer />
+            <RightContainer />
+        </Aux>
+    );
+};
+
+const DisplayBookListing = () => {
+    return (
+        <Aux>
+            <BannerContainer />
+            <MainContainer />
+            <RightContainer />
+            <TopContainer />
+        </Aux>
+    );
+};
+
+const DisplaySpaceListing = () => {
+    return (
+        <Aux>
+            <BannerContainer />
+            <MainContainer />
+            <RightContainer />
+            <TopContainer />
+        </Aux>
+    );
+};
+
+const DisplayContent = page => {
+    switch (page) {
+        case 'book':
+            return DisplayBook();
+
+        case 'books':
+            return DisplayBookListing();
+
+        case 'spaces':
+            return DisplaySpaceListing();
+
+        default:
+            return <PageNotFound />;
+    }
+};
 
 const App = routeParams => {
     if (!Object.fromEntries) {
@@ -30,19 +76,7 @@ const App = routeParams => {
     const urlparams = { id, query };
 
     Store.dispatch(pageAction.addUrlParams(urlparams));
-
-    if (!id || Pages.includes(id)) {
-        return (
-            <Aux>
-                <BannerContainer />
-                <MainContainer />
-                <RightContainer />
-                <TopContainer />
-            </Aux>
-        );
-    }
-
-    return <PageNotFound />;
+    return DisplayContent(id);
 };
 
 ReactDom.render(

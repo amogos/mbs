@@ -19,6 +19,16 @@
     position: absolute;
 }
 
+.main_component_big {
+    margin-top: 8%;
+    margin-left: 25%;
+    margin-right: 35%;
+    width: 50%;
+    background-color: white;
+    z-index: 0;
+    position: absolute;
+}
+
 .right_component {
     z-index: 0;
     margin-top: 20%;
