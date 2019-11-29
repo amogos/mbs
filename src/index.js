@@ -19,43 +19,51 @@ import { pageAction } from './frontend/actions';
 
 const DisplayBook = () => {
     return (
-        <Aux>
+        <div className='app'>
             <BannerContainer />
             <MainContainer />
             <RightContainer />
-        </Aux>
+        </div>
     );
 };
 
 const DisplayBookListing = () => {
     return (
-        <Aux>
+        <div className='app'>
             <BannerContainer />
-            <MainContainer />
-            <RightContainer />
             <TopContainer />
-        </Aux>
+            <div className='middle_area'>
+                <MainContainer />
+                <RightContainer />
+            </div>
+           
+        </div>
     );
 };
 
 const DisplaySpaceListing = () => {
     return (
-        <Aux>
+        <div className='app'>
             <BannerContainer />
-            <MainContainer />
-            <RightContainer />
+            <div className='middle_area'>
+                <MainContainer />
+                <RightContainer />
+            </div>
             <TopContainer />
-        </Aux>
+        </div>
     );
 };
 
 const DisplayContent = page => {
+    
     switch (page) {
         case 'book':
             return DisplayBook();
         case 'books':
             return DisplayBookListing();
         case 'spaces':
+            return DisplaySpaceListing();
+        case undefined:
             return DisplaySpaceListing();
         default:
             return <PageNotFound />;
