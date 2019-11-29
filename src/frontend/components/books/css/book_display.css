@@ -1,3 +1,7 @@
 .book_display_component {
     width: 80%;
 }
+
+.review_rating {
+    transform: scale(0.5);
+}

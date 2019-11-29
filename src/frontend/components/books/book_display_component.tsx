@@ -27,8 +27,7 @@ const Review = (props: Props, entry: DataTypes.BookReviewRecordType) => {
         <Comment
             author={
                 <a>
-                    {entry.user.name} rated it
-                    <Rate disabled defaultValue={entry.score} />
+                    {entry.user.name} rated it<Rate className='review_rating'disabled defaultValue={entry.score} />
                 </a>
             }
             avatar={<Avatar src={entry.user.picture} alt={entry.user.name} />}
