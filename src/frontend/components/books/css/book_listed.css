@@ -1,0 +1,36 @@
+.book_left {
+    display: grid;
+    justify-content: space-between;
+}
+
+.book_right {
+    padding-left: 20px;
+    display: grid;
+    justify-content: space-between;
+}
+
+.book_rating {
+    transform: scale(0.5);
+}
+
+.book_state {
+    align-self: center;
+}
+
+.book {
+    display: flex;
+    flex-direction: row;
+}
+.book_title {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color: black;
+    text-align: left;
+}
+
+.book_icon_small img {
+    width: 128px;
+}
+
+.book_description {
+    width: 80%;
+}
