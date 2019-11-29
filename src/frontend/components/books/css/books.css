@@ -34,8 +34,8 @@
     width: 128px;
 }
 
-.book_description p {
-    background-color: blue;
+.book_description {
+    width: 80%;
 }
 
 .list_book_component {
