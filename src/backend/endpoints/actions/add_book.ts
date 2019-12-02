@@ -46,6 +46,7 @@ export async function addBook(
         length: value.length,
         image: value.image,
         description: value.description,
+        likes: 0,
     };
 
     await axios
@@ -57,7 +58,9 @@ export async function addBook(
     if (previousDescription.id === 0) {
         await addBookDescription(newBookDescription, onError);
     } else {
-        if (previousDescription !== newBookDescription)
+        if (previousDescription !== newBookDescription) {
+            newBookDescription.likes = previousDescription.likes;
             await updateBookDescription(previousDescription.id, newBookDescription, onError);
+        }
     }
 }

@@ -9,5 +9,6 @@ export const urlQueues = 'http://localhost:3001/queues';
 export const urlSpaces = 'http://localhost:3001/spaces';
 export const urlFormats = 'http://localhost:3001/formats';
 export const urlBooksDescriptions = 'http://localhost:3001/books_descriptions';
+export const urlBooksLikes = 'http://localhost:3001/books_likes';
 
 export const OneDayMilliseconds = 24 * 60 * 60 * 1000;

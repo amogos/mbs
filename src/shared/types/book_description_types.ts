@@ -13,6 +13,7 @@ export interface BookDescriptionValueType {
     category: CategoryRecordType[];
     length: number;
     format: number;
+    likes: number;
 }
 
 export const NullBookDescriptionValueType = (): BookDescriptionValueType => {
@@ -28,6 +29,7 @@ export const NullBookDescriptionValueType = (): BookDescriptionValueType => {
         length: 0,
         format: 0,
         category: [],
+        likes: 0,
     };
 };
 
@@ -44,6 +46,7 @@ export interface BookDescriptionRecordType {
     length: number;
     format: number;
     category: CategoryRecordType[];
+    likes: number;
 }
 
 export const NullBookDescriptionRecordType = (): BookDescriptionRecordType => {
@@ -60,5 +63,6 @@ export const NullBookDescriptionRecordType = (): BookDescriptionRecordType => {
         length: 0,
         format: 0,
         category: [],
+        likes: 0,
     };
 };

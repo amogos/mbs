@@ -40,9 +40,9 @@ const BookComponent = (props: Props) => {
             </div>
             <div className="book_right">
                 <Button className="book_title" type="link" onClick={onBookTitleCliked}>
-                    {item.title} by {item.author.toString()}{' '}
+                    {item.title} by {item.author.toString()}
                     <span className="book_rating">
-                        <Rate disabled defaultValue={item.contentScore} />{' '}
+                        <Rate disabled defaultValue={item.contentScore} />
                     </span>
                 </Button>
                 <BooksDescription description={item.description} length={200} />

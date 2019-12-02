@@ -45,6 +45,7 @@ export async function getBookRecordTypeFromRaw(
     result.numReviews = reviewStatistics.numReviews;
     result.description = description.description;
     result.length = description.length;
+    result.likes = description.likes;
     return result;
 }
 

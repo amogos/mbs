@@ -24,6 +24,7 @@ export interface BookValueType {
     space: number;
     description: string;
     length: number;
+    likes: number;
 }
 
 export const NullBookValueType = (): BookValueType => {
@@ -45,6 +46,7 @@ export const NullBookValueType = (): BookValueType => {
         space: 0,
         description: '',
         length: 0,
+        likes: 0,
     };
 };
 
@@ -68,6 +70,7 @@ export interface BookRecordType {
     numReviews?: number;
     description: string;
     length: number;
+    likes: number;
 }
 
 export const NullBookRecordType = (): BookRecordType => {
@@ -91,6 +94,7 @@ export const NullBookRecordType = (): BookRecordType => {
         numReviews: 0,
         description: '',
         length: 0,
+        likes: 0,
     };
 };
 
