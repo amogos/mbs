@@ -6,7 +6,7 @@ import { getLanguageRecordTypeFromId } from './languages';
 import { getCategoryRecordTypeFromId } from './categories';
 import { getFutureAvailabilityForBookInMilliseconds } from './queue';
 import { getReviewStatisticsForBook } from './book_reviews';
-import { getBookDescriptionForISBN } from './books_descriptions';
+import { getBookDescriptionForISBN, updateBookDescription } from './books_descriptions';
 import { getFormatRecordTypeFromId } from './format';
 import { getSpaceTypeFromId } from './spaces';
 import { BookRecordType } from '../../shared/types';
@@ -97,4 +97,10 @@ export async function getBookRecordTypeFromId(
 ): Promise<DataTypes.BookRecordType> {
     const item: DataTypes.BookRawRecordType = await getBookRawRecordTypeFromId(id, onError);
     return await getBookRecordTypeFromRaw(item, onError);
+}
+
+export async function likeBook(book: DataTypes.BookRecordType, onError: (resultCode: number) => void): Promise<void> {
+    const description = await getBookDescriptionForISBN(book.isbn10, book.isbn13, onError);
+    description.likes++;
+    await updateBookDescription(description.id, description, onError);
 }

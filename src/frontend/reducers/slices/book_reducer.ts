@@ -17,6 +17,10 @@ export default function bookReducer(state: any, action: any): any {
             databseInstance.updateBookReview(action.review, handleError);
             return state;
         }
+        case BookActionConstant.ACTION_LIKE_BOOK: {
+            databseInstance.likeBook(action.book, handleError);
+            return state;
+        }
         case BookActionConstant.ACTION_DISPLAY_BOOK: {
             databseInstance.getBookRecordTypeFromId(action.bookId, handleError).then(result => {
                 Store.dispatch(pageAction.refreshState({ displayedBook: result }));

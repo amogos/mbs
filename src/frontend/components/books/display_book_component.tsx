@@ -8,7 +8,7 @@ interface Props {
     displayedBook: DataTypes.BookRecordType;
     displayedBookReviews: DataTypes.BookReviewRecordType[];
     likeReview(review: DataTypes.BookReviewRawRecordType): void;
-    likeBook(book: DataTypes.BookReviewRecordType): void;
+    likeBook(book: DataTypes.BookRecordType): void;
 }
 
 const Review = (props: Props, entry: DataTypes.BookReviewRecordType) => {
@@ -43,6 +43,22 @@ const Review = (props: Props, entry: DataTypes.BookReviewRecordType) => {
     );
 };
 
+const LikeBookComponent = (props: Props) => {
+    const [likes, setLikes] = useState(props.displayedBook.likes);
+
+    const likeBook = () => {
+        props.displayedBook.likes++;
+        setLikes(props.displayedBook.likes);
+        props.likeBook(props.displayedBook);
+    };
+    return (
+        <Aux>
+            {likes} likes
+            <Button onClick={likeBook}>Like</Button>
+        </Aux>
+    );
+};
+
 const BookDisplayComponent = (props: Props) => {
     const { displayedBook, displayedBookReviews } = props;
 
@@ -62,6 +78,7 @@ const BookDisplayComponent = (props: Props) => {
             <br />
             PageCount: {displayedBook.length} <br />
             <BookDescription description={displayedBook.description} length={200} />
+            <LikeBookComponent {...props} />
             <Divider />
             {displayedBookReviews.map(entry => Review(props, entry))}
         </Aux>

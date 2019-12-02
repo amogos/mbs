@@ -47,7 +47,7 @@ class BookAction {
     });
 
     public likeBook = (book: DataTypes.BookRecordType) => ({
-        type: ActionTypes.default.BookActionConstant.ACTION_LIKE_REVIEW,
+        type: ActionTypes.default.BookActionConstant.ACTION_LIKE_BOOK,
         book,
     });
 
