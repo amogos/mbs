@@ -13,9 +13,13 @@
     transform: scale(0.5);
 }
 
-.book_state {
+.book_actions {
     display: flex;
     flex-direction: row;
+}
+
+.book_actions_right {
+    margin-left: 15px;
 }
 
 .book {

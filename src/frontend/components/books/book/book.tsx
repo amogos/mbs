@@ -49,9 +49,13 @@ const BookComponent = (props: Props) => {
                 <BooksDescription description={item.description} length={200} />
 
                 <BookAvailabilityComponent book={item} />
-                <div className="book_state">
-                    <LikeBook {...props} />
-                    <BookStateComponent {...props} />
+                <div className="book_actions">
+                    <div className="book_actions_left">
+                        <LikeBook {...props} />
+                    </div>
+                    <div className="book_actions_right">
+                        <BookStateComponent {...props} />
+                    </div>
                 </div>
             </div>
         </Aux>
