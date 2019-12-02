@@ -18,20 +18,22 @@ export default function bookReducer(state: any, action: any): any {
             return state;
         }
         case BookActionConstant.ACTION_LIKE_BOOK: {
-            databseInstance.likeBook(action.book, handleError);
+            databseInstance.likeBook(action.book, handleError).then(() => {
+                Store.dispatch(pageAction.refreshState({ modifiedBook: action.book }));
+            });
             return state;
         }
         case BookActionConstant.ACTION_DISPLAY_BOOK: {
             databseInstance.getBookRecordTypeFromId(action.bookId, handleError).then(result => {
-                Store.dispatch(pageAction.refreshState({ displayedBook: result }));
+                Store.dispatch(pageAction.refreshState({ modifiedBook: result }));
             });
             databseInstance.getReviewsForBook(action.bookId, handleError).then(result => {
-                Store.dispatch(pageAction.refreshState({ displayedBookReviews: result }));
+                Store.dispatch(pageAction.refreshState({ modifiedBookReviews: result }));
             });
 
             return Object.assign({}, state, {
-                displayBook: NullBookRecordType,
-                displayBookReviews: [],
+                modifiedBook: NullBookRecordType,
+                modifiedBookReviews: [],
             });
         }
         case BookActionConstant.ACTION_ADD_BOOK: {

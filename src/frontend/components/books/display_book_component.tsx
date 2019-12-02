@@ -49,8 +49,8 @@ const Review = (props: Props, entry: DataTypes.BookReviewRecordType) => {
 const BookDisplayComponent = (props: Props) => {
     const { book, bookReviews } = props;
 
-    if (!book || book.id === 0) return null;
-    if (!bookReviews) return null;
+    if (book === undefined || book.id === undefined) return null;
+    if (bookReviews === undefined || bookReviews.length === 0) return null;
 
     return (
         <Aux>
