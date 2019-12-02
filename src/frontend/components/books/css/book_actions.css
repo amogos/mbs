@@ -1,0 +1,8 @@
+.book_actions {
+    display: flex;
+    flex-direction: row;
+}
+
+.book_actions_right {
+    margin-left: 2em;
+}
