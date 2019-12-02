@@ -46,6 +46,11 @@ class BookAction {
         review,
     });
 
+    public likeBook = (book: DataTypes.BookRecordType) => ({
+        type: ActionTypes.default.BookActionConstant.ACTION_LIKE_REVIEW,
+        book,
+    });
+
     public displayBook = (bookId: number) => ({
         type: ActionTypes.default.BookActionConstant.ACTION_DISPLAY_BOOK,
         bookId,

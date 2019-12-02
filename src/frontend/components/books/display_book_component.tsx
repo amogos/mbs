@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import { Divider, Comment, Avatar, Rate, Button } from 'antd';
 import * as DataTypes from '../../../shared/types';
-import { Aux, withStyle } from './../hooks/hooks';
+import { Aux, withStyle } from '../hooks/hooks';
 import BookDescription from './book/book_description';
 
 interface Props {
     displayedBook: DataTypes.BookRecordType;
     displayedBookReviews: DataTypes.BookReviewRecordType[];
     likeReview(review: DataTypes.BookReviewRawRecordType): void;
+    likeBook(book: DataTypes.BookReviewRecordType): void;
 }
 
 const Review = (props: Props, entry: DataTypes.BookReviewRecordType) => {

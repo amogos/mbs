@@ -4,7 +4,7 @@ import debounce from 'lodash.debounce';
 import * as DataTypes from './../../../shared/types';
 import ListBooksContainer from '../../containers/list_books_container';
 import ListSpacesContainer from '../../containers/list_spaces_container';
-import BookDisplayContainer from '../../containers/book_display_container';
+import BookDisplayContainer from '../../containers/display_book_container';
 import LoginComponent from '../social/login_component';
 
 interface Props {

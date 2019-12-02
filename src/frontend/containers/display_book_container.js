@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import BookDisplayComponent from '../components/books/book_display_component';
+import DisplayBookComponent from '../components/books/display_book_component';
 import { bookAction } from '../actions';
 
 function mapStateToProps(state) {
@@ -12,7 +12,8 @@ function mapStateToProps(state) {
 const mapDispatchToProps = dispatch => {
     return {
         likeReview: review => dispatch(bookAction.likeReview(review)),
+        likeBook: book => dispatch(bookAction.likeBook(book)),
         dispatch,
     };
 };
-export default connect(mapStateToProps, mapDispatchToProps)(BookDisplayComponent);
+export default connect(mapStateToProps, mapDispatchToProps)(DisplayBookComponent);

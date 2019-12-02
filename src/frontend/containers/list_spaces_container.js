@@ -20,6 +20,7 @@ const mapDispatchToProps = dispatch => {
         followSpace: (spaceId, callback) => dispatch(spaceAction.followSpace(spaceId, callback)),
         unfollowSpace: (spaceId, callback) => dispatch(spaceAction.unfollowSpace(spaceId, callback)),
         addBook: (data, onSuccess) => dispatch(bookAction.addBook(data, onSuccess)),
+        likeBook: book => dispatch(bookAction.likeBook(book)),
         dispatch,
     };
 };
