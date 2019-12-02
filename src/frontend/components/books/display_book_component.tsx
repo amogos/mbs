@@ -50,7 +50,7 @@ const BookDisplayComponent = (props: Props) => {
     const { book, bookReviews } = props;
 
     if (book === undefined || book.id === undefined) return null;
-    if (bookReviews === undefined || bookReviews.length === 0) return null;
+    if (bookReviews === undefined) return null;
 
     return (
         <Aux>
