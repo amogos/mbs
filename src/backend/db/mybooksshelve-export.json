@@ -388,7 +388,7 @@
       "image": "http://books.google.com/books/content?id=ccCYDAEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
       "description": "Praise for Armstrong—The Adventurous Journey of a Mouse to the Moon “‘One Small Step for a Mouse’ indeed.”—Kirkus Reviews, Starred Review “This beautifully illustrated story is a feast for mind and eyes and a strong selection to complement STEAM curricula.”—School Library Journal, Starred Review",
       "id": 1,
-      "likes": 35
+      "likes": 39
     },
     {
       "title": "business book",
@@ -436,7 +436,8 @@
       "length": 275,
       "image": "http://books.google.com/books/content?id=3Xb_MDJQZnYC&printsec=frontcover&img=1&zoom=1&source=gbs_api",
       "description": "Uses the two sides of the human brain as a metaphor for understanding how the information age came about throughout the course of the past generation, counseling readers on how to survive and find a place in a society that is marked by rising affluence, job outsourcing, and computer technology at the expense of inventiveness, empathy, and meaning. Reprint.",
-      "id": 3
+      "id": 3,
+      "likes": 7
     },
     {
       "title": "Homo Deus",

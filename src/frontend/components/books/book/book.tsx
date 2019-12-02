@@ -6,6 +6,7 @@ import BookAvailabilityComponent from './book_availability';
 import BooksDescription from './book_description';
 import { Aux, withStyle } from '../../hooks/hooks';
 import * as DataTypes from '../../../../shared/types';
+import LikeBook from './like_book';
 
 interface ReviewState {
     reviews: DataTypes.BookReviewRecordType[];
@@ -16,7 +17,7 @@ interface Props {
     userdata: DataTypes.UserRecordType;
     queueArray: DataTypes.QueueNotificationRecordType[];
     book: DataTypes.BookRecordType;
-    likeBook(book: DataTypes.BookReviewRecordType): void;
+    likeBook(book: DataTypes.BookRecordType): void;
     reviewBook(review: DataTypes.BookReviewRawValueType): void;
     displayBook(bookId: number): void;
     deleteBook(bookId: number): void;
@@ -49,7 +50,8 @@ const BookComponent = (props: Props) => {
 
                 <BookAvailabilityComponent book={item} />
                 <div className="book_state">
-                    <BookStateComponent {...props} book={item} />
+                    <LikeBook {...props} />
+                    <BookStateComponent {...props} />
                 </div>
             </div>
         </Aux>

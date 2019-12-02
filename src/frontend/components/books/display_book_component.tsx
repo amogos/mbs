@@ -3,10 +3,11 @@ import { Divider, Comment, Avatar, Rate, Button } from 'antd';
 import * as DataTypes from '../../../shared/types';
 import { Aux, withStyle } from '../hooks/hooks';
 import BookDescription from './book/book_description';
+import LikeBook from './book/like_book';
 
 interface Props {
-    displayedBook: DataTypes.BookRecordType;
-    displayedBookReviews: DataTypes.BookReviewRecordType[];
+    book: DataTypes.BookRecordType;
+    bookReviews: DataTypes.BookReviewRecordType[];
     likeReview(review: DataTypes.BookReviewRawRecordType): void;
     likeBook(book: DataTypes.BookRecordType): void;
 }
@@ -43,44 +44,28 @@ const Review = (props: Props, entry: DataTypes.BookReviewRecordType) => {
     );
 };
 
-const LikeBookComponent = (props: Props) => {
-    const [likes, setLikes] = useState(props.displayedBook.likes);
-
-    const likeBook = () => {
-        props.displayedBook.likes++;
-        setLikes(props.displayedBook.likes);
-        props.likeBook(props.displayedBook);
-    };
-    return (
-        <Aux>
-            {likes} likes
-            <Button onClick={likeBook}>Like</Button>
-        </Aux>
-    );
-};
-
 const BookDisplayComponent = (props: Props) => {
-    const { displayedBook, displayedBookReviews } = props;
+    const { book, bookReviews } = props;
 
-    if (!displayedBook || displayedBook.id === 0) return null;
-    if (!displayedBookReviews) return null;
+    if (!book || book.id === 0) return null;
+    if (!bookReviews) return null;
 
     return (
         <Aux>
             <div className="book_icon_small">
-                <img alt="logo" src={displayedBook.image} />
+                <img alt="logo" src={book.image} />
             </div>
-            {displayedBook.title}
+            {book.title}
             <br />
-            Author: {displayedBook.author.toString()} <br />
-            Format: {displayedBook.format} <br />
-            Language: {displayedBook.language.title}
+            Author: {book.author.toString()} <br />
+            Format: {book.format} <br />
+            Language: {book.language.title}
             <br />
-            PageCount: {displayedBook.length} <br />
-            <BookDescription description={displayedBook.description} length={200} />
-            <LikeBookComponent {...props} />
+            PageCount: {book.length} <br />
+            <BookDescription description={book.description} length={200} />
+            <LikeBook {...props} />
             <Divider />
-            {displayedBookReviews.map(entry => Review(props, entry))}
+            {bookReviews.map(entry => Review(props, entry))}
         </Aux>
     );
 };

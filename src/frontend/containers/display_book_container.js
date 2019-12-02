@@ -4,8 +4,8 @@ import { bookAction } from '../actions';
 
 function mapStateToProps(state) {
     return {
-        displayedBook: state.mainReducer.displayedBook,
-        displayedBookReviews: state.mainReducer.displayedBookReviews,
+        book: state.mainReducer.displayedBook,
+        bookReviews: state.mainReducer.displayedBookReviews,
     };
 }
 

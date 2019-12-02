@@ -14,7 +14,8 @@
 }
 
 .book_state {
-    align-self: center;
+    display: flex;
+    flex-direction: row;
 }
 
 .book {
