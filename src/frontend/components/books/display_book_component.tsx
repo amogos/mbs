@@ -3,7 +3,7 @@ import { Divider, Comment, Avatar, Rate, Button } from 'antd';
 import * as DataTypes from '../../../shared/types';
 import { Aux, withStyle } from '../hooks/hooks';
 import BookDescription from './book/book_description';
-import BookActions from './book/book_actions';
+import BookActions from './book/book_actions/book_actions';
 
 interface Props {
     userdata: DataTypes.UserRecordType;

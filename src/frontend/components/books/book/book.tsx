@@ -4,7 +4,7 @@ import { Button, Rate } from 'antd';
 import BooksDescription from './book_description';
 import { Aux, withStyle } from '../../hooks/hooks';
 import * as DataTypes from '../../../../shared/types';
-import BookActions from './book_actions';
+import BookActions from './book_actions/book_actions';
 
 interface ReviewState {
     reviews: DataTypes.BookReviewRecordType[];

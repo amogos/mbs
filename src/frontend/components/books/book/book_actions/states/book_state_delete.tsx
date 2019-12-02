@@ -1,8 +1,8 @@
 import React from 'react';
-import * as DataTypes from '../../../../../shared/types';
-import IconText from '../../icon_text';
+import * as DataTypes from '../../../../../../shared/types';
+import IconText from '../../../icon_text';
 import { Button } from 'antd';
-import * as Strings from '../../../../../shared/constants/string_constant';
+import * as Strings from '../../../../../../shared/constants/string_constant';
 
 interface Props {
     userdata: DataTypes.UserRecordType;

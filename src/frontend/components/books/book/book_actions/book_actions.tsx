@@ -1,6 +1,6 @@
 import React from 'react';
-import * as DataTypes from '../../../../shared/types';
-import { Aux, withStyle } from '../../hooks/hooks';
+import * as DataTypes from '../../../../../shared/types';
+import { Aux, withStyle } from '../../../hooks/hooks';
 import LikeBook from './like_book';
 import BookStateComponent from './book_state';
 import BookAvailabilityComponent from './book_availability';

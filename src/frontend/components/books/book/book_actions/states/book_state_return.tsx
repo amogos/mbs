@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import * as DataTypes from '../../../../../shared/types';
+import * as DataTypes from '../../../../../../shared/types';
 import { Button, DatePicker } from 'antd';
-import RatingComponent from '../../../notifications/rating';
+import RatingComponent from '../../../../notifications/rating';
 import moment from 'moment';
-import { Aux } from '../../../hooks/hooks';
-import * as Strings from '../../../../../shared/constants/string_constant';
-import IconText from '../../icon_text';
+import { Aux } from '../../../../hooks/hooks';
+import * as Strings from '../../../../../../shared/constants/string_constant';
+import IconText from '../../../icon_text';
 
 interface Props {
     userdata: DataTypes.UserRecordType;
