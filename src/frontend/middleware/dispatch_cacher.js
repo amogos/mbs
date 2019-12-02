@@ -3,7 +3,7 @@ import QueryCache from './query_cache';
 import { pageAction } from './../actions';
 const { PageActionConstant, BookActionConstant } = ActionConstants.default;
 
-let bookCache = new QueryCache(10);
+const bookCache = new QueryCache(10);
 
 const dispatchCacher = store => next => action => {
     let cacheKey = '';
@@ -14,6 +14,11 @@ const dispatchCacher = store => next => action => {
 
     switch (action.type) {
         case BookActionConstant.ACTION_ADD_BOOK:
+            {
+                bookCache.invalidate();
+            }
+            break;
+        case BookActionConstant.ACTION_LIKE_BOOK:
             {
                 bookCache.invalidate();
             }
