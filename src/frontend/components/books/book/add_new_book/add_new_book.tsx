@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useInput, useSelect } from './../hooks/hooks';
+import { useInput, useSelect } from '../../../hooks/hooks';
 import { Select, Input, Modal, Button, message } from 'antd';
-import * as DataTypes from '../../../shared/types';
-import * as StringConstant from '../../../shared/constants/string_constant';
+import * as DataTypes from '../../../../../shared/types';
+import * as StringConstant from '../../../../../shared/constants/string_constant';
 import BookPreview, { NullBookPreviewProps, BookPreviewProps } from './book_preview';
 
 const { Option } = Select;

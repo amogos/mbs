@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import * as DataTypes from '../../../../../../shared/types';
-import IconText from '../../../icon_text';
+import IconText from './icon_text';
 import { Button } from 'antd';
 import * as Strings from '../../../../../../shared/constants/string_constant';
 import RentalSettings from '../../rental_settings';
