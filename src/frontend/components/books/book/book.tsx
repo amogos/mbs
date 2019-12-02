@@ -1,12 +1,10 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { Button, Rate } from 'antd';
-import BookStateComponent from './book_state';
-import BookAvailabilityComponent from './book_availability';
 import BooksDescription from './book_description';
 import { Aux, withStyle } from '../../hooks/hooks';
 import * as DataTypes from '../../../../shared/types';
-import LikeBook from './like_book';
+import BookActions from './book_actions';
 
 interface ReviewState {
     reviews: DataTypes.BookReviewRecordType[];
@@ -47,16 +45,7 @@ const BookComponent = (props: Props) => {
                     </span>
                 </Button>
                 <BooksDescription description={item.description} length={200} />
-
-                <BookAvailabilityComponent book={item} />
-                <div className="book_actions">
-                    <div className="book_actions_left">
-                        <LikeBook {...props} />
-                    </div>
-                    <div className="book_actions_right">
-                        <BookStateComponent {...props} />
-                    </div>
-                </div>
+                <BookActions {...props} />
             </div>
         </Aux>
     );

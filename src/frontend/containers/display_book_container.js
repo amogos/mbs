@@ -6,6 +6,8 @@ function mapStateToProps(state) {
     return {
         book: state.mainReducer.displayedBook,
         bookReviews: state.mainReducer.displayedBookReviews,
+        userdata: state.mainReducer.userdata,
+        queueArray: state.mainReducer.queueArray,
     };
 }
 

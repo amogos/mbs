@@ -3,9 +3,11 @@ import { Divider, Comment, Avatar, Rate, Button } from 'antd';
 import * as DataTypes from '../../../shared/types';
 import { Aux, withStyle } from '../hooks/hooks';
 import BookDescription from './book/book_description';
-import LikeBook from './book/like_book';
+import BookActions from './book/book_actions';
 
 interface Props {
+    userdata: DataTypes.UserRecordType;
+    queueArray: DataTypes.QueueNotificationRecordType[];
     book: DataTypes.BookRecordType;
     bookReviews: DataTypes.BookReviewRecordType[];
     likeReview(review: DataTypes.BookReviewRawRecordType): void;
@@ -63,7 +65,7 @@ const BookDisplayComponent = (props: Props) => {
             <br />
             PageCount: {book.length} <br />
             <BookDescription description={book.description} length={200} />
-            <LikeBook {...props} />
+            <BookActions {...props} />
             <Divider />
             {bookReviews.map(entry => Review(props, entry))}
         </Aux>

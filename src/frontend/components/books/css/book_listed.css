@@ -19,7 +19,7 @@
 }
 
 .book_actions_right {
-    margin-left: 15px;
+    margin-left: 2em;
 }
 
 .book {
@@ -27,6 +27,7 @@
     flex-direction: row;
     padding-top: 2em;
 }
+
 .book_title {
     font-family: Georgia, 'Times New Roman', Times, serif;
     color: black;
