@@ -15,6 +15,7 @@ export default function pageReducer(state: any, action: any): any {
         case PageActionConstant.ACTION_GET_BOOKMARKS: {
             databseInstance.getBookmarks(state.userdata, handleError).then(result => {
                 Store.dispatch(pageAction.refreshState({ userBookmarks: result, append: false }));
+                action.callbacks.forEach((callback: (books: DataTypes.BookRecordType[]) => void) => callback(result));
             });
             return state;
         }
@@ -24,6 +25,7 @@ export default function pageReducer(state: any, action: any): any {
                 .getSplitSpaces(state.userdata, action.filters, handleError)
                 .then((result: { userSpaces: DataTypes.SpaceType[]; otherSpaces: DataTypes.SpaceType[] }) => {
                     setTimeout(progressSpinner, 0);
+                    Store.dispatch(pageAction.getBookmarks(state.userdata, []));
                     Store.dispatch(pageAction.refreshState({ userSpaces: result.userSpaces, append: false }));
                     Store.dispatch(pageAction.refreshState({ otherSpaces: result.otherSpaces, append: true }));
                 });
@@ -39,6 +41,7 @@ export default function pageReducer(state: any, action: any): any {
                 .then((result1: DataTypes.QueueNotificationRecordType[]) => {
                     databseInstance.getBooks(action.filters, handleError).then(result2 => {
                         setTimeout(progressSpinner, 0);
+                        Store.dispatch(pageAction.getBookmarks(state.userdata, []));
                         Store.dispatch(pageAction.refreshState({ queueArray: result1, append: false }));
                         Store.dispatch(pageAction.refreshState({ booksArray: result2, append: true }));
                         action.callbacks.forEach((callback: (books: DataTypes.BookRecordType[]) => void) =>

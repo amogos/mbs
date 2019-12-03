@@ -1,0 +1,11 @@
+.list_bookmarks_component {
+    display: flex;
+    flex-direction: column;
+}
+.bookmark {
+    display: flex;
+    flex-direction: row;
+}
+
+.bookmark_title {
+}

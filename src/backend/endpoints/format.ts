@@ -3,7 +3,7 @@ import * as DataTypes from '../../shared/types';
 import { urlFormats } from './constants';
 
 export async function getFormats(onError: (resultCode: number) => void): Promise<DataTypes.FormatRawType[]> {
-    let formatArray: DataTypes.FormatRawType[] = [];
+    const formatArray: DataTypes.FormatRawType[] = [];
     await axios
         .get(urlFormats)
         .then(response => {

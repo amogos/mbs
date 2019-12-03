@@ -4,7 +4,7 @@ import { pageAction } from './../actions';
 const { PageActionConstant, BookActionConstant } = ActionConstants.default;
 
 const bookCache = new QueryCache(10);
-const bookmarksCache = [];
+let bookmarksCache = [];
 
 const buildCacheKey = action => {
     let cacheKey = '';

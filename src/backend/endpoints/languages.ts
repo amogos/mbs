@@ -3,7 +3,7 @@ import * as DataTypes from '../../shared/types';
 import { urlLanguages } from './constants';
 
 export async function getLanguages(onError: (resultCode: number) => void): Promise<DataTypes.LanguageRecordType[]> {
-    let languagesArray: DataTypes.LanguageRecordType[] = [];
+    const languagesArray: DataTypes.LanguageRecordType[] = [];
     await axios
         .get(urlLanguages)
         .then(response => {
