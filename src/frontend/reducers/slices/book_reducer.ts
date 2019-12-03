@@ -19,6 +19,12 @@ export default function bookReducer(state: any, action: any): any {
             });
             return state;
         }
+        case BookActionConstant.ACTION_BOOKMARK_BOOK: {
+            databseInstance.bookmarkBook(state.userdata, action.bookId, action.onSuccess, handleError).then(()=>{
+                Store.dispatch(pageAction.getBookmarks(state.userdata, []))
+            });
+            return state;
+        }
         case BookActionConstant.ACTION_LIKE_REVIEW: {
             databseInstance.updateBookReview(action.review, handleError);
             return state;
