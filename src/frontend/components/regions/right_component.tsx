@@ -21,9 +21,6 @@ const RightComponent = (props: Props) => {
             <p> text </p>
             <p> text </p>
             <p> text </p>
-            <p> text </p>
-            <p> text </p>
-            <p> text </p>
             <p> </p>
             <Divider />
             <BookmarksList />
