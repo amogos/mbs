@@ -56,14 +56,16 @@ class BookAction {
         bookId,
     });
 
-    public bookmarkBook = (bookId: number) => ({
+    public bookmarkBook = (bookId: number, onSuccess: () => void) => ({
         type: ActionTypes.default.BookActionConstant.ACTION_BOOKMARK_BOOK,
         bookId,
+        onSuccess,
     });
 
-    public unbookmarkBook = (bookId: number) => ({
+    public unbookmarkBook = (bookId: number, onSuccess: () => void) => ({
         type: ActionTypes.default.BookActionConstant.ACTION_UNBOOKMARK_BOOK,
         bookId,
+        onSuccess,
     });
 
     //  TODO: reevaluate the need of this function.....plus usage of callbacks?!
