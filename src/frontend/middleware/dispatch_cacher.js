@@ -4,14 +4,17 @@ import { pageAction } from './../actions';
 const { PageActionConstant, BookActionConstant } = ActionConstants.default;
 
 const bookCache = new QueryCache(10);
+const bookmarksCache = [];
 
-const dispatchCacher = store => next => action => {
+const buildCacheKey = action => {
     let cacheKey = '';
-
     if (action.filters) {
         action.filters.forEach(element => (cacheKey = cacheKey + element));
     }
+    return cacheKey;
+};
 
+const dispatchCacher = store => next => action => {
     switch (action.type) {
         case BookActionConstant.ACTION_ADD_BOOK:
             {
@@ -23,16 +26,22 @@ const dispatchCacher = store => next => action => {
                 bookCache.invalidate();
             }
             break;
+
+        case PageActionConstant.ACTION_GET_BOOKMARKS:
+            {
+                if (bookmarksCache.length > 0) {
+                    return store.dispatch(pageAction.refreshState({ userBookmarks: bookmarksCache, append: false }));
+                } else {
+                    action.callbacks.push(bookmarks => (bookmarksCache = bookmarks));
+                }
+            }
+            break;
         case PageActionConstant.ACTION_GOTO_LIST_BOOKS:
             {
+                const cacheKey = buildCacheKey(action);
                 const cacheEntry = bookCache.getEntry(cacheKey);
                 if (cacheEntry) {
-                    return store.dispatch(
-                        pageAction.refreshState({
-                            booksArray: cacheEntry.value,
-                            append: true,
-                        }),
-                    );
+                    return store.dispatch(pageAction.refreshState({ booksArray: cacheEntry.value, append: true }));
                 } else {
                     action.callbacks.push(books => {
                         bookCache.addEntry(cacheKey, [...books]);
