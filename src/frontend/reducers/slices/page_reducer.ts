@@ -12,6 +12,12 @@ const { PageActionConstant } = ActionConstants.default;
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default function pageReducer(state: any, action: any): any {
     switch (action.type) {
+        case PageActionConstant.ACTION_GET_BOOKMARKS: {
+            databseInstance.getBookmarks(state.userdata, handleError).then(result => {
+                Store.dispatch(pageAction.refreshState({ userBookmarks: result, append: false }));
+            });
+            return state;
+        }
         case PageActionConstant.ACTION_GOTO_LIST_SPACES: {
             const progressSpinner = message.loading(Strings.MYBOOKSHELVE_ACTION_IN_PROGRESS);
             databseInstance

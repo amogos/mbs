@@ -6,11 +6,16 @@ class PageAction {
         type: ActionTypes.default.PageActionConstant.ACTION_GOTO_LIST_SPACES,
         filters,
     });
-
+    //  TODO: are callbacks necessary?
     public getBooks = (filters: string[], callbacks: ((books: DataTypes.BookRecordType[]) => void)[]) => ({
         type: ActionTypes.default.PageActionConstant.ACTION_GOTO_LIST_BOOKS,
         filters,
         callbacks,
+    });
+
+    public getBookmarks = (user: DataTypes.UserRecordType) => ({
+        type: ActionTypes.default.PageActionConstant.ACTION_GET_BOOKMARKS,
+        user,
     });
 
     public addUrlParams = (urlparams: DataTypes.UrlParms) => ({
