@@ -6,12 +6,13 @@ import { Button, Icon } from 'antd';
 interface Props {
     userdata: DataTypes.UserRecordType;
     userBookmarks: DataTypes.BookRecordType[];
+    unbookmarkBook(bookId: number, onSuccess: () => void): void;
 }
 
-const Bookmark = (book: DataTypes.BookRecordType) => {
+const Bookmark = (props: Props, book: DataTypes.BookRecordType) => {
     return (
         <div className="bookmark">
-            <Button type="link">
+            <Button type="link" onClick={() => props.unbookmarkBook(book.id, ()=>{})}>
                 <Icon type="minus-circle" />
             </Button>
             <img height={64} src={book.image} />
@@ -25,7 +26,7 @@ const ListBookmarksComponent = (props: Props) => {
     return (
         <div>
             <h2>Reading List</h2>
-            {props.userBookmarks.map(book => Bookmark(book))}
+            {props.userBookmarks.map(book => Bookmark(props, book))}
         </div>
     );
 };
