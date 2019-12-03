@@ -14,7 +14,7 @@ const { BookActionConstant } = ActionConstants.default;
 export default function bookReducer(state: any, action: any): any {
     switch (action.type) {
         case BookActionConstant.ACTION_UNBOOKMARK_BOOK: {
-            databseInstance.unbookmarkBook(state.userdata, action.bookId, action.callback, handleError).then(()=>{
+            databseInstance.unbookmarkBook(state.userdata, action.bookId, action.onSuccess, handleError).then(()=>{
                 Store.dispatch(pageAction.getBookmarks(state.userdata, []))
             });
             return state;

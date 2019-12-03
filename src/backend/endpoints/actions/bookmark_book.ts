@@ -27,7 +27,7 @@ export async function unbookmarkBook(
     onError: (resultCode: number) => void,
 ) {
     const newBookmarks = user.bookmarks.filter(entry => entry !== bookId);
-    const userRecordUpdate = { ...user, following: Array.from(newBookmarks) };
+    const userRecordUpdate = { ...user, bookmarks: Array.from(newBookmarks) };
 
     await axios
         .put(`${urlUsers}/${user.id}`, userRecordUpdate)
