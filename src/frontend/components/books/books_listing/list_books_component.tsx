@@ -1,6 +1,6 @@
 import React from 'react';
-import * as DataTypes from '../../../../../shared/types';
-import { withStyle } from '../../../hooks/hooks';
+import * as DataTypes from '../../../../shared/types';
+import { withStyle } from '../../hooks/hooks';
 import BookComponent from './book';
 
 interface Props {
