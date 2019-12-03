@@ -26,7 +26,16 @@ const dispatchCacher = store => next => action => {
                 bookCache.invalidate();
             }
             break;
-
+        case BookActionConstant.ACTION_BOOKMARK_BOOK:
+            {
+                bookmarksCache = [];
+            }
+            break;
+        case BookActionConstant.ACTION_UNBOOKMARK_BOOK:
+            {
+                bookmarksCache = [];
+            }
+            break;
         case PageActionConstant.ACTION_GET_BOOKMARKS:
             {
                 if (bookmarksCache.length > 0) {
