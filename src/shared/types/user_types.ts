@@ -4,6 +4,7 @@ export interface UserRecordType {
     email: string;
     picture: string;
     following: number[];
+    bookmarks: number[];
     rating: number;
     socialnetwork: number;
     password: string;
@@ -16,6 +17,7 @@ export const NullUserRecordType = (): UserRecordType => {
         email: '',
         picture: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
         following: [],
+        bookmarks: [],
         rating: 0,
         socialnetwork: 0,
         password: '',
@@ -27,6 +29,7 @@ export interface UserValueType {
     email: string;
     picture: string;
     following: number[];
+    bookmarks: number[];
     rating: number;
     socialnetwork: number;
     password: string;
@@ -38,6 +41,7 @@ export const NullUserValueType = (): UserValueType => {
         email: '',
         picture: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
         following: [],
+        bookmarks: [],
         rating: 0,
         socialnetwork: 0,
         password: '',
