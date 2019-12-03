@@ -56,6 +56,16 @@ class BookAction {
         bookId,
     });
 
+    public bookmarkBook = (bookId: number) => ({
+        type: ActionTypes.default.BookActionConstant.ACTION_BOOKMARK_BOOK,
+        bookId,
+    });
+
+    public unbookmarkBook = (bookId: number) => ({
+        type: ActionTypes.default.BookActionConstant.ACTION_UNBOOKMARK_BOOK,
+        bookId,
+    });
+
     //  TODO: reevaluate the need of this function.....plus usage of callbacks?!
     public getReviewsForBook = (
         bookId: number,
