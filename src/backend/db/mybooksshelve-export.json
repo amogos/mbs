@@ -8,8 +8,7 @@
         3
       ],
       "bookmarks": [
-        2,
-        1
+        3
       ],
       "rating": 0,
       "socialnetwork": 1,
@@ -61,8 +60,23 @@
       "id": 5
     }
   ],
-  "queues": [],
-  "returns": [],
+  "queues": [
+    {
+      "userId": 4,
+      "ownerId": 1,
+      "bookId": 3,
+      "duration": "5",
+      "id": 1
+    }
+  ],
+  "returns": [
+    {
+      "bookId": 3,
+      "userId": -1,
+      "ownerId": 1,
+      "id": 1
+    }
+  ],
   "languages": [
     {
       "id": 1,
@@ -103,7 +117,8 @@
       "isbn13": "9781784703936",
       "space": 1,
       "category": 38,
-      "id": 3
+      "id": 3,
+      "return": 1578575042286
     }
   ],
   "book_reviews": [
@@ -136,6 +151,26 @@
       "id": 3,
       "date": "2014-01-01T23:28:56.782Z",
       "likes": 35
+    },
+    {
+      "isbn10": "1784703931",
+      "isbn13": "9781784703936",
+      "comment": "blah blah",
+      "score": 5,
+      "user": 4,
+      "date": "\"2019-12-04T13:05:34.462Z\"",
+      "likes": 0,
+      "id": 4
+    },
+    {
+      "isbn10": "1784703931",
+      "isbn13": "9781784703936",
+      "comment": "perfect",
+      "score": 5,
+      "user": 4,
+      "date": "\"2019-12-04T13:06:33.128Z\"",
+      "likes": 0,
+      "id": 5
     }
   ],
   "user_reviews": [],
