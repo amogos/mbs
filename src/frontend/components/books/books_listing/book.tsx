@@ -17,7 +17,6 @@ interface Props {
     book: DataTypes.BookRecordType;
     likeBook(book: DataTypes.BookRecordType): void;
     reviewBook(review: DataTypes.BookReviewRawValueType): void;
-    displayBook(bookId: number): void;
     deleteBook(bookId: number): void;
     askBook(bookId: number, ownerId: number, duration: number): void;
     returnBook(bookId: number): void;

@@ -8,7 +8,6 @@ interface Props {
     userdata: DataTypes.UserRecordType;
     userBookmarks: DataTypes.BookRecordType[];
     history: any;
-    displayBook(bookId: number): void;
 }
 
 const Bookmark = (props: Props, book: DataTypes.BookRecordType) => {
