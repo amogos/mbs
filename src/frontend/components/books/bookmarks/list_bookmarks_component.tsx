@@ -8,6 +8,7 @@ interface Props {
     userdata: DataTypes.UserRecordType;
     userBookmarks: DataTypes.BookRecordType[];
     history: any;
+    unbookmarkBook(bookId: number, onSuccess: () => void): void;
 }
 
 const Bookmark = (props: Props, book: DataTypes.BookRecordType) => {
@@ -17,11 +18,11 @@ const Bookmark = (props: Props, book: DataTypes.BookRecordType) => {
 
     return (
         <div className="bookmark">
-            <Button type="link">
+            <Button type="link" onClick={() => props.unbookmarkBook(book.id, () => {})}>
                 <Icon type="minus-circle" />
             </Button>
-            <div>
-                <img height={64} src={book.image} onClick={onBookmarkClicked} />
+            <div onClick={onBookmarkClicked}>
+                <img height={64} src={book.image} />
                 {book.title}
             </div>
         </div>

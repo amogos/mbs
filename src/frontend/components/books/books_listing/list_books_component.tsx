@@ -18,6 +18,7 @@ interface Props {
         bookId: number,
         callback: (bookId: number, reviews: DataTypes.BookReviewRecordType[]) => void,
     ): void;
+    bookmarkBook(bookId: number, onSuccess: () => void): void
     urlparams: DataTypes.UrlParms;
 }
 

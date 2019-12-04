@@ -20,6 +20,7 @@ interface Props {
     deleteBook(bookId: number): void;
     askBook(bookId: number, ownerId: number, duration: number): void;
     returnBook(bookId: number): void;
+    bookmarkBook(bookId: number, onSuccess: () => void): void
     history: any;
 }
 
