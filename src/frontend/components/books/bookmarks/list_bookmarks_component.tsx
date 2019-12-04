@@ -20,8 +20,10 @@ const Bookmark = (props: Props, book: DataTypes.BookRecordType) => {
             <Button type="link">
                 <Icon type="minus-circle" />
             </Button>
-            <img height={64} src={book.image} onClick={onBookmarkClicked} />
-            <div onClick={onBookmarkClicked}>{book.title}</div>
+            <div>
+                <img height={64} src={book.image} onClick={onBookmarkClicked} />
+                {book.title}
+            </div>
         </div>
     );
 };
