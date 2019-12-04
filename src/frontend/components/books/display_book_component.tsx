@@ -10,6 +10,7 @@ interface Props {
     queueArray: DataTypes.QueueNotificationRecordType[];
     book: DataTypes.BookRecordType;
     bookReviews: DataTypes.BookReviewRecordType[];
+    bookmarkBook(bookId: number, onSuccess: () => void): void;
     likeReview(review: DataTypes.BookReviewRawRecordType): void;
     likeBook(book: DataTypes.BookRecordType): void;
 }

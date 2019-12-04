@@ -13,6 +13,7 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = dispatch => {
     return {
+        bookmarkBook: bookId => dispatch(bookAction.bookmarkBook(bookId)),
         likeReview: review => dispatch(bookAction.likeReview(review)),
         likeBook: book => dispatch(bookAction.likeBook(book)),
         dispatch,

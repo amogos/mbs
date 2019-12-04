@@ -16,7 +16,7 @@ interface Props {
     deleteBook(bookId: number): void;
     askBook(bookId: number, ownerId: number, duration: number): void;
     returnBook(bookId: number): void;
-    bookmarkBook(bookId: number, onSuccess: () => void): void
+    bookmarkBook(bookId: number, onSuccess: () => void): void;
 }
 
 const BookActions = (props: Props) => {
@@ -25,7 +25,7 @@ const BookActions = (props: Props) => {
             <BookAvailabilityComponent book={props.book} />
             <div className="book_actions_left">
                 <LikeBook {...props} />
-                <Button onClick={()=>props.bookmarkBook(props.book.id, ()=>{})}>bookmark</Button>
+                <Button onClick={() => props.bookmarkBook(props.book.id, () => {})}>bookmark</Button>
             </div>
             <div className="book_actions_right">
                 <BookStateComponent {...props} />
