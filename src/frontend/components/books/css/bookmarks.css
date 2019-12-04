@@ -1,6 +1,7 @@
 .list_bookmarks_component {
     display: flex;
     flex-direction: column;
+    margin-bottom: 3em;
 }
 .bookmark {
     display: flex;

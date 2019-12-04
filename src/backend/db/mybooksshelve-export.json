@@ -7,7 +7,9 @@
       "following": [
         3
       ],
-      "bookmarks": [],
+      "bookmarks": [
+        2
+      ],
       "rating": 0,
       "socialnetwork": 1,
       "id": 1
@@ -37,7 +39,10 @@
       "email": "iulia.enes5@gmail.com",
       "picture": "https://lh3.googleusercontent.com/a-/AAuE7mAjn_8ZJ9TIQOFXF7qG-z1sTmn79Q5TivauPPvvmA=s96-c",
       "following": [],
-      "bookmarks": [],
+      "bookmarks": [
+        1,
+        2
+      ],
       "rating": 0,
       "socialnetwork": 2,
       "id": 4

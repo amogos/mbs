@@ -11,8 +11,9 @@ interface Props {
 const RightComponent = (props: Props) => {
     return (
         <Aux>
-            POPULAR ON FLIP
+            <BookmarksList />
             <Divider />
+            POPULAR ON FLIP
             <p> text </p>
             <p> text </p>
             <p> text </p>
@@ -23,7 +24,7 @@ const RightComponent = (props: Props) => {
             <p> text </p>
             <p> </p>
             <Divider />
-            <BookmarksList />
+            Help Status Writers Blog Careers Privacy Terms About
         </Aux>
     );
 };
