@@ -1,7 +1,7 @@
 import React from 'react';
 import * as DataTypes from '../../../../shared/types';
 import { withStyle } from '../../hooks/hooks';
-import { Button, Icon } from 'antd';
+import { Button, Icon, Divider } from 'antd';
 import { withRouter } from 'react-router-dom';
 
 interface Props {
@@ -34,6 +34,7 @@ const ListBookmarksComponent = (props: Props) => {
     return (
         <div>
             <h2>Reading List</h2>
+            <Divider />
             {props.userBookmarks.map(book => Bookmark(props, book))}
         </div>
     );

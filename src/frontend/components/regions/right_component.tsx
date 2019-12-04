@@ -12,7 +12,6 @@ const RightComponent = (props: Props) => {
     return (
         <Aux>
             <BookmarksList />
-            <Divider />
             POPULAR ON FLIP
             <p> text </p>
             <p> text </p>
