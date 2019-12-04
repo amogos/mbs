@@ -17,5 +17,5 @@ export interface BannerAttributes {
 
 export interface UrlParms {
     id: string;
-    query: { category?: number; space?: number };
+    query: { category?: number; space?: number; id?: number };
 }

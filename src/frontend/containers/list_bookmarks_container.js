@@ -13,6 +13,7 @@ const mapDispatchToProps = dispatch => {
     return {
         bookmarkBook: (bookId, onSuccess) => dispatch(bookAction.bookmarkBook(bookId, onSuccess)),
         unbookmarkBook: (bookId, onSuccess) => dispatch(bookAction.unbookmarkBook(bookId, onSuccess)),
+        displayBook: bookId => dispatch(bookAction.displayBook(bookId)),
         dispatch,
     };
 };

@@ -2,20 +2,27 @@ import React from 'react';
 import * as DataTypes from '../../../../shared/types';
 import { withStyle } from '../../hooks/hooks';
 import { Button, Icon } from 'antd';
+import { withRouter } from 'react-router-dom';
 
 interface Props {
     userdata: DataTypes.UserRecordType;
     userBookmarks: DataTypes.BookRecordType[];
+    history: any;
+    displayBook(bookId: number): void;
 }
 
-const Bookmark = (book: DataTypes.BookRecordType) => {
+const Bookmark = (props: Props, book: DataTypes.BookRecordType) => {
+    const onBookmarkClicked = () => {
+        props.history.push(`/book?id=${book.id}`);
+    };
+
     return (
         <div className="bookmark">
             <Button type="link">
                 <Icon type="minus-circle" />
             </Button>
-            <img height={64} src={book.image} />
-            {book.title}
+            <img height={64} src={book.image} onClick={onBookmarkClicked} />
+            <div onClick={onBookmarkClicked}>{book.title}</div>
         </div>
     );
 };
@@ -25,9 +32,9 @@ const ListBookmarksComponent = (props: Props) => {
     return (
         <div>
             <h2>Reading List</h2>
-            {props.userBookmarks.map(book => Bookmark(book))}
+            {props.userBookmarks.map(book => Bookmark(props, book))}
         </div>
     );
 };
 
-export default withStyle(ListBookmarksComponent, 'list_bookmarks_component');
+export default withRouter(withStyle(ListBookmarksComponent, 'list_bookmarks_component'));

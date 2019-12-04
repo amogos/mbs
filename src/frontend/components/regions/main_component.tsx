@@ -13,6 +13,7 @@ interface Props {
     booksArray: DataTypes.BookRecordType[];
     userSpaces: DataTypes.SpaceType[];
     otherSpaces: DataTypes.SpaceType[];
+    displayBook(bookId: number): void;
     loginUser(userInfo: DataTypes.UserValueType, onError?: () => void): void;
     getBooks(filters: string[], callbacks: ((books: DataTypes.BookRecordType[]) => void)[]): void;
     getSpaces(filters: string[]): void;
@@ -83,6 +84,8 @@ function SpacesList(props: Props) {
 }
 
 function DisplayBookDetails(props: Props) {
+    const bookId = props.urlparams.query.id as number;
+    props.displayBook(bookId);
     return <BookDisplayContainer />;
 }
 

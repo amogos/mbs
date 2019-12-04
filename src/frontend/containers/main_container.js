@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import MainComponent from '../components/regions/main_component';
-import { pageAction, socialAction } from './../actions';
+import { pageAction, socialAction, bookAction } from './../actions';
 
 function mapStateToProps(state) {
     return {
@@ -14,6 +14,7 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = dispatch => {
     return {
+        displayBook: bookId => dispatch(bookAction.displayBook(bookId)),
         loginUser: (user, onError) => dispatch(socialAction.loginUser(user, onError)),
         getBooks: (filters, callback) => dispatch(pageAction.getBooks(filters, callback)),
         getSpaces: filters => dispatch(pageAction.getSpaces(filters)),
