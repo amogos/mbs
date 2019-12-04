@@ -19,28 +19,34 @@
     background-color: white;
 }
 
-
 .main_component {
-    margin-left: 15%;
+    margin-left: 0em;
     margin-top: 2em;
-    width: 50%;
+    margin-bottom: 8em;
+    width: 45%;
     background-color: white;
     z-index: 0;
 }
 
+.left_component {
+    width: 15%;
+    margin-left: 1em;
+    margin-right: 1em;
+    background-color: white;
+}
 
 .right_component {
     z-index: 0;
-    width: 25%;
+    width: 35%;
     height: 100%;
-    margin-left:5em;
+    margin-left: 1em;
     background-color: white;
 }
 
 .top_component {
     margin-left: 8%;
     margin-right: 15%;
-    margin-top:2em;
+    margin-top: 2em;
     width: 80%;
     height: 20%;
     background-color: white;

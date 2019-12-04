@@ -23,8 +23,6 @@ const RightComponent = (props: Props) => {
             <p> text </p>
             <p> text </p>
             <p> </p>
-            <Divider />
-            Help Status Writers Blog Careers Privacy Terms About
         </Aux>
     );
 };

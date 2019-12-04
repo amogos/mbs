@@ -11,6 +11,7 @@ import './main.css';
 import BannerContainer from './frontend/containers/banner_container';
 import MainContainer from './frontend/containers/main_container';
 import RightContainer from './frontend/containers/right_container';
+import LeftContainer from './frontend/containers/left_container';
 import TopContainer from './frontend/containers/top_container';
 import PageNotFound from './frontend/components/errors/page_not_found';
 
@@ -21,6 +22,7 @@ const DisplayBook = () => {
         <div className="app">
             <BannerContainer />
             <div className="middle_area">
+                <LeftContainer />
                 <MainContainer />
                 <RightContainer />
             </div>
@@ -34,6 +36,7 @@ const DisplayBookListing = () => {
             <BannerContainer />
             <TopContainer />
             <div className="middle_area">
+                <LeftContainer />
                 <MainContainer />
                 <RightContainer />
             </div>
@@ -47,6 +50,7 @@ const DisplaySpaceListing = () => {
             <BannerContainer />
             <TopContainer />
             <div className="middle_area">
+                <LeftContainer />
                 <MainContainer />
                 <RightContainer />
             </div>
