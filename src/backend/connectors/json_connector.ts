@@ -20,3 +20,4 @@ export * from '../endpoints/actions/follow_space';
 export * from '../endpoints/actions/update_book_review';
 export * from '../endpoints/actions/bookmark_book';
 export * from '../endpoints/bookmarks';
+export * from '../endpoints/user_feed';
