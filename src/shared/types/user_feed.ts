@@ -1,11 +1,12 @@
 export const UserFeedType = {
     INVALID: 0,
-    LIKES: 1,
-    RATED: 2,
-    RENTED: 3,
-    REQUESTED: 4,
-    ADDED: 5,
+    LIKES_BOOK: 1,
+    RATED_BOOK: 2,
+    RENTED_BOOK: 3,
+    REQUESTED_BOOK: 4,
+    ADDED_BOOK: 5,
     FOLLOWING_SPACE: 6,
+    REMOVED_BOOK: 7,
 };
 
 export interface UserFeedValueType {

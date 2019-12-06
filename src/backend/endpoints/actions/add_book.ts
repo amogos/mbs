@@ -8,6 +8,7 @@ import {
     updateBookDescription,
 } from './../../endpoints/books_descriptions';
 import * as DataTypes from '../../../shared/types';
+import { addFeed } from './../user_feed';
 
 export async function addBook(
     value: DataTypes.BookValueType,
@@ -49,11 +50,17 @@ export async function addBook(
         likes: 0,
     };
 
+    //  add new book
+    let newRecord = DataTypes.NullRawBookRecordType();
     await axios
         .post(urlBooks, bookRecord)
-        .then(() => onSuccess())
+        .then(result => {
+            newRecord = result.data;
+            onSuccess();
+        })
         .catch(error => onError(error));
 
+    //  merge/update description
     const previousDescription = await getBookDescriptionForISBN(value.isbn10, value.isbn13, onError);
     if (previousDescription.id === 0) {
         await addBookDescription(newBookDescription, onError);
@@ -63,4 +70,10 @@ export async function addBook(
             await updateBookDescription(previousDescription.id, newBookDescription, onError);
         }
     }
+
+    //  add user feed
+    const userFeed = DataTypes.NullUserFeedValueType();
+    userFeed.type = DataTypes.UserFeedType.ADDED_BOOK;
+    userFeed.book = newRecord.id;
+    await addFeed(userFeed, onError);
 }
