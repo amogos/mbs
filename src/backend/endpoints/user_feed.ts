@@ -20,7 +20,9 @@ export async function getFeeds(onError: (resultCode: number) => void): Promise<D
 
         if (rawData.book !== undefined) {
             const bookData: DataTypes.BookRecordType = await getBookRecordTypeFromId(rawData.book as number, onError);
+            const descriptionData = await getBookDescriptionForISBN(bookData.isbn10, bookData.isbn13, onError);
             feedData.book = bookData;
+            feedData.bookDescription = descriptionData;
         } else if (rawData.space !== undefined) {
             const spaceData: DataTypes.SpaceType = await getSpaceTypeFromId(rawData.space, onError);
             feedData.space = spaceData;
@@ -31,6 +33,7 @@ export async function getFeeds(onError: (resultCode: number) => void): Promise<D
             );
             feedData.bookDescription = descriptionData;
         }
+        feeds.push(feedData);
     }
     return feeds;
 }
