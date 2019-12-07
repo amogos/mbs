@@ -11,6 +11,9 @@ export async function getFeeds(onError: (resultCode: number) => void): Promise<D
     return feeds;
 }
 
-export async function addFeed(feed: DataTypes.UserFeedValueType, onError: (resultCode: number) => void): Promise<void> {
+export async function addFeed(
+    feed: DataTypes.UserFeedRawValueType,
+    onError: (resultCode: number) => void,
+): Promise<void> {
     await axios.post(urlUserFeed, feed).catch(error => onError(error));
 }
