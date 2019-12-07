@@ -55,19 +55,26 @@ export const NullUserFeedRawRecordType = (): UserFeedRawRecordType => {
     return { id: 0, type: UserFeedType.INVALID, userId: 0, date: 0 };
 };
 
-export const UserFeedBookEvent = (event: number, bookId?: number, bookDescriptionId?: number): UserFeedRawValueType => {
+export const UserFeedBookEvent = (
+    userId: number,
+    event: number,
+    bookId?: number,
+    bookDescriptionId?: number,
+): UserFeedRawValueType => {
     const userFeed = NullUserFeedRawValueType();
     userFeed.type = event;
     userFeed.book = bookId;
+    userFeed.userId = userId;
     userFeed.bookDescriptionId = bookDescriptionId;
     userFeed.date = Date.now();
     return userFeed;
 };
 
-export const UserFeedSpaceEvent = (spaceId: number, event: number): UserFeedRawValueType => {
+export const UserFeedSpaceEvent = (userId: number, event: number, spaceId: number): UserFeedRawValueType => {
     const userFeed = NullUserFeedRawValueType();
     userFeed.type = event;
     userFeed.space = spaceId;
+    userFeed.userId = userId;
     userFeed.date = Date.now();
     return userFeed;
 };

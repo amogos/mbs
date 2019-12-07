@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import UserFeedComponent from '../components/user_feed_component';
+import UserFeedComponent from '../components/user_feed/user_feed_component';
 
 function mapStateToProps(state) {
     return {

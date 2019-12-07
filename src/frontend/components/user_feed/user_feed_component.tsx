@@ -9,6 +9,8 @@ interface Props {
 }
 
 const UserFeedComponent = (props: Props) => {
+    if (props.userfeed === undefined) return null;
+
     return props.userfeed.map(item => {
         switch (item.id) {
             case DataTypes.UserFeedType.LIKES_BOOK: {

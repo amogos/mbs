@@ -30,7 +30,7 @@ export default function bookReducer(state: any, action: any): any {
             return state;
         }
         case BookActionConstant.ACTION_LIKE_BOOK: {
-            databseInstance.likeBook(action.book, handleError).then(() => {
+            databseInstance.likeBook(state.userdata.id, action.book, handleError).then(() => {
                 Store.dispatch(pageAction.refreshState({ modifiedBook: action.book }));
             });
             return state;
@@ -49,7 +49,7 @@ export default function bookReducer(state: any, action: any): any {
             });
         }
         case BookActionConstant.ACTION_ADD_BOOK: {
-            databseInstance.addBook(action.data, action.onSuccess, handleError);
+            databseInstance.addBook(state.userdata.id, action.data, action.onSuccess, handleError);
             return state;
         }
         case BookActionConstant.ACTION_GET_BOOK_DESCRIPTION: {
@@ -65,7 +65,7 @@ export default function bookReducer(state: any, action: any): any {
             notification.userId = state.userdata.id;
             notification.duration = action.duration;
 
-            databseInstance.askBook(notification, handleError).then(() => {});
+            databseInstance.askBook(state.userdata.id, notification, handleError).then(() => {});
             return Object.assign({}, state, {
                 action: BookActionConstant.ACTION_ASK_BOOK,
                 bookChangingId: action.bookId,
@@ -80,7 +80,7 @@ export default function bookReducer(state: any, action: any): any {
             });
         }
         case BookActionConstant.ACTION_REVIEW_BOOK: {
-            databseInstance.reviewBook(action.review, handleError);
+            databseInstance.reviewBook(state.userdata.id, action.review, handleError);
             return Object.assign({}, state, {
                 bookChangingId: action.bookId,
             });
@@ -92,7 +92,7 @@ export default function bookReducer(state: any, action: any): any {
             return state;
         }
         case BookActionConstant.ACTION_DELETE_BOOK: {
-            databseInstance.deleteBook(action.bookId, handleError).then(() => {
+            databseInstance.deleteBook(state.userdata.id, action.bookId, handleError).then(() => {
                 message.success(Strings.MYBOOKSHELVE_STRING_BOOK_REMOVED);
                 let booksArray: DataTypes.BookRecordType[] = state.booksArray;
                 const index = booksArray.findIndex(book => book.id === action.bookId);

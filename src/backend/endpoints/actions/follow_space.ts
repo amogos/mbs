@@ -23,7 +23,7 @@ export async function followSpace(
         .catch(error => onError(error));
 
     //  add user feed
-    await addFeed(DataTypes.UserFeedSpaceEvent(spaceId, DataTypes.UserFeedType.FOLLOWING_SPACE), onError);
+    await addFeed(DataTypes.UserFeedSpaceEvent(user.id, DataTypes.UserFeedType.FOLLOWING_SPACE, spaceId), onError);
 }
 
 export async function unfollowSpace(

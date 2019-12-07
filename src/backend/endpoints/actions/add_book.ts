@@ -11,6 +11,7 @@ import * as DataTypes from '../../../shared/types';
 import { addFeed } from './../user_feed';
 
 export async function addBook(
+    userId: number,
     value: DataTypes.BookValueType,
     onSuccess: () => void,
     onError: (resultCode: number) => void,
@@ -72,5 +73,5 @@ export async function addBook(
     }
 
     //  add user feed
-    await addFeed(DataTypes.UserFeedBookEvent(newRecord.id, DataTypes.UserFeedType.ADDED_BOOK), onError);
+    await addFeed(DataTypes.UserFeedBookEvent(userId, DataTypes.UserFeedType.ADDED_BOOK, newRecord.id), onError);
 }
