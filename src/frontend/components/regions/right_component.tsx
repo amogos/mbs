@@ -3,6 +3,7 @@ import { Aux, withStyle, requiresLogin } from '../hooks/hooks';
 import { Divider } from 'antd';
 import * as DataTypes from './../../../shared/types';
 import BookmarksList from './../../containers/list_bookmarks_container';
+import UserFeed from './../../containers/user_feed_container';
 
 interface Props {
     userdata: DataTypes.UserRecordType;
@@ -12,16 +13,8 @@ const RightComponent = (props: Props) => {
     return (
         <Aux>
             <BookmarksList />
-            POPULAR ON FLIP
-            <p> text </p>
-            <p> text </p>
-            <p> text </p>
-            <p> text </p>
-            <p> text </p>
-            <p> text </p>
-            <p> text </p>
-            <p> text </p>
-            <p> </p>
+            <Divider />
+            <UserFeed />
         </Aux>
     );
 };
