@@ -36,6 +36,7 @@ export async function getFeeds(onError: (resultCode: number) => void): Promise<D
             );
             feedData.bookDescription = descriptionData;
         }
+
         feeds.push(feedData);
     }
     return feeds;
