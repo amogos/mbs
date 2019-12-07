@@ -1,5 +1,7 @@
 import * as BookTypes from './book_types';
 import * as SpaceTypes from './space_types';
+import * as BookDescription from './book_description_types';
+import book from '../../frontend/components/books/books_listing/book';
 
 export const UserFeedType = {
     INVALID: 0,
@@ -16,9 +18,8 @@ export interface UserFeedRecordType {
     id: number;
     type: number;
     book?: BookTypes.BookRecordType;
-    space?: SpaceTypes.SpaceRecordType;
-    isbn10?: string;
-    isbn13?: string;
+    space?: SpaceTypes.SpaceType;
+    bookDescription?: BookDescription.BookDescriptionRecordType;
     date: number;
 }
 
@@ -30,8 +31,7 @@ export interface UserFeedRawValueType {
     type: number;
     book?: number;
     space?: number;
-    isbn10?: string;
-    isbn13?: string;
+    bookDescriptionId?: number;
     date: number;
 }
 
@@ -44,8 +44,7 @@ export interface UserFeedRawRecordType {
     type: number;
     book?: number;
     space?: number;
-    isbn10?: string;
-    isbn13?: string;
+    bookDescriptionId?: number;
     date: number;
 }
 
@@ -53,19 +52,11 @@ export const NullUserFeedRawRecordType = (): UserFeedRawRecordType => {
     return { id: 0, type: UserFeedType.INVALID, date: 0 };
 };
 
-export const UserFeedISBNEvent = (isbn10: string, isbn13: string, event: number): UserFeedRawValueType => {
-    const userFeed = NullUserFeedRawValueType();
-    userFeed.type = event;
-    userFeed.isbn10 = isbn10;
-    userFeed.isbn13 = isbn13;
-    userFeed.date = Date.now();
-    return userFeed;
-};
-
-export const UserFeedBookEvent = (bookId: number, event: number): UserFeedRawValueType => {
+export const UserFeedBookEvent = (event: number, bookId?: number, bookDescriptionId?: number): UserFeedRawValueType => {
     const userFeed = NullUserFeedRawValueType();
     userFeed.type = event;
     userFeed.book = bookId;
+    userFeed.bookDescriptionId = bookDescriptionId;
     userFeed.date = Date.now();
     return userFeed;
 };
@@ -76,4 +67,12 @@ export const UserFeedSpaceEvent = (spaceId: number, event: number): UserFeedRawV
     userFeed.space = spaceId;
     userFeed.date = Date.now();
     return userFeed;
+};
+
+export const UserFeedRecordTypeFromRawType = (data: UserFeedRawRecordType): UserFeedRecordType => {
+    const result = NullUserFeedRecordType();
+    result.id = data.id;
+    result.date = data.date;
+    result.type = data.type;
+    return result;
 };

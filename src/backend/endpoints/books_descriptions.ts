@@ -2,6 +2,20 @@ import axios from 'axios';
 import { urlBooksDescriptions } from './constants';
 import * as DataTypes from '../../shared/types';
 
+export async function getBookDescriptionForId(
+    id: number,
+    onError: (resultCode: number) => void,
+): Promise<DataTypes.BookDescriptionRecordType> {
+    let result: DataTypes.BookDescriptionRecordType = DataTypes.NullBookDescriptionRecordType();
+    const url = `${urlBooksDescriptions}/${id}`;
+    await axios
+        .get(url)
+        .then(response => (result = response.data.length > 0 ? response.data[response.data.length - 1] : result))
+        .catch(error => onError(error));
+
+    return result;
+}
+
 export async function getBookDescriptionForISBN(
     isbn10: string,
     isbn13: string,

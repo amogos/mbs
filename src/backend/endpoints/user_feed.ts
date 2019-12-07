@@ -1,13 +1,37 @@
 import axios from 'axios';
 import { urlUserFeed } from './constants';
 import * as DataTypes from '../../shared/types';
+import { getBookRecordTypeFromId } from './../endpoints/books';
+import { getSpaceTypeFromId } from './../endpoints/spaces';
+import { getBookDescriptionForISBN, getBookDescriptionForId } from './../endpoints/books_descriptions';
 
 export async function getFeeds(onError: (resultCode: number) => void): Promise<DataTypes.UserFeedRecordType[]> {
-    let feeds: DataTypes.UserFeedRecordType[] = [];
+    let rawFeeds: DataTypes.UserFeedRawRecordType[] = [];
     await axios
         .get(urlUserFeed)
-        .then(response => (feeds = response.data))
+        .then(response => (rawFeeds = response.data))
         .catch(error => onError(error));
+
+    const feeds: DataTypes.UserFeedRecordType[] = [];
+
+    for (let i = 0; i < rawFeeds.length; i++) {
+        const rawData: DataTypes.UserFeedRawRecordType = rawFeeds[i];
+        const feedData: DataTypes.UserFeedRecordType = DataTypes.UserFeedRecordTypeFromRawType(rawData);
+
+        if (rawData.book !== undefined) {
+            const bookData: DataTypes.BookRecordType = await getBookRecordTypeFromId(rawData.book as number, onError);
+            feedData.book = bookData;
+        } else if (rawData.space !== undefined) {
+            const spaceData: DataTypes.SpaceType = await getSpaceTypeFromId(rawData.space, onError);
+            feedData.space = spaceData;
+        } else if (rawData.bookDescriptionId != undefined) {
+            const descriptionData: DataTypes.BookDescriptionRecordType = await getBookDescriptionForId(
+                rawData.bookDescriptionId,
+                onError,
+            );
+            feedData.bookDescription = descriptionData;
+        }
+    }
     return feeds;
 }
 
