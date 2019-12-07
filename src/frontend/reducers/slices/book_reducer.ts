@@ -14,14 +14,14 @@ const { BookActionConstant } = ActionConstants.default;
 export default function bookReducer(state: any, action: any): any {
     switch (action.type) {
         case BookActionConstant.ACTION_UNBOOKMARK_BOOK: {
-            databseInstance.unbookmarkBook(state.userdata, action.bookId, action.onSuccess, handleError).then(()=>{
-                Store.dispatch(pageAction.getBookmarks(state.userdata, []))
+            databseInstance.unbookmarkBook(state.userdata, action.bookId, action.onSuccess, handleError).then(() => {
+                Store.dispatch(pageAction.getBookmarks(state.userdata, []));
             });
             return state;
         }
         case BookActionConstant.ACTION_BOOKMARK_BOOK: {
-            databseInstance.bookmarkBook(state.userdata, action.bookId, action.onSuccess, handleError).then(()=>{
-                Store.dispatch(pageAction.getBookmarks(state.userdata, []))
+            databseInstance.bookmarkBook(state.userdata, action.bookId, action.onSuccess, handleError).then(() => {
+                Store.dispatch(pageAction.getBookmarks(state.userdata, []));
             });
             return state;
         }
@@ -65,7 +65,7 @@ export default function bookReducer(state: any, action: any): any {
             notification.userId = state.userdata.id;
             notification.duration = action.duration;
 
-            databseInstance.askBook(notification, handleError).then(() => { });
+            databseInstance.askBook(notification, handleError).then(() => {});
             return Object.assign({}, state, {
                 action: BookActionConstant.ACTION_ASK_BOOK,
                 bookChangingId: action.bookId,
@@ -73,7 +73,7 @@ export default function bookReducer(state: any, action: any): any {
         }
         case BookActionConstant.ACTION_RETURN_BOOK: {
             const bookId: number = action.bookId;
-            databseInstance.returnBook(bookId, handleError).then(() => { });
+            databseInstance.returnBook(bookId, handleError).then(() => {});
             return Object.assign({}, state, {
                 action: BookActionConstant.ACTION_RETURN_BOOK,
                 bookChangingId: bookId,

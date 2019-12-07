@@ -13,6 +13,8 @@ export interface UserFeedValueType {
     type: number;
     book?: number;
     space?: number;
+    isbn10?: string;
+    isbn13?: string;
 }
 
 export const NullUserFeedValueType = (): UserFeedValueType => {
@@ -24,8 +26,32 @@ export interface UserFeedRecordType {
     type: number;
     book?: number;
     space?: number;
+    isbn10?: string;
+    isbn13?: string;
 }
 
 export const NullUserFeedRecordType = (): UserFeedRecordType => {
     return { id: 0, type: UserFeedType.INVALID };
+};
+
+export const UserFeedISBNEvent = (isbn10: string, isbn13: string, event: number): UserFeedValueType => {
+    const userFeed = NullUserFeedValueType();
+    userFeed.type = event;
+    userFeed.isbn10 = isbn10;
+    userFeed.isbn13 = isbn13;
+    return userFeed;
+};
+
+export const UserFeedBookEvent = (bookId: number, event: number): UserFeedValueType => {
+    const userFeed = NullUserFeedValueType();
+    userFeed.type = event;
+    userFeed.book = bookId;
+    return userFeed;
+};
+
+export const UserFeedSpaceEvent = (spaceId: number, event: number): UserFeedValueType => {
+    const userFeed = NullUserFeedValueType();
+    userFeed.type = event;
+    userFeed.space = spaceId;
+    return userFeed;
 };

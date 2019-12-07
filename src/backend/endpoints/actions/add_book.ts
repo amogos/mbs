@@ -72,8 +72,5 @@ export async function addBook(
     }
 
     //  add user feed
-    const userFeed = DataTypes.NullUserFeedValueType();
-    userFeed.type = DataTypes.UserFeedType.ADDED_BOOK;
-    userFeed.book = newRecord.id;
-    await addFeed(userFeed, onError);
+    await addFeed(DataTypes.UserFeedBookEvent(newRecord.id, DataTypes.UserFeedType.ADDED_BOOK), onError);
 }

@@ -98,9 +98,3 @@ export async function getBookRecordTypeFromId(
     const item: DataTypes.BookRawRecordType = await getBookRawRecordTypeFromId(id, onError);
     return await getBookRecordTypeFromRaw(item, onError);
 }
-
-export async function likeBook(book: DataTypes.BookRecordType, onError: (resultCode: number) => void): Promise<void> {
-    const description = await getBookDescriptionForISBN(book.isbn10, book.isbn13, onError);
-    description.likes++;
-    await updateBookDescription(description.id, description, onError);
-}

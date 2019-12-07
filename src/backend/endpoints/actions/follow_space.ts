@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { urlUsers } from '../constants';
 import * as DataTypes from '../../../shared/types';
+import { addFeed } from './../user_feed';
 
 export async function followSpace(
     user: DataTypes.UserRecordType,
@@ -20,6 +21,9 @@ export async function followSpace(
             if (onCallback) onCallback();
         })
         .catch(error => onError(error));
+
+    //  add user feed
+    await addFeed(DataTypes.UserFeedSpaceEvent(spaceId, DataTypes.UserFeedType.FOLLOWING_SPACE), onError);
 }
 
 export async function unfollowSpace(
