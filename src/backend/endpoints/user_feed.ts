@@ -4,6 +4,7 @@ import * as DataTypes from '../../shared/types';
 import { getBookRecordTypeFromId } from './../endpoints/books';
 import { getSpaceTypeFromId } from './../endpoints/spaces';
 import { getBookDescriptionForISBN, getBookDescriptionForId } from './../endpoints/books_descriptions';
+import { getUserRecordTypeFromId } from './../endpoints/user';
 
 export async function getFeeds(onError: (resultCode: number) => void): Promise<DataTypes.UserFeedRecordType[]> {
     let rawFeeds: DataTypes.UserFeedRawRecordType[] = [];
@@ -17,6 +18,8 @@ export async function getFeeds(onError: (resultCode: number) => void): Promise<D
     for (let i = 0; i < rawFeeds.length; i++) {
         const rawData: DataTypes.UserFeedRawRecordType = rawFeeds[i];
         const feedData: DataTypes.UserFeedRecordType = DataTypes.UserFeedRecordTypeFromRawType(rawData);
+
+        feedData.user = await getUserRecordTypeFromId(rawData.userId, onError);
 
         if (rawData.book !== undefined) {
             const bookData: DataTypes.BookRecordType = await getBookRecordTypeFromId(rawData.book as number, onError);

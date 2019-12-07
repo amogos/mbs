@@ -1,7 +1,7 @@
 import * as BookTypes from './book_types';
 import * as SpaceTypes from './space_types';
-import * as BookDescription from './book_description_types';
-import book from '../../frontend/components/books/books_listing/book';
+import * as BookDescriptionTypes from './book_description_types';
+import * as UserTypes from './user_types';
 
 export const UserFeedType = {
     INVALID: 0,
@@ -17,18 +17,20 @@ export const UserFeedType = {
 export interface UserFeedRecordType {
     id: number;
     type: number;
+    user: UserTypes.UserRecordType;
     book?: BookTypes.BookRecordType;
     space?: SpaceTypes.SpaceType;
-    bookDescription?: BookDescription.BookDescriptionRecordType;
+    bookDescription?: BookDescriptionTypes.BookDescriptionRecordType;
     date: number;
 }
 
 export const NullUserFeedRecordType = (): UserFeedRecordType => {
-    return { id: 0, type: UserFeedType.INVALID, date: 0 };
+    return { id: 0, type: UserFeedType.INVALID, date: 0, user: UserTypes.NullUserRecordType() };
 };
 
 export interface UserFeedRawValueType {
     type: number;
+    userId: number;
     book?: number;
     space?: number;
     bookDescriptionId?: number;
@@ -36,12 +38,13 @@ export interface UserFeedRawValueType {
 }
 
 export const NullUserFeedRawValueType = (): UserFeedRawValueType => {
-    return { type: UserFeedType.INVALID, date: 0 };
+    return { type: UserFeedType.INVALID, userId: 0, date: 0 };
 };
 
 export interface UserFeedRawRecordType {
     id: number;
     type: number;
+    userId: number;
     book?: number;
     space?: number;
     bookDescriptionId?: number;
@@ -49,7 +52,7 @@ export interface UserFeedRawRecordType {
 }
 
 export const NullUserFeedRawRecordType = (): UserFeedRawRecordType => {
-    return { id: 0, type: UserFeedType.INVALID, date: 0 };
+    return { id: 0, type: UserFeedType.INVALID, userId: 0, date: 0 };
 };
 
 export const UserFeedBookEvent = (event: number, bookId?: number, bookDescriptionId?: number): UserFeedRawValueType => {
