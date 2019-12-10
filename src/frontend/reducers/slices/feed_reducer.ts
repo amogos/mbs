@@ -33,7 +33,13 @@ export default function bookReducer(state: any, action: any): any {
                 notification.userId = state.userdata.id;
                 notification.duration = action.duration;
 
-                databseInstance.askBook(state.userdata.id, notification, handleError).then(() => {});
+                databseInstance.askBook(state.userdata.id, notification, handleError).then(() => {
+                    databseInstance
+                        .getQueue(state.userdata.id, handleError)
+                        .then((result: DataTypes.QueueNotificationRecordType[]) => {
+                            Store.dispatch(pageAction.refreshState({ queueArray: result, append: false }));
+                        });
+                });
                 result = Object.assign({}, state, {
                     action: BookActionConstant.ACTION_ASK_BOOK,
                     bookChangingId: action.bookId,
@@ -81,11 +87,6 @@ export default function bookReducer(state: any, action: any): any {
     }
 
     if (result != null) {
-        databseInstance
-            .getQueue(state.userdata.id, handleError)
-            .then((result: DataTypes.QueueNotificationRecordType[]) => {
-                Store.dispatch(pageAction.refreshState({ queueArray: result, append: false }));
-            });
     }
     return result;
 }
