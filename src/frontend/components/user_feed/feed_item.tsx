@@ -1,6 +1,6 @@
 import React from 'react';
 import * as DataTypes from '../../../shared/types';
-import BookFeedItem from './book_feed_item';
+import BookFeedItem from './../../containers/book_feed_item.container';
 
 const FeedItem = (props: { item: DataTypes.UserFeedRecordType }) => {
     const { item } = props;
