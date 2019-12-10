@@ -1,3 +1,4 @@
+import React from 'react';
 import * as DataTypes from '../../../shared/types';
 import BookFeedItem from './book_feed_item';
 
