@@ -86,7 +86,5 @@ export default function bookReducer(state: any, action: any): any {
             result = null;
     }
 
-    if (result != null) {
-    }
     return result;
 }
