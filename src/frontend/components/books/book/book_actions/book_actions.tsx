@@ -2,8 +2,8 @@ import React from 'react';
 import * as DataTypes from '../../../../../shared/types';
 import { Aux, withStyle } from '../../../hooks/hooks';
 import LikeBook from './like_book';
-import BookStateComponent from './book_state';
-import BookAvailabilityComponent from './book_availability';
+import BookState from './../../../../containers/book_state_container';
+import BookAvailability from './book_availability';
 import { Button } from 'antd';
 
 interface Props {
@@ -22,13 +22,13 @@ interface Props {
 const BookActions = (props: Props) => {
     return (
         <Aux>
-            <BookAvailabilityComponent book={props.book} />
+            <BookAvailability book={props.book} />
             <div className="book_actions_left">
                 <LikeBook {...props} />
                 <Button onClick={() => props.bookmarkBook(props.book.id, () => {})}>bookmark</Button>
             </div>
             <div className="book_actions_right">
-                <BookStateComponent {...props} />
+                <BookState book={props.book} />
             </div>
         </Aux>
     );
