@@ -2,7 +2,7 @@ import React from 'react';
 import { Comment, Avatar, Button } from 'antd';
 import * as DataTypes from '../../../shared/types';
 import { CustomDate } from './../../../shared/utils/CustomDate';
-import { Aux, withStyle } from './../hooks/hooks';
+import { withStyle } from './../hooks/hooks';
 
 interface Props {
     item: DataTypes.UserFeedRecordType;
@@ -45,7 +45,7 @@ const BookFeedItem = (props: Props) => {
                         <img height="64" src={bookDescription.image} />
                         <div className="feed_item_right">
                             {bookDescription.title}
-                            <p>by {bookDescription.author.map(author => author + ',')}</p>
+                            <p> by {bookDescription.author.map(author => author + ',')}</p>
                             {actions[0]}
                         </div>
                     </div>

@@ -80,10 +80,5 @@ export default function bookReducer(state: any, action: any): any {
             result = null;
     }
 
-    if (result !== null)
-        databseInstance.getFeeds(handleError).then((result: DataTypes.UserFeedRecordType[]) => {
-            Store.dispatch(pageAction.refreshState({ userfeed: result }));
-        });
-
     return result;
 }
