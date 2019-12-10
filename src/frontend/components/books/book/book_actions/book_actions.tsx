@@ -1,21 +1,13 @@
 import React from 'react';
+import { Button } from 'antd';
 import * as DataTypes from '../../../../../shared/types';
 import { Aux, withStyle } from '../../../hooks/hooks';
-import LikeBook from './like_book';
+import LikeBook from './../../../../containers/like_book_container';
 import BookState from './../../../../containers/book_state_container';
 import BookAvailability from './book_availability';
-import { Button } from 'antd';
 
 interface Props {
-    userdata: DataTypes.UserRecordType;
     book: DataTypes.BookRecordType;
-    queueArray: DataTypes.QueueNotificationRecordType[];
-
-    likeBook(book: DataTypes.BookRecordType): void;
-    reviewBook(review: DataTypes.BookReviewRawValueType): void;
-    deleteBook(bookId: number): void;
-    askBook(bookId: number, ownerId: number, duration: number): void;
-    returnBook(bookId: number): void;
     bookmarkBook(bookId: number, onSuccess: () => void): void;
 }
 
@@ -24,7 +16,7 @@ const BookActions = (props: Props) => {
         <Aux>
             <BookAvailability book={props.book} />
             <div className="book_actions_left">
-                <LikeBook {...props} />
+                <LikeBook book={props.book} />
                 <Button onClick={() => props.bookmarkBook(props.book.id, () => {})}>bookmark</Button>
             </div>
             <div className="book_actions_right">
