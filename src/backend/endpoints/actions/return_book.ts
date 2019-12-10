@@ -7,16 +7,16 @@ import { getBookRawRecordTypeFromId } from './../books';
 
 export async function returnBook(bookId: number, onError: (resultCode: number) => void) {
     const bookUrl = `${urlBooks}/${bookId}`;
+
     //  get book raw record
     let value: DataTypes.BookRawRecordType = await getBookRawRecordTypeFromId(bookId, onError);
     value = { ...value, state: BookStateTypes.default.STATE_BOOK_IDLE, holder: -1 };
+
     //  update record holder
     await axios.put(bookUrl, value).catch(error => onError(error));
 
     //  add return notification
-    const returnNotification: DataTypes.ReturnNotificationValueType = DataTypes.NullReturnNotificationValueType();
-    returnNotification.bookId = value.id;
-    returnNotification.ownerId = value.owner;
-    returnNotification.userId = value.holder;
+    let returnNotification: DataTypes.ReturnNotificationValueType = DataTypes.NullReturnNotificationValueType();
+    returnNotification = { ...returnNotification, bookId: value.id, ownerId: value.owner, userId: value.holder };
     await addReturnNotification(returnNotification, onError);
 }
