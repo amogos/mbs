@@ -5,7 +5,7 @@ import BookStateReturn from './states/book_state_return';
 import BookStateAssigned from './states/book_state_assigned';
 import BookStateDelete from './states/book_state_delete';
 import BookStateAddToCart from './states/book_state_add_to_cart';
-import BookAvailability from './book_availability';
+
 import { Aux } from '../../../../components/hooks/hooks';
 
 interface Props {
@@ -33,15 +33,7 @@ const BookStateComponent = (props: Props) => {
         if (bookHasHolder) return <BookStateAssigned />;
         else return <BookStateDelete {...props} />;
     } else {
-        const showBookAvailability = props.book.holder.id > 0 && props.book.return && Date.now() < props.book.return;
-        if (showBookAvailability)
-            return (
-                <Aux>
-                    <BookStateAddToCart {...props} />
-                    <BookAvailability book={props.book} />
-                </Aux>
-            );
-        else return <BookStateAddToCart {...props} />;
+        return <BookStateAddToCart {...props} />;
     }
 };
 
