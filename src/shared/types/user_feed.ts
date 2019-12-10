@@ -14,6 +14,27 @@ export const UserFeedType = {
     REMOVED_BOOK: 7,
 };
 
+export const UserFeedTypeToString = (type: number) => {
+    switch (type) {
+        case UserFeedType.INVALID:
+            return 'Invalid';
+        case UserFeedType.LIKES_BOOK:
+            return 'likes book';
+        case UserFeedType.RATED_BOOK:
+            return 'rated book';
+        case UserFeedType.RENTED_BOOK:
+            return 'rented book';
+        case UserFeedType.REQUESTED_BOOK:
+            return 'requested book';
+        case UserFeedType.ADDED_BOOK:
+            return 'requested book';
+        case UserFeedType.REMOVED_BOOK:
+            return 'requested book';
+        case UserFeedType.FOLLOWING_SPACE:
+            return 'followin space';
+    }
+};
+
 export interface UserFeedRecordType {
     id: number;
     type: number;
