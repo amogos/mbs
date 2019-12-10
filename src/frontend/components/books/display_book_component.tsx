@@ -3,7 +3,7 @@ import { Divider, Comment, Avatar, Rate, Button } from 'antd';
 import * as DataTypes from '../../../shared/types';
 import { Aux, withStyle } from '../hooks/hooks';
 import BookDescription from './book/book_description';
-import BookActions from './book/book_actions/book_actions';
+import BookActions from './../../containers/book_actions_container';
 
 interface Props {
     userdata: DataTypes.UserRecordType;
@@ -69,7 +69,7 @@ const BookDisplayComponent = (props: Props) => {
             <br />
             PageCount: {book.length} <br />
             <BookDescription description={book.description} length={200} />
-            <BookActions {...props} />
+            <BookActions book={book} />
             <Divider />
             {bookReviews.map(entry => Review(props, entry))}
         </Aux>

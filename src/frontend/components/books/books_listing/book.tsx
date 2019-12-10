@@ -4,7 +4,7 @@ import { Button, Rate } from 'antd';
 import BooksDescription from '../book/book_description';
 import { Aux, withStyle } from '../../hooks/hooks';
 import * as DataTypes from '../../../../shared/types';
-import BookActions from '../book/book_actions/book_actions';
+import BookActions from './../../../containers/book_actions_container';
 
 interface ReviewState {
     reviews: DataTypes.BookReviewRecordType[];
@@ -20,7 +20,7 @@ interface Props {
     deleteBook(bookId: number): void;
     askBook(bookId: number, ownerId: number, duration: number): void;
     returnBook(bookId: number): void;
-    bookmarkBook(bookId: number, onSuccess: () => void): void
+    bookmarkBook(bookId: number, onSuccess: () => void): void;
     history: any;
 }
 
@@ -44,7 +44,7 @@ const BookComponent = (props: Props) => {
                     </span>
                 </Button>
                 <BooksDescription description={item.description} length={200} />
-                <BookActions {...props} />
+                <BookActions book={item} />
             </div>
         </Aux>
     );
