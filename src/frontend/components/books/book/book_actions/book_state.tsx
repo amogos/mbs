@@ -6,8 +6,6 @@ import BookStateAssigned from './states/book_state_assigned';
 import BookStateDelete from './states/book_state_delete';
 import BookStateAddToCart from './states/book_state_add_to_cart';
 
-import { Aux } from '../../../../components/hooks/hooks';
-
 interface Props {
     userdata: DataTypes.UserRecordType;
     book: DataTypes.BookRecordType;
