@@ -80,5 +80,12 @@ export default function bookReducer(state: any, action: any): any {
             result = null;
     }
 
+    if (result != null) {
+        databseInstance
+            .getQueue(state.userdata.id, handleError)
+            .then((result: DataTypes.QueueNotificationRecordType[]) => {
+                Store.dispatch(pageAction.refreshState({ queueArray: result, append: false }));
+            });
+    }
     return result;
 }
