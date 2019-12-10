@@ -10,7 +10,7 @@ interface Props {
     userdata: DataTypes.UserRecordType;
     book: DataTypes.BookRecordType;
     queueArray: DataTypes.QueueNotificationRecordType[];
-
+    bookChangingId: number;
     reviewBook(review: DataTypes.BookReviewRawValueType): void;
     deleteBook(bookId: number): void;
     askBook(bookId: number, ownerId: number, duration: number): void;

@@ -6,6 +6,7 @@ function mapStateToProps(state) {
     return {
         userdata: state.mainReducer.userdata,
         queueArray: state.mainReducer.queueArray,
+        bookChangingId: state.mainReducer.bookChangingId,
     };
 }
 
