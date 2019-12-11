@@ -18,13 +18,9 @@ const BookStateReturn = (props: Props) => {
     const [showRatingModal, setShowRatingModal] = useState(false);
     const { BookStateStrings } = Strings.default;
 
-    const onRatePressed = (
-        book: DataTypes.BookRecordType,
-        contentRating: number,
-        stateRating: number,
-        comment: string,
-    ) => {
+    const onRatePressed = (contentRating: number, stateRating: number, comment: string) => {
         const review: DataTypes.BookReviewRawValueType = DataTypes.NullBookReviewRawValueType();
+        const { book } = props;
         review.comment = comment;
         review.isbn10 = book.isbn10;
         review.isbn13 = book.isbn13;
@@ -50,7 +46,7 @@ const BookStateReturn = (props: Props) => {
                 avatar_picture={props.userdata.picture}
                 visible={showRatingModal}
                 onOk={(contentRating: number, stateRating: number, comment: string) =>
-                    onRatePressed(props.book, contentRating, stateRating, comment)
+                    onRatePressed(contentRating, stateRating, comment)
                 }
                 onClosed={onRateCanceledPressed}
             />
