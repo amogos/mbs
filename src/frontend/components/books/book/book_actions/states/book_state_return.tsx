@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import * as DataTypes from '../../../../../../shared/types';
 import { Button, DatePicker } from 'antd';
-import RatingComponent from '../../../../notifications/rating';
+import BookRating from './../../../../rating/rating';
 import moment from 'moment';
 import { Aux } from '../../../../hooks/hooks';
 import * as Strings from '../../../../../../shared/constants/string_constant';
@@ -46,9 +46,9 @@ const BookStateReturn = (props: Props) => {
                 <IconText type="import" text={BookStateStrings.RETURN_BOOK} />
             </Button>
             <DatePicker defaultValue={moment(props.book.return)} disabled />
-            <RatingComponent
+            <BookRating
+                avatar_picture={props.userdata.picture}
                 visible={showRatingModal}
-                userdata={props.userdata}
                 onOk={(contentRating: number, stateRating: number, comment: string) =>
                     onRatePressed(props.book, contentRating, stateRating, comment)
                 }

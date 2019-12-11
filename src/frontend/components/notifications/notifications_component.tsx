@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { List, Avatar, Divider } from 'antd';
 import * as DataTypes from '../../../shared/types';
-import RatingComponent from './rating';
+import RatingComponent from '../rating/rating';
 import { Aux, withStyle } from './../hooks/hooks';
 
 interface Props {
@@ -161,7 +161,7 @@ const NotificationsComponent = (props: Props) => {
                 visible={selection.showRating}
                 rateState={true}
                 rateContent={false}
-                userdata={selection.user}
+                avatar_picture={selection.user.picture}
                 onOk={(contentRating: number, stateRating: number, comment: string) =>
                     onRatingOk(contentRating, stateRating, comment)
                 }

@@ -19,7 +19,7 @@ const Editor = (props: EditorProps) => (
 );
 
 interface Props {
-    userdata: DataTypes.UserRecordType;
+    avatar_picture: string;
     visible: boolean;
     rateState?: boolean;
     rateContent?: boolean;
@@ -85,7 +85,7 @@ const RatingComponent = (props: Props) => {
             <StateRating />
             <ContentRating />
             <Comment
-                avatar={<Avatar src={props.userdata.picture} alt="Han Solo" />}
+                avatar={<Avatar src={props.avatar_picture} />}
                 content={<Editor onChange={handleEditorChange} value={comment} />}
             />
         </Modal>
