@@ -5,7 +5,6 @@ import { bookAction } from './../actions';
 const mapDispatchToProps = dispatch => {
     return {
         likeBook: book => dispatch(bookAction.likeBook(book)),
-
         dispatch,
     };
 };

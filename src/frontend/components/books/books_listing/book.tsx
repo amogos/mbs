@@ -13,7 +13,6 @@ interface ReviewState {
 
 interface Props {
     userdata: DataTypes.UserRecordType;
-    queueArray: DataTypes.QueueNotificationRecordType[];
     book: DataTypes.BookRecordType;
     bookChangingId: number;
     likeBook(book: DataTypes.BookRecordType): void;
