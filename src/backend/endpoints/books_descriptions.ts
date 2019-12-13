@@ -10,7 +10,7 @@ export async function getBookDescriptionForId(
     const url = `${urlBooksDescriptions}/${id}`;
     await axios
         .get(url)
-        .then(response => (result = response.data.length > 0 ? response.data[response.data.length - 1] : result))
+        .then(response => (result = response.data))
         .catch(error => onError(error));
 
     return result;
