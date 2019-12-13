@@ -1,6 +1,7 @@
 import React from 'react';
 import * as DataTypes from '../../../shared/types';
-import BookFeedItem from './../../containers/book_feed_item.container';
+import BookFeedItem from '../../containers/book_feed_item_container';
+import SpaceFeedItem from './../../containers/space_feed_item_container';
 
 const FeedItem = (props: { item: DataTypes.UserFeedRecordType }) => {
     const { item } = props;
@@ -13,7 +14,9 @@ const FeedItem = (props: { item: DataTypes.UserFeedRecordType }) => {
         case DataTypes.UserFeedType.LIKES_BOOK: {
             return <BookFeedItem {...props} />;
         }
-
+        case DataTypes.UserFeedType.FOLLOWING_SPACE: {
+            return <SpaceFeedItem {...props} />;
+        }
         default:
             return null;
     }

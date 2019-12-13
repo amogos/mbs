@@ -39,7 +39,9 @@
       "name": "Iulia enes5",
       "email": "iulia.enes5@gmail.com",
       "picture": "https://lh3.googleusercontent.com/a-/AAuE7mAjn_8ZJ9TIQOFXF7qG-z1sTmn79Q5TivauPPvvmA=s96-c",
-      "following": [],
+      "following": [
+        1
+      ],
       "bookmarks": [
         1,
         2
@@ -53,7 +55,8 @@
       "email": "Mock@yahoo.com",
       "picture": "https://image.flaticon.com/icons/svg/1814/1814777.svg",
       "following": [
-        2
+        2,
+        1
       ],
       "bookmarks": [],
       "rating": 0,
@@ -417,6 +420,20 @@
       "date": 1575978730059,
       "book": 1,
       "id": 5
+    },
+    {
+      "type": 6,
+      "userId": 4,
+      "date": 1576212952743,
+      "space": 1,
+      "id": 6
+    },
+    {
+      "type": 6,
+      "userId": 5,
+      "date": 1576214198000,
+      "space": 1,
+      "id": 7
     }
   ],
   "formats": [
