@@ -9,7 +9,7 @@ import { getUserRecordTypeFromId } from './../endpoints/user';
 export async function getFeeds(onError: (resultCode: number) => void): Promise<DataTypes.UserFeedRecordType[]> {
     let rawFeeds: DataTypes.UserFeedRawRecordType[] = [];
     await axios
-        .get(urlUserFeed)
+        .get(`${urlUserFeed}?_sort=date&_order=desc`)
         .then(response => (rawFeeds = response.data))
         .catch(error => onError(error));
 
