@@ -42,7 +42,7 @@ const BookFeedItem = (props: Props) => {
             content={
                 <p>
                     <div className="feed_item_root">
-                        <img height="64" src={bookDescription.image} />
+                        <img height="98" src={bookDescription.image} />
                         <div className="feed_item_right">
                             {bookDescription.title}
                             <p> by {bookDescription.author.map(author => author + ',')}</p>

@@ -38,7 +38,7 @@ const SpaceFeedItem = (props: Props) => {
             content={
                 <p>
                     <div className="feed_item_root">
-                        <img height="64" src={space.picture} />
+                        <img height="98" src={space.picture} />
                         <div className="feed_item_right">
                             {space.title}
                             {actions[0]}
