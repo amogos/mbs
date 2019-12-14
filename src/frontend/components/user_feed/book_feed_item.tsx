@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 import { Comment, Avatar, Button } from 'antd';
 import * as DataTypes from '../../../shared/types';
 import { CustomDate } from './../../../shared/utils/CustomDate';
@@ -12,6 +13,7 @@ interface Props {
     bookmarkBook(bookId: number, onSuccess: () => void): void;
     likeReview(review: DataTypes.BookReviewRawRecordType): void;
     likeBook(book: DataTypes.BookRecordType): void;
+    history: any;
 }
 
 const BookFeedItem = (props: Props) => {
@@ -33,7 +35,7 @@ const BookFeedItem = (props: Props) => {
         </Button>,
     ];
 
-    const bookDescription = item.bookDescription as DataTypes.BookDescriptionRecordType;
+    const book = item.book as DataTypes.BookRecordType;
 
     return (
         <Comment
@@ -42,10 +44,10 @@ const BookFeedItem = (props: Props) => {
             content={
                 <p>
                     <div className="feed_item_root">
-                        <img height="98" src={bookDescription.image} />
+                        <img height="98" src={book.image} />
                         <div className="feed_item_right">
-                            {bookDescription.title}
-                            <p> by {bookDescription.author.map(author => author + ',')}</p>
+                            <Button onClick={() => props.history.push(`/book?id=${book.id}`)}>{book.title}</Button>
+                            <p> by {book.author.map(author => author + ',')}</p>
                             {actions[0]}
                         </div>
                     </div>
@@ -55,4 +57,4 @@ const BookFeedItem = (props: Props) => {
     );
 };
 
-export default withStyle(BookFeedItem, 'book_feed_item');
+export default withRouter(withStyle(BookFeedItem, 'book_feed_item'));

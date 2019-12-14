@@ -54,7 +54,6 @@ export interface UserFeedRawValueType {
     userId: number;
     book?: number;
     space?: number;
-    bookDescriptionId?: number;
     date: number;
 }
 
@@ -68,7 +67,6 @@ export interface UserFeedRawRecordType {
     userId: number;
     book?: number;
     space?: number;
-    bookDescriptionId?: number;
     date: number;
 }
 
@@ -76,17 +74,11 @@ export const NullUserFeedRawRecordType = (): UserFeedRawRecordType => {
     return { id: 0, type: UserFeedType.INVALID, userId: 0, date: 0 };
 };
 
-export const UserFeedBookEvent = (
-    userId: number,
-    event: number,
-    bookId?: number,
-    bookDescriptionId?: number,
-): UserFeedRawValueType => {
+export const UserFeedBookEvent = (userId: number, event: number, bookId?: number): UserFeedRawValueType => {
     const userFeed = NullUserFeedRawValueType();
     userFeed.type = event;
     userFeed.book = bookId;
     userFeed.userId = userId;
-    userFeed.bookDescriptionId = bookDescriptionId;
     userFeed.date = Date.now();
     return userFeed;
 };

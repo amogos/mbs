@@ -52,6 +52,7 @@ export const NullBookValueType = (): BookValueType => {
 
 export interface BookRecordType {
     id: number;
+    descriptionId: number;
     title: string;
     subtitle: string;
     author: string[];
@@ -76,6 +77,7 @@ export interface BookRecordType {
 export const NullBookRecordType = (): BookRecordType => {
     return {
         id: 0,
+        descriptionId: 0,
         title: '',
         subtitle: '',
         author: [],

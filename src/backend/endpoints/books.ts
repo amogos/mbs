@@ -27,6 +27,7 @@ export async function getBookRecordTypeFromRaw(
     const format = await getFormatRecordTypeFromId(description.format, onError);
 
     result.id = item.id;
+    result.descriptionId = description.id;
     result.title = description.title;
     result.subtitle = description.subtitle;
     result.image = description.image;

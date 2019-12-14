@@ -2,6 +2,7 @@ import { UserRecordType, NullUserRecordType } from './user_types';
 
 export interface BookReviewRecordType {
     id: number;
+    bookId: number;
     isbn10: string;
     isbn13: string;
     comment: string;
@@ -12,11 +13,22 @@ export interface BookReviewRecordType {
 }
 
 export const NullBookReviewRecordType = (): BookReviewRecordType => {
-    return { id: 0, isbn10: '', isbn13: '', comment: '', score: 0, user: NullUserRecordType(), date: '', likes: 0 };
+    return {
+        id: 0,
+        bookId: 0,
+        isbn10: '',
+        isbn13: '',
+        comment: '',
+        score: 0,
+        user: NullUserRecordType(),
+        date: '',
+        likes: 0,
+    };
 };
 
 export interface BookReviewRawRecordType {
     id: number;
+    bookId: number;
     isbn10: string;
     isbn13: string;
     comment: string;
@@ -27,10 +39,11 @@ export interface BookReviewRawRecordType {
 }
 
 export const NullBookReviewRawRecordType = (): BookReviewRawRecordType => {
-    return { id: 0, isbn10: '', isbn13: '', comment: '', score: 0, user: 0, date: '', likes: 0 };
+    return { id: 0, bookId: 0, isbn10: '', isbn13: '', comment: '', score: 0, user: 0, date: '', likes: 0 };
 };
 
 export interface BookReviewRawValueType {
+    bookId: number;
     isbn10: string;
     isbn13: string;
     comment: string;
@@ -41,7 +54,7 @@ export interface BookReviewRawValueType {
 }
 
 export const NullBookReviewRawValueType = (): BookReviewRawValueType => {
-    return { isbn10: '', isbn13: '', comment: '', score: 0, user: 0, date: '', likes: 0 };
+    return { bookId: 0, isbn10: '', isbn13: '', comment: '', score: 0, user: 0, date: '', likes: 0 };
 };
 
 export interface BookReviewStatisticsType {

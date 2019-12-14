@@ -51,6 +51,7 @@ export async function getReviewsForBook(
         const item = reviewsArray[i];
         const review = DataTypes.NullBookReviewRecordType();
         review.id = item.id;
+        review.bookId = item.bookId;
         review.comment = item.comment;
         review.isbn10 = item.isbn10;
         review.isbn13 = item.isbn13;

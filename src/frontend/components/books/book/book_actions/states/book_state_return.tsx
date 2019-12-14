@@ -21,6 +21,7 @@ const BookStateReturn = (props: Props) => {
     const onRatePressed = (contentRating: number, stateRating: number, comment: string) => {
         const review: DataTypes.BookReviewRawValueType = DataTypes.NullBookReviewRawValueType();
         const { book } = props;
+        review.bookId = book.id;
         review.comment = comment;
         review.isbn10 = book.isbn10;
         review.isbn13 = book.isbn13;
