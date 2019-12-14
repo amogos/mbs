@@ -4,9 +4,7 @@
       "name": "Iulia Mogos",
       "email": "daosmistique@yahoo.com",
       "picture": "https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=2223056511038248&height=50&width=50&ext=1566812071&hash=AeSiTV7UwEZToD2h",
-      "following": [
-        3
-      ],
+      "following": [],
       "bookmarks": [
         3,
         2
@@ -40,8 +38,7 @@
       "email": "iulia.enes5@gmail.com",
       "picture": "https://lh3.googleusercontent.com/a-/AAuE7mAjn_8ZJ9TIQOFXF7qG-z1sTmn79Q5TivauPPvvmA=s96-c",
       "following": [
-        1,
-        2
+        1
       ],
       "bookmarks": [
         1,
@@ -55,10 +52,7 @@
       "name": "Mock",
       "email": "Mock@yahoo.com",
       "picture": "https://image.flaticon.com/icons/svg/1814/1814777.svg",
-      "following": [
-        2,
-        1
-      ],
+      "following": [],
       "bookmarks": [],
       "rating": 0,
       "socialnetwork": 4,
@@ -356,32 +350,18 @@
   ],
   "user_feed": [
     {
-      "type": 1,
+      "type": 6,
       "userId": 4,
-      "date": 1576336033718,
-      "book": 1,
+      "date": 1576337364684,
+      "space": 3,
       "id": 1
-    },
-    {
-      "type": 1,
-      "userId": 4,
-      "date": 1576336040218,
-      "book": 2,
-      "id": 2
-    },
-    {
-      "type": 2,
-      "userId": 4,
-      "date": 1576336134741,
-      "book": 1,
-      "id": 3
     },
     {
       "type": 6,
       "userId": 4,
-      "date": 1576336434218,
-      "space": 2,
-      "id": 4
+      "date": 1576337952763,
+      "space": 1,
+      "id": 2
     }
   ],
   "formats": [

@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 import { Comment, Avatar, Button } from 'antd';
 import * as DataTypes from '../../../shared/types';
 import { CustomDate } from './../../../shared/utils/CustomDate';
@@ -8,6 +9,7 @@ import { SpaceType } from '../../../shared/types';
 interface Props {
     item: DataTypes.UserFeedRecordType;
     followSpace: (spaceId: number, callback: () => void) => void;
+    history: any;
 }
 
 const SpaceFeedItem = (props: Props) => {
@@ -40,7 +42,9 @@ const SpaceFeedItem = (props: Props) => {
                     <div className="feed_item_root">
                         <img height="98" src={space.picture} />
                         <div className="feed_item_right">
-                            {space.title}
+                            <Button type="link" onClick={() => props.history.push(`/books?space=${space.id}`)}>
+                                {space.title}
+                            </Button>
                             {actions[0]}
                         </div>
                     </div>
@@ -50,4 +54,4 @@ const SpaceFeedItem = (props: Props) => {
     );
 };
 
-export default withStyle(SpaceFeedItem, 'space_feed_item');
+export default withRouter(withStyle(SpaceFeedItem, 'space_feed_item'));
