@@ -46,7 +46,9 @@ const BookFeedItem = (props: Props) => {
                     <div className="feed_item_root">
                         <img height="98" src={book.image} />
                         <div className="feed_item_right">
-                            <Button onClick={() => props.history.push(`/book?id=${book.id}`)}>{book.title}</Button>
+                            <Button type="link" onClick={() => props.history.push(`/book?id=${book.id}`)}>
+                                {book.title}
+                            </Button>
                             <p> by {book.author.map(author => author + ',')}</p>
                             {actions[0]}
                         </div>
