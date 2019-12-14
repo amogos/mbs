@@ -4,6 +4,7 @@ import { Comment, Avatar, Button } from 'antd';
 import * as DataTypes from '../../../shared/types';
 import { CustomDate } from './../../../shared/utils/CustomDate';
 import { withStyle } from './../hooks/hooks';
+import { History } from 'history';
 
 interface Props {
     item: DataTypes.UserFeedRecordType;
@@ -13,7 +14,7 @@ interface Props {
     bookmarkBook(bookId: number, onSuccess: () => void): void;
     likeReview(review: DataTypes.BookReviewRawRecordType): void;
     likeBook(book: DataTypes.BookRecordType): void;
-    history: any;
+    history: History;
 }
 
 const BookFeedItem = (props: Props) => {

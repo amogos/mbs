@@ -4,11 +4,12 @@ import Tabs, { TabData } from '../banner/tabs';
 import * as DataTypes from '../../../shared/types';
 import * as Strings from '../../../shared/constants/string_constant';
 import { withStyle } from '../hooks/hooks';
+import { History } from 'history';
 
 interface Props {
     getSpaces(filters: string[]): void;
     categories: DataTypes.CategoryRecordType[];
-    history: any;
+    history: History;
 }
 
 const BuildCategoryTabsInformation = (props: Props) => {

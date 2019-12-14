@@ -3,11 +3,12 @@ import * as DataTypes from '../../../../shared/types';
 import { withStyle } from '../../hooks/hooks';
 import { Button, Icon, Divider } from 'antd';
 import { withRouter } from 'react-router-dom';
+import { History } from 'history';
 
 interface Props {
     userdata: DataTypes.UserRecordType;
     userBookmarks: DataTypes.BookRecordType[];
-    history: any;
+    history: History;
     unbookmarkBook(bookId: number, onSuccess: () => void): void;
 }
 

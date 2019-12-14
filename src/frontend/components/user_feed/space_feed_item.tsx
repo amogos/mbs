@@ -5,11 +5,12 @@ import * as DataTypes from '../../../shared/types';
 import { CustomDate } from './../../../shared/utils/CustomDate';
 import { withStyle } from './../hooks/hooks';
 import { SpaceType } from '../../../shared/types';
+import { History } from 'history';
 
 interface Props {
     item: DataTypes.UserFeedRecordType;
     followSpace: (spaceId: number, callback: () => void) => void;
-    history: any;
+    history: History;
 }
 
 const SpaceFeedItem = (props: Props) => {

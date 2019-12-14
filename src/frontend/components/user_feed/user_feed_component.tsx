@@ -4,10 +4,11 @@ import { withRouter } from 'react-router-dom';
 import * as DataTypes from '../../../shared/types';
 import { Aux, withStyle } from './../hooks/hooks';
 import FeedItem from './feed_item';
+import { History } from 'history';
 
 interface Props {
     userfeed: DataTypes.UserFeedRecordType[];
-    history: any;
+    history: History;
 }
 
 const UserFeedComponent = (props: Props) => {
