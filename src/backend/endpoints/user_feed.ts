@@ -6,10 +6,13 @@ import { getSpaceTypeFromId } from './../endpoints/spaces';
 import { getBookDescriptionForISBN } from './../endpoints/books_descriptions';
 import { getUserRecordTypeFromId } from './../endpoints/user';
 
-export async function getFeeds(onError: (resultCode: number) => void): Promise<DataTypes.UserFeedRecordType[]> {
+export async function getFeeds(
+    currentUserId: number,
+    onError: (resultCode: number) => void,
+): Promise<DataTypes.UserFeedRecordType[]> {
     let rawFeeds: DataTypes.UserFeedRawRecordType[] = [];
     await axios
-        .get(`${urlUserFeed}?_sort=date&_order=desc`)
+        .get(`${urlUserFeed}?userId_ne=${currentUserId}&_sort=date&_order=desc`)
         .then(response => (rawFeeds = response.data))
         .catch(error => onError(error));
 

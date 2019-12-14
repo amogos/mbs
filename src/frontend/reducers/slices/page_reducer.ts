@@ -30,7 +30,7 @@ export default function pageReducer(state: any, action: any): any {
                     Store.dispatch(pageAction.refreshState({ otherSpaces: result.otherSpaces, append: true }));
                 });
 
-            databseInstance.getFeeds(handleError).then((result: DataTypes.UserFeedRecordType[]) => {
+            databseInstance.getFeeds(state.userdata.id, handleError).then((result: DataTypes.UserFeedRecordType[]) => {
                 Store.dispatch(pageAction.refreshState({ userfeed: result }));
             });
 
