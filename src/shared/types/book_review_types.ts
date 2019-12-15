@@ -8,7 +8,7 @@ export interface BookReviewRecordType {
     comment: string;
     score: number;
     user: UserRecordType;
-    date: string;
+    date: number;
     likes: number;
 }
 
@@ -21,7 +21,7 @@ export const NullBookReviewRecordType = (): BookReviewRecordType => {
         comment: '',
         score: 0,
         user: NullUserRecordType(),
-        date: '',
+        date: 0,
         likes: 0,
     };
 };
@@ -34,12 +34,12 @@ export interface BookReviewRawRecordType {
     comment: string;
     score: number;
     user: number;
-    date: string;
+    date: number;
     likes: number;
 }
 
 export const NullBookReviewRawRecordType = (): BookReviewRawRecordType => {
-    return { id: 0, bookId: 0, isbn10: '', isbn13: '', comment: '', score: 0, user: 0, date: '', likes: 0 };
+    return { id: 0, bookId: 0, isbn10: '', isbn13: '', comment: '', score: 0, user: 0, date: 0, likes: 0 };
 };
 
 export interface BookReviewRawValueType {
@@ -49,12 +49,12 @@ export interface BookReviewRawValueType {
     comment: string;
     score: number;
     user: number;
-    date: string;
+    date: number;
     likes: number;
 }
 
 export const NullBookReviewRawValueType = (): BookReviewRawValueType => {
-    return { bookId: 0, isbn10: '', isbn13: '', comment: '', score: 0, user: 0, date: '', likes: 0 };
+    return { bookId: 0, isbn10: '', isbn13: '', comment: '', score: 0, user: 0, date: 0, likes: 0 };
 };
 
 export interface BookReviewStatisticsType {

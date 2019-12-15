@@ -3,7 +3,7 @@ import rootReducer from './index';
 import dispatchCacher from '../middleware/dispatch_cacher';
 
 const sessionState = sessionStorage.getItem('state');
-let store = createStore(rootReducer, sessionState ? JSON.parse(sessionState) : {}, applyMiddleware(dispatchCacher));
+const store = createStore(rootReducer, sessionState ? JSON.parse(sessionState) : {}, applyMiddleware(dispatchCacher));
 store.subscribe(() => sessionStorage.setItem('state', JSON.stringify(store.getState())));
 
 export default store;

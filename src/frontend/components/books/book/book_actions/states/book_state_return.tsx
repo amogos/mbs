@@ -27,7 +27,7 @@ const BookStateReturn = (props: Props) => {
         review.isbn13 = book.isbn13;
         review.score = contentRating;
         review.user = props.userdata.id;
-        review.date = JSON.stringify(new Date());
+        review.date = Date.now();
         props.reviewBook(review);
         book.holder = DataTypes.NullUserRecordType();
         props.returnBook(props.book.id);

@@ -4,6 +4,7 @@ import * as DataTypes from '../../../shared/types';
 import { Aux, withStyle } from '../hooks/hooks';
 import BookDescription from './book/book_description';
 import BookActions from './../../containers/book_actions_container';
+import { CustomDate } from './../../../shared/utils/CustomDate';
 
 interface Props {
     userdata: DataTypes.UserRecordType;
@@ -45,7 +46,7 @@ const Review = (props: Props, entry: DataTypes.BookReviewRecordType) => {
                     {likes} likes <Button onClick={likeReview}>Like</Button>
                 </div>
             }
-            datetime={<span>{entry.date}</span>}
+            datetime={<span>{new CustomDate(entry.date).toString()}</span>}
         />
     );
 };
