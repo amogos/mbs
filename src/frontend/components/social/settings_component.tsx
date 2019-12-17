@@ -13,7 +13,7 @@ const Settings = (props: Props) => {
     };
     return (
         <Button type="link" onClick={() => OnSettingsClicked(props)}>
-            settings
+            Settings
         </Button>
     );
 };

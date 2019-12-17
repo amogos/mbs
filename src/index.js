@@ -58,6 +58,18 @@ const DisplaySpaceListing = () => {
     );
 };
 
+const DisplayProfileSettings = () => {
+    return (
+        <div className="app">
+            <BannerContainer />
+            <div className="middle_area">
+                <LeftContainer />
+                <MainContainer />
+            </div>
+        </div>
+    );
+};
+
 const DisplayContent = page => {
     switch (page) {
         case 'book':
@@ -66,6 +78,8 @@ const DisplayContent = page => {
             return DisplayBookListing();
         case 'spaces':
             return DisplaySpaceListing();
+        case 'settings':
+            return DisplayProfileSettings();
         case undefined:
             return DisplaySpaceListing();
         default:
