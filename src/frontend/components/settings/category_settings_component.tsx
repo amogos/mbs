@@ -26,7 +26,11 @@ const CategorySettingsComponent = (props: Props) => {
     };
 
     for (let i = 0; i < categories.length; i += 3) {
-        rows.push(<Row gutter={16}>{columns(i)}</Row>);
+        rows.push(
+            <div style={{ padding: '10px' }}>
+                <Row gutter={16}>{columns(i)}</Row>
+            </div>,
+        );
     }
 
     return <div style={{ background: '#ECECEC', padding: '30px' }}>{rows}</div>;
