@@ -24,9 +24,7 @@ export async function getCategoryRecordTypeFromId(
     let category = DataTypes.NullCategoryRecordType();
     await axios
         .get(`${urlCategory}/${id}`)
-        .then(response => {
-            category = { id: response.data.id, title: response.data.title };
-        })
+        .then(response => (category = response.data))
         .catch(error => onError(error));
     return category;
 }
@@ -46,15 +44,15 @@ export async function getCategoryRecordTypeFromTitle(
 }
 
 export async function addCategory(
-    title: string,
+    value: DataTypes.CategoryRecordValueType,
     onError: (resultCode: number) => void,
 ): Promise<DataTypes.CategoryRecordType> {
-    let category = await getCategoryRecordTypeFromTitle(title, onError);
-    if (category.id <= 0) {
+    let category = await getCategoryRecordTypeFromTitle(value.title, onError);
+    const isNewCategory = category.id <= 0;
+
+    if (isNewCategory) {
         await axios
-            .post(urlCategory, {
-                title: title,
-            })
+            .post(urlCategory, value)
             .then(result => {
                 category = result.data;
             })
