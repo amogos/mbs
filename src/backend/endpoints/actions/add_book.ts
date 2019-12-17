@@ -16,7 +16,8 @@ export async function addBook(
     onSuccess: () => void,
     onError: (resultCode: number) => void,
 ) {
-    //  when book is added from google books api it comes with its own category title so no id present
+    //  when book is added from google books api it comes with its own category title so no id present,
+    //  since it does not come from the current database
     if (value.category.id <= 0) {
         const categoryValue = DataTypes.NullCategoryRecordValueType();
         categoryValue.title = value.category.title;
@@ -25,6 +26,7 @@ export async function addBook(
     }
 
     //  when book is added from google books api it comes with its own language title so no id present
+    //  since it does not come from the current database
     if (value.language.id <= 0) {
         const newLanguage = await addLanguage(value.language.title, onError);
         value.language.id = newLanguage.id;
