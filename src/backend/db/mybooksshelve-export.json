@@ -122,175 +122,218 @@
     "categories": [
         {
             "id": 1,
-            "title": "art & music"
+            "title": "art & music",
+            "count": 0
         },
         {
             "id": 2,
-            "title": "biographies"
+            "title": "biographies",
+            "count": 0
         },
         {
             "id": 3,
-            "title": "business"
+            "title": "business",
+            "count": 0
         },
         {
             "id": 4,
-            "title": "kids"
+            "title": "kids",
+            "count": 0
         },
         {
             "id": 5,
-            "title": "comics"
+            "title": "comics",
+            "count": 0
         },
         {
             "id": 6,
-            "title": "computer & tech"
+            "title": "computer & tech",
+            "count": 0
         },
         {
             "id": 7,
-            "title": "cooking"
+            "title": "cooking",
+            "count": 0
         },
         {
             "id": 8,
-            "title": "hobbies & crafts"
+            "title": "hobbies & crafts",
+            "count": 0
         },
         {
             "id": 9,
-            "title": "gay & lesbian"
+            "title": "gay & lesbian",
+            "count": 0
         },
         {
             "id": 10,
-            "title": "health & fitness"
+            "title": "health & fitness",
+            "count": 0
         },
         {
             "id": 11,
-            "title": "history"
+            "title": "history",
+            "count": 0
         },
         {
             "id": 12,
-            "title": "home & garden"
+            "title": "home & garden",
+            "count": 0
         },
         {
             "id": 13,
-            "title": "horror"
+            "title": "horror",
+            "count": 0
         },
         {
             "id": 14,
-            "title": "entertainment"
+            "title": "entertainment",
+            "count": 0
         },
         {
             "id": 15,
-            "title": "literture & fiction"
+            "title": "literture & fiction",
+            "count": 0
         },
         {
             "id": 16,
-            "title": "medical"
-        },
-        {
-            "id": 14,
-            "title": "mysteries"
-        },
-        {
-            "id": 15,
-            "title": "parenting"
-        },
-        {
-            "id": 16,
-            "title": "social sciences"
+            "title": "medical",
+            "count": 0
         },
         {
             "id": 17,
-            "title": "religion"
+            "title": "mysteries",
+            "count": 0
         },
         {
             "id": 18,
-            "title": "romance & sexuality"
+            "title": "parenting",
+            "count": 0
         },
         {
             "id": 19,
-            "title": "science & math"
+            "title": "social sciences",
+            "count": 0
         },
         {
             "id": 20,
-            "title": "sci-fi & fantasy"
+            "title": "religion",
+            "count": 0
         },
         {
             "id": 21,
-            "title": "sports"
+            "title": "romance & sexuality",
+            "count": 0
         },
         {
             "id": 22,
-            "title": "teens"
-        },
-        {
-            "id": 21,
-            "title": "travel"
-        },
-        {
-            "id": 22,
-            "title": "true crime"
+            "title": "science & math",
+            "count": 0
         },
         {
             "id": 23,
-            "title": "philosophy"
+            "title": "sci-fi & fantasy",
+            "count": 0
         },
         {
             "id": 24,
-            "title": "photography"
+            "title": "sports",
+            "count": 0
         },
         {
             "id": 25,
-            "title": "family & care"
+            "title": "teens",
+            "count": 0
         },
         {
             "id": 26,
-            "title": "animal rights & pets"
+            "title": "travel",
+            "count": 0
         },
         {
             "id": 27,
-            "title": "engineering"
+            "title": "true crime",
+            "count": 0
         },
         {
             "id": 28,
-            "title": "architecture & interior design"
+            "title": "philosophy",
+            "count": 0
         },
         {
             "id": 29,
-            "title": "poetry"
+            "title": "photography",
+            "count": 0
         },
         {
             "id": 30,
-            "title": "nonfiction(general)"
+            "title": "family & care",
+            "count": 0
+        },
+        {
+            "id": 31,
+            "title": "animal rights & pets",
+            "count": 0
+        },
+        {
+            "id": 32,
+            "title": "engineering",
+            "count": 0
+        },
+        {
+            "id": 33,
+            "title": "architecture & interior design",
+            "count": 0
+        },
+        {
+            "id": 34,
+            "title": "poetry",
+            "count": 0
+        },
+        {
+            "id": 35,
+            "title": "nonfiction(general)",
+            "count": 0
         },
         {
             "title": "education",
-            "id": 31
+            "id": 36,
+            "count": 0
         },
         {
             "title": "self-help",
-            "id": 32
+            "id": 37,
+            "count": 0
         },
         {
             "title": "business & economics",
-            "id": 33
+            "id": 38,
+            "count": 0
         },
         {
             "title": "computers",
-            "id": 34
+            "id": 39,
+            "count": 0
         },
         {
             "title": "stoics",
-            "id": 35
+            "id": 40,
+            "count": 0
         },
         {
             "title": "computer games",
-            "id": 36
+            "id": 41,
+            "count": 0
         },
         {
             "title": "juvenile fiction",
-            "id": 37
+            "id": 42,
+            "count": 0
         },
         {
             "title": "business & economics",
-            "id": 38
+            "id": 43,
+            "count": 0
         }
     ],
     "spaces": [
