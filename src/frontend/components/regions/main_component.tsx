@@ -101,6 +101,8 @@ const MainComponent = React.memo((props: Props) => {
             return SpacesList(props);
         case 'book':
             return DisplayBookDetails(props);
+        case 'settings':
+            return null;
         default:
             return SpacesList(props);
     }
