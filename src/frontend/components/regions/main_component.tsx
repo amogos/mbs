@@ -6,6 +6,7 @@ import ListBooksContainer from '../../containers/list_books_container';
 import ListSpacesContainer from '../../containers/list_spaces_container';
 import BookDisplayContainer from '../../containers/display_book_container';
 import LoginComponent from '../social/login_component';
+import ProfileSettingsComponent from './../settings/profile_settings_component';
 
 interface Props {
     userdata: DataTypes.UserRecordType;
@@ -102,7 +103,7 @@ const MainComponent = React.memo((props: Props) => {
         case 'book':
             return DisplayBookDetails(props);
         case 'settings':
-            return null;
+            return <ProfileSettingsComponent />;
         default:
             return SpacesList(props);
     }
