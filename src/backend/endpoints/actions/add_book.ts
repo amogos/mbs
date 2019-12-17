@@ -16,11 +16,15 @@ export async function addBook(
     onSuccess: () => void,
     onError: (resultCode: number) => void,
 ) {
+    //  when book is added from google books api it comes with its own category title so no id present
     if (value.category.id <= 0) {
-        const newCategory = await addCategory(value.category.title, onError);
+        const categoryValue = DataTypes.NullCategoryRecordValueType();
+        categoryValue.title = value.category.title;
+        const newCategory = await addCategory(categoryValue, onError);
         value.category.id = newCategory.id;
     }
 
+    //  when book is added from google books api it comes with its own language title so no id present
     if (value.language.id <= 0) {
         const newLanguage = await addLanguage(value.language.title, onError);
         value.language.id = newLanguage.id;
@@ -61,7 +65,7 @@ export async function addBook(
         })
         .catch(error => onError(error));
 
-    //  merge/update description
+    //  merge/update existing book description or add new description if not present
     const previousDescription = await getBookDescriptionForISBN(value.isbn10, value.isbn13, onError);
     if (previousDescription.id === 0) {
         await addBookDescription(newBookDescription, onError);
@@ -72,6 +76,6 @@ export async function addBook(
         }
     }
 
-    //  add user feed
+    //  add added book event into user feed
     await addFeed(DataTypes.UserFeedBookEvent(userId, DataTypes.UserFeedType.ADDED_BOOK, newRecord.id), onError);
 }
