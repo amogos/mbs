@@ -16,10 +16,10 @@ const ProfileComponent = (props: Props) => {
     const menu = (
         <Menu>
             <Menu.Item>
-                <Logout {...props} />
+                <Settings />
             </Menu.Item>
             <Menu.Item>
-                <Settings />
+                <Logout {...props} />
             </Menu.Item>
         </Menu>
     );
