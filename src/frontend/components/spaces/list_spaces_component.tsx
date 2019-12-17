@@ -1,5 +1,6 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
+import { History } from 'history';
 import * as DataTypes from '../../../shared/types';
 import SpaceHolder from './space_holder';
 import { Aux, withStyle } from './../hooks/hooks';
@@ -19,7 +20,7 @@ interface Props {
     ): void;
     followSpace: (spaceId: number, callback: () => void) => void;
     unfollowSpace: (spaceId: number, callback: () => void) => void;
-    history: any;
+    history: History;
 }
 
 const ListSpacesComponent = (props: Props) => {
