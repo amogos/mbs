@@ -5,6 +5,7 @@ export interface UserRecordType {
     picture: string;
     following: number[];
     bookmarks: number[];
+    categories: number[];
     rating: number;
     socialnetwork: number;
     password: string;
@@ -18,6 +19,7 @@ export const NullUserRecordType = (): UserRecordType => {
         picture: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
         following: [],
         bookmarks: [],
+        categories: [],
         rating: 0,
         socialnetwork: 0,
         password: '',
@@ -30,6 +32,7 @@ export interface UserValueType {
     picture: string;
     following: number[];
     bookmarks: number[];
+    categories: number[];
     rating: number;
     socialnetwork: number;
     password: string;
@@ -42,6 +45,7 @@ export const NullUserValueType = (): UserValueType => {
         picture: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
         following: [],
         bookmarks: [],
+        categories: [],
         rating: 0,
         socialnetwork: 0,
         password: '',

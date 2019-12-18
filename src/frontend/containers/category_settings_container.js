@@ -4,6 +4,7 @@ import CategorySettingsComponent from '../../frontend/components/settings/catego
 function mapStateToProps(state) {
     return {
         categories: state.mainReducer.categories,
+        userdata: state.mainReducer.userdata,
     };
 }
 

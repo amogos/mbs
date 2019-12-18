@@ -1,11 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Card, Col, Row, Divider, Button } from 'antd';
 import * as DataTypes from '../../../shared/types';
 import { Aux } from './../hooks/hooks';
 
 interface Props {
     categories: DataTypes.CategoryRecordType[];
+    userdata: DataTypes.UserRecordType;
 }
+
+const CategoryButton = (props: { category: DataTypes.CategoryRecordType }) => {
+    const [selected, setSelected] = useState(false);
+
+    return (
+        <Button shape="round" style={{ float: 'right' }}>
+            +
+        </Button>
+    );
+};
 
 const CategorySettingsComponent = (props: Props) => {
     const { categories } = props;
@@ -29,14 +40,7 @@ const CategorySettingsComponent = (props: Props) => {
                                 }}
                             >
                                 <span style={{ fontSize: '12px' }}>{category.title}</span>
-                                <Button
-                                    shape="round"
-                                    style={{
-                                        float: 'right',
-                                    }}
-                                >
-                                    +
-                                </Button>
+                                <CategoryButton category={category} />
                             </div>
                         }
                         bordered={false}
