@@ -6,6 +6,7 @@ import { Aux } from './../hooks/hooks';
 interface Props {
     categories: DataTypes.CategoryRecordType[];
     userdata: DataTypes.UserRecordType;
+    updateUser(user: DataTypes.UserValueType): void;
 }
 
 const CategoryButton = (props: { category: DataTypes.CategoryRecordType }) => {

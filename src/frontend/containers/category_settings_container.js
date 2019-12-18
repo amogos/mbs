@@ -10,6 +10,7 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = dispatch => {
     return {
+        updateUser: user => dispatch(socialAction.updateUser(user)),
         dispatch,
     };
 };

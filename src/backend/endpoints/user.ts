@@ -21,6 +21,10 @@ async function addNewUser(
     return newUserData;
 }
 
+export async function updateUser(user: DataTypes.UserRecordType, onError: (resultCode: number) => void): Promise<void> {
+    await axios.put(urlUsers, user).catch(error => onError(error));
+}
+
 async function getUserReviews(
     id: number,
     onError: (resultCode: number) => void,

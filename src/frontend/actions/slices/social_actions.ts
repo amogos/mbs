@@ -9,6 +9,11 @@ class SocialAction {
         userdata,
     });
 
+    public updateUserData = (user: DataTypes.UserRecordType) => ({
+        type: SocialActionConstant.ACTION_UPDATE_USER_DATA,
+        user,
+    });
+
     public signUpUser = (user: DataTypes.UserValueType) => ({
         type: SocialActionConstant.ACTION_SIGN_UP_USER,
         user,
