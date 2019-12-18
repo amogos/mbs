@@ -14,8 +14,8 @@ const CategorySettingsComponent = (props: Props) => {
         return <p>{`Titles: ${category.count}`}</p>;
     };
 
-    const Columns = (i: number): any[] => {
-        const result: any[] = [];
+    const Columns = (i: number): JSX.Element[] => {
+        const result: JSX.Element[] = [];
         for (let j = i; j < props.categories.length && j < i + 3; j++) {
             const category = props.categories[j];
             result.push(
@@ -29,7 +29,7 @@ const CategorySettingsComponent = (props: Props) => {
         return result;
     };
 
-    const rows: any[] = [];
+    const rows: JSX.Element[] = [];
 
     for (let i = 0; i < categories.length; i += 3) {
         rows.push(
