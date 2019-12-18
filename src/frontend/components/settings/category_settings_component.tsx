@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Col, Row, Divider } from 'antd';
+import { Card, Col, Row, Divider, Button } from 'antd';
 import * as DataTypes from '../../../shared/types';
 import { Aux } from './../hooks/hooks';
 
@@ -20,7 +20,27 @@ const CategorySettingsComponent = (props: Props) => {
             const category = props.categories[j];
             result.push(
                 <Col span={8}>
-                    <Card title={category.title} bordered={false}>
+                    <Card
+                        title={
+                            <div
+                                style={{
+                                    flex: 1,
+                                    flexDirection: 'row',
+                                }}
+                            >
+                                <span style={{ fontSize: '12px' }}>{category.title}</span>
+                                <Button
+                                    shape="round"
+                                    style={{
+                                        float: 'right',
+                                    }}
+                                >
+                                    +
+                                </Button>
+                            </div>
+                        }
+                        bordered={false}
+                    >
                         {CategoryContent(category)}
                     </Card>
                 </Col>,
