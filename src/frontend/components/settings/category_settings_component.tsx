@@ -9,17 +9,37 @@ interface Props {
     updateUser(user: DataTypes.UserValueType): void;
 }
 
-const CategoryButton = (props: { category: DataTypes.CategoryRecordType }) => {
-    const [selected, setSelected] = useState(false);
+const CategoryButton = (props: {
+    category: DataTypes.CategoryRecordType;
+    selections: Set<number>;
+    setSelections: (sel: Set<number>) => void;
+}) => {
+    const [selected, setSelected] = useState(props.selections.has(props.category.id));
+    const { category, selections, setSelections } = props;
+
+    const OnButtonClicked = () => {
+        const newSelectionState = !selected;
+
+        if (newSelectionState) {
+            selections.add(category.id);
+            setSelected(true);
+        } else {
+            selections.delete(category.id);
+            setSelected(false);
+        }
+        setSelections(selections);
+    };
 
     return (
-        <Button shape="round" style={{ float: 'right' }}>
-            +
+        <Button shape="round" style={{ float: 'right' }} onClick={OnButtonClicked}>
+            {selected ? '-' : '+'}
         </Button>
     );
 };
 
 const CategorySettingsComponent = (props: Props) => {
+    const [selections, setSelections] = useState(new Set(props.userdata.categories));
+
     const { categories } = props;
 
     const CategoryContent = (category: DataTypes.CategoryRecordType) => {
@@ -41,7 +61,11 @@ const CategorySettingsComponent = (props: Props) => {
                                 }}
                             >
                                 <span style={{ fontSize: '12px' }}>{category.title}</span>
-                                <CategoryButton category={category} />
+                                <CategoryButton
+                                    category={category}
+                                    selections={selections}
+                                    setSelections={setSelections}
+                                />
                             </div>
                         }
                         bordered={false}
