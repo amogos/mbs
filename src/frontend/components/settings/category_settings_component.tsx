@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Card, Col, Row, Divider, Button } from 'antd';
+import { Card, Col, Row, Divider, Button, message } from 'antd';
 import * as DataTypes from '../../../shared/types';
 import { Aux } from './../hooks/hooks';
 
@@ -23,9 +23,11 @@ const CategoryButton = (props: {
         if (newSelectionState) {
             selections.add(category.id);
             setSelected(true);
+            message.success(`Category ${category.title} was added to your homepage`);
         } else {
             selections.delete(category.id);
             setSelected(false);
+            message.success(`Category ${category.title} was removed from your homepage`);
         }
         setSelections(selections);
     };
