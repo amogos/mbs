@@ -11,7 +11,7 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = dispatch => {
     return {
-        updateUser: user => dispatch(socialAction.updateUser(user)),
+        updateUser: user => dispatch(socialAction.updateUserData(user)),
         dispatch,
     };
 };

@@ -46,6 +46,13 @@ const CategorySettingsComponent = (props: Props) => {
         return <p>{`Titles: ${category.count}`}</p>;
     };
 
+    const OnCategoriesSelectionStateChanged = (selections: Set<number>) => {
+        const userdata = props.userdata;
+        userdata.categories = Array.from(selections);
+        props.updateUser(userdata);
+        setSelections(selections);
+    };
+
     const Columns = (i: number): JSX.Element[] => {
         const result: JSX.Element[] = [];
         for (let j = i; j < props.categories.length && j < i + 3; j++) {
@@ -64,7 +71,7 @@ const CategorySettingsComponent = (props: Props) => {
                                 <CategoryButton
                                     category={category}
                                     selections={selections}
-                                    setSelections={setSelections}
+                                    setSelections={OnCategoriesSelectionStateChanged}
                                 />
                             </div>
                         }
