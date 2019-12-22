@@ -15,6 +15,7 @@ interface Props {
     logoutUser(): void;
     userdata: DataTypes.UserRecordType;
     categories: DataTypes.CategoryRecordType[];
+    usercategories: DataTypes.CategoryRecordType[];
     languages: DataTypes.LanguageRecordType[];
     addBook(book: DataTypes.BookValueType): void;
 }

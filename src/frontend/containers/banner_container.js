@@ -6,6 +6,7 @@ function mapStateToProps(state) {
     return {
         userdata: state.mainReducer.userdata,
         categories: state.mainReducer.categories,
+        usercategories: state.mainReducer.usercategories,
         languages: state.mainReducer.languages,
     };
 }

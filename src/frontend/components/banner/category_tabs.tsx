@@ -9,15 +9,18 @@ import { History } from 'history';
 interface Props {
     getSpaces(filters: string[]): void;
     categories: DataTypes.CategoryRecordType[];
+    usercategories: DataTypes.CategoryRecordType[];
     history: History;
 }
 
 const BuildCategoryTabsInformation = (props: Props) => {
     let categoryTabsContent: TabData[] = [];
     const { CategoryTabsStrings } = Strings.default;
+    const numMinumumVisibleTabs = 10;
 
     if (!props.categories) return categoryTabsContent;
 
+    //  HOME category tab
     categoryTabsContent.push({
         id: -1,
         title: CategoryTabsStrings.HOME,
@@ -26,8 +29,9 @@ const BuildCategoryTabsInformation = (props: Props) => {
         },
     });
 
+    //  add user preferred categories
     categoryTabsContent = categoryTabsContent.concat(
-        props.categories.slice(1, 11).map(item => {
+        props.usercategories.map(item => {
             const tab: TabData = {
                 id: item.id,
                 title: item.title,
@@ -37,6 +41,24 @@ const BuildCategoryTabsInformation = (props: Props) => {
         }),
     );
 
+    //  add extra random categories if minimum number of visible tabs not reached
+    if (numMinumumVisibleTabs > props.usercategories.length) {
+        const extraCategories = props.categories.filter(
+            element => props.usercategories.find(match => match.id === element.id) === undefined,
+        );
+        categoryTabsContent = categoryTabsContent.concat(
+            extraCategories.slice(1, numMinumumVisibleTabs - props.usercategories.length + 1).map(item => {
+                const tab: TabData = {
+                    id: item.id,
+                    title: item.title,
+                    callback: () => props.history.push(`/books?category=${item.id}`),
+                };
+                return tab;
+            }),
+        );
+    }
+
+    //  MORE category tab
     categoryTabsContent.push({ id: -2, title: CategoryTabsStrings.MORE, callback: () => {} });
 
     return categoryTabsContent;

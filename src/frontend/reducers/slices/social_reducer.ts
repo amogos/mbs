@@ -11,7 +11,13 @@ const { SocialActionConstant } = ActionConstants.default;
 export default function socialReducer(state: any, action: any): any {
     switch (action.type) {
         case SocialActionConstant.ACTION_UPDATE_USER_DATA: {
-            databseInstance.updateUser(action.user, handleError);
+            databseInstance.updateUser(action.user, handleError).then(() => {
+                databseInstance
+                    .getArrayCategories(action.user.categories, handleError)
+                    .then((result: DataTypes.CategoryRecordType[]) => {
+                        Store.dispatch(pageAction.refreshState({ usercategories: result }));
+                    });
+            });
             return Object.assign({}, state, {
                 action: SocialActionConstant.ACTION_UPDATE_USER_DATA,
             });
