@@ -1,3 +1,5 @@
+import { SocialNetwork } from '../constants/social_networks_constants';
+
 export interface UserRecordType {
     id: number;
     name: string | undefined;
@@ -21,7 +23,7 @@ export const NullUserRecordType = (): UserRecordType => {
         bookmarks: [],
         categories: [],
         rating: 0,
-        socialnetwork: 0,
+        socialnetwork: SocialNetwork.custom,
         password: '',
     };
 };
@@ -47,7 +49,7 @@ export const NullUserValueType = (): UserValueType => {
         bookmarks: [],
         categories: [],
         rating: 0,
-        socialnetwork: 0,
+        socialnetwork: SocialNetwork.custom,
         password: '',
     };
 };

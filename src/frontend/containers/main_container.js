@@ -15,6 +15,7 @@ function mapStateToProps(state) {
 const mapDispatchToProps = dispatch => {
     return {
         displayBook: bookId => dispatch(bookAction.displayBook(bookId)),
+        signUpUser: user => dispatch(socialAction.signUpUser(user)),
         loginUser: (user, onError) => dispatch(socialAction.loginUser(user, onError)),
         getBooks: (filters, callback) => dispatch(pageAction.getBooks(filters, callback)),
         getSpaces: filters => dispatch(pageAction.getSpaces(filters)),
