@@ -6,11 +6,15 @@ export async function getArrayCategories(
     categories: number[],
     onError: (resultCode: number) => void,
 ): Promise<DataTypes.CategoryRecordType[]> {
-    let url = `${urlCategory}?`;
-    categories.forEach(id => (url = url + `&id=${id}`));
     let categoryArray: DataTypes.CategoryRecordType[] = [];
+
+    if (categories.length === 0) return categoryArray;
+
+    let url = `${urlCategory}?`;
+    categories.forEach(id => (url = url + `id=${id}&`));
+
     await axios
-        .get(urlCategory)
+        .get(url)
         .then(response => (categoryArray = response.data))
         .catch(error => {
             onError(error);

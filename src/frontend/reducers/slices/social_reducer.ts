@@ -62,6 +62,11 @@ export default function socialReducer(state: any, action: any): any {
                 .then((result: DataTypes.QueueNotificationRecordType[]) => {
                     Store.dispatch(pageAction.refreshState({ queueArray: result, append: false }));
                 });
+            databseInstance
+                .getArrayCategories(action.userdata.categories, handleError)
+                .then((result: DataTypes.CategoryRecordType[]) => {
+                    Store.dispatch(pageAction.refreshState({ usercategories: result }));
+                });
 
             const stateAppend: {
                 userdata: DataTypes.UserValueType;

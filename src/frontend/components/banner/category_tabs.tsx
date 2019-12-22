@@ -18,7 +18,7 @@ const BuildCategoryTabsInformation = (props: Props) => {
     const { CategoryTabsStrings } = Strings.default;
     const numMinumumVisibleTabs = 10;
 
-    if (!props.categories) return categoryTabsContent;
+    if (!props.categories || !props.usercategories) return categoryTabsContent;
 
     //  HOME category tab
     categoryTabsContent.push({

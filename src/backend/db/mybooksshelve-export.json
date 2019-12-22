@@ -47,7 +47,22 @@
       "rating": 0,
       "socialnetwork": 2,
       "id": 4,
-      "categories": []
+      "categories": [
+        2,
+        6,
+        5,
+        7,
+        3,
+        12,
+        20,
+        19,
+        22,
+        18,
+        21,
+        4,
+        8,
+        11
+      ]
     },
     {
       "name": "Mock",
