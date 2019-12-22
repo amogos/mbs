@@ -11,7 +11,8 @@
       ],
       "rating": 0,
       "socialnetwork": 1,
-      "id": 1
+      "id": 1,
+      "categories": []
     },
     {
       "id": 2,
@@ -20,6 +21,7 @@
       "picture": "https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png",
       "following": [],
       "bookmarks": [],
+      "categories": [],
       "rating": 0,
       "socialnetwork": 2
     },
@@ -30,6 +32,7 @@
       "picture": "https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png",
       "following": [],
       "bookmarks": [],
+      "categories": [],
       "rating": 0,
       "socialnetwork": 2
     },
@@ -66,6 +69,9 @@
       "picture": "https://image.flaticon.com/icons/svg/1814/1814777.svg",
       "following": [],
       "bookmarks": [],
+      "categories": [
+        12
+      ],
       "rating": 0,
       "socialnetwork": 4,
       "id": 5
