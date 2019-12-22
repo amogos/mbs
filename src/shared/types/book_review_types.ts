@@ -26,22 +26,6 @@ export const NullBookReviewRecordType = (): BookReviewRecordType => {
     };
 };
 
-export interface BookReviewRawRecordType {
-    id: number;
-    bookId: number;
-    isbn10: string;
-    isbn13: string;
-    comment: string;
-    score: number;
-    user: number;
-    date: number;
-    likes: number;
-}
-
-export const NullBookReviewRawRecordType = (): BookReviewRawRecordType => {
-    return { id: 0, bookId: 0, isbn10: '', isbn13: '', comment: '', score: 0, user: 0, date: 0, likes: 0 };
-};
-
 export interface BookReviewRawValueType {
     bookId: number;
     isbn10: string;
@@ -55,6 +39,14 @@ export interface BookReviewRawValueType {
 
 export const NullBookReviewRawValueType = (): BookReviewRawValueType => {
     return { bookId: 0, isbn10: '', isbn13: '', comment: '', score: 0, user: 0, date: 0, likes: 0 };
+};
+
+export interface BookReviewRawRecordType extends BookReviewRawValueType {
+    id: number;
+}
+
+export const NullBookReviewRawRecordType = (): BookReviewRawRecordType => {
+    return { id: 0, bookId: 0, isbn10: '', isbn13: '', comment: '', score: 0, user: 0, date: 0, likes: 0 };
 };
 
 export interface BookReviewStatisticsType {

@@ -111,16 +111,8 @@ export interface BookRawValueType {
     return?: number;
 }
 
-export interface BookRawRecordType {
+export interface BookRawRecordType extends BookRawValueType {
     id: number;
-    isbn10: string;
-    isbn13: string;
-    owner: number;
-    holder: number;
-    state: string;
-    space: number;
-    category: number;
-    return?: number;
 }
 
 export const NullRawBookRecordType = (): BookRawRecordType => {
