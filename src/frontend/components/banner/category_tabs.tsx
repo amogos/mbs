@@ -59,7 +59,13 @@ const BuildCategoryTabsInformation = (props: Props) => {
     }
 
     //  MORE category tab
-    categoryTabsContent.push({ id: -2, title: CategoryTabsStrings.MORE, callback: () => {} });
+    categoryTabsContent.push({
+        id: -2,
+        title: CategoryTabsStrings.MORE,
+        callback: () => {
+            props.history.push('/settings');
+        },
+    });
 
     return categoryTabsContent;
 };
