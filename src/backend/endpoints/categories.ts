@@ -2,15 +2,27 @@ import axios from 'axios';
 import * as DataTypes from '../../shared/types';
 import { urlCategory } from './constants';
 
-export async function getCategories(onError: (resultCode: number) => void): Promise<DataTypes.CategoryRecordType[]> {
-    const categoryArray: DataTypes.CategoryRecordType[] = [];
+export async function getArrayCategories(
+    categories: number[],
+    onError: (resultCode: number) => void,
+): Promise<DataTypes.CategoryRecordType[]> {
+    let url = `${urlCategory}?`;
+    categories.forEach(id => (url = url + `&id=${id}`));
+    let categoryArray: DataTypes.CategoryRecordType[] = [];
     await axios
         .get(urlCategory)
-        .then(response => {
-            response.data.forEach((item: DataTypes.CategoryRecordType) => {
-                categoryArray.push(item);
-            });
-        })
+        .then(response => (categoryArray = response.data))
+        .catch(error => {
+            onError(error);
+        });
+    return categoryArray;
+}
+
+export async function getCategories(onError: (resultCode: number) => void): Promise<DataTypes.CategoryRecordType[]> {
+    let categoryArray: DataTypes.CategoryRecordType[] = [];
+    await axios
+        .get(urlCategory)
+        .then(response => (categoryArray = response.data))
         .catch(error => {
             onError(error);
         });
