@@ -10,6 +10,7 @@ interface Props extends RouteComponentProps {
     getSpaces(filters: string[]): void;
     categories: DataTypes.CategoryRecordType[];
     usercategories: DataTypes.CategoryRecordType[];
+    urlparams: DataTypes.UrlParms;
     history: History;
 }
 
@@ -88,6 +89,16 @@ class CategoryTabs extends React.Component<Props, {}> {
         return categoryTabsContent;
     }
 
+    componentDidMount() {
+        window.onscroll = debounce(() => this.updateStyle(), 10);
+        this.resetStyle();
+    }
+
+    componentDidUpdate() {
+        window.onscroll = debounce(() => this.updateStyle(), 10);
+        this.resetStyle();
+    }
+
     private resetStyle() {
         const tabsObject: HTMLDivElement = this.refobj.current as HTMLDivElement;
         if (!tabsObject) return;
@@ -106,10 +117,6 @@ class CategoryTabs extends React.Component<Props, {}> {
         } else {
             tabsObject.style.setProperty('position', 'relative');
         }
-    }
-
-    componentDidMount() {
-        window.onscroll = debounce(() => this.updateStyle(), 10);
     }
 
     public render() {

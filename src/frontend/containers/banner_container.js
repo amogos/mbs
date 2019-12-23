@@ -8,6 +8,7 @@ function mapStateToProps(state) {
         categories: state.mainReducer.categories,
         usercategories: state.mainReducer.usercategories,
         languages: state.mainReducer.languages,
+        urlparams: state.mainReducer.urlparams,
     };
 }
 

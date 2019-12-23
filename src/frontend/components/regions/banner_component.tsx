@@ -17,6 +17,7 @@ interface Props {
     categories: DataTypes.CategoryRecordType[];
     usercategories: DataTypes.CategoryRecordType[];
     languages: DataTypes.LanguageRecordType[];
+    urlparams: DataTypes.UrlParms;
     addBook(book: DataTypes.BookValueType): void;
 }
 
