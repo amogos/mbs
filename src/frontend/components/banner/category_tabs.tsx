@@ -104,7 +104,7 @@ class CategoryTabs extends React.Component<Props, {}> {
     private updateStyle() {
         const scrollAmount = document.documentElement.scrollTop;
         const tabsObject: HTMLDivElement = this.refobj.current as HTMLDivElement;
-        const scrollNeededForFixedStyle = 280;
+        const scrollNeededForFixedStyle = 80;
 
         if (!tabsObject) return;
 
