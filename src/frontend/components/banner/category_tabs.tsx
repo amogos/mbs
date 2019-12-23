@@ -36,6 +36,7 @@ class CategoryTabs extends React.Component<Props, {}> {
             title: CategoryTabsStrings.HOME,
             callback: () => {
                 props.history.push('/spaces');
+                this.resetStyle();
             },
         });
 
@@ -45,7 +46,10 @@ class CategoryTabs extends React.Component<Props, {}> {
                 const tab: TabData = {
                     id: item.id,
                     title: item.title,
-                    callback: () => props.history.push(`/books?category=${item.id}`),
+                    callback: () => {
+                        props.history.push(`/books?category=${item.id}`);
+                        this.resetStyle();
+                    },
                 };
                 return tab;
             }),
@@ -61,7 +65,10 @@ class CategoryTabs extends React.Component<Props, {}> {
                     const tab: TabData = {
                         id: item.id,
                         title: item.title,
-                        callback: () => props.history.push(`/books?category=${item.id}`),
+                        callback: () => {
+                            props.history.push(`/books?category=${item.id}`);
+                            this.resetStyle();
+                        },
                     };
                     return tab;
                 }),
@@ -74,17 +81,22 @@ class CategoryTabs extends React.Component<Props, {}> {
             title: CategoryTabsStrings.MORE,
             callback: () => {
                 props.history.push('/settings');
+                this.resetStyle();
             },
         });
 
         return categoryTabsContent;
     }
 
+    private resetStyle() {
+        const tabsObject: HTMLDivElement = this.refobj.current as HTMLDivElement;
+        if (!tabsObject) return;
+        tabsObject.style.setProperty('position', 'relative');
+    }
     //  make category tabs stick to the top page when certain scroll offset reached
     private updateStyle() {
         const scrollAmount = document.documentElement.scrollTop;
         const tabsObject: HTMLDivElement = this.refobj.current as HTMLDivElement;
-
         const scrollNeededForFixedStyle = 100;
 
         if (!tabsObject) return;
