@@ -96,8 +96,11 @@ class CategoryTabs extends React.Component<Props, {}> {
         }
     }
 
-    public render() {
+    componentDidMount() {
         window.onscroll = debounce(() => this.updateStyle(), 10);
+    }
+
+    public render() {
         return (
             <div ref={this.refobj} className="category_tabs">
                 <Tabs tabs={this.buildCategoryTabsInformation()} />

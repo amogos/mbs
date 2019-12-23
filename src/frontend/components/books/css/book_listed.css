@@ -17,6 +17,7 @@
     display: flex;
     flex-direction: row;
     padding-top: 2em;
+    position: relative;
 }
 
 .book_title {
@@ -31,4 +32,8 @@
 
 .book_description {
     width: 80%;
+}
+
+.list_book_component {
+    position: relative;
 }
