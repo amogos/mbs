@@ -1,54 +1,47 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom';
+import { withRouter, RouteComponentProps } from 'react-router-dom';
 import debounce from 'lodash.debounce';
 import Tabs, { TabData } from '../banner/tabs';
 import * as DataTypes from '../../../shared/types';
 import * as Strings from '../../../shared/constants/string_constant';
-import { withStyle } from '../hooks/hooks';
 import { History } from 'history';
 
-interface Props {
+interface Props extends RouteComponentProps {
     getSpaces(filters: string[]): void;
     categories: DataTypes.CategoryRecordType[];
     usercategories: DataTypes.CategoryRecordType[];
     history: History;
 }
 
-const BuildCategoryTabsInformation = (props: Props) => {
-    let categoryTabsContent: TabData[] = [];
-    const { CategoryTabsStrings } = Strings.default;
-    const numMinumumVisibleTabs = 10;
+class CategoryTabs extends React.Component<Props, {}> {
+    tabs: TabData[] = [];
+    refobj: React.RefObject<HTMLDivElement>;
 
-    if (!props.categories || !props.usercategories) return categoryTabsContent;
+    constructor(props: Props) {
+        super(props);
+        this.refobj = React.createRef<HTMLDivElement>();
+    }
 
-    //  HOME category tab
-    categoryTabsContent.push({
-        id: -1,
-        title: CategoryTabsStrings.HOME,
-        callback: () => {
-            props.history.push('/spaces');
-        },
-    });
+    private buildCategoryTabsInformation(): TabData[] {
+        let categoryTabsContent: TabData[] = [];
+        const { CategoryTabsStrings } = Strings.default;
+        const numMinumumVisibleTabs = 10;
+        const { props } = this;
 
-    //  add user preferred categories
-    categoryTabsContent = categoryTabsContent.concat(
-        props.usercategories.map(item => {
-            const tab: TabData = {
-                id: item.id,
-                title: item.title,
-                callback: () => props.history.push(`/books?category=${item.id}`),
-            };
-            return tab;
-        }),
-    );
+        if (!props.categories || !props.usercategories) return categoryTabsContent;
 
-    //  add extra random categories if minimum number of visible tabs not reached
-    if (numMinumumVisibleTabs > props.usercategories.length) {
-        const extraCategories = props.categories.filter(
-            element => props.usercategories.find(match => match.id === element.id) === undefined,
-        );
+        //  HOME category tab
+        categoryTabsContent.push({
+            id: -1,
+            title: CategoryTabsStrings.HOME,
+            callback: () => {
+                props.history.push('/spaces');
+            },
+        });
+
+        //  add user preferred categories
         categoryTabsContent = categoryTabsContent.concat(
-            extraCategories.slice(1, numMinumumVisibleTabs - props.usercategories.length + 1).map(item => {
+            props.usercategories.map(item => {
                 const tab: TabData = {
                     id: item.id,
                     title: item.title,
@@ -57,39 +50,60 @@ const BuildCategoryTabsInformation = (props: Props) => {
                 return tab;
             }),
         );
+
+        //  add extra random categories if minimum number of visible tabs not reached
+        if (numMinumumVisibleTabs > props.usercategories.length) {
+            const extraCategories = props.categories.filter(
+                element => props.usercategories.find(match => match.id === element.id) === undefined,
+            );
+            categoryTabsContent = categoryTabsContent.concat(
+                extraCategories.slice(1, numMinumumVisibleTabs - props.usercategories.length + 1).map(item => {
+                    const tab: TabData = {
+                        id: item.id,
+                        title: item.title,
+                        callback: () => props.history.push(`/books?category=${item.id}`),
+                    };
+                    return tab;
+                }),
+            );
+        }
+
+        //  MORE category tab
+        categoryTabsContent.push({
+            id: -2,
+            title: CategoryTabsStrings.MORE,
+            callback: () => {
+                props.history.push('/settings');
+            },
+        });
+
+        return categoryTabsContent;
     }
 
-    //  MORE category tab
-    categoryTabsContent.push({
-        id: -2,
-        title: CategoryTabsStrings.MORE,
-        callback: () => {
-            props.history.push('/settings');
-        },
-    });
+    //  make category tabs stick to the top page when certain scroll offset reached
+    private updateStyle() {
+        const scrollAmount = document.documentElement.scrollTop;
+        const tabsObject: HTMLDivElement = this.refobj.current as HTMLDivElement;
 
-    return categoryTabsContent;
-};
+        const scrollNeededForFixedStyle = 100;
 
-//  make category tabs stick to the top page when certain scroll offset reached
-const updateStyle = () => {
-    const scrollAmount = document.documentElement.scrollTop;
-    const tabsObject = document.getElementById('category_tabs');
-    const scrollNeededForFixedStyle = 160;
+        if (!tabsObject) return;
 
-    if (!tabsObject) return;
-
-    if (scrollAmount > scrollNeededForFixedStyle) {
-        tabsObject.style.setProperty('position', 'fixed');
-    } else {
-        tabsObject.style.setProperty('position', 'relative');
+        if (scrollAmount > scrollNeededForFixedStyle) {
+            tabsObject.style.setProperty('position', 'fixed');
+        } else {
+            tabsObject.style.setProperty('position', 'relative');
+        }
     }
-};
 
-const CategoryTabs = (props: Props) => {
-    window.onscroll = debounce(() => updateStyle(), 10);
-    const tabs = BuildCategoryTabsInformation(props);
-    return <Tabs tabs={tabs} />;
-};
+    public render() {
+        window.onscroll = debounce(() => this.updateStyle(), 10);
+        return (
+            <div ref={this.refobj} className="category_tabs">
+                <Tabs tabs={this.buildCategoryTabsInformation()} />
+            </div>
+        );
+    }
+}
 
-export default withRouter(withStyle(CategoryTabs, 'category_tabs'));
+export default withRouter(CategoryTabs);
