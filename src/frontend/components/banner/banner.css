@@ -17,10 +17,10 @@
 
 .category_tabs {
     margin-top: 0%;
-    height: 1%;
+    height: 4em;
     width: 70%;
     margin-left: 10%;
     z-index: 1;
-
+    background-color: white;
     position: relative;
 }

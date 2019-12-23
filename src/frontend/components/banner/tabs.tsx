@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button } from 'antd';
 import { Aux } from '../hooks/hooks';
+import { Tabs as AntTabs } from 'antd';
 
 export interface TabData {
     id: number;
@@ -13,12 +14,21 @@ interface Props {
 }
 
 const Tabs = (props: Props) => {
+    const { TabPane } = AntTabs;
     return (
-        <Aux>
+        <AntTabs defaultActiveKey="-1" tabPosition={'top'}>
             {props.tabs.map(item => (
-                <Button onClick={() => item.callback(item.id)}>{item.title.toUpperCase()}</Button>
+                <TabPane
+                    key={`${item.id}`}
+                    style={{ padding: 0, border: 0 }}
+                    tab={
+                        <Button type="link" style={{ color: 'gray' }} onClick={() => item.callback(item.id)}>
+                            {item.title.toUpperCase()}
+                        </Button>
+                    }
+                ></TabPane>
             ))}
-        </Aux>
+        </AntTabs>
     );
 };
 
