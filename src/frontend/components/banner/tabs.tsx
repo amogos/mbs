@@ -1,6 +1,5 @@
 import React from 'react';
 import { Button } from 'antd';
-import { Aux } from '../hooks/hooks';
 import { Tabs as AntTabs } from 'antd';
 
 export interface TabData {
@@ -16,7 +15,7 @@ interface Props {
 const Tabs = (props: Props) => {
     const { TabPane } = AntTabs;
     return (
-        <AntTabs defaultActiveKey="-1" tabPosition={'top'}>
+        <AntTabs defaultActiveKey="-1" tabPosition={'top'} type={'line'}>
             {props.tabs.map(item => (
                 <TabPane
                     key={`${item.id}`}
