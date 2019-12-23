@@ -37,7 +37,6 @@ class CategoryTabs extends React.Component<Props, {}> {
             title: CategoryTabsStrings.HOME,
             callback: () => {
                 props.history.push('/spaces');
-                this.resetStyle();
             },
         });
 
@@ -49,7 +48,6 @@ class CategoryTabs extends React.Component<Props, {}> {
                     title: item.title,
                     callback: () => {
                         props.history.push(`/books?category=${item.id}`);
-                        this.resetStyle();
                     },
                 };
                 return tab;
@@ -68,7 +66,6 @@ class CategoryTabs extends React.Component<Props, {}> {
                         title: item.title,
                         callback: () => {
                             props.history.push(`/books?category=${item.id}`);
-                            this.resetStyle();
                         },
                     };
                     return tab;
@@ -82,7 +79,6 @@ class CategoryTabs extends React.Component<Props, {}> {
             title: CategoryTabsStrings.MORE,
             callback: () => {
                 props.history.push('/settings');
-                this.resetStyle();
             },
         });
 
@@ -108,7 +104,7 @@ class CategoryTabs extends React.Component<Props, {}> {
     private updateStyle() {
         const scrollAmount = document.documentElement.scrollTop;
         const tabsObject: HTMLDivElement = this.refobj.current as HTMLDivElement;
-        const scrollNeededForFixedStyle = 100;
+        const scrollNeededForFixedStyle = 160;
 
         if (!tabsObject) return;
 
