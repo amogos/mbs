@@ -1,5 +1,6 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
+import debounce from 'lodash.debounce';
 import Tabs, { TabData } from '../banner/tabs';
 import * as DataTypes from '../../../shared/types';
 import * as Strings from '../../../shared/constants/string_constant';
@@ -70,7 +71,23 @@ const BuildCategoryTabsInformation = (props: Props) => {
     return categoryTabsContent;
 };
 
+//  make category tabs stick to the top page when certain scroll offset reached
+const updateStyle = () => {
+    const scrollAmount = document.documentElement.scrollTop;
+    const tabsObject = document.getElementById('category_tabs');
+    const scrollNeededForFixedStyle = 160;
+
+    if (!tabsObject) return;
+
+    if (scrollAmount > scrollNeededForFixedStyle) {
+        tabsObject.style.setProperty('position', 'fixed');
+    } else {
+        tabsObject.style.setProperty('position', 'relative');
+    }
+};
+
 const CategoryTabs = (props: Props) => {
+    window.onscroll = debounce(() => updateStyle(), 10);
     const tabs = BuildCategoryTabsInformation(props);
     return <Tabs tabs={tabs} />;
 };

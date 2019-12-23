@@ -22,4 +22,5 @@
     margin-left: 10%;
     z-index: 1;
     background-color: white;
+    position: relative;
 }
