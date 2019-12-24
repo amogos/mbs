@@ -22,5 +22,15 @@ packages.json commands
 
     - my-book-shelve>yarn test or yarn test-with-coverage
 
-4. Precommit hooks
+4. Code formatting
+
+    - my-book-shelve>yarn lint
+
+5. Precommit hooks
    "pre-commit": [],
+    - eg.
+      "pre-commit": [
+      "compile",
+      "lint",
+      "test"
+      ]
