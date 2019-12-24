@@ -10,8 +10,8 @@
         "start-db": "json-server --watch ./src/backend/db/mybooksshelve-export.json --port 3001",
         "start-web": "react-scripts start",
         "build-web": "react-scripts build",
-        "test-no-coverage": "jest",
-        "test": "jest --coverage",
+        "test-with-coverage": "jest --coverage",
+        "test": "jest",
         "compile": "node_modules/.bin/tsc --noEmit",
         "lint": "node_modules/.bin/eslint ./src --fix",
         "storybook": "start-storybook"
