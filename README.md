@@ -5,19 +5,22 @@
 3. From inside repo run yarn install, to bring in all node packages
 
 4. install json-server and concurrently globlly
-   npm install -g json-server  
-   npm install -g concurrently
+    - my-book-shelve> npm install -g json-server
+    - my-book-shelve> npm install -g concurrently
 
 packages.json commands
 
 1. Starting the build:
-   concurrently "yarn start-db" "yarn start-web"
+
+    - my-book-shelve> concurrently "yarn start-db" "yarn start-web"
 
 2. Compiling source code:
-   yarn compile
+
+    - my-book-shelve> yarn compile
 
 3. Running tests:
-   yarn test or yarn test-with-coverage
+
+    - my-book-shelve>yarn test or yarn test-with-coverage
 
 4. Precommit hooks
    "pre-commit": [],
