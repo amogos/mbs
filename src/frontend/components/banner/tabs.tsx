@@ -14,18 +14,17 @@ interface Props {
 
 const Tabs = (props: Props) => {
     const { TabPane } = AntTabs;
+
+    const onTabClicked = (key: string) => {
+        const tabItem = props.tabs.find(item => item.id.toString() === key);
+        if (!tabItem) return;
+        tabItem.callback(tabItem.id);
+    };
+
     return (
-        <AntTabs defaultActiveKey="-1" tabPosition={'top'} type={'line'}>
+        <AntTabs defaultActiveKey="-1" tabPosition={'top'} type={'line'} onTabClick={onTabClicked}>
             {props.tabs.map(item => (
-                <TabPane
-                    key={`${item.id}`}
-                    style={{ padding: 0, border: 0 }}
-                    tab={
-                        <Button type="link" style={{ color: 'gray' }} onClick={() => item.callback(item.id)}>
-                            {item.title.toUpperCase()}
-                        </Button>
-                    }
-                ></TabPane>
+                <TabPane key={`${item.id}`} style={{ padding: 0, border: 0 }} tab={item.title.toUpperCase()}></TabPane>
             ))}
         </AntTabs>
     );
