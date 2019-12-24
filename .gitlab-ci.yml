@@ -13,3 +13,5 @@ stages:
 test_async:
   script:
     - yarn install
+    - npm install -g json-server
+    - yarn test
