@@ -1,0 +1,15 @@
+image: node:alpine
+
+variables:
+  PUBLIC_URL: /my-book-shelve
+
+cache:
+  paths:
+    - node_modules
+
+stages:
+  - test
+
+test_async:
+  script:
+    - yarn install
