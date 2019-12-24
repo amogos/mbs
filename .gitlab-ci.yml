@@ -12,6 +12,14 @@ stages:
 
 test_async:
   script:
+    - |
+      apk add --update \
+          python \
+          python-dev \
+          py-pip \
+          build-base \
+        && pip install virtualenv \
+        && rm -rf /var/cache/apk/*
     - yarn install
     - npm install -g json-server
     - yarn test
