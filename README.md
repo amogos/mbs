@@ -1,23 +1,23 @@
 # my-book-shelve
-install node v11.12.0 or higher
-install yarn 1.15.2 or higher
-from repo run yarn install, this will bring all node packages
 
-install json-server and concurrently globlly
-npm install -g json-server  
-npm install -g concurrently
+1. Install node v11.12.0 or higher.
+2. Install yarn 1.15.2 or higher
+3. From inside repo run yarn install, to bring in all node packages
 
+4. install json-server and concurrently globlly
+   npm install -g json-server  
+   npm install -g concurrently
 
 packages.json commands
 
-Starting the build:
-concurrently "yarn start-db" "yarn start-web"
+1. Starting the build:
+   concurrently "yarn start-db" "yarn start-web"
 
-Compiling source code:
-yarn compile
+2. Compiling source code:
+   yarn compile
 
-Running tests:
-yarn test or yarn test-with-coverage
+3. Running tests:
+   yarn test or yarn test-with-coverage
 
-for precommit hooks check the entry  "pre-commit": [],
-
+4. Precommit hooks
+   "pre-commit": [],
