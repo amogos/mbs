@@ -1,6 +1,5 @@
 import React from 'react';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
-import debounce from 'lodash.debounce';
 import Tabs, { TabData } from '../banner/tabs';
 import * as DataTypes from '../../../shared/types';
 import * as Strings from '../../../shared/constants/string_constant';
@@ -21,7 +20,6 @@ class CategoryTabs extends React.Component<Props, {}> {
     constructor(props: Props) {
         super(props);
         this.refobj = React.createRef<HTMLDivElement>();
-        console.log('component construct');
     }
 
     private buildCategoryTabsInformation(): TabData[] {
