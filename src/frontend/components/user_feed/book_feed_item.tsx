@@ -43,18 +43,16 @@ const BookFeedItem = (props: Props) => {
             author={<a>{title}</a>}
             avatar={<Avatar src={item.user.picture} alt={item.user.name} />}
             content={
-                <p>
-                    <div className="feed_item_root">
-                        <img height="98" src={book.image} />
-                        <div className="feed_item_right">
-                            <Button type="link" onClick={() => props.history.push(`/book?id=${book.id}`)}>
-                                {book.title}
-                            </Button>
-                            <p> by {book.author.map(author => author + ',')}</p>
-                            {actions[0]}
-                        </div>
+                <div className="feed_item_root">
+                    <img height="98" src={book.image} />
+                    <div className="feed_item_right">
+                        <Button type="link" onClick={() => props.history.push(`/book?id=${book.id}`)}>
+                            {book.title}
+                        </Button>
+                        <p> by {book.author.map(author => author + ',')}</p>
+                        {actions[0]}
                     </div>
-                </p>
+                </div>
             }
         />
     );

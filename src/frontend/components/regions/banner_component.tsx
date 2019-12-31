@@ -33,11 +33,7 @@ const NotificationsButton = (props: Props) => {
 };
 
 const ProfileButton = (props: Props) => {
-    return (
-        <Button type="link">
-            <ProfileComponent {...props} />
-        </Button>
-    );
+    return <ProfileComponent {...props} />;
 };
 
 const BannerComponent = (props: Props) => {
