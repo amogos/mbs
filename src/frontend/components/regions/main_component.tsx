@@ -88,12 +88,40 @@ function DisplayBookDetails(props: Props) {
 }
 
 class MainComponent extends React.Component<Props, {}> {
+    refobject: React.RefObject<HTMLDivElement>;
+
     constructor(props: Props) {
         super(props);
+        this.refobject = React.createRef<HTMLDivElement>();
     }
 
     shouldComponentUpdate(nextProps: Props, nextState: {}) {
         return nextProps.urlparams !== this.props.urlparams || nextProps.userdata !== this.props.userdata;
+    }
+
+    public componentDidMount() {
+        window.onscroll = debounce(() => this.updateStyle(), 10);
+    }
+
+    public componentDidUpdate() {
+        window.onscroll = debounce(() => this.updateStyle(), 10);
+    }
+
+    private updateStyle() {
+        const element = this.refobject.current;
+        if (!element) return;
+
+        const minimumScrollNeededForFixedStyle = 80;
+        const scrollAmount = element.clientHeight - document.documentElement.scrollTop;
+
+        if (
+            document.documentElement.scrollTop > minimumScrollNeededForFixedStyle &&
+            scrollAmount < window.innerHeight
+        ) {
+            element.className = 'main_component_fixed';
+        } else {
+            element.className = 'main_component';
+        }
     }
 
     render() {
@@ -101,15 +129,19 @@ class MainComponent extends React.Component<Props, {}> {
 
         switch (id) {
             case 'books':
-                return BooksList(this.props);
+                return <div ref={this.refobject}>{BooksList(this.props)} </div>;
             case 'spaces':
-                return SpacesList(this.props);
+                return <div ref={this.refobject}>{SpacesList(this.props)}</div>;
             case 'book':
-                return DisplayBookDetails(this.props);
+                return <div ref={this.refobject}>{DisplayBookDetails(this.props)}</div>;
             case 'settings':
-                return <ProfileSettingsComponent />;
+                return (
+                    <div ref={this.refobject}>
+                        <ProfileSettingsComponent />
+                    </div>
+                );
             default:
-                return SpacesList(this.props);
+                return <div ref={this.refobject}>{SpacesList(this.props)}</div>;
         }
     }
 }
