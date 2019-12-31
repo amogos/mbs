@@ -124,7 +124,7 @@ class CategoryTabs extends React.Component<Props, {}> {
     }
 
     componentWillUnmount() {
-        window.removeEventListener('scroll', () => this.handleScroll());
+        window.removeEventListener('scroll', this.handleScroll);
     }
 
     public render() {
