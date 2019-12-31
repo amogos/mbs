@@ -28,10 +28,6 @@ interface Navigation {
 
 const navigation: Navigation = { index: 0, limit: 5 };
 
-function propsEqual(prevProps: Props, nextProps: Props) {
-    return nextProps.urlparams === prevProps.urlparams && nextProps.userdata === prevProps.userdata;
-}
-
 function nextBooks(props: Props, force: boolean) {
     if (force) navigation.index = 0;
 
@@ -91,23 +87,31 @@ function DisplayBookDetails(props: Props) {
     return <BookDisplayContainer />;
 }
 
-const MainComponent = React.memo((props: Props) => {
-    window.scrollTo(0, 0);
-
-    const { id } = props.urlparams;
-
-    switch (id) {
-        case 'books':
-            return BooksList(props);
-        case 'spaces':
-            return SpacesList(props);
-        case 'book':
-            return DisplayBookDetails(props);
-        case 'settings':
-            return <ProfileSettingsComponent />;
-        default:
-            return SpacesList(props);
+class MainComponent extends React.Component<Props, {}> {
+    constructor(props: Props) {
+        super(props);
     }
-}, propsEqual);
+
+    shouldComponentUpdate(nextProps: Props, nextState: {}) {
+        return nextProps.urlparams !== this.props.urlparams || nextProps.userdata !== this.props.userdata;
+    }
+
+    render() {
+        const { id } = this.props.urlparams;
+
+        switch (id) {
+            case 'books':
+                return BooksList(this.props);
+            case 'spaces':
+                return SpacesList(this.props);
+            case 'book':
+                return DisplayBookDetails(this.props);
+            case 'settings':
+                return <ProfileSettingsComponent />;
+            default:
+                return SpacesList(this.props);
+        }
+    }
+}
 
 export default requiresLogin(withStyle(MainComponent, 'main_component'), LoginComponent);
