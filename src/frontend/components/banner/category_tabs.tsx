@@ -100,6 +100,7 @@ class CategoryTabs extends React.Component<Props, {}> {
         if (!tabsObject) return;
         tabsObject.style.setProperty('position', 'relative');
     }
+
     //  make category tabs stick to the top page when certain scroll offset reached
     private updateStyle() {
         const scrollAmount = document.documentElement.scrollTop;

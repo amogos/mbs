@@ -7,6 +7,7 @@ import UserFeed from './../../containers/user_feed_container';
 
 interface Props {
     userdata: DataTypes.UserRecordType;
+    urlparams: DataTypes.UrlParms;
 }
 
 class RightComponent extends React.Component<Props, {}> {
