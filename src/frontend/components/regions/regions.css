@@ -41,6 +41,16 @@
     height: 100%;
     margin-left: 1em;
     background-color: white;
+    position: relative;
+}
+
+.right_component_fixed {
+    z-index: 0;
+    width: 35%;
+    margin-left: 65%;
+    top: 8%;
+    background-color: white;
+    position: fixed;
 }
 
 .top_component {
