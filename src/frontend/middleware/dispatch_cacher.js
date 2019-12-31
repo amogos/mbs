@@ -17,45 +17,33 @@ const buildCacheKey = action => {
 const dispatchCacher = store => next => action => {
     switch (action.type) {
         case BookActionConstant.ACTION_ADD_BOOK:
-            {
-                bookCache.invalidate();
-            }
+            bookCache.invalidate();
             break;
         case BookActionConstant.ACTION_LIKE_BOOK:
-            {
-                bookCache.invalidate();
-            }
+            bookCache.invalidate();
             break;
         case BookActionConstant.ACTION_BOOKMARK_BOOK:
-            {
-                bookmarksCache = [];
-            }
+            bookmarksCache = [];
             break;
         case BookActionConstant.ACTION_UNBOOKMARK_BOOK:
-            {
-                bookmarksCache = [];
-            }
+            bookmarksCache = [];
             break;
         case PageActionConstant.ACTION_GET_BOOKMARKS:
-            {
-                if (bookmarksCache.length > 0) {
-                    return store.dispatch(pageAction.refreshState({ userBookmarks: bookmarksCache, append: false }));
-                } else {
-                    action.callbacks.push(bookmarks => (bookmarksCache = bookmarks));
-                }
+            if (bookmarksCache.length > 0) {
+                return store.dispatch(pageAction.refreshState({ userBookmarks: bookmarksCache, append: false }));
+            } else {
+                action.callbacks.push(bookmarks => (bookmarksCache = bookmarks));
             }
             break;
         case PageActionConstant.ACTION_GOTO_LIST_BOOKS:
-            {
-                const cacheKey = buildCacheKey(action);
-                const cacheEntry = bookCache.getEntry(cacheKey);
-                if (cacheEntry) {
-                    return store.dispatch(pageAction.refreshState({ booksArray: cacheEntry.value, append: true }));
-                } else {
-                    action.callbacks.push(books => {
-                        bookCache.addEntry(cacheKey, [...books]);
-                    });
-                }
+            const cacheKey = buildCacheKey(action);
+            const cacheEntry = bookCache.getEntry(cacheKey);
+            if (cacheEntry) {
+                return store.dispatch(pageAction.refreshState({ booksArray: cacheEntry.value, append: true }));
+            } else {
+                action.callbacks.push(books => {
+                    bookCache.addEntry(cacheKey, [...books]);
+                });
             }
             break;
     }
