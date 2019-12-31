@@ -86,28 +86,6 @@ class CategoryTabs extends React.Component<Props, {}> {
         return categoryTabsContent;
     }
 
-    handleScroll() {
-        debounce(() => this.updateStyle(), 10);
-    }
-
-    componentDidMount() {
-        console.log('component did mount');
-        window.addEventListener('scroll', this.handleScroll);
-        this.resetStyle();
-        this.updateStyle();
-    }
-
-    componentDidUpdate() {
-        console.log('component did update');
-        window.addEventListener('scroll', this.handleScroll);
-        this.resetStyle();
-        this.updateStyle();
-    }
-
-    componentWillUnmount() {
-        window.removeEventListener('scroll', this.handleScroll);
-    }
-
     private resetStyle() {
         const tabsObject: HTMLDivElement = this.refobj.current as HTMLDivElement;
         if (!tabsObject) return;
@@ -119,9 +97,9 @@ class CategoryTabs extends React.Component<Props, {}> {
         const scrollAmount = document.documentElement.scrollTop;
         const tabsObject: HTMLDivElement = this.refobj.current as HTMLDivElement;
         const scrollNeededForFixedStyle = 80;
-        console.log('update style1');
+
         if (!tabsObject) return;
-        console.log('update style2');
+
         if (scrollAmount > scrollNeededForFixedStyle) {
             tabsObject.style.setProperty('position', 'fixed');
         } else {
@@ -129,8 +107,23 @@ class CategoryTabs extends React.Component<Props, {}> {
         }
     }
 
+    componentDidMount() {
+        window.addEventListener('scroll', () => this.updateStyle());
+        this.resetStyle();
+        this.updateStyle();
+    }
+
+    componentDidUpdate() {
+        window.addEventListener('scroll', () => this.updateStyle());
+        this.resetStyle();
+        this.updateStyle();
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener('scroll', () => this.updateStyle());
+    }
+
     public render() {
-        console.log('render');
         return (
             <div ref={this.refobj} className="category_tabs">
                 <Tabs tabs={this.buildCategoryTabsInformation()} />
