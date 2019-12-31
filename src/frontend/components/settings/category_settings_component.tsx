@@ -60,7 +60,7 @@ const CategorySettingsComponent = (props: Props) => {
         for (let j = i; j < props.categories.length && j < i + 3; j++) {
             const category = props.categories[j];
             result.push(
-                <Col span={8}>
+                <Col key={j} span={8}>
                     <Card
                         title={
                             <div
