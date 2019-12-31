@@ -30,10 +30,13 @@ class RightComponent extends React.Component<Props, {}> {
         const element = this.refobj.current;
         if (!element) return;
 
-        const scrollNeededForFixedStyle = 80;
+        const minimumScrollNeededForFixedStyle = 80;
         const scrollAmount = element.clientHeight - document.documentElement.scrollTop;
 
-        if (document.documentElement.scrollTop > scrollNeededForFixedStyle && scrollAmount < window.innerHeight) {
+        if (
+            document.documentElement.scrollTop > minimumScrollNeededForFixedStyle &&
+            scrollAmount < window.innerHeight
+        ) {
             element.className = 'right_component_fixed';
         } else {
             element.className = 'right_component';
