@@ -21,6 +21,7 @@ class CategoryTabs extends React.Component<Props, {}> {
     constructor(props: Props) {
         super(props);
         this.refobj = React.createRef<HTMLDivElement>();
+        console.log('component construct');
     }
 
     private buildCategoryTabsInformation(): TabData[] {
@@ -85,14 +86,26 @@ class CategoryTabs extends React.Component<Props, {}> {
         return categoryTabsContent;
     }
 
+    handleScroll() {
+        debounce(() => this.updateStyle(), 10);
+    }
+
     componentDidMount() {
-        window.onscroll = debounce(() => this.updateStyle(), 10);
+        console.log('component did mount');
+        window.addEventListener('scroll', this.handleScroll);
         this.resetStyle();
+        this.updateStyle();
     }
 
     componentDidUpdate() {
-        window.onscroll = debounce(() => this.updateStyle(), 10);
+        console.log('component did update');
+        window.addEventListener('scroll', this.handleScroll);
         this.resetStyle();
+        this.updateStyle();
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener('scroll', this.handleScroll);
     }
 
     private resetStyle() {
@@ -106,9 +119,9 @@ class CategoryTabs extends React.Component<Props, {}> {
         const scrollAmount = document.documentElement.scrollTop;
         const tabsObject: HTMLDivElement = this.refobj.current as HTMLDivElement;
         const scrollNeededForFixedStyle = 80;
-
+        console.log('update style1');
         if (!tabsObject) return;
-
+        console.log('update style2');
         if (scrollAmount > scrollNeededForFixedStyle) {
             tabsObject.style.setProperty('position', 'fixed');
         } else {
@@ -117,6 +130,7 @@ class CategoryTabs extends React.Component<Props, {}> {
     }
 
     public render() {
+        console.log('render');
         return (
             <div ref={this.refobj} className="category_tabs">
                 <Tabs tabs={this.buildCategoryTabsInformation()} />
