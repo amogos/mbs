@@ -30,7 +30,7 @@ class RightComponent extends React.Component<Props, {}> {
         const element = this.refobject.current;
         if (!element) return;
 
-        const minimumScrollNeededForFixedStyle = 80;
+        const minimumScrollNeededForFixedStyle = 120;
         const scrollAmount = element.clientHeight - document.documentElement.scrollTop;
 
         if (

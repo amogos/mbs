@@ -89,10 +89,13 @@ function DisplayBookDetails(props: Props) {
 
 class MainComponent extends React.Component<Props, {}> {
     refobject: React.RefObject<HTMLDivElement>;
+    needsStyleUpdate: boolean;
 
     constructor(props: Props) {
         super(props);
         this.refobject = React.createRef<HTMLDivElement>();
+        const { id } = this.props.urlparams;
+        this.needsStyleUpdate = id !== 'settings';
     }
 
     shouldComponentUpdate(nextProps: Props, nextState: {}) {
@@ -100,10 +103,12 @@ class MainComponent extends React.Component<Props, {}> {
     }
 
     public componentDidMount() {
+        if (!this.needsStyleUpdate) return;
         window.onscroll = debounce(() => this.updateStyle(), 10);
     }
 
     public componentDidUpdate() {
+        if (!this.needsStyleUpdate) return;
         window.onscroll = debounce(() => this.updateStyle(), 10);
     }
 
