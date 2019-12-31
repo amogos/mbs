@@ -16,7 +16,11 @@ const UserFeedComponent = (props: Props) => {
         <Aux>
             <h2>News Feed</h2>
             <Divider />
-            <Aux>{props.userfeed === undefined ? null : props.userfeed.map(item => <FeedItem item={item} />)}</Aux>
+            <Aux>
+                {props.userfeed === undefined
+                    ? null
+                    : props.userfeed.map((item, index) => <FeedItem key={index} item={item} />)}
+            </Aux>
         </Aux>
     );
 };

@@ -39,17 +39,15 @@ const SpaceFeedItem = (props: Props) => {
             author={<a>{title}</a>}
             avatar={<Avatar src={item.user.picture} alt={item.user.name} />}
             content={
-                <p>
-                    <div className="feed_item_root">
-                        <img height="98" src={space.picture} />
-                        <div className="feed_item_right">
-                            <Button type="link" onClick={() => props.history.push(`/books?space=${space.id}`)}>
-                                {space.title}
-                            </Button>
-                            {actions[0]}
-                        </div>
+                <div className="feed_item_root">
+                    <img height="98" src={space.picture} />
+                    <div className="feed_item_right">
+                        <Button type="link" onClick={() => props.history.push(`/books?space=${space.id}`)}>
+                            {space.title}
+                        </Button>
+                        {actions[0]}
                     </div>
-                </p>
+                </div>
             }
         />
     );
