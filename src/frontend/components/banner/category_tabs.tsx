@@ -107,20 +107,24 @@ class CategoryTabs extends React.Component<Props, {}> {
         }
     }
 
+    handleScroll = () => {
+        this.updateStyle();
+    };
+
     componentDidMount() {
-        window.addEventListener('scroll', () => this.updateStyle());
+        window.addEventListener('scroll', this.handleScroll);
         this.resetStyle();
         this.updateStyle();
     }
 
     componentDidUpdate() {
-        window.addEventListener('scroll', () => this.updateStyle());
+        window.addEventListener('scroll', this.handleScroll);
         this.resetStyle();
         this.updateStyle();
     }
 
     componentWillUnmount() {
-        window.removeEventListener('scroll', () => this.updateStyle());
+        window.removeEventListener('scroll', () => this.handleScroll());
     }
 
     public render() {
