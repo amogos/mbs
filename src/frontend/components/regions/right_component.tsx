@@ -11,11 +11,11 @@ interface Props {
 }
 
 class RightComponent extends React.Component<Props, {}> {
-    refobj: React.RefObject<HTMLDivElement>;
+    refobject: React.RefObject<HTMLDivElement>;
 
     constructor(props: Props) {
         super(props);
-        this.refobj = React.createRef<HTMLDivElement>();
+        this.refobject = React.createRef<HTMLDivElement>();
     }
 
     public componentDidMount() {
@@ -27,7 +27,7 @@ class RightComponent extends React.Component<Props, {}> {
     }
 
     private updateStyle() {
-        const element = this.refobj.current;
+        const element = this.refobject.current;
         if (!element) return;
 
         const minimumScrollNeededForFixedStyle = 80;
@@ -45,7 +45,7 @@ class RightComponent extends React.Component<Props, {}> {
 
     public render() {
         return (
-            <div ref={this.refobj}>
+            <div ref={this.refobject}>
                 <BookmarksList />
                 <UserFeed />
             </div>
