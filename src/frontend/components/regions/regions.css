@@ -58,7 +58,7 @@
 .right_component_fixed {
     z-index: 0;
     width: 35%;
-    left: 65%;
+    left: 50%;
     background-color: white;
     position: fixed;
 }

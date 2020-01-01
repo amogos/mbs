@@ -49,11 +49,12 @@ class RightComponent extends React.Component<Props, {}> {
 
         if (!element) return;
 
-        const scrollAmount = this.clientHeight - window.innerHeight;
+        const scrollMargin = 100;
+        const scrollAmount = this.clientHeight - window.innerHeight + scrollMargin;
 
         if (document.documentElement.scrollTop > scrollAmount) {
             element.style.setProperty('top', `${-scrollAmount}px`);
-            element.style.setProperty('left', '65%');
+            element.style.setProperty('left', '62%');
             element.style.setProperty('position', 'fixed');
         } else {
             element.style.setProperty('position', 'relative');
