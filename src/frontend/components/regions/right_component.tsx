@@ -42,11 +42,12 @@ class RightComponent extends React.Component<Props, State> {
         const scrollAmount = element.scrollHeight - document.documentElement.clientHeight + scrollMargin;
 
         if (document.documentElement.scrollTop > scrollAmount) {
-            element.style.setProperty('top', `${-scrollAmount}px`);
+            this.setState({ ...this.state, fixed: true, dy: -document.documentElement.scrollTop });
+            const top = -document.documentElement.scrollTop;
+            element.style.setProperty('top', `${top}px`);
             element.style.setProperty('left', '62%');
             element.style.setProperty('position', 'fixed');
-            this.setState({ ...this.state, fixed: true, dy: -scrollAmount });
-        } else if (document.documentElement.scrollTop <= element.clientHeight) {
+        } else if (document.documentElement.scrollTop <= 0) {
             element.style.setProperty('position', 'relative');
             element.style.removeProperty('left');
             element.style.removeProperty('top');
