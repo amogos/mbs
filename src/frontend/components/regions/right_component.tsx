@@ -10,33 +10,22 @@ interface Props {
     urlparams: DataTypes.UrlParms;
 }
 
-class RightComponent extends React.Component<Props, {}> {
+interface State {
+    scrollTop: number;
+    fixed: boolean;
+    dy: number;
+}
+
+class RightComponent extends React.Component<Props, State> {
     refobject: React.RefObject<HTMLDivElement>;
-    clientHeight: number;
 
     constructor(props: Props) {
         super(props);
         this.refobject = React.createRef<HTMLDivElement>();
-        this.clientHeight = 0;
-    }
-
-    private computeClientHeight(): number {
-        if (!this.refobject.current) return 0;
-
-        const children = this.refobject.current.children;
-        let contentHeight = 0;
-
-        if (children) {
-            for (let i = 0; i < children.length; i++) {
-                contentHeight += children[i].clientHeight;
-            }
-        }
-
-        return contentHeight;
     }
 
     public componentDidMount() {
-        this.clientHeight = this.computeClientHeight();
+        this.setState({ scrollTop: 0 });
         window.onscroll = debounce(() => this.updateStyle(), 10);
     }
 
@@ -49,23 +38,31 @@ class RightComponent extends React.Component<Props, {}> {
 
         if (!element) return;
 
-        const scrollMargin = 100;
-        const scrollAmount = this.clientHeight - window.innerHeight + scrollMargin;
+        const scrollMargin = 200;
+        const scrollAmount = element.scrollHeight - document.documentElement.clientHeight + scrollMargin;
 
         if (document.documentElement.scrollTop > scrollAmount) {
             element.style.setProperty('top', `${-scrollAmount}px`);
             element.style.setProperty('left', '62%');
             element.style.setProperty('position', 'fixed');
-        } else {
+            this.setState({ ...this.state, fixed: true, dy: -scrollAmount });
+        } else if (document.documentElement.scrollTop <= element.clientHeight) {
             element.style.setProperty('position', 'relative');
             element.style.removeProperty('left');
             element.style.removeProperty('top');
+            this.setState({ ...this.state, fixed: false });
+        } else if (this.state.fixed) {
+            const dy = this.state.dy + this.state.scrollTop - document.documentElement.scrollTop;
+            this.setState({ ...this.state, dy: dy });
+            element.style.setProperty('top', `${dy}px`);
         }
+
+        this.setState({ ...this.state, scrollTop: document.documentElement.scrollTop });
     }
 
     public render() {
         return (
-            <div ref={this.refobject}>
+            <div ref={this.refobject} className="right_component">
                 <BookmarksList />
                 <UserFeed />
             </div>
