@@ -20,8 +20,8 @@ class RightComponent extends React.Component<Props, {}> {
         this.clientHeight = 0;
     }
 
-    public componentDidMount() {
-        if (!this.refobject.current) return;
+    private computeClientHeight(): number {
+        if (!this.refobject.current) return 0;
 
         const children = this.refobject.current.children;
         let contentHeight = 0;
@@ -32,7 +32,11 @@ class RightComponent extends React.Component<Props, {}> {
             }
         }
 
-        this.clientHeight = contentHeight;
+        return contentHeight;
+    }
+
+    public componentDidMount() {
+        this.clientHeight = this.computeClientHeight();
         window.onscroll = debounce(() => this.updateStyle(), 10);
     }
 
@@ -47,15 +51,8 @@ class RightComponent extends React.Component<Props, {}> {
 
         const scrollAmount = this.clientHeight - window.innerHeight;
 
-        console.log(`scrolltop ${document.documentElement.scrollTop.toString()}`);
-        console.log(`height ${document.documentElement.scrollHeight.toString()}`);
-        console.log(`client height ${this.clientHeight.toString()}`);
-        console.log(`window height ${window.innerHeight.toString()}`);
-        console.log(`scroll amount ${scrollAmount.toString()}`);
-
         if (document.documentElement.scrollTop > scrollAmount) {
-            const top = `${-scrollAmount}px`;
-            element.style.setProperty('top', top);
+            element.style.setProperty('top', `${-scrollAmount}px`);
             element.style.setProperty('left', '65%');
             element.style.setProperty('position', 'fixed');
         } else {
