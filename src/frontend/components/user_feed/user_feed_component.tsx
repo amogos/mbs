@@ -19,7 +19,12 @@ const UserFeedComponent = (props: Props) => {
             <Aux>
                 {props.userfeed === undefined
                     ? null
-                    : props.userfeed.map((item, index) => <FeedItem key={index} item={item} />)}
+                    : props.userfeed.map((item, index) => (
+                          <div>
+                              <p>{index}</p>
+                              <FeedItem key={index} item={item} />
+                          </div>
+                      ))}
             </Aux>
         </Aux>
     );
