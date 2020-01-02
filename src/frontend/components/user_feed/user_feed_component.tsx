@@ -20,9 +20,9 @@ const UserFeedComponent = (props: Props) => {
                 {props.userfeed === undefined
                     ? null
                     : props.userfeed.map((item, index) => (
-                          <div>
+                          <div key={index}>
                               <p>{index}</p>
-                              <FeedItem key={index} item={item} />
+                              <FeedItem item={item} />
                           </div>
                       ))}
             </Aux>

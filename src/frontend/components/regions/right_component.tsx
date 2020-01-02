@@ -30,6 +30,11 @@ class RightComponent extends React.Component<Props, {}> {
         const element = this.refobject.current;
 
         if (!element) return;
+
+        const top = parseInt(element.style.top) - document.documentElement.scrollTop;
+        console.log(`top ${top} document scroll ${document.documentElement.scrollTop}`);
+
+        element.style.setProperty('top', `${top}px`);
     }
 
     public render() {
