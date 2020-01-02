@@ -6,6 +6,7 @@
 .middle_area {
     display: flex;
     flex-direction: row;
+    width: 100%;
 }
 
 .banner_component {
@@ -22,45 +23,31 @@
 .main_component {
     margin-left: 0em;
     margin-top: 2em;
-    margin-bottom: 30em;
+    margin-bottom: 3em;
+    height:100%;
     width: 45%;
     background-color: white;
     z-index: 0;
     position: relative;
 }
 
-.main_component_fixed {
-    margin-left: 15%;
-    top: 8%;
-    margin-bottom: 30em;
-    width: 45%;
-    background-color: white;
-    z-index: 0;
-    position: fixed;
-}
 
 .left_component {
     width: 15%;
     margin-left: 1em;
     margin-right: 1em;
     background-color: white;
+    overflow:hidden;
 }
 
 .right_component {
     z-index: 0;
     width: 35%;
     height: 100%;
+    max-height:100%;
     margin-left: 1em;
     background-color: white;
     position: relative;
-}
-
-.right_component_fixed {
-    z-index: 0;
-    width: 35%;
-    left: 50%;
-    background-color: white;
-    position: fixed;
 }
 
 .top_component {
