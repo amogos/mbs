@@ -33,8 +33,8 @@
 
 .left_component {
     width: 15%;
-    margin-left: 1em;
-    margin-right: 1em;
+    margin-left: 1rem;
+    margin-right: 1rem;
     background-color: white;
     overflow: hidden;
 }
@@ -43,6 +43,7 @@
     z-index: 0;
     width: 35%;
     left: 62%;
+    top: 22rem;
     background-color: white;
     position: fixed;
 }
@@ -50,7 +51,7 @@
 .top_component {
     margin-left: 8%;
     margin-right: 15%;
-    margin-top: 2em;
+    margin-top: 2rem;
     width: 80%;
     height: 20%;
     background-color: white;
