@@ -24,30 +24,27 @@
     margin-left: 0em;
     margin-top: 2em;
     margin-bottom: 3em;
-    height:100%;
+    height: 100%;
     width: 45%;
     background-color: white;
     z-index: 0;
     position: relative;
 }
 
-
 .left_component {
     width: 15%;
     margin-left: 1em;
     margin-right: 1em;
     background-color: white;
-    overflow:hidden;
+    overflow: hidden;
 }
 
 .right_component {
     z-index: 0;
     width: 35%;
-    height: 100%;
-    max-height:100%;
-    margin-left: 1em;
+    left: 62%;
     background-color: white;
-    position: relative;
+    position: fixed;
 }
 
 .top_component {

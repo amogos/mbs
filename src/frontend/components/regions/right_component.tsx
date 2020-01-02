@@ -10,10 +10,7 @@ interface Props {
     urlparams: DataTypes.UrlParms;
 }
 
-interface State {
-}
-
-class RightComponent extends React.Component<Props, State> {
+class RightComponent extends React.Component<Props, {}> {
     refobject: React.RefObject<HTMLDivElement>;
 
     constructor(props: Props) {
@@ -22,7 +19,6 @@ class RightComponent extends React.Component<Props, State> {
     }
 
     public componentDidMount() {
-        this.setState({ scrollTop: 0 });
         window.onscroll = debounce(() => this.updateStyle(), 10);
     }
 
@@ -34,8 +30,6 @@ class RightComponent extends React.Component<Props, State> {
         const element = this.refobject.current;
 
         if (!element) return;
-
-      
     }
 
     public render() {
