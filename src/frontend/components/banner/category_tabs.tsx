@@ -23,7 +23,7 @@ class CategoryTabs extends React.Component<Props, {}> {
         this.refobj = React.createRef<HTMLDivElement>();
     }
 
-    private buildCategoryTabsInformation(): TabData[] {
+    private GetTabsData(): TabData[] {
         let categoryTabsContent: TabData[] = [];
         const { CategoryTabsStrings } = Strings.default;
         const numMinumumVisibleTabs = 10;
@@ -89,7 +89,7 @@ class CategoryTabs extends React.Component<Props, {}> {
         return (
             <Affix offsetTop={0}>
                 <div ref={this.refobj} className="category_tabs">
-                    <Tabs tabs={this.buildCategoryTabsInformation()} />
+                    <Tabs tabs={this.GetTabsData()} />
                 </div>
             </Affix >
         );
