@@ -24,9 +24,11 @@
     margin-bottom: 3rem;
     height: 100%;
     width: 45%;
+    left: 15%;
+    top: 0px;
     background-color: white;
     z-index: 0;
-    position: relative;
+    position: absolute;
 }
 
 .left_component {
@@ -41,9 +43,11 @@
     z-index: 0;
     width: 35%;
     left: 62%;
-    top: 38%;
+    margin-top: 23rem;
+    margin-bottom: 4rem;
+    top: 0px;
     background-color: white;
-    position: fixed;
+    position: absolute;
 }
 
 .top_component {
