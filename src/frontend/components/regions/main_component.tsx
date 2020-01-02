@@ -89,13 +89,11 @@ function DisplayBookDetails(props: Props) {
 
 class MainComponent extends React.Component<Props, {}> {
     refobject: React.RefObject<HTMLDivElement>;
-    needsStyleUpdate: boolean;
-
+   
     constructor(props: Props) {
         super(props);
         this.refobject = React.createRef<HTMLDivElement>();
         const { id } = this.props.urlparams;
-        this.needsStyleUpdate = id !== 'settings';
     }
 
     shouldComponentUpdate(nextProps: Props, nextState: {}) {
@@ -103,30 +101,16 @@ class MainComponent extends React.Component<Props, {}> {
     }
 
     public componentDidMount() {
-        if (!this.needsStyleUpdate) return;
         window.onscroll = debounce(() => this.updateStyle(), 10);
     }
 
     public componentDidUpdate() {
-        if (!this.needsStyleUpdate) return;
         window.onscroll = debounce(() => this.updateStyle(), 10);
     }
 
     private updateStyle() {
         const element = this.refobject.current;
         if (!element) return;
-
-        const minimumScrollNeededForFixedStyle = 80;
-        const scrollAmount = element.clientHeight - document.documentElement.scrollTop;
-
-        if (
-            document.documentElement.scrollTop > minimumScrollNeededForFixedStyle &&
-            scrollAmount < window.innerHeight
-        ) {
-            element.className = 'main_component_fixed';
-        } else {
-            element.className = 'main_component';
-        }
     }
 
     render() {

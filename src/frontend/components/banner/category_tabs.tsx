@@ -1,5 +1,6 @@
 import React from 'react';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
+import { Affix } from 'antd';
 import Tabs, { TabData } from '../banner/tabs';
 import * as DataTypes from '../../../shared/types';
 import * as Strings from '../../../shared/constants/string_constant';
@@ -22,7 +23,7 @@ class CategoryTabs extends React.Component<Props, {}> {
         this.refobj = React.createRef<HTMLDivElement>();
     }
 
-    private buildCategoryTabsInformation(): TabData[] {
+    private GetTabsData(): TabData[] {
         let categoryTabsContent: TabData[] = [];
         const { CategoryTabsStrings } = Strings.default;
         const numMinumumVisibleTabs = 10;
@@ -84,52 +85,13 @@ class CategoryTabs extends React.Component<Props, {}> {
         return categoryTabsContent;
     }
 
-    private resetStyle() {
-        const tabsObject: HTMLDivElement = this.refobj.current as HTMLDivElement;
-        if (!tabsObject) return;
-        tabsObject.style.setProperty('position', 'relative');
-    }
-
-    //  make category tabs stick to the top page when certain scroll offset reached
-    private updateStyle() {
-        const scrollAmount = document.documentElement.scrollTop;
-        const tabsObject: HTMLDivElement = this.refobj.current as HTMLDivElement;
-        const scrollNeededForFixedStyle = 80;
-
-        if (!tabsObject) return;
-
-        if (scrollAmount > scrollNeededForFixedStyle) {
-            tabsObject.style.setProperty('position', 'fixed');
-        } else {
-            tabsObject.style.setProperty('position', 'relative');
-        }
-    }
-
-    handleScroll = () => {
-        this.updateStyle();
-    };
-
-    componentDidMount() {
-        window.addEventListener('scroll', this.handleScroll);
-        this.resetStyle();
-        this.updateStyle();
-    }
-
-    componentDidUpdate() {
-        window.addEventListener('scroll', this.handleScroll);
-        this.resetStyle();
-        this.updateStyle();
-    }
-
-    componentWillUnmount() {
-        window.removeEventListener('scroll', this.handleScroll);
-    }
-
     public render() {
         return (
-            <div ref={this.refobj} className="category_tabs">
-                <Tabs tabs={this.buildCategoryTabsInformation()} />
-            </div>
+            <Affix offsetTop={0}>
+                <div ref={this.refobj} className="category_tabs">
+                    <Tabs tabs={this.GetTabsData()} />
+                </div>
+            </Affix >
         );
     }
 }
