@@ -1,11 +1,10 @@
 import React from 'react';
 import * as DataTypes from '../../../../shared/types';
-import { withStyle } from '../../hooks/hooks';
-import { Button, Icon, Divider, Affix } from 'antd';
-import { withRouter } from 'react-router-dom';
+import { Button, Icon, Affix } from 'antd';
+import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { History } from 'history';
 
-interface Props {
+interface Props extends RouteComponentProps {
     userdata: DataTypes.UserRecordType;
     userBookmarks: DataTypes.BookRecordType[];
     history: History;
@@ -33,14 +32,15 @@ const Bookmark = (props: Props, book: DataTypes.BookRecordType) => {
 const ListBookmarksComponent = (props: Props) => {
     if (props.userBookmarks === undefined) return null;
     return (
-        <Affix offsetTop={100}>
-            <div>
-                <h2>Reading List</h2>
-                <Divider />
-                <div className="bookmarks_scroll_area">{props.userBookmarks.map(book => Bookmark(props, book))}</div>
+        <Affix offsetTop={150}>
+            <div className="list_bookmarks_component">
+                <div className="list_bookmarks_banner">
+                    <h2>Reading List</h2>
+                </div>
+                {props.userBookmarks.map(book => Bookmark(props, book))}
             </div>
         </Affix>
     );
 };
 
-export default withRouter(withStyle(ListBookmarksComponent, 'list_bookmarks_component'));
+export default withRouter(ListBookmarksComponent);

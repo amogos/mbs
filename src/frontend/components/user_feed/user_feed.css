@@ -19,9 +19,3 @@
     height: 30%;
     margin-bottom: 2rem;
 }
-
-.user_feed_scroll {
-    overflow: auto;
-    height: 25rem;
-    margin-bottom: 2rem;
-}

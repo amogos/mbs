@@ -13,22 +13,19 @@ interface Props {
 
 const UserFeedComponent = (props: Props) => {
     return (
-        <Affix offsetTop={400}>
-            <Aux>
-                <h2>News Feed</h2>
-                <Divider />
-                <div className="user_feed_scroll">
-                    {props.userfeed === undefined
-                        ? null
-                        : props.userfeed.map((item, index) => (
-                              <div key={index}>
-                                  <p>{index}</p>
-                                  <FeedItem item={item} />
-                              </div>
-                          ))}
-                </div>
-            </Aux>
-        </Affix>
+        <Aux>
+            <h2>News Feed</h2>
+            <Divider />
+
+            {props.userfeed === undefined
+                ? null
+                : props.userfeed.slice(0, 3).map((item, index) => (
+                      <div key={index}>
+                          <p>{index}</p>
+                          <FeedItem item={item} />
+                      </div>
+                  ))}
+        </Aux>
     );
 };
 

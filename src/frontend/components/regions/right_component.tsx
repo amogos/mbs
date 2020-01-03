@@ -30,8 +30,8 @@ class RightComponent extends React.Component<Props, {}> {
     public render() {
         return (
             <div ref={this.refobject} className="right_component">
-                <BookmarksList />
                 <UserFeed />
+                <BookmarksList />
             </div>
         );
     }
