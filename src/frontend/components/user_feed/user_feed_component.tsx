@@ -12,6 +12,7 @@ interface Props {
 }
 
 const UserFeedComponent = (props: Props) => {
+    const nVisibleItems = 5;
     return (
         <Aux>
             <div className="user_feed_banner">
@@ -20,7 +21,7 @@ const UserFeedComponent = (props: Props) => {
 
             {props.userfeed === undefined
                 ? null
-                : props.userfeed.slice(0, 3).map((item, index) => (
+                : props.userfeed.slice(0, nVisibleItems).map((item, index) => (
                       <div key={index}>
                           <FeedItem item={item} />
                       </div>

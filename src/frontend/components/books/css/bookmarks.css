@@ -1,17 +1,15 @@
 .list_bookmarks_component {
     display: flex;
     flex-direction: column;
-
     width: 25rem;
     background-color: rgba(167, 141, 141, 0.329);
-
     padding-right: 5rem;
     padding-bottom: 5rem;
 }
 .bookmark {
     display: flex;
     flex-direction: row;
-    padding: 1rem;
+    padding: 2px;
 }
 
 .bookmark:hover {

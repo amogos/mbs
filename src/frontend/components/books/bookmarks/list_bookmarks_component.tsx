@@ -31,13 +31,14 @@ const Bookmark = (props: Props, book: DataTypes.BookRecordType) => {
 
 const ListBookmarksComponent = (props: Props) => {
     if (props.userBookmarks === undefined) return null;
+    const nVisibleItems = 5;
     return (
         <Affix offsetTop={150}>
             <div className="list_bookmarks_component">
                 <div className="list_bookmarks_banner">
                     <h2>Reading List</h2>
                 </div>
-                {props.userBookmarks.map(book => Bookmark(props, book))}
+                {props.userBookmarks.slice(0, nVisibleItems).map(book => Bookmark(props, book))}
             </div>
         </Affix>
     );
