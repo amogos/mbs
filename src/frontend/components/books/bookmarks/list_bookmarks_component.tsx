@@ -30,7 +30,7 @@ const Bookmark = (props: Props, book: DataTypes.BookRecordType) => {
 };
 
 const ListBookmarksComponent = (props: Props) => {
-    if (props.userBookmarks === undefined) return null;
+    if (props.userBookmarks === undefined || props.userBookmarks.length == 0) return null;
     const nVisibleItems = 5;
     const reverseBookmarksArray = props.userBookmarks.splice(0).reverse();
     return (

@@ -11,7 +11,7 @@ interface Props {
 }
 
 const UserFeedComponent = (props: Props) => {
-    const nVisibleItems = 5;
+    const nVisibleItems = 4;
     return (
         <Aux>
             <div className="user_feed_banner">
