@@ -89,7 +89,6 @@ function DisplayBookDetails(props: Props) {
 
 enum ClassNames {
     normal = 'main_component',
-    fixed = 'main_component_fixed',
 }
 
 class MainComponent extends React.Component<Props, {}> {
@@ -108,14 +107,14 @@ class MainComponent extends React.Component<Props, {}> {
         const element = this.refobject.current;
         if (!element) return;
 
-        const contentScrollHeight = element.clientHeight - document.documentElement.clientHeight * 0.75;
+        const contentScrollHeight = element.clientHeight - document.documentElement.clientHeight * 0.85;
 
         if (document.documentElement.scrollTop >= contentScrollHeight) {
             element.style.setProperty('position', 'fixed');
             element.style.setProperty('left', '15%');
             const top = `${-contentScrollHeight}px`;
             element.style.setProperty('top', top);
-        } else if (document.documentElement.scrollTop <= contentScrollHeight + 10) {
+        } else if (document.documentElement.scrollTop <= contentScrollHeight + 5) {
             element.style.setProperty('position', 'absolute');
             element.style.removeProperty('top');
             element.style.setProperty('left', '15%');

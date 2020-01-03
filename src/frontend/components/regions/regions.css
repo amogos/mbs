@@ -19,13 +19,10 @@
 }
 
 .main_component {
-    margin-left: 0rem;
     margin-top: 2rem;
     margin-bottom: 3rem;
     height: 100%;
     width: 45%;
-    left: 15%;
-    top: 0px;
     background-color: white;
     z-index: 0;
     position: absolute;
@@ -34,7 +31,6 @@
 .left_component {
     width: 15%;
     margin-left: 1rem;
-    margin-right: 1rem;
     background-color: white;
     overflow: hidden;
 }

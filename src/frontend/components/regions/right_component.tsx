@@ -21,8 +21,6 @@ class RightComponent extends React.Component<Props, {}> {
         const element = this.refobject.current;
 
         if (!element) return;
-
-        console.log(`right top ${element.offsetHeight}`);
     }
 
     public componentDidMount() {
