@@ -1,5 +1,4 @@
 import React from 'react';
-import { Divider, Affix } from 'antd';
 import { withRouter } from 'react-router-dom';
 import * as DataTypes from '../../../shared/types';
 import { Aux, withStyle } from './../hooks/hooks';
