@@ -1,790 +1,823 @@
 {
-    "users": [
+  "users": [
+    {
+      "name": "Iulia Mogos",
+      "email": "daosmistique@yahoo.com",
+      "picture": "https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=2223056511038248&height=50&width=50&ext=1566812071&hash=AeSiTV7UwEZToD2h",
+      "following": [],
+      "bookmarks": [
+        3,
+        2
+      ],
+      "rating": 0,
+      "socialnetwork": 1,
+      "id": 1,
+      "categories": []
+    },
+    {
+      "id": 2,
+      "name": "Florin Mogos",
+      "email": "florin.mogos@gmail.com",
+      "picture": "https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png",
+      "following": [],
+      "bookmarks": [],
+      "categories": [],
+      "rating": 0,
+      "socialnetwork": 2
+    },
+    {
+      "id": 3,
+      "name": "Varza Murata",
+      "email": "varzamurata@gmail.com",
+      "picture": "https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png",
+      "following": [],
+      "bookmarks": [],
+      "categories": [],
+      "rating": 0,
+      "socialnetwork": 2
+    },
+    {
+      "name": "Iulia enes5",
+      "email": "iulia.enes5@gmail.com",
+      "picture": "https://lh3.googleusercontent.com/a-/AAuE7mAjn_8ZJ9TIQOFXF7qG-z1sTmn79Q5TivauPPvvmA=s96-c",
+      "following": [
+        1
+      ],
+      "bookmarks": [
+        1,
+        2
+      ],
+      "rating": 0,
+      "socialnetwork": 2,
+      "id": 4,
+      "categories": [
+        6,
+        5,
+        12,
+        20,
+        19,
+        22,
+        18,
+        21,
+        11,
+        42,
+        1,
+        7
+      ]
+    },
+    {
+      "name": "Mock",
+      "email": "Mock@yahoo.com",
+      "picture": "https://image.flaticon.com/icons/svg/1814/1814777.svg",
+      "following": [],
+      "bookmarks": [
+        1
+      ],
+      "categories": [
+        12
+      ],
+      "rating": 0,
+      "socialnetwork": 4,
+      "id": 5
+    }
+  ],
+  "queues": [],
+  "returns": [
+    {
+      "bookId": 1,
+      "userId": -1,
+      "ownerId": 1,
+      "id": 1
+    }
+  ],
+  "languages": [
+    {
+      "id": 1,
+      "title": "EN"
+    },
+    {
+      "id": 2,
+      "title": "DE"
+    }
+  ],
+  "books": [
+    {
+      "owner": 1,
+      "holder": 4,
+      "state": "state.book.in.transit.to.holder",
+      "isbn10": "3314103484",
+      "isbn13": "9783314103483",
+      "space": 1,
+      "category": 37,
+      "id": 1,
+      "return": 1576410736257
+    },
+    {
+      "owner": 1,
+      "holder": -1,
+      "state": "state.book.idle",
+      "isbn10": "1594481717",
+      "isbn13": "9781594481710",
+      "space": 1,
+      "category": 38,
+      "id": 2
+    },
+    {
+      "owner": 1,
+      "holder": -1,
+      "state": "state.book.idle",
+      "isbn10": "1784703931",
+      "isbn13": "9781784703936",
+      "space": 1,
+      "category": 38,
+      "id": 3,
+      "return": 1578575042286
+    }
+  ],
+  "book_reviews": [
+    {
+      "bookId": 1,
+      "isbn10": "3314103484",
+      "isbn13": "9783314103483",
+      "comment": "Great plot",
+      "score": 5,
+      "user": 4,
+      "date": 1576337364684,
+      "likes": 0,
+      "id": 1
+    }
+  ],
+  "user_reviews": [],
+  "orders": [],
+  "categories": [
+    {
+      "id": 1,
+      "title": "art & music",
+      "count": 0
+    },
+    {
+      "id": 2,
+      "title": "biographies",
+      "count": 0
+    },
+    {
+      "id": 3,
+      "title": "business",
+      "count": 0
+    },
+    {
+      "id": 4,
+      "title": "kids",
+      "count": 0
+    },
+    {
+      "id": 5,
+      "title": "comics",
+      "count": 0
+    },
+    {
+      "id": 6,
+      "title": "computer & tech",
+      "count": 0
+    },
+    {
+      "id": 7,
+      "title": "cooking",
+      "count": 0
+    },
+    {
+      "id": 8,
+      "title": "hobbies & crafts",
+      "count": 0
+    },
+    {
+      "id": 9,
+      "title": "gay & lesbian",
+      "count": 0
+    },
+    {
+      "id": 10,
+      "title": "health & fitness",
+      "count": 0
+    },
+    {
+      "id": 11,
+      "title": "history",
+      "count": 0
+    },
+    {
+      "id": 12,
+      "title": "home & garden",
+      "count": 0
+    },
+    {
+      "id": 13,
+      "title": "horror",
+      "count": 0
+    },
+    {
+      "id": 14,
+      "title": "entertainment",
+      "count": 0
+    },
+    {
+      "id": 15,
+      "title": "literture & fiction",
+      "count": 0
+    },
+    {
+      "id": 16,
+      "title": "medical",
+      "count": 0
+    },
+    {
+      "id": 17,
+      "title": "mysteries",
+      "count": 0
+    },
+    {
+      "id": 18,
+      "title": "parenting",
+      "count": 0
+    },
+    {
+      "id": 19,
+      "title": "social sciences",
+      "count": 0
+    },
+    {
+      "id": 20,
+      "title": "religion",
+      "count": 0
+    },
+    {
+      "id": 21,
+      "title": "romance & sexuality",
+      "count": 0
+    },
+    {
+      "id": 22,
+      "title": "science & math",
+      "count": 0
+    },
+    {
+      "id": 23,
+      "title": "sci-fi & fantasy",
+      "count": 0
+    },
+    {
+      "id": 24,
+      "title": "sports",
+      "count": 0
+    },
+    {
+      "id": 25,
+      "title": "teens",
+      "count": 0
+    },
+    {
+      "id": 26,
+      "title": "travel",
+      "count": 0
+    },
+    {
+      "id": 27,
+      "title": "true crime",
+      "count": 0
+    },
+    {
+      "id": 28,
+      "title": "philosophy",
+      "count": 0
+    },
+    {
+      "id": 29,
+      "title": "photography",
+      "count": 0
+    },
+    {
+      "id": 30,
+      "title": "family & care",
+      "count": 0
+    },
+    {
+      "id": 31,
+      "title": "animal rights & pets",
+      "count": 0
+    },
+    {
+      "id": 32,
+      "title": "engineering",
+      "count": 0
+    },
+    {
+      "id": 33,
+      "title": "architecture & interior design",
+      "count": 0
+    },
+    {
+      "id": 34,
+      "title": "poetry",
+      "count": 0
+    },
+    {
+      "id": 35,
+      "title": "nonfiction(general)",
+      "count": 0
+    },
+    {
+      "title": "education",
+      "id": 36,
+      "count": 0
+    },
+    {
+      "title": "self-help",
+      "id": 37,
+      "count": 0
+    },
+    {
+      "title": "business & economics",
+      "id": 38,
+      "count": 0
+    },
+    {
+      "title": "computers",
+      "id": 39,
+      "count": 0
+    },
+    {
+      "title": "stoics",
+      "id": 40,
+      "count": 0
+    },
+    {
+      "title": "computer games",
+      "id": 41,
+      "count": 0
+    },
+    {
+      "title": "juvenile fiction",
+      "id": 42,
+      "count": 0
+    },
+    {
+      "title": "business & economics",
+      "id": 43,
+      "count": 0
+    }
+  ],
+  "spaces": [
+    {
+      "id": 1,
+      "owner": 1,
+      "subscription": 0,
+      "title": "daosmistique@yahoo.com",
+      "description": "Iulia Mogos Default",
+      "transport": 0,
+      "picture": "https://www.berlin.de/converjon/?ts=1429660132&width=166&height=125&url=https%3A%2F%2Fwww.berlin.de%2Fba-lichtenberg%2Fauf-einen-blick%2Fbuergerservice%2Fbildung%2Fmdb-balichtenberghohenschoenhausen-bibliotheken-kisch_aussen.jpg"
+    },
+    {
+      "id": 2,
+      "owner": 2,
+      "subscription": 0,
+      "title": "THE NUANCE",
+      "description": "The Unsettling Ways Tech Is Changing Your Personal Reality",
+      "transport": 0,
+      "picture": "https://www.berlin.de/converjon/?ts=1429660132&width=166&height=125&url=https%3A%2F%2Fwww.berlin.de%2Fba-lichtenberg%2Fauf-einen-blick%2Fbuergerservice%2Fbildung%2Fmdb-balichtenberghohenschoenhausen-bibliotheken-kisch_aussen.jpg"
+    },
+    {
+      "id": 3,
+      "owner": 3,
+      "subscription": 0,
+      "title": "OneZero",
+      "description": "The Illegal Wildlife Market Is Booming. Encrypted Messaging Makes It Worse.The Illegal Wildlife Market Is Booming. Encrypted Messaging Makes It Worse.",
+      "transport": 0,
+      "picture": "https://www.google.com/search?q=spaces&rlz=1C1CHBF_enDE750DE750&sxsrf=ACYBGNRleGx6Q7ZoTRX3vN_75uHUaGHG1A:1569381920271&source=lnms&tbm=isch&sa=X&ved=0ahUKEwi0qP-eg-vkAhWFLlAKHTGqCzIQ_AUIEygC&biw=1920&bih=937#imgrc=Mj4n4nKAbjgIZM:"
+    },
+    {
+      "owner": 4,
+      "subscription": 0,
+      "title": "iulia.enes5@gmail.com",
+      "description": "Iulia enes5 Default",
+      "transport": 0,
+      "picture": "",
+      "id": 4
+    },
+    {
+      "owner": 5,
+      "subscription": 0,
+      "title": "Mock@yahoo.com",
+      "description": "Mock",
+      "transport": 0,
+      "picture": "",
+      "id": 5
+    },
+    {
+      "owner": 5,
+      "subscription": 0,
+      "title": "Mock@yahoo.com",
+      "description": "Mock",
+      "transport": 0,
+      "picture": "",
+      "id": 6
+    },
+    {
+      "owner": 5,
+      "subscription": 0,
+      "title": "Mock@yahoo.com",
+      "description": "Mock",
+      "transport": 0,
+      "picture": "",
+      "id": 7
+    },
+    {
+      "owner": 5,
+      "subscription": 0,
+      "title": "Mock@yahoo.com",
+      "description": "Mock",
+      "transport": 0,
+      "picture": "",
+      "id": 8
+    },
+    {
+      "owner": 5,
+      "subscription": 0,
+      "title": "Mock@yahoo.com",
+      "description": "Mock",
+      "transport": 0,
+      "picture": "",
+      "id": 9
+    },
+    {
+      "owner": 5,
+      "subscription": 0,
+      "title": "Mock@yahoo.com",
+      "description": "Mock",
+      "transport": 0,
+      "picture": "",
+      "id": 10
+    }
+  ],
+  "user_feed": [
+    {
+      "type": 6,
+      "userId": 4,
+      "date": 1576337364684,
+      "space": 3,
+      "id": 1
+    },
+    {
+      "type": 6,
+      "userId": 4,
+      "date": 1576337952763,
+      "space": 1,
+      "id": 2
+    },
+    {
+      "type": 1,
+      "userId": 4,
+      "date": 1576421698356,
+      "book": 1,
+      "id": 3
+    },
+    {
+      "type": 1,
+      "userId": 4,
+      "date": 1576421698356,
+      "book": 1,
+      "id": 4
+    },
+    {
+      "type": 1,
+      "userId": 4,
+      "date": 1576421698356,
+      "book": 1,
+      "id": 5
+    },
+    {
+      "type": 1,
+      "userId": 4,
+      "date": 1576421698356,
+      "book": 1,
+      "id": 6
+    },
+    {
+      "type": 1,
+      "userId": 4,
+      "date": 1576421698356,
+      "book": 1,
+      "id": 7
+    },
+    {
+      "type": 1,
+      "userId": 4,
+      "date": 1576421698356,
+      "book": 1,
+      "id": 8
+    },
+    {
+      "type": 1,
+      "userId": 4,
+      "date": 1576421698356,
+      "book": 1,
+      "id": 9
+    },
+    {
+      "type": 1,
+      "userId": 4,
+      "date": 1576421698356,
+      "book": 1,
+      "id": 10
+    },
+    {
+      "type": 1,
+      "userId": 4,
+      "date": 1576421698356,
+      "book": 1,
+      "id": 11
+    },
+    {
+      "type": 1,
+      "userId": 4,
+      "date": 1576421698356,
+      "book": 1,
+      "id": 12
+    },
+    {
+      "type": 1,
+      "userId": 4,
+      "date": 1576421698356,
+      "book": 1,
+      "id": 13
+    },
+    {
+      "type": 1,
+      "userId": 4,
+      "date": 1576421698356,
+      "book": 1,
+      "id": 14
+    },
+    {
+      "type": 1,
+      "userId": 4,
+      "date": 1576421698356,
+      "book": 1,
+      "id": 15
+    },
+    {
+      "type": 1,
+      "userId": 4,
+      "date": 1576421698356,
+      "book": 1,
+      "id": 16
+    },
+    {
+      "type": 1,
+      "userId": 4,
+      "date": 1576421698356,
+      "book": 1,
+      "id": 17
+    },
+    {
+      "type": 1,
+      "userId": 4,
+      "date": 1576421698356,
+      "book": 1,
+      "id": 18
+    },
+    {
+      "type": 1,
+      "userId": 4,
+      "date": 1576421698356,
+      "book": 1,
+      "id": 19
+    },
+    {
+      "type": 1,
+      "userId": 4,
+      "date": 1576421698356,
+      "book": 1,
+      "id": 20
+    },
+    {
+      "type": 1,
+      "userId": 4,
+      "date": 1576421698356,
+      "book": 1,
+      "id": 21
+    },
+    {
+      "type": 1,
+      "userId": 4,
+      "date": 1576421698356,
+      "book": 1,
+      "id": 22
+    },
+    {
+      "type": 1,
+      "userId": 4,
+      "date": 1576421698356,
+      "book": 1,
+      "id": 23
+    },
+    {
+      "type": 1,
+      "userId": 4,
+      "date": 1576421698356,
+      "book": 1,
+      "id": 24
+    },
+    {
+      "type": 1,
+      "userId": 4,
+      "date": 1576421698356,
+      "book": 1,
+      "id": 25
+    },
+    {
+      "type": 1,
+      "userId": 4,
+      "date": 1576421698356,
+      "book": 1,
+      "id": 26
+    },
+    {
+      "type": 1,
+      "userId": 4,
+      "date": 1576421698356,
+      "book": 1,
+      "id": 27
+    },
+    {
+      "type": 1,
+      "userId": 4,
+      "date": 1576421698356,
+      "book": 1,
+      "id": 28
+    },
+    {
+      "type": 1,
+      "userId": 4,
+      "date": 1576421698356,
+      "book": 1,
+      "id": 29
+    },
+    {
+      "type": 1,
+      "userId": 4,
+      "date": 1576421698356,
+      "book": 1,
+      "id": 30
+    },
+    {
+      "type": 1,
+      "userId": 4,
+      "date": 1576421698356,
+      "book": 1,
+      "id": 31
+    },
+    {
+      "type": 1,
+      "userId": 4,
+      "date": 1576421698356,
+      "book": 1,
+      "id": 32
+    },
+    {
+      "type": 1,
+      "userId": 4,
+      "date": 1576421698356,
+      "book": 1,
+      "id": 33
+    },
+    {
+      "type": 1,
+      "userId": 4,
+      "date": 1576421698356,
+      "book": 1,
+      "id": 34
+    },
+    {
+      "type": 1,
+      "userId": 4,
+      "date": 1576421698356,
+      "book": 1,
+      "id": 35
+    }
+  ],
+  "formats": [
+    {
+      "id": 1,
+      "type": "hardcover"
+    },
+    {
+      "id": 2,
+      "type": "e-book"
+    },
+    {
+      "id": 3,
+      "type": "audio-book"
+    }
+  ],
+  "books_descriptions": [
+    {
+      "title": "Armstrong (German Edition)",
+      "subtitle": "Armstrong (German Edition)",
+      "language": {
+        "id": 1,
+        "title": "EN"
+      },
+      "isbn10": "3314103484",
+      "isbn13": "9783314103483",
+      "format": 1,
+      "category": [
         {
-            "name": "Iulia Mogos",
-            "email": "daosmistique@yahoo.com",
-            "picture": "https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=2223056511038248&height=50&width=50&ext=1566812071&hash=AeSiTV7UwEZToD2h",
-            "following": [],
-            "bookmarks": [3, 2],
-            "rating": 0,
-            "socialnetwork": 1,
-            "id": 1,
-            "categories": []
-        },
-        {
-            "id": 2,
-            "name": "Florin Mogos",
-            "email": "florin.mogos@gmail.com",
-            "picture": "https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png",
-            "following": [],
-            "bookmarks": [],
-            "categories": [],
-            "rating": 0,
-            "socialnetwork": 2
-        },
-        {
-            "id": 3,
-            "name": "Varza Murata",
-            "email": "varzamurata@gmail.com",
-            "picture": "https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png",
-            "following": [],
-            "bookmarks": [],
-            "categories": [],
-            "rating": 0,
-            "socialnetwork": 2
-        },
-        {
-            "name": "Iulia enes5",
-            "email": "iulia.enes5@gmail.com",
-            "picture": "https://lh3.googleusercontent.com/a-/AAuE7mAjn_8ZJ9TIQOFXF7qG-z1sTmn79Q5TivauPPvvmA=s96-c",
-            "following": [1],
-            "bookmarks": [1, 2],
-            "rating": 0,
-            "socialnetwork": 2,
-            "id": 4,
-            "categories": [6, 5, 12, 20, 19, 22, 18, 21, 11, 42, 1, 7]
-        },
-        {
-            "name": "Mock",
-            "email": "Mock@yahoo.com",
-            "picture": "https://image.flaticon.com/icons/svg/1814/1814777.svg",
-            "following": [],
-            "bookmarks": [],
-            "categories": [12],
-            "rating": 0,
-            "socialnetwork": 4,
-            "id": 5
+          "id": 37,
+          "title": "juvenile fiction"
         }
-    ],
-    "queues": [],
-    "returns": [
+      ],
+      "author": [
+        "Torben Kuhlmann"
+      ],
+      "length": 128,
+      "image": "http://books.google.com/books/content?id=ccCYDAEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+      "description": "Praise for Armstrong—The Adventurous Journey of a Mouse to the Moon “‘One Small Step for a Mouse’ indeed.”—Kirkus Reviews, Starred Review “This beautifully illustrated story is a feast for mind and eyes and a strong selection to complement STEAM curricula.”—School Library Journal, Starred Review",
+      "id": 1,
+      "likes": 82
+    },
+    {
+      "title": "business book",
+      "subtitle": "",
+      "language": {
+        "id": 1,
+        "title": "EN"
+      },
+      "isbn10": "1234567890",
+      "isbn13": "",
+      "format": 1,
+      "category": [
         {
-            "bookId": 1,
-            "userId": -1,
-            "ownerId": 1,
-            "id": 1
+          "id": 7,
+          "title": "cooking"
         }
-    ],
-    "languages": [
+      ],
+      "author": [
+        "me"
+      ],
+      "length": 123,
+      "image": "https://vignette.wikia.nocookie.net/superfriends/images/a/a5/No_Photo_Available.jpg/revision/latest?cb=20090329133959",
+      "description": "",
+      "id": 2
+    },
+    {
+      "title": "A Whole New Mind",
+      "subtitle": "Why Right-brainers Will Rule the Future",
+      "language": {
+        "id": 1,
+        "title": "EN"
+      },
+      "isbn10": "1594481717",
+      "isbn13": "9781594481710",
+      "format": 1,
+      "category": [
         {
-            "id": 1,
-            "title": "EN"
-        },
-        {
-            "id": 2,
-            "title": "DE"
+          "id": 38,
+          "title": "business & economics"
         }
-    ],
-    "books": [
+      ],
+      "author": [
+        "Daniel H. Pink"
+      ],
+      "length": 275,
+      "image": "http://books.google.com/books/content?id=3Xb_MDJQZnYC&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+      "description": "Uses the two sides of the human brain as a metaphor for understanding how the information age came about throughout the course of the past generation, counseling readers on how to survive and find a place in a society that is marked by rising affluence, job outsourcing, and computer technology at the expense of inventiveness, empathy, and meaning. Reprint.",
+      "id": 3,
+      "likes": 22
+    },
+    {
+      "title": "Homo Deus",
+      "subtitle": "",
+      "language": {
+        "id": 1,
+        "title": "EN"
+      },
+      "isbn10": "1784703931",
+      "isbn13": "9781784703936",
+      "format": 1,
+      "category": [
         {
-            "owner": 1,
-            "holder": 4,
-            "state": "state.book.in.transit.to.holder",
-            "isbn10": "3314103484",
-            "isbn13": "9783314103483",
-            "space": 1,
-            "category": 37,
-            "id": 1,
-            "return": 1576410736257
-        },
-        {
-            "owner": 1,
-            "holder": -1,
-            "state": "state.book.idle",
-            "isbn10": "1594481717",
-            "isbn13": "9781594481710",
-            "space": 1,
-            "category": 38,
-            "id": 2
-        },
-        {
-            "owner": 1,
-            "holder": -1,
-            "state": "state.book.idle",
-            "isbn10": "1784703931",
-            "isbn13": "9781784703936",
-            "space": 1,
-            "category": 38,
-            "id": 3,
-            "return": 1578575042286
+          "id": 38,
+          "title": "civilization, modern"
         }
-    ],
-    "book_reviews": [
-        {
-            "bookId": 1,
-            "isbn10": "3314103484",
-            "isbn13": "9783314103483",
-            "comment": "Great plot",
-            "score": 5,
-            "user": 4,
-            "date": 1576337364684,
-            "likes": 0,
-            "id": 1
-        }
-    ],
-    "user_reviews": [],
-    "orders": [],
-    "categories": [
-        {
-            "id": 1,
-            "title": "art & music",
-            "count": 0
-        },
-        {
-            "id": 2,
-            "title": "biographies",
-            "count": 0
-        },
-        {
-            "id": 3,
-            "title": "business",
-            "count": 0
-        },
-        {
-            "id": 4,
-            "title": "kids",
-            "count": 0
-        },
-        {
-            "id": 5,
-            "title": "comics",
-            "count": 0
-        },
-        {
-            "id": 6,
-            "title": "computer & tech",
-            "count": 0
-        },
-        {
-            "id": 7,
-            "title": "cooking",
-            "count": 0
-        },
-        {
-            "id": 8,
-            "title": "hobbies & crafts",
-            "count": 0
-        },
-        {
-            "id": 9,
-            "title": "gay & lesbian",
-            "count": 0
-        },
-        {
-            "id": 10,
-            "title": "health & fitness",
-            "count": 0
-        },
-        {
-            "id": 11,
-            "title": "history",
-            "count": 0
-        },
-        {
-            "id": 12,
-            "title": "home & garden",
-            "count": 0
-        },
-        {
-            "id": 13,
-            "title": "horror",
-            "count": 0
-        },
-        {
-            "id": 14,
-            "title": "entertainment",
-            "count": 0
-        },
-        {
-            "id": 15,
-            "title": "literture & fiction",
-            "count": 0
-        },
-        {
-            "id": 16,
-            "title": "medical",
-            "count": 0
-        },
-        {
-            "id": 17,
-            "title": "mysteries",
-            "count": 0
-        },
-        {
-            "id": 18,
-            "title": "parenting",
-            "count": 0
-        },
-        {
-            "id": 19,
-            "title": "social sciences",
-            "count": 0
-        },
-        {
-            "id": 20,
-            "title": "religion",
-            "count": 0
-        },
-        {
-            "id": 21,
-            "title": "romance & sexuality",
-            "count": 0
-        },
-        {
-            "id": 22,
-            "title": "science & math",
-            "count": 0
-        },
-        {
-            "id": 23,
-            "title": "sci-fi & fantasy",
-            "count": 0
-        },
-        {
-            "id": 24,
-            "title": "sports",
-            "count": 0
-        },
-        {
-            "id": 25,
-            "title": "teens",
-            "count": 0
-        },
-        {
-            "id": 26,
-            "title": "travel",
-            "count": 0
-        },
-        {
-            "id": 27,
-            "title": "true crime",
-            "count": 0
-        },
-        {
-            "id": 28,
-            "title": "philosophy",
-            "count": 0
-        },
-        {
-            "id": 29,
-            "title": "photography",
-            "count": 0
-        },
-        {
-            "id": 30,
-            "title": "family & care",
-            "count": 0
-        },
-        {
-            "id": 31,
-            "title": "animal rights & pets",
-            "count": 0
-        },
-        {
-            "id": 32,
-            "title": "engineering",
-            "count": 0
-        },
-        {
-            "id": 33,
-            "title": "architecture & interior design",
-            "count": 0
-        },
-        {
-            "id": 34,
-            "title": "poetry",
-            "count": 0
-        },
-        {
-            "id": 35,
-            "title": "nonfiction(general)",
-            "count": 0
-        },
-        {
-            "title": "education",
-            "id": 36,
-            "count": 0
-        },
-        {
-            "title": "self-help",
-            "id": 37,
-            "count": 0
-        },
-        {
-            "title": "business & economics",
-            "id": 38,
-            "count": 0
-        },
-        {
-            "title": "computers",
-            "id": 39,
-            "count": 0
-        },
-        {
-            "title": "stoics",
-            "id": 40,
-            "count": 0
-        },
-        {
-            "title": "computer games",
-            "id": 41,
-            "count": 0
-        },
-        {
-            "title": "juvenile fiction",
-            "id": 42,
-            "count": 0
-        },
-        {
-            "title": "business & economics",
-            "id": 43,
-            "count": 0
-        }
-    ],
-    "spaces": [
-        {
-            "id": 1,
-            "owner": 1,
-            "subscription": 0,
-            "title": "daosmistique@yahoo.com",
-            "description": "Iulia Mogos Default",
-            "transport": 0,
-            "picture": "https://www.berlin.de/converjon/?ts=1429660132&width=166&height=125&url=https%3A%2F%2Fwww.berlin.de%2Fba-lichtenberg%2Fauf-einen-blick%2Fbuergerservice%2Fbildung%2Fmdb-balichtenberghohenschoenhausen-bibliotheken-kisch_aussen.jpg"
-        },
-        {
-            "id": 2,
-            "owner": 2,
-            "subscription": 0,
-            "title": "THE NUANCE",
-            "description": "The Unsettling Ways Tech Is Changing Your Personal Reality",
-            "transport": 0,
-            "picture": "https://www.berlin.de/converjon/?ts=1429660132&width=166&height=125&url=https%3A%2F%2Fwww.berlin.de%2Fba-lichtenberg%2Fauf-einen-blick%2Fbuergerservice%2Fbildung%2Fmdb-balichtenberghohenschoenhausen-bibliotheken-kisch_aussen.jpg"
-        },
-        {
-            "id": 3,
-            "owner": 3,
-            "subscription": 0,
-            "title": "OneZero",
-            "description": "The Illegal Wildlife Market Is Booming. Encrypted Messaging Makes It Worse.The Illegal Wildlife Market Is Booming. Encrypted Messaging Makes It Worse.",
-            "transport": 0,
-            "picture": "https://www.google.com/search?q=spaces&rlz=1C1CHBF_enDE750DE750&sxsrf=ACYBGNRleGx6Q7ZoTRX3vN_75uHUaGHG1A:1569381920271&source=lnms&tbm=isch&sa=X&ved=0ahUKEwi0qP-eg-vkAhWFLlAKHTGqCzIQ_AUIEygC&biw=1920&bih=937#imgrc=Mj4n4nKAbjgIZM:"
-        },
-        {
-            "owner": 4,
-            "subscription": 0,
-            "title": "iulia.enes5@gmail.com",
-            "description": "Iulia enes5 Default",
-            "transport": 0,
-            "picture": "",
-            "id": 4
-        },
-        {
-            "owner": 5,
-            "subscription": 0,
-            "title": "Mock@yahoo.com",
-            "description": "Mock",
-            "transport": 0,
-            "picture": "",
-            "id": 5
-        },
-        {
-            "owner": 5,
-            "subscription": 0,
-            "title": "Mock@yahoo.com",
-            "description": "Mock",
-            "transport": 0,
-            "picture": "",
-            "id": 6
-        },
-        {
-            "owner": 5,
-            "subscription": 0,
-            "title": "Mock@yahoo.com",
-            "description": "Mock",
-            "transport": 0,
-            "picture": "",
-            "id": 7
-        },
-        {
-            "owner": 5,
-            "subscription": 0,
-            "title": "Mock@yahoo.com",
-            "description": "Mock",
-            "transport": 0,
-            "picture": "",
-            "id": 8
-        },
-        {
-            "owner": 5,
-            "subscription": 0,
-            "title": "Mock@yahoo.com",
-            "description": "Mock",
-            "transport": 0,
-            "picture": "",
-            "id": 9
-        },
-        {
-            "owner": 5,
-            "subscription": 0,
-            "title": "Mock@yahoo.com",
-            "description": "Mock",
-            "transport": 0,
-            "picture": "",
-            "id": 10
-        }
-    ],
-    "user_feed": [
-        {
-            "type": 6,
-            "userId": 4,
-            "date": 1576337364684,
-            "space": 3,
-            "id": 1
-        },
-        {
-            "type": 6,
-            "userId": 4,
-            "date": 1576337952763,
-            "space": 1,
-            "id": 2
-        },
-        {
-            "type": 1,
-            "userId": 4,
-            "date": 1576421698356,
-            "book": 1,
-            "id": 3
-        },
-        {
-            "type": 1,
-            "userId": 4,
-            "date": 1576421698356,
-            "book": 1,
-            "id": 4
-        },
-        {
-            "type": 1,
-            "userId": 4,
-            "date": 1576421698356,
-            "book": 1,
-            "id": 5
-        },
-        {
-            "type": 1,
-            "userId": 4,
-            "date": 1576421698356,
-            "book": 1,
-            "id": 6
-        },
-        {
-            "type": 1,
-            "userId": 4,
-            "date": 1576421698356,
-            "book": 1,
-            "id": 7
-        },
-        {
-            "type": 1,
-            "userId": 4,
-            "date": 1576421698356,
-            "book": 1,
-            "id": 8
-        },
-        {
-            "type": 1,
-            "userId": 4,
-            "date": 1576421698356,
-            "book": 1,
-            "id": 9
-        },
-        {
-            "type": 1,
-            "userId": 4,
-            "date": 1576421698356,
-            "book": 1,
-            "id": 10
-        },
-        {
-            "type": 1,
-            "userId": 4,
-            "date": 1576421698356,
-            "book": 1,
-            "id": 11
-        },
-        {
-            "type": 1,
-            "userId": 4,
-            "date": 1576421698356,
-            "book": 1,
-            "id": 12
-        },
-        {
-            "type": 1,
-            "userId": 4,
-            "date": 1576421698356,
-            "book": 1,
-            "id": 13
-        },
-        {
-            "type": 1,
-            "userId": 4,
-            "date": 1576421698356,
-            "book": 1,
-            "id": 14
-        },
-        {
-            "type": 1,
-            "userId": 4,
-            "date": 1576421698356,
-            "book": 1,
-            "id": 15
-        },
-        {
-            "type": 1,
-            "userId": 4,
-            "date": 1576421698356,
-            "book": 1,
-            "id": 16
-        },
-        {
-            "type": 1,
-            "userId": 4,
-            "date": 1576421698356,
-            "book": 1,
-            "id": 17
-        },
-        {
-            "type": 1,
-            "userId": 4,
-            "date": 1576421698356,
-            "book": 1,
-            "id": 18
-        },
-        {
-            "type": 1,
-            "userId": 4,
-            "date": 1576421698356,
-            "book": 1,
-            "id": 19
-        },
-        {
-            "type": 1,
-            "userId": 4,
-            "date": 1576421698356,
-            "book": 1,
-            "id": 20
-        },
-        {
-            "type": 1,
-            "userId": 4,
-            "date": 1576421698356,
-            "book": 1,
-            "id": 21
-        },
-        {
-            "type": 1,
-            "userId": 4,
-            "date": 1576421698356,
-            "book": 1,
-            "id": 22
-        },
-        {
-            "type": 1,
-            "userId": 4,
-            "date": 1576421698356,
-            "book": 1,
-            "id": 23
-        },
-        {
-            "type": 1,
-            "userId": 4,
-            "date": 1576421698356,
-            "book": 1,
-            "id": 24
-        },
-        {
-            "type": 1,
-            "userId": 4,
-            "date": 1576421698356,
-            "book": 1,
-            "id": 25
-        },
-        {
-            "type": 1,
-            "userId": 4,
-            "date": 1576421698356,
-            "book": 1,
-            "id": 26
-        },
-        {
-            "type": 1,
-            "userId": 4,
-            "date": 1576421698356,
-            "book": 1,
-            "id": 27
-        },
-        {
-            "type": 1,
-            "userId": 4,
-            "date": 1576421698356,
-            "book": 1,
-            "id": 28
-        },
-        {
-            "type": 1,
-            "userId": 4,
-            "date": 1576421698356,
-            "book": 1,
-            "id": 29
-        },
-        {
-            "type": 1,
-            "userId": 4,
-            "date": 1576421698356,
-            "book": 1,
-            "id": 30
-        },
-        {
-            "type": 1,
-            "userId": 4,
-            "date": 1576421698356,
-            "book": 1,
-            "id": 31
-        },
-        {
-            "type": 1,
-            "userId": 4,
-            "date": 1576421698356,
-            "book": 1,
-            "id": 32
-        },
-        {
-            "type": 1,
-            "userId": 4,
-            "date": 1576421698356,
-            "book": 1,
-            "id": 33
-        },
-        {
-            "type": 1,
-            "userId": 4,
-            "date": 1576421698356,
-            "book": 1,
-            "id": 34
-        },
-        {
-            "type": 1,
-            "userId": 4,
-            "date": 1576421698356,
-            "book": 1,
-            "id": 35
-        }
-    ],
-    "formats": [
-        {
-            "id": 1,
-            "type": "hardcover"
-        },
-        {
-            "id": 2,
-            "type": "e-book"
-        },
-        {
-            "id": 3,
-            "type": "audio-book"
-        }
-    ],
-    "books_descriptions": [
-        {
-            "title": "Armstrong (German Edition)",
-            "subtitle": "Armstrong (German Edition)",
-            "language": {
-                "id": 1,
-                "title": "EN"
-            },
-            "isbn10": "3314103484",
-            "isbn13": "9783314103483",
-            "format": 1,
-            "category": [
-                {
-                    "id": 37,
-                    "title": "juvenile fiction"
-                }
-            ],
-            "author": ["Torben Kuhlmann"],
-            "length": 128,
-            "image": "http://books.google.com/books/content?id=ccCYDAEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
-            "description": "Praise for Armstrong—The Adventurous Journey of a Mouse to the Moon “‘One Small Step for a Mouse’ indeed.”—Kirkus Reviews, Starred Review “This beautifully illustrated story is a feast for mind and eyes and a strong selection to complement STEAM curricula.”—School Library Journal, Starred Review",
-            "id": 1,
-            "likes": 82
-        },
-        {
-            "title": "business book",
-            "subtitle": "",
-            "language": {
-                "id": 1,
-                "title": "EN"
-            },
-            "isbn10": "1234567890",
-            "isbn13": "",
-            "format": 1,
-            "category": [
-                {
-                    "id": 7,
-                    "title": "cooking"
-                }
-            ],
-            "author": ["me"],
-            "length": 123,
-            "image": "https://vignette.wikia.nocookie.net/superfriends/images/a/a5/No_Photo_Available.jpg/revision/latest?cb=20090329133959",
-            "description": "",
-            "id": 2
-        },
-        {
-            "title": "A Whole New Mind",
-            "subtitle": "Why Right-brainers Will Rule the Future",
-            "language": {
-                "id": 1,
-                "title": "EN"
-            },
-            "isbn10": "1594481717",
-            "isbn13": "9781594481710",
-            "format": 1,
-            "category": [
-                {
-                    "id": 38,
-                    "title": "business & economics"
-                }
-            ],
-            "author": ["Daniel H. Pink"],
-            "length": 275,
-            "image": "http://books.google.com/books/content?id=3Xb_MDJQZnYC&printsec=frontcover&img=1&zoom=1&source=gbs_api",
-            "description": "Uses the two sides of the human brain as a metaphor for understanding how the information age came about throughout the course of the past generation, counseling readers on how to survive and find a place in a society that is marked by rising affluence, job outsourcing, and computer technology at the expense of inventiveness, empathy, and meaning. Reprint.",
-            "id": 3,
-            "likes": 22
-        },
-        {
-            "title": "Homo Deus",
-            "subtitle": "",
-            "language": {
-                "id": 1,
-                "title": "EN"
-            },
-            "isbn10": "1784703931",
-            "isbn13": "9781784703936",
-            "format": 1,
-            "category": [
-                {
-                    "id": 38,
-                    "title": "civilization, modern"
-                }
-            ],
-            "author": ["Yuval Noah Harari"],
-            "length": 513,
-            "image": "http://books.google.com/books/content?id=vbS4wAEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
-            "description": "THE MILLION COPY BESTSELLERSapiensshows us where we came from. Homo Deusshows us where we?re going.Yuval Noah Hararienvisions a near future in which we face a new set of challenges. Homo Deusexplores the projects, dreams and nightmares that will shape the twenty-first century and beyond - from overcoming death to creating artificial life.It asks the fundamental questions- how can we protect this fragile world from our own destructive power? And what does our future hold?'Homo Deuswill shock you. It will entertain you. It will make you think in ways you had not thought before? Daniel Kahneman",
-            "id": 4,
-            "likes": 12
-        }
-    ]
+      ],
+      "author": [
+        "Yuval Noah Harari"
+      ],
+      "length": 513,
+      "image": "http://books.google.com/books/content?id=vbS4wAEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+      "description": "THE MILLION COPY BESTSELLERSapiensshows us where we came from. Homo Deusshows us where we?re going.Yuval Noah Hararienvisions a near future in which we face a new set of challenges. Homo Deusexplores the projects, dreams and nightmares that will shape the twenty-first century and beyond - from overcoming death to creating artificial life.It asks the fundamental questions- how can we protect this fragile world from our own destructive power? And what does our future hold?'Homo Deuswill shock you. It will entertain you. It will make you think in ways you had not thought before? Daniel Kahneman",
+      "id": 4,
+      "likes": 12
+    }
+  ]
 }

@@ -6,7 +6,6 @@
 .middle_area {
     display: flex;
     flex-direction: row;
-    width: 100%;
 }
 
 .banner_component {
@@ -15,33 +14,29 @@
     display: flex;
     flex-direction: column;
     z-index: 1;
-    background-color: white;
 }
 
 .main_component {
     margin-top: 2rem;
     margin-bottom: 3rem;
-    height: 100%;
     width: 45%;
-    background-color: white;
     z-index: 0;
     position: absolute;
 }
 
 .left_component {
     width: 15%;
-    background-color: white;
 }
 
 .right_component {
     z-index: 0;
     width: 35%;
     left: 62%;
-    margin-top: 23rem;
+    margin-top: 3rem;
     margin-bottom: 4rem;
-    top: 0px;
-    background-color: white;
     position: absolute;
+    height: 100%;
+    overflow: hidden;
 }
 
 .top_component {
@@ -50,6 +45,5 @@
     margin-top: 2rem;
     width: 80%;
     height: 20%;
-    background-color: white;
     z-index: 0;
 }

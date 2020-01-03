@@ -1,7 +1,7 @@
 import React from 'react';
 import * as DataTypes from '../../../../shared/types';
 import { withStyle } from '../../hooks/hooks';
-import { Button, Icon, Divider } from 'antd';
+import { Button, Icon, Divider, Affix } from 'antd';
 import { withRouter } from 'react-router-dom';
 import { History } from 'history';
 
@@ -33,11 +33,13 @@ const Bookmark = (props: Props, book: DataTypes.BookRecordType) => {
 const ListBookmarksComponent = (props: Props) => {
     if (props.userBookmarks === undefined) return null;
     return (
-        <div>
-            <h2>Reading List</h2>
-            <Divider />
-            {props.userBookmarks.map(book => Bookmark(props, book))}
-        </div>
+        <Affix offsetTop={100}>
+            <div>
+                <h2>Reading List</h2>
+                <Divider />
+                <div className="bookmarks_scroll_area">{props.userBookmarks.map(book => Bookmark(props, book))}</div>
+            </div>
+        </Affix>
     );
 };
 

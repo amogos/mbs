@@ -14,3 +14,13 @@
 .feed_button {
     width: 8em;
 }
+
+.user_feed_component {
+    height: 30%;
+}
+
+.user_feed_scroll {
+    overflow: auto;
+    height: 30rem;
+    margin-bottom: 2rem;
+}

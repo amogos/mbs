@@ -1,5 +1,5 @@
 import React from 'react';
-import { Divider } from 'antd';
+import { Divider, Affix } from 'antd';
 import { withRouter } from 'react-router-dom';
 import * as DataTypes from '../../../shared/types';
 import { Aux, withStyle } from './../hooks/hooks';
@@ -13,20 +13,22 @@ interface Props {
 
 const UserFeedComponent = (props: Props) => {
     return (
-        <Aux>
-            <h2>News Feed</h2>
-            <Divider />
+        <Affix offsetTop={300}>
             <Aux>
-                {props.userfeed === undefined
-                    ? null
-                    : props.userfeed.map((item, index) => (
-                          <div key={index}>
-                              <p>{index}</p>
-                              <FeedItem item={item} />
-                          </div>
-                      ))}
+                <h2>News Feed</h2>
+                <Divider />
+                <div className="user_feed_scroll">
+                    {props.userfeed === undefined
+                        ? null
+                        : props.userfeed.map((item, index) => (
+                              <div key={index}>
+                                  <p>{index}</p>
+                                  <FeedItem item={item} />
+                              </div>
+                          ))}
+                </div>
             </Aux>
-        </Aux>
+        </Affix>
     );
 };
 
