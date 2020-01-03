@@ -14,14 +14,14 @@ interface Props {
 const UserFeedComponent = (props: Props) => {
     return (
         <Aux>
-            <h2>News Feed</h2>
-            <Divider />
+            <div className="user_feed_banner">
+                <h2>News Feed</h2>
+            </div>
 
             {props.userfeed === undefined
                 ? null
                 : props.userfeed.slice(0, 3).map((item, index) => (
                       <div key={index}>
-                          <p>{index}</p>
                           <FeedItem item={item} />
                       </div>
                   ))}
