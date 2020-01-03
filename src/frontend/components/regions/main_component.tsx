@@ -87,33 +87,17 @@ function DisplayBookDetails(props: Props) {
     return <BookDisplayContainer />;
 }
 
+enum ClassNames {
+    normal = 'main_component',
+    fixed = 'main_component_fixed',
+}
+
 class MainComponent extends React.Component<Props, {}> {
     refobject: React.RefObject<HTMLDivElement>;
-    scrollspeed: number;
 
     constructor(props: Props) {
         super(props);
         this.refobject = React.createRef<HTMLDivElement>();
-        this.scrollspeed = 1;
-    }
-
-    private UpdateScrollSpeed() {
-        const element = this.refobject.current;
-
-        if (!element) return;
-        if (!element.parentElement) return;
-
-        let maxScrollHeight = element.scrollHeight;
-
-        for (let i = 0; i < element.parentElement.children.length; i++) {
-            const scrollHeight = element.parentElement.children[i].scrollHeight;
-            if (scrollHeight > maxScrollHeight) maxScrollHeight = scrollHeight;
-        }
-        this.scrollspeed = element.scrollHeight / maxScrollHeight;
-        console.log(
-            `el = ${document.documentElement.scrollTop} max = ${maxScrollHeight} doc = ${element.parentElement.offsetHeight}`,
-        );
-        console.log(`${document.documentElement.clientHeight}`);
     }
 
     shouldComponentUpdate(nextProps: Props, nextState: {}) {
@@ -121,11 +105,21 @@ class MainComponent extends React.Component<Props, {}> {
     }
 
     private updateStyle() {
-        this.UpdateScrollSpeed();
         const element = this.refobject.current;
         if (!element) return;
-        const top = -document.documentElement.scrollTop * this.scrollspeed;
-        element.style.setProperty('top', `${top}px`);
+
+        const contentScrollHeight = element.clientHeight - document.documentElement.clientHeight * 0.75;
+
+        if (document.documentElement.scrollTop >= contentScrollHeight) {
+            element.style.setProperty('position', 'fixed');
+            element.style.setProperty('left', '15%');
+            const top = `${-contentScrollHeight}px`;
+            element.style.setProperty('top', top);
+        } else if (document.documentElement.scrollTop <= contentScrollHeight + 10) {
+            element.style.setProperty('position', 'absolute');
+            element.style.removeProperty('top');
+            element.style.setProperty('left', '15%');
+        }
     }
 
     public componentDidMount() {
@@ -138,25 +132,25 @@ class MainComponent extends React.Component<Props, {}> {
         switch (id) {
             case 'books':
                 return (
-                    <div ref={this.refobject} className="main_component">
+                    <div ref={this.refobject} className={ClassNames.normal}>
                         {BooksList(this.props)}{' '}
                     </div>
                 );
             case 'spaces':
                 return (
-                    <div ref={this.refobject} className="main_component">
+                    <div ref={this.refobject} className={ClassNames.normal}>
                         {SpacesList(this.props)}
                     </div>
                 );
             case 'book':
                 return (
-                    <div ref={this.refobject} className="main_component">
+                    <div ref={this.refobject} className={ClassNames.normal}>
                         {DisplayBookDetails(this.props)}
                     </div>
                 );
             case 'settings':
                 return (
-                    <div ref={this.refobject} className="main_component">
+                    <div ref={this.refobject} className={ClassNames.normal}>
                         <ProfileSettingsComponent />
                     </div>
                 );

@@ -11,27 +11,10 @@ interface Props {
 
 class RightComponent extends React.Component<Props, {}> {
     refobject: React.RefObject<HTMLDivElement>;
-    scrollspeed: number;
 
     constructor(props: Props) {
         super(props);
         this.refobject = React.createRef<HTMLDivElement>();
-        this.scrollspeed = 1;
-    }
-
-    private UpdateScrollSpeed() {
-        const element = this.refobject.current;
-
-        if (!element) return;
-        if (!element.parentElement) return;
-
-        let maxScrollHeight = element.scrollHeight;
-
-        for (let i = 0; i < element.parentElement.children.length; i++) {
-            const scrollHeight = element.parentElement.children[i].scrollHeight;
-            if (scrollHeight > maxScrollHeight) maxScrollHeight = scrollHeight;
-        }
-        this.scrollspeed = element.scrollHeight / maxScrollHeight;
     }
 
     private updateStyle() {
@@ -39,8 +22,7 @@ class RightComponent extends React.Component<Props, {}> {
 
         if (!element) return;
 
-        const top = -document.documentElement.scrollTop * this.scrollspeed;
-        element.style.setProperty('top', `${top}px`);
+        console.log(`right top ${element.offsetHeight}`);
     }
 
     public componentDidMount() {
