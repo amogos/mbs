@@ -71,7 +71,9 @@
       "picture": "https://image.flaticon.com/icons/svg/1814/1814777.svg",
       "following": [],
       "bookmarks": [
-        1
+        1,
+        2,
+        3
       ],
       "categories": [
         12

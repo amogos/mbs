@@ -14,6 +14,6 @@
 }
 
 .bookmarks_scroll_area {
-    height: 16rem;
+    height: 10rem;
     overflow: auto;
 }

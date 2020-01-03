@@ -13,7 +13,7 @@ interface Props {
 
 const UserFeedComponent = (props: Props) => {
     return (
-        <Affix offsetTop={300}>
+        <Affix offsetTop={400}>
             <Aux>
                 <h2>News Feed</h2>
                 <Divider />
