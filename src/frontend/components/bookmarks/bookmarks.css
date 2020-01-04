@@ -1,0 +1,26 @@
+.list_bookmarks_component {
+    display: flex;
+    flex-direction: column;
+    width: 25rem;
+    background-color: rgba(167, 141, 141, 0.329);
+    padding-right: 5rem;
+    padding-bottom: 5rem;
+}
+
+.list_bookmarks_component .banner {
+    height: 6rem;
+    width: 25rem;
+    margin-bottom: 1rem;
+    background-color: rgb(160, 221, 201);
+    text-align: center;
+}
+
+.bookmark {
+    display: flex;
+    flex-direction: row;
+    padding: 2px;
+}
+
+.bookmark:hover {
+    cursor: pointer;
+}
