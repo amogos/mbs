@@ -116,25 +116,25 @@ class MainComponent extends React.Component<Props, {}> {
         const { id } = this.props.urlparams;
 
         switch (id) {
-            case 'books':
+            case DataTypes.AppPages.Books:
                 return (
                     <div ref={this.refobject} className={ClassNames.normal}>
                         {BooksList(this.props)}{' '}
                     </div>
                 );
-            case 'spaces':
+            case DataTypes.AppPages.Spaces:
                 return (
                     <div ref={this.refobject} className={ClassNames.normal}>
                         {SpacesList(this.props)}
                     </div>
                 );
-            case 'book':
+            case DataTypes.AppPages.Book:
                 return (
                     <div ref={this.refobject} className={ClassNames.normal}>
                         {DisplayBookDetails(this.props)}
                     </div>
                 );
-            case 'settings':
+            case DataTypes.AppPages.Settings:
                 return (
                     <div ref={this.refobject} className={ClassNames.normal}>
                         <ProfileSettingsComponent />
