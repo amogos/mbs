@@ -36,7 +36,7 @@ const ListBookmarksComponent = (props: Props) => {
     return (
         <Affix offsetTop={150}>
             <div className="list_bookmarks_component">
-                <div className="list_bookmarks_banner">
+                <div className="banner">
                     <h2>Reading List</h2>
                 </div>
                 {reverseBookmarksArray.slice(0, nVisibleItems).map(book => Bookmark(props, book))}

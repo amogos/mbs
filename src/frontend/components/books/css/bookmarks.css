@@ -6,6 +6,15 @@
     padding-right: 5rem;
     padding-bottom: 5rem;
 }
+
+.list_bookmarks_component .banner {
+    height: 6rem;
+    width: 25rem;
+    margin-bottom: 1rem;
+    background-color: rgb(160, 221, 201);
+    text-align: center;
+}
+
 .bookmark {
     display: flex;
     flex-direction: row;
@@ -14,12 +23,4 @@
 
 .bookmark:hover {
     cursor: pointer;
-}
-
-.list_bookmarks_banner {
-    height: 6rem;
-    width: 25rem;
-    margin-bottom: 1rem;
-    background-color: rgb(160, 221, 201);
-    text-align: center;
 }
