@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Modal, Select } from 'antd';
-import * as StringConstants from '../../../../shared/constants/string_constant';
+import * as StringConstants from '../../../shared/constants/string_constant';
 
 interface Props {
     visible: boolean;

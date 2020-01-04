@@ -1,9 +1,9 @@
 import React from 'react';
 import { Button } from 'antd';
-import * as DataTypes from '../../../../../shared/types';
-import { Aux, withStyle } from '../../../hooks/hooks';
-import LikeBook from './../../../../containers/like_book_container';
-import BookState from './../../../../containers/book_state_container';
+import * as DataTypes from '../../../shared/types';
+import { Aux, withStyle } from '../../components/hooks/hooks';
+import LikeBook from '../../../frontend/containers/like_book_container';
+import BookState from '../../containers/book_state_container';
 
 interface Props {
     book: DataTypes.BookRecordType;

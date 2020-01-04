@@ -1,5 +1,5 @@
 import React from 'react';
-import { Aux, withStyle } from '../../../hooks/hooks';
+import { Aux, withStyle } from '../hooks/hooks';
 
 export interface BookIsbn {
     type: string;

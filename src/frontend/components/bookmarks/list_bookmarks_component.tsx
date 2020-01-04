@@ -1,5 +1,5 @@
 import React from 'react';
-import * as DataTypes from '../../../../shared/types';
+import * as DataTypes from '../../../shared/types';
 import { Button, Icon, Affix } from 'antd';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { History } from 'history';

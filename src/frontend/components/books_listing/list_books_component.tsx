@@ -1,7 +1,7 @@
 import React from 'react';
-import * as DataTypes from '../../../../shared/types';
-import { withStyle } from '../../hooks/hooks';
-import Book from './../../../containers/book_container';
+import * as DataTypes from '../../../shared/types';
+import { withStyle } from '../hooks/hooks';
+import Book from './../../containers/book_container';
 
 interface Props {
     booksArray: DataTypes.BookRecordType[];

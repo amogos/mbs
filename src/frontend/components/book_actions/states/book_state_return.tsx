@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import * as DataTypes from '../../../../../../shared/types';
+import * as DataTypes from './../../../../shared/types';
 import { Button, DatePicker } from 'antd';
-import BookRating from './../../../../rating/rating';
+import BookRating from './../../rating/rating';
 import moment from 'moment';
-import { Aux } from '../../../../hooks/hooks';
-import * as Strings from '../../../../../../shared/constants/string_constant';
+import { Aux } from './../../hooks/hooks';
+import * as Strings from '../../../../shared/constants/string_constant';
 import IconText from './icon_text';
 
 interface Props {

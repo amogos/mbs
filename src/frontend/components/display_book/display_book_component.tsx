@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { Divider, Comment, Avatar, Rate, Button } from 'antd';
 import * as DataTypes from '../../../shared/types';
 import { Aux, withStyle } from '../hooks/hooks';
-import BookDescription from './book/book_description';
-import BookActions from './../../containers/book_actions_container';
-import { CustomDate } from './../../../shared/utils/CustomDate';
+import BookDescription from './../book/book_description';
+import BookActions from '../../containers/book_actions_container';
+import { CustomDate } from '../../../shared/utils/CustomDate';
 
 interface Props {
     userdata: DataTypes.UserRecordType;

@@ -2,9 +2,9 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { Button, Rate } from 'antd';
 import BooksDescription from '../book/book_description';
-import { Aux, withStyle } from '../../hooks/hooks';
-import * as DataTypes from '../../../../shared/types';
-import BookActions from './../../../containers/book_actions_container';
+import { Aux, withStyle } from './../hooks/hooks';
+import * as DataTypes from '../../../shared/types';
+import BookActions from './../../containers/book_actions_container';
 import { History } from 'history';
 
 interface ReviewState {

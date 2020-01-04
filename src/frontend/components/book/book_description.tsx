@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Aux, withStyle } from '../../hooks/hooks';
+import { Aux, withStyle } from './../hooks/hooks';
 import { Button } from 'antd';
 
 interface Props {

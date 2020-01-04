@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { Aux } from '../../../hooks/hooks';
+import { Aux } from './../hooks/hooks';
 import { Button } from 'antd';
-import * as DataTypes from '../../../../../shared/types';
+import * as DataTypes from '../../../shared/types';
 
 interface Props {
     book: DataTypes.BookRecordType;

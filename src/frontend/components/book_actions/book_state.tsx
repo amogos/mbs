@@ -1,5 +1,5 @@
 import React from 'react';
-import * as DataTypes from '../../../../../shared/types';
+import * as DataTypes from './../../../shared/types';
 import BookStateCarryOut from './states/book_state_carry_out';
 import BookStateReturn from './states/book_state_return';
 import BookStateAssigned from './states/book_state_assigned';
