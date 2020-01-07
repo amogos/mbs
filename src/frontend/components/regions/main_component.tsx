@@ -22,6 +22,9 @@ interface Props {
     getSpaces(filters: string[]): void;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+interface State {}
+
 function DisplayBookDetails(props: Props) {
     const bookId = props.urlparams.query.id as number;
     props.displayBook(bookId);
@@ -32,7 +35,7 @@ enum ClassNames {
     normal = 'main_component',
 }
 
-class MainComponent extends React.Component<Props, {}> {
+class MainComponent extends React.Component<Props, State> {
     refobject: React.RefObject<HTMLDivElement>;
     booksFetcher: BooksFetcher;
     spacesFetcher: SpacesFetcher;
@@ -42,6 +45,7 @@ class MainComponent extends React.Component<Props, {}> {
         this.refobject = React.createRef<HTMLDivElement>();
         this.booksFetcher = new BooksFetcher(0, 5, (filters: string[]) => props.getBooks(filters, []));
         this.spacesFetcher = new SpacesFetcher(0, 5, (filters: string[]) => props.getSpaces(filters));
+        this.handleInitialContent();
     }
 
     private handleInitialContent() {
@@ -82,10 +86,6 @@ class MainComponent extends React.Component<Props, {}> {
             this.handleInitialContent();
             this.handleScroll();
         }
-    }
-
-    public componentWillMount() {
-        this.handleInitialContent();
     }
 
     render() {

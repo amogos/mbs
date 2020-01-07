@@ -71,7 +71,8 @@
       "picture": "https://image.flaticon.com/icons/svg/1814/1814777.svg",
       "following": [],
       "bookmarks": [
-        2
+        2,
+        1
       ],
       "categories": [
         12,
@@ -138,6 +139,7 @@
   ],
   "book_reviews": [
     {
+      "id": 1,
       "bookId": 1,
       "isbn10": "3314103484",
       "isbn13": "9783314103483",
@@ -145,8 +147,7 @@
       "score": 5,
       "user": 4,
       "date": 1576337364684,
-      "likes": 0,
-      "id": 1
+      "likes": 2
     }
   ],
   "user_reviews": [],
@@ -712,6 +713,13 @@
       "date": 1578394611643,
       "book": 1,
       "id": 36
+    },
+    {
+      "type": 1,
+      "userId": 5,
+      "date": 1578400361471,
+      "book": 1,
+      "id": 37
     }
   ],
   "formats": [
@@ -752,7 +760,7 @@
       "image": "http://books.google.com/books/content?id=ccCYDAEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
       "description": "Praise for Armstrong—The Adventurous Journey of a Mouse to the Moon “‘One Small Step for a Mouse’ indeed.”—Kirkus Reviews, Starred Review “This beautifully illustrated story is a feast for mind and eyes and a strong selection to complement STEAM curricula.”—School Library Journal, Starred Review",
       "id": 1,
-      "likes": 83
+      "likes": 84
     },
     {
       "title": "business book",
