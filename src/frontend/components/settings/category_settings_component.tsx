@@ -91,7 +91,7 @@ const CategorySettingsComponent = (props: Props) => {
 
     for (let i = 0; i < categories.length; i += 3) {
         rows.push(
-            <div style={{ padding: '10px' }}>
+            <div key={i.toString()} style={{ padding: '10px' }}>
                 <Row gutter={16}>{Columns(i)}</Row>
             </div>,
         );
