@@ -31,7 +31,7 @@ class RightComponent extends React.Component<Props, {}> {
         return (
             <div ref={this.refobject} className="right_component">
                 <UserFeed />
-                <BookmarksList />
+                <BookmarksList nVisibleItems={4} />
             </div>
         );
     }

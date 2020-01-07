@@ -8,6 +8,7 @@ interface Props extends RouteComponentProps {
     userdata: DataTypes.UserRecordType;
     userBookmarks: DataTypes.BookRecordType[];
     history: History;
+    nVisibleItems: number;
     unbookmarkBook(bookId: number, onSuccess: () => void): void;
 }
 
@@ -30,19 +31,31 @@ const Bookmark = (props: Props, book: DataTypes.BookRecordType) => {
 };
 
 const ListBookmarksComponent = (props: Props) => {
-    if (props.userBookmarks === undefined || props.userBookmarks.length == 0) return null;
-    const nVisibleItems = 5;
+    if (props.userBookmarks === undefined || props.userBookmarks.length == 0) {
+        return null;
+    }
+
     const reverseBookmarksArray = props.userBookmarks.splice(0).reverse();
+
+    let { nVisibleItems } = props;
+    if (nVisibleItems < 0) {
+        nVisibleItems = props.userBookmarks.length;
+    }
+
     return (
         <Affix offsetTop={150}>
             <div className="list_bookmarks_component">
                 <div className="banner">
                     <h2>Reading List</h2>
                 </div>
-                {reverseBookmarksArray.slice(0, nVisibleItems).map(book => Bookmark(props, book))}
+                {reverseBookmarksArray.slice(0, props.nVisibleItems).map(book => Bookmark(props, book))}
             </div>
         </Affix>
     );
+};
+
+ListBookmarksComponent.defaultProps = {
+    nVisibleItems: -1,
 };
 
 export default withRouter(ListBookmarksComponent);
