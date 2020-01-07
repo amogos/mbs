@@ -99,19 +99,6 @@ class MainComponent extends React.Component<Props, {}> {
         this.refobject = React.createRef<HTMLDivElement>();
     }
 
-    shouldComponentUpdate(nextProps: Props, nextState: {}) {
-        return nextProps.urlparams !== this.props.urlparams || nextProps.userdata !== this.props.userdata;
-    }
-
-    private updateStyle() {
-        const element = this.refobject.current;
-        if (!element) return;
-    }
-
-    public componentDidMount() {
-        window.addEventListener('scroll', () => this.updateStyle());
-    }
-
     render() {
         const { id } = this.props.urlparams;
 
