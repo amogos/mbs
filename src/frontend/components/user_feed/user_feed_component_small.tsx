@@ -21,11 +21,7 @@ const UserFeedComponentSmall = (props: Props) => {
 
             {props.userfeed === undefined
                 ? null
-                : props.userfeed.slice(0, nVisibleItems).map((item, index) => (
-                      <div key={index}>
-                          <FeedItem item={item} />
-                      </div>
-                  ))}
+                : React.Children.toArray(props.userfeed.slice(0, nVisibleItems).map(item => <FeedItem item={item} />))}
         </Aux>
     );
 };

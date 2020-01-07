@@ -49,7 +49,7 @@ const BookFeedItem = (props: Props) => {
                         <Button type="link" onClick={() => props.history.push(`/book?id=${book.id}`)}>
                             {book.title}
                         </Button>
-                        <p> by {book.author.map(author => author + ',')}</p>
+                        <p> by {React.Children.toArray(book.author.map(author => author + ','))}</p>
                         {actions[0]}
                     </div>
                 </div>

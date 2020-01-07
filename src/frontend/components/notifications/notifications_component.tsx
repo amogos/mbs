@@ -145,9 +145,7 @@ const NotificationsComponent = (props: Props) => {
                 </div>
                 <div className="notification_actions">
                     <div />
-                    {item.actions.map(action => (
-                        <div>{action}</div>
-                    ))}
+                    {React.Children.toArray(item.actions.map(action => <div>{action}</div>))}
                 </div>
                 <Divider />
             </Aux>

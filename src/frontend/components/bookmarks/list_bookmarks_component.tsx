@@ -48,7 +48,9 @@ const ListBookmarksComponent = (props: Props) => {
                 <div className="banner">
                     <h2>Reading List</h2>
                 </div>
-                {reverseBookmarksArray.slice(0, props.nVisibleItems).map(book => Bookmark(props, book))}
+                {React.Children.toArray(
+                    reverseBookmarksArray.slice(0, props.nVisibleItems).map(book => Bookmark(props, book)),
+                )}
             </div>
         </Affix>
     );

@@ -51,7 +51,7 @@ const BookPreview = (props: BookPreviewProps) => {
                 Title: {props.title} <br />
                 Language: {props.language.toUpperCase()} <br />
                 <span>Author:</span>
-                {props.authors ? props.authors.map(item => <span>{item}</span>) : 'NAN'}
+                {props.authors ? React.Children.toArray(props.authors.map(item => <span>{item}</span>)) : 'NAN'}
                 <br />
                 Publisher: {props.publisher}
                 <span>({props.publishedDate}) </span>

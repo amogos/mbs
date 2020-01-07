@@ -12,7 +12,7 @@ const ListBooksComponent = (props: Props) => {
         return null;
     }
 
-    return props.booksArray.map(item => <Book book={item} />);
+    return React.Children.toArray(props.booksArray.map(item => <Book book={item} />));
 };
 
 export default withStyle(ListBooksComponent, 'list_book_component');

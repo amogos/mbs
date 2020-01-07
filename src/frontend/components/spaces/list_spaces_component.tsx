@@ -36,14 +36,18 @@ const ListSpacesComponent = (props: Props) => {
         <Aux>
             <p className="thicker">All Spaces</p>
             <p className="thicker">My Spaces</p>
-            {props.userSpaces.map(item => (
-                <SpaceHolder key={item.id} {...props} item={item} onClick={() => onSpaceClicked(item.id)} />
-            ))}
+            {React.Children.toArray(
+                props.userSpaces.map(item => (
+                    <SpaceHolder {...props} item={item} onClick={() => onSpaceClicked(item.id)} />
+                )),
+            )}
             <p />
             <p className="thicker">Other Spaces</p>
-            {props.otherSpaces.map(item => (
-                <SpaceHolder key={item.id} {...props} item={item} onClick={() => onSpaceClicked(item.id)} />
-            ))}
+            {React.Children.toArray(
+                props.otherSpaces.map(item => (
+                    <SpaceHolder {...props} item={item} onClick={() => onSpaceClicked(item.id)} />
+                )),
+            )}
         </Aux>
     );
 };

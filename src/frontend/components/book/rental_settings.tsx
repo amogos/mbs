@@ -33,9 +33,7 @@ const RentalSettings = (props: Props) => {
                     setDuration(value);
                 }}
             >
-                {days.map(value => (
-                    <Option key={value + 1}>{value + 1 + ' days'}</Option>
-                ))}
+                {React.Children.toArray(days.map(value => <Option>{value + 1 + ' days'}</Option>))}
             </Select>
         </Modal>
     );

@@ -15,11 +15,7 @@ const UserFeedComponentBig = (props: Props) => {
         <Aux>
             {props.userfeed === undefined
                 ? null
-                : props.userfeed.map((item, index) => (
-                      <div key={index}>
-                          <FeedItem item={item} />
-                      </div>
-                  ))}
+                : React.Children.toArray(props.userfeed.map(item => <FeedItem item={item} />))}
         </Aux>
     );
 };

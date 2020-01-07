@@ -205,17 +205,13 @@ const AddNewBookComponent = (props: Props) => {
                     style={{ width: 200 }}
                     {...useSelect('Select language', (value: string) => onLanguageSelected(value))}
                 >
-                    {props.languages.map(language => (
-                        <Option key={language.id}>{language.title}</Option>
-                    ))}
+                    {React.Children.toArray(props.languages.map(language => <Option>{language.title}</Option>))}
                 </Select>
                 <Select
                     style={{ width: 200 }}
                     {...useSelect('Select category', (value: string) => onCategorySelected(value))}
                 >
-                    {props.categories.map(category => (
-                        <Option key={category.id}>{category.title}</Option>
-                    ))}
+                    {React.Children.toArray(props.categories.map(category => <Option>{category.title}</Option>))}
                 </Select>
             </InputGroup>
         );

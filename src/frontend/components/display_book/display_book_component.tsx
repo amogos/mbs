@@ -72,7 +72,7 @@ const BookDisplayComponent = (props: Props) => {
             <BookDescription description={book.description} length={200} />
             <BookActions book={book} />
             <Divider />
-            {bookReviews.map(entry => Review(props, entry))}
+            {React.Children.toArray(bookReviews.map(entry => Review(props, entry)))}
         </Aux>
     );
 };
