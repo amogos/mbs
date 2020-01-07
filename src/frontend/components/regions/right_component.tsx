@@ -17,16 +17,6 @@ class RightComponent extends React.Component<Props, {}> {
         this.refobject = React.createRef<HTMLDivElement>();
     }
 
-    private updateStyle() {
-        const element = this.refobject.current;
-
-        if (!element) return;
-    }
-
-    public componentDidMount() {
-        window.addEventListener('scroll', () => this.updateStyle());
-    }
-
     public render() {
         return (
             <div ref={this.refobject} className="right_component">
