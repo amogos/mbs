@@ -6,6 +6,7 @@ import LoginComponent from '../social/login_component';
 import ProfileSettingsComponent from './../settings/profile_settings_component';
 import BooksFetcher from './fetchers/books_fetcher';
 import SpacesFetcher from './fetchers/spaces_fetcher';
+import debounce from 'lodash.debounce';
 
 interface Props {
     userdata: DataTypes.UserRecordType;
@@ -38,8 +39,51 @@ class MainComponent extends React.Component<Props, {}> {
     constructor(props: Props) {
         super(props);
         this.refobject = React.createRef<HTMLDivElement>();
-        this.booksFetcher = new BooksFetcher(0, 5, props.urlparams, (filters: string[]) => props.getBooks(filters, []));
-        this.spacesFetcher = new SpacesFetcher(0, 5, props.urlparams, (filters: string[]) => props.getSpaces(filters));
+        this.booksFetcher = new BooksFetcher(0, 5, (filters: string[]) => props.getBooks(filters, []));
+        this.spacesFetcher = new SpacesFetcher(0, 5, (filters: string[]) => props.getSpaces(filters));
+    }
+
+    private handleInitialContent() {
+        const { id } = this.props.urlparams;
+        this.booksFetcher = new BooksFetcher(0, 5, (filters: string[]) => this.props.getBooks(filters, []));
+        this.spacesFetcher = new SpacesFetcher(0, 5, (filters: string[]) => this.props.getSpaces(filters));
+
+        switch (id) {
+            case DataTypes.AppPages.Books:
+                this.booksFetcher.next(this.props.urlparams, true);
+                break;
+            case DataTypes.AppPages.Spaces:
+            case undefined:
+                this.spacesFetcher.next(this.props.urlparams, true);
+                break;
+        }
+    }
+
+    private handleScroll() {
+        this.booksFetcher = new BooksFetcher(0, 5, (filters: string[]) => this.props.getBooks(filters, []));
+        this.spacesFetcher = new SpacesFetcher(0, 5, (filters: string[]) => this.props.getSpaces(filters));
+
+        const { id } = this.props.urlparams;
+
+        switch (id) {
+            case DataTypes.AppPages.Books:
+                window.onscroll = debounce(() => this.booksFetcher.next(this.props.urlparams, false), 10);
+                break;
+            case DataTypes.AppPages.Spaces:
+                window.onscroll = debounce(() => this.spacesFetcher.next(this.props.urlparams, false), 10);
+                break;
+        }
+    }
+
+    public componentDidUpdate(prevProps: Props) {
+        if (this.props.urlparams.id !== prevProps.urlparams.id) {
+            this.handleInitialContent();
+            this.handleScroll();
+        }
+    }
+
+    public componentWillMount() {
+        this.handleInitialContent();
     }
 
     render() {

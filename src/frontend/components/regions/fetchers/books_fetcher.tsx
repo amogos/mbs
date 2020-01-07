@@ -1,17 +1,15 @@
 import React from 'react';
-import debounce from 'lodash.debounce';
 import ListBooksContainer from '../../../containers/list_books_container';
 import ContentFetcher from './content_fetcher';
+import * as DataTypes from '../../../../shared/types';
 
 export default class BooksFetcher extends ContentFetcher {
     render(): JSX.Element {
-        window.onscroll = debounce(() => this.next(false), 100);
-        this.next(false);
         return <ListBooksContainer />;
     }
-    prepareQueryFilters(): string[] {
+    applyQueryFilters(urlparams: DataTypes.UrlParms): string[] {
         const queryFilters: string[] = [];
-        const { category, space } = this.urlparams.query;
+        const { category, space } = urlparams.query;
 
         if (category) {
             queryFilters.push(`category=${category}`);

@@ -3,32 +3,23 @@ import * as DataTypes from '../../../../shared/types';
 export default abstract class ContentFetcher {
     index: number;
     limit: number;
-    urlparams: DataTypes.UrlParms;
     queryRunner: (filters: string[]) => void;
 
-    constructor(
-        index: number,
-        limit: number,
-        urlparams: DataTypes.UrlParms,
-        querryRunner: (filters: string[]) => void,
-    ) {
+    constructor(index: number, limit: number, querryRunner: (filters: string[]) => void) {
         this.index = index;
         this.limit = limit;
-        this.urlparams = urlparams;
         this.queryRunner = querryRunner;
     }
 
-    abstract prepareQueryFilters(): string[];
-    abstract render(): void;
+    abstract applyQueryFilters(urlparams: DataTypes.UrlParms): string[];
+    abstract render(urlParams: DataTypes.UrlParms): void;
 
-    public next(force: boolean) {
-        if (force) this.index = 0;
-
-        const endOfContent =
-            window.innerHeight + document.documentElement.scrollTop >= document.documentElement.scrollHeight;
+    public next(urlparams: DataTypes.UrlParms, force: boolean) {
+        const pageIndex = this.index / this.limit + 1;
+        const endOfContent = document.documentElement.scrollTop >= window.innerHeight * pageIndex;
 
         if (endOfContent || force) {
-            const queryFilters: string[] = this.prepareQueryFilters();
+            const queryFilters: string[] = this.applyQueryFilters(urlparams);
             queryFilters.push(`_start=${this.index}`);
             queryFilters.push(`_limit=${this.limit}`);
             this.index += this.limit;
