@@ -15,16 +15,22 @@
     width: 8em;
 }
 
-.user_feed_component {
+.user_feed_component_small {
     margin-bottom: 2rem;
     background-color: rgba(167, 141, 141, 0.329);
     width: 25rem;
 }
 
+.user_feed_component_big {
+}
+
 .user_feed_banner {
     height: 6rem;
-
     margin-bottom: 1rem;
     background-color: rgb(253, 249, 246);
     text-align: center;
+}
+
+.user_feed_banner:hover {
+    cursor: pointer;
 }

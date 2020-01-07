@@ -3,7 +3,7 @@ import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { requiresLogin } from '../hooks/hooks';
 import * as DataTypes from './../../../shared/types';
 import BookmarksList from './../../containers/list_bookmarks_container';
-import UserFeed from './../../containers/user_feed_container';
+import UserFeedSmall from '../../containers/user_feed_container_small';
 import { AppPages } from './../../../shared/types';
 import { History } from 'history';
 
@@ -29,7 +29,7 @@ class RightComponent extends React.Component<Props, {}> {
             case undefined:
                 return (
                     <div ref={this.refobject} className="right_component">
-                        <UserFeed />
+                        <UserFeedSmall />
                         <BookmarksList nVisibleItems={4} />
                     </div>
                 );

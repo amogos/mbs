@@ -7,7 +7,7 @@ import ProfileSettingsComponent from './../settings/profile_settings_component';
 import BooksFetcher from './fetchers/books_fetcher';
 import SpacesFetcher from './fetchers/spaces_fetcher';
 import debounce from 'lodash.debounce';
-import UserFeed from './../../containers/user_feed_container';
+import UserFeedBig from '../../containers/user_feed_container_big';
 
 interface Props {
     userdata: DataTypes.UserRecordType;
@@ -119,7 +119,7 @@ class MainComponent extends React.Component<Props, {}> {
             case DataTypes.AppPages.Feed: {
                 return (
                     <div ref={this.refobject} className={ClassNames.normal}>
-                        <UserFeed />
+                        <UserFeedBig />
                     </div>
                 );
             }
