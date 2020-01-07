@@ -1,13 +1,16 @@
 import React from 'react';
+import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { requiresLogin } from '../hooks/hooks';
 import * as DataTypes from './../../../shared/types';
 import BookmarksList from './../../containers/list_bookmarks_container';
 import UserFeed from './../../containers/user_feed_container';
 import { AppPages } from './../../../shared/types';
+import { History } from 'history';
 
-interface Props {
+interface Props extends RouteComponentProps {
     userdata: DataTypes.UserRecordType;
     urlparams: DataTypes.UrlParms;
+    history: History;
 }
 
 class RightComponent extends React.Component<Props, {}> {
@@ -36,4 +39,4 @@ class RightComponent extends React.Component<Props, {}> {
     }
 }
 
-export default requiresLogin(RightComponent);
+export default requiresLogin(withRouter(RightComponent));

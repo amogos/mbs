@@ -7,6 +7,7 @@ import ProfileSettingsComponent from './../settings/profile_settings_component';
 import BooksFetcher from './fetchers/books_fetcher';
 import SpacesFetcher from './fetchers/spaces_fetcher';
 import debounce from 'lodash.debounce';
+import UserFeed from './../../containers/user_feed_container';
 
 interface Props {
     userdata: DataTypes.UserRecordType;
@@ -115,6 +116,13 @@ class MainComponent extends React.Component<Props, {}> {
                         <ProfileSettingsComponent />
                     </div>
                 );
+            case DataTypes.AppPages.Feed: {
+                return (
+                    <div ref={this.refobject} className={ClassNames.normal}>
+                        <UserFeed />
+                    </div>
+                );
+            }
             default:
                 return <div ref={this.refobject}>{this.spacesFetcher.render()}</div>;
         }

@@ -4,6 +4,7 @@ import * as DataTypes from '../../../shared/types';
 import { Aux, withStyle } from './../hooks/hooks';
 import FeedItem from './feed_item';
 import { History } from 'history';
+import { AppPages } from '../../../shared/types';
 
 interface Props {
     userfeed: DataTypes.UserFeedRecordType[];
@@ -14,7 +15,7 @@ const UserFeedComponent = (props: Props) => {
     const nVisibleItems = 4;
     return (
         <Aux>
-            <div className="user_feed_banner">
+            <div className="user_feed_banner" onClick={() => props.history.push(`/${AppPages.Feed}`)}>
                 <h2>News Feed</h2>
             </div>
 
