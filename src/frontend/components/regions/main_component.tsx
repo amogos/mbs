@@ -76,7 +76,8 @@ class MainComponent extends React.Component<Props, {}> {
     }
 
     public componentDidUpdate(prevProps: Props) {
-        if (this.props.urlparams.id !== prevProps.urlparams.id) {
+        const pageChanged = this.props.urlparams.id !== prevProps.urlparams.id;
+        if (pageChanged) {
             this.handleInitialContent();
             this.handleScroll();
         }
