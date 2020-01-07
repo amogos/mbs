@@ -3,4 +3,5 @@ export enum AppPages {
     Spaces = 'spaces',
     Book = 'book',
     Settings = 'settings',
+    Feed = 'feed',
 }

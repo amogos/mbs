@@ -3,6 +3,7 @@ import { requiresLogin } from '../hooks/hooks';
 import * as DataTypes from './../../../shared/types';
 import BookmarksList from './../../containers/list_bookmarks_container';
 import UserFeed from './../../containers/user_feed_container';
+import { AppPages } from './../../../shared/types';
 
 interface Props {
     userdata: DataTypes.UserRecordType;
@@ -18,12 +19,20 @@ class RightComponent extends React.Component<Props, {}> {
     }
 
     public render() {
-        return (
-            <div ref={this.refobject} className="right_component">
-                <UserFeed />
-                <BookmarksList nVisibleItems={4} />
-            </div>
-        );
+        const { id } = this.props.urlparams;
+
+        switch (id) {
+            case AppPages.Spaces:
+            case undefined:
+                return (
+                    <div ref={this.refobject} className="right_component">
+                        <UserFeed />
+                        <BookmarksList nVisibleItems={4} />
+                    </div>
+                );
+            default:
+                return null;
+        }
     }
 }
 
