@@ -12,7 +12,7 @@ export default abstract class ContentFetcher {
     }
 
     abstract applyQueryFilters(urlparams: DataTypes.UrlParms): string[];
-    abstract render(urlParams: DataTypes.UrlParms): void;
+    abstract render(): JSX.Element;
 
     public next(urlparams: DataTypes.UrlParms, force: boolean) {
         const pageIndex = this.index / this.limit + 1;
