@@ -46,6 +46,8 @@ const dispatchCacher = store => next => action => {
                 });
             }
             break;
+        default:
+            break;
     }
 
     return next(action);

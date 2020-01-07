@@ -1,5 +1,5 @@
 import React from 'react';
-import { Icon, Tooltip } from 'antd';
+import { Icon, Tooltip, Button } from 'antd';
 import * as DataTypes from '../../../shared/types';
 import { Aux, withStyle } from './../hooks/hooks';
 
@@ -19,32 +19,32 @@ const SpaceActions = (props: Props) => {
     if (props.owner) {
         return (
             <Aux>
-                <a onClick={props.actions.add}>
+                <Button type="link" onClick={props.actions.add}>
                     <Tooltip title={props.icons.add.tooltip}>
                         <Icon type={props.icons.add.icon} />
                     </Tooltip>
-                </a>
+                </Button>
 
-                <a onClick={props.actions.edit}>
+                <Button type="link" onClick={props.actions.edit}>
                     <Tooltip title={props.icons.edit.tooltip}>
                         <Icon type={props.icons.edit.icon} />
                     </Tooltip>
-                </a>
+                </Button>
             </Aux>
         );
     } else {
         return (
             <Aux>
-                <a onClick={props.actions.follow}>
+                <Button type="link" onClick={props.actions.follow}>
                     <Tooltip title={props.icons.follow.tooltip}>
                         <Icon type={props.icons.follow.icon} />
                     </Tooltip>
-                </a>
-                <a onClick={props.actions.subscribe}>
+                </Button>
+                <Button type="link" onClick={props.actions.subscribe}>
                     <Tooltip title={props.icons.subscribe.icon}>
                         <Icon type={props.icons.subscribe.icon} />
                     </Tooltip>
-                </a>
+                </Button>
             </Aux>
         );
     }

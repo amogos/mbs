@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Comment, Form, Avatar, Input, Modal, Rate } from 'antd';
-import * as DataTypes from '../../../shared/types';
 import * as StringConstants from '../../../shared/constants/string_constant';
 
 const { TextArea } = Input;

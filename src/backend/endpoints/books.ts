@@ -6,7 +6,7 @@ import { getLanguageRecordTypeFromId } from './languages';
 import { getCategoryRecordTypeFromId } from './categories';
 import { getFutureAvailabilityForBookInMilliseconds } from './queue';
 import { getReviewStatisticsForBook } from './book_reviews';
-import { getBookDescriptionForISBN, updateBookDescription } from './books_descriptions';
+import { getBookDescriptionForISBN } from './books_descriptions';
 import { getFormatRecordTypeFromId } from './format';
 import { getSpaceTypeFromId } from './spaces';
 import { BookRecordType } from '../../shared/types';

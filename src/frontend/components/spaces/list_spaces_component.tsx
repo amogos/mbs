@@ -30,8 +30,6 @@ const ListSpacesComponent = (props: Props) => {
         props.history.push(`/books?space=${spaceId}`);
     };
 
-    function onChange(slideNumber: number) {}
-
     return (
         <Aux>
             <p className="thicker">All Spaces</p>

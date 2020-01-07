@@ -49,7 +49,7 @@ class FormData {
     }
 
     public isValid() {
-        return this.name !== '' && this.email !== '' && this.password != '';
+        return this.name !== '' && this.email !== '' && this.password !== '';
     }
 }
 

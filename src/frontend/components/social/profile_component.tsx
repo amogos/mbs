@@ -1,7 +1,6 @@
 import React from 'react';
 import * as DataTypes from '../../../shared/types';
 import { Avatar, Menu, Dropdown, Button } from 'antd';
-import { Aux } from './../hooks/hooks';
 import { Logout } from './login_component';
 import Settings from './settings_component';
 

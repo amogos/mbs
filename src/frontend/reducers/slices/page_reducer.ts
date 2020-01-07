@@ -63,7 +63,7 @@ export default function pageReducer(state: any, action: any): any {
             let shouldResetBooksArray = false;
             let shouldResetSpacesArray = false;
 
-            const pageChanged: boolean = state.urlparams && state.urlparams.id != action.urlparams.id;
+            const pageChanged: boolean = state.urlparams && state.urlparams.id !== action.urlparams.id;
             const queryChanged = state.urlparams && state.urlparams.query !== action.urlparams.query;
 
             if (pageChanged || queryChanged) {

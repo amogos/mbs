@@ -1,5 +1,5 @@
 import React from 'react';
-import { Aux, withStyle, requiresLogin } from '../hooks/hooks';
+import { withStyle, requiresLogin } from '../hooks/hooks';
 import * as DataTypes from './../../../shared/types';
 import AboutComponent from './../about/about';
 

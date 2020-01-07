@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { List, Avatar, Divider } from 'antd';
+import { List, Avatar, Divider, Button } from 'antd';
 import * as DataTypes from '../../../shared/types';
 import RatingComponent from '../rating/rating';
 import { Aux, withStyle } from './../hooks/hooks';
@@ -81,8 +81,12 @@ const NotificationsComponent = (props: Props) => {
         queue.forEach(item => {
             queueNotifications.push({
                 actions: [
-                    <a onClick={() => rejectRental(item)}>reject</a>,
-                    <a onClick={() => confirmRental(item)}>confirm</a>,
+                    <Button type="link" onClick={() => rejectRental(item)}>
+                        reject
+                    </Button>,
+                    <Button type="link" onClick={() => confirmRental(item)}>
+                        confirm
+                    </Button>,
                 ],
                 title: item.user.name,
                 avatar: item.user.picture,
@@ -100,7 +104,11 @@ const NotificationsComponent = (props: Props) => {
         const returnsNotifications: Notification[] = notifications;
         returns.forEach(item => {
             returnsNotifications.push({
-                actions: [<a onClick={() => rateReturn(item)}>rate</a>],
+                actions: [
+                    <Button type="link" onClick={() => rateReturn(item)}>
+                        rate
+                    </Button>,
+                ],
                 title: item.user.name,
                 avatar: item.user.picture,
                 rating: item.user.rating,

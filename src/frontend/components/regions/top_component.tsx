@@ -17,7 +17,6 @@ const TopComponent = (props: Props) => {
             <p> text </p>
         </Aux>
     );
-    return null;
 };
 
 export default requiresLogin(withStyle(TopComponent, 'top_component'));

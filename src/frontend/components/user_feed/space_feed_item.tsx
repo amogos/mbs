@@ -36,11 +36,11 @@ const SpaceFeedItem = (props: Props) => {
 
     return (
         <Comment
-            author={<a>{title}</a>}
+            author={<Button type="link">{title}</Button>}
             avatar={<Avatar src={item.user.picture} alt={item.user.name} />}
             content={
                 <div className="feed_item_root">
-                    <img height="98" src={space.picture} />
+                    <img height="98" src={space.picture} alt="" />
                     <div className="feed_item_right">
                         <Button type="link" onClick={() => props.history.push(`/books?space=${space.id}`)}>
                             {space.title}

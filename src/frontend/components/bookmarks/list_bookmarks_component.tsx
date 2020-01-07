@@ -23,7 +23,7 @@ const Bookmark = (props: Props, book: DataTypes.BookRecordType) => {
                 <Icon type="minus-circle" />
             </Button>
             <div onClick={onBookmarkClicked}>
-                <img height={64} src={book.image} />
+                <img height={64} src={book.image} alt="" />
                 {book.title}
             </div>
         </div>
@@ -31,7 +31,7 @@ const Bookmark = (props: Props, book: DataTypes.BookRecordType) => {
 };
 
 const ListBookmarksComponent = (props: Props) => {
-    if (props.userBookmarks === undefined || props.userBookmarks.length == 0) {
+    if (props.userBookmarks === undefined || props.userBookmarks.length === 0) {
         return null;
     }
 
