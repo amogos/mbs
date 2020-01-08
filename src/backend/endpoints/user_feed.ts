@@ -12,7 +12,7 @@ export async function getFeeds(
     onError: (resultCode: number) => void,
 ): Promise<DataTypes.UserFeedRecordType[]> {
     let rawFeeds: DataTypes.UserFeedRawRecordType[] = [];
-    let urlFeeds = `${urlUserFeed}?userId_ne=${currentUserId}&_sort=date&_order=desc`;
+    let urlFeeds = `${urlUserFeed}?userId_ne=${currentUserId}&_sort=date&_order=desc&`;
     const applyFilters = filters && filters.length > 0;
 
     if (applyFilters) {
