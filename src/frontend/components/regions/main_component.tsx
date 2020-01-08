@@ -6,8 +6,8 @@ import LoginComponent from '../social/login_component';
 import ProfileSettingsComponent from './../settings/profile_settings_component';
 import BooksFetcher from './fetchers/books_fetcher';
 import SpacesFetcher from './fetchers/spaces_fetcher';
+import FeedFetcher from './fetchers/feed_fetcher';
 import debounce from 'lodash.debounce';
-import UserFeedBig from '../../containers/user_feed_container_big';
 
 interface Props {
     userdata: DataTypes.UserRecordType;
@@ -20,6 +20,7 @@ interface Props {
     loginUser(userInfo: DataTypes.UserValueType, onError?: () => void): void;
     getBooks(filters: string[], callbacks: ((books: DataTypes.BookRecordType[]) => void)[]): void;
     getSpaces(filters: string[]): void;
+    getFeeds(filters: string[]): void;
 }
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
@@ -39,12 +40,14 @@ class MainComponent extends React.Component<Props, State> {
     refobject: React.RefObject<HTMLDivElement>;
     booksFetcher: BooksFetcher;
     spacesFetcher: SpacesFetcher;
+    feedFetcher: FeedFetcher;
 
     constructor(props: Props) {
         super(props);
         this.refobject = React.createRef<HTMLDivElement>();
         this.booksFetcher = new BooksFetcher(0, 5, (filters: string[]) => props.getBooks(filters, []));
         this.spacesFetcher = new SpacesFetcher(0, 5, (filters: string[]) => props.getSpaces(filters));
+        this.feedFetcher = new FeedFetcher(0, 10, (filters: string[]) => props.getFeeds(filters));
         this.handleInitialContent();
     }
 
@@ -52,6 +55,7 @@ class MainComponent extends React.Component<Props, State> {
         const { id } = this.props.urlparams;
         this.booksFetcher = new BooksFetcher(0, 5, (filters: string[]) => this.props.getBooks(filters, []));
         this.spacesFetcher = new SpacesFetcher(0, 5, (filters: string[]) => this.props.getSpaces(filters));
+        this.feedFetcher = new FeedFetcher(0, 10, (filters: string[]) => this.props.getFeeds(filters));
 
         switch (id) {
             case DataTypes.AppPages.Books:
@@ -61,12 +65,16 @@ class MainComponent extends React.Component<Props, State> {
             case undefined:
                 this.spacesFetcher.next(this.props.urlparams, true);
                 break;
+            case DataTypes.AppPages.Feed:
+                this.feedFetcher.next(this.props.urlparams, true);
+                break;
         }
     }
 
     private handleScroll() {
         this.booksFetcher = new BooksFetcher(0, 5, (filters: string[]) => this.props.getBooks(filters, []));
         this.spacesFetcher = new SpacesFetcher(0, 5, (filters: string[]) => this.props.getSpaces(filters));
+        this.feedFetcher = new FeedFetcher(0, 10, (filters: string[]) => this.props.getFeeds(filters));
 
         const { id } = this.props.urlparams;
 
@@ -76,6 +84,9 @@ class MainComponent extends React.Component<Props, State> {
                 break;
             case DataTypes.AppPages.Spaces:
                 window.onscroll = debounce(() => this.spacesFetcher.next(this.props.urlparams, false), 10);
+                break;
+            case DataTypes.AppPages.Feed:
+                window.onscroll = debounce(() => this.feedFetcher.next(this.props.urlparams, false), 10);
                 break;
         }
     }
@@ -119,7 +130,7 @@ class MainComponent extends React.Component<Props, State> {
             case DataTypes.AppPages.Feed: {
                 return (
                     <div ref={this.refobject} className={ClassNames.normal}>
-                        <UserFeedBig />
+                        {this.feedFetcher.render()}
                     </div>
                 );
             }

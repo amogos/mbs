@@ -13,6 +13,11 @@ class PageAction {
         callbacks,
     });
 
+    public getFeeds = (filters: string[]) => ({
+        type: ActionTypes.default.PageActionConstant.ACTION_GOTO_LIST_FEED,
+        filters,
+    });
+
     public getBookmarks = (
         user: DataTypes.UserRecordType,
         callbacks: ((books: DataTypes.BookRecordType[]) => void)[],

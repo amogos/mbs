@@ -19,6 +19,7 @@ const mapDispatchToProps = dispatch => {
         loginUser: (user, onError) => dispatch(socialAction.loginUser(user, onError)),
         getBooks: (filters, callback) => dispatch(pageAction.getBooks(filters, callback)),
         getSpaces: filters => dispatch(pageAction.getSpaces(filters)),
+        getFeeds: (filters, callback) => dispatch(pageAction.getFeeds(filters, callback)),
         dispatch,
     };
 };

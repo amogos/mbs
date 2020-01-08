@@ -6,24 +6,6 @@ import { getSpaceTypeFromId } from './../endpoints/spaces';
 import { getBookDescriptionForISBN } from './../endpoints/books_descriptions';
 import { getUserRecordTypeFromId } from './../endpoints/user';
 
-/*
-const booksArray: DataTypes.BookRecordType[] = [];
-    let filterdBooksUrl = urlBooks;
-    const applyFilters = filters && filters.length > 0;
-
-    if (applyFilters) {
-        filterdBooksUrl += '?' + filters.join('&');
-    }
-
-    let responseArray: DataTypes.BookRawRecordType[] = [];
-    await axios
-        .get(filterdBooksUrl)
-        .then(r => (responseArray = r.data))
-        .catch(error => {
-            onError(error);
-        });
-*/
-
 export async function getFeeds(
     currentUserId: number,
     filters: string[],

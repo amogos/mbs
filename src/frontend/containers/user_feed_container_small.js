@@ -6,5 +6,9 @@ function mapStateToProps(state) {
         userfeed: state.mainReducer.userfeed,
     };
 }
-
-export default connect(mapStateToProps, null)(UserFeedComponentSmall);
+const mapDispatchToProps = dispatch => {
+    return {
+        dispatch,
+    };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(UserFeedComponentSmall);

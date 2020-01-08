@@ -30,6 +30,11 @@ export default function pageReducer(state: any, action: any): any {
                     Store.dispatch(pageAction.refreshState({ otherSpaces: result.otherSpaces, append: true }));
                 });
 
+            databseInstance
+                .getFeeds(state.userdata.id, [], handleError)
+                .then((result: DataTypes.UserFeedRecordType[]) => {
+                    Store.dispatch(pageAction.refreshState({ userfeed: result, append: true }));
+                });
             return Object.assign({}, state, {
                 action: ActionConstants.default.PageActionConstant.ACTION_GOTO_LIST_SPACES,
             });
@@ -52,6 +57,20 @@ export default function pageReducer(state: any, action: any): any {
 
             return Object.assign({}, state, {
                 action: PageActionConstant.ACTION_GOTO_LIST_BOOKS,
+            });
+        }
+
+        case PageActionConstant.ACTION_GOTO_LIST_FEED: {
+            const progressSpinner = message.loading(Strings.MYBOOKSHELVE_ACTION_IN_PROGRESS);
+            databseInstance
+                .getFeeds(state.userdata.id, action.filters, handleError)
+                .then((result: DataTypes.UserFeedRecordType[]) => {
+                    setTimeout(progressSpinner, 0);
+                    Store.dispatch(pageAction.refreshState({ userfeed: result, append: true }));
+                });
+
+            return Object.assign({}, state, {
+                action: PageActionConstant.ACTION_GOTO_LIST_FEED,
             });
         }
 
