@@ -4,6 +4,7 @@ import { pageAction } from './../actions';
 const { PageActionConstant, BookActionConstant } = ActionConstants.default;
 
 const bookCache = new QueryCache(10);
+const feedCache = new QueryCache(10);
 let bookmarksCache = [];
 
 const buildCacheKey = action => {
@@ -44,6 +45,19 @@ const dispatchCacher = store => next => action => {
                 action.callbacks.push(books => {
                     bookCache.addEntry(cacheKey, [...books]);
                 });
+            }
+            break;
+        case PageActionConstant.ACTION_GOTO_LIST_FEED:
+            {
+                const cacheKey = buildCacheKey(action);
+                const cacheEntry = feedCache.getEntry(cacheKey);
+                if (cacheEntry) {
+                    return store.dispatch(pageAction.refreshState({ userfeed: cacheEntry.value, append: true }));
+                } else {
+                    action.callbacks.push(feeds => {
+                        feedCache.addEntry(cacheKey, [...feeds]);
+                    });
+                }
             }
             break;
         default:

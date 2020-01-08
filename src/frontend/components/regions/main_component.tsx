@@ -20,7 +20,7 @@ interface Props {
     loginUser(userInfo: DataTypes.UserValueType, onError?: () => void): void;
     getBooks(filters: string[], callbacks: ((books: DataTypes.BookRecordType[]) => void)[]): void;
     getSpaces(filters: string[]): void;
-    getFeeds(filters: string[]): void;
+    getFeeds(filters: string[], callbacks: ((feeds: DataTypes.UserFeedRecordType[]) => void)[]): void;
 }
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
@@ -47,7 +47,7 @@ class MainComponent extends React.Component<Props, State> {
         this.refobject = React.createRef<HTMLDivElement>();
         this.booksFetcher = new BooksFetcher(0, 5, (filters: string[]) => props.getBooks(filters, []));
         this.spacesFetcher = new SpacesFetcher(0, 5, (filters: string[]) => props.getSpaces(filters));
-        this.feedFetcher = new FeedFetcher(0, 10, (filters: string[]) => props.getFeeds(filters));
+        this.feedFetcher = new FeedFetcher(0, 10, (filters: string[]) => props.getFeeds(filters, []));
         this.handleInitialContent();
     }
 
@@ -55,7 +55,7 @@ class MainComponent extends React.Component<Props, State> {
         const { id } = this.props.urlparams;
         this.booksFetcher = new BooksFetcher(0, 5, (filters: string[]) => this.props.getBooks(filters, []));
         this.spacesFetcher = new SpacesFetcher(0, 5, (filters: string[]) => this.props.getSpaces(filters));
-        this.feedFetcher = new FeedFetcher(0, 10, (filters: string[]) => this.props.getFeeds(filters));
+        this.feedFetcher = new FeedFetcher(0, 10, (filters: string[]) => this.props.getFeeds(filters, []));
 
         switch (id) {
             case DataTypes.AppPages.Books:
@@ -74,7 +74,7 @@ class MainComponent extends React.Component<Props, State> {
     private handleScroll() {
         this.booksFetcher = new BooksFetcher(0, 5, (filters: string[]) => this.props.getBooks(filters, []));
         this.spacesFetcher = new SpacesFetcher(0, 5, (filters: string[]) => this.props.getSpaces(filters));
-        this.feedFetcher = new FeedFetcher(0, 10, (filters: string[]) => this.props.getFeeds(filters));
+        this.feedFetcher = new FeedFetcher(0, 10, (filters: string[]) => this.props.getFeeds(filters, []));
 
         const { id } = this.props.urlparams;
 

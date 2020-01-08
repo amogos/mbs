@@ -67,6 +67,9 @@ export default function pageReducer(state: any, action: any): any {
                 .then((result: DataTypes.UserFeedRecordType[]) => {
                     setTimeout(progressSpinner, 0);
                     Store.dispatch(pageAction.refreshState({ userfeed: result, append: true }));
+                    action.callbacks.forEach((callback: (feeds: DataTypes.UserFeedRecordType[]) => void) =>
+                        callback(result),
+                    );
                 });
 
             return Object.assign({}, state, {

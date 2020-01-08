@@ -13,9 +13,10 @@ class PageAction {
         callbacks,
     });
 
-    public getFeeds = (filters: string[]) => ({
+    public getFeeds = (filters: string[], callbacks: ((feeds: DataTypes.UserFeedRecordType[]) => void)[]) => ({
         type: ActionTypes.default.PageActionConstant.ACTION_GOTO_LIST_FEED,
         filters,
+        callbacks,
     });
 
     public getBookmarks = (
