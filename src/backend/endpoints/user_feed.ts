@@ -6,13 +6,39 @@ import { getSpaceTypeFromId } from './../endpoints/spaces';
 import { getBookDescriptionForISBN } from './../endpoints/books_descriptions';
 import { getUserRecordTypeFromId } from './../endpoints/user';
 
+/*
+const booksArray: DataTypes.BookRecordType[] = [];
+    let filterdBooksUrl = urlBooks;
+    const applyFilters = filters && filters.length > 0;
+
+    if (applyFilters) {
+        filterdBooksUrl += '?' + filters.join('&');
+    }
+
+    let responseArray: DataTypes.BookRawRecordType[] = [];
+    await axios
+        .get(filterdBooksUrl)
+        .then(r => (responseArray = r.data))
+        .catch(error => {
+            onError(error);
+        });
+*/
+
 export async function getFeeds(
     currentUserId: number,
+    filters: string[],
     onError: (resultCode: number) => void,
 ): Promise<DataTypes.UserFeedRecordType[]> {
     let rawFeeds: DataTypes.UserFeedRawRecordType[] = [];
+    let urlFeeds = `${urlUserFeed}?userId_ne=${currentUserId}&_sort=date&_order=desc`;
+    const applyFilters = filters && filters.length > 0;
+
+    if (applyFilters) {
+        urlFeeds += filters.join('&');
+    }
+
     await axios
-        .get(`${urlUserFeed}?userId_ne=${currentUserId}&_sort=date&_order=desc`)
+        .get(urlFeeds)
         .then(response => (rawFeeds = response.data))
         .catch(error => onError(error));
 

@@ -54,9 +54,6 @@ export default function socialReducer(state: any, action: any): any {
             databseInstance.getCategories(handleError).then((result: DataTypes.CategoryRecordType[]) => {
                 Store.dispatch(pageAction.refreshState({ categories: result }));
             });
-            databseInstance.getFeeds(action.userdata.id, handleError).then((result: DataTypes.UserFeedRecordType[]) => {
-                Store.dispatch(pageAction.refreshState({ userfeed: result }));
-            });
             databseInstance
                 .getQueue(action.userdata.id, handleError)
                 .then((result: DataTypes.QueueNotificationRecordType[]) => {

@@ -13,6 +13,12 @@ interface Props {
 
 const UserFeedComponentSmall = (props: Props) => {
     const nVisibleItems = 4;
+    const { userfeed } = props;
+
+    if (!userfeed) {
+        return null;
+    }
+
     return (
         <Aux>
             <div className="user_feed_banner" onClick={() => props.history.push(`/${AppPages.Feed}`)}>
@@ -21,7 +27,7 @@ const UserFeedComponentSmall = (props: Props) => {
 
             {props.userfeed === undefined
                 ? null
-                : React.Children.toArray(props.userfeed.slice(0, nVisibleItems).map(item => <FeedItem item={item} />))}
+                : React.Children.toArray(userfeed.slice(0, nVisibleItems).map(item => <FeedItem item={item} />))}
         </Aux>
     );
 };
