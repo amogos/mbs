@@ -24,6 +24,7 @@ export default abstract class ContentFetcher {
             queryFilters.push(`_limit=${this.limit}`);
             this.index += this.limit;
             this.queryRunner(queryFilters);
+            alert(1);
         }
     }
 }
