@@ -37,14 +37,13 @@ enum ClassNames {
 }
 
 class MainComponent extends React.Component<Props, State> {
-    refobject: React.RefObject<HTMLDivElement>;
     booksFetcher: BooksFetcher;
     spacesFetcher: SpacesFetcher;
     feedFetcher: FeedFetcher;
 
     constructor(props: Props) {
         super(props);
-        this.refobject = React.createRef<HTMLDivElement>();
+
         this.booksFetcher = new BooksFetcher(0, 5, (filters: string[]) => props.getBooks(filters, []));
         this.spacesFetcher = new SpacesFetcher(0, 5, (filters: string[]) => props.getSpaces(filters));
         this.feedFetcher = new FeedFetcher(0, 10, (filters: string[]) => props.getFeeds(filters, []));
@@ -53,20 +52,23 @@ class MainComponent extends React.Component<Props, State> {
 
     private handleInitialContent() {
         const { id } = this.props.urlparams;
-        this.booksFetcher = new BooksFetcher(0, 5, (filters: string[]) => this.props.getBooks(filters, []));
-        this.spacesFetcher = new SpacesFetcher(0, 5, (filters: string[]) => this.props.getSpaces(filters));
+        this.booksFetcher = new BooksFetcher(0, 10, (filters: string[]) => this.props.getBooks(filters, []));
+        this.spacesFetcher = new SpacesFetcher(0, 10, (filters: string[]) => this.props.getSpaces(filters));
         this.feedFetcher = new FeedFetcher(0, 10, (filters: string[]) => this.props.getFeeds(filters, []));
 
         switch (id) {
             case DataTypes.AppPages.Books:
                 this.booksFetcher.next(this.props.urlparams, true);
+                window.onscroll = debounce(() => this.booksFetcher.next(this.props.urlparams, false), 10);
                 break;
             case DataTypes.AppPages.Spaces:
             case undefined:
                 this.spacesFetcher.next(this.props.urlparams, true);
+                window.onscroll = debounce(() => this.spacesFetcher.next(this.props.urlparams, false), 10);
                 break;
             case DataTypes.AppPages.Feed:
                 this.feedFetcher.next(this.props.urlparams, true);
+                window.onscroll = debounce(() => this.feedFetcher.next(this.props.urlparams, false), 10);
                 break;
         }
     }
@@ -81,22 +83,24 @@ class MainComponent extends React.Component<Props, State> {
         switch (id) {
             case DataTypes.AppPages.Books:
                 window.onscroll = debounce(() => this.booksFetcher.next(this.props.urlparams, false), 10);
+                console.log('handle scroll books');
                 break;
+            case undefined:
             case DataTypes.AppPages.Spaces:
                 window.onscroll = debounce(() => this.spacesFetcher.next(this.props.urlparams, false), 10);
+                console.log('handle scroll spaces');
                 break;
             case DataTypes.AppPages.Feed:
                 window.onscroll = debounce(() => this.feedFetcher.next(this.props.urlparams, false), 10);
+                console.log('handle scroll feed');
                 break;
         }
     }
 
     public componentDidUpdate(prevProps: Props) {
         const pageChanged = this.props.urlparams.id !== prevProps.urlparams.id;
-        if (pageChanged) {
-            this.handleInitialContent();
-            this.handleScroll();
-        }
+        if (!pageChanged) return;
+        this.handleScroll();
     }
 
     render() {
@@ -104,38 +108,22 @@ class MainComponent extends React.Component<Props, State> {
 
         switch (id) {
             case DataTypes.AppPages.Books:
-                return (
-                    <div ref={this.refobject} className={ClassNames.normal}>
-                        {this.booksFetcher.render()}
-                    </div>
-                );
+                return <div className={ClassNames.normal}>{this.booksFetcher.render()}</div>;
             case DataTypes.AppPages.Spaces:
-                return (
-                    <div ref={this.refobject} className={ClassNames.normal}>
-                        {this.spacesFetcher.render()}
-                    </div>
-                );
+                return <div className={ClassNames.normal}>{this.spacesFetcher.render()}</div>;
             case DataTypes.AppPages.Book:
-                return (
-                    <div ref={this.refobject} className={ClassNames.normal}>
-                        {DisplayBookDetails(this.props)}
-                    </div>
-                );
+                return <div className={ClassNames.normal}>{DisplayBookDetails(this.props)}</div>;
             case DataTypes.AppPages.Settings:
                 return (
-                    <div ref={this.refobject} className={ClassNames.normal}>
+                    <div className={ClassNames.normal}>
                         <ProfileSettingsComponent />
                     </div>
                 );
             case DataTypes.AppPages.Feed: {
-                return (
-                    <div ref={this.refobject} className={ClassNames.normal}>
-                        {this.feedFetcher.render()}
-                    </div>
-                );
+                return <div className={ClassNames.normal}>{this.feedFetcher.render()}</div>;
             }
             default:
-                return <div ref={this.refobject}>{this.spacesFetcher.render()}</div>;
+                return <div>{this.spacesFetcher.render()}</div>;
         }
     }
 }

@@ -131,6 +131,11 @@ export default function pageReducer(state: any, action: any): any {
                 action.params.otherSpaces = state.otherSpaces.concat(action.params.otherSpaces);
             }
 
+            const shouldAppendFeed: boolean = state.userfeed && action.params.append === true;
+            if (shouldAppendFeed) {
+                action.params.userfeed = state.userfeed.concat(action.params.userfeed);
+            }
+
             return Object.assign({}, state, action.params);
         }
         default:
