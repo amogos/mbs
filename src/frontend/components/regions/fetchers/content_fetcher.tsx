@@ -6,12 +6,14 @@ export default abstract class ContentFetcher {
     limit: number;
     refobject: React.RefObject<HTMLDivElement>;
     queryRunner: (filters: string[]) => void;
+    documentTop: number;
 
     constructor(index: number, limit: number, querryRunner: (filters: string[]) => void) {
         this.index = index;
         this.limit = limit;
         this.queryRunner = querryRunner;
         this.refobject = React.createRef<HTMLDivElement>();
+        this.documentTop = 0;
     }
 
     abstract applyQueryFilters(urlparams: DataTypes.UrlParms): string[];
@@ -23,7 +25,9 @@ export default abstract class ContentFetcher {
     private ShouldBringNewContent() {
         if (!this.refobject.current) return false;
         const top = this.refobject.current.getBoundingClientRect().top;
-        return top && top >= 0 && top <= window.innerHeight;
+        const isDivMarkerInView = top && top >= 0 && top <= window.innerHeight;
+        const isPageScrollingDown = this.documentTop < document.documentElement.scrollTop;
+        return isDivMarkerInView && isPageScrollingDown;
     }
 
     public next(urlparams: DataTypes.UrlParms, force: boolean) {
@@ -35,6 +39,10 @@ export default abstract class ContentFetcher {
             this.index += this.limit;
             this.refobject = React.createRef<HTMLDivElement>();
             this.queryRunner(queryFilters);
+        }
+
+        if (this.documentTop < document.documentElement.scrollTop) {
+            this.documentTop = document.documentElement.scrollTop;
         }
     }
 }

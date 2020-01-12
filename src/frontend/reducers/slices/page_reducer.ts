@@ -6,6 +6,7 @@ import Store from '../store';
 import Strings from '../../../shared/constants/string_constant';
 import { message } from 'antd';
 import { handleError } from './../main_reducer';
+import { ActionSheetIOS } from 'react-native';
 
 const { PageActionConstant } = ActionConstants.default;
 
@@ -132,7 +133,7 @@ export default function pageReducer(state: any, action: any): any {
                 action.params.otherSpaces = state.otherSpaces.concat(action.params.otherSpaces);
             }
 
-            const shouldAppendFeed: boolean = state.userfeed && action.params.append === true;
+            const shouldAppendFeed: boolean = state.userfeed && action.params.append === true && action.params.userfeed;
             if (shouldAppendFeed) {
                 action.params.userfeed = state.userfeed.concat(action.params.userfeed);
             }
