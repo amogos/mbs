@@ -44,34 +44,10 @@ class MainComponent extends React.Component<Props, State> {
 
     constructor(props: Props) {
         super(props);
-
         this.booksFetcher = new BooksFetcher(0, 10, (filters: string[]) => props.getBooks(filters, []));
         this.spacesFetcher = new SpacesFetcher(0, 10, (filters: string[]) => props.getSpaces(filters));
         this.feedFetcher = new FeedFetcher(0, 10, (filters: string[]) => props.getFeeds(filters, []));
-        this.handleInitialContent();
-    }
-
-    private handleInitialContent() {
-        const { id } = this.props.urlparams;
-        this.booksFetcher = new BooksFetcher(0, 10, (filters: string[]) => this.props.getBooks(filters, []));
-        this.spacesFetcher = new SpacesFetcher(0, 10, (filters: string[]) => this.props.getSpaces(filters));
-        this.feedFetcher = new FeedFetcher(0, 10, (filters: string[]) => this.props.getFeeds(filters, []));
-
-        switch (id) {
-            case DataTypes.AppPages.Books:
-                this.booksFetcher.next(this.props.urlparams, true);
-                window.onscroll = debounce(() => this.booksFetcher.next(this.props.urlparams, false), 10);
-                break;
-            case DataTypes.AppPages.Spaces:
-            case undefined:
-                this.spacesFetcher.next(this.props.urlparams, true);
-                window.onscroll = debounce(() => this.spacesFetcher.next(this.props.urlparams, false), 10);
-                break;
-            case DataTypes.AppPages.Feed:
-                this.feedFetcher.next(this.props.urlparams, true);
-                window.onscroll = debounce(() => this.feedFetcher.next(this.props.urlparams, false), 10);
-                break;
-        }
+        this.handleScroll();
     }
 
     private handleScroll() {
@@ -83,17 +59,17 @@ class MainComponent extends React.Component<Props, State> {
 
         switch (id) {
             case DataTypes.AppPages.Books:
+                this.booksFetcher.next(this.props.urlparams, true);
                 window.onscroll = debounce(() => this.booksFetcher.next(this.props.urlparams, false), 10);
-                console.log('handle scroll books');
                 break;
             case undefined:
             case DataTypes.AppPages.Spaces:
+                this.spacesFetcher.next(this.props.urlparams, true);
                 window.onscroll = debounce(() => this.spacesFetcher.next(this.props.urlparams, false), 10);
-                console.log('handle scroll spaces');
                 break;
             case DataTypes.AppPages.Feed:
+                this.feedFetcher.next(this.props.urlparams, true);
                 window.onscroll = debounce(() => this.feedFetcher.next(this.props.urlparams, false), 10);
-                console.log('handle scroll feed');
                 break;
         }
     }
