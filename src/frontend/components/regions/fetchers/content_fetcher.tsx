@@ -31,7 +31,9 @@ export default abstract class ContentFetcher {
             const queryFilters: string[] = this.applyQueryFilters(urlparams);
             queryFilters.push(`_start=${this.index}`);
             queryFilters.push(`_limit=${this.limit}`);
+            console.log(`${JSON.stringify(queryFilters)}`);
             this.index += this.limit;
+            this.refobject = React.createRef<HTMLDivElement>();
             this.queryRunner(queryFilters);
         }
     }
