@@ -45,8 +45,8 @@ class MainComponent extends React.Component<Props, State> {
     constructor(props: Props) {
         super(props);
 
-        this.booksFetcher = new BooksFetcher(0, 5, (filters: string[]) => props.getBooks(filters, []));
-        this.spacesFetcher = new SpacesFetcher(0, 5, (filters: string[]) => props.getSpaces(filters));
+        this.booksFetcher = new BooksFetcher(0, 10, (filters: string[]) => props.getBooks(filters, []));
+        this.spacesFetcher = new SpacesFetcher(0, 10, (filters: string[]) => props.getSpaces(filters));
         this.feedFetcher = new FeedFetcher(0, 10, (filters: string[]) => props.getFeeds(filters, []));
         this.handleInitialContent();
     }
@@ -75,8 +75,8 @@ class MainComponent extends React.Component<Props, State> {
     }
 
     private handleScroll() {
-        this.booksFetcher = new BooksFetcher(0, 5, (filters: string[]) => this.props.getBooks(filters, []));
-        this.spacesFetcher = new SpacesFetcher(0, 5, (filters: string[]) => this.props.getSpaces(filters));
+        this.booksFetcher = new BooksFetcher(0, 10, (filters: string[]) => this.props.getBooks(filters, []));
+        this.spacesFetcher = new SpacesFetcher(0, 10, (filters: string[]) => this.props.getSpaces(filters));
         this.feedFetcher = new FeedFetcher(0, 10, (filters: string[]) => this.props.getFeeds(filters, []));
 
         const { id } = this.props.urlparams;

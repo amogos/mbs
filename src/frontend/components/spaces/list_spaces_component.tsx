@@ -1,11 +1,12 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom';
+import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { History } from 'history';
 import * as DataTypes from '../../../shared/types';
 import SpaceHolder from './space_holder';
 import { Aux, withStyle } from './../hooks/hooks';
+import { AppPages } from '../../../shared/types';
 
-interface Props {
+interface Props extends RouteComponentProps {
     userSpaces: DataTypes.SpaceType[];
     otherSpaces: DataTypes.SpaceType[];
     userdata: DataTypes.UserRecordType;
@@ -27,7 +28,7 @@ const ListSpacesComponent = (props: Props) => {
     if (!props.userSpaces || !props.otherSpaces) return null;
 
     const onSpaceClicked = (spaceId: number) => {
-        props.history.push(`/books?space=${spaceId}`);
+        props.history.push(`/${AppPages.Books}?space=${spaceId}`);
     };
 
     return (
