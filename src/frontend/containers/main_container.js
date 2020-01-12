@@ -9,6 +9,7 @@ function mapStateToProps(state) {
         booksArray: state.mainReducer.booksArray,
         userSpaces: state.mainReducer.userSpaces,
         otherSpaces: state.mainReducer.otherSpaces,
+        userfeed: state.mainReducer.userfeed,
     };
 }
 

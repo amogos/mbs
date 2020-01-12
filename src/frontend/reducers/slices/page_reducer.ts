@@ -33,7 +33,7 @@ export default function pageReducer(state: any, action: any): any {
             databseInstance
                 .getFeeds(state.userdata.id, [], handleError)
                 .then((result: DataTypes.UserFeedRecordType[]) => {
-                    Store.dispatch(pageAction.refreshState({ userfeed: result, append: true }));
+                    Store.dispatch(pageAction.refreshState({ userfeed: result, append: false }));
                 });
             return Object.assign({}, state, {
                 action: ActionConstants.default.PageActionConstant.ACTION_GOTO_LIST_SPACES,
@@ -66,7 +66,8 @@ export default function pageReducer(state: any, action: any): any {
                 .getFeeds(state.userdata.id, action.filters, handleError)
                 .then((result: DataTypes.UserFeedRecordType[]) => {
                     setTimeout(progressSpinner, 0);
-                    Store.dispatch(pageAction.refreshState({ userfeed: result, append: true }));
+                    const append = (action.filters as string[]).includes('_index=0') === false;
+                    Store.dispatch(pageAction.refreshState({ userfeed: result, append: append }));
                     action.callbacks.forEach((callback: (feeds: DataTypes.UserFeedRecordType[]) => void) =>
                         callback(result),
                     );

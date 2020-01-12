@@ -15,6 +15,7 @@ interface Props {
     booksArray: DataTypes.BookRecordType[];
     userSpaces: DataTypes.SpaceType[];
     otherSpaces: DataTypes.SpaceType[];
+    userFeed: DataTypes.UserFeedRecordType[];
     signUpUser(userInfo: DataTypes.UserValueType): void;
     displayBook(bookId: number): void;
     loginUser(userInfo: DataTypes.UserValueType, onError?: () => void): void;
