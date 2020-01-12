@@ -31,7 +31,7 @@ export default function pageReducer(state: any, action: any): any {
                 });
 
             databseInstance
-                .getFeeds(state.userdata.id, [], handleError)
+                .getFeeds(state.userdata.id, ['_start=0', '_limit=4'], handleError)
                 .then((result: DataTypes.UserFeedRecordType[]) => {
                     Store.dispatch(pageAction.refreshState({ userfeed: result, append: false }));
                 });
@@ -66,7 +66,7 @@ export default function pageReducer(state: any, action: any): any {
                 .getFeeds(state.userdata.id, action.filters, handleError)
                 .then((result: DataTypes.UserFeedRecordType[]) => {
                     setTimeout(progressSpinner, 0);
-                    const append = (action.filters as string[]).includes('_index=0') === false;
+                    const append = (action.filters as string[]).includes('_start=0') === false;
                     Store.dispatch(pageAction.refreshState({ userfeed: result, append: append }));
                     action.callbacks.forEach((callback: (feeds: DataTypes.UserFeedRecordType[]) => void) =>
                         callback(result),
