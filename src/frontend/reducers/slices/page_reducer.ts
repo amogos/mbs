@@ -6,7 +6,6 @@ import Store from '../store';
 import Strings from '../../../shared/constants/string_constant';
 import { message } from 'antd';
 import { handleError } from './../main_reducer';
-import { ActionSheetIOS } from 'react-native';
 
 const { PageActionConstant } = ActionConstants.default;
 
