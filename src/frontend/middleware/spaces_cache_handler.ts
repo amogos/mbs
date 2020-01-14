@@ -13,8 +13,8 @@ export default class SpacesCacheHandler extends CacheHandler {
         if (cacheEntry) {
             return store.dispatch(
                 pageAction.refreshState({
-                    userSpaces: cacheEntry.userSpaces,
-                    otherSpaces: cacheEntry.otherSpaces,
+                    userSpaces: cacheEntry.value.userSpaces,
+                    otherSpaces: cacheEntry.value.otherSpaces,
                     append: this.shouldAppend(action),
                 }),
             );
