@@ -8,7 +8,7 @@ import NotificationsContainer from '../../containers/notifications_component_con
 import ProfileComponent from '../../components/social/profile_component';
 
 interface Props {
-    getSpaces(filters: string[]): void;
+    getSpaces(filters: string[], callbacks: ((result: DataTypes.Spaces) => void)[]): void;
     gotoNotifications(): void;
     signUpUser(userInfo: DataTypes.UserValueType): void;
     loginUser(userInfo: DataTypes.UserValueType, onError?: () => void): void;

@@ -7,7 +7,7 @@ import * as Strings from '../../../shared/constants/string_constant';
 import { History } from 'history';
 
 interface Props extends RouteComponentProps {
-    getSpaces(filters: string[]): void;
+    getSpaces(filters: string[], callbacks: ((result: DataTypes.Spaces) => void)[]): void;
     categories: DataTypes.CategoryRecordType[];
     usercategories: DataTypes.CategoryRecordType[];
     urlparams: DataTypes.UrlParms;
@@ -91,7 +91,7 @@ class CategoryTabs extends React.Component<Props, {}> {
                 <div ref={this.refobj} className="category_tabs">
                     <Tabs tabs={this.GetTabsData()} />
                 </div>
-            </Affix >
+            </Affix>
         );
     }
 }

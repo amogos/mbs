@@ -7,11 +7,12 @@ export default class FeedsCacheHandler extends CacheHandler {
     feedCache = new QueryCache(10);
 
     public handle(store: any, action: any, next: any): any {
-        const cacheKey = this.buildCacheKey(action);
+        const cacheKey = this.getCacheKey(action);
         const cacheEntry = this.feedCache.getEntry(cacheKey);
         if (cacheEntry) {
-            const append = (action.filters as string[]).includes('_start=0') === false;
-            return store.dispatch(pageAction.refreshState({ userfeed: cacheEntry.value, append: append }));
+            return store.dispatch(
+                pageAction.refreshState({ userfeed: cacheEntry.value, append: this.shouldAppend(action) }),
+            );
         } else {
             action.callbacks.push((feeds: DataTypes.UserFeedRecordType[]) => {
                 this.feedCache.addEntry(cacheKey, [...feeds]);

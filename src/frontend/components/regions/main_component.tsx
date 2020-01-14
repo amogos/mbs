@@ -20,7 +20,7 @@ interface Props {
     displayBook(bookId: number): void;
     loginUser(userInfo: DataTypes.UserValueType, onError?: () => void): void;
     getBooks(filters: string[], callbacks: ((books: DataTypes.BookRecordType[]) => void)[]): void;
-    getSpaces(filters: string[]): void;
+    getSpaces(filters: string[], callbacks: ((result: DataTypes.Spaces) => void)[]): void;
     getFeeds(filters: string[], callbacks: ((feeds: DataTypes.UserFeedRecordType[]) => void)[]): void;
 }
 
@@ -45,14 +45,14 @@ class MainComponent extends React.Component<Props, State> {
     constructor(props: Props) {
         super(props);
         this.booksFetcher = new BooksFetcher(0, 10, (filters: string[]) => props.getBooks(filters, []));
-        this.spacesFetcher = new SpacesFetcher(0, 10, (filters: string[]) => props.getSpaces(filters));
+        this.spacesFetcher = new SpacesFetcher(0, 10, (filters: string[]) => props.getSpaces(filters, []));
         this.feedFetcher = new FeedFetcher(0, 10, (filters: string[]) => props.getFeeds(filters, []));
         this.handleScroll();
     }
 
     private handleScroll() {
         this.booksFetcher = new BooksFetcher(0, 10, (filters: string[]) => this.props.getBooks(filters, []));
-        this.spacesFetcher = new SpacesFetcher(0, 10, (filters: string[]) => this.props.getSpaces(filters));
+        this.spacesFetcher = new SpacesFetcher(0, 10, (filters: string[]) => this.props.getSpaces(filters, []));
         this.feedFetcher = new FeedFetcher(0, 10, (filters: string[]) => this.props.getFeeds(filters, []));
 
         const { id } = this.props.urlparams;

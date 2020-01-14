@@ -19,7 +19,7 @@ export default class BooksCacheHandler extends CacheHandler {
                 break;
             case PageActionConstant.ACTION_GOTO_LIST_BOOKS:
                 {
-                    const cacheKey = this.buildCacheKey(action);
+                    const cacheKey = this.getCacheKey(action);
                     const cacheEntry = this.booksCache.getEntry(cacheKey);
                     if (cacheEntry) {
                         return store.dispatch(pageAction.refreshState({ booksArray: cacheEntry.value, append: true }));

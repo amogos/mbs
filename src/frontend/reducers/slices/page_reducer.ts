@@ -28,6 +28,7 @@ export default function pageReducer(state: any, action: any): any {
                     Store.dispatch(pageAction.getBookmarks(state.userdata, []));
                     Store.dispatch(pageAction.refreshState({ userSpaces: result.userSpaces, append: false }));
                     Store.dispatch(pageAction.refreshState({ otherSpaces: result.otherSpaces, append: true }));
+                    action.callbacks.forEach((callback: (result: DataTypes.Spaces) => void) => callback(result));
                 });
 
             databseInstance

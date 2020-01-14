@@ -2,9 +2,10 @@ import * as ActionTypes from '../../../shared/constants/action_constant';
 import * as DataTypes from '../../../shared/types';
 
 class PageAction {
-    public getSpaces = (filters: string[]) => ({
+    public getSpaces = (filters: string[], callbacks: ((result: DataTypes.Spaces) => void)[]) => ({
         type: ActionTypes.default.PageActionConstant.ACTION_GOTO_LIST_SPACES,
         filters,
+        callbacks,
     });
 
     public getBooks = (filters: string[], callbacks: ((books: DataTypes.BookRecordType[]) => void)[]) => ({

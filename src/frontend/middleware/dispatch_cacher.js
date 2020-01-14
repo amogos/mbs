@@ -2,12 +2,14 @@ import * as ActionConstants from './../../shared/constants/action_constant';
 import BookmarksCacheHandler from './bookmarks_cache_handler';
 import BooksCacheHandler from './books_cache_handler';
 import FeedsCacheHandler from './feeds_cache_handler';
+import SpacesCacheHandler from './spaces_cache_handler';
 
 const { PageActionConstant, BookActionConstant } = ActionConstants.default;
 
 const booksCacheHandler = new BooksCacheHandler();
 const feedsCacheHandler = new FeedsCacheHandler();
 const bookmarksCacheHandler = new BookmarksCacheHandler();
+const spacesCacheHandler = new SpacesCacheHandler();
 
 const dispatchCacher = store => next => action => {
     switch (action.type) {
@@ -21,6 +23,8 @@ const dispatchCacher = store => next => action => {
             return bookmarksCacheHandler.handle(store, action, next);
         case PageActionConstant.ACTION_GOTO_LIST_FEED:
             return feedsCacheHandler.handle(store, action, next);
+        case PageActionConstant.ACTION_GOTO_LIST_SPACES:
+            return spacesCacheHandler.handle(store, action, next);
         default:
             break;
     }
