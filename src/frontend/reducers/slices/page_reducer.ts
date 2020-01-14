@@ -94,15 +94,7 @@ export default function pageReducer(state: any, action: any): any {
             const shouldAppendBooks: boolean =
                 action.params.booksArray && state.booksArray && action.params.append === true;
             if (shouldAppendBooks) {
-                const hasDuplicates =
-                    state.booksArray.length > 0 &&
-                    action.params.booksArray.length > 0 &&
-                    state.booksArray[state.booksArray.length - 1].id ===
-                        action.params.booksArray[action.params.booksArray.length - 1].id;
-
-                if (!hasDuplicates) {
-                    action.params.booksArray = state.booksArray.concat(action.params.booksArray);
-                }
+                action.params.booksArray = state.booksArray.concat(action.params.booksArray);
             }
 
             const shouldAppendSpaces: boolean =
