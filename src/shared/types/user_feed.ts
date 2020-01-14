@@ -27,7 +27,7 @@ export const UserFeedTypeToString = (type: number) => {
         case UserFeedType.REQUESTED_BOOK:
             return 'requested book';
         case UserFeedType.ADDED_BOOK:
-            return 'requested book';
+            return 'added book';
         case UserFeedType.REMOVED_BOOK:
             return 'requested book';
         case UserFeedType.FOLLOWING_SPACE:
