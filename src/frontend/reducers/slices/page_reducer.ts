@@ -42,7 +42,6 @@ export default function pageReducer(state: any, action: any): any {
                 .then((result1: DataTypes.QueueNotificationRecordType[]) => {
                     databseInstance.getBooks(action.filters, handleError).then(result2 => {
                         setTimeout(progressSpinner, 0);
-                        Store.dispatch(pageAction.getBookmarks(state.userdata, []));
                         Store.dispatch(pageAction.refreshState({ queueArray: result1, append: false }));
                         Store.dispatch(pageAction.refreshState({ booksArray: result2, append: true }));
                         action.callbacks.forEach((callback: (books: DataTypes.BookRecordType[]) => void) =>
