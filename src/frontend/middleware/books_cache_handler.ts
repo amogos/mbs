@@ -17,7 +17,7 @@ export default class BooksCacheHandler extends CacheHandler {
             case BookActionConstant.ACTION_LIKE_BOOK:
                 this.booksCache.invalidate();
                 break;
-            case PageActionConstant.ACTION_GOTO_LIST_BOOKS:
+            case PageActionConstant.ACTION_GET_BOOKS:
                 {
                     const cacheKey = this.getCacheKey(action);
                     const cacheEntry = this.booksCache.getEntry(cacheKey);

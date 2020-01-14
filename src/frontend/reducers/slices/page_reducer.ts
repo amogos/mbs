@@ -19,7 +19,7 @@ export default function pageReducer(state: any, action: any): any {
             });
             return state;
         }
-        case PageActionConstant.ACTION_GOTO_LIST_SPACES: {
+        case PageActionConstant.ACTION_GET_SPACES: {
             const progressSpinner = message.loading(Strings.MYBOOKSHELVE_ACTION_IN_PROGRESS);
             databseInstance
                 .getSplitSpaces(state.userdata, action.filters, handleError)
@@ -32,10 +32,10 @@ export default function pageReducer(state: any, action: any): any {
                 });
 
             return Object.assign({}, state, {
-                action: ActionConstants.default.PageActionConstant.ACTION_GOTO_LIST_SPACES,
+                action: ActionConstants.default.PageActionConstant.ACTION_GET_SPACES,
             });
         }
-        case PageActionConstant.ACTION_GOTO_LIST_BOOKS: {
+        case PageActionConstant.ACTION_GET_BOOKS: {
             const progressSpinner = message.loading(Strings.MYBOOKSHELVE_ACTION_IN_PROGRESS);
             databseInstance
                 .getQueue(state.userdata.id, handleError)
@@ -52,11 +52,11 @@ export default function pageReducer(state: any, action: any): any {
                 });
 
             return Object.assign({}, state, {
-                action: PageActionConstant.ACTION_GOTO_LIST_BOOKS,
+                action: PageActionConstant.ACTION_GET_BOOKS,
             });
         }
 
-        case PageActionConstant.ACTION_GOTO_LIST_FEED: {
+        case PageActionConstant.ACTION_GET_FEED: {
             const progressSpinner = message.loading(Strings.MYBOOKSHELVE_ACTION_IN_PROGRESS);
             databseInstance
                 .getFeeds(state.userdata.id, action.filters, handleError)
@@ -70,7 +70,7 @@ export default function pageReducer(state: any, action: any): any {
                 });
 
             return Object.assign({}, state, {
-                action: PageActionConstant.ACTION_GOTO_LIST_FEED,
+                action: PageActionConstant.ACTION_GET_FEED,
             });
         }
 

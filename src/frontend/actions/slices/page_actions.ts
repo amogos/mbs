@@ -3,19 +3,19 @@ import * as DataTypes from '../../../shared/types';
 
 class PageAction {
     public getSpaces = (filters: string[], callbacks: ((result: DataTypes.Spaces) => void)[]) => ({
-        type: ActionTypes.default.PageActionConstant.ACTION_GOTO_LIST_SPACES,
+        type: ActionTypes.default.PageActionConstant.ACTION_GET_SPACES,
         filters,
         callbacks,
     });
 
     public getBooks = (filters: string[], callbacks: ((books: DataTypes.BookRecordType[]) => void)[]) => ({
-        type: ActionTypes.default.PageActionConstant.ACTION_GOTO_LIST_BOOKS,
+        type: ActionTypes.default.PageActionConstant.ACTION_GET_BOOKS,
         filters,
         callbacks,
     });
 
     public getFeeds = (filters: string[], callbacks: ((feeds: DataTypes.UserFeedRecordType[]) => void)[]) => ({
-        type: ActionTypes.default.PageActionConstant.ACTION_GOTO_LIST_FEED,
+        type: ActionTypes.default.PageActionConstant.ACTION_GET_FEED,
         filters,
         callbacks,
     });
