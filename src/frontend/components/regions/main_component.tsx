@@ -77,7 +77,8 @@ class MainComponent extends React.Component<Props, State> {
 
     public componentDidUpdate(prevProps: Props) {
         const pageChanged = this.props.urlparams.id !== prevProps.urlparams.id;
-        if (!pageChanged) return;
+        const queryChanged = this.props.urlparams.query !== prevProps.urlparams.query;
+        if (!queryChanged && !pageChanged) return;
         this.handleScroll();
     }
 
