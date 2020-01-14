@@ -51,7 +51,7 @@ export async function getCategoryRecordTypeFromTitle(
 ): Promise<DataTypes.CategoryRecordType> {
     let category = DataTypes.NullCategoryRecordType();
     await axios
-        .get(`${urlCategory}?title=${title}`)
+        .get(`${urlCategory}?title=${encodeURIComponent(title)}`)
         .then(response => {
             if (response.data.length > 0) category = response.data[0];
         })
