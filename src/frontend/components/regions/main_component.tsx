@@ -65,6 +65,7 @@ class MainComponent extends React.Component<Props, State> {
             case undefined:
             case DataTypes.AppPages.Spaces:
                 this.spacesFetcher.next(this.props.urlparams, true);
+                this.feedFetcher.next(this.props.urlparams, true);
                 window.onscroll = debounce(() => this.spacesFetcher.next(this.props.urlparams, false), 10);
                 break;
             case DataTypes.AppPages.Feed:

@@ -31,11 +31,6 @@ export default function pageReducer(state: any, action: any): any {
                     action.callbacks.forEach((callback: (result: DataTypes.Spaces) => void) => callback(result));
                 });
 
-            databseInstance
-                .getFeeds(state.userdata.id, ['_start=0', '_limit=4'], handleError)
-                .then((result: DataTypes.UserFeedRecordType[]) => {
-                    Store.dispatch(pageAction.refreshState({ userfeed: result, append: false }));
-                });
             return Object.assign({}, state, {
                 action: ActionConstants.default.PageActionConstant.ACTION_GOTO_LIST_SPACES,
             });
