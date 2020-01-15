@@ -11,7 +11,13 @@
       "rating": 0,
       "socialnetwork": 1,
       "id": 1,
-      "categories": []
+      "categories": [
+        43,
+        38,
+        44,
+        45,
+        46
+      ]
     },
     {
       "id": 2,
@@ -76,7 +82,10 @@
       "categories": [
         12,
         2,
-        30
+        30,
+        38,
+        40,
+        35
       ],
       "rating": 0,
       "socialnetwork": 4,
@@ -110,7 +119,7 @@
       "isbn10": "3314103484",
       "isbn13": "9783314103483",
       "space": 1,
-      "category": 37,
+      "category": 35,
       "id": 1,
       "return": 1576410736257
     },
@@ -142,7 +151,7 @@
       "isbn10": "0471445509",
       "isbn13": "0471445509",
       "space": 5,
-      "category": 44,
+      "category": 38,
       "id": 4
     },
     {
@@ -152,7 +161,7 @@
       "isbn10": "0062641549",
       "isbn13": "9780062641540",
       "space": 5,
-      "category": 37,
+      "category": 35,
       "id": 5
     },
     {
@@ -162,7 +171,7 @@
       "isbn10": "1074402650",
       "isbn13": "9781074402655",
       "space": 5,
-      "category": 37,
+      "category": 35,
       "id": 6
     },
     {
@@ -172,7 +181,7 @@
       "isbn10": "3952506907",
       "isbn13": "9783952506905",
       "space": 5,
-      "category": 37,
+      "category": 35,
       "id": 7
     },
     {
@@ -182,7 +191,7 @@
       "isbn10": "1250196620",
       "isbn13": "1250196620",
       "space": 5,
-      "category": 37,
+      "category": 35,
       "id": 8
     },
     {
@@ -192,7 +201,7 @@
       "isbn10": "1524763136",
       "isbn13": "1524763136",
       "space": 5,
-      "category": 37,
+      "category": 35,
       "id": 9
     },
     {
@@ -202,7 +211,7 @@
       "isbn10": "144947425X",
       "isbn13": "9781449474256",
       "space": 5,
-      "category": 37,
+      "category": 35,
       "id": 10
     },
     {
@@ -212,7 +221,7 @@
       "isbn10": "0099590085",
       "isbn13": "9780099590088",
       "space": 5,
-      "category": 37,
+      "category": 35,
       "id": 11
     },
     {
@@ -222,7 +231,7 @@
       "isbn10": "1784703931",
       "isbn13": "9781784703936",
       "space": 5,
-      "category": 37,
+      "category": 35,
       "id": 12
     },
     {
@@ -232,7 +241,7 @@
       "isbn10": "0141033576",
       "isbn13": "0141033576",
       "space": 5,
-      "category": 37,
+      "category": 35,
       "id": 13
     },
     {
@@ -242,7 +251,7 @@
       "isbn10": "0141033576",
       "isbn13": "9780061241895",
       "space": 5,
-      "category": 37,
+      "category": 35,
       "id": 14
     },
     {
@@ -252,7 +261,7 @@
       "isbn10": "1847941834",
       "isbn13": "9781847941831",
       "space": 5,
-      "category": 37,
+      "category": 35,
       "id": 15
     },
     {
@@ -262,7 +271,7 @@
       "isbn10": "0399175210",
       "isbn13": "0399175210",
       "space": 5,
-      "category": 37,
+      "category": 35,
       "id": 16
     },
     {
@@ -272,7 +281,7 @@
       "isbn10": "0141036141",
       "isbn13": "9780141036144",
       "space": 5,
-      "category": 37,
+      "category": 35,
       "id": 17
     },
     {
@@ -282,7 +291,7 @@
       "isbn10": "0987166557",
       "isbn13": "9780987166555",
       "space": 5,
-      "category": 37,
+      "category": 35,
       "id": 18
     },
     {
@@ -292,7 +301,7 @@
       "isbn10": "0345816021",
       "isbn13": "0345816021",
       "space": 5,
-      "category": 37,
+      "category": 35,
       "id": 19
     },
     {
@@ -302,7 +311,7 @@
       "isbn10": "1612680194",
       "isbn13": "9781612680194",
       "space": 5,
-      "category": 37,
+      "category": 35,
       "id": 20
     },
     {
@@ -312,7 +321,7 @@
       "isbn10": "1612680194",
       "isbn13": "9781612680194",
       "space": 5,
-      "category": 45,
+      "category": 35,
       "id": 21
     },
     {
@@ -322,7 +331,7 @@
       "isbn10": "9781591846444",
       "isbn13": "9781591846444",
       "space": 5,
-      "category": 46,
+      "category": 38,
       "id": 22
     }
   ],
@@ -539,7 +548,7 @@
     },
     {
       "title": "stoics",
-      "id": 40,
+      "id": 37,
       "count": 0
     },
     {
@@ -549,28 +558,8 @@
     },
     {
       "title": "juvenile fiction",
-      "id": 42,
+      "id": 37,
       "count": 0
-    },
-    {
-      "title": "business & economics",
-      "id": 43,
-      "count": 0
-    },
-    {
-      "title": "business & economics",
-      "count": 0,
-      "id": 44
-    },
-    {
-      "title": "business & economics",
-      "count": 0,
-      "id": 45
-    },
-    {
-      "title": "business & economics",
-      "count": 0,
-      "id": 46
     }
   ],
   "spaces": [
@@ -1185,7 +1174,7 @@
       "format": 1,
       "category": [
         {
-          "id": 44,
+          "id": 38,
           "title": "business & economics",
           "count": 0
         }
@@ -1237,7 +1226,7 @@
       "format": 1,
       "category": [
         {
-          "id": 37,
+          "id": 35,
           "title": "nonfiction(general)",
           "count": 0
         }
@@ -1390,7 +1379,7 @@
       "format": 1,
       "category": [
         {
-          "id": 37,
+          "id": 38,
           "title": "business & economics",
           "count": 0
         }
@@ -1543,7 +1532,7 @@
       "format": 1,
       "category": [
         {
-          "id": 45,
+          "id": 38,
           "title": "business & economics",
           "count": 0
         }
@@ -1569,7 +1558,7 @@
       "format": 1,
       "category": [
         {
-          "id": 46,
+          "id": 38,
           "title": "business & economics",
           "count": 0
         }
