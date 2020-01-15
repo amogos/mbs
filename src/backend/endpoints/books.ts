@@ -59,7 +59,7 @@ export async function getBooks(
     const applyFilters = filters && filters.length > 0;
 
     if (applyFilters) {
-        filterdBooksUrl += '?' + filters.join('&');
+        filterdBooksUrl += encodeURI('?' + filters.join('&'));
     }
 
     let responseArray: DataTypes.BookRawRecordType[] = [];

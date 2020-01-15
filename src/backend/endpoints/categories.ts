@@ -1,6 +1,7 @@
 import axios from 'axios';
 import * as DataTypes from '../../shared/types';
 import { urlCategory } from './constants';
+import { getBooks } from './books';
 
 export async function getArrayCategories(
     categories: number[],
@@ -26,10 +27,17 @@ export async function getCategories(onError: (resultCode: number) => void): Prom
     let categoryArray: DataTypes.CategoryRecordType[] = [];
     await axios
         .get(urlCategory)
-        .then(response => (categoryArray = response.data))
+        .then(response => {
+            categoryArray = response.data;
+        })
         .catch(error => {
             onError(error);
         });
+
+    for (let i = 0; i < categoryArray.length; i++) {
+        const categoryBooks = await getBooks([`category=${categoryArray[i].id}`], onError);
+        categoryArray[i].count = categoryBooks.length;
+    }
     return categoryArray;
 }
 
