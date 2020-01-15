@@ -14,16 +14,16 @@ const spacesCacheHandler = new SpacesCacheHandler();
 const dispatchCacher = store => next => action => {
     switch (action.type) {
         case BookActionConstant.ACTION_ADD_BOOK:
-        case PageActionConstant.ACTION_GOTO_LIST_BOOKS:
+        case PageActionConstant.ACTION_GET_BOOKS:
         case BookActionConstant.ACTION_LIKE_BOOK:
             return booksCacheHandler.handle(store, action, next);
         case BookActionConstant.ACTION_BOOKMARK_BOOK:
         case BookActionConstant.ACTION_UNBOOKMARK_BOOK:
         case PageActionConstant.ACTION_GET_BOOKMARKS:
             return bookmarksCacheHandler.handle(store, action, next);
-        case PageActionConstant.ACTION_GOTO_LIST_FEED:
+        case PageActionConstant.ACTION_GET_FEED:
             return feedsCacheHandler.handle(store, action, next);
-        case PageActionConstant.ACTION_GOTO_LIST_SPACES:
+        case PageActionConstant.ACTION_GET_SPACES:
             return spacesCacheHandler.handle(store, action, next);
         default:
             break;
