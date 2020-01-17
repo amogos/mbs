@@ -7,15 +7,15 @@ import { History } from 'history';
 import { AppPages } from '../../../shared/types';
 
 interface Props {
-    userfeed: DataTypes.UserFeedRecordType[];
+    userFeed: DataTypes.UserFeedRecordType[];
     history: History;
 }
 
 const UserFeedComponentSmall = (props: Props) => {
     const nVisibleItems = 4;
-    const { userfeed } = props;
+    const { userFeed } = props;
 
-    if (!userfeed) {
+    if (!userFeed) {
         return null;
     }
 
@@ -25,9 +25,9 @@ const UserFeedComponentSmall = (props: Props) => {
                 <h2>News Feed</h2>
             </div>
 
-            {props.userfeed === undefined
+            {props.userFeed === undefined
                 ? null
-                : React.Children.toArray(userfeed.slice(0, nVisibleItems).map(item => <FeedItem item={item} />))}
+                : React.Children.toArray(userFeed.slice(0, nVisibleItems).map(item => <FeedItem item={item} />))}
         </Aux>
     );
 };

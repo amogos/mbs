@@ -3,7 +3,7 @@ import UserFeedComponentSmall from '../components/user_feed/user_feed_component_
 
 function mapStateToProps(state) {
     return {
-        userfeed: state.mainReducer.userfeed,
+        userFeed: state.mainReducer.userFeed,
     };
 }
 const mapDispatchToProps = dispatch => {

@@ -8,6 +8,7 @@ import BooksFetcher from './fetchers/books_fetcher';
 import SpacesFetcher from './fetchers/spaces_fetcher';
 import FeedFetcher from './fetchers/feed_fetcher';
 import debounce from 'lodash.debounce';
+import { ContentHolder } from './fetchers/content_fetcher';
 
 interface Props {
     userdata: DataTypes.UserRecordType;
@@ -37,7 +38,7 @@ enum ClassNames {
     normal = 'main_component',
 }
 
-class MainComponent extends React.Component<Props, State> {
+class MainComponent extends React.Component<Props, State> implements ContentHolder {
     booksFetcher: BooksFetcher;
     spacesFetcher: SpacesFetcher;
     feedFetcher: FeedFetcher;
@@ -50,6 +51,17 @@ class MainComponent extends React.Component<Props, State> {
         this.handleScroll();
     }
 
+    getContentHolder(): any[] {
+        const { id } = this.props.urlparams;
+        switch (id) {
+            case DataTypes.AppPages.Books:
+                return this.props.booksArray;
+            case DataTypes.AppPages.Feed:
+                return this.props.userFeed;
+        }
+        return this.props.otherSpaces;
+    }
+
     private handleScroll() {
         this.booksFetcher = new BooksFetcher(0, 10, (filters: string[]) => this.props.getBooks(filters, []));
         this.spacesFetcher = new SpacesFetcher(0, 10, (filters: string[]) => this.props.getSpaces(filters, []));
@@ -59,18 +71,18 @@ class MainComponent extends React.Component<Props, State> {
 
         switch (id) {
             case DataTypes.AppPages.Books:
-                this.booksFetcher.next(this.props.urlparams, true);
-                window.onscroll = debounce(() => this.booksFetcher.next(this.props.urlparams, false), 10);
+                this.booksFetcher.next(this.props.urlparams, true, this);
+                window.onscroll = debounce(() => this.booksFetcher.next(this.props.urlparams, false, this), 10);
                 break;
             case undefined:
             case DataTypes.AppPages.Spaces:
-                this.spacesFetcher.next(this.props.urlparams, true);
-                this.feedFetcher.next(this.props.urlparams, true);
-                window.onscroll = debounce(() => this.spacesFetcher.next(this.props.urlparams, false), 10);
+                this.spacesFetcher.next(this.props.urlparams, true, this);
+                this.feedFetcher.next(this.props.urlparams, true, this);
+                window.onscroll = debounce(() => this.spacesFetcher.next(this.props.urlparams, false, this), 10);
                 break;
             case DataTypes.AppPages.Feed:
-                this.feedFetcher.next(this.props.urlparams, true);
-                window.onscroll = debounce(() => this.feedFetcher.next(this.props.urlparams, false), 10);
+                this.feedFetcher.next(this.props.urlparams, true, this);
+                window.onscroll = debounce(() => this.feedFetcher.next(this.props.urlparams, false, this), 10);
                 break;
         }
     }

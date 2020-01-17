@@ -6,17 +6,17 @@ import FeedItem from './feed_item';
 import { History } from 'history';
 
 interface Props {
-    userfeed: DataTypes.UserFeedRecordType[];
+    userFeed: DataTypes.UserFeedRecordType[];
     history: History;
 }
 
 const UserFeedComponentBig = (props: Props) => {
     return (
         <Aux>
-            {props.userfeed === undefined
+            {props.userFeed === undefined
                 ? null
                 : React.Children.toArray(
-                      props.userfeed.map((item, index) => (
+                      props.userFeed.map((item, index) => (
                           <div>
                               <p>{index}</p>
                               <FeedItem item={item} />

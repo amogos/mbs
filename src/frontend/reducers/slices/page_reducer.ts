@@ -53,7 +53,7 @@ export default function pageReducer(state: any, action: any): any {
                 .then((result: DataTypes.UserFeedRecordType[]) => {
                     setTimeout(progressSpinner, 0);
                     const append = (action.filters as string[]).includes('_start=0') === false;
-                    Store.dispatch(pageAction.refreshState({ userfeed: result, append: append }));
+                    Store.dispatch(pageAction.refreshState({ userFeed: result, append: append }));
                     action.callbacks.forEach((callback: (feeds: DataTypes.UserFeedRecordType[]) => void) =>
                         callback(result),
                     );
@@ -103,9 +103,9 @@ export default function pageReducer(state: any, action: any): any {
                 action.params.otherSpaces = state.otherSpaces.concat(action.params.otherSpaces);
             }
 
-            const shouldAppendFeed: boolean = state.userfeed && action.params.append === true && action.params.userfeed;
+            const shouldAppendFeed: boolean = state.userFeed && action.params.append === true && action.params.userFeed;
             if (shouldAppendFeed) {
-                action.params.userfeed = state.userfeed.concat(action.params.userfeed);
+                action.params.userFeed = state.userFeed.concat(action.params.userFeed);
             }
 
             return Object.assign({}, state, action.params);
