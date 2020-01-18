@@ -19,6 +19,13 @@ export default function pageReducer(state: any, action: any): any {
             });
             return state;
         }
+        case PageActionConstant.ACTION_GET_RENTED_BOOKS: {
+            databseInstance.getBooksRentedByUser(state.userdata, handleError).then(result => {
+                Store.dispatch(pageAction.refreshState({ userRentedBooks: result, append: false }));
+                action.callbacks.forEach((callback: (books: DataTypes.BookRecordType[]) => void) => callback(result));
+            });
+            return state;
+        }
         case PageActionConstant.ACTION_GET_SPACES: {
             const progressSpinner = message.loading(Strings.MYBOOKSHELVE_ACTION_IN_PROGRESS);
             databseInstance

@@ -3,6 +3,7 @@
 @import './frontend/components/book_actions/book_actions.css';
 @import './frontend/components/book_preview/book_preview.css';
 @import './frontend/components/bookmarks/bookmarks.css';
+@import './frontend/components/rented_books/rented_books.css';
 @import './frontend/components/books_listing/books_listing.css';
 @import './frontend/components/display_book/display_book.css';
 @import './frontend/components/errors/errors.css';

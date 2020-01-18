@@ -1,0 +1,28 @@
+.list_rented_books_component {
+    display: flex;
+    flex-direction: column;
+    width: 25rem;
+    background-color: rgba(117, 92, 207, 0.329);
+    margin-top: 5em;
+    padding-right: 5rem;
+    padding-bottom: 5rem;
+}
+
+.list_rented_books_component .banner {
+    height: 6rem;
+    width: 25rem;
+    margin-bottom: 1rem;
+    background-color: rgb(156, 144, 90);
+    text-align: center;
+}
+
+.rented_book {
+    display: flex;
+    flex-direction: row;
+    padding: 2em;
+    text-align: center;
+}
+
+.rented_book:hover {
+    cursor: pointer;
+}

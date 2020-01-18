@@ -93,14 +93,7 @@
     }
   ],
   "queues": [],
-  "returns": [
-    {
-      "bookId": 1,
-      "userId": -1,
-      "ownerId": 1,
-      "id": 1
-    }
-  ],
+  "returns": [],
   "languages": [
     {
       "id": 1,
@@ -135,14 +128,14 @@
     },
     {
       "owner": 1,
-      "holder": -1,
-      "state": "state.book.idle",
+      "holder": 5,
+      "state": "state.book.in.transit.to.holder",
       "isbn10": "1784703931",
       "isbn13": "9781784703936",
       "space": 1,
       "category": 38,
       "id": 3,
-      "return": 1578575042286
+      "return": 1579394811627
     },
     {
       "owner": 5,
@@ -1046,6 +1039,13 @@
       "date": 1578994867229,
       "book": 22,
       "id": 56
+    },
+    {
+      "type": 4,
+      "userId": 5,
+      "date": 1579360210659,
+      "book": 3,
+      "id": 57
     }
   ],
   "formats": [

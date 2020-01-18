@@ -99,3 +99,10 @@ export async function getBookRecordTypeFromId(
     const item: DataTypes.BookRawRecordType = await getBookRawRecordTypeFromId(id, onError);
     return await getBookRecordTypeFromRaw(item, onError);
 }
+
+export async function getBooksRentedByUser(
+    userdata: DataTypes.UserRecordType,
+    onError: (resultCode: number) => void,
+): Promise<DataTypes.BookRecordType[]> {
+    return await getBooks([`holder=${userdata.id}`], onError);
+}

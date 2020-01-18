@@ -11,7 +11,8 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = dispatch => {
     return {
-        getBookmarks: (filters, callbacks) => dispatch(pageAction.getBookmarks(filters, callbacks)),
+        getBookmarks: (userdata, callbacks) => dispatch(pageAction.getBookmarks(userdata, callbacks)),
+        getRentedBooks: (userdata, callbacks) => dispatch(pageAction.getRentedBooks(userdata, callbacks)),
         dispatch,
     };
 };

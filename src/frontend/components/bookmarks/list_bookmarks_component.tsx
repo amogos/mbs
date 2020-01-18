@@ -1,6 +1,6 @@
 import React from 'react';
 import * as DataTypes from '../../../shared/types';
-import { Button, Icon, Affix } from 'antd';
+import { Button, Icon } from 'antd';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { History } from 'history';
 
@@ -43,16 +43,14 @@ const ListBookmarksComponent = (props: Props) => {
     }
 
     return (
-        <Affix offsetTop={150}>
-            <div className="list_bookmarks_component">
-                <div className="banner">
-                    <h2>Reading List</h2>
-                </div>
-                {React.Children.toArray(
-                    reverseBookmarksArray.slice(0, props.nVisibleItems).map(book => Bookmark(props, book)),
-                )}
+        <div className="list_bookmarks_component">
+            <div className="banner">
+                <h2>Bookmarks</h2>
             </div>
-        </Affix>
+            {React.Children.toArray(
+                reverseBookmarksArray.slice(0, props.nVisibleItems).map(book => Bookmark(props, book)),
+            )}
+        </div>
     );
 };
 

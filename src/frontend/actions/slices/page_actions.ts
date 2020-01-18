@@ -14,6 +14,15 @@ class PageAction {
         callbacks,
     });
 
+    public getRentedBooks = (
+        userdata: DataTypes.UserRecordType,
+        callbacks: ((books: DataTypes.BookRecordType[]) => void)[],
+    ) => ({
+        type: ActionTypes.default.PageActionConstant.ACTION_GET_RENTED_BOOKS,
+        userdata,
+        callbacks,
+    });
+
     public getFeeds = (filters: string[], callbacks: ((feeds: DataTypes.UserFeedRecordType[]) => void)[]) => ({
         type: ActionTypes.default.PageActionConstant.ACTION_GET_FEED,
         filters,
