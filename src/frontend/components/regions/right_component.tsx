@@ -11,6 +11,7 @@ interface Props extends RouteComponentProps {
     userdata: DataTypes.UserRecordType;
     urlparams: DataTypes.UrlParms;
     history: History;
+    getBookmarks(user: DataTypes.UserRecordType, callbacks: ((books: DataTypes.BookRecordType[]) => void)[]): void;
 }
 
 class RightComponent extends React.Component<Props, {}> {
@@ -19,6 +20,24 @@ class RightComponent extends React.Component<Props, {}> {
     constructor(props: Props) {
         super(props);
         this.refobject = React.createRef<HTMLDivElement>();
+    }
+
+    public componentDidUpdate(prevProps: Props) {
+        const pageChanged = this.props.urlparams.id !== prevProps.urlparams.id;
+        const queryChanged = this.props.urlparams.query !== prevProps.urlparams.query;
+
+        if (!queryChanged && !pageChanged) return;
+
+        const { id } = this.props.urlparams;
+
+        switch (id) {
+            case AppPages.Spaces:
+            case undefined:
+                this.props.getBookmarks(this.props.userdata, []);
+                break;
+            default:
+                break;
+        }
     }
 
     public render() {

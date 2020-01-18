@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import RightComponent from '../components/regions/right_component';
+import { pageAction } from './../actions';
 
 function mapStateToProps(state) {
     return {
@@ -8,4 +9,11 @@ function mapStateToProps(state) {
     };
 }
 
-export default connect(mapStateToProps, null)(RightComponent);
+const mapDispatchToProps = dispatch => {
+    return {
+        getBookmarks: (filters, callbacks) => dispatch(pageAction.getBookmarks(filters, callbacks)),
+        dispatch,
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(RightComponent);
