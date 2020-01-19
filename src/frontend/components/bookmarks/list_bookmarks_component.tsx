@@ -3,6 +3,7 @@ import * as DataTypes from '../../../shared/types';
 import { Button, Icon } from 'antd';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { History } from 'history';
+import { requiresCondition } from '../hooks/hooks';
 
 interface Props extends RouteComponentProps {
     userdata: DataTypes.UserRecordType;
@@ -13,16 +14,12 @@ interface Props extends RouteComponentProps {
 }
 
 const Bookmark = (props: Props, book: DataTypes.BookRecordType) => {
-    const onBookmarkClicked = () => {
-        props.history.push(`/book?id=${book.id}`);
-    };
-
     return (
         <div className="bookmark">
             <Button type="link" onClick={() => props.unbookmarkBook(book.id, () => {})}>
                 <Icon type="minus-circle" />
             </Button>
-            <div onClick={onBookmarkClicked}>
+            <div onClick={() => props.history.push(`/book?id=${book.id}`)}>
                 <img height={64} src={book.image} alt="" />
                 {book.title}
             </div>
@@ -31,31 +28,26 @@ const Bookmark = (props: Props, book: DataTypes.BookRecordType) => {
 };
 
 const ListBookmarksComponent = (props: Props) => {
-    if (props.userBookmarks === undefined || props.userBookmarks.length === 0) {
-        return null;
-    }
-
     const reverseBookmarksArray = props.userBookmarks.splice(0).reverse();
 
-    let { nVisibleItems } = props;
-    if (nVisibleItems < 0) {
-        nVisibleItems = props.userBookmarks.length;
-    }
+    const { nVisibleItems } = props;
 
     return (
         <div className="list_bookmarks_component">
             <div className="banner">
                 <h2>Bookmarks</h2>
             </div>
-            {React.Children.toArray(
-                reverseBookmarksArray.slice(0, props.nVisibleItems).map(book => Bookmark(props, book)),
-            )}
+            {React.Children.toArray(reverseBookmarksArray.slice(0, nVisibleItems).map(book => Bookmark(props, book)))}
         </div>
     );
 };
 
 ListBookmarksComponent.defaultProps = {
-    nVisibleItems: -1,
+    nVisibleItems: 4,
 };
 
-export default withRouter(ListBookmarksComponent);
+const validateProps = (props: Props) => {
+    return props.userBookmarks && props.userBookmarks.length > 0;
+};
+
+export default withRouter(requiresCondition(ListBookmarksComponent, (props: Props) => validateProps(props)));

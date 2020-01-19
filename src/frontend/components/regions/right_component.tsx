@@ -52,7 +52,7 @@ class RightComponent extends React.Component<Props, {}> {
                 return (
                     <div className="right_component">
                         <UserFeedSmall />
-                        <BookmarksList nVisibleItems={4} />
+                        <BookmarksList />
                         <RentedBooksList />
                     </div>
                 );
