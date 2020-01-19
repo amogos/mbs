@@ -1,5 +1,6 @@
 import axios from 'axios';
-import { urlQueues, OneDayMilliseconds } from './constants';
+import { urlQueues } from './constants';
+import { OneDayMilliseconds } from './../../shared/constants/time_constant';
 import * as DataTypes from '../../shared/types';
 
 export async function getQueue(
@@ -24,7 +25,7 @@ export async function getFutureAvailabilityForBookInMilliseconds(
     book: DataTypes.BookRawRecordType,
     onError: (resultCode: number) => void,
 ): Promise<number> {
-    let returnDateMilliseconds = book.return ? book.return : 0;
+    let returnDateMilliseconds = book.returndate ? book.returndate : 0;
     await axios
         .get(`${urlQueues}?bookId=${book.id}`)
         .then(response => {

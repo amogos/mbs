@@ -1,6 +1,7 @@
 import axios from 'axios';
 import * as DataTypes from '../../../shared/types';
-import { urlBooks, urlQueues, OneDayMilliseconds } from '../constants';
+import { OneDayMilliseconds } from '../../../shared/constants/time_constant';
+import { urlBooks, urlQueues } from './../constants';
 import * as BookStateTypes from '../../../shared/constants/book_states_constant';
 
 export async function confirmRental(
@@ -25,7 +26,8 @@ export async function confirmRental(
         ...bookResponse.data,
         state: BookStateTypes.default.STATE_BOOK_IN_TRANSIT_TO_HOLDER,
         holder: rental.userId,
-        return: Date.now() + rental.duration * OneDayMilliseconds,
+        returndate: Date.now() + rental.duration * OneDayMilliseconds,
+        requestdate: Date.now(),
     };
     await axios.put(bookIdUrl, value).catch(error => {
         onError(error);

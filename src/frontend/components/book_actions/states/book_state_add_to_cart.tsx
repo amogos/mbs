@@ -14,15 +14,12 @@ interface Props {
 const BookStateAddToCart = (param: Props) => {
     const [visible, setVisible] = useState(false);
     const { BookStateStrings } = Strings.default;
-    const showBookAvailability = param.book.holder.id > 0 && param.book.return && Date.now() < param.book.return;
+    const showBookAvailability =
+        param.book.holder.id > 0 && param.book.returndate && Date.now() < param.book.returndate;
 
     return (
         <div>
-            <Button
-                onClick={() => {
-                    setVisible(true);
-                }}
-            >
+            <Button onClick={() => setVisible(true)}>
                 <IconText type="shopping-cart" text={BookStateStrings.REQUEST_BOOK} />
             </Button>
             {showBookAvailability ? <BookAvailability book={param.book} /> : null}

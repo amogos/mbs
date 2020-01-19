@@ -3,6 +3,8 @@ import * as DataTypes from '../../../shared/types';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { requiresCondition } from '../hooks/hooks';
 import { History } from 'history';
+import { Progress } from 'antd';
+import { OneDayMilliseconds } from './../../../shared/constants/time_constant';
 
 interface Props extends RouteComponentProps {
     userdata: DataTypes.UserRecordType;
@@ -11,10 +13,25 @@ interface Props extends RouteComponentProps {
 }
 
 const RentedBook = (props: Props, book: DataTypes.BookRecordType) => {
+    let percent = 100;
+    let elapsedDurationInDays = 0;
+
+    if (book.requestdate && book.returndate && Date.now() < book.returndate) {
+        const rentalDurationInDays = Math.round((book.returndate - book.requestdate) / OneDayMilliseconds);
+
+        elapsedDurationInDays = (Date.now() - book.requestdate) / OneDayMilliseconds;
+        alert(elapsedDurationInDays);
+        percent = (100 * elapsedDurationInDays) / rentalDurationInDays;
+    }
     return (
         <div className="rented_book" onClick={() => props.history.push(`/book?id=${book.id}`)}>
             <img height={64} src={book.image} alt="" />
             {book.title}
+            <Progress
+                type="circle"
+                percent={percent}
+                format={elapsedDurationInDays => `${elapsedDurationInDays} Days`}
+            />
         </div>
     );
 };

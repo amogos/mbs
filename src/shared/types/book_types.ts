@@ -17,7 +17,8 @@ export interface BookValueType {
     isbn10: string;
     isbn13: string;
     category: CategoryRecordType;
-    return?: number;
+    returndate?: number;
+    requestdate?: number;
     contentScore?: number;
     numReviews?: number;
     format: number;
@@ -66,7 +67,8 @@ export interface BookRecordType {
     space: SpaceType;
     isbn10: string;
     isbn13: string;
-    return?: number;
+    returndate?: number;
+    requestdate?: number;
     contentScore?: number;
     numReviews?: number;
     description: string;
@@ -91,7 +93,8 @@ export const NullBookRecordType = (): BookRecordType => {
         space: NullSpaceType(),
         isbn10: '',
         isbn13: '',
-        return: 0,
+        returndate: 0,
+        requestdate: 0,
         contentScore: 0,
         numReviews: 0,
         description: '',
@@ -108,7 +111,8 @@ export interface BookRawValueType {
     state: string;
     space: number;
     category: number;
-    return?: number;
+    returndate?: number;
+    requestdate?: number;
 }
 
 export interface BookRawRecordType extends BookRawValueType {

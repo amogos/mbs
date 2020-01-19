@@ -11,5 +11,3 @@ export const urlFormats = 'http://localhost:3001/formats';
 export const urlBooksDescriptions = 'http://localhost:3001/books_descriptions';
 export const urlBooksLikes = 'http://localhost:3001/books_likes';
 export const urlUserFeed = 'http://localhost:3001/user_feed';
-
-export const OneDayMilliseconds = 24 * 60 * 60 * 1000;

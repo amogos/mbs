@@ -41,7 +41,8 @@ export async function getBookRecordTypeFromRaw(
     result.isbn10 = item.isbn10;
     result.isbn13 = item.isbn13;
     result.format = format.type;
-    result.return = returnDateMilliseconds;
+    result.returndate = returnDateMilliseconds;
+    result.requestdate = item.requestdate;
     result.contentScore = reviewStatistics.contentScore;
     result.numReviews = reviewStatistics.numReviews;
     result.description = description.description;

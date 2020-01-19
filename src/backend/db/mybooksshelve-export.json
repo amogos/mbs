@@ -107,14 +107,13 @@
   "books": [
     {
       "owner": 1,
-      "holder": 4,
-      "state": "state.book.in.transit.to.holder",
+      "holder": -1,
+      "state": "state.book.idle",
       "isbn10": "3314103484",
       "isbn13": "9783314103483",
       "space": 1,
       "category": 35,
       "id": 1,
-      "return": 1576410736257
     },
     {
       "owner": 1,
@@ -128,14 +127,14 @@
     },
     {
       "owner": 1,
-      "holder": 5,
-      "state": "state.book.in.transit.to.holder",
+      "holder": -1,
+      "state": "state.book.idle",
       "isbn10": "1784703931",
       "isbn13": "9781784703936",
       "space": 1,
       "category": 38,
       "id": 3,
-      "return": 1579394811627
+      
     },
     {
       "owner": 5,

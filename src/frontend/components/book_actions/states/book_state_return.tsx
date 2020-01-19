@@ -42,7 +42,7 @@ const BookStateReturn = (props: Props) => {
             <Button onClick={() => setShowRatingModal(true)}>
                 <IconText type="import" text={BookStateStrings.RETURN_BOOK} />
             </Button>
-            <DatePicker defaultValue={moment(props.book.return)} disabled />
+            <DatePicker defaultValue={moment(props.book.returndate)} disabled />
             <BookRating
                 avatar_picture={props.userdata.picture}
                 visible={showRatingModal}
