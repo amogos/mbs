@@ -1,8 +1,8 @@
 import React from 'react';
-import BannerContainer from '../frontend/containers/banner_container';
-import MainContainer from '../frontend/containers/main_container';
-import RightContainer from '../frontend/containers/right_container';
-import LeftContainer from '../frontend/containers/left_container';
+import BannerContainer from '../containers/banner_container';
+import MainContainer from '../containers/main_container';
+import RightContainer from '../containers/right_container';
+import LeftContainer from '../containers/left_container';
 
 export const DisplayBook = () => {
     return (

@@ -3,9 +3,9 @@ import { DisplayBookListing } from './display_book_listing';
 import { DisplaySpaceListing } from './display_space_listing';
 import { DisplayProfileSettings } from './display_profile_settings';
 import { DisplayFeed } from './display_feed';
-import { PageNotFound } from '../frontend/components/errors/page_not_found';
-import * as DataTypes from '../shared/types';
-import { AppPages } from '../shared/types';
+import { PageNotFound } from '../components/errors/page_not_found';
+import * as DataTypes from '../../shared/types';
+import { AppPages } from '../../shared/types';
 
 export const DisplayContent = (page: DataTypes.AppPages) => {
     switch (page) {

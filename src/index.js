@@ -6,7 +6,7 @@ import { Provider } from 'react-redux';
 import Store from './frontend/reducers/store';
 import './main.css';
 import 'antd/dist/antd.css';
-import { DisplayContent } from './screens/display_content';
+import { DisplayContent } from './frontend/screens/display_content';
 import { pageAction } from './frontend/actions';
 
 const App = routeParams => {
