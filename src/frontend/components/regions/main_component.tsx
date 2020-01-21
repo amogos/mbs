@@ -9,6 +9,7 @@ import SpacesFetcher from './fetchers/spaces_fetcher';
 import FeedFetcher from './fetchers/feed_fetcher';
 import debounce from 'lodash.debounce';
 import { ContentHolder, ContentHolderType } from './fetchers/content_fetcher';
+import SubscriptionComponent from './../../containers/subscription_container';
 
 interface Props {
     userdata: DataTypes.UserRecordType;
@@ -117,7 +118,7 @@ class MainComponent extends React.Component<Props, State> implements ContentHold
                 return <div className={ClassNames.normal}>{this.feedFetcher.render()}</div>;
             }
             case DataTypes.AppPages.Subscription: {
-                return <div>Edit subscription</div>;
+                return <SubscriptionComponent />;
             }
             default:
                 return <div />;
