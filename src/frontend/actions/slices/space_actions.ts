@@ -1,15 +1,21 @@
 import * as ActionTypes from '../../../shared/constants/action_constant';
 
 class SpaceAction {
-    public subscribeSpace = (spaceId: number, callback: () => void) => ({
+    public enterSubscribeSpace = (spaceId: number) => ({
+        type: ActionTypes.default.SpaceActionConstant.ENTER_SUBSCRIBE,
+        spaceId,
+    });
+    public subscribeSpace = (spaceId: number) => ({
         type: ActionTypes.default.SpaceActionConstant.SUBSCRIBE_SPACE,
         spaceId,
-        callback,
     });
-    public unfollowSpace = (spaceId: number, callback: () => void) => ({
+    public unfollowSpace = (spaceId: number) => ({
         type: ActionTypes.default.SpaceActionConstant.UNSUBSCRIBE_SPACE,
         spaceId,
-        callback,
+    });
+    public exitSubscribeSpace = (spaceId: number) => ({
+        type: ActionTypes.default.SpaceActionConstant.EXIT_SUBSCRIBE,
+        spaceId,
     });
 }
 
