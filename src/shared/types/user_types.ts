@@ -5,6 +5,8 @@ export interface UserValueType {
     email: string;
     picture: string;
     following: number[];
+    subscriptions: number[];
+    pendingSubscriptions: number[];
     bookmarks: number[];
     categories: number[];
     rating: number;
@@ -18,6 +20,8 @@ export const NullUserValueType = (): UserValueType => {
         email: '',
         picture: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
         following: [],
+        subscriptions: [],
+        pendingSubscriptions: [],
         bookmarks: [],
         categories: [],
         rating: 0,

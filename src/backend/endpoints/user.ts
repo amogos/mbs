@@ -26,6 +26,30 @@ export async function updateUser(user: DataTypes.UserRecordType, onError: (resul
     await axios.put(url, user).catch(error => onError(error));
 }
 
+/** solve any resolved pending subscription on user login */
+export async function syncUserSubscrptions(
+    user: DataTypes.UserRecordType,
+    onError: (resultCode: number) => void,
+): Promise<void> {
+    const { subscriptions, pendingSubscriptions } = user;
+
+    for (let i = pendingSubscriptions.length - 1; i >= 0; i--) {
+        const space = await SpacesEndpoint.getSpace(pendingSubscriptions[i], onError);
+        const acceptedSubscription =
+            space.pendingUsers.includes(user.id) === false && space.subscribedUsers.includes(user.id);
+        const rejectedSubscription =
+            space.pendingUsers.includes(user.id) === false && space.subscribedUsers.includes(user.id) === false;
+
+        if (acceptedSubscription) {
+            subscriptions.push(space.id);
+            pendingSubscriptions.pop();
+        } else if (rejectedSubscription) {
+            pendingSubscriptions.pop();
+        }
+    }
+    await updateUser(user, onError);
+}
+
 async function getUserReviews(
     id: number,
     onError: (resultCode: number) => void,

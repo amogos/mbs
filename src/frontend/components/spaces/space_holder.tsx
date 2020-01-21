@@ -25,10 +25,11 @@ interface Props {
 
 const SpaceHolder = (props: Props) => {
     const following = props.userdata.following.includes(props.item.id);
+    const subscribed = props.userdata.subscriptions.includes(props.item.id);
 
     const images = {
         follow: following ? { icon: 'eye-invisible', tooltip: 'stop following' } : { icon: 'eye', tooltip: 'follow' },
-        subscribe: { icon: 'unlock', tooltip: 'subscribe' },
+        subscribe: subscribed ? { icon: 'lock', tooltip: 'unsubscribe' } : { icon: 'unlock', tooltip: 'subscribe' },
         add: { icon: 'plus', tooltip: 'add book' },
         edit: { icon: 'edit', tooltip: 'edit space' },
     };
@@ -71,7 +72,7 @@ const SpaceHolder = (props: Props) => {
         );
     };
 
-    const owner = props.item.user.id === props.userdata.id;
+    const owner = props.item.owner.id === props.userdata.id;
     const actionProps = { ...props, actions, icons, owner };
 
     return (
@@ -82,7 +83,6 @@ const SpaceHolder = (props: Props) => {
             </div>
             <SpaceActions {...actionProps} />
             <SpaceImage {...props} />
-
             <AddNewBookPopup />
         </Aux>
     );

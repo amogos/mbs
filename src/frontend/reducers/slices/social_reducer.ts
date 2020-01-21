@@ -65,6 +65,8 @@ export default function socialReducer(state: any, action: any): any {
                     Store.dispatch(pageAction.refreshState({ usercategories: result }));
                 });
 
+            databseInstance.syncUserSubscrptions(action.userdata, handleError);
+
             const stateAppend: {
                 userdata: DataTypes.UserValueType;
                 userSpaces: DataTypes.SpaceType[];

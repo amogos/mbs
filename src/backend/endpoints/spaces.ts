@@ -2,6 +2,7 @@ import axios from 'axios';
 import * as DataTypes from '../../shared/types';
 import { urlBooks, urlSpaces } from './constants';
 import * as UserEndpoint from './user';
+import { SpaceType } from '../../shared/types';
 
 export async function getSpaceStatistics(
     space: number,
@@ -22,6 +23,16 @@ async function getSpaceNumberOfFollowers(space: number, onError: (resultCode: nu
     return 100;
 }
 
+async function getSpaceNumberOfSubscribers(space: number, onError: (resultCode: number) => void): Promise<number> {
+    return 100;
+}
+async function getSpaceNumberOfPendingSubscribers(
+    space: number,
+    onError: (resultCode: number) => void,
+): Promise<number> {
+    return 100;
+}
+
 export async function getSpaceDataFromRawData(
     item: DataTypes.SpaceRecordType,
     onError: (resultCode: number) => void,
@@ -32,7 +43,10 @@ export async function getSpaceDataFromRawData(
 
     const space: DataTypes.SpaceType = {
         id: item.id,
-        user: spaceOwner,
+        owner: spaceOwner,
+        subscription: item.subscription,
+        subscribedUsers: item.subscribedUsers,
+        pendingUsers: item.pendingUsers,
         numberOfBooks: spaceStatistics.size,
         numberOfFollowers: spaceNumberOfFollowers,
         rating: spaceStatistics.rating,
@@ -129,4 +143,35 @@ export async function addDefaultSpaceForUser(
         })
         .catch(error => onError(error));
     return false;
+}
+
+export async function getSpace(space: number, onError: (resultCode: number) => void): Promise<DataTypes.SpaceType> {
+    let rawSpace: DataTypes.SpaceRecordType = DataTypes.NullSpaceRecordType();
+    await axios
+        .get(`${urlBooks}?space=${space}`)
+        .then(response => (rawSpace = response.data))
+        .catch(error => {
+            onError(error);
+        });
+    const resolvedSpace: DataTypes.SpaceType = await getSpaceDataFromRawData(rawSpace, onError);
+    return resolvedSpace;
+}
+
+export async function getSpaceSubscribedUsers(
+    spaceId: number,
+    onError: (resultCode: number) => void,
+): Promise<number[]> {
+    const space = await getSpace(spaceId, onError);
+    return space.subscribedUsers;
+}
+
+export async function getSpacePendingUsers(spaceId: number, onError: (resultCode: number) => void): Promise<number[]> {
+    const space = await getSpace(spaceId, onError);
+    return space.pendingUsers;
+}
+
+export async function updateSpace(space: SpaceType, onError: (resultCode: number) => void): Promise<void> {
+    const url = `${urlSpaces}/${space.id}`;
+    const spaceRecord = DataTypes.ConvertToSpaceRecordType(space);
+    await axios.put(url, spaceRecord).catch(error => onError(error));
 }
