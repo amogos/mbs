@@ -26,7 +26,7 @@ const ListSpacesComponent = (props: Props) => {
     const onSpaceClicked = (space: SpaceType) => {
         props.history.push(`/${AppPages.Books}?space=${space.id}`);
     };
-    const onSubscribeButoonClicked = (space: SpaceType) => {
+    const onSubscribeButtonClicked = (space: SpaceType) => {
         props.history.push(`/${AppPages.Subscription}?space=${space.id}`);
     };
     const onAddBookButtonClicked = (space: SpaceType) => {
@@ -42,7 +42,7 @@ const ListSpacesComponent = (props: Props) => {
                     <SpaceHolder
                         item={item}
                         onSpaceClicked={onSpaceClicked}
-                        onSubscribeButoonClicked={onSubscribeButoonClicked}
+                        onSubscribeButtonClicked={onSubscribeButtonClicked}
                         onAddBookButtonClicked={onAddBookButtonClicked}
                     />
                 )),
@@ -54,7 +54,7 @@ const ListSpacesComponent = (props: Props) => {
                     <SpaceHolder
                         item={item}
                         onSpaceClicked={onSpaceClicked}
-                        onSubscribeButoonClicked={onSubscribeButoonClicked}
+                        onSubscribeButtonClicked={onSubscribeButtonClicked}
                         onAddBookButtonClicked={onAddBookButtonClicked}
                     />
                 )),
