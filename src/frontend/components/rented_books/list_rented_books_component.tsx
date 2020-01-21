@@ -5,6 +5,7 @@ import { requiresCondition } from '../hooks/hooks';
 import { History } from 'history';
 import { Progress } from 'antd';
 import { OneDayMilliseconds } from './../../../shared/constants/time_constant';
+import { AppPages } from '../../../shared/types';
 
 interface Props extends RouteComponentProps {
     userdata: DataTypes.UserRecordType;
@@ -24,7 +25,7 @@ const RentedBook = (props: Props, book: DataTypes.BookRecordType) => {
         percent = (100 * elapsedDurationInDays) / rentalDurationInDays;
     }
     return (
-        <div className="rented_book" onClick={() => props.history.push(`/book?id=${book.id}`)}>
+        <div className="rented_book" onClick={() => props.history.push(`${AppPages.Book}?id=${book.id}`)}>
             <img height={64} src={book.image} alt="" />
             {book.title}
             <Progress
