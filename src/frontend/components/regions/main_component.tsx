@@ -8,7 +8,7 @@ import BooksFetcher from './fetchers/books_fetcher';
 import SpacesFetcher from './fetchers/spaces_fetcher';
 import FeedFetcher from './fetchers/feed_fetcher';
 import debounce from 'lodash.debounce';
-import { ContentHolder } from './fetchers/content_fetcher';
+import { ContentHolder, ContentHolderType } from './fetchers/content_fetcher';
 
 interface Props {
     userdata: DataTypes.UserRecordType;
@@ -51,7 +51,7 @@ class MainComponent extends React.Component<Props, State> implements ContentHold
         this.handleScroll();
     }
 
-    getContentHolder(): any[] {
+    getContentHolder(): ContentHolderType {
         const { id } = this.props.urlparams;
         switch (id) {
             case DataTypes.AppPages.Books:
@@ -68,6 +68,7 @@ class MainComponent extends React.Component<Props, State> implements ContentHold
         this.feedFetcher = new FeedFetcher(0, 10, (filters: string[]) => this.props.getFeeds(filters, []));
 
         let { id } = this.props.urlparams;
+
         if (id === undefined) id = DataTypes.AppPages.Spaces;
 
         switch (id) {
@@ -96,6 +97,7 @@ class MainComponent extends React.Component<Props, State> implements ContentHold
 
     render() {
         let { id } = this.props.urlparams;
+
         if (id === undefined) id = DataTypes.AppPages.Spaces;
 
         switch (id) {
@@ -118,7 +120,7 @@ class MainComponent extends React.Component<Props, State> implements ContentHold
                 return <div>Edit subscription</div>;
             }
             default:
-                return <div></div>;
+                return <div />;
         }
     }
 }

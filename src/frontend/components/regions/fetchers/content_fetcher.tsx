@@ -1,8 +1,10 @@
 import React from 'react';
 import * as DataTypes from '../../../../shared/types';
 
+export type ContentHolderType = DataTypes.BookRecordType[] | DataTypes.SpaceType[] | DataTypes.UserFeedRecordType[];
+
 export interface ContentHolder {
-    getContentHolder(): any[];
+    getContentHolder(): ContentHolderType;
 }
 
 export default abstract class ContentFetcher {
