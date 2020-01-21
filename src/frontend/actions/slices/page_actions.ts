@@ -47,6 +47,11 @@ class PageAction {
         type: ActionTypes.default.PageActionConstant.ACTION_REFRESH_STATE,
         params,
     });
+
+    public removeKey = (key: string) => ({
+        type: ActionTypes.default.PageActionConstant.ACTION_REMOVE_KEY,
+        key,
+    });
 }
 
 export default PageAction;

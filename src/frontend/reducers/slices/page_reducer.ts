@@ -97,6 +97,15 @@ export default function pageReducer(state: any, action: any): any {
             return Object.assign({}, state, stateAppend);
         }
 
+        case PageActionConstant.ACTION_REMOVE_KEY: {
+            return Object.assign(
+                {},
+                ...Object.entries(state)
+                    .filter(([k]) => k !== action.key)
+                    .map(([k, v]) => ({ [k]: v })),
+            );
+        }
+
         case PageActionConstant.ACTION_REFRESH_STATE: {
             const shouldAppendBooks: boolean =
                 action.params.booksArray && state.booksArray && action.params.append === true;

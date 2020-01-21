@@ -4,6 +4,7 @@ import SubscriptionComponent from '../components/subscription/subscription_compo
 function mapStateToProps(state) {
     return {
         urlparams: state.mainReducer.urlparams,
+        subscribingSpace: state.mainReducer.subscribingSpace,
     };
 }
 
