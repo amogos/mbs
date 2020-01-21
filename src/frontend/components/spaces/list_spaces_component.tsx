@@ -3,7 +3,7 @@ import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { History } from 'history';
 import * as DataTypes from '../../../shared/types';
 import SpaceHolder from './../../containers/space_holder_container';
-import { Aux, withStyle } from './../hooks/hooks';
+import { requiresCondition } from './../hooks/hooks';
 import { AppPages, SpaceType } from '../../../shared/types';
 
 interface Props extends RouteComponentProps {
@@ -23,16 +23,18 @@ interface Props extends RouteComponentProps {
 }
 
 const ListSpacesComponent = (props: Props) => {
-    if (!props.userSpaces || !props.otherSpaces) return null;
-
     const onSpaceClicked = (space: SpaceType) => {
         props.history.push(`/${AppPages.Books}?space=${space.id}`);
     };
-    const onSubscribeButoonClicked = (space: SpaceType) => {};
-    const onAddBookButtonClicked = (space: SpaceType) => {};
+    const onSubscribeButoonClicked = (space: SpaceType) => {
+        props.history.push(`/${AppPages.Subscription}?space=${space.id}`);
+    };
+    const onAddBookButtonClicked = (space: SpaceType) => {
+        props.history.push(`/${AppPages.AddBook}?space=${space.id}`);
+    };
 
     return (
-        <Aux>
+        <div className="list_spaces_componen">
             <p className="thicker">All Spaces</p>
             <p className="thicker">My Spaces</p>
             {React.Children.toArray(
@@ -57,8 +59,12 @@ const ListSpacesComponent = (props: Props) => {
                     />
                 )),
             )}
-        </Aux>
+        </div>
     );
 };
 
-export default withRouter(withStyle(ListSpacesComponent, 'list_spaces_component'));
+function validProps(props: Props): boolean {
+    return props.userSpaces !== null && props.otherSpaces !== null;
+}
+
+export default withRouter(requiresCondition(ListSpacesComponent, (props: Props) => validProps(props)));
