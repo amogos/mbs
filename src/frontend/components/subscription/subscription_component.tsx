@@ -11,11 +11,11 @@ export interface Props extends RouteComponentProps {
 }
 
 const SubscriptionComponent = (props: Props) => {
-    return <div>{props.urlparams.id}</div>;
+    return <div>{props.subscribingSpace.title}</div>;
 };
 
 function validProps(props: Props): boolean {
-    return props.subscribingSpace !== null;
+    return props.subscribingSpace !== null && props.subscribingSpace !== undefined;
 }
 
 export default withRouter(requiresCondition(SubscriptionComponent, (props: Props) => validProps(props)));
