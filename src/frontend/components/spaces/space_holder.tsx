@@ -8,7 +8,7 @@ import { Aux, withStyle } from './../hooks/hooks';
 import AddNewBookComponent from '../add_new_book/add_new_book';
 
 interface Props {
-    item: DataTypes.SpaceType;
+    //  injected data
     userdata: DataTypes.UserRecordType;
     languages: DataTypes.LanguageRecordType[];
     categories: DataTypes.CategoryRecordType[];
@@ -18,46 +18,34 @@ interface Props {
         isbn13: string,
         callback: (result: DataTypes.BookDescriptionRecordType) => void,
     ): void;
-    onClick: () => void;
-    followSpace: (spaceId: number, callback: () => void) => void;
-    unfollowSpace: (spaceId: number, callback: () => void) => void;
+
+    //  extra data
+    item: DataTypes.SpaceType;
+    onSpaceClicked: (space: DataTypes.SpaceType) => void;
+    onSubscribeButtonClicked: (space: DataTypes.SpaceType) => void;
+    onAddBookButtonClicked: (space: DataTypes.SpaceType) => void;
+    onEditSpaceButtonClicked: (space: DataTypes.SpaceType) => void;
 }
 
 const SpaceHolder = (props: Props) => {
-    const following = props.userdata.following.includes(props.item.id);
     const subscribed = props.userdata.subscriptions.includes(props.item.id);
-
-    const images = {
-        follow: following ? { icon: 'eye-invisible', tooltip: 'stop following' } : { icon: 'eye', tooltip: 'follow' },
+    const { onSpaceClicked, onSubscribeButtonClicked, onEditSpaceButtonClicked, item, userdata } = props;
+    const icons = {
         subscribe: subscribed ? { icon: 'lock', tooltip: 'unsubscribe' } : { icon: 'unlock', tooltip: 'subscribe' },
         add: { icon: 'plus', tooltip: 'add book' },
         edit: { icon: 'edit', tooltip: 'edit space' },
     };
 
-    const [icons, setIcons] = useState(images);
     const [visible, setVisible] = useState(false);
 
-    const onFollowButtonClicked = () => {
-        if (following) {
-            props.unfollowSpace(props.item.id, () => {
-                setIcons({ ...images, follow: { icon: 'eye', tooltip: 'follow' } });
-            });
-        } else {
-            props.followSpace(props.item.id, () => {
-                setIcons({ ...images, follow: { icon: 'eye-invisible', tooltip: 'stop following' } });
-            });
-        }
-    };
-
-    const onSubscribeButtonClicked = () => {};
-    const OnAddBookButtonClicked = () => setVisible(true);
-    const OnEditSpaceButtonClicked = () => {};
+    const subscribe = () => onSubscribeButtonClicked(item);
+    const add = () => setVisible(true);
+    const edit = () => onEditSpaceButtonClicked(item);
 
     const actions = {
-        follow: onFollowButtonClicked,
-        subscribe: onSubscribeButtonClicked,
-        add: OnAddBookButtonClicked,
-        edit: OnEditSpaceButtonClicked,
+        subscribe: subscribe,
+        add: add,
+        edit: edit,
     };
 
     const AddNewBookPopup = () => {
@@ -72,12 +60,12 @@ const SpaceHolder = (props: Props) => {
         );
     };
 
-    const owner = props.item.owner.id === props.userdata.id;
+    const owner = item.owner.id === userdata.id;
     const actionProps = { ...props, actions, icons, owner };
 
     return (
         <Aux>
-            <div onClick={props.onClick}>
+            <div onClick={() => onSpaceClicked(item)}>
                 <SpaceDescription {...props} />
                 <SpaceStatistics {...props} />
             </div>

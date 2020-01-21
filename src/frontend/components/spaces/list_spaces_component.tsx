@@ -2,9 +2,9 @@ import React from 'react';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { History } from 'history';
 import * as DataTypes from '../../../shared/types';
-import SpaceHolder from './space_holder';
+import SpaceHolder from './../../containers/space_holder_container';
 import { Aux, withStyle } from './../hooks/hooks';
-import { AppPages } from '../../../shared/types';
+import { AppPages, SpaceType } from '../../../shared/types';
 
 interface Props extends RouteComponentProps {
     userSpaces: DataTypes.SpaceType[];
@@ -19,17 +19,17 @@ interface Props extends RouteComponentProps {
         isbn13: string,
         callback: (result: DataTypes.BookDescriptionRecordType) => void,
     ): void;
-    followSpace: (spaceId: number, callback: () => void) => void;
-    unfollowSpace: (spaceId: number, callback: () => void) => void;
     history: History;
 }
 
 const ListSpacesComponent = (props: Props) => {
     if (!props.userSpaces || !props.otherSpaces) return null;
 
-    const onSpaceClicked = (spaceId: number) => {
-        props.history.push(`/${AppPages.Books}?space=${spaceId}`);
+    const onSpaceClicked = (space: SpaceType) => {
+        props.history.push(`/${AppPages.Books}?space=${space.id}`);
     };
+    const onSubscribeButoonClicked = (space: SpaceType) => {};
+    const onAddBookButtonClicked = (space: SpaceType) => {};
 
     return (
         <Aux>
@@ -37,14 +37,24 @@ const ListSpacesComponent = (props: Props) => {
             <p className="thicker">My Spaces</p>
             {React.Children.toArray(
                 props.userSpaces.map(item => (
-                    <SpaceHolder {...props} item={item} onClick={() => onSpaceClicked(item.id)} />
+                    <SpaceHolder
+                        item={item}
+                        onSpaceClicked={onSpaceClicked}
+                        onSubscribeButoonClicked={onSubscribeButoonClicked}
+                        onAddBookButtonClicked={onAddBookButtonClicked}
+                    />
                 )),
             )}
             <p />
             <p className="thicker">Other Spaces</p>
             {React.Children.toArray(
                 props.otherSpaces.map(item => (
-                    <SpaceHolder {...props} item={item} onClick={() => onSpaceClicked(item.id)} />
+                    <SpaceHolder
+                        item={item}
+                        onSpaceClicked={onSpaceClicked}
+                        onSubscribeButoonClicked={onSubscribeButoonClicked}
+                        onAddBookButtonClicked={onAddBookButtonClicked}
+                    />
                 )),
             )}
         </Aux>
