@@ -145,10 +145,10 @@ export async function addDefaultSpaceForUser(
     return false;
 }
 
-export async function getSpace(space: number, onError: (resultCode: number) => void): Promise<DataTypes.SpaceType> {
+export async function getSpace(spaceId: number, onError: (resultCode: number) => void): Promise<DataTypes.SpaceType> {
     let rawSpace: DataTypes.SpaceRecordType = DataTypes.NullSpaceRecordType();
     await axios
-        .get(`${urlBooks}?space=${space}`)
+        .get(`${urlSpaces}/${spaceId}`)
         .then(response => (rawSpace = response.data))
         .catch(error => {
             onError(error);

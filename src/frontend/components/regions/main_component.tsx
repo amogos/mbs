@@ -24,6 +24,7 @@ interface Props {
     getBooks(filters: string[], callbacks: ((books: DataTypes.BookRecordType[]) => void)[]): void;
     getSpaces(filters: string[], callbacks: ((result: DataTypes.Spaces) => void)[]): void;
     getFeeds(filters: string[], callbacks: ((feeds: DataTypes.UserFeedRecordType[]) => void)[]): void;
+    enterSubscribeSpace(spaceId: number): void;
 }
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
@@ -118,6 +119,7 @@ class MainComponent extends React.Component<Props, State> implements ContentHold
                 return <div className={ClassNames.normal}>{this.feedFetcher.render()}</div>;
             }
             case DataTypes.AppPages.Subscription: {
+                this.props.enterSubscribeSpace(this.props.urlparams.query.space as number);
                 return <SubscriptionComponent />;
             }
             default:
