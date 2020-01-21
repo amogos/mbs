@@ -67,14 +67,14 @@ class MainComponent extends React.Component<Props, State> implements ContentHold
         this.spacesFetcher = new SpacesFetcher(0, 10, (filters: string[]) => this.props.getSpaces(filters, []));
         this.feedFetcher = new FeedFetcher(0, 10, (filters: string[]) => this.props.getFeeds(filters, []));
 
-        const { id } = this.props.urlparams;
+        let { id } = this.props.urlparams;
+        if (id === undefined) id = DataTypes.AppPages.Spaces;
 
         switch (id) {
             case DataTypes.AppPages.Books:
                 this.booksFetcher.next(this.props.urlparams, true, this);
                 window.onscroll = debounce(() => this.booksFetcher.next(this.props.urlparams, false, this), 10);
                 break;
-            case undefined:
             case DataTypes.AppPages.Spaces:
                 this.spacesFetcher.next(this.props.urlparams, true, this);
                 this.feedFetcher.next(this.props.urlparams, true, this);
@@ -95,7 +95,8 @@ class MainComponent extends React.Component<Props, State> implements ContentHold
     }
 
     render() {
-        const { id } = this.props.urlparams;
+        let { id } = this.props.urlparams;
+        if (id === undefined) id = DataTypes.AppPages.Spaces;
 
         switch (id) {
             case DataTypes.AppPages.Books:
@@ -113,8 +114,11 @@ class MainComponent extends React.Component<Props, State> implements ContentHold
             case DataTypes.AppPages.Feed: {
                 return <div className={ClassNames.normal}>{this.feedFetcher.render()}</div>;
             }
+            case DataTypes.AppPages.Subscription: {
+                return <div>Edit subscription</div>;
+            }
             default:
-                return <div>{this.spacesFetcher.render()}</div>;
+                return <div></div>;
         }
     }
 }
