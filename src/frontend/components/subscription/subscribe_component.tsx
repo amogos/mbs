@@ -31,7 +31,7 @@ const SubscribeComponent = (props: Props) => {
             id,
             () => {
                 setState(States.STATE_COMPLETED);
-                setMessage('Request sent successfully');
+                setMessage('Request to join this space sent successfully');
             },
             () => {
                 setState(States.STATE_FAILED);
