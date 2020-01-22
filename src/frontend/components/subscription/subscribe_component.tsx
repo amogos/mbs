@@ -35,7 +35,7 @@ const SubscribeComponent = (props: Props) => {
             },
             () => {
                 setState(States.STATE_FAILED);
-                setMessage('Request sent successfully');
+                setMessage('Request failed');
             },
         );
     };
