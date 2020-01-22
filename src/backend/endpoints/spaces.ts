@@ -170,8 +170,21 @@ export async function getSpacePendingUsers(spaceId: number, onError: (resultCode
     return space.pendingUsers;
 }
 
-export async function updateSpace(space: SpaceType, onError: (resultCode: number) => void): Promise<void> {
+export async function updateSpace(
+    space: SpaceType,
+    onError: (resultCode: number) => void,
+    onSuccess?: () => void,
+    onFail?: () => void,
+): Promise<void> {
     const url = `${urlSpaces}/${space.id}`;
     const spaceRecord = DataTypes.ConvertToSpaceRecordType(space);
-    await axios.put(url, spaceRecord).catch(error => onError(error));
+    await axios
+        .put(url, spaceRecord)
+        .then(() => {
+            if (onSuccess) onSuccess();
+        })
+        .catch(error => {
+            onError(error);
+            if (onFail) onFail();
+        });
 }

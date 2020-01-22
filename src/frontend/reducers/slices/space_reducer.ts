@@ -17,7 +17,13 @@ export default function spaceReducer(state: any, action: any): any {
             });
         }
         case ActionConstants.default.SpaceActionConstant.SUBSCRIBE_SPACE: {
-            databseInstance.subscribeSpace(state.userdata, action.spaceId, handleError);
+            databseInstance.subscribeSpace(
+                state.userdata,
+                state.subscribingSpace,
+                handleError,
+                action.onSuccess,
+                action.onFail,
+            );
             return Object.assign({}, state, {
                 action: ActionConstants.default.SpaceActionConstant.SUBSCRIBE_SPACE,
             });

@@ -21,9 +21,22 @@ async function addNewUser(
     return newUserData;
 }
 
-export async function updateUser(user: DataTypes.UserRecordType, onError: (resultCode: number) => void): Promise<void> {
+export async function updateUser(
+    user: DataTypes.UserRecordType,
+    onError: (resultCode: number) => void,
+    onSuccess?: () => void,
+    onFail?: () => void,
+): Promise<void> {
     const url = `${urlUsers}/${user.id}`;
-    await axios.put(url, user).catch(error => onError(error));
+    await axios
+        .put(url, user)
+        .then(() => {
+            if (onSuccess) onSuccess();
+        })
+        .catch(error => {
+            onError(error);
+            if (onFail) onFail();
+        });
 }
 
 /** solve any resolved pending subscription on user login */
