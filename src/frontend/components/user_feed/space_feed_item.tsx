@@ -4,7 +4,7 @@ import { Comment, Avatar, Button } from 'antd';
 import * as DataTypes from '../../../shared/types';
 import { CustomDate } from './../../../shared/utils/CustomDate';
 import { withStyle } from './../hooks/hooks';
-import { SpaceType } from '../../../shared/types';
+import { SpaceType, AppPages } from '../../../shared/types';
 import { History } from 'history';
 
 interface Props {
@@ -42,7 +42,7 @@ const SpaceFeedItem = (props: Props) => {
                 <div className="feed_item_root">
                     <img height="98" src={space.picture} alt="" />
                     <div className="feed_item_right">
-                        <Button type="link" onClick={() => props.history.push(`/books?space=${space.id}`)}>
+                        <Button type="link" onClick={() => props.history.push(`/${AppPages.Books}?space=${space.id}`)}>
                             {space.title}
                         </Button>
                         {actions[0]}

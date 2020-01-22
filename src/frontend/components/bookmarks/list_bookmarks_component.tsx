@@ -4,6 +4,7 @@ import { Button, Icon } from 'antd';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { History } from 'history';
 import { requiresCondition } from '../hooks/hooks';
+import { AppPages } from '../../../shared/types';
 
 interface Props extends RouteComponentProps {
     userdata: DataTypes.UserRecordType;
@@ -19,7 +20,7 @@ const Bookmark = (props: Props, book: DataTypes.BookRecordType) => {
             <Button type="link" onClick={() => props.unbookmarkBook(book.id, () => {})}>
                 <Icon type="minus-circle" />
             </Button>
-            <div onClick={() => props.history.push(`/book?id=${book.id}`)}>
+            <div onClick={() => props.history.push(`/${AppPages.Book}?id=${book.id}`)}>
                 <img height={64} src={book.image} alt="" />
                 {book.title}
             </div>

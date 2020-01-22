@@ -5,6 +5,7 @@ import * as DataTypes from '../../../shared/types';
 import { CustomDate } from './../../../shared/utils/CustomDate';
 import { withStyle } from './../hooks/hooks';
 import { History } from 'history';
+import { AppPages } from '../../../shared/types';
 
 interface Props {
     item: DataTypes.UserFeedRecordType;
@@ -46,7 +47,7 @@ const BookFeedItem = (props: Props) => {
                 <div className="feed_item_root">
                     <img height="98" src={book.image} alt="" />
                     <div className="feed_item_right">
-                        <Button type="link" onClick={() => props.history.push(`/book?id=${book.id}`)}>
+                        <Button type="link" onClick={() => props.history.push(`/${AppPages.Book}?id=${book.id}`)}>
                             {book.title}
                         </Button>
                         <p> by {React.Children.toArray(book.author.map(author => author + ','))}</p>

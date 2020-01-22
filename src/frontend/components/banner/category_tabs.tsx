@@ -5,6 +5,7 @@ import Tabs, { TabData } from '../banner/tabs';
 import * as DataTypes from '../../../shared/types';
 import * as Strings from '../../../shared/constants/string_constant';
 import { History } from 'history';
+import { AppPages } from '../../../shared/types';
 
 interface Props extends RouteComponentProps {
     getSpaces(filters: string[], callbacks: ((result: DataTypes.Spaces) => void)[]): void;
@@ -36,7 +37,7 @@ class CategoryTabs extends React.Component<Props, {}> {
             id: -1,
             title: CategoryTabsStrings.HOME,
             callback: () => {
-                props.history.push('/spaces');
+                props.history.push(`/${AppPages.Spaces}`);
             },
         });
 
@@ -47,7 +48,7 @@ class CategoryTabs extends React.Component<Props, {}> {
                     id: item.id,
                     title: item.title,
                     callback: () => {
-                        props.history.push(`/books?category=${item.id}`);
+                        props.history.push(`/${AppPages.Books}?category=${item.id}`);
                     },
                 };
                 return tab;
@@ -65,7 +66,7 @@ class CategoryTabs extends React.Component<Props, {}> {
                         id: item.id,
                         title: item.title,
                         callback: () => {
-                            props.history.push(`/books?category=${item.id}`);
+                            props.history.push(`/${AppPages.Books}?category=${item.id}`);
                         },
                     };
                     return tab;
@@ -78,7 +79,7 @@ class CategoryTabs extends React.Component<Props, {}> {
             id: -2,
             title: CategoryTabsStrings.MORE,
             callback: () => {
-                props.history.push('/settings');
+                props.history.push(`${AppPages.Settings}`);
             },
         });
 

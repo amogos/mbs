@@ -4,6 +4,7 @@ import * as DataTypes from '../../../shared/types';
 import { History } from 'history';
 import { requiresCondition } from '../hooks/hooks';
 import { Button } from 'antd';
+import { AppPages } from '../../../shared/types';
 
 export interface Props extends RouteComponentProps {
     urlparams: DataTypes.UrlParms;
@@ -41,6 +42,7 @@ const SubscribeComponent = (props: Props) => {
 
     const onReturnToMainPageClicked = () => {
         props.exitSubscribeSpace(id);
+        props.history.push(`/${AppPages.Spaces}`);
     };
 
     return (

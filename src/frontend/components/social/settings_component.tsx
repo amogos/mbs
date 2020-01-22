@@ -2,6 +2,7 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { History } from 'history';
 import { Button } from 'antd';
+import { AppPages } from '../../../shared/types';
 
 interface Props {
     history: History;
@@ -9,7 +10,7 @@ interface Props {
 
 const Settings = (props: Props) => {
     const OnSettingsClicked = (props: Props) => {
-        props.history.push('/settings');
+        props.history.push(`/${AppPages.Settings}`);
     };
     return (
         <Button type="link" onClick={() => OnSettingsClicked(props)}>
