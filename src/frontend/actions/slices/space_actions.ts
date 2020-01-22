@@ -5,13 +5,17 @@ class SpaceAction {
         type: ActionTypes.default.SpaceActionConstant.ENTER_SUBSCRIBE,
         spaceId,
     });
-    public subscribeSpace = (spaceId: number) => ({
+    public subscribeSpace = (spaceId: number, onSuccess?: () => void, onFail?: () => void) => ({
         type: ActionTypes.default.SpaceActionConstant.SUBSCRIBE_SPACE,
         spaceId,
+        onSuccess,
+        onFail,
     });
-    public unfollowSpace = (spaceId: number) => ({
+    public unsubscribeSpace = (spaceId: number, onSuccess?: () => void, onFail?: () => void) => ({
         type: ActionTypes.default.SpaceActionConstant.UNSUBSCRIBE_SPACE,
         spaceId,
+        onSuccess,
+        onFail,
     });
     public exitSubscribeSpace = (spaceId: number) => ({
         type: ActionTypes.default.SpaceActionConstant.EXIT_SUBSCRIBE,

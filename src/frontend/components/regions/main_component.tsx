@@ -9,7 +9,7 @@ import SpacesFetcher from './fetchers/spaces_fetcher';
 import FeedFetcher from './fetchers/feed_fetcher';
 import debounce from 'lodash.debounce';
 import { ContentHolder, ContentHolderType } from './fetchers/content_fetcher';
-import SubscriptionComponent from './../../containers/subscription_container';
+import SubscriptionComponent from '../../containers/subscribe_container';
 
 interface Props {
     userdata: DataTypes.UserRecordType;
