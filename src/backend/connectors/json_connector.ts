@@ -21,5 +21,7 @@ export * from '../endpoints/actions/update_book_review';
 export * from '../endpoints/actions/bookmark_book';
 export * from '../endpoints/actions/like_book';
 export * from '../endpoints/actions/subscribe_space';
+export * from '../endpoints/actions/confirm_subscription';
+export * from '../endpoints/actions/reject_subscription';
 export * from '../endpoints/bookmarks';
 export * from '../endpoints/user_feed';

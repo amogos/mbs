@@ -30,6 +30,14 @@ export default function notificationReducer(state: any, action: any): any {
         case NotificationActionConstant.ACTION_REJECT_RENTAL:
             databseInstance.rejectRental(action.rental, action.callback, handleError);
             return state;
+        case NotificationActionConstant.ACTION_GET_SUBSCRIBERS:
+            databseInstance.getPendingSubscribersForUserSpaces(state.userdata.id, handleError);
+        case NotificationActionConstant.ACTION_CONFIRM_SUBSCRIPTION:
+            databseInstance.confirmSubscription(action.subscription, action.callback, handleError);
+            return state;
+        case NotificationActionConstant.ACTION_REJECT_SUBSCRIPTION:
+            databseInstance.rejectSubscription(action.subscription, action.callback, handleError);
+            return state;
         default:
             return null;
     }
