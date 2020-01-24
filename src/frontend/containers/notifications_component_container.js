@@ -16,6 +16,12 @@ const mapDispatchToProps = dispatch => {
         rejectRental: (rental, callback) => dispatch(notificationAction.rejectRental(rental, callback)),
         getReturns: callback => dispatch(notificationAction.getReturnsForUser(callback)),
         getQueue: callback => dispatch(notificationAction.getQueueForUser(callback)),
+        getPendingSubscribersForUser: (userId, callback) =>
+            dispatch(notificationAction.getPendingSubscribersForUser(userId, callback)),
+        confirmSubscription: (subscription, callback) =>
+            dispatch(notificationAction.confirmSubscription(subscription, callback)),
+        rejectSubscription: (subscription, callback) =>
+            dispatch(notificationAction.rejectSubscription(subscription, callback)),
         dispatch,
     };
 };

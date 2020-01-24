@@ -18,6 +18,7 @@ class NotificationAction {
         comment,
         callback,
     });
+
     public confirmRental = (rental: DataTypes.QueueNotificationType, callback: () => void) => ({
         type: ActionTypes.default.NotificationActionConstant.ACTION_CONFIRM_RENTAL,
         rental,
@@ -37,6 +38,23 @@ class NotificationAction {
 
     public getQueueForUser = (callback: (reviews: DataTypes.QueueNotificationType[]) => void) => ({
         type: ActionTypes.default.NotificationActionConstant.ACTION_GET_QUEUE,
+        callback,
+    });
+
+    public getPendingSubscribersForUser = (userId: number, callback: (subscribers: number[]) => void) => ({
+        type: ActionTypes.default.NotificationActionConstant.ACTION_GET_SUBSCRIBERS,
+        callback,
+    });
+
+    public confirmSubscription = (subscription: DataTypes.SubscribeNotificationType, callback: () => void) => ({
+        type: ActionTypes.default.NotificationActionConstant.ACTION_CONFIRM_SUBSCRIPTION,
+        subscription,
+        callback,
+    });
+
+    public rejectSubscription = (subscription: DataTypes.SubscribeNotificationType, callback: () => void) => ({
+        type: ActionTypes.default.NotificationActionConstant.ACTION_REJECT_SUBSCRIPTION,
+        subscription,
         callback,
     });
 }

@@ -2,7 +2,7 @@ import axios from 'axios';
 import * as DataTypes from '../../shared/types';
 import { urlBooks, urlSpaces } from './constants';
 import * as UserEndpoint from './user';
-import { SpaceType } from '../../shared/types';
+import { SpaceType, UserRecordType, SubscribeNotificationType } from '../../shared/types';
 
 export async function getSpaceStatistics(
     space: number,
@@ -85,18 +85,18 @@ export async function getSpaces(onError: (resultCode: number) => void): Promise<
 }
 
 export async function getUserSpaces(
-    user: DataTypes.UserRecordType,
+    userId: number,
     onError: (resultCode: number) => void,
 ): Promise<DataTypes.SpaceType[]> {
-    return await _getSpaces(`${urlSpaces}?owner=${user.id}`, onError);
+    return await _getSpaces(`${urlSpaces}?owner=${userId}`, onError);
 }
 
 export async function getOtherSpaces(
-    user: DataTypes.UserRecordType,
+    userId: number,
     filters: string[],
     onError: (resultCode: number) => void,
 ): Promise<DataTypes.SpaceType[]> {
-    filters.push(`owner_ne=${user.id}`);
+    filters.push(`owner_ne=${userId}`);
     return await _getSpaces(`${urlSpaces}?` + filters.join('&'), onError);
 }
 
@@ -105,8 +105,8 @@ export async function getSplitSpaces(
     filters: string[],
     onError: (resultCode: number) => void,
 ): Promise<{ userSpaces: DataTypes.SpaceType[]; otherSpaces: DataTypes.SpaceType[] }> {
-    const userSpaces = await getUserSpaces(user, onError);
-    const otherSpaces = await getOtherSpaces(user, filters, onError);
+    const userSpaces = await getUserSpaces(user.id, onError);
+    const otherSpaces = await getOtherSpaces(user.id, filters, onError);
     return { userSpaces: userSpaces, otherSpaces: otherSpaces };
 }
 
@@ -187,4 +187,28 @@ export async function updateSpace(
             onError(error);
             if (onFail) onFail();
         });
+}
+
+export async function getPendingSubscribersForUserSpaces(
+    userId: number,
+    onError: (resultCode: number) => void,
+): Promise<DataTypes.SubscribeNotificationType[]> {
+    const userSpaces = await getUserSpaces(userId, onError);
+    const result: SubscribeNotificationType[] = [];
+
+    for (let i = 0; i < userSpaces.length; i++) {
+        const space = userSpaces[i];
+        const spacePendingUsers = space.pendingUsers;
+
+        for (let j = 0; j < spacePendingUsers.length; j++) {
+            const userData = await UserEndpoint.getUserRecordTypeFromId(spacePendingUsers[j], onError);
+            const notification: SubscribeNotificationType = {
+                user: userData,
+                space: space,
+            };
+            result.push(notification);
+        }
+    }
+
+    return result;
 }

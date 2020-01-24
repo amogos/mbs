@@ -3,6 +3,7 @@ import { List, Avatar, Divider, Button } from 'antd';
 import * as DataTypes from '../../../shared/types';
 import RatingComponent from '../rating/rating';
 import { Aux, withStyle } from './../hooks/hooks';
+import { UserRecordType } from '../../../shared/types';
 
 interface Props {
     userdata: DataTypes.UserRecordType;
@@ -18,6 +19,12 @@ interface Props {
     rejectRental(rental: DataTypes.QueueNotificationType, callback: () => void): void;
     getReturns(callback: (returns: DataTypes.ReturnNotificationType[]) => void): void;
     getQueue(callback: (returns: DataTypes.QueueNotificationType[]) => void): void;
+    getPendingSubscribersForUser(
+        userId: number,
+        callback: (subscribers: DataTypes.SubscribeNotificationType[]) => void,
+    ): void;
+    confirmSubscription(subscription: DataTypes.SubscribeNotificationType, callback: () => void): void;
+    rejectSubscription(subscription: DataTypes.SubscribeNotificationType, callback: () => void): void;
 }
 
 interface Notification {
@@ -36,16 +43,16 @@ interface Selection {
     user: DataTypes.UserRecordType;
 }
 
+const emptyState: Notification[] = [];
+
+const emptySelection: Selection = {
+    returnId: 0,
+    user: DataTypes.NullUserRecordType(),
+    bookId: 0,
+    showRating: false,
+};
+
 const NotificationsComponent = (props: Props) => {
-    const emptyState: Notification[] = [];
-
-    const emptySelection: Selection = {
-        returnId: 0,
-        user: DataTypes.NullUserRecordType(),
-        bookId: 0,
-        showRating: false,
-    };
-
     const [notifications, setNotifications] = useState(emptyState);
     const [selection, setSelection] = useState(emptySelection);
 
@@ -100,6 +107,43 @@ const NotificationsComponent = (props: Props) => {
         setNotifications(state);
     };
 
+    const confirmSubscription = (subscription: DataTypes.SubscribeNotificationType) => {
+        props.confirmSubscription(subscription, () =>
+            resolveNotification(`s${subscription.space.id}${subscription.user.id}`),
+        );
+    };
+
+    const rejectSubscription = (subscription: DataTypes.SubscribeNotificationType) => {
+        props.rejectSubscription(subscription, () =>
+            resolveNotification(`s${subscription.space.id}${subscription.user.id}`),
+        );
+    };
+
+    const onSubscribersReceived = (subscribeNotifications: DataTypes.SubscribeNotificationType[]) => {
+        const subscriptionNotifications: Notification[] = notifications;
+
+        subscribeNotifications.forEach(item => {
+            subscriptionNotifications.push({
+                actions: [
+                    <Button type="link" onClick={() => rejectSubscription(item)}>
+                        reject
+                    </Button>,
+                    <Button type="link" onClick={() => confirmSubscription(item)}>
+                        confirm
+                    </Button>,
+                ],
+                title: item.user.name,
+                avatar: item.user.picture,
+                rating: item.user.rating,
+                description: `requested space ${item.space.id} subscription`,
+                key: `s${item.space.id}${item.user.id}`,
+            });
+        });
+
+        const state = [...notifications];
+        setNotifications(state);
+    };
+
     const onReturnsReceived = (returns: DataTypes.ReturnNotificationType[]) => {
         const returnsNotifications: Notification[] = notifications;
         returns.forEach(item => {
@@ -131,6 +175,7 @@ const NotificationsComponent = (props: Props) => {
     const loadNotifications = () => {
         props.getReturns(onReturnsReceived);
         props.getQueue(onQueueReceived);
+        props.getPendingSubscribersForUser(props.userdata.id, onSubscribersReceived);
     };
 
     if (notifications === emptyState) {
