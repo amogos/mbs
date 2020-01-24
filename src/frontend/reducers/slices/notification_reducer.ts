@@ -31,12 +31,19 @@ export default function notificationReducer(state: any, action: any): any {
             databseInstance.rejectRental(action.rental, action.callback, handleError);
             return state;
         case NotificationActionConstant.ACTION_GET_SUBSCRIBERS:
-            databseInstance.getPendingSubscribersForUserSpaces(state.userdata.id, handleError);
+            databseInstance
+                .getPendingSubscribersForUserSpaces(state.userdata.id, handleError)
+                .then(result => action.callback(result));
+            return state;
         case NotificationActionConstant.ACTION_CONFIRM_SUBSCRIPTION:
-            databseInstance.confirmSubscription(action.subscription, action.callback, handleError);
+            databseInstance
+                .confirmSubscription(action.subscription, action.callback, handleError)
+                .then(() => action.callback());
             return state;
         case NotificationActionConstant.ACTION_REJECT_SUBSCRIPTION:
-            databseInstance.rejectSubscription(action.subscription, action.callback, handleError);
+            databseInstance
+                .rejectSubscription(action.subscription, action.callback, handleError)
+                .then(() => action.callback());
             return state;
         default:
             return null;
