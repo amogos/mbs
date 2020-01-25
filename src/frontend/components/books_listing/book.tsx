@@ -6,7 +6,6 @@ import { Aux, withStyle } from './../hooks/hooks';
 import * as DataTypes from '../../../shared/types';
 import BookActions from './../../containers/book_actions_container';
 import { History } from 'history';
-import { AppPages } from '../../../shared/types';
 
 interface ReviewState {
     reviews: DataTypes.BookReviewRecordType[];
