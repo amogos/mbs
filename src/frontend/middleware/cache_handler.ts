@@ -16,4 +16,5 @@ export default abstract class CacheHandler {
     }
 
     public abstract handle(store: any, action: any, next: any): any;
+    public abstract invalidate(): void;
 }

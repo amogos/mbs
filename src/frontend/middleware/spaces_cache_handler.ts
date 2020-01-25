@@ -25,4 +25,8 @@ export default class SpacesCacheHandler extends CacheHandler {
         }
         return next(action);
     }
+
+    public invalidate(): void {
+        this.spacesCache.invalidate();
+    }
 }

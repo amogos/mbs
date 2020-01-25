@@ -4,15 +4,25 @@ import BooksCacheHandler from './books_cache_handler';
 import FeedsCacheHandler from './feeds_cache_handler';
 import SpacesCacheHandler from './spaces_cache_handler';
 
-const { PageActionConstant, BookActionConstant } = ActionConstants.default;
+const { PageActionConstant, BookActionConstant, SocialActionConstant } = ActionConstants.default;
 
 const booksCacheHandler = new BooksCacheHandler();
 const feedsCacheHandler = new FeedsCacheHandler();
 const bookmarksCacheHandler = new BookmarksCacheHandler();
 const spacesCacheHandler = new SpacesCacheHandler();
 
+const invalidateAllCaches = () => {
+    booksCacheHandler.invalidate();
+    feedsCacheHandler.invalidate();
+    bookmarksCacheHandler.invalidate();
+    spacesCacheHandler.invalidate();
+};
+
 const dispatchCacher = store => next => action => {
     switch (action.type) {
+        case SocialActionConstant.ACTION_LOGIN_USER:
+            invalidateAllCaches();
+            break;
         case BookActionConstant.ACTION_ADD_BOOK:
         case PageActionConstant.ACTION_GET_BOOKS:
         case BookActionConstant.ACTION_LIKE_BOOK:

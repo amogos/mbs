@@ -10,10 +10,10 @@ export default class BookmarksCacheHandler extends CacheHandler {
     public handle(store: any, action: any, next: any): any {
         switch (action.type) {
             case BookActionConstant.ACTION_BOOKMARK_BOOK:
-                this.bookmarksCache = [];
+                this.invalidate();
                 break;
             case BookActionConstant.ACTION_UNBOOKMARK_BOOK:
-                this.bookmarksCache = [];
+                this.invalidate();
                 break;
             case PageActionConstant.ACTION_GET_BOOKMARKS:
                 if (this.bookmarksCache.length > 0) {
@@ -26,5 +26,8 @@ export default class BookmarksCacheHandler extends CacheHandler {
                 break;
         }
         return next(action);
+    }
+    public invalidate(): void {
+        this.bookmarksCache = [];
     }
 }

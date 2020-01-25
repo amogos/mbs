@@ -11,7 +11,10 @@ export default class FeedsCacheHandler extends CacheHandler {
         const cacheEntry = this.feedCache.getEntry(cacheKey);
         if (cacheEntry) {
             return store.dispatch(
-                pageAction.refreshState({ userFeed: cacheEntry.value, append: this.shouldAppend(action) }),
+                pageAction.refreshState({
+                    userFeed: cacheEntry.value,
+                    append: this.shouldAppend(action),
+                }),
             );
         } else {
             action.callbacks.push((feeds: DataTypes.UserFeedRecordType[]) => {
@@ -19,5 +22,9 @@ export default class FeedsCacheHandler extends CacheHandler {
             });
         }
         return next(action);
+    }
+
+    public invalidate(): void {
+        this.feedCache.invalidate();
     }
 }

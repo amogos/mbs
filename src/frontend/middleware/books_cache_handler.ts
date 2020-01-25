@@ -33,4 +33,8 @@ export default class BooksCacheHandler extends CacheHandler {
         }
         return next(action);
     }
+
+    public invalidate(): void {
+        this.booksCache.invalidate();
+    }
 }
