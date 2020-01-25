@@ -15,6 +15,7 @@ interface ReviewState {
 interface Props {
     userdata: DataTypes.UserRecordType;
     book: DataTypes.BookRecordType;
+    userSpaces: DataTypes.SpaceType[];
     bookChangingId: number;
     likeBook(book: DataTypes.BookRecordType): void;
     reviewBook(review: DataTypes.BookReviewRawValueType): void;
@@ -37,6 +38,11 @@ const BookComponent = (props: Props) => {
         return userdata.subscriptions.includes(book.space.id);
     };
 
+    const isUserOwnerOfBookSpace = (): boolean => {
+        const { userSpaces, book } = props;
+        return userSpaces.find(item => item.id === book.space.id) !== undefined;
+    };
+
     return (
         <Aux key={`k${item.id}`}>
             <div className="book_left">
@@ -50,7 +56,7 @@ const BookComponent = (props: Props) => {
                     </span>
                 </Button>
                 <BooksDescription description={item.description} length={200} />
-                {isUserSubscribedToBookSpace() ? <BookActions book={item} /> : null}
+                {isUserSubscribedToBookSpace() || isUserOwnerOfBookSpace() ? <BookActions book={item} /> : null}
             </div>
         </Aux>
     );

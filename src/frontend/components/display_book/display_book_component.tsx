@@ -11,6 +11,7 @@ interface Props {
     queueArray: DataTypes.QueueNotificationRecordType[];
     book: DataTypes.BookRecordType;
     bookReviews: DataTypes.BookReviewRecordType[];
+    userSpaces: DataTypes.SpaceType[];
     reviewBook(review: DataTypes.BookReviewRawValueType): void;
     returnBook(bookId: number): void;
     askBook(bookId: number, ownerId: number): void;
@@ -54,9 +55,14 @@ const Review = (props: Props, entry: DataTypes.BookReviewRecordType) => {
 const BookDisplayComponent = (props: Props) => {
     const { book, bookReviews } = props;
 
-    const isUserSubscribedToBookSpace = () => {
+    const isUserSubscribedToBookSpace = (): boolean => {
         const { userdata, book } = props;
         return userdata.subscriptions.includes(book.space.id);
+    };
+
+    const isUserOwnerOfBookSpace = (): boolean => {
+        const { userSpaces, book } = props;
+        return userSpaces.find(item => item.id === book.space.id) !== undefined;
     };
 
     if (book === undefined || book.id === undefined) return null;
@@ -75,7 +81,7 @@ const BookDisplayComponent = (props: Props) => {
             <br />
             PageCount: {book.length} <br />
             <BookDescription description={book.description} length={200} />
-            {isUserSubscribedToBookSpace() ? <BookActions book={book} /> : null}
+            {isUserSubscribedToBookSpace() || isUserOwnerOfBookSpace() ? <BookActions book={book} /> : null}
             <Divider />
             {React.Children.toArray(bookReviews.map(entry => Review(props, entry)))}
         </Aux>

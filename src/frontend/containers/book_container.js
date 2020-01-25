@@ -6,6 +6,7 @@ function mapStateToProps(state) {
     return {
         userdata: state.mainReducer.userdata,
         bookChangingId: state.mainReducer.bookChangingId,
+        userSpaces: state.mainReducer.userSpaces,
     };
 }
 
