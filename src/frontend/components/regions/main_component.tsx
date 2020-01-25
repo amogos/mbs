@@ -31,7 +31,8 @@ interface Props {
 interface State {}
 
 function DisplayBookDetails(props: Props) {
-    const bookId = props.urlparams.query.id as number;
+    if (!props.urlparams.query.id) return null;
+    const bookId = parseInt(props.urlparams.query.id);
     props.displayBook(bookId);
     return <BookDisplayContainer />;
 }
@@ -119,8 +120,12 @@ class MainComponent extends React.Component<Props, State> implements ContentHold
                 return <div className={ClassNames.normal}>{this.feedFetcher.render()}</div>;
             }
             case DataTypes.AppPages.Subscription: {
-                this.props.enterSubscribeSpace(this.props.urlparams.query.space as number);
-                return <SubscriptionComponent />;
+                if (this.props.urlparams.query.space) {
+                    const space = parseInt(this.props.urlparams.query.space);
+                    this.props.enterSubscribeSpace(space);
+                    return <SubscriptionComponent />;
+                }
+                return null;
             }
             default:
                 return <div />;

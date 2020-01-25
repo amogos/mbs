@@ -45,3 +45,7 @@
     height: 20%;
     z-index: 0;
 }
+
+.context_actions {
+    justify-content: center;
+}

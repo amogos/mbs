@@ -29,7 +29,7 @@ const BookComponent = (props: Props) => {
     const item = props.book;
 
     const onBookTitleCliked = () => {
-        props.history.push(`/book?id=${item.id}`);
+        props.history.push(`/book?id=${item.id}&space=${item.space.id}`);
     };
 
     const isUserSubscribedToBookSpace = () => {
