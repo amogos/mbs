@@ -54,6 +54,11 @@ const Review = (props: Props, entry: DataTypes.BookReviewRecordType) => {
 const BookDisplayComponent = (props: Props) => {
     const { book, bookReviews } = props;
 
+    const isUserSubscribedToBookSpace = () => {
+        const { userdata, book } = props;
+        return userdata.subscriptions.includes(book.space.id);
+    };
+
     if (book === undefined || book.id === undefined) return null;
     if (bookReviews === undefined) return null;
 
@@ -70,7 +75,7 @@ const BookDisplayComponent = (props: Props) => {
             <br />
             PageCount: {book.length} <br />
             <BookDescription description={book.description} length={200} />
-            <BookActions book={book} />
+            {isUserSubscribedToBookSpace() ? <BookActions book={book} /> : null}
             <Divider />
             {React.Children.toArray(bookReviews.map(entry => Review(props, entry)))}
         </Aux>

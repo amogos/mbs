@@ -6,6 +6,7 @@ import { Aux, withStyle } from './../hooks/hooks';
 import * as DataTypes from '../../../shared/types';
 import BookActions from './../../containers/book_actions_container';
 import { History } from 'history';
+import { AppPages } from '../../../shared/types';
 
 interface ReviewState {
     reviews: DataTypes.BookReviewRecordType[];
@@ -32,6 +33,11 @@ const BookComponent = (props: Props) => {
         props.history.push(`/book?id=${item.id}`);
     };
 
+    const isUserSubscribedToBookSpace = () => {
+        const { userdata, book } = props;
+        return userdata.subscriptions.includes(book.space.id);
+    };
+
     return (
         <Aux key={`k${item.id}`}>
             <div className="book_left">
@@ -45,7 +51,7 @@ const BookComponent = (props: Props) => {
                     </span>
                 </Button>
                 <BooksDescription description={item.description} length={200} />
-                <BookActions book={item} />
+                {isUserSubscribedToBookSpace() ? <BookActions book={item} /> : null}
             </div>
         </Aux>
     );
