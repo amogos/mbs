@@ -95,9 +95,7 @@
         40,
         35
       ],
-      "subscriptions": [
-        4
-      ],
+      "subscriptions": [],
       "pendingSubscriptions": [],
       "rating": 0,
       "socialnetwork": 4,
@@ -600,17 +598,15 @@
       "picture": "https://www.google.com/search?q=spaces&rlz=1C1CHBF_enDE750DE750&sxsrf=ACYBGNRleGx6Q7ZoTRX3vN_75uHUaGHG1A:1569381920271&source=lnms&tbm=isch&sa=X&ved=0ahUKEwi0qP-eg-vkAhWFLlAKHTGqCzIQ_AUIEygC&biw=1920&bih=937#imgrc=Mj4n4nKAbjgIZM:"
     },
     {
-      "id": 4,
       "owner": 4,
       "subscription": 0,
-      "subscribedUsers": [
-        5
-      ],
+      "subscribedUsers": [],
       "pendingUsers": [],
       "title": "iulia.enes5@gmail.com",
       "description": "Iulia enes5 Default",
       "transport": 0,
-      "picture": ""
+      "picture": "",
+      "id": 4
     },
     {
       "owner": 5,
