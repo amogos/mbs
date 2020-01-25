@@ -71,6 +71,7 @@ const SpaceContextActions = (props: Props) => {
         <div>
             <div className="context_actions">
                 <p>Want to have acces to this shelf? </p>
+                <p>Ask for permission. </p>
                 {showSubscribeButton ? (
                     <Button onClick={() => props.history.push(`/${AppPages.Subscription}?space=${space}`)}>
                         subscribe
