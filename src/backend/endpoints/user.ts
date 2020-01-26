@@ -126,8 +126,8 @@ export async function signUpUser(
 
 export async function loginUser(
     user: DataTypes.UserValueType,
-    onUserError: () => void,
     onError: (resultCode: number) => void,
+    onUserError?: () => void,
 ): Promise<DataTypes.UserRecordType> {
     let userData = await getUserRecordTypeFromEmail(user.email, onError);
     const isNewUser = userData.id === 0;
