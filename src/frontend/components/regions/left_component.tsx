@@ -69,15 +69,15 @@ const SpaceContextActions = (props: Props) => {
     const showSubscribeButton = userPendingToBookSpace === false && userSubscribedToBookSpace === false;
     return (
         <div>
-            <div className="context_actions">
-                <p>Want to have acces to this shelf? </p>
-                <p>Ask for permission. </p>
-                {showSubscribeButton ? (
+            {showSubscribeButton ? (
+                <div className="context_actions">
+                    <p>Want to have acces to this shelf? </p>
+                    <p>Ask for permission. </p>
                     <Button onClick={() => props.history.push(`/${AppPages.Subscription}?space=${space}`)}>
                         subscribe
                     </Button>
-                ) : null}
-            </div>
+                </div>
+            ) : null}
             <AboutComponent />
         </div>
     );
