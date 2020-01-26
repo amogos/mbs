@@ -1,6 +1,6 @@
 import CacheHandler from './cache_handler';
 import QueryCache from './query_cache';
-import { pageAction } from './../actions';
+import * as Action from './../actions';
 import * as DataTypes from './../../shared/types';
 
 export default class SpacesCacheHandler extends CacheHandler {
@@ -12,7 +12,7 @@ export default class SpacesCacheHandler extends CacheHandler {
 
         if (cacheEntry) {
             return store.dispatch(
-                pageAction.refreshState({
+                Action.refreshState({
                     userSpaces: cacheEntry.value.userSpaces,
                     otherSpaces: cacheEntry.value.otherSpaces,
                     append: this.shouldAppend(action),

@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import SpaceHolderComponent from '../components/spaces/space_holder';
-import { bookAction } from '../actions';
+import * as Action from '../actions';
 
 function mapStateToProps(state) {
     return {
@@ -12,9 +12,8 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = dispatch => {
     return {
-        getBookDescription: (isbn10, isbn13, callback) =>
-            dispatch(bookAction.getBookDescription(isbn10, isbn13, callback)),
-        addBook: (data, onSuccess) => dispatch(bookAction.addBook(data, onSuccess)),
+        getBookDescription: (isbn10, isbn13, callback) => dispatch(Action.getBookDescription(isbn10, isbn13, callback)),
+        addBook: (data, onSuccess) => dispatch(Action.addBook(data, onSuccess)),
         dispatch,
     };
 };

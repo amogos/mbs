@@ -1,10 +1,9 @@
 import { connect } from 'react-redux';
 import SpaceFeedItemComponent from '../components/user_feed/space_feed_item';
-import { spaceAction } from '../actions';
+import * as Action from '../actions';
 
 const mapDispatchToProps = dispatch => {
     return {
-        followSpace: (spaceId, callback) => dispatch(spaceAction.followSpace(spaceId, callback)),
         dispatch,
     };
 };

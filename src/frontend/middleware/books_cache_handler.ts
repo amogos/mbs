@@ -1,6 +1,6 @@
 import CacheHandler from './cache_handler';
 import QueryCache from './query_cache';
-import { pageAction } from './../actions';
+import * as Action from './../actions';
 import * as DataTypes from './../../shared/types';
 import * as ActionConstants from './../../shared/constants/action_constant';
 
@@ -22,7 +22,7 @@ export default class BooksCacheHandler extends CacheHandler {
                     const cacheKey = this.getCacheKey(action);
                     const cacheEntry = this.booksCache.getEntry(cacheKey);
                     if (cacheEntry) {
-                        return store.dispatch(pageAction.refreshState({ booksArray: cacheEntry.value, append: true }));
+                        return store.dispatch(Action.refreshState({ booksArray: cacheEntry.value, append: true }));
                     } else {
                         action.callbacks.push((books: DataTypes.BookRecordType[]) => {
                             this.booksCache.addEntry(cacheKey, [...books]);

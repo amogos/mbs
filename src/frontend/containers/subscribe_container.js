@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import SubscribeComponent from '../components/subscription/subscribe_component';
-import { spaceAction } from '../actions';
+import * as Action from '../actions';
 
 function mapStateToProps(state) {
     return {
@@ -11,9 +11,8 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = dispatch => {
     return {
-        subscribeSpace: (spaceId, onSuccess, onFail) =>
-            dispatch(spaceAction.subscribeSpace(spaceId, onSuccess, onFail)),
-        exitSubscribeSpace: spaceId => dispatch(spaceAction.exitSubscribeSpace(spaceId)),
+        subscribeSpace: (spaceId, onSuccess, onFail) => dispatch(Action.subscribeSpace(spaceId, onSuccess, onFail)),
+        exitSubscribeSpace: spaceId => dispatch(Action.exitSubscribeSpace(spaceId)),
         dispatch,
     };
 };

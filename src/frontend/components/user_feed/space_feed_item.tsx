@@ -9,7 +9,6 @@ import { History } from 'history';
 
 interface Props {
     item: DataTypes.UserFeedRecordType;
-    followSpace: (spaceId: number, callback: () => void) => void;
     history: History;
 }
 
@@ -20,14 +19,7 @@ const SpaceFeedItem = (props: Props) => {
     ).toString()} `;
 
     const actions = [
-        <Button
-            className="feed_button"
-            onClick={() => {
-                if (props.item.space !== undefined) {
-                    props.followSpace(props.item.space.id, () => {});
-                }
-            }}
-        >
+        <Button className="feed_button" onClick={() => {}}>
             follow
         </Button>,
     ];

@@ -1,22 +1,21 @@
 import * as ActionConstants from '../../../shared/constants/action_constant';
 import * as DataTypes from '../../../shared/types';
-import { socialAction, pageAction } from './../../actions';
 import databseInstance from './../../../backend/database_instance';
 import Store from '../store';
 import { handleError } from './../main_reducer';
-import * as SocialActionsTypes from './../../actions/slices/social_actions';
+import * as Action from './../../actions';
 const { SocialActionConstant } = ActionConstants.default;
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export default function socialReducer(state: any, action: SocialActionsTypes.SocialActionType): any {
+export default function socialReducer(state: any, action: Action.SocialAction): any {
     switch (action.type) {
         case SocialActionConstant.ACTION_UPDATE_USER_DATA: {
-            const actionData: SocialActionsTypes.UpdateUserActionType = action as SocialActionsTypes.UpdateUserActionType;
+            const actionData: Action.UpdateUserActionType = action as Action.UpdateUserActionType;
             databseInstance.updateUser(actionData.userdata, handleError).then(() => {
                 databseInstance
                     .getArrayCategories(actionData.userdata.categories, handleError)
                     .then((result: DataTypes.CategoryRecordType[]) => {
-                        Store.dispatch(pageAction.refreshState({ usercategories: result }));
+                        Store.dispatch(Action.refreshState({ usercategories: result }));
                     });
             });
             return Object.assign({}, state, {
@@ -25,49 +24,49 @@ export default function socialReducer(state: any, action: SocialActionsTypes.Soc
         }
 
         case SocialActionConstant.ACTION_SIGN_UP_USER: {
-            const actionData: SocialActionsTypes.SignupUserActionType = action as SocialActionsTypes.SignupUserActionType;
+            const actionData: Action.SignupUserActionType = action as Action.SignupUserActionType;
             databseInstance.signUpUser(actionData.userdata, handleError).then((result: DataTypes.UserRecordType) => {
-                if (result.id > 0) Store.dispatch(socialAction.addUserData(result));
+                if (result.id > 0) Store.dispatch(Action.addUserData(result));
             });
             return Object.assign({}, state, {
                 action: SocialActionConstant.ACTION_SIGN_UP_USER,
             });
         }
         case SocialActionConstant.ACTION_LOGIN_USER: {
-            const actionData: SocialActionsTypes.LoginUserActionType = action as SocialActionsTypes.LoginUserActionType;
+            const actionData: Action.LoginUserActionType = action as Action.LoginUserActionType;
             databseInstance
                 .loginUser(actionData.userdata, handleError, actionData.onError)
                 .then((result: DataTypes.UserRecordType) => {
-                    if (result.id > 0) Store.dispatch(socialAction.addUserData(result));
+                    if (result.id > 0) Store.dispatch(Action.addUserData(result));
                 });
             return Object.assign({}, state, {
                 action: SocialActionConstant.ACTION_LOGIN_USER,
             });
         }
         case SocialActionConstant.ACTION_LOGOUT_USER: {
-            const actionData: SocialActionsTypes.LogoutUserActionType = action as SocialActionsTypes.LogoutUserActionType;
+            const actionData: Action.LogoutUserActionType = action as Action.LogoutUserActionType;
             return Object.assign({}, state, {
                 action: SocialActionConstant.ACTION_LOGOUT_USER,
                 userdata: DataTypes.NullUserRecordType,
             });
         }
         case SocialActionConstant.ACTION_USER_DATA:
-            const actionData: SocialActionsTypes.AddUserActionType = action as SocialActionsTypes.AddUserActionType;
+            const actionData: Action.AddUserActionType = action as Action.AddUserActionType;
             databseInstance.getLanguages(handleError).then((result: DataTypes.LanguageRecordType[]) => {
-                Store.dispatch(pageAction.refreshState({ languages: result }));
+                Store.dispatch(Action.refreshState({ languages: result }));
             });
             databseInstance.getCategories(handleError).then((result: DataTypes.CategoryRecordType[]) => {
-                Store.dispatch(pageAction.refreshState({ categories: result }));
+                Store.dispatch(Action.refreshState({ categories: result }));
             });
             databseInstance
                 .getQueue(actionData.userdata.id, handleError)
                 .then((result: DataTypes.QueueNotificationRecordType[]) => {
-                    Store.dispatch(pageAction.refreshState({ queueArray: result, append: false }));
+                    Store.dispatch(Action.refreshState({ queueArray: result, append: false }));
                 });
             databseInstance
                 .getArrayCategories(actionData.userdata.categories, handleError)
                 .then((result: DataTypes.CategoryRecordType[]) => {
-                    Store.dispatch(pageAction.refreshState({ usercategories: result }));
+                    Store.dispatch(Action.refreshState({ usercategories: result }));
                 });
 
             databseInstance.syncUserSubscrptions(actionData.userdata, handleError);

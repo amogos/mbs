@@ -16,7 +16,6 @@ export * from '../endpoints/return_notifications';
 export * from '../endpoints/queue_notifications';
 export * from '../endpoints/book_reviews';
 export * from '../endpoints/books_descriptions';
-export * from '../endpoints/actions/follow_space';
 export * from '../endpoints/actions/update_book_review';
 export * from '../endpoints/actions/bookmark_book';
 export * from '../endpoints/actions/like_book';

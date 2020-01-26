@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import BookStateComponent from '../components/book_actions/book_state';
-import { bookAction } from './../actions';
+import * as Action from './../actions';
 
 function mapStateToProps(state) {
     return {
@@ -12,10 +12,10 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = dispatch => {
     return {
-        reviewBook: review => dispatch(bookAction.reviewBook(review)),
-        deleteBook: bookId => dispatch(bookAction.deleteBook(bookId)),
-        askBook: (bookId, ownerId, duration) => dispatch(bookAction.askBook(bookId, ownerId, duration)),
-        returnBook: bookId => dispatch(bookAction.returnBook(bookId)),
+        reviewBook: review => dispatch(Action.reviewBook(review)),
+        deleteBook: bookId => dispatch(Action.deleteBook(bookId)),
+        askBook: (bookId, ownerId, duration) => dispatch(Action.askBook(bookId, ownerId, duration)),
+        returnBook: bookId => dispatch(Action.returnBook(bookId)),
         dispatch,
     };
 };

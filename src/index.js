@@ -7,7 +7,7 @@ import Store from './frontend/reducers/store';
 import './main.css';
 import 'antd/dist/antd.css';
 import { DisplayContent } from './frontend/screens/display_content';
-import { pageAction } from './frontend/actions';
+import * as Action from './frontend/actions';
 
 const App = routeParams => {
     if (!Object.fromEntries) {
@@ -17,7 +17,7 @@ const App = routeParams => {
     const query = Object.fromEntries(new URLSearchParams(useLocation().search));
     const id = routeParams.match.params.id;
     const urlparams = { id, query };
-    Store.dispatch(pageAction.addUrlParams(urlparams));
+    Store.dispatch(Action.addUrlParams(urlparams));
     return DisplayContent(id);
 };
 

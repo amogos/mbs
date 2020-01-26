@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { notificationAction } from '../actions/';
+import * as Action from '../actions/';
 import NotificationComponent from '../components/notifications/notifications_component';
 
 function mapStateToProps(state) {
@@ -11,17 +11,15 @@ function mapStateToProps(state) {
 const mapDispatchToProps = dispatch => {
     return {
         rateReturn: (returnId, bookId, user, state, comment, callback) =>
-            dispatch(notificationAction.rateReturn(returnId, bookId, user, state, comment, callback)),
-        confirmRental: (rental, callback) => dispatch(notificationAction.confirmRental(rental, callback)),
-        rejectRental: (rental, callback) => dispatch(notificationAction.rejectRental(rental, callback)),
-        getReturns: callback => dispatch(notificationAction.getReturnsForUser(callback)),
-        getQueue: callback => dispatch(notificationAction.getQueueForUser(callback)),
+            dispatch(Action.rateReturn(returnId, bookId, user, state, comment, callback)),
+        confirmRental: (rental, callback) => dispatch(Action.confirmRental(rental, callback)),
+        rejectRental: (rental, callback) => dispatch(Action.rejectRental(rental, callback)),
+        getReturns: callback => dispatch(Action.getReturnsForUser(callback)),
+        getQueue: callback => dispatch(Action.getQueueForUser(callback)),
         getPendingSubscribersForUser: (userId, callback) =>
-            dispatch(notificationAction.getPendingSubscribersForUser(userId, callback)),
-        confirmSubscription: (subscription, callback) =>
-            dispatch(notificationAction.confirmSubscription(subscription, callback)),
-        rejectSubscription: (subscription, callback) =>
-            dispatch(notificationAction.rejectSubscription(subscription, callback)),
+            dispatch(Action.getPendingSubscribersForUser(userId, callback)),
+        confirmSubscription: (subscription, callback) => dispatch(Action.confirmSubscription(subscription, callback)),
+        rejectSubscription: (subscription, callback) => dispatch(Action.rejectSubscription(subscription, callback)),
         dispatch,
     };
 };

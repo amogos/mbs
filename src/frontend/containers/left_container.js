@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import LeftComponent from '../components/regions/left_component';
-import { bookAction } from '../actions';
+import * as Action from '../actions';
 
 function mapStateToProps(state) {
     return {
@@ -12,8 +12,8 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = dispatch => {
     return {
-        bookmarkBook: (bookId, onSuccess) => dispatch(bookAction.bookmarkBook(bookId, onSuccess)),
-        unbookmarkBook: (bookId, onSuccess) => dispatch(bookAction.unbookmarkBook(bookId, onSuccess)),
+        bookmarkBook: (bookId, onSuccess) => dispatch(Action.bookmarkBook(bookId, onSuccess)),
+        unbookmarkBook: (bookId, onSuccess) => dispatch(Action.unbookmarkBook(bookId, onSuccess)),
         dispatch,
     };
 };

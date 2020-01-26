@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import MainComponent from '../components/regions/main_component';
-import { pageAction, socialAction, bookAction, spaceAction } from './../actions';
+import * as Action from './../actions';
 
 function mapStateToProps(state) {
     return {
@@ -15,13 +15,13 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = dispatch => {
     return {
-        displayBook: bookId => dispatch(bookAction.displayBook(bookId)),
-        signUpUser: user => dispatch(socialAction.signUpUser(user)),
-        loginUser: (user, onError) => dispatch(socialAction.loginUser(user, onError)),
-        getBooks: (filters, callbacks) => dispatch(pageAction.getBooks(filters, callbacks)),
-        getSpaces: (filters, callbacks) => dispatch(pageAction.getSpaces(filters, callbacks)),
-        getFeeds: (filters, callbacks) => dispatch(pageAction.getFeeds(filters, callbacks)),
-        enterSubscribeSpace: spaceId => dispatch(spaceAction.enterSubscribeSpace(spaceId)),
+        displayBook: bookId => dispatch(Action.displayBook(bookId)),
+        signUpUser: user => dispatch(Action.signUpUser(user)),
+        loginUser: (user, onError) => dispatch(Action.loginUser(user, onError)),
+        getBooks: (filters, callbacks) => dispatch(Action.getBooks(filters, callbacks)),
+        getSpaces: (filters, callbacks) => dispatch(Action.getSpaces(filters, callbacks)),
+        getFeeds: (filters, callbacks) => dispatch(Action.getFeeds(filters, callbacks)),
+        enterSubscribeSpace: spaceId => dispatch(Action.enterSubscribeSpace(spaceId)),
         dispatch,
     };
 };

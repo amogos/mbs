@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { pageAction, socialAction } from '../actions/';
+import * as Action from '../actions/';
 import BannerComponent from '../components/regions/banner_component';
 
 function mapStateToProps(state) {
@@ -14,12 +14,11 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = dispatch => {
     return {
-        getSpaces: (filters, callbacks) => dispatch(pageAction.getSpaces(filters, callbacks)),
-        gotoNotifications: () => dispatch(pageAction.gotoNotifications()),
-        addBook: data => dispatch(pageAction.addBook(data)),
-        loginUser: (user, onError) => dispatch(socialAction.loginUser(user, onError)),
-        signUpUser: user => dispatch(socialAction.signUpUser(user)),
-        logoutUser: () => dispatch(socialAction.logoutUser()),
+        getSpaces: (filters, callbacks) => dispatch(Action.getSpaces(filters, callbacks)),
+        addBook: data => dispatch(Action.addBook(data)),
+        loginUser: (user, onError) => dispatch(Action.loginUser(user, onError)),
+        signUpUser: user => dispatch(Action.signUpUser(user)),
+        logoutUser: () => dispatch(Action.logoutUser()),
         dispatch,
     };
 };

@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import SpacesComponent from '../components/spaces/list_spaces_component';
-import { pageAction, bookAction } from '../actions';
+import * as Action from '../actions';
 
 function mapStateToProps(state) {
     return {
@@ -14,11 +14,10 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = dispatch => {
     return {
-        getBooks: (filters, callbacks) => dispatch(pageAction.getBooks(filters, callbacks)),
-        getBookDescription: (isbn10, isbn13, callback) =>
-            dispatch(bookAction.getBookDescription(isbn10, isbn13, callback)),
-        addBook: (data, onSuccess) => dispatch(bookAction.addBook(data, onSuccess)),
-        likeBook: book => dispatch(bookAction.likeBook(book)),
+        getBooks: (filters, callbacks) => dispatch(Action.getBooks(filters, callbacks)),
+        getBookDescription: (isbn10, isbn13, callback) => dispatch(Action.getBookDescription(isbn10, isbn13, callback)),
+        addBook: (data, onSuccess) => dispatch(Action.addBook(data, onSuccess)),
+        likeBook: book => dispatch(Action.likeBook(book)),
         dispatch,
     };
 };

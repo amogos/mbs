@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import RightComponent from '../components/regions/right_component';
-import { pageAction } from './../actions';
+import * as Action from './../actions';
 
 function mapStateToProps(state) {
     return {
@@ -11,8 +11,8 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = dispatch => {
     return {
-        getBookmarks: (userdata, callbacks) => dispatch(pageAction.getBookmarks(userdata, callbacks)),
-        getRentedBooks: (userdata, callbacks) => dispatch(pageAction.getRentedBooks(userdata, callbacks)),
+        getBookmarks: (userdata, callbacks) => dispatch(Action.getBookmarks(userdata, callbacks)),
+        getRentedBooks: (userdata, callbacks) => dispatch(Action.getRentedBooks(userdata, callbacks)),
         dispatch,
     };
 };

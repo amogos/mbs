@@ -1,7 +1,7 @@
 import CacheHandler from './cache_handler';
 import * as DataTypes from './../../shared/types';
 import * as ActionConstants from './../../shared/constants/action_constant';
-import { pageAction } from './../actions';
+import * as Action from './../actions';
 const { PageActionConstant, BookActionConstant } = ActionConstants.default;
 
 export default class BookmarksCacheHandler extends CacheHandler {
@@ -17,9 +17,7 @@ export default class BookmarksCacheHandler extends CacheHandler {
                 break;
             case PageActionConstant.ACTION_GET_BOOKMARKS:
                 if (this.bookmarksCache.length > 0) {
-                    return store.dispatch(
-                        pageAction.refreshState({ userBookmarks: this.bookmarksCache, append: false }),
-                    );
+                    return store.dispatch(Action.refreshState({ userBookmarks: this.bookmarksCache, append: false }));
                 } else {
                     action.callbacks.push((bookmarks: DataTypes.BookRecordType[]) => (this.bookmarksCache = bookmarks));
                 }

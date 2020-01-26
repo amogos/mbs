@@ -95,7 +95,9 @@
         40,
         35
       ],
-      "subscriptions": [],
+      "subscriptions": [
+        1
+      ],
       "pendingSubscriptions": [],
       "rating": 0,
       "socialnetwork": 4,
@@ -568,7 +570,9 @@
       "id": 1,
       "owner": 1,
       "subscription": 0,
-      "subscribedUsers": [],
+      "subscribedUsers": [
+        5
+      ],
       "pendingUsers": [],
       "title": "daosmistique@yahoo.com",
       "description": "Iulia Mogos Default",

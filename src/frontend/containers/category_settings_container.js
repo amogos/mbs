@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import CategorySettingsComponent from '../../frontend/components/settings/category_settings_component';
-import { socialAction } from './../actions';
+import * as Action from './../actions';
 
 function mapStateToProps(state) {
     return {
@@ -11,7 +11,7 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = dispatch => {
     return {
-        updateUser: user => dispatch(socialAction.updateUserData(user)),
+        updateUser: user => dispatch(Action.updateUserData(user)),
         dispatch,
     };
 };

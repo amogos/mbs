@@ -1,10 +1,10 @@
 import { connect } from 'react-redux';
 import BookActionsComponent from '../components/book_actions/book_actions';
-import { bookAction } from './../actions';
+import * as Action from './../actions';
 
 const mapDispatchToProps = dispatch => {
     return {
-        bookmarkBook: (bookId, onSuccess) => dispatch(bookAction.bookmarkBook(bookId, onSuccess)),
+        bookmarkBook: (bookId, onSuccess) => dispatch(Action.bookmarkBook(bookId, onSuccess)),
         dispatch,
     };
 };

@@ -1,6 +1,6 @@
 import CacheHandler from './cache_handler';
 import QueryCache from './query_cache';
-import { pageAction } from './../actions';
+import * as Action from './../actions';
 import * as DataTypes from './../../shared/types';
 
 export default class FeedsCacheHandler extends CacheHandler {
@@ -11,7 +11,7 @@ export default class FeedsCacheHandler extends CacheHandler {
         const cacheEntry = this.feedCache.getEntry(cacheKey);
         if (cacheEntry) {
             return store.dispatch(
-                pageAction.refreshState({
+                Action.refreshState({
                     userFeed: cacheEntry.value,
                     append: this.shouldAppend(action),
                 }),
