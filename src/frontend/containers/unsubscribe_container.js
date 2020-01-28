@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import SubscribeComponent from '../components/subscription/subscribe_component';
+import UnSubscribeComponent from '../components/subscription/unsubscribe_component';
 import * as Action from '../actions';
 
 function mapStateToProps(state) {
@@ -11,9 +11,9 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = dispatch => {
     return {
-        subscribeSpace: (spaceId, onSuccess, onFail) => dispatch(Action.subscribeSpace(spaceId, onSuccess, onFail)),
+        unsubscribeSpace: (spaceId, onSuccess, onFail) => dispatch(Action.unsubscribeSpace(spaceId, onSuccess, onFail)),
         dispatch,
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(SubscribeComponent);
+export default connect(mapStateToProps, mapDispatchToProps)(UnSubscribeComponent);
