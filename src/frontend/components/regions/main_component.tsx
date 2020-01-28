@@ -19,7 +19,6 @@ interface Props {
     otherSpaces: DataTypes.SpaceType[];
     userFeed: DataTypes.UserFeedRecordType[];
     signUpUser(userInfo: DataTypes.UserValueType): void;
-    displayBook(bookId: number): void;
     loginUser(userInfo: DataTypes.UserValueType, onError?: () => void): void;
     getBooks(filters: string[], callbacks: ((books: DataTypes.BookRecordType[]) => void)[]): void;
     getSpaces(filters: string[], callbacks: ((result: DataTypes.Spaces) => void)[]): void;
@@ -31,10 +30,6 @@ interface Props {
 interface State {}
 
 function DisplayBookDetails(props: Props) {
-    const { bid } = props.urlparams.query;
-    if (!bid) return null;
-    const bookId = parseInt(bid);
-    props.displayBook(bookId);
     return <BookDisplayContainer />;
 }
 

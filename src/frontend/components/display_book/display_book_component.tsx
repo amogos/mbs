@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Divider, Comment, Avatar, Rate, Button } from 'antd';
 import * as DataTypes from '../../../shared/types';
-import { Aux, withStyle } from '../hooks/hooks';
+import { Aux, withStyle, requiresCondition } from '../hooks/hooks';
 import BookDescription from './../book/book_description';
 import BookActions from '../../containers/book_actions_container';
 import { CustomDate } from '../../../shared/utils/CustomDate';
@@ -10,7 +10,6 @@ interface Props {
     userdata: DataTypes.UserRecordType;
     queueArray: DataTypes.QueueNotificationRecordType[];
     book: DataTypes.BookRecordType;
-    bookReviews: DataTypes.BookReviewRecordType[];
     userSpaces: DataTypes.SpaceType[];
     reviewBook(review: DataTypes.BookReviewRawValueType): void;
     returnBook(bookId: number): void;
@@ -53,7 +52,7 @@ const Review = (props: Props, entry: DataTypes.BookReviewRecordType) => {
 };
 
 const BookDisplayComponent = (props: Props) => {
-    const { book, bookReviews } = props;
+    const { book } = props;
 
     const isUserSubscribedToBookSpace = (): boolean => {
         const { userdata, book } = props;
@@ -64,9 +63,6 @@ const BookDisplayComponent = (props: Props) => {
         const { userSpaces, book } = props;
         return userSpaces.find(item => item.id === book.space.id) !== undefined;
     };
-
-    if (book === undefined || book.id === undefined) return null;
-    if (bookReviews === undefined) return null;
 
     return (
         <Aux>
@@ -83,9 +79,15 @@ const BookDisplayComponent = (props: Props) => {
             <BookDescription description={book.description} length={200} />
             {isUserSubscribedToBookSpace() || isUserOwnerOfBookSpace() ? <BookActions book={book} /> : null}
             <Divider />
-            {React.Children.toArray(bookReviews.map(entry => Review(props, entry)))}
+            {React.Children.toArray(book.reviews.map(entry => Review(props, entry)))}
         </Aux>
     );
 };
 
-export default withStyle(BookDisplayComponent, 'book_display_component');
+const validProps = (props: Props) => {
+    return props.book !== null;
+};
+
+export default requiresCondition(withStyle(BookDisplayComponent, 'book_display_component'), (props: Props) =>
+    validProps(props),
+);
