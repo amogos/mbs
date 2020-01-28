@@ -9,7 +9,7 @@ import * as DataTypes from '../../../shared/types';
 
 const { BookActionConstant } = ActionConstants.default;
 
-export default function bookReducer(state: any, payload: Action.BookAction): any {
+export default function feedReducer(state: any, payload: Action.BookAction): any {
     let result = state;
 
     switch (payload.type) {
@@ -38,20 +38,17 @@ export default function bookReducer(state: any, payload: Action.BookAction): any
                     duration: action.duration,
                     date: Date.now(),
                 };
-                databseInstance.sendNotification(notification, handleError);
-                /*const notification: DataTypes.QueueNotificationValueType = DataTypes.NullQueueNotificationValue();
-                notification.bookId = action.bookId;
-                notification.ownerId = action.ownerId;
-                notification.userId = state.userdata.id;
-                notification.duration = action.duration;
-
-                databseInstance.askBook(state.userdata.id, notification, handleError).then(() => {
+                databseInstance.sendNotification(notification, handleError).then(() => {
                     databseInstance
-                        .getQueue(state.userdata.id, handleError)
-                        .then((result: DataTypes.QueueNotificationRecordType[]) => {
+                        .getNotificationsFromUserIdOfType(
+                            state.userdata.id,
+                            DataTypes.NotificationType.REQUEST_BOOK,
+                            handleError,
+                        )
+                        .then((result: DataTypes.AppNotification[]) => {
                             Store.dispatch(Action.refreshState({ queueArray: result, append: false }));
                         });
-                });*/
+                });
                 result = Object.assign({}, state, {
                     action: action.type,
                     bookChangingId: action.bookId,

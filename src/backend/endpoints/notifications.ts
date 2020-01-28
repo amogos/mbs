@@ -3,13 +3,26 @@ import { urlNotifications } from './constants';
 import * as DataTypes from '../../shared/types';
 import { addFeed } from './user_feed';
 
-export async function getNotificationsForUserId(
+export async function getNotificationsToUserId(
     userId: number,
     onError: (resultCode: number) => void,
 ): Promise<DataTypes.AppNotification[]> {
     let results: DataTypes.AppNotification[] = [];
     await axios
         .get(`${urlNotifications}?toUserId=${userId}`)
+        .then(response => (results = response.data))
+        .catch(error => onError(error));
+    return results;
+}
+
+export async function getNotificationsFromUserIdOfType(
+    userId: number,
+    type: DataTypes.NotificationType,
+    onError: (resultCode: number) => void,
+): Promise<DataTypes.AppNotification[]> {
+    let results: DataTypes.AppNotification[] = [];
+    await axios
+        .get(`${urlNotifications}?fromUserId=${userId}&type=${type}`)
         .then(response => (results = response.data))
         .catch(error => onError(error));
     return results;
