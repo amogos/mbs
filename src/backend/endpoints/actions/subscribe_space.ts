@@ -25,8 +25,8 @@ export async function unsubscribeSpace(
     onFail?: () => void,
 ) {
     const space = await getSpace(spaceId, handleError);
-    user.subscriptions = user.subscriptions.filter((spaceId: number) => spaceId == space.id);
-    space.subscribedUsers = space.subscribedUsers.filter((userId: number) => userId == user.id);
+    user.subscriptions = user.subscriptions.filter((spaceId: number) => spaceId != space.id);
+    space.subscribedUsers = space.subscribedUsers.filter((userId: number) => userId != user.id);
     await updateUser(user, onError, onSuccess, onFail);
     await updateSpace(space, onError, onSuccess, onFail);
 }
