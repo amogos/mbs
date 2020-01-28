@@ -6,9 +6,17 @@ import Strings from '../../../shared/constants/string_constant';
 import { message } from 'antd';
 import { handleError } from './../main_reducer';
 import * as Action from './../../actions/index';
-import { GetBooksAction, GetBookmarksAction } from './../../actions/index';
-import { SpaceType } from '../../../shared/types';
+import { SpaceType, CategoryRecordType, BookRecordType } from '../../../shared/types';
 const { PageActionConstant } = ActionConstants.default;
+
+const invalidateKey = (key: string, value: any): any => {
+    return Object.assign(
+        {},
+        ...Object.entries(value)
+            .filter(([k]) => k !== key)
+            .map(([k, v]) => ({ [k]: v })),
+    );
+};
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default function pageReducer(state: any, payload: Action.PageAction): any {
@@ -102,6 +110,7 @@ export default function pageReducer(state: any, payload: Action.PageAction): any
                     .then((result: DataTypes.BookRecordType) => {
                         Store.dispatch(Action.refreshState({ book: result }));
                     });
+                tempState = invalidateKey(bid, tempState);
             }
             if (cid) {
                 databseInstance
@@ -109,27 +118,16 @@ export default function pageReducer(state: any, payload: Action.PageAction): any
                     .then((result: DataTypes.CategoryRecordType) => {
                         Store.dispatch(Action.refreshState({ category: result }));
                     });
+                tempState = invalidateKey(cid, tempState);
             }
             if (sid) {
                 databseInstance.getSpaceTypeFromId(parseInt(sid), handleError).then((result: SpaceType) => {
                     Store.dispatch(Action.refreshState({ space: result }));
                 });
+                tempState = invalidateKey(sid, tempState);
             }
-            return tempState;
-        }
 
-        case PageActionConstant.ACTION_ADD_KEY: {
-            const action = payload as Action.AddKeyAction<SpaceType>;
-            return Object.assign({}, state, { [action.key]: action.value });
-        }
-        case PageActionConstant.ACTION_REMOVE_KEY: {
-            const action: Action.RemoveKeyAction = payload as Action.RemoveKeyAction;
-            return Object.assign(
-                {},
-                ...Object.entries(state)
-                    .filter(([k]) => k !== action.key)
-                    .map(([k, v]) => ({ [k]: v })),
-            );
+            return tempState;
         }
 
         case PageActionConstant.ACTION_REFRESH_STATE: {
