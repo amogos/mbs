@@ -24,13 +24,13 @@ interface Props extends RouteComponentProps {
 
 const ListSpacesComponent = (props: Props) => {
     const onSpaceClicked = (space: SpaceType) => {
-        props.history.push(`/${AppPages.Books}?space=${space.id}`);
+        props.history.push(`/${AppPages.Books}?sid=${space.id}`);
     };
     const onSubscribeButtonClicked = (space: SpaceType) => {
-        props.history.push(`/${AppPages.Subscription}?space=${space.id}`);
+        props.history.push(`/${AppPages.Subscription}?sid=${space.id}`);
     };
     const onAddBookButtonClicked = (space: SpaceType) => {
-        props.history.push(`/${AppPages.AddBook}?space=${space.id}`);
+        props.history.push(`/${AppPages.AddBook}?sid=${space.id}`);
     };
 
     return (

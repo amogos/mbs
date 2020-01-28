@@ -6,6 +6,7 @@ function mapStateToProps(state) {
     return {
         urlparams: state.mainReducer.urlparams,
         subscribingSpace: state.mainReducer.subscribingSpace,
+        space: state.mainReducer.space,
     };
 }
 

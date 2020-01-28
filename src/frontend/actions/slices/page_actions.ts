@@ -87,6 +87,17 @@ export const refreshState = (params: any): RefreshStateAction => ({
     params,
 });
 
+/**AddKeyAction*/
+export interface AddKeyAction<T> extends Action<string> {
+    key: string;
+    value: T;
+}
+export const addKey = <T extends {}>(key: string, value: T): AddKeyAction<T> => ({
+    type: ActionTypes.default.PageActionConstant.ACTION_ADD_KEY,
+    key,
+    value,
+});
+
 /**RemoveKeyAction*/
 export interface RemoveKeyAction extends Action<string> {
     key: string;
@@ -104,4 +115,5 @@ export type PageAction =
     | GetBookmarksAction
     | AddUrlParamsAction
     | RefreshStateAction
+    | AddKeyAction<{}>
     | RemoveKeyAction;

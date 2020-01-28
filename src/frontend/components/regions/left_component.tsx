@@ -18,11 +18,11 @@ interface Props extends RouteComponentProps {
 
 const BookContextActions = (props: Props) => {
     const { urlparams, userSpaces, userdata } = props;
-
-    if (!urlparams.query.space) return null;
-    const space: number = parseInt(urlparams.query.space);
-    if (!urlparams.query.id) return null;
-    const id: number = parseInt(urlparams.query.id);
+    const { sid, bid } = urlparams.query;
+    if (!sid) return null;
+    const space: number = parseInt(sid);
+    if (!bid) return null;
+    const id: number = parseInt(bid);
 
     const mySpace = userSpaces.find(item => item.id === space);
     if (mySpace) return null;
@@ -44,7 +44,7 @@ const BookContextActions = (props: Props) => {
                 <div>
                     <p>Want to have acces to this shelf? </p>
                     {showSubscribeButton ? (
-                        <Button onClick={() => props.history.push(`/${AppPages.Subscription}?space=${space}`)}>
+                        <Button onClick={() => props.history.push(`/${AppPages.Subscription}?sid=${space}`)}>
                             subscribe
                         </Button>
                     ) : null}
@@ -57,9 +57,10 @@ const BookContextActions = (props: Props) => {
 
 const SpaceContextActions = (props: Props) => {
     const { urlparams, userSpaces, userdata } = props;
+    const { sid, bid } = urlparams.query;
 
-    if (!urlparams.query.space) return null;
-    const space: number = parseInt(urlparams.query.space);
+    if (!sid) return null;
+    const space: number = parseInt(sid);
 
     const mySpace = userSpaces.find(item => item.id === space);
     if (mySpace) return null;
@@ -73,7 +74,7 @@ const SpaceContextActions = (props: Props) => {
                 <div className="context_actions">
                     <p>Want to have acces to this shelf? </p>
                     <p>Ask for permission. </p>
-                    <Button onClick={() => props.history.push(`/${AppPages.Subscription}?space=${space}`)}>
+                    <Button onClick={() => props.history.push(`/${AppPages.Subscription}?sid=${space}`)}>
                         subscribe
                     </Button>
                 </div>

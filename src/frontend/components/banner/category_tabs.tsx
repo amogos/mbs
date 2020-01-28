@@ -48,7 +48,7 @@ class CategoryTabs extends React.Component<Props, {}> {
                     id: item.id,
                     title: item.title,
                     callback: () => {
-                        props.history.push(`/${AppPages.Books}?category=${item.id}`);
+                        props.history.push(`/${AppPages.Books}?cid=${item.id}`);
                     },
                 };
                 return tab;
@@ -66,7 +66,7 @@ class CategoryTabs extends React.Component<Props, {}> {
                         id: item.id,
                         title: item.title,
                         callback: () => {
-                            props.history.push(`/${AppPages.Books}?category=${item.id}`);
+                            props.history.push(`/${AppPages.Books}?cid=${item.id}`);
                         },
                     };
                     return tab;

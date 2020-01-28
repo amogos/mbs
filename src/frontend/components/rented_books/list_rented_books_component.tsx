@@ -25,7 +25,7 @@ const RentedBook = (props: Props, book: DataTypes.BookRecordType) => {
         percent = (100 * elapsedDurationInDays) / rentalDurationInDays;
     }
     return (
-        <div className="rented_book" onClick={() => props.history.push(`${AppPages.Book}?id=${book.id}`)}>
+        <div className="rented_book" onClick={() => props.history.push(`${AppPages.Book}?bid=${book.id}`)}>
             <img height={64} src={book.image} alt="" />
             {book.title}
             <Progress

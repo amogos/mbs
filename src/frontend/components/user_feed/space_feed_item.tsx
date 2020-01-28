@@ -34,7 +34,7 @@ const SpaceFeedItem = (props: Props) => {
                 <div className="feed_item_root">
                     <img height="98" src={space.picture} alt="" />
                     <div className="feed_item_right">
-                        <Button type="link" onClick={() => props.history.push(`/${AppPages.Books}?space=${space.id}`)}>
+                        <Button type="link" onClick={() => props.history.push(`/${AppPages.Books}?sid=${space.id}`)}>
                             {space.title}
                         </Button>
                         {actions[0]}

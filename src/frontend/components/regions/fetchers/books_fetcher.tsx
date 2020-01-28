@@ -15,14 +15,14 @@ export default class BooksFetcher extends ContentFetcher {
     }
     applyQueryFilters(urlparams: DataTypes.UrlParms): string[] {
         const queryFilters: string[] = [];
-        const { category, space } = urlparams.query;
+        const { cid, sid } = urlparams.query;
 
-        if (category) {
-            queryFilters.push(`category=${category}`);
+        if (cid) {
+            queryFilters.push(`category=${cid}`);
         }
 
-        if (space) {
-            queryFilters.push(`space=${space}`);
+        if (sid) {
+            queryFilters.push(`space=${sid}`);
         }
 
         return queryFilters;

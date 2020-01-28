@@ -7,6 +7,7 @@ import { message } from 'antd';
 import { handleError } from './../main_reducer';
 import * as Action from './../../actions/index';
 import { GetBooksAction, GetBookmarksAction } from './../../actions/index';
+import { SpaceType } from '../../../shared/types';
 const { PageActionConstant } = ActionConstants.default;
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -103,6 +104,10 @@ export default function pageReducer(state: any, payload: Action.PageAction): any
             return Object.assign({}, state, stateAppend);
         }
 
+        case PageActionConstant.ACTION_ADD_KEY: {
+            const action = payload as Action.AddKeyAction<SpaceType>;
+            return Object.assign({}, state, { [action.key]: action.value });
+        }
         case PageActionConstant.ACTION_REMOVE_KEY: {
             const action: Action.RemoveKeyAction = payload as Action.RemoveKeyAction;
             return Object.assign(

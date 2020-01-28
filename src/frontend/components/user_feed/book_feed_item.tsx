@@ -47,7 +47,7 @@ const BookFeedItem = (props: Props) => {
                 <div className="feed_item_root">
                     <img height="98" src={book.image} alt="" />
                     <div className="feed_item_right">
-                        <Button type="link" onClick={() => props.history.push(`/${AppPages.Book}?id=${book.id}`)}>
+                        <Button type="link" onClick={() => props.history.push(`/${AppPages.Book}?bid=${book.id}`)}>
                             {book.title}
                         </Button>
                         <p> by {React.Children.toArray(book.author.map(author => author + ','))}</p>

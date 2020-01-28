@@ -31,8 +31,9 @@ interface Props {
 interface State {}
 
 function DisplayBookDetails(props: Props) {
-    if (!props.urlparams.query.id) return null;
-    const bookId = parseInt(props.urlparams.query.id);
+    const { bid } = props.urlparams.query;
+    if (!bid) return null;
+    const bookId = parseInt(bid);
     props.displayBook(bookId);
     return <BookDisplayContainer />;
 }
@@ -100,8 +101,8 @@ class MainComponent extends React.Component<Props, State> implements ContentHold
 
     render() {
         let { id } = this.props.urlparams;
-
         if (id === undefined) id = DataTypes.AppPages.Spaces;
+        const { sid } = this.props.urlparams.query;
 
         switch (id) {
             case DataTypes.AppPages.Books:
@@ -120,8 +121,8 @@ class MainComponent extends React.Component<Props, State> implements ContentHold
                 return <div className={ClassNames.normal}>{this.feedFetcher.render()}</div>;
             }
             case DataTypes.AppPages.Subscription: {
-                if (this.props.urlparams.query.space) {
-                    const space = parseInt(this.props.urlparams.query.space);
+                if (sid) {
+                    const space = parseInt(sid);
                     this.props.enterSubscribeSpace(space);
                     return <SubscriptionComponent />;
                 }
