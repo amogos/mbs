@@ -10,26 +10,25 @@ export enum NotificationType {
 }
 
 export interface Notification {
+    id?: number;
     type: NotificationType;
     date: number;
+    fromUserId: number;
+    toUserId: number;
 }
 
 export interface RequestBookNotification extends Notification {
     bookId: number;
-    userId: number;
-    ownerId: number;
     duration: number;
 }
 
 export interface ReturnBookNotification extends Notification {
     bookId: number;
-    userId: number;
     duration: number;
 }
 
 export interface JoinSpaceInviteNotification extends Notification {
     spaceId: number;
-    userId: number;
 }
 
 export type JoinSpaceRequest = JoinSpaceInviteNotification;

@@ -12,7 +12,7 @@ export * from './types/book_description_types';
 export * from './types/user_feed';
 export * from './types/pages';
 export * from './types/subscribe_notification_types';
-
+export * from './types/notification_types';
 export interface BannerAttributes {
     showCategoryFiltering: boolean;
     showTabFiltering: boolean;

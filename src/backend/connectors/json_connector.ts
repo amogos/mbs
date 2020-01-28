@@ -24,3 +24,4 @@ export * from '../endpoints/actions/confirm_subscription';
 export * from '../endpoints/actions/reject_subscription';
 export * from '../endpoints/bookmarks';
 export * from '../endpoints/user_feed';
+export * from '../endpoints/notifications';
