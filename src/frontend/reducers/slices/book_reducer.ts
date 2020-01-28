@@ -8,7 +8,7 @@ import { NullBookRecordType } from '../../../shared/types';
 const { BookActionConstant } = ActionConstants.default;
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export default function bookReducer(state: any, payload: Action.BookActionType): any {
+export default function bookReducer(state: any, payload: Action.BookAction): any {
     switch (payload.type) {
         case BookActionConstant.ACTION_LIKE_REVIEW: {
             const action: Action.LikeBookReviewAction = payload as Action.LikeBookReviewAction;

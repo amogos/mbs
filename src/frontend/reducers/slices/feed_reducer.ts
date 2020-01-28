@@ -9,7 +9,7 @@ import * as DataTypes from '../../../shared/types';
 
 const { BookActionConstant } = ActionConstants.default;
 
-export default function bookReducer(state: any, payload: Action.BookActionType): any {
+export default function bookReducer(state: any, payload: Action.BookAction): any {
     let result = state;
 
     switch (payload.type) {

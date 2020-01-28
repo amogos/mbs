@@ -6,7 +6,7 @@ import * as DataTypes from './../../../shared/types';
 const { NotificationActionConstant } = ActionConstants.default;
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export default function notificationReducer(state: any, payload: Action.NotificationActionType): any {
+export default function notificationReducer(state: any, payload: Action.NotificationAction): any {
     switch (payload.type) {
         case NotificationActionConstant.ACTION_RATE_RETURN: {
             const action: Action.RateReturnAction = payload as Action.RateReturnAction;

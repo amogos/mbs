@@ -96,7 +96,7 @@ export const removeKey = (key: string): RemoveKeyAction => ({
     key,
 });
 
-export type PageActionType =
+export type PageAction =
     | GetSpacesAction
     | GetBooksAction
     | GetRentedBooksAction

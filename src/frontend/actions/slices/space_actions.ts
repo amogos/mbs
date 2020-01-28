@@ -47,7 +47,7 @@ export const exitSubscribeSpace = (spaceId: number): ExitSubscribeSpaceAction =>
     spaceId,
 });
 
-export type SpaceActionType =
+export type SpaceAction =
     | EnterSubscribeSpaceAction
     | SubscribeSpaceAction
     | UnSubscribeSpaceAction

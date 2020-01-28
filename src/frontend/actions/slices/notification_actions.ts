@@ -113,7 +113,7 @@ export const rejectSubscription = (
     callback,
 });
 
-export type NotificationActionType =
+export type NotificationAction =
     | RateReturnAction
     | ConfirmRentalAction
     | RejectRentalAction

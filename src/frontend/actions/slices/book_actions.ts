@@ -135,7 +135,7 @@ export const getReviewsForBook = (
     callback,
 });
 
-export type BookActionType =
+export type BookAction =
     | AddBookAction
     | GetBookDescriptionAction
     | AskBookAction

@@ -10,7 +10,7 @@ import { GetBooksAction, GetBookmarksAction } from './../../actions/index';
 const { PageActionConstant } = ActionConstants.default;
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export default function pageReducer(state: any, payload: Action.PageActionType): any {
+export default function pageReducer(state: any, payload: Action.PageAction): any {
     switch (payload.type) {
         case PageActionConstant.ACTION_GET_BOOKMARKS: {
             const action: Action.GetBookmarksAction = payload as Action.GetBookmarksAction;
