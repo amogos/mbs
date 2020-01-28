@@ -44,7 +44,7 @@ const BookContextActions = (props: Props) => {
                 <div>
                     <p>Want to have acces to this shelf? </p>
                     {showSubscribeButton ? (
-                        <Button onClick={() => props.history.push(`/${AppPages.Subscription}?sid=${space}`)}>
+                        <Button onClick={() => props.history.push(`/${AppPages.Subscribe}?sid=${space}`)}>
                             subscribe
                         </Button>
                     ) : null}
@@ -74,7 +74,7 @@ const SpaceContextActions = (props: Props) => {
                 <div className="context_actions">
                     <p>Want to have acces to this shelf? </p>
                     <p>Ask for permission. </p>
-                    <Button onClick={() => props.history.push(`/${AppPages.Subscription}?sid=${space}`)}>
+                    <Button onClick={() => props.history.push(`/${AppPages.Subscribe}?sid=${space}`)}>
                         subscribe
                     </Button>
                 </div>

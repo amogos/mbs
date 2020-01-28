@@ -4,6 +4,7 @@ import { DisplaySpaceListing } from './display_space_listing';
 import { DisplayProfileSettings } from './display_profile_settings';
 import { DisplayFeed } from './display_feed';
 import { DisplaySubscription } from './display_subscription';
+import { DisplayUnSubscription } from './display_unsubscription';
 import { PageNotFound } from '../components/errors/page_not_found';
 import * as DataTypes from '../../shared/types';
 import { AppPages } from '../../shared/types';
@@ -22,8 +23,10 @@ export const DisplayContent = (page: DataTypes.AppPages) => {
             return DisplayFeed();
         case undefined:
             return DisplaySpaceListing();
-        case AppPages.Subscription:
+        case AppPages.Subscribe:
             return DisplaySubscription();
+        case AppPages.Unsubscribe:
+            return DisplayUnSubscription();
         default:
             return PageNotFound();
     }

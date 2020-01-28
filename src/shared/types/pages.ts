@@ -4,6 +4,7 @@ export enum AppPages {
     Book = 'book',
     Settings = 'settings',
     Feed = 'feed',
-    Subscription = 'subscription',
+    Subscribe = 'subscribe',
+    Unsubscribe = 'unsubscribe',
     AddBook = 'addbook',
 }

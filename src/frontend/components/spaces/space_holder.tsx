@@ -23,13 +23,14 @@ interface Props {
     item: DataTypes.SpaceType;
     onSpaceClicked: (space: DataTypes.SpaceType) => void;
     onSubscribeButtonClicked: (space: DataTypes.SpaceType) => void;
+    onUnSubscribeButtonClicked: (space: DataTypes.SpaceType) => void;
     onAddBookButtonClicked: (space: DataTypes.SpaceType) => void;
     onEditSpaceButtonClicked: (space: DataTypes.SpaceType) => void;
 }
 
 const SpaceHolder = (props: Props) => {
     const subscribed = props.userdata.subscriptions.includes(props.item.id);
-    const { onSpaceClicked, onSubscribeButtonClicked, onEditSpaceButtonClicked, item, userdata } = props;
+    const { onSpaceClicked, onEditSpaceButtonClicked, item, userdata } = props;
     const icons = {
         subscribe: subscribed ? { icon: 'lock', tooltip: 'unsubscribe' } : { icon: 'unlock', tooltip: 'subscribe' },
         add: { icon: 'plus', tooltip: 'add book' },
@@ -38,7 +39,9 @@ const SpaceHolder = (props: Props) => {
 
     const [visible, setVisible] = useState(false);
 
-    const subscribe = () => onSubscribeButtonClicked(item);
+    const subscribe = () => {
+        subscribed ? props.onUnSubscribeButtonClicked(item) : props.onSubscribeButtonClicked(item);
+    };
     const add = () => setVisible(true);
     const edit = () => onEditSpaceButtonClicked(item);
 

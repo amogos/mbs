@@ -27,7 +27,10 @@ const ListSpacesComponent = (props: Props) => {
         props.history.push(`/${AppPages.Books}?sid=${space.id}`);
     };
     const onSubscribeButtonClicked = (space: SpaceType) => {
-        props.history.push(`/${AppPages.Subscription}?sid=${space.id}`);
+        props.history.push(`/${AppPages.Subscribe}?sid=${space.id}`);
+    };
+    const onUnSubscribeButtonClicked = (space: SpaceType) => {
+        props.history.push(`/${AppPages.Unsubscribe}?sid=${space.id}`);
     };
     const onAddBookButtonClicked = (space: SpaceType) => {
         props.history.push(`/${AppPages.AddBook}?sid=${space.id}`);
@@ -43,6 +46,7 @@ const ListSpacesComponent = (props: Props) => {
                         item={item}
                         onSpaceClicked={onSpaceClicked}
                         onSubscribeButtonClicked={onSubscribeButtonClicked}
+                        onUnSubscribeButtonClicked={onUnSubscribeButtonClicked}
                         onAddBookButtonClicked={onAddBookButtonClicked}
                     />
                 )),
@@ -55,6 +59,7 @@ const ListSpacesComponent = (props: Props) => {
                         item={item}
                         onSpaceClicked={onSpaceClicked}
                         onSubscribeButtonClicked={onSubscribeButtonClicked}
+                        onUnSubscribeButtonClicked={onUnSubscribeButtonClicked}
                         onAddBookButtonClicked={onAddBookButtonClicked}
                     />
                 )),

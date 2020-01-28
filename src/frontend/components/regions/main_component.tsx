@@ -1,7 +1,7 @@
 import React from 'react';
 import { requiresLogin } from '../hooks/hooks';
 import * as DataTypes from './../../../shared/types';
-import BookDisplayContainer from '../../containers/display_book_container';
+import BookDisplayComponent from '../../containers/display_book_container';
 import LoginComponent from '../social/login_component';
 import ProfileSettingsComponent from './../settings/profile_settings_component';
 import BooksFetcher from './fetchers/books_fetcher';
@@ -9,7 +9,8 @@ import SpacesFetcher from './fetchers/spaces_fetcher';
 import FeedFetcher from './fetchers/feed_fetcher';
 import debounce from 'lodash.debounce';
 import { ContentHolder, ContentHolderType } from './fetchers/content_fetcher';
-import SubscriptionComponent from '../../containers/subscribe_container';
+import SubscribeComponent from '../../containers/subscribe_container';
+import UnSubscribeComponent from '../../containers/unsubscribe_container';
 
 interface Props {
     userdata: DataTypes.UserRecordType;
@@ -23,15 +24,10 @@ interface Props {
     getBooks(filters: string[], callbacks: ((books: DataTypes.BookRecordType[]) => void)[]): void;
     getSpaces(filters: string[], callbacks: ((result: DataTypes.Spaces) => void)[]): void;
     getFeeds(filters: string[], callbacks: ((feeds: DataTypes.UserFeedRecordType[]) => void)[]): void;
-    enterSubscribeSpace(spaceId: number): void;
 }
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 interface State {}
-
-function DisplayBookDetails(props: Props) {
-    return <BookDisplayContainer />;
-}
 
 enum ClassNames {
     normal = 'main_component',
@@ -97,7 +93,6 @@ class MainComponent extends React.Component<Props, State> implements ContentHold
     render() {
         let { id } = this.props.urlparams;
         if (id === undefined) id = DataTypes.AppPages.Spaces;
-        const { sid } = this.props.urlparams.query;
 
         switch (id) {
             case DataTypes.AppPages.Books:
@@ -105,7 +100,11 @@ class MainComponent extends React.Component<Props, State> implements ContentHold
             case DataTypes.AppPages.Spaces:
                 return <div className={ClassNames.normal}>{this.spacesFetcher.render()}</div>;
             case DataTypes.AppPages.Book:
-                return <div className={ClassNames.normal}>{DisplayBookDetails(this.props)}</div>;
+                return (
+                    <div className={ClassNames.normal}>
+                        <BookDisplayComponent />
+                    </div>
+                );
             case DataTypes.AppPages.Settings:
                 return (
                     <div className={ClassNames.normal}>
@@ -115,13 +114,11 @@ class MainComponent extends React.Component<Props, State> implements ContentHold
             case DataTypes.AppPages.Feed: {
                 return <div className={ClassNames.normal}>{this.feedFetcher.render()}</div>;
             }
-            case DataTypes.AppPages.Subscription: {
-                if (sid) {
-                    const space = parseInt(sid);
-                    this.props.enterSubscribeSpace(space);
-                    return <SubscriptionComponent />;
-                }
-                return null;
+            case DataTypes.AppPages.Subscribe: {
+                return <SubscribeComponent />;
+            }
+            case DataTypes.AppPages.Unsubscribe: {
+                return <UnSubscribeComponent />;
             }
             default:
                 return <div />;
