@@ -19,7 +19,7 @@ export default function socialReducer(state: any, action: Action.SocialAction): 
                     });
             });
             return Object.assign({}, state, {
-                action: SocialActionConstant.ACTION_UPDATE_USER_DATA,
+                action: actionData.type,
             });
         }
 
@@ -29,7 +29,7 @@ export default function socialReducer(state: any, action: Action.SocialAction): 
                 if (result.id > 0) Store.dispatch(Action.addUserData(result));
             });
             return Object.assign({}, state, {
-                action: SocialActionConstant.ACTION_SIGN_UP_USER,
+                action: actionData.type,
             });
         }
         case SocialActionConstant.ACTION_LOGIN_USER: {
@@ -40,13 +40,13 @@ export default function socialReducer(state: any, action: Action.SocialAction): 
                     if (result.id > 0) Store.dispatch(Action.addUserData(result));
                 });
             return Object.assign({}, state, {
-                action: SocialActionConstant.ACTION_LOGIN_USER,
+                action: actionData.type,
             });
         }
         case SocialActionConstant.ACTION_LOGOUT_USER: {
             const actionData: Action.LogoutUserActionType = action as Action.LogoutUserActionType;
             return Object.assign({}, state, {
-                action: SocialActionConstant.ACTION_LOGOUT_USER,
+                action: actionData.type,
                 userdata: DataTypes.NullUserRecordType,
             });
         }

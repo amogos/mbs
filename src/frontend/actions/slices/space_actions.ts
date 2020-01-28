@@ -24,11 +24,17 @@ export const subscribeSpace = (spaceId: number, onSuccess?: () => void, onFail?:
 });
 /**UnSubscribeSpaceAction*/
 export interface UnSubscribeSpaceAction extends Action<string> {
+    spaceId: number;
     onSuccess?: () => void;
     onFail?: () => void;
 }
-export const unsubscribeSpace = (onSuccess?: () => void, onFail?: () => void): UnSubscribeSpaceAction => ({
+export const unsubscribeSpace = (
+    spaceId: number,
+    onSuccess?: () => void,
+    onFail?: () => void,
+): UnSubscribeSpaceAction => ({
     type: ActionTypes.default.SpaceActionConstant.UNSUBSCRIBE_SPACE,
+    spaceId,
     onSuccess,
     onFail,
 });

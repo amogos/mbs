@@ -41,7 +41,7 @@ export default function pageReducer(state: any, payload: Action.PageActionType):
                     action.callbacks.forEach((callback: (result: DataTypes.Spaces) => void) => callback(result));
                 });
             return Object.assign({}, state, {
-                action: ActionConstants.default.PageActionConstant.ACTION_GET_SPACES,
+                action: action.type,
             });
         }
         case PageActionConstant.ACTION_GET_BOOKS: {
@@ -53,7 +53,7 @@ export default function pageReducer(state: any, payload: Action.PageActionType):
                 action.callbacks.forEach((callback: (books: DataTypes.BookRecordType[]) => void) => callback(result2));
             });
             return Object.assign({}, state, {
-                action: PageActionConstant.ACTION_GET_BOOKS,
+                action: action.type,
             });
         }
 
@@ -72,7 +72,7 @@ export default function pageReducer(state: any, payload: Action.PageActionType):
                 });
 
             return Object.assign({}, state, {
-                action: PageActionConstant.ACTION_GET_FEED,
+                action: action.type,
             });
         }
 
@@ -92,7 +92,7 @@ export default function pageReducer(state: any, payload: Action.PageActionType):
                 urlparams: DataTypes.UrlParms;
                 booksArray?: DataTypes.BookRecordType[];
             } = {
-                action: PageActionConstant.ACTION_ADD_URL_PARAMS,
+                action: action.type,
                 urlparams: action.urlparams,
             };
 

@@ -44,7 +44,7 @@ export default function bookReducer(state: any, payload: Action.BookActionType):
                         });
                 });
                 result = Object.assign({}, state, {
-                    action: BookActionConstant.ACTION_ASK_BOOK,
+                    action: action.type,
                     bookChangingId: action.bookId,
                 });
             }
@@ -55,7 +55,7 @@ export default function bookReducer(state: any, payload: Action.BookActionType):
                 const bookId: number = action.bookId;
                 databseInstance.returnBook(bookId, handleError).then(() => {});
                 result = Object.assign({}, state, {
-                    action: BookActionConstant.ACTION_RETURN_BOOK,
+                    action: action.type,
                     bookChangingId: bookId,
                 });
             }
@@ -80,7 +80,7 @@ export default function bookReducer(state: any, payload: Action.BookActionType):
                 });
 
                 result = Object.assign({}, state, {
-                    action: BookActionConstant.ACTION_DELETE_BOOK,
+                    action: action.type,
                     bookChangingId: action.bookId,
                 });
             }
