@@ -10,6 +10,7 @@ import { getBookDescriptionForISBN } from './books_descriptions';
 import { getFormatRecordTypeFromId } from './format';
 import { getSpaceTypeFromId } from './spaces';
 import { BookRecordType } from '../../shared/types';
+import { getReviewsForBook } from './book_reviews';
 
 export async function getBookRecordTypeFromRaw(
     item: DataTypes.BookRawRecordType,
@@ -25,6 +26,7 @@ export async function getBookRecordTypeFromRaw(
     const reviewStatistics = await getReviewStatisticsForBook(item.id, onError);
     const space = await getSpaceTypeFromId(item.space, onError);
     const format = await getFormatRecordTypeFromId(description.format, onError);
+    const reviews = await getReviewsForBook(item.id, onError);
 
     result.id = item.id;
     result.descriptionId = description.id;
@@ -44,7 +46,7 @@ export async function getBookRecordTypeFromRaw(
     result.returndate = returnDateMilliseconds;
     result.requestdate = item.requestdate;
     result.contentScore = reviewStatistics.contentScore;
-    result.numReviews = reviewStatistics.numReviews;
+    result.reviews = reviews;
     result.description = description.description;
     result.length = description.length;
     result.likes = description.likes;

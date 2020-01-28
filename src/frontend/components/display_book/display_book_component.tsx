@@ -22,9 +22,9 @@ interface Props {
 
 const Review = (props: Props, entry: DataTypes.BookReviewRecordType) => {
     const [likes, setLikes] = useState(entry.likes);
-    const rawReview = DataTypes.ToBookReviewRawRecordType(entry);
 
     const likeReview = () => {
+        const rawReview = DataTypes.ToBookReviewRawRecordType(entry);
         const newLikesCount = likes + 1;
         rawReview.likes = newLikesCount;
         entry.likes = newLikesCount;

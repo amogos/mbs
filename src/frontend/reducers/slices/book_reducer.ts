@@ -3,8 +3,6 @@ import * as Action from '../../actions';
 import databseInstance from '../../../backend/database_instance';
 import Store from '../store';
 import { handleError } from './../main_reducer';
-import { NullBookRecordType } from '../../../shared/types';
-
 const { BookActionConstant } = ActionConstants.default;
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -43,21 +41,6 @@ export default function bookReducer(state: any, payload: Action.BookAction): any
                 .getBookDescriptionForISBN(action.isbn10, action.isbn13, handleError)
                 .then(result => action.callback(result));
             return state;
-        }
-
-        case BookActionConstant.ACTION_DISPLAY_BOOK: {
-            const action: Action.DisplayBookAction = payload as Action.DisplayBookAction;
-            databseInstance.getBookRecordTypeFromId(action.bookId, handleError).then(result => {
-                Store.dispatch(Action.refreshState({ modifiedBook: result }));
-            });
-            databseInstance.getReviewsForBook(action.bookId, handleError).then(result => {
-                Store.dispatch(Action.refreshState({ modifiedBookReviews: result }));
-            });
-
-            return Object.assign({}, state, {
-                modifiedBook: NullBookRecordType,
-                modifiedBookReviews: [],
-            });
         }
 
         default:

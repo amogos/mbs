@@ -79,29 +79,43 @@ export default function pageReducer(state: any, payload: Action.PageAction): any
 
         case PageActionConstant.ACTION_ADD_URL_PARAMS: {
             const action: Action.AddUrlParamsAction = payload as Action.AddUrlParamsAction;
-            let shouldResetBooksArray = false;
 
+            let shouldResetBooksArray = false;
             const pageChanged: boolean = state.urlparams && state.urlparams.id !== action.urlparams.id;
             const queryChanged = state.urlparams && state.urlparams.query !== action.urlparams.query;
-
             if (pageChanged || queryChanged) {
                 shouldResetBooksArray = true;
             }
 
-            let stateAppend: {
-                action: string;
-                urlparams: DataTypes.UrlParms;
-                booksArray?: DataTypes.BookRecordType[];
-            } = {
-                action: action.type,
-                urlparams: action.urlparams,
-            };
-
+            let tempState = state;
+            tempState = Object.assign({}, tempState, { action: action.type });
+            tempState = Object.assign({}, tempState, { urlparams: action.urlparams });
             if (shouldResetBooksArray) {
-                stateAppend = { ...stateAppend, booksArray: [] };
+                tempState = Object.assign({}, tempState, { booksArray: [] });
             }
 
-            return Object.assign({}, state, stateAppend);
+            const { bid, cid, sid } = action.urlparams.query;
+
+            if (bid) {
+                databseInstance
+                    .getBookRecordTypeFromId(parseInt(bid), handleError)
+                    .then((result: DataTypes.BookRecordType) => {
+                        Store.dispatch(Action.refreshState({ book: result }));
+                    });
+            }
+            if (cid) {
+                databseInstance
+                    .getCategoryRecordTypeFromId(parseInt(cid), handleError)
+                    .then((result: DataTypes.CategoryRecordType) => {
+                        Store.dispatch(Action.refreshState({ category: result }));
+                    });
+            }
+            if (sid) {
+                databseInstance.getSpaceTypeFromId(parseInt(sid), handleError).then((result: SpaceType) => {
+                    Store.dispatch(Action.refreshState({ category: result }));
+                });
+            }
+            return tempState;
         }
 
         case PageActionConstant.ACTION_ADD_KEY: {

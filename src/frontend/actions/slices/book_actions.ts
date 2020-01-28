@@ -89,15 +89,6 @@ export const likeBook = (book: DataTypes.BookRecordType): LikeBookAction => ({
     book,
 });
 
-/**DisplayBookAction*/
-export interface DisplayBookAction extends Action<string> {
-    bookId: number;
-}
-export const displayBook = (bookId: number): DisplayBookAction => ({
-    type: ActionTypes.default.BookActionConstant.ACTION_DISPLAY_BOOK,
-    bookId,
-});
-
 /**BookmarkBookAction*/
 export interface BookmarkBookAction extends Action<string> {
     bookId: number;
@@ -144,7 +135,6 @@ export type BookAction =
     | ReviewBookAction
     | LikeBookReviewAction
     | LikeBookAction
-    | DisplayBookAction
     | BookmarkBookAction
     | UnBookmarkBookAction
     | GetReviewForBookAction;

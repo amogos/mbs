@@ -3,6 +3,7 @@ import { CategoryRecordType, NullCategoryRecordType } from './category_types';
 import { UserRecordType, NullUserRecordType } from './user_types';
 import { SpaceType, NullSpaceType } from './space_types';
 import * as BookStates from './../constants/book_states_constant';
+import { BookReviewRecordType } from '../types';
 
 export interface BookValueType {
     title: string;
@@ -70,7 +71,7 @@ export interface BookRecordType {
     returndate?: number;
     requestdate?: number;
     contentScore?: number;
-    numReviews?: number;
+    reviews: BookReviewRecordType[];
     description: string;
     length: number;
     likes: number;
@@ -96,7 +97,7 @@ export const NullBookRecordType = (): BookRecordType => {
         returndate: 0,
         requestdate: 0,
         contentScore: 0,
-        numReviews: 0,
+        reviews: [],
         description: '',
         length: 0,
         likes: 0,
