@@ -30,7 +30,16 @@ export default function bookReducer(state: any, payload: Action.BookAction): any
         case BookActionConstant.ACTION_ASK_BOOK:
             {
                 const action: Action.AskBookAction = payload as Action.AskBookAction;
-                const notification: DataTypes.QueueNotificationValueType = DataTypes.NullQueueNotificationValue();
+                const notification: DataTypes.RequestBookNotification = {
+                    type: DataTypes.NotificationType.REQUEST_BOOK,
+                    bookId: action.bookId,
+                    fromUserId: state.userdata.id,
+                    toUserId: action.ownerId,
+                    duration: action.duration,
+                    date: Date.now(),
+                };
+                databseInstance.sendNotification(notification, handleError);
+                /*const notification: DataTypes.QueueNotificationValueType = DataTypes.NullQueueNotificationValue();
                 notification.bookId = action.bookId;
                 notification.ownerId = action.ownerId;
                 notification.userId = state.userdata.id;
@@ -42,7 +51,7 @@ export default function bookReducer(state: any, payload: Action.BookAction): any
                         .then((result: DataTypes.QueueNotificationRecordType[]) => {
                             Store.dispatch(Action.refreshState({ queueArray: result, append: false }));
                         });
-                });
+                });*/
                 result = Object.assign({}, state, {
                     action: action.type,
                     bookChangingId: action.bookId,

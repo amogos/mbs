@@ -9,7 +9,7 @@ export enum NotificationType {
     JOIN_SPACE_REQUEST,
 }
 
-export interface Notification {
+export interface AppNotification {
     id?: number;
     type: NotificationType;
     date: number;
@@ -17,7 +17,7 @@ export interface Notification {
     toUserId: number;
 }
 
-export interface RequestBookNotification extends Notification {
+export interface RequestBookNotification extends AppNotification {
     bookId: number;
     duration: number;
 }
