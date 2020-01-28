@@ -9,7 +9,7 @@ import BookStateAddToCart from './states/book_state_add_to_cart';
 interface Props {
     userdata: DataTypes.UserRecordType;
     book: DataTypes.BookRecordType;
-    queueArray: DataTypes.QueueNotificationRecordType[];
+    queueArray: DataTypes.RequestBookNotification[];
     bookChangingId: number;
     reviewBook(review: DataTypes.BookReviewRawValueType): void;
     deleteBook(bookId: number): void;

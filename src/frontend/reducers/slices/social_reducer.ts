@@ -59,8 +59,12 @@ export default function socialReducer(state: any, action: Action.SocialAction): 
                 Store.dispatch(Action.refreshState({ categories: result }));
             });
             databseInstance
-                .getQueue(actionData.userdata.id, handleError)
-                .then((result: DataTypes.QueueNotificationRecordType[]) => {
+                .getNotificationsFromUserIdOfType(
+                    actionData.userdata.id,
+                    DataTypes.NotificationType.REQUEST_BOOK,
+                    handleError,
+                )
+                .then((result: DataTypes.AppNotification[]) => {
                     Store.dispatch(Action.refreshState({ queueArray: result, append: false }));
                 });
             databseInstance

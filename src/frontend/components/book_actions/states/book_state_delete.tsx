@@ -7,7 +7,7 @@ import * as Strings from './../../../../shared/constants/string_constant';
 interface Props {
     userdata: DataTypes.UserRecordType;
     book: DataTypes.BookRecordType;
-    queueArray: DataTypes.QueueNotificationRecordType[];
+    queueArray: DataTypes.AppNotification[];
 
     reviewBook(review: DataTypes.BookReviewRawValueType): void;
     deleteBook(bookId: number): void;
