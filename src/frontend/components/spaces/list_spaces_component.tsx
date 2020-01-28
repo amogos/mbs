@@ -64,7 +64,7 @@ const ListSpacesComponent = (props: Props) => {
 };
 
 function validProps(props: Props): boolean {
-    return props.userSpaces !== null && props.otherSpaces !== null;
+    return props.userSpaces != null;
 }
 
 export default withRouter(requiresCondition(ListSpacesComponent, (props: Props) => validProps(props)));

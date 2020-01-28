@@ -59,7 +59,7 @@ const SubscribeComponent = (props: Props) => {
 };
 
 function validProps(props: Props): boolean {
-    return props.space !== null && props.space !== undefined;
+    return props.space != null;
 }
 
 export default withRouter(requiresCondition(SubscribeComponent, (props: Props) => validProps(props)));

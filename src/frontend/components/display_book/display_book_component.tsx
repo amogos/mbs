@@ -85,7 +85,7 @@ const BookDisplayComponent = (props: Props) => {
 };
 
 const validProps = (props: Props) => {
-    return props.book !== null;
+    return props.book != null;
 };
 
 export default requiresCondition(withStyle(BookDisplayComponent, 'book_display_component'), (props: Props) =>
