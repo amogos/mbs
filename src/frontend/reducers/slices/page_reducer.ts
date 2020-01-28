@@ -112,7 +112,7 @@ export default function pageReducer(state: any, payload: Action.PageAction): any
             }
             if (sid) {
                 databseInstance.getSpaceTypeFromId(parseInt(sid), handleError).then((result: SpaceType) => {
-                    Store.dispatch(Action.refreshState({ category: result }));
+                    Store.dispatch(Action.refreshState({ space: result }));
                 });
             }
             return tempState;
