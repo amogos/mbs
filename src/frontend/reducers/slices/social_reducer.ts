@@ -59,6 +59,14 @@ export default function socialReducer(state: any, action: Action.SocialAction): 
                 Store.dispatch(Action.refreshState({ categories: result }));
             });
             databseInstance
+                .getArrayCategories(actionData.userdata.categories, handleError)
+                .then((result: DataTypes.CategoryRecordType[]) => {
+                    Store.dispatch(Action.refreshState({ usercategories: result }));
+                });
+
+            databseInstance.syncUserSubscrptions(actionData.userdata, handleError);
+
+            databseInstance
                 .getNotificationsFromUserIdOfType(
                     actionData.userdata.id,
                     DataTypes.NotificationType.REQUEST_BOOK,
@@ -67,13 +75,12 @@ export default function socialReducer(state: any, action: Action.SocialAction): 
                 .then((result: DataTypes.AppNotification[]) => {
                     Store.dispatch(Action.refreshState({ queueArray: result, append: false }));
                 });
-            databseInstance
-                .getArrayCategories(actionData.userdata.categories, handleError)
-                .then((result: DataTypes.CategoryRecordType[]) => {
-                    Store.dispatch(Action.refreshState({ usercategories: result }));
-                });
 
-            databseInstance.syncUserSubscrptions(actionData.userdata, handleError);
+            databseInstance
+                .getNotificationsToUserId(actionData.userdata.id, handleError)
+                .then((result: DataTypes.AppNotification[]) => {
+                    Store.dispatch(Action.refreshState({ notifications: result, append: false }));
+                });
 
             const stateAppend: {
                 userdata: DataTypes.UserValueType;
