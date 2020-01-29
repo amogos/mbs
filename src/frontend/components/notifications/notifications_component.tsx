@@ -71,10 +71,10 @@ const NotificationsComponent = (props: Props) => {
         props.rejectRental(queueElement, () => resolveNotification(`q${queueElement.id}`));
     };
 
-    const rateReturn = (returnElement: DataTypes.ReturnNotificationType) => {
+    const rateReturn = (returnElement: DataTypes.ReturnBookNotification) => {
         const selection: Selection = {
-            returnId: returnElement.returnId,
-            user: returnElement.user,
+            returnId: returnElement.id ? returnElement.id : 0,
+            user: returnElement.fromUser ? returnElement.fromUser : DataTypes.NullUserRecordType(),
             bookId: returnElement.bookId,
             showRating: true,
         };
@@ -180,7 +180,67 @@ const NotificationsComponent = (props: Props) => {
         setSelection(emptySelection);
     };
 
-    const buildView = (notification: DataTypes.AppNotification): NotificationView => {};
+    const buildView = (notification: DataTypes.AppNotification): NotificationView => {
+        if (notification.type === DataTypes.NotificationType.REQUEST_BOOK) {
+            const requestBook = notification as DataTypes.RequestBookNotification;
+            return {
+                actions: [
+                    <Button type="link" onClick={() => rejectRental(notification)}>
+                        reject
+                    </Button>,
+                    <Button type="link" onClick={() => confirmRental(notification)}>
+                        confirm
+                    </Button>,
+                ],
+                title: requestBook.fromUser ? requestBook.fromUser.name : '',
+                avatar: requestBook.fromUser ? requestBook.fromUser.picture : '',
+                rating: requestBook.fromUser ? requestBook.fromUser.rating : 0,
+                description: requestBook.book?.title as string,
+                key: `q${requestBook.id}`,
+            };
+        } else if (notification.type === DataTypes.NotificationType.RETURN_BOOK) {
+            const returnBook = notification as DataTypes.RequestBookNotification;
+            return {
+                actions: [
+                    <Button type="link" onClick={() => rateReturn(returnBook)}>
+                        rate
+                    </Button>,
+                ],
+                title: returnBook.fromUser ? returnBook.fromUser.name : '',
+                avatar: returnBook.fromUser ? returnBook.fromUser.picture : '',
+                rating: returnBook.fromUser ? returnBook.fromUser.rating : 0,
+                description: returnBook.book ? returnBook.book.title : '',
+                key: `r${returnBook.id}`,
+            };
+        } else if (notification.type === DataTypes.NotificationType.JOIN_SPACE_REQUEST) {
+            const joinSpace = notification as DataTypes.JoinSpaceRequest;
+            const user =
+                joinSpace.type === DataTypes.NotificationType.JOIN_SPACE_INVITE
+                    ? (notification.fromUser as UserRecordType)
+                    : (notification.toUser as UserRecordType);
+            const space = joinSpace.space as DataTypes.SpaceType;
+            let description = `requested space ${space.title} subscription`;
+            if (joinSpace.type === DataTypes.NotificationType.JOIN_SPACE_INVITE) {
+                description = `invited you to join space ${space.title} `;
+            }
+            return {
+                actions: [
+                    <Button type="link" onClick={() => rejectSubscription(notification)}>
+                        reject
+                    </Button>,
+                    <Button type="link" onClick={() => confirmSubscription(notification)}>
+                        confirm
+                    </Button>,
+                ],
+                title: user.name,
+                avatar: user.picture,
+                rating: user.rating,
+                description: description,
+                key: `s${space.id}${user.id}`,
+            };
+        }
+        return { actions: [], title: '', avatar: '', rating: 0, description: '', key: '' };
+    };
 
     const loadNotifications = () => {
         props.notifications.forEach(notification => notificationViews.push(buildView(notification)));

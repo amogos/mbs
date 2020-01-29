@@ -33,9 +33,7 @@ export interface ReturnBookNotification extends AppNotification {
     book?: DataTypes.BookRecordType;
 }
 
-export interface JoinSpaceInviteNotification extends AppNotification {
+export interface JoinSpaceRequest extends AppNotification {
     spaceId: number;
     space?: DataTypes.SpaceType;
 }
-
-export type JoinSpaceRequest = JoinSpaceInviteNotification;

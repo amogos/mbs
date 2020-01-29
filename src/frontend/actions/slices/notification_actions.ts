@@ -31,10 +31,10 @@ export const rateReturn = (
 
 /**ConfirmRentalAction*/
 export interface ConfirmRentalAction extends Action<string> {
-    rental: DataTypes.QueueNotificationType;
+    rental: DataTypes.AppNotification;
     callback: () => void;
 }
-export const confirmRental = (rental: DataTypes.QueueNotificationType, callback: () => void): ConfirmRentalAction => ({
+export const confirmRental = (rental: DataTypes.AppNotification, callback: () => void): ConfirmRentalAction => ({
     type: ActionTypes.default.NotificationActionConstant.ACTION_CONFIRM_RENTAL,
     rental,
     callback,
@@ -42,56 +42,22 @@ export const confirmRental = (rental: DataTypes.QueueNotificationType, callback:
 
 /**RejectRentalAction*/
 export interface RejectRentalAction extends Action<string> {
-    rental: DataTypes.QueueNotificationType;
+    rental: DataTypes.AppNotification;
     callback: () => void;
 }
-export const rejectRental = (rental: DataTypes.QueueNotificationType, callback: () => void): RejectRentalAction => ({
+export const rejectRental = (rental: DataTypes.AppNotification, callback: () => void): RejectRentalAction => ({
     type: ActionTypes.default.NotificationActionConstant.ACTION_REJECT_RENTAL,
     rental,
     callback,
 });
 
-/**GetReturnsForUserAction*/
-export interface GetReturnsForUserAction extends Action<string> {
-    callback: (reviews: DataTypes.ReturnNotificationType[]) => void;
-}
-export const getReturnsForUser = (
-    callback: (reviews: DataTypes.ReturnNotificationType[]) => void,
-): GetReturnsForUserAction => ({
-    type: ActionTypes.default.NotificationActionConstant.ACTION_GET_RETURNS,
-    callback,
-});
-
-/**GetQueueForUserAction*/
-export interface GetQueueForUserAction extends Action<string> {
-    callback: (reviews: DataTypes.QueueNotificationType[]) => void;
-}
-export const getQueueForUser = (
-    callback: (reviews: DataTypes.QueueNotificationType[]) => void,
-): GetQueueForUserAction => ({
-    type: ActionTypes.default.NotificationActionConstant.ACTION_GET_QUEUE,
-    callback,
-});
-
-/**GetPendingSubscribersForUserAction*/
-export interface GetPendingSubscribersForUserAction extends Action<string> {
-    callback: (subscribers: SubscribeNotificationType[]) => void;
-}
-export const getPendingSubscribersForUser = (
-    userId: number,
-    callback: (subscribers: SubscribeNotificationType[]) => void,
-): GetPendingSubscribersForUserAction => ({
-    type: ActionTypes.default.NotificationActionConstant.ACTION_GET_SUBSCRIBERS,
-    callback,
-});
-
 /**ConfirmSubscriptionAction*/
 export interface ConfirmSubscriptionAction extends Action<string> {
-    subscription: DataTypes.SubscribeNotificationType;
+    subscription: DataTypes.AppNotification;
     callback: () => void;
 }
 export const confirmSubscription = (
-    subscription: DataTypes.SubscribeNotificationType,
+    subscription: DataTypes.AppNotification,
     callback: () => void,
 ): ConfirmSubscriptionAction => ({
     type: ActionTypes.default.NotificationActionConstant.ACTION_CONFIRM_SUBSCRIPTION,
@@ -101,11 +67,11 @@ export const confirmSubscription = (
 
 /**RejectSubscriptionAction*/
 export interface RejectSubscriptionAction extends Action<string> {
-    subscription: DataTypes.SubscribeNotificationType;
+    subscription: DataTypes.AppNotification;
     callback: () => void;
 }
 export const rejectSubscription = (
-    subscription: DataTypes.SubscribeNotificationType,
+    subscription: DataTypes.AppNotification,
     callback: () => void,
 ): RejectSubscriptionAction => ({
     type: ActionTypes.default.NotificationActionConstant.ACTION_REJECT_SUBSCRIPTION,
@@ -117,8 +83,5 @@ export type NotificationAction =
     | RateReturnAction
     | ConfirmRentalAction
     | RejectRentalAction
-    | GetReturnsForUserAction
-    | GetQueueForUserAction
-    | GetPendingSubscribersForUserAction
     | ConfirmSubscriptionAction
     | RejectSubscriptionAction;

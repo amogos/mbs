@@ -8,7 +8,7 @@ export async function confirmSubscription(
     callback: () => void,
     onError: (resultCode: number) => void,
 ): Promise<void> {
-    const subscription = notification as DataTypes.JoinSpaceInviteNotification;
+    const subscription = notification as DataTypes.JoinSpaceRequest;
     const user = await UserEndpoint.getUserRecordTypeFromId(
         subscription.type === DataTypes.NotificationType.JOIN_SPACE_INVITE
             ? subscription.toUserId
