@@ -1,3 +1,5 @@
+import * as DataTypes from './../types';
+
 export enum NotificationType {
     /**User requests to rent a book */
     REQUEST_BOOK,
@@ -15,20 +17,25 @@ export interface AppNotification {
     date: number;
     fromUserId: number;
     toUserId: number;
+    fromUser?: DataTypes.UserRecordType;
+    toUser?: DataTypes.UserRecordType;
 }
 
 export interface RequestBookNotification extends AppNotification {
     bookId: number;
     duration: number;
+    book?: DataTypes.BookRecordType;
 }
 
-export interface ReturnBookNotification extends Notification {
+export interface ReturnBookNotification extends AppNotification {
     bookId: number;
     duration: number;
+    book?: DataTypes.BookRecordType;
 }
 
-export interface JoinSpaceInviteNotification extends Notification {
+export interface JoinSpaceInviteNotification extends AppNotification {
     spaceId: number;
+    space?: DataTypes.SpaceType;
 }
 
 export type JoinSpaceRequest = JoinSpaceInviteNotification;

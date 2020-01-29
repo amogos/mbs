@@ -3,10 +3,12 @@ import { List, Avatar, Divider, Button } from 'antd';
 import * as DataTypes from '../../../shared/types';
 import RatingComponent from '../rating/rating';
 import { Aux, withStyle } from './../hooks/hooks';
-import { UserRecordType } from '../../../shared/types';
+import { UserRecordType, AppNotification } from '../../../shared/types';
 
 interface Props {
     userdata: DataTypes.UserRecordType;
+    notifications: DataTypes.AppNotification[];
+
     rateReturn(
         returnId: number,
         bookId: number,
@@ -15,19 +17,19 @@ interface Props {
         comment: string,
         callback: () => void,
     ): void;
-    confirmRental(rental: DataTypes.QueueNotificationType, callback: () => void): void;
-    rejectRental(rental: DataTypes.QueueNotificationType, callback: () => void): void;
-    getReturns(callback: (returns: DataTypes.ReturnNotificationType[]) => void): void;
-    getQueue(callback: (returns: DataTypes.QueueNotificationType[]) => void): void;
-    getPendingSubscribersForUser(
-        userId: number,
-        callback: (subscribers: DataTypes.SubscribeNotificationType[]) => void,
-    ): void;
-    confirmSubscription(subscription: DataTypes.SubscribeNotificationType, callback: () => void): void;
-    rejectSubscription(subscription: DataTypes.SubscribeNotificationType, callback: () => void): void;
+    confirmRental(rental: DataTypes.AppNotification, callback: () => void): void;
+    rejectRental(rental: DataTypes.AppNotification, callback: () => void): void;
+    //  getReturns(callback: (returns: DataTypes.ReturnNotificationType[]) => void): void;
+    //   getQueue(callback: (returns: DataTypes.QueueNotificationType[]) => void): void;
+    //  getPendingSubscribersForUser(
+    //     userId: number,
+    //      callback: (subscribers: DataTypes.SubscribeNotificationType[]) => void,
+    // ): void;
+    confirmSubscription(subscription: AppNotification, callback: () => void): void;
+    rejectSubscription(subscription: AppNotification, callback: () => void): void;
 }
 
-interface Notification {
+interface NotificationView {
     actions: React.ReactNode[];
     title: string | undefined;
     avatar: string;
@@ -43,7 +45,7 @@ interface Selection {
     user: DataTypes.UserRecordType;
 }
 
-const emptyState: Notification[] = [];
+const emptyState: NotificationView[] = [];
 
 const emptySelection: Selection = {
     returnId: 0,
@@ -53,19 +55,19 @@ const emptySelection: Selection = {
 };
 
 const NotificationsComponent = (props: Props) => {
-    const [notifications, setNotifications] = useState(emptyState);
+    const [notificationViews, setNotificationViews] = useState(emptyState);
     const [selection, setSelection] = useState(emptySelection);
 
     const resolveNotification = (removeKey: string) => {
-        const leftNotifications = notifications.filter(item => item.key !== removeKey);
-        setNotifications(leftNotifications);
+        const leftNotifications = notificationViews.filter(item => item.key !== removeKey);
+        setNotificationViews(leftNotifications);
     };
 
-    const confirmRental = (queueElement: DataTypes.QueueNotificationType) => {
+    const confirmRental = (queueElement: DataTypes.AppNotification) => {
         props.confirmRental(queueElement, () => resolveNotification(`q${queueElement.id}`));
     };
 
-    const rejectRental = (queueElement: DataTypes.QueueNotificationType) => {
+    const rejectRental = (queueElement: DataTypes.AppNotification) => {
         props.rejectRental(queueElement, () => resolveNotification(`q${queueElement.id}`));
     };
 
@@ -83,7 +85,7 @@ const NotificationsComponent = (props: Props) => {
         setSelection(emptySelection);
     };
 
-    const onQueueReceived = (queue: DataTypes.QueueNotificationType[]) => {
+    /*const onQueueReceived = (queue: DataTypes.QueueNotificationType[]) => {
         const queueNotifications: Notification[] = notifications;
         queue.forEach(item => {
             queueNotifications.push({
@@ -105,21 +107,27 @@ const NotificationsComponent = (props: Props) => {
 
         const state = [...notifications];
         setNotifications(state);
+    };*/
+
+    const confirmSubscription = (notification: DataTypes.AppNotification) => {
+        const subscription = notification as DataTypes.JoinSpaceRequest;
+        const userId =
+            notification.type === DataTypes.NotificationType.JOIN_SPACE_INVITE
+                ? notification.toUserId
+                : notification.fromUserId;
+        props.confirmSubscription(subscription, () => resolveNotification(`s${subscription.spaceId}${userId}`));
     };
 
-    const confirmSubscription = (subscription: DataTypes.SubscribeNotificationType) => {
-        props.confirmSubscription(subscription, () =>
-            resolveNotification(`s${subscription.space.id}${subscription.user.id}`),
-        );
+    const rejectSubscription = (notification: DataTypes.AppNotification) => {
+        const subscription = notification as DataTypes.JoinSpaceRequest;
+        const userId =
+            notification.type === DataTypes.NotificationType.JOIN_SPACE_INVITE
+                ? notification.toUserId
+                : notification.fromUserId;
+        props.rejectSubscription(subscription, () => resolveNotification(`s${subscription.spaceId}${userId}`));
     };
 
-    const rejectSubscription = (subscription: DataTypes.SubscribeNotificationType) => {
-        props.rejectSubscription(subscription, () =>
-            resolveNotification(`s${subscription.space.id}${subscription.user.id}`),
-        );
-    };
-
-    const onSubscribersReceived = (subscribeNotifications: DataTypes.SubscribeNotificationType[]) => {
+    /* const onSubscribersReceived = (subscribeNotifications: DataTypes.SubscribeNotificationType[]) => {
         const subscriptionNotifications: Notification[] = notifications;
 
         subscribeNotifications.forEach(item => {
@@ -142,9 +150,9 @@ const NotificationsComponent = (props: Props) => {
 
         const state = [...notifications];
         setNotifications(state);
-    };
+    };*/
 
-    const onReturnsReceived = (returns: DataTypes.ReturnNotificationType[]) => {
+    /* const onReturnsReceived = (returns: DataTypes.ReturnNotificationType[]) => {
         const returnsNotifications: Notification[] = notifications;
         returns.forEach(item => {
             returnsNotifications.push({
@@ -163,7 +171,7 @@ const NotificationsComponent = (props: Props) => {
 
         const state = [...notifications];
         setNotifications(state);
-    };
+    };*/
 
     const onRatingOk = (_content: number, state: number, commment: string) => {
         props.rateReturn(selection.returnId, selection.bookId, selection.user, state, commment, () =>
@@ -172,17 +180,17 @@ const NotificationsComponent = (props: Props) => {
         setSelection(emptySelection);
     };
 
+    const buildView = (notification: DataTypes.AppNotification): NotificationView => {};
+
     const loadNotifications = () => {
-        props.getReturns(onReturnsReceived);
-        props.getQueue(onQueueReceived);
-        props.getPendingSubscribersForUser(props.userdata.id, onSubscribersReceived);
+        props.notifications.forEach(notification => notificationViews.push(buildView(notification)));
     };
 
-    if (notifications === emptyState) {
+    if (notificationViews === emptyState) {
         loadNotifications();
     }
 
-    const NotificationItem = (item: Notification) => {
+    const NotificationView = (item: NotificationView) => {
         return (
             <Aux>
                 <div className="notification_item">
@@ -207,7 +215,7 @@ const NotificationsComponent = (props: Props) => {
 
     return (
         <div>
-            <List dataSource={notifications} renderItem={item => NotificationItem(item)} />
+            <List dataSource={notificationViews} renderItem={item => NotificationView(item)} />
             <RatingComponent
                 visible={selection.showRating}
                 rateState={true}
